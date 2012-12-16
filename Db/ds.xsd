@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ds" targetNamespace="http://tempuri.org/ds.xsd" xmlns:mstns="http://tempuri.org/ds.xsd" xmlns="http://tempuri.org/ds.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="cs" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="cs (Settings)" ParameterPrefix=":" PropertyReference="ApplicationSettings.Db.Properties.Settings.GlobalReference.Default.cs" Provider="Oracle.DataAccess.Client" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_LIST_CURRENCIESTableAdapter" GeneratorDataComponentClassName="V_LIST_CURRENCIESTableAdapter" Name="V_LIST_CURRENCIES" UserDataComponentName="V_LIST_CURRENCIESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN.V_LIST_CURRENCIES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, ISO_NAME, "NAME", DEFAULT_CURRENCY, USER_ID, INSERT_DATE, UPDATE_DATE, CURRENCY_RATE FROM CASHIN.V_LIST_CURRENCIES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="ISO_NAME" DataSetColumn="ISO_NAME" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="DEFAULT_CURRENCY" DataSetColumn="DEFAULT_CURRENCY" />
+              <Mapping SourceColumn="USER_ID" DataSetColumn="USER_ID" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="UPDATE_DATE" DataSetColumn="UPDATE_DATE" />
+              <Mapping SourceColumn="CURRENCY_RATE" DataSetColumn="CURRENCY_RATE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_LIST_CURRENCY_RATESTableAdapter" GeneratorDataComponentClassName="V_LIST_CURRENCY_RATESTableAdapter" Name="V_LIST_CURRENCY_RATES" UserDataComponentName="V_LIST_CURRENCY_RATESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN.V_LIST_CURRENCY_RATES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, CURRENCY_ID, RATE, INSERT_DATE, USER_ID FROM CASHIN.V_LIST_CURRENCY_RATES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="CURRENCY_ID" DataSetColumn="CURRENCY_ID" />
+              <Mapping SourceColumn="RATE" DataSetColumn="RATE" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="USER_ID" DataSetColumn="USER_ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_LIST_TERMINAL_STATUSESTableAdapter" GeneratorDataComponentClassName="V_LIST_TERMINAL_STATUSESTableAdapter" Name="V_LIST_TERMINAL_STATUSES" UserDataComponentName="V_LIST_TERMINAL_STATUSESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN.V_LIST_TERMINAL_STATUSES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, TERMINAL_ID, STATUS_TYPE, CASHCODE_STATUS, INSERT_DATE FROM CASHIN.V_LIST_TERMINAL_STATUSES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="TERMINAL_ID" DataSetColumn="TERMINAL_ID" />
+              <Mapping SourceColumn="STATUS_TYPE" DataSetColumn="STATUS_TYPE" />
+              <Mapping SourceColumn="CASHCODE_STATUS" DataSetColumn="CASHCODE_STATUS" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_LIST_TERMINALSTableAdapter" GeneratorDataComponentClassName="V_LIST_TERMINALSTableAdapter" Name="V_LIST_TERMINALS" UserDataComponentName="V_LIST_TERMINALSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN.V_LIST_TERMINALS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, "NAME", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE FROM CASHIN.V_LIST_TERMINALS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="ADDRESS" DataSetColumn="ADDRESS" />
+              <Mapping SourceColumn="IDENTITY_NAME" DataSetColumn="IDENTITY_NAME" />
+              <Mapping SourceColumn="CREATE_DATE" DataSetColumn="CREATE_DATE" />
+              <Mapping SourceColumn="LAST_UPDATE" DataSetColumn="LAST_UPDATE" />
+              <Mapping SourceColumn="SIGN_KEY" DataSetColumn="SIGN_KEY" />
+              <Mapping SourceColumn="IP" DataSetColumn="IP" />
+              <Mapping SourceColumn="TMP_KEY" DataSetColumn="TMP_KEY" />
+              <Mapping SourceColumn="USER_ID" DataSetColumn="USER_ID" />
+              <Mapping SourceColumn="LAST_STATUS_TYPE" DataSetColumn="LAST_STATUS_TYPE" />
+              <Mapping SourceColumn="LAST_CASHCODE_STATUS" DataSetColumn="LAST_CASHCODE_STATUS" />
+              <Mapping SourceColumn="LAST_STATUS_UPDATE" DataSetColumn="LAST_STATUS_UPDATE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_PRODUCTSTableAdapter" GeneratorDataComponentClassName="V_PRODUCTSTableAdapter" Name="V_PRODUCTS" UserDataComponentName="V_PRODUCTSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN.V_PRODUCTS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, "NAME", NAME_AZ, NAME_RU, NAME_EN, ASSEMBLY, INSERT_DATE, UPDATE_DATE, USER_ID, ACTIVE, ORDER_NUM FROM CASHIN.V_PRODUCTS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="NAME_AZ" DataSetColumn="NAME_AZ" />
+              <Mapping SourceColumn="NAME_RU" DataSetColumn="NAME_RU" />
+              <Mapping SourceColumn="NAME_EN" DataSetColumn="NAME_EN" />
+              <Mapping SourceColumn="ASSEMBLY" DataSetColumn="ASSEMBLY" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="UPDATE_DATE" DataSetColumn="UPDATE_DATE" />
+              <Mapping SourceColumn="USER_ID" DataSetColumn="USER_ID" />
+              <Mapping SourceColumn="ACTIVE" DataSetColumn="ACTIVE" />
+              <Mapping SourceColumn="ORDER_NUM" DataSetColumn="ORDER_NUM" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_PRODUCTS_TO_TERMINALSTableAdapter" GeneratorDataComponentClassName="V_PRODUCTS_TO_TERMINALSTableAdapter" Name="V_PRODUCTS_TO_TERMINALS" UserDataComponentName="V_PRODUCTS_TO_TERMINALSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN.V_PRODUCTS_TO_TERMINALS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, TERMINAL_ID, PRODUCT_ID FROM CASHIN.V_PRODUCTS_TO_TERMINALS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="TERMINAL_ID" DataSetColumn="TERMINAL_ID" />
+              <Mapping SourceColumn="PRODUCT_ID" DataSetColumn="PRODUCT_ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ds" msprop:Generator_UserDSName="ds">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="V_LIST_CURRENCIES" msprop:Generator_TableClassName="V_LIST_CURRENCIESDataTable" msprop:Generator_TableVarName="tableV_LIST_CURRENCIES" msprop:Generator_TablePropName="V_LIST_CURRENCIES" msprop:Generator_RowDeletingName="V_LIST_CURRENCIESRowDeleting" msprop:Generator_UserTableName="V_LIST_CURRENCIES" msprop:Generator_RowChangingName="V_LIST_CURRENCIESRowChanging" msprop:Generator_RowEvHandlerName="V_LIST_CURRENCIESRowChangeEventHandler" msprop:Generator_RowDeletedName="V_LIST_CURRENCIESRowDeleted" msprop:Generator_RowEvArgName="V_LIST_CURRENCIESRowChangeEvent" msprop:Generator_RowChangedName="V_LIST_CURRENCIESRowChanged" msprop:Generator_RowClassName="V_LIST_CURRENCIESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISO_NAME" msprop:Generator_ColumnVarNameInTable="columnISO_NAME" msprop:Generator_ColumnPropNameInRow="ISO_NAME" msprop:Generator_ColumnPropNameInTable="ISO_NAMEColumn" msprop:Generator_UserColumnName="ISO_NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DEFAULT_CURRENCY" msprop:Generator_ColumnVarNameInTable="columnDEFAULT_CURRENCY" msprop:Generator_ColumnPropNameInRow="DEFAULT_CURRENCY" msprop:Generator_ColumnPropNameInTable="DEFAULT_CURRENCYColumn" msprop:Generator_UserColumnName="DEFAULT_CURRENCY" type="xs:decimal" />
+              <xs:element name="USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSER_ID" msprop:Generator_ColumnPropNameInRow="USER_ID" msprop:Generator_ColumnPropNameInTable="USER_IDColumn" msprop:Generator_UserColumnName="USER_ID" type="xs:decimal" />
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+              <xs:element name="UPDATE_DATE" msprop:Generator_ColumnVarNameInTable="columnUPDATE_DATE" msprop:Generator_ColumnPropNameInRow="UPDATE_DATE" msprop:Generator_ColumnPropNameInTable="UPDATE_DATEColumn" msprop:Generator_UserColumnName="UPDATE_DATE" type="xs:dateTime" />
+              <xs:element name="CURRENCY_RATE" msprop:Generator_ColumnVarNameInTable="columnCURRENCY_RATE" msprop:Generator_ColumnPropNameInRow="CURRENCY_RATE" msprop:Generator_ColumnPropNameInTable="CURRENCY_RATEColumn" msprop:Generator_UserColumnName="CURRENCY_RATE" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_LIST_CURRENCY_RATES" msprop:Generator_TableClassName="V_LIST_CURRENCY_RATESDataTable" msprop:Generator_TableVarName="tableV_LIST_CURRENCY_RATES" msprop:Generator_TablePropName="V_LIST_CURRENCY_RATES" msprop:Generator_RowDeletingName="V_LIST_CURRENCY_RATESRowDeleting" msprop:Generator_UserTableName="V_LIST_CURRENCY_RATES" msprop:Generator_RowChangingName="V_LIST_CURRENCY_RATESRowChanging" msprop:Generator_RowEvHandlerName="V_LIST_CURRENCY_RATESRowChangeEventHandler" msprop:Generator_RowDeletedName="V_LIST_CURRENCY_RATESRowDeleted" msprop:Generator_RowEvArgName="V_LIST_CURRENCY_RATESRowChangeEvent" msprop:Generator_RowChangedName="V_LIST_CURRENCY_RATESRowChanged" msprop:Generator_RowClassName="V_LIST_CURRENCY_RATESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:decimal" />
+              <xs:element name="CURRENCY_ID" msprop:Generator_ColumnVarNameInTable="columnCURRENCY_ID" msprop:Generator_ColumnPropNameInRow="CURRENCY_ID" msprop:Generator_ColumnPropNameInTable="CURRENCY_IDColumn" msprop:Generator_UserColumnName="CURRENCY_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RATE" msprop:Generator_ColumnVarNameInTable="columnRATE" msprop:Generator_ColumnPropNameInRow="RATE" msprop:Generator_ColumnPropNameInTable="RATEColumn" msprop:Generator_UserColumnName="RATE" type="xs:decimal" />
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+              <xs:element name="USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSER_ID" msprop:Generator_ColumnPropNameInRow="USER_ID" msprop:Generator_ColumnPropNameInTable="USER_IDColumn" msprop:Generator_UserColumnName="USER_ID" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_LIST_TERMINAL_STATUSES" msprop:Generator_TableClassName="V_LIST_TERMINAL_STATUSESDataTable" msprop:Generator_TableVarName="tableV_LIST_TERMINAL_STATUSES" msprop:Generator_TablePropName="V_LIST_TERMINAL_STATUSES" msprop:Generator_RowDeletingName="V_LIST_TERMINAL_STATUSESRowDeleting" msprop:Generator_UserTableName="V_LIST_TERMINAL_STATUSES" msprop:Generator_RowChangingName="V_LIST_TERMINAL_STATUSESRowChanging" msprop:Generator_RowEvHandlerName="V_LIST_TERMINAL_STATUSESRowChangeEventHandler" msprop:Generator_RowDeletedName="V_LIST_TERMINAL_STATUSESRowDeleted" msprop:Generator_RowEvArgName="V_LIST_TERMINAL_STATUSESRowChangeEvent" msprop:Generator_RowChangedName="V_LIST_TERMINAL_STATUSESRowChanged" msprop:Generator_RowClassName="V_LIST_TERMINAL_STATUSESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:decimal" />
+              <xs:element name="TERMINAL_ID" msprop:Generator_ColumnVarNameInTable="columnTERMINAL_ID" msprop:Generator_ColumnPropNameInRow="TERMINAL_ID" msprop:Generator_ColumnPropNameInTable="TERMINAL_IDColumn" msprop:Generator_UserColumnName="TERMINAL_ID" type="xs:decimal" />
+              <xs:element name="STATUS_TYPE" msprop:Generator_ColumnVarNameInTable="columnSTATUS_TYPE" msprop:Generator_ColumnPropNameInRow="STATUS_TYPE" msprop:Generator_ColumnPropNameInTable="STATUS_TYPEColumn" msprop:Generator_UserColumnName="STATUS_TYPE" type="xs:decimal" />
+              <xs:element name="CASHCODE_STATUS" msprop:Generator_ColumnVarNameInTable="columnCASHCODE_STATUS" msprop:Generator_ColumnPropNameInRow="CASHCODE_STATUS" msprop:Generator_ColumnPropNameInTable="CASHCODE_STATUSColumn" msprop:Generator_UserColumnName="CASHCODE_STATUS" type="xs:decimal" />
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_LIST_TERMINALS" msprop:Generator_TableClassName="V_LIST_TERMINALSDataTable" msprop:Generator_TableVarName="tableV_LIST_TERMINALS" msprop:Generator_TablePropName="V_LIST_TERMINALS" msprop:Generator_RowDeletingName="V_LIST_TERMINALSRowDeleting" msprop:Generator_UserTableName="V_LIST_TERMINALS" msprop:Generator_RowChangingName="V_LIST_TERMINALSRowChanging" msprop:Generator_RowEvHandlerName="V_LIST_TERMINALSRowChangeEventHandler" msprop:Generator_RowDeletedName="V_LIST_TERMINALSRowDeleted" msprop:Generator_RowEvArgName="V_LIST_TERMINALSRowChangeEvent" msprop:Generator_RowChangedName="V_LIST_TERMINALSRowChanged" msprop:Generator_RowClassName="V_LIST_TERMINALSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:decimal" />
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ADDRESS" msprop:Generator_ColumnVarNameInTable="columnADDRESS" msprop:Generator_ColumnPropNameInRow="ADDRESS" msprop:Generator_ColumnPropNameInTable="ADDRESSColumn" msprop:Generator_UserColumnName="ADDRESS">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDENTITY_NAME" msprop:Generator_ColumnVarNameInTable="columnIDENTITY_NAME" msprop:Generator_ColumnPropNameInRow="IDENTITY_NAME" msprop:Generator_ColumnPropNameInTable="IDENTITY_NAMEColumn" msprop:Generator_UserColumnName="IDENTITY_NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CREATE_DATE" msprop:Generator_ColumnVarNameInTable="columnCREATE_DATE" msprop:Generator_ColumnPropNameInRow="CREATE_DATE" msprop:Generator_ColumnPropNameInTable="CREATE_DATEColumn" msprop:Generator_UserColumnName="CREATE_DATE" type="xs:dateTime" />
+              <xs:element name="LAST_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLAST_UPDATE" msprop:Generator_ColumnPropNameInRow="LAST_UPDATE" msprop:Generator_ColumnPropNameInTable="LAST_UPDATEColumn" msprop:Generator_UserColumnName="LAST_UPDATE" type="xs:dateTime" />
+              <xs:element name="SIGN_KEY" msprop:Generator_ColumnVarNameInTable="columnSIGN_KEY" msprop:Generator_ColumnPropNameInRow="SIGN_KEY" msprop:Generator_ColumnPropNameInTable="SIGN_KEYColumn" msprop:Generator_UserColumnName="SIGN_KEY" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="IP" msprop:Generator_ColumnVarNameInTable="columnIP" msprop:Generator_ColumnPropNameInRow="IP" msprop:Generator_ColumnPropNameInTable="IPColumn" msprop:Generator_UserColumnName="IP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TMP_KEY" msprop:Generator_ColumnVarNameInTable="columnTMP_KEY" msprop:Generator_ColumnPropNameInRow="TMP_KEY" msprop:Generator_ColumnPropNameInTable="TMP_KEYColumn" msprop:Generator_UserColumnName="TMP_KEY" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSER_ID" msprop:Generator_ColumnPropNameInRow="USER_ID" msprop:Generator_ColumnPropNameInTable="USER_IDColumn" msprop:Generator_UserColumnName="USER_ID" type="xs:decimal" />
+              <xs:element name="LAST_STATUS_TYPE" msprop:Generator_ColumnVarNameInTable="columnLAST_STATUS_TYPE" msprop:Generator_ColumnPropNameInRow="LAST_STATUS_TYPE" msprop:Generator_ColumnPropNameInTable="LAST_STATUS_TYPEColumn" msprop:Generator_UserColumnName="LAST_STATUS_TYPE" type="xs:decimal" />
+              <xs:element name="LAST_CASHCODE_STATUS" msprop:Generator_ColumnVarNameInTable="columnLAST_CASHCODE_STATUS" msprop:Generator_ColumnPropNameInRow="LAST_CASHCODE_STATUS" msprop:Generator_ColumnPropNameInTable="LAST_CASHCODE_STATUSColumn" msprop:Generator_UserColumnName="LAST_CASHCODE_STATUS" type="xs:decimal" />
+              <xs:element name="LAST_STATUS_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLAST_STATUS_UPDATE" msprop:Generator_ColumnPropNameInRow="LAST_STATUS_UPDATE" msprop:Generator_ColumnPropNameInTable="LAST_STATUS_UPDATEColumn" msprop:Generator_UserColumnName="LAST_STATUS_UPDATE" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_PRODUCTS" msprop:Generator_TableClassName="V_PRODUCTSDataTable" msprop:Generator_TableVarName="tableV_PRODUCTS" msprop:Generator_TablePropName="V_PRODUCTS" msprop:Generator_RowDeletingName="V_PRODUCTSRowDeleting" msprop:Generator_UserTableName="V_PRODUCTS" msprop:Generator_RowChangingName="V_PRODUCTSRowChanging" msprop:Generator_RowEvHandlerName="V_PRODUCTSRowChangeEventHandler" msprop:Generator_RowDeletedName="V_PRODUCTSRowDeleted" msprop:Generator_RowEvArgName="V_PRODUCTSRowChangeEvent" msprop:Generator_RowChangedName="V_PRODUCTSRowChanged" msprop:Generator_RowClassName="V_PRODUCTSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:decimal" />
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME_AZ" msprop:Generator_ColumnVarNameInTable="columnNAME_AZ" msprop:Generator_ColumnPropNameInRow="NAME_AZ" msprop:Generator_ColumnPropNameInTable="NAME_AZColumn" msprop:Generator_UserColumnName="NAME_AZ" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME_RU" msprop:Generator_ColumnVarNameInTable="columnNAME_RU" msprop:Generator_ColumnPropNameInRow="NAME_RU" msprop:Generator_ColumnPropNameInTable="NAME_RUColumn" msprop:Generator_UserColumnName="NAME_RU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME_EN" msprop:Generator_ColumnVarNameInTable="columnNAME_EN" msprop:Generator_ColumnPropNameInRow="NAME_EN" msprop:Generator_ColumnPropNameInTable="NAME_ENColumn" msprop:Generator_UserColumnName="NAME_EN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASSEMBLY" msprop:Generator_ColumnVarNameInTable="columnASSEMBLY" msprop:Generator_ColumnPropNameInRow="ASSEMBLY" msprop:Generator_ColumnPropNameInTable="ASSEMBLYColumn" msprop:Generator_UserColumnName="ASSEMBLY">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+              <xs:element name="UPDATE_DATE" msprop:Generator_ColumnVarNameInTable="columnUPDATE_DATE" msprop:Generator_ColumnPropNameInRow="UPDATE_DATE" msprop:Generator_ColumnPropNameInTable="UPDATE_DATEColumn" msprop:Generator_UserColumnName="UPDATE_DATE" type="xs:dateTime" />
+              <xs:element name="USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSER_ID" msprop:Generator_ColumnPropNameInRow="USER_ID" msprop:Generator_ColumnPropNameInTable="USER_IDColumn" msprop:Generator_UserColumnName="USER_ID" type="xs:decimal" />
+              <xs:element name="ACTIVE" msprop:Generator_ColumnVarNameInTable="columnACTIVE" msprop:Generator_ColumnPropNameInRow="ACTIVE" msprop:Generator_ColumnPropNameInTable="ACTIVEColumn" msprop:Generator_UserColumnName="ACTIVE" type="xs:decimal" />
+              <xs:element name="ORDER_NUM" msprop:Generator_ColumnVarNameInTable="columnORDER_NUM" msprop:Generator_ColumnPropNameInRow="ORDER_NUM" msprop:Generator_ColumnPropNameInTable="ORDER_NUMColumn" msprop:Generator_UserColumnName="ORDER_NUM" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_PRODUCTS_TO_TERMINALS" msprop:Generator_TableClassName="V_PRODUCTS_TO_TERMINALSDataTable" msprop:Generator_TableVarName="tableV_PRODUCTS_TO_TERMINALS" msprop:Generator_TablePropName="V_PRODUCTS_TO_TERMINALS" msprop:Generator_RowDeletingName="V_PRODUCTS_TO_TERMINALSRowDeleting" msprop:Generator_UserTableName="V_PRODUCTS_TO_TERMINALS" msprop:Generator_RowChangingName="V_PRODUCTS_TO_TERMINALSRowChanging" msprop:Generator_RowEvHandlerName="V_PRODUCTS_TO_TERMINALSRowChangeEventHandler" msprop:Generator_RowDeletedName="V_PRODUCTS_TO_TERMINALSRowDeleted" msprop:Generator_RowEvArgName="V_PRODUCTS_TO_TERMINALSRowChangeEvent" msprop:Generator_RowChangedName="V_PRODUCTS_TO_TERMINALSRowChanged" msprop:Generator_RowClassName="V_PRODUCTS_TO_TERMINALSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:decimal" />
+              <xs:element name="TERMINAL_ID" msprop:Generator_ColumnVarNameInTable="columnTERMINAL_ID" msprop:Generator_ColumnPropNameInRow="TERMINAL_ID" msprop:Generator_ColumnPropNameInTable="TERMINAL_IDColumn" msprop:Generator_UserColumnName="TERMINAL_ID" type="xs:decimal" />
+              <xs:element name="PRODUCT_ID" msprop:Generator_ColumnVarNameInTable="columnPRODUCT_ID" msprop:Generator_ColumnPropNameInRow="PRODUCT_ID" msprop:Generator_ColumnPropNameInTable="PRODUCT_IDColumn" msprop:Generator_UserColumnName="PRODUCT_ID" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
