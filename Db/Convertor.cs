@@ -23,6 +23,21 @@ namespace Db
             return result;
         }
 
+        public static Product ToProduct(ds.V_PRODUCTS_TO_TERMINALSRow row)
+        {
+            var result = new Product
+            {
+                Id = row.ID,
+                Name = row.NAME,
+                Assembly = row.ASSEMBLY,
+                NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
+                NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU
+            };
+
+            return result;
+        }
+
         public static Terminal ToTerminal(ds.V_LIST_TERMINALSRow row)
         {
             var result = new Terminal

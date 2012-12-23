@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using Containers.Enums;
 
 namespace Containers
 {
     [Serializable, XmlRoot("StandardResult")]
     [DataContract(Name = "StandardResult", Namespace = "urn:CashIn")]
-    public class StandardResult
+    public class StandardResult : BaseMessage
     {
         private ResultCodes _Code;
         private String _Description;
@@ -19,7 +20,8 @@ namespace Containers
             {
                 return _Code;
             }
-            set { 
+            set
+            {
                 _Code = value;
                 _Description = EnumEx.GetDescription(_Code);
             }
@@ -45,7 +47,7 @@ namespace Containers
 
         public override string ToString()
         {
-            return string.Format("Code: {0}, Description: {1}", Code, Description);
+            return string.Format("{0}, Code: {1}, Description: {2}", base.ToString(), _Code, _Description);
         }
     }
 }

@@ -59,9 +59,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dsTableAdapters\QueriesTableAdapter.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="dsTableAdapters\V_LIST_CURRENCIESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,6 +66,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="dsTableAdapters\V_LIST_TERMINALSTableAdapters.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_LIST_TERMINAL_SET_STATUSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="dsTableAdapters\V_LIST_TERMINAL_STATUSESTableAdapter.cs">

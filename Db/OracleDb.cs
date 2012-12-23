@@ -113,11 +113,5 @@ namespace Db
         }
 
         #endregion
-
-
-        public void UpdateTerminalKey(int terminalId, byte[] p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

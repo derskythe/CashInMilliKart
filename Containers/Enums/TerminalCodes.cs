@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace Containers
+namespace Containers.Enums
 {
-    [SerializableAttribute]
+    [Serializable]
     [ComVisible(true)]
     [Flags]
     public enum TerminalCodes

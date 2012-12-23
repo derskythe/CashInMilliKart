@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace Containers
+namespace Containers.Enums
 {
-    [SerializableAttribute]
+    [Serializable]
     [ComVisible(true)]
     [Flags]
     public enum ResultCodes
@@ -26,6 +23,9 @@ namespace Containers
 
         [Description("Invalid terminal key")]
         InvalidKey = 4,
+
+        [Description("Invalid signature of message")]
+        InvalidSignature = 5,
 
         [Description("Unknown Error")]
         UnknownError = 128,

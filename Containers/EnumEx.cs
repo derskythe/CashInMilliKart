@@ -56,5 +56,19 @@ namespace Containers
             }
             throw new ArgumentException("Not found.", "description");
         }
+
+        public static String ToStringArray<T>(IEnumerable<T> array)
+        {
+            var result = new StringBuilder();
+            Type typeParameterType = typeof(T);
+            result.Append(String.Format("{0}: \n", typeParameterType.Name));
+
+            foreach (var item in array)
+            {
+                result.Append(item).Append("\n");
+            }
+
+            return result.ToString();
+        }
     }
 }

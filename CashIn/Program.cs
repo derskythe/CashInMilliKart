@@ -1,14 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ServiceModel;
+using CashIn.Properties;
+using CashInCore;
+using Db;
+using NLog;
 
 namespace CashIn
 {
     class Program
     {
+        private static ServiceHost _Service;
+
+        // ReSharper disable FieldCanBeMadeReadOnly.Local
+        // ReSharper disable InconsistentNaming
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        // ReSharper restore InconsistentNaming
+        // ReSharper restore FieldCanBeMadeReadOnly.Local
+
         static void Main(string[] args)
         {
+            Log.Info("Starting");
+
+            OracleDb.Init(Settings.Default.OracleDb, Settings.Default.OracleUser, Settings.Default.OraclePassword);
+
+            _Service = new ServiceHost(typeof(CashInServer));
+            _Service.Open();
+
+            Log.Info("Press any key to stop");
+            Console.Read();
+
+            _Service.Close();
         }
     }
 }
