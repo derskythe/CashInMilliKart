@@ -49,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CcnetCommand.cs" />
+    <Compile Include="CCNETDevice.cs" />
+    <Compile Include="CcnetDeviceState.cs" />
+    <Compile Include="CCNETPortSpeed.cs" />
     <Compile Include="Controls\MenuButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -60,6 +64,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialStream.cs" />
     <Compile Include="Service References\CashIn\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
