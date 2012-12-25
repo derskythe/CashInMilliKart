@@ -10,10 +10,10 @@ namespace CashInTerminal
         [Description("Ok")]
         Ok = 0x00,                          // Ok
         /// <summary>
-        /// ожидание наличности
+        /// Ожидание наличности
         /// </summary>
         [Description("Ожидание наличности")]
-        Idle = 0x06,                        // ожидание наличности
+        Idle = 0x06,                        // Ожидание наличности
         /// <summary>
         /// Не активен
         /// </summary>
@@ -30,32 +30,32 @@ namespace CashInTerminal
         [Description("Ожидание")]
         Wait = 0x14,                        // Ожидание
         /// <summary>
-        /// получить статус
+        /// Получить статус
         /// </summary>
         [Description("Получить статус")]
         GetStatus = 0x31,                   // получить статус
         /// <summary>
-        /// установить коды безопасности
+        /// Установить коды безопасности
         /// </summary>
         [Description("Установить коды безопасности")]
         SetSecurity = 0x32,                 // установить коды безопасности
         /// <summary>
-        /// идентификация
+        /// Идентификация
         /// </summary>
         [Description("Идентификация")]
         Identification = 0x37,              // идентификация
         /// <summary>
-        /// недоступен
+        /// Недоступен
         /// </summary>
         [Description("Недоступен")]
         UnitDisabled = 0x19,                // недоступен
         /// <summary>
-        /// акцептирование
+        /// Акцептирование
         /// </summary>
         [Description("Акцептирование")]
         Accepting = 0x15,                   // акцептирование
         /// <summary>
-        /// инициализация
+        /// Инициализация
         /// </summary>
         [Description("Инициализация")]
         Initialize = 0x13,                  // инициализация
@@ -90,47 +90,47 @@ namespace CashInTerminal
         [Description("Замяло купюру")]
         BillJam = 0x43,                     // Замяло купюру
         /// <summary>
-        /// fatal error
+        /// Fatal error
         /// </summary>
         [Description("Fatal Error")]
         FatalError = 0x1C,                  // fatal error
         /// <summary>
-        /// cheated, взлом
+        /// Cheated, взлом
         /// </summary>
         [Description("Cheated, взлом")]
         Cheated = 0x45,                     // cheated, взлом
         /// <summary>
-        /// cassete jammed
+        /// Cassete jammed
         /// </summary>
         [Description("Cassete jammed")]
         CasseteBillJam = 0x44,              // cassete jammed
         /// <summary>
-        /// сбой оборудования
+        /// Сбой оборудования
         /// </summary>
         [Description("Сбой оборудования")]
         Error = 0x47,                       // сбой оборудования
         /// <summary>
-        /// по нулям
+        /// По нулям
         /// </summary>
         [Description("По нулям")]
         NotMount = 0xFF,                    // по нулям
         /// <summary>
-        /// прием вкладов от населения
+        /// Прием вкладов от населения
         /// </summary>
         [Description("Прием вкладов от населения")]
         BillAccepting = 0x80,               // прием вкладов от населения
         /// <summary>
-        /// stacking, вложение купюры в купюроприемник
+        /// Stacking, вложение купюры в купюроприемник
         /// </summary>
         [Description("Stacking, вложение купюры в купюроприемник")]
         Stacking = 0x17,                    // stacking, вложение купюры в купюроприемник
         /// <summary>
-        /// stacked, купюра уложена
+        /// Stacked, купюра уложена
         /// </summary>
         [Description("Stacked, купюра уложена")]
         Stacked = 0x81,                     // stacked, купюра уложена
         /// <summary>
-        /// возврат купюры
+        /// Возврат купюры
         /// </summary>
         [Description("Возврат купюры")]
         BillReturning = 0x18,                   // возврат купюры
@@ -140,7 +140,7 @@ namespace CashInTerminal
         [Description("Удержание, HOLD")]
         Hold = 0x1A,                        // Удержание, HOLD
         /// <summary>
-        /// занят
+        /// Занят
         /// </summary>
         [Description("Занят")]
         Busy = 0x1B,                        // занят

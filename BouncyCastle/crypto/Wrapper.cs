@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Generators;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Security;
 
 namespace crypto
@@ -14,7 +18,52 @@ namespace crypto
             var r = new RsaKeyPairGenerator();
             r.Init(new KeyGenerationParameters(new SecureRandom(), keySizeInBits));
             AsymmetricCipherKeyPair keys = r.GenerateKeyPair();
+
             return keys;
+        }
+
+        public static string[] SaveToString(AsymmetricCipherKeyPair keys)
+        {
+            TextWriter textWriter = new StringWriter();
+            var pemWriter = new PemWriter(textWriter);
+            pemWriter.WriteObject(keys.Private);
+            pemWriter.Writer.Flush();
+
+            var result = new string[2];
+            result[0] = textWriter.ToString();
+
+            textWriter = new StringWriter();
+            pemWriter = new PemWriter(textWriter);
+            pemWriter.WriteObject(keys.Public);
+            pemWriter.Writer.Flush();
+
+            result[1] = textWriter.ToString();
+
+            return result;
+        }
+
+        public static AsymmetricCipherKeyPair GetKeys(string privateKeyString, string publicKeyString)
+        {
+            var publicStream = new MemoryStream(Encoding.ASCII.GetBytes(publicKeyString));
+            var publicKeyStreamReader = new StreamReader(publicStream);
+            var pr = new PemReader(publicKeyStreamReader);
+
+            var privateKeyStream = new MemoryStream(Encoding.ASCII.GetBytes(privateKeyString));
+            var privateKeyStreamReader = new StreamReader(privateKeyStream);
+            var privateKeyReader = new PemReader(privateKeyStreamReader);
+
+            var publicKey = (RsaKeyParameters)pr.ReadObject();
+            var privateKey = ((AsymmetricCipherKeyPair)privateKeyReader.ReadObject()).Private;
+
+            var keyPair = new AsymmetricCipherKeyPair(publicKey, privateKey);
+
+            publicStream.Close();
+            publicKeyStreamReader.Close();
+
+            privateKeyStream.Close();
+            privateKeyStreamReader.Close();
+
+            return keyPair;
         }
 
         public static byte[] Encrypt(byte[] data, AsymmetricKeyParameter key)

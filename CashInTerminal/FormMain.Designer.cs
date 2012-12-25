@@ -30,46 +30,59 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.pnlLanguage = new System.Windows.Forms.Panel();
-            this.pnlProducts = new System.Windows.Forms.Panel();
-            this.pnlClientCode = new System.Windows.Forms.Panel();
-            this.pnlCreditInfo = new System.Windows.Forms.Panel();
-            this.pnlMoney = new System.Windows.Forms.Panel();
-            this.pnlPaySuccess = new System.Windows.Forms.Panel();
-            this.pnlTestMode = new System.Windows.Forms.Panel();
-            this.pnlEncashment = new System.Windows.Forms.Panel();
-            this.btnAzeri = new System.Windows.Forms.Button();
-            this.btnRussian = new System.Windows.Forms.Button();
             this.btnEnglish = new System.Windows.Forms.Button();
-            this.pnlOutOfOrder = new System.Windows.Forms.Panel();
-            this.btnPayCredit = new System.Windows.Forms.Button();
+            this.btnRussian = new System.Windows.Forms.Button();
+            this.btnAzeri = new System.Windows.Forms.Button();
+            this.pnlProducts = new System.Windows.Forms.Panel();
             this.btnPayDebit = new System.Windows.Forms.Button();
-            this.btnClientCodeNext = new System.Windows.Forms.Button();
-            this.btnClientCodeBack = new System.Windows.Forms.Button();
-            this.txtClientCodeClient = new System.Windows.Forms.TextBox();
-            this.txtClientCodePassport = new System.Windows.Forms.TextBox();
-            this.lblClientCode = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnClientCodeBackspace = new System.Windows.Forms.Button();
-            this.btnClientCode0 = new System.Windows.Forms.Button();
-            this.btnClientCodeClear = new System.Windows.Forms.Button();
-            this.btnClientCode1 = new System.Windows.Forms.Button();
-            this.btnClientCode2 = new System.Windows.Forms.Button();
-            this.btnClientCode3 = new System.Windows.Forms.Button();
-            this.btnClientCode4 = new System.Windows.Forms.Button();
-            this.btnClientCode5 = new System.Windows.Forms.Button();
-            this.btnClientCode6 = new System.Windows.Forms.Button();
-            this.btnClientCode7 = new System.Windows.Forms.Button();
-            this.btnClientCode8 = new System.Windows.Forms.Button();
+            this.btnPayCredit = new System.Windows.Forms.Button();
+            this.pnlClientCode = new System.Windows.Forms.Panel();
             this.btnClientCode9 = new System.Windows.Forms.Button();
+            this.btnClientCode8 = new System.Windows.Forms.Button();
+            this.btnClientCode7 = new System.Windows.Forms.Button();
+            this.btnClientCode6 = new System.Windows.Forms.Button();
+            this.btnClientCode5 = new System.Windows.Forms.Button();
+            this.btnClientCode4 = new System.Windows.Forms.Button();
+            this.btnClientCode3 = new System.Windows.Forms.Button();
+            this.btnClientCode2 = new System.Windows.Forms.Button();
+            this.btnClientCode1 = new System.Windows.Forms.Button();
+            this.btnClientCodeClear = new System.Windows.Forms.Button();
+            this.btnClientCode0 = new System.Windows.Forms.Button();
+            this.btnClientCodeBackspace = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblClientCode = new System.Windows.Forms.Label();
+            this.txtClientCodePassport = new System.Windows.Forms.TextBox();
+            this.txtClientCodeClient = new System.Windows.Forms.TextBox();
+            this.btnClientCodeBack = new System.Windows.Forms.Button();
+            this.btnClientCodeNext = new System.Windows.Forms.Button();
+            this.pnlCreditInfo = new System.Windows.Forms.Panel();
+            this.lblCreditInfoDate = new System.Windows.Forms.Label();
+            this.lblCreditInfoTotalAmount = new System.Windows.Forms.Label();
+            this.lblCreditInfoCurrentAmount = new System.Windows.Forms.Label();
+            this.lblCreditInfoProductName = new System.Windows.Forms.Label();
+            this.lblCreditInfoPassport = new System.Windows.Forms.Label();
+            this.lblCreditInfoAccountNumber = new System.Windows.Forms.Label();
+            this.lblCreditInfoFullname = new System.Windows.Forms.Label();
             this.btnCreditInfoBack = new System.Windows.Forms.Button();
             this.btnCreditInfoNext = new System.Windows.Forms.Button();
-            this.lblCreditInfoFullname = new System.Windows.Forms.Label();
-            this.lblCreditInfoAccountNumber = new System.Windows.Forms.Label();
-            this.lblCreditInfoPassport = new System.Windows.Forms.Label();
-            this.lblCreditInfoProductName = new System.Windows.Forms.Label();
-            this.lblCreditInfoCurrentAmount = new System.Windows.Forms.Label();
-            this.lblCreditInfoTotalAmount = new System.Windows.Forms.Label();
-            this.lblCreditInfoDate = new System.Windows.Forms.Label();
+            this.pnlMoney = new System.Windows.Forms.Panel();
+            this.lblMoneyCurrency = new System.Windows.Forms.Label();
+            this.lblMoneyTotal = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnMoneyBack = new System.Windows.Forms.Button();
+            this.btnMoneyNext = new System.Windows.Forms.Button();
+            this.pnlPaySuccess = new System.Windows.Forms.Panel();
+            this.btnSuccessNext = new System.Windows.Forms.Button();
+            this.lblSuccessWelcome = new System.Windows.Forms.Label();
+            this.lblSuccessTotalAmount = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pnlTestMode = new System.Windows.Forms.Panel();
+            this.pnlEncashment = new System.Windows.Forms.Panel();
+            this.lblEncashmentTotal = new System.Windows.Forms.Label();
+            this.btnEncashmentFinish = new System.Windows.Forms.Button();
+            this.btnEncashmentPrint = new System.Windows.Forms.Button();
+            this.pnlOutOfOrder = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnlDebitInfo = new System.Windows.Forms.Panel();
             this.lblDebitInfoDate = new System.Windows.Forms.Label();
             this.lblDebitInfoPassport = new System.Windows.Forms.Label();
@@ -77,19 +90,25 @@
             this.lblDebitInfoFullname = new System.Windows.Forms.Label();
             this.btnDebitInfoBack = new System.Windows.Forms.Button();
             this.btnDebitInfoNext = new System.Windows.Forms.Button();
-            this.btnMoneyBack = new System.Windows.Forms.Button();
-            this.btnMoneyNext = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblMoneyTotal = new System.Windows.Forms.Label();
-            this.lblMoneyCurrency = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSuccessNext = new System.Windows.Forms.Button();
-            this.lblSuccessTotalAmount = new System.Windows.Forms.Label();
-            this.lblSuccessWelcome = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnEncashmentPrint = new System.Windows.Forms.Button();
-            this.lblEncashmentTotal = new System.Windows.Forms.Label();
-            this.btnEncashmentFinish = new System.Windows.Forms.Button();
+            this.pnlActivation = new System.Windows.Forms.Panel();
+            this.txtActivationCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnActivation9 = new System.Windows.Forms.Button();
+            this.btnActivation8 = new System.Windows.Forms.Button();
+            this.btnActivation7 = new System.Windows.Forms.Button();
+            this.btnActivation6 = new System.Windows.Forms.Button();
+            this.btnActivation5 = new System.Windows.Forms.Button();
+            this.btnActivation4 = new System.Windows.Forms.Button();
+            this.btnActivation3 = new System.Windows.Forms.Button();
+            this.btnActivation2 = new System.Windows.Forms.Button();
+            this.btnActivation1 = new System.Windows.Forms.Button();
+            this.btnActivationBackspace = new System.Windows.Forms.Button();
+            this.btnActivation0 = new System.Windows.Forms.Button();
+            this.btnActivationClear = new System.Windows.Forms.Button();
+            this.btnActivation = new System.Windows.Forms.Button();
+            this.txtActivationTerminal = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.pnlLanguage.SuspendLayout();
             this.pnlProducts.SuspendLayout();
             this.pnlClientCode.SuspendLayout();
@@ -99,6 +118,7 @@
             this.pnlEncashment.SuspendLayout();
             this.pnlOutOfOrder.SuspendLayout();
             this.pnlDebitInfo.SuspendLayout();
+            this.pnlActivation.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLanguage
@@ -109,12 +129,47 @@
             resources.ApplyResources(this.pnlLanguage, "pnlLanguage");
             this.pnlLanguage.Name = "pnlLanguage";
             // 
+            // btnEnglish
+            // 
+            resources.ApplyResources(this.btnEnglish, "btnEnglish");
+            this.btnEnglish.Name = "btnEnglish";
+            this.btnEnglish.UseVisualStyleBackColor = true;
+            this.btnEnglish.Click += new System.EventHandler(this.BtnEnglishClick);
+            // 
+            // btnRussian
+            // 
+            resources.ApplyResources(this.btnRussian, "btnRussian");
+            this.btnRussian.Name = "btnRussian";
+            this.btnRussian.UseVisualStyleBackColor = true;
+            this.btnRussian.Click += new System.EventHandler(this.BtnRussianClick);
+            // 
+            // btnAzeri
+            // 
+            resources.ApplyResources(this.btnAzeri, "btnAzeri");
+            this.btnAzeri.Name = "btnAzeri";
+            this.btnAzeri.UseVisualStyleBackColor = true;
+            this.btnAzeri.Click += new System.EventHandler(this.BtnAzeriClick);
+            // 
             // pnlProducts
             // 
             this.pnlProducts.Controls.Add(this.btnPayDebit);
             this.pnlProducts.Controls.Add(this.btnPayCredit);
             resources.ApplyResources(this.pnlProducts, "pnlProducts");
             this.pnlProducts.Name = "pnlProducts";
+            // 
+            // btnPayDebit
+            // 
+            resources.ApplyResources(this.btnPayDebit, "btnPayDebit");
+            this.btnPayDebit.Name = "btnPayDebit";
+            this.btnPayDebit.UseVisualStyleBackColor = true;
+            this.btnPayDebit.Click += new System.EventHandler(this.BtnPayDebitClick);
+            // 
+            // btnPayCredit
+            // 
+            resources.ApplyResources(this.btnPayCredit, "btnPayCredit");
+            this.btnPayCredit.Name = "btnPayCredit";
+            this.btnPayCredit.UseVisualStyleBackColor = true;
+            this.btnPayCredit.Click += new System.EventHandler(this.BtnPayCreditClick);
             // 
             // pnlClientCode
             // 
@@ -138,6 +193,127 @@
             this.pnlClientCode.Controls.Add(this.btnClientCodeNext);
             resources.ApplyResources(this.pnlClientCode, "pnlClientCode");
             this.pnlClientCode.Name = "pnlClientCode";
+            this.pnlClientCode.VisibleChanged += new System.EventHandler(this.PnlClientCodeVisibleChanged);
+            // 
+            // btnClientCode9
+            // 
+            resources.ApplyResources(this.btnClientCode9, "btnClientCode9");
+            this.btnClientCode9.Name = "btnClientCode9";
+            this.btnClientCode9.UseVisualStyleBackColor = true;
+            this.btnClientCode9.Click += new System.EventHandler(this.BtnClientCode9Click);
+            // 
+            // btnClientCode8
+            // 
+            resources.ApplyResources(this.btnClientCode8, "btnClientCode8");
+            this.btnClientCode8.Name = "btnClientCode8";
+            this.btnClientCode8.UseVisualStyleBackColor = true;
+            this.btnClientCode8.Click += new System.EventHandler(this.BtnClientCode8Click);
+            // 
+            // btnClientCode7
+            // 
+            resources.ApplyResources(this.btnClientCode7, "btnClientCode7");
+            this.btnClientCode7.Name = "btnClientCode7";
+            this.btnClientCode7.UseVisualStyleBackColor = true;
+            this.btnClientCode7.Click += new System.EventHandler(this.BtnClientCode7Click);
+            // 
+            // btnClientCode6
+            // 
+            resources.ApplyResources(this.btnClientCode6, "btnClientCode6");
+            this.btnClientCode6.Name = "btnClientCode6";
+            this.btnClientCode6.UseVisualStyleBackColor = true;
+            this.btnClientCode6.Click += new System.EventHandler(this.BtnClientCode6Click);
+            // 
+            // btnClientCode5
+            // 
+            resources.ApplyResources(this.btnClientCode5, "btnClientCode5");
+            this.btnClientCode5.Name = "btnClientCode5";
+            this.btnClientCode5.UseVisualStyleBackColor = true;
+            this.btnClientCode5.Click += new System.EventHandler(this.BtnClientCode5Click);
+            // 
+            // btnClientCode4
+            // 
+            resources.ApplyResources(this.btnClientCode4, "btnClientCode4");
+            this.btnClientCode4.Name = "btnClientCode4";
+            this.btnClientCode4.UseVisualStyleBackColor = true;
+            this.btnClientCode4.Click += new System.EventHandler(this.BtnClientCode4Click);
+            // 
+            // btnClientCode3
+            // 
+            resources.ApplyResources(this.btnClientCode3, "btnClientCode3");
+            this.btnClientCode3.Name = "btnClientCode3";
+            this.btnClientCode3.UseVisualStyleBackColor = true;
+            this.btnClientCode3.Click += new System.EventHandler(this.BtnClientCode3Click);
+            // 
+            // btnClientCode2
+            // 
+            resources.ApplyResources(this.btnClientCode2, "btnClientCode2");
+            this.btnClientCode2.Name = "btnClientCode2";
+            this.btnClientCode2.UseVisualStyleBackColor = true;
+            this.btnClientCode2.Click += new System.EventHandler(this.BtnClientCode2Click);
+            // 
+            // btnClientCode1
+            // 
+            resources.ApplyResources(this.btnClientCode1, "btnClientCode1");
+            this.btnClientCode1.Name = "btnClientCode1";
+            this.btnClientCode1.UseVisualStyleBackColor = true;
+            this.btnClientCode1.Click += new System.EventHandler(this.BtnClientCode1Click);
+            // 
+            // btnClientCodeClear
+            // 
+            resources.ApplyResources(this.btnClientCodeClear, "btnClientCodeClear");
+            this.btnClientCodeClear.Name = "btnClientCodeClear";
+            this.btnClientCodeClear.UseVisualStyleBackColor = true;
+            this.btnClientCodeClear.Click += new System.EventHandler(this.BtnClientCodeClearClick);
+            // 
+            // btnClientCode0
+            // 
+            resources.ApplyResources(this.btnClientCode0, "btnClientCode0");
+            this.btnClientCode0.Name = "btnClientCode0";
+            this.btnClientCode0.UseVisualStyleBackColor = true;
+            this.btnClientCode0.Click += new System.EventHandler(this.BtnClientCode0Click);
+            // 
+            // btnClientCodeBackspace
+            // 
+            resources.ApplyResources(this.btnClientCodeBackspace, "btnClientCodeBackspace");
+            this.btnClientCodeBackspace.Name = "btnClientCodeBackspace";
+            this.btnClientCodeBackspace.UseVisualStyleBackColor = true;
+            this.btnClientCodeBackspace.Click += new System.EventHandler(this.BtnClientCodeBackspaceClick);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // lblClientCode
+            // 
+            resources.ApplyResources(this.lblClientCode, "lblClientCode");
+            this.lblClientCode.Name = "lblClientCode";
+            // 
+            // txtClientCodePassport
+            // 
+            resources.ApplyResources(this.txtClientCodePassport, "txtClientCodePassport");
+            this.txtClientCodePassport.Name = "txtClientCodePassport";
+            this.txtClientCodePassport.Click += new System.EventHandler(this.TxtClientCodePassportClick);
+            // 
+            // txtClientCodeClient
+            // 
+            resources.ApplyResources(this.txtClientCodeClient, "txtClientCodeClient");
+            this.txtClientCodeClient.Name = "txtClientCodeClient";
+            this.txtClientCodeClient.Click += new System.EventHandler(this.TxtClientCodeClientClick);
+            // 
+            // btnClientCodeBack
+            // 
+            resources.ApplyResources(this.btnClientCodeBack, "btnClientCodeBack");
+            this.btnClientCodeBack.Name = "btnClientCodeBack";
+            this.btnClientCodeBack.UseVisualStyleBackColor = true;
+            this.btnClientCodeBack.Click += new System.EventHandler(this.BtnClientCodeBackClick);
+            // 
+            // btnClientCodeNext
+            // 
+            resources.ApplyResources(this.btnClientCodeNext, "btnClientCodeNext");
+            this.btnClientCodeNext.Name = "btnClientCodeNext";
+            this.btnClientCodeNext.UseVisualStyleBackColor = true;
+            this.btnClientCodeNext.Click += new System.EventHandler(this.BtnClientCodeNextClick);
             // 
             // pnlCreditInfo
             // 
@@ -153,196 +329,40 @@
             resources.ApplyResources(this.pnlCreditInfo, "pnlCreditInfo");
             this.pnlCreditInfo.Name = "pnlCreditInfo";
             // 
-            // pnlMoney
+            // lblCreditInfoDate
             // 
-            this.pnlMoney.Controls.Add(this.lblMoneyCurrency);
-            this.pnlMoney.Controls.Add(this.lblMoneyTotal);
-            this.pnlMoney.Controls.Add(this.label2);
-            this.pnlMoney.Controls.Add(this.btnMoneyBack);
-            this.pnlMoney.Controls.Add(this.btnMoneyNext);
-            resources.ApplyResources(this.pnlMoney, "pnlMoney");
-            this.pnlMoney.Name = "pnlMoney";
+            resources.ApplyResources(this.lblCreditInfoDate, "lblCreditInfoDate");
+            this.lblCreditInfoDate.Name = "lblCreditInfoDate";
             // 
-            // pnlPaySuccess
+            // lblCreditInfoTotalAmount
             // 
-            this.pnlPaySuccess.Controls.Add(this.btnSuccessNext);
-            this.pnlPaySuccess.Controls.Add(this.lblSuccessWelcome);
-            this.pnlPaySuccess.Controls.Add(this.lblSuccessTotalAmount);
-            this.pnlPaySuccess.Controls.Add(this.label3);
-            resources.ApplyResources(this.pnlPaySuccess, "pnlPaySuccess");
-            this.pnlPaySuccess.Name = "pnlPaySuccess";
+            resources.ApplyResources(this.lblCreditInfoTotalAmount, "lblCreditInfoTotalAmount");
+            this.lblCreditInfoTotalAmount.Name = "lblCreditInfoTotalAmount";
             // 
-            // pnlTestMode
+            // lblCreditInfoCurrentAmount
             // 
-            resources.ApplyResources(this.pnlTestMode, "pnlTestMode");
-            this.pnlTestMode.Name = "pnlTestMode";
+            resources.ApplyResources(this.lblCreditInfoCurrentAmount, "lblCreditInfoCurrentAmount");
+            this.lblCreditInfoCurrentAmount.Name = "lblCreditInfoCurrentAmount";
             // 
-            // pnlEncashment
+            // lblCreditInfoProductName
             // 
-            this.pnlEncashment.Controls.Add(this.lblEncashmentTotal);
-            this.pnlEncashment.Controls.Add(this.btnEncashmentFinish);
-            this.pnlEncashment.Controls.Add(this.btnEncashmentPrint);
-            resources.ApplyResources(this.pnlEncashment, "pnlEncashment");
-            this.pnlEncashment.Name = "pnlEncashment";
+            resources.ApplyResources(this.lblCreditInfoProductName, "lblCreditInfoProductName");
+            this.lblCreditInfoProductName.Name = "lblCreditInfoProductName";
             // 
-            // btnAzeri
+            // lblCreditInfoPassport
             // 
-            resources.ApplyResources(this.btnAzeri, "btnAzeri");
-            this.btnAzeri.Name = "btnAzeri";
-            this.btnAzeri.UseVisualStyleBackColor = true;
-            this.btnAzeri.Click += new System.EventHandler(this.BtnAzeriClick);
+            resources.ApplyResources(this.lblCreditInfoPassport, "lblCreditInfoPassport");
+            this.lblCreditInfoPassport.Name = "lblCreditInfoPassport";
             // 
-            // btnRussian
+            // lblCreditInfoAccountNumber
             // 
-            resources.ApplyResources(this.btnRussian, "btnRussian");
-            this.btnRussian.Name = "btnRussian";
-            this.btnRussian.UseVisualStyleBackColor = true;
-            this.btnRussian.Click += new System.EventHandler(this.BtnRussianClick);
+            resources.ApplyResources(this.lblCreditInfoAccountNumber, "lblCreditInfoAccountNumber");
+            this.lblCreditInfoAccountNumber.Name = "lblCreditInfoAccountNumber";
             // 
-            // btnEnglish
+            // lblCreditInfoFullname
             // 
-            resources.ApplyResources(this.btnEnglish, "btnEnglish");
-            this.btnEnglish.Name = "btnEnglish";
-            this.btnEnglish.UseVisualStyleBackColor = true;
-            this.btnEnglish.Click += new System.EventHandler(this.BtnEnglishClick);
-            // 
-            // pnlOutOfOrder
-            // 
-            this.pnlOutOfOrder.Controls.Add(this.label4);
-            resources.ApplyResources(this.pnlOutOfOrder, "pnlOutOfOrder");
-            this.pnlOutOfOrder.Name = "pnlOutOfOrder";
-            // 
-            // btnPayCredit
-            // 
-            resources.ApplyResources(this.btnPayCredit, "btnPayCredit");
-            this.btnPayCredit.Name = "btnPayCredit";
-            this.btnPayCredit.UseVisualStyleBackColor = true;
-            this.btnPayCredit.Click += new System.EventHandler(this.BtnPayCreditClick);
-            // 
-            // btnPayDebit
-            // 
-            resources.ApplyResources(this.btnPayDebit, "btnPayDebit");
-            this.btnPayDebit.Name = "btnPayDebit";
-            this.btnPayDebit.UseVisualStyleBackColor = true;
-            this.btnPayDebit.Click += new System.EventHandler(this.BtnPayDebitClick);
-            // 
-            // btnClientCodeNext
-            // 
-            resources.ApplyResources(this.btnClientCodeNext, "btnClientCodeNext");
-            this.btnClientCodeNext.Name = "btnClientCodeNext";
-            this.btnClientCodeNext.UseVisualStyleBackColor = true;
-            this.btnClientCodeNext.Click += new System.EventHandler(this.BtnClientCodeNextClick);
-            // 
-            // btnClientCodeBack
-            // 
-            resources.ApplyResources(this.btnClientCodeBack, "btnClientCodeBack");
-            this.btnClientCodeBack.Name = "btnClientCodeBack";
-            this.btnClientCodeBack.UseVisualStyleBackColor = true;
-            this.btnClientCodeBack.Click += new System.EventHandler(this.BtnClientCodeBackClick);
-            // 
-            // txtClientCodeClient
-            // 
-            resources.ApplyResources(this.txtClientCodeClient, "txtClientCodeClient");
-            this.txtClientCodeClient.Name = "txtClientCodeClient";
-            // 
-            // txtClientCodePassport
-            // 
-            resources.ApplyResources(this.txtClientCodePassport, "txtClientCodePassport");
-            this.txtClientCodePassport.Name = "txtClientCodePassport";
-            // 
-            // lblClientCode
-            // 
-            resources.ApplyResources(this.lblClientCode, "lblClientCode");
-            this.lblClientCode.Name = "lblClientCode";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // btnClientCodeBackspace
-            // 
-            resources.ApplyResources(this.btnClientCodeBackspace, "btnClientCodeBackspace");
-            this.btnClientCodeBackspace.Name = "btnClientCodeBackspace";
-            this.btnClientCodeBackspace.UseVisualStyleBackColor = true;
-            this.btnClientCodeBackspace.Click += new System.EventHandler(this.BtnClientCodeBackspaceClick);
-            // 
-            // btnClientCode0
-            // 
-            resources.ApplyResources(this.btnClientCode0, "btnClientCode0");
-            this.btnClientCode0.Name = "btnClientCode0";
-            this.btnClientCode0.UseVisualStyleBackColor = true;
-            this.btnClientCode0.Click += new System.EventHandler(this.BtnClientCode0Click);
-            // 
-            // btnClientCodeClear
-            // 
-            resources.ApplyResources(this.btnClientCodeClear, "btnClientCodeClear");
-            this.btnClientCodeClear.Name = "btnClientCodeClear";
-            this.btnClientCodeClear.UseVisualStyleBackColor = true;
-            this.btnClientCodeClear.Click += new System.EventHandler(this.BtnClientCodeClearClick);
-            // 
-            // btnClientCode1
-            // 
-            resources.ApplyResources(this.btnClientCode1, "btnClientCode1");
-            this.btnClientCode1.Name = "btnClientCode1";
-            this.btnClientCode1.UseVisualStyleBackColor = true;
-            this.btnClientCode1.Click += new System.EventHandler(this.BtnClientCode1Click);
-            // 
-            // btnClientCode2
-            // 
-            resources.ApplyResources(this.btnClientCode2, "btnClientCode2");
-            this.btnClientCode2.Name = "btnClientCode2";
-            this.btnClientCode2.UseVisualStyleBackColor = true;
-            this.btnClientCode2.Click += new System.EventHandler(this.BtnClientCode2Click);
-            // 
-            // btnClientCode3
-            // 
-            resources.ApplyResources(this.btnClientCode3, "btnClientCode3");
-            this.btnClientCode3.Name = "btnClientCode3";
-            this.btnClientCode3.UseVisualStyleBackColor = true;
-            this.btnClientCode3.Click += new System.EventHandler(this.BtnClientCode3Click);
-            // 
-            // btnClientCode4
-            // 
-            resources.ApplyResources(this.btnClientCode4, "btnClientCode4");
-            this.btnClientCode4.Name = "btnClientCode4";
-            this.btnClientCode4.UseVisualStyleBackColor = true;
-            this.btnClientCode4.Click += new System.EventHandler(this.btnClientCode4_Click);
-            // 
-            // btnClientCode5
-            // 
-            resources.ApplyResources(this.btnClientCode5, "btnClientCode5");
-            this.btnClientCode5.Name = "btnClientCode5";
-            this.btnClientCode5.UseVisualStyleBackColor = true;
-            this.btnClientCode5.Click += new System.EventHandler(this.BtnClientCode5Click);
-            // 
-            // btnClientCode6
-            // 
-            resources.ApplyResources(this.btnClientCode6, "btnClientCode6");
-            this.btnClientCode6.Name = "btnClientCode6";
-            this.btnClientCode6.UseVisualStyleBackColor = true;
-            this.btnClientCode6.Click += new System.EventHandler(this.BtnClientCode6Click);
-            // 
-            // btnClientCode7
-            // 
-            resources.ApplyResources(this.btnClientCode7, "btnClientCode7");
-            this.btnClientCode7.Name = "btnClientCode7";
-            this.btnClientCode7.UseVisualStyleBackColor = true;
-            this.btnClientCode7.Click += new System.EventHandler(this.BtnClientCode7Click);
-            // 
-            // btnClientCode8
-            // 
-            resources.ApplyResources(this.btnClientCode8, "btnClientCode8");
-            this.btnClientCode8.Name = "btnClientCode8";
-            this.btnClientCode8.UseVisualStyleBackColor = true;
-            this.btnClientCode8.Click += new System.EventHandler(this.BtnClientCode8Click);
-            // 
-            // btnClientCode9
-            // 
-            resources.ApplyResources(this.btnClientCode9, "btnClientCode9");
-            this.btnClientCode9.Name = "btnClientCode9";
-            this.btnClientCode9.UseVisualStyleBackColor = true;
-            this.btnClientCode9.Click += new System.EventHandler(this.BtnClientCode9Click);
+            resources.ApplyResources(this.lblCreditInfoFullname, "lblCreditInfoFullname");
+            this.lblCreditInfoFullname.Name = "lblCreditInfoFullname";
             // 
             // btnCreditInfoBack
             // 
@@ -358,40 +378,117 @@
             this.btnCreditInfoNext.UseVisualStyleBackColor = true;
             this.btnCreditInfoNext.Click += new System.EventHandler(this.BtnCreditInfoNextClick);
             // 
-            // lblCreditInfoFullname
+            // pnlMoney
             // 
-            resources.ApplyResources(this.lblCreditInfoFullname, "lblCreditInfoFullname");
-            this.lblCreditInfoFullname.Name = "lblCreditInfoFullname";
+            this.pnlMoney.Controls.Add(this.lblMoneyCurrency);
+            this.pnlMoney.Controls.Add(this.lblMoneyTotal);
+            this.pnlMoney.Controls.Add(this.label2);
+            this.pnlMoney.Controls.Add(this.btnMoneyBack);
+            this.pnlMoney.Controls.Add(this.btnMoneyNext);
+            resources.ApplyResources(this.pnlMoney, "pnlMoney");
+            this.pnlMoney.Name = "pnlMoney";
             // 
-            // lblCreditInfoAccountNumber
+            // lblMoneyCurrency
             // 
-            resources.ApplyResources(this.lblCreditInfoAccountNumber, "lblCreditInfoAccountNumber");
-            this.lblCreditInfoAccountNumber.Name = "lblCreditInfoAccountNumber";
+            resources.ApplyResources(this.lblMoneyCurrency, "lblMoneyCurrency");
+            this.lblMoneyCurrency.Name = "lblMoneyCurrency";
             // 
-            // lblCreditInfoPassport
+            // lblMoneyTotal
             // 
-            resources.ApplyResources(this.lblCreditInfoPassport, "lblCreditInfoPassport");
-            this.lblCreditInfoPassport.Name = "lblCreditInfoPassport";
+            resources.ApplyResources(this.lblMoneyTotal, "lblMoneyTotal");
+            this.lblMoneyTotal.Name = "lblMoneyTotal";
             // 
-            // lblCreditInfoProductName
+            // label2
             // 
-            resources.ApplyResources(this.lblCreditInfoProductName, "lblCreditInfoProductName");
-            this.lblCreditInfoProductName.Name = "lblCreditInfoProductName";
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
             // 
-            // lblCreditInfoCurrentAmount
+            // btnMoneyBack
             // 
-            resources.ApplyResources(this.lblCreditInfoCurrentAmount, "lblCreditInfoCurrentAmount");
-            this.lblCreditInfoCurrentAmount.Name = "lblCreditInfoCurrentAmount";
+            resources.ApplyResources(this.btnMoneyBack, "btnMoneyBack");
+            this.btnMoneyBack.Name = "btnMoneyBack";
+            this.btnMoneyBack.UseVisualStyleBackColor = true;
+            this.btnMoneyBack.Click += new System.EventHandler(this.BtnMoneyBackClick);
             // 
-            // lblCreditInfoTotalAmount
+            // btnMoneyNext
             // 
-            resources.ApplyResources(this.lblCreditInfoTotalAmount, "lblCreditInfoTotalAmount");
-            this.lblCreditInfoTotalAmount.Name = "lblCreditInfoTotalAmount";
+            resources.ApplyResources(this.btnMoneyNext, "btnMoneyNext");
+            this.btnMoneyNext.Name = "btnMoneyNext";
+            this.btnMoneyNext.UseVisualStyleBackColor = true;
+            this.btnMoneyNext.Click += new System.EventHandler(this.BtnMoneyNextClick);
             // 
-            // lblCreditInfoDate
+            // pnlPaySuccess
             // 
-            resources.ApplyResources(this.lblCreditInfoDate, "lblCreditInfoDate");
-            this.lblCreditInfoDate.Name = "lblCreditInfoDate";
+            this.pnlPaySuccess.Controls.Add(this.btnSuccessNext);
+            this.pnlPaySuccess.Controls.Add(this.lblSuccessWelcome);
+            this.pnlPaySuccess.Controls.Add(this.lblSuccessTotalAmount);
+            this.pnlPaySuccess.Controls.Add(this.label3);
+            resources.ApplyResources(this.pnlPaySuccess, "pnlPaySuccess");
+            this.pnlPaySuccess.Name = "pnlPaySuccess";
+            // 
+            // btnSuccessNext
+            // 
+            resources.ApplyResources(this.btnSuccessNext, "btnSuccessNext");
+            this.btnSuccessNext.Name = "btnSuccessNext";
+            this.btnSuccessNext.UseVisualStyleBackColor = true;
+            // 
+            // lblSuccessWelcome
+            // 
+            resources.ApplyResources(this.lblSuccessWelcome, "lblSuccessWelcome");
+            this.lblSuccessWelcome.Name = "lblSuccessWelcome";
+            // 
+            // lblSuccessTotalAmount
+            // 
+            resources.ApplyResources(this.lblSuccessTotalAmount, "lblSuccessTotalAmount");
+            this.lblSuccessTotalAmount.Name = "lblSuccessTotalAmount";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // pnlTestMode
+            // 
+            resources.ApplyResources(this.pnlTestMode, "pnlTestMode");
+            this.pnlTestMode.Name = "pnlTestMode";
+            // 
+            // pnlEncashment
+            // 
+            this.pnlEncashment.Controls.Add(this.lblEncashmentTotal);
+            this.pnlEncashment.Controls.Add(this.btnEncashmentFinish);
+            this.pnlEncashment.Controls.Add(this.btnEncashmentPrint);
+            resources.ApplyResources(this.pnlEncashment, "pnlEncashment");
+            this.pnlEncashment.Name = "pnlEncashment";
+            // 
+            // lblEncashmentTotal
+            // 
+            resources.ApplyResources(this.lblEncashmentTotal, "lblEncashmentTotal");
+            this.lblEncashmentTotal.Name = "lblEncashmentTotal";
+            // 
+            // btnEncashmentFinish
+            // 
+            resources.ApplyResources(this.btnEncashmentFinish, "btnEncashmentFinish");
+            this.btnEncashmentFinish.Name = "btnEncashmentFinish";
+            this.btnEncashmentFinish.UseVisualStyleBackColor = true;
+            this.btnEncashmentFinish.Click += new System.EventHandler(this.BtnEncashmentFinishClick);
+            // 
+            // btnEncashmentPrint
+            // 
+            resources.ApplyResources(this.btnEncashmentPrint, "btnEncashmentPrint");
+            this.btnEncashmentPrint.Name = "btnEncashmentPrint";
+            this.btnEncashmentPrint.UseVisualStyleBackColor = true;
+            this.btnEncashmentPrint.Click += new System.EventHandler(this.BtnEncashmentPrintClick);
+            // 
+            // pnlOutOfOrder
+            // 
+            this.pnlOutOfOrder.Controls.Add(this.label4);
+            resources.ApplyResources(this.pnlOutOfOrder, "pnlOutOfOrder");
+            this.pnlOutOfOrder.Name = "pnlOutOfOrder";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // pnlDebitInfo
             // 
@@ -438,89 +535,160 @@
             this.btnDebitInfoNext.UseVisualStyleBackColor = true;
             this.btnDebitInfoNext.Click += new System.EventHandler(this.BtnDebitInfoNextClick);
             // 
-            // btnMoneyBack
+            // pnlActivation
             // 
-            resources.ApplyResources(this.btnMoneyBack, "btnMoneyBack");
-            this.btnMoneyBack.Name = "btnMoneyBack";
-            this.btnMoneyBack.UseVisualStyleBackColor = true;
+            this.pnlActivation.Controls.Add(this.txtActivationCode);
+            this.pnlActivation.Controls.Add(this.label7);
+            this.pnlActivation.Controls.Add(this.btnActivation9);
+            this.pnlActivation.Controls.Add(this.btnActivation8);
+            this.pnlActivation.Controls.Add(this.btnActivation7);
+            this.pnlActivation.Controls.Add(this.btnActivation6);
+            this.pnlActivation.Controls.Add(this.btnActivation5);
+            this.pnlActivation.Controls.Add(this.btnActivation4);
+            this.pnlActivation.Controls.Add(this.btnActivation3);
+            this.pnlActivation.Controls.Add(this.btnActivation2);
+            this.pnlActivation.Controls.Add(this.btnActivation1);
+            this.pnlActivation.Controls.Add(this.btnActivationBackspace);
+            this.pnlActivation.Controls.Add(this.btnActivation0);
+            this.pnlActivation.Controls.Add(this.btnActivationClear);
+            this.pnlActivation.Controls.Add(this.btnActivation);
+            this.pnlActivation.Controls.Add(this.txtActivationTerminal);
+            this.pnlActivation.Controls.Add(this.label6);
+            this.pnlActivation.Controls.Add(this.label5);
+            resources.ApplyResources(this.pnlActivation, "pnlActivation");
+            this.pnlActivation.Name = "pnlActivation";
+            this.pnlActivation.VisibleChanged += new System.EventHandler(this.PnlActivationVisibleChanged);
             // 
-            // btnMoneyNext
+            // txtActivationCode
             // 
-            resources.ApplyResources(this.btnMoneyNext, "btnMoneyNext");
-            this.btnMoneyNext.Name = "btnMoneyNext";
-            this.btnMoneyNext.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.txtActivationCode, "txtActivationCode");
+            this.txtActivationCode.Name = "txtActivationCode";
+            this.txtActivationCode.Click += new System.EventHandler(this.TxtActivationCodeClick);
             // 
-            // label2
+            // label7
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
             // 
-            // lblMoneyTotal
+            // btnActivation9
             // 
-            resources.ApplyResources(this.lblMoneyTotal, "lblMoneyTotal");
-            this.lblMoneyTotal.Name = "lblMoneyTotal";
+            resources.ApplyResources(this.btnActivation9, "btnActivation9");
+            this.btnActivation9.Name = "btnActivation9";
+            this.btnActivation9.UseVisualStyleBackColor = true;
+            this.btnActivation9.Click += new System.EventHandler(this.BtnActivation9Click);
             // 
-            // lblMoneyCurrency
+            // btnActivation8
             // 
-            resources.ApplyResources(this.lblMoneyCurrency, "lblMoneyCurrency");
-            this.lblMoneyCurrency.Name = "lblMoneyCurrency";
+            resources.ApplyResources(this.btnActivation8, "btnActivation8");
+            this.btnActivation8.Name = "btnActivation8";
+            this.btnActivation8.UseVisualStyleBackColor = true;
+            this.btnActivation8.Click += new System.EventHandler(this.BtnActivation8Click);
             // 
-            // label3
+            // btnActivation7
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.btnActivation7, "btnActivation7");
+            this.btnActivation7.Name = "btnActivation7";
+            this.btnActivation7.UseVisualStyleBackColor = true;
+            this.btnActivation7.Click += new System.EventHandler(this.BtnActivation7Click);
             // 
-            // btnSuccessNext
+            // btnActivation6
             // 
-            resources.ApplyResources(this.btnSuccessNext, "btnSuccessNext");
-            this.btnSuccessNext.Name = "btnSuccessNext";
-            this.btnSuccessNext.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnActivation6, "btnActivation6");
+            this.btnActivation6.Name = "btnActivation6";
+            this.btnActivation6.UseVisualStyleBackColor = true;
+            this.btnActivation6.Click += new System.EventHandler(this.BtnActivation6Click);
             // 
-            // lblSuccessTotalAmount
+            // btnActivation5
             // 
-            resources.ApplyResources(this.lblSuccessTotalAmount, "lblSuccessTotalAmount");
-            this.lblSuccessTotalAmount.Name = "lblSuccessTotalAmount";
+            resources.ApplyResources(this.btnActivation5, "btnActivation5");
+            this.btnActivation5.Name = "btnActivation5";
+            this.btnActivation5.UseVisualStyleBackColor = true;
+            this.btnActivation5.Click += new System.EventHandler(this.BtnActivation5Click);
             // 
-            // lblSuccessWelcome
+            // btnActivation4
             // 
-            resources.ApplyResources(this.lblSuccessWelcome, "lblSuccessWelcome");
-            this.lblSuccessWelcome.Name = "lblSuccessWelcome";
+            resources.ApplyResources(this.btnActivation4, "btnActivation4");
+            this.btnActivation4.Name = "btnActivation4";
+            this.btnActivation4.UseVisualStyleBackColor = true;
+            this.btnActivation4.Click += new System.EventHandler(this.BtnActivation4Click);
             // 
-            // label4
+            // btnActivation3
             // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            resources.ApplyResources(this.btnActivation3, "btnActivation3");
+            this.btnActivation3.Name = "btnActivation3";
+            this.btnActivation3.UseVisualStyleBackColor = true;
+            this.btnActivation3.Click += new System.EventHandler(this.BtnActivation3Click);
             // 
-            // btnEncashmentPrint
+            // btnActivation2
             // 
-            resources.ApplyResources(this.btnEncashmentPrint, "btnEncashmentPrint");
-            this.btnEncashmentPrint.Name = "btnEncashmentPrint";
-            this.btnEncashmentPrint.UseVisualStyleBackColor = true;
-            this.btnEncashmentPrint.Click += new System.EventHandler(this.BtnEncashmentPrintClick);
+            resources.ApplyResources(this.btnActivation2, "btnActivation2");
+            this.btnActivation2.Name = "btnActivation2";
+            this.btnActivation2.UseVisualStyleBackColor = true;
+            this.btnActivation2.Click += new System.EventHandler(this.BtnActivation2Click);
             // 
-            // lblEncashmentTotal
+            // btnActivation1
             // 
-            resources.ApplyResources(this.lblEncashmentTotal, "lblEncashmentTotal");
-            this.lblEncashmentTotal.Name = "lblEncashmentTotal";
+            resources.ApplyResources(this.btnActivation1, "btnActivation1");
+            this.btnActivation1.Name = "btnActivation1";
+            this.btnActivation1.UseVisualStyleBackColor = true;
+            this.btnActivation1.Click += new System.EventHandler(this.BtnActivation1Click);
             // 
-            // btnEncashmentFinish
+            // btnActivationBackspace
             // 
-            resources.ApplyResources(this.btnEncashmentFinish, "btnEncashmentFinish");
-            this.btnEncashmentFinish.Name = "btnEncashmentFinish";
-            this.btnEncashmentFinish.UseVisualStyleBackColor = true;
-            this.btnEncashmentFinish.Click += new System.EventHandler(this.BtnEncashmentFinishClick);
+            resources.ApplyResources(this.btnActivationBackspace, "btnActivationBackspace");
+            this.btnActivationBackspace.Name = "btnActivationBackspace";
+            this.btnActivationBackspace.UseVisualStyleBackColor = true;
+            this.btnActivationBackspace.Click += new System.EventHandler(this.BtnActivationBackspaceClick);
+            // 
+            // btnActivation0
+            // 
+            resources.ApplyResources(this.btnActivation0, "btnActivation0");
+            this.btnActivation0.Name = "btnActivation0";
+            this.btnActivation0.UseVisualStyleBackColor = true;
+            this.btnActivation0.Click += new System.EventHandler(this.BtnActivation0Click);
+            // 
+            // btnActivationClear
+            // 
+            resources.ApplyResources(this.btnActivationClear, "btnActivationClear");
+            this.btnActivationClear.Name = "btnActivationClear";
+            this.btnActivationClear.UseVisualStyleBackColor = true;
+            this.btnActivationClear.Click += new System.EventHandler(this.BtnActivationClearClick);
+            // 
+            // btnActivation
+            // 
+            resources.ApplyResources(this.btnActivation, "btnActivation");
+            this.btnActivation.Name = "btnActivation";
+            this.btnActivation.UseVisualStyleBackColor = true;
+            this.btnActivation.Click += new System.EventHandler(this.BtnActivationClick);
+            // 
+            // txtActivationTerminal
+            // 
+            resources.ApplyResources(this.txtActivationTerminal, "txtActivationTerminal");
+            this.txtActivationTerminal.Name = "txtActivationTerminal";
+            this.txtActivationTerminal.Click += new System.EventHandler(this.TxtActivationTerminalClick);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
             // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
-            this.Controls.Add(this.pnlEncashment);
-            this.Controls.Add(this.pnlOutOfOrder);
-            this.Controls.Add(this.pnlPaySuccess);
             this.Controls.Add(this.pnlMoney);
             this.Controls.Add(this.pnlDebitInfo);
             this.Controls.Add(this.pnlCreditInfo);
+            this.Controls.Add(this.pnlActivation);
+            this.Controls.Add(this.pnlEncashment);
+            this.Controls.Add(this.pnlOutOfOrder);
+            this.Controls.Add(this.pnlPaySuccess);
             this.Controls.Add(this.pnlClientCode);
             this.Controls.Add(this.pnlTestMode);
             this.Controls.Add(this.pnlProducts);
@@ -532,6 +700,7 @@
             this.ShowIcon = false;
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
             this.Load += new System.EventHandler(this.FormMainLoad);
             this.pnlLanguage.ResumeLayout(false);
             this.pnlProducts.ResumeLayout(false);
@@ -543,6 +712,8 @@
             this.pnlEncashment.ResumeLayout(false);
             this.pnlOutOfOrder.ResumeLayout(false);
             this.pnlDebitInfo.ResumeLayout(false);
+            this.pnlActivation.ResumeLayout(false);
+            this.pnlActivation.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -610,6 +781,25 @@
         private System.Windows.Forms.Button btnEncashmentFinish;
         private System.Windows.Forms.Button btnEncashmentPrint;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel pnlActivation;
+        private System.Windows.Forms.Button btnActivation;
+        private System.Windows.Forms.TextBox txtActivationTerminal;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnActivation9;
+        private System.Windows.Forms.Button btnActivation8;
+        private System.Windows.Forms.Button btnActivation7;
+        private System.Windows.Forms.Button btnActivation6;
+        private System.Windows.Forms.Button btnActivation5;
+        private System.Windows.Forms.Button btnActivation4;
+        private System.Windows.Forms.Button btnActivation3;
+        private System.Windows.Forms.Button btnActivation2;
+        private System.Windows.Forms.Button btnActivation1;
+        private System.Windows.Forms.Button btnActivationBackspace;
+        private System.Windows.Forms.Button btnActivation0;
+        private System.Windows.Forms.Button btnActivationClear;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtActivationCode;
+        private System.Windows.Forms.Label label7;
     }
 }
 
