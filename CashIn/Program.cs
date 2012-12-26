@@ -21,7 +21,8 @@ namespace CashIn
         {
             Log.Info("Starting");
 
-            OracleDb.Init(Settings.Default.OracleDb, Settings.Default.OracleUser, Settings.Default.OraclePassword);
+            OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
+            OracleDb.Instance.CheckConnection();
 
             _Service = new ServiceHost(typeof(CashInServer));
             _Service.Open();

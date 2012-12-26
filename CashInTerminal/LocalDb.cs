@@ -80,9 +80,9 @@ namespace CashInTerminal
             }
 
             return rowList;
-        } 
+        }
 
-        public void DeleteTransaction(int id)
+        public void DeleteTransaction(long id)
         {
             var adapter = new PaymentsTableAdapter { Connection = _Connection };
             adapter.DeleteTransaction(id);

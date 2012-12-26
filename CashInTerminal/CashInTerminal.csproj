@@ -11,7 +11,8 @@
     <RootNamespace>CashInTerminal</RootNamespace>
     <AssemblyName>CashInTerminal</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -93,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="ds.xsc">
@@ -106,7 +109,9 @@
     <None Include="ds.xss">
       <DependentUpon>ds.xsd</DependentUpon>
     </None>
-    <None Include="NLog.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,6 +170,10 @@
     <ProjectReference Include="..\BouncyCastle\crypto\crypto.csproj">
       <Project>{38872A5F-E87E-4FAD-B109-8EB7B2E6A4A0}</Project>
       <Name>crypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Containers\Containers.csproj">
+      <Project>{A70CBCC4-C84E-4F55-B0D9-435B5EAB1575}</Project>
+      <Name>Containers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

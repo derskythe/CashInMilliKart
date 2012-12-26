@@ -46,9 +46,9 @@ namespace Db
                     Address = row.ADDRESS,
                     IdentityName = row.IDENTITY_NAME,
                     Ip = row.IsIPNull() ? String.Empty : row.IP,
-                    LastCashcodeStatus = row.LAST_CASHCODE_STATUS,
-                    LastStatusType = row.LAST_STATUS_TYPE,
-                    LastStatusUpdate = row.LAST_STATUS_UPDATE,
+                    LastCashcodeStatus = row.IsLAST_CASHCODE_STATUSNull() ? Decimal.MinusOne : row.LAST_CASHCODE_STATUS,
+                    LastStatusType = row.IsLAST_STATUS_TYPENull() ? Decimal.MinusOne : row.LAST_STATUS_TYPE,
+                    LastStatusUpdate = row.IsLAST_STATUS_UPDATENull() ? DateTime.MinValue : row.LAST_STATUS_UPDATE,
                     Name = row.NAME,
                     SignKey = row.IsSIGN_KEYNull() ? null : row.SIGN_KEY,
                     TmpKey = row.IsTMP_KEYNull() ? null : row.TMP_KEY

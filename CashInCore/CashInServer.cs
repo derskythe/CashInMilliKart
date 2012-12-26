@@ -50,10 +50,10 @@ namespace CashInCore
                     throw new Exception("Terminal not found in DB");
                 }
 
-                if (terminal.TmpKey != Encoding.ASCII.GetBytes(authKey))
+                if (Encoding.ASCII.GetString(terminal.TmpKey) != authKey)
                 {
                     result.Code = ResultCodes.InvalidTerminal;
-                    throw new Exception("Codes not equal");
+                    throw new Exception(String.Format("Codes not equal. TerminalKey: {0}, Db key: {1}", Encoding.ASCII.GetString(terminal.TmpKey), authKey));
                 }
 
                 OracleDb.Instance.UpdateTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0);
@@ -83,7 +83,7 @@ namespace CashInCore
                 result = (PingResult)AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.UpdateTerminalStatus(request.TerminalId, request.TerminalStatus, request.CashCodeStatus);
-                ((PingResult)result).Command = OracleDb.Instance.GetTerminalStatus(request.TerminalId);
+                result.Command = OracleDb.Instance.GetTerminalStatus(request.TerminalId);
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
             }

@@ -698,7 +698,6 @@
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.ShowIcon = false;
-            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
             this.Load += new System.EventHandler(this.FormMainLoad);

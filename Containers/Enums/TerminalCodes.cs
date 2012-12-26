@@ -15,6 +15,9 @@ namespace Containers.Enums
         [Description("Authorizated")]
         Auth = 1,
 
+        [Description("Encashment")]
+        Encashment = 2,
+
         [Description("Unknown Error")]
         UnknownError = 128,
 

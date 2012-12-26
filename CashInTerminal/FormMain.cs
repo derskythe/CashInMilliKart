@@ -28,12 +28,15 @@ namespace CashInTerminal
         private delegate void PanelShowDelegate(object item);
         private delegate void PanelHideDelegate(object item);
 
+        private delegate void SetStackedAmountDelegate(object item);
+
         private int _SelectedProduct;
         private CashInServer _Server;
         private TextBox _PanelActivationFocus;
         private TextBox _PanelClientCodeFocus;
         private long _PaymentId;
         private String _CurrentCurrency;
+        private String _SelectedPanel;
 
         #endregion
 
@@ -137,6 +140,18 @@ namespace CashInTerminal
 
         #endregion
 
+        private void SetStackedAmount(object amount)
+        {
+            if (lblMoneyTotal.InvokeRequired)
+            {
+                lblMoneyTotal.Invoke(new SetStackedAmountDelegate(SetStackedAmount), amount);
+            }
+            else
+            {
+                lblMoneyTotal.Text = amount.ToString();
+            }
+        }
+
         #region Panels
 
         private void PanelShow(object item)
@@ -176,6 +191,7 @@ namespace CashInTerminal
                 {
                     if (childControl == currentPannel)
                     {
+                        _SelectedPanel = currentPannel.Name;
                         PanelShow(childControl);
                     }
                     else
@@ -348,11 +364,13 @@ namespace CashInTerminal
 
         private void StartCashcode()
         {
+            SetStackedAmount("0");
             try
             {
                 _PaymentId = _Db.InsertTransaction(_SelectedProduct, _CurrentCurrency, 1, 0,
                                                    Convert.ToInt32(Settings.Default.TerminalCode), false);
 
+                _Db.UpdateTransactionId(_PaymentId, String.Format("{0}0000{1}", Settings.Default.TerminalCode, _PaymentId));
                 _Db.InsertPaymentValue(_PaymentId, txtClientCodeClient.Text, 0);
                 _Db.InsertPaymentValue(_PaymentId, txtClientCodePassport.Text, 1);
             }
@@ -361,10 +379,13 @@ namespace CashInTerminal
                 Log.ErrorException(exp.Message, exp);
             }
             _CcnetDevice.Poll();
+            _CcnetDevice.EnableAll();
+            _CcnetDevice.StartPool = true;
         }
 
         private void StopCashcode()
         {
+            _CcnetDevice.StartPool = false;
             _CcnetDevice.Disable();
         }
 
@@ -459,6 +480,7 @@ namespace CashInTerminal
                 Log.ErrorException(exp.Message, exp);
             }
 
+            btnActivation.Enabled = true;
             Cursor.Current = Cursors.Default;
 
             MessageBox.Show(errorMessage);
@@ -549,7 +571,7 @@ namespace CashInTerminal
 
         private void CcnetDeviceBillStacked(CCNETDeviceState e)
         {
-            throw new NotImplementedException();
+            SetStackedAmount(e.Amount);
         }
 
         private void CcnetDeviceReadCommand(CCNETDeviceState e)

@@ -1754,9 +1754,6 @@ namespace Db {
                 this.columnLAST_UPDATE.AllowDBNull = false;
                 this.columnIP.MaxLength = 32;
                 this.columnUSER_ID.AllowDBNull = false;
-                this.columnLAST_STATUS_TYPE.AllowDBNull = false;
-                this.columnLAST_CASHCODE_STATUS.AllowDBNull = false;
-                this.columnLAST_STATUS_UPDATE.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3408,7 +3405,12 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal LAST_STATUS_TYPE {
                 get {
-                    return ((decimal)(this[this.tableV_LIST_TERMINALS.LAST_STATUS_TYPEColumn]));
+                    try {
+                        return ((decimal)(this[this.tableV_LIST_TERMINALS.LAST_STATUS_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LAST_STATUS_TYPE\' in table \'V_LIST_TERMINALS\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableV_LIST_TERMINALS.LAST_STATUS_TYPEColumn] = value;
@@ -3419,7 +3421,13 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal LAST_CASHCODE_STATUS {
                 get {
-                    return ((decimal)(this[this.tableV_LIST_TERMINALS.LAST_CASHCODE_STATUSColumn]));
+                    try {
+                        return ((decimal)(this[this.tableV_LIST_TERMINALS.LAST_CASHCODE_STATUSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LAST_CASHCODE_STATUS\' in table \'V_LIST_TERMINALS\' is DBNull" +
+                                ".", e);
+                    }
                 }
                 set {
                     this[this.tableV_LIST_TERMINALS.LAST_CASHCODE_STATUSColumn] = value;
@@ -3430,7 +3438,12 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime LAST_STATUS_UPDATE {
                 get {
-                    return ((global::System.DateTime)(this[this.tableV_LIST_TERMINALS.LAST_STATUS_UPDATEColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableV_LIST_TERMINALS.LAST_STATUS_UPDATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LAST_STATUS_UPDATE\' in table \'V_LIST_TERMINALS\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableV_LIST_TERMINALS.LAST_STATUS_UPDATEColumn] = value;
@@ -3471,6 +3484,42 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTMP_KEYNull() {
                 this[this.tableV_LIST_TERMINALS.TMP_KEYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLAST_STATUS_TYPENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.LAST_STATUS_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLAST_STATUS_TYPENull() {
+                this[this.tableV_LIST_TERMINALS.LAST_STATUS_TYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLAST_CASHCODE_STATUSNull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.LAST_CASHCODE_STATUSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLAST_CASHCODE_STATUSNull() {
+                this[this.tableV_LIST_TERMINALS.LAST_CASHCODE_STATUSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLAST_STATUS_UPDATENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.LAST_STATUS_UPDATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLAST_STATUS_UPDATENull() {
+                this[this.tableV_LIST_TERMINALS.LAST_STATUS_UPDATEColumn] = global::System.Convert.DBNull;
             }
         }
         
