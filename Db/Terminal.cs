@@ -211,12 +211,10 @@ namespace Db
             cmd.CommandType = CommandType.StoredProcedure;
 
             var terminalId = new OracleParameter();
-            var userId = new OracleParameter();
             var currencies = new OracleParameter();
             var amounts = new OracleParameter();
 
             terminalId.OracleDbType = OracleDbType.Int32;
-            userId.OracleDbType = OracleDbType.Int32;
             currencies.OracleDbType = OracleDbType.Varchar2;
             amounts.OracleDbType = OracleDbType.Int32;
 

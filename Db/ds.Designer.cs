@@ -28,6 +28,8 @@ namespace Db {
         
         private V_LIST_CURRENCY_RATESDataTable tableV_LIST_CURRENCY_RATES;
         
+        private V_LIST_TERMINAL_SET_STATUSDataTable tableV_LIST_TERMINAL_SET_STATUS;
+        
         private V_LIST_TERMINAL_STATUSESDataTable tableV_LIST_TERMINAL_STATUSES;
         
         private V_LIST_TERMINALSDataTable tableV_LIST_TERMINALS;
@@ -35,8 +37,6 @@ namespace Db {
         private V_PRODUCTSDataTable tableV_PRODUCTS;
         
         private V_PRODUCTS_TO_TERMINALSDataTable tableV_PRODUCTS_TO_TERMINALS;
-        
-        private V_LIST_TERMINAL_SET_STATUSDataTable tableV_LIST_TERMINAL_SET_STATUS;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -72,6 +72,9 @@ namespace Db {
                 if ((ds.Tables["V_LIST_CURRENCY_RATES"] != null)) {
                     base.Tables.Add(new V_LIST_CURRENCY_RATESDataTable(ds.Tables["V_LIST_CURRENCY_RATES"]));
                 }
+                if ((ds.Tables["V_LIST_TERMINAL_SET_STATUS"] != null)) {
+                    base.Tables.Add(new V_LIST_TERMINAL_SET_STATUSDataTable(ds.Tables["V_LIST_TERMINAL_SET_STATUS"]));
+                }
                 if ((ds.Tables["V_LIST_TERMINAL_STATUSES"] != null)) {
                     base.Tables.Add(new V_LIST_TERMINAL_STATUSESDataTable(ds.Tables["V_LIST_TERMINAL_STATUSES"]));
                 }
@@ -83,9 +86,6 @@ namespace Db {
                 }
                 if ((ds.Tables["V_PRODUCTS_TO_TERMINALS"] != null)) {
                     base.Tables.Add(new V_PRODUCTS_TO_TERMINALSDataTable(ds.Tables["V_PRODUCTS_TO_TERMINALS"]));
-                }
-                if ((ds.Tables["V_LIST_TERMINAL_SET_STATUS"] != null)) {
-                    base.Tables.Add(new V_LIST_TERMINAL_SET_STATUSDataTable(ds.Tables["V_LIST_TERMINAL_SET_STATUS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -129,6 +129,16 @@ namespace Db {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public V_LIST_TERMINAL_SET_STATUSDataTable V_LIST_TERMINAL_SET_STATUS {
+            get {
+                return this.tableV_LIST_TERMINAL_SET_STATUS;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public V_LIST_TERMINAL_STATUSESDataTable V_LIST_TERMINAL_STATUSES {
             get {
                 return this.tableV_LIST_TERMINAL_STATUSES;
@@ -162,16 +172,6 @@ namespace Db {
         public V_PRODUCTS_TO_TERMINALSDataTable V_PRODUCTS_TO_TERMINALS {
             get {
                 return this.tableV_PRODUCTS_TO_TERMINALS;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public V_LIST_TERMINAL_SET_STATUSDataTable V_LIST_TERMINAL_SET_STATUS {
-            get {
-                return this.tableV_LIST_TERMINAL_SET_STATUS;
             }
         }
         
@@ -248,6 +248,9 @@ namespace Db {
                 if ((ds.Tables["V_LIST_CURRENCY_RATES"] != null)) {
                     base.Tables.Add(new V_LIST_CURRENCY_RATESDataTable(ds.Tables["V_LIST_CURRENCY_RATES"]));
                 }
+                if ((ds.Tables["V_LIST_TERMINAL_SET_STATUS"] != null)) {
+                    base.Tables.Add(new V_LIST_TERMINAL_SET_STATUSDataTable(ds.Tables["V_LIST_TERMINAL_SET_STATUS"]));
+                }
                 if ((ds.Tables["V_LIST_TERMINAL_STATUSES"] != null)) {
                     base.Tables.Add(new V_LIST_TERMINAL_STATUSESDataTable(ds.Tables["V_LIST_TERMINAL_STATUSES"]));
                 }
@@ -259,9 +262,6 @@ namespace Db {
                 }
                 if ((ds.Tables["V_PRODUCTS_TO_TERMINALS"] != null)) {
                     base.Tables.Add(new V_PRODUCTS_TO_TERMINALSDataTable(ds.Tables["V_PRODUCTS_TO_TERMINALS"]));
-                }
-                if ((ds.Tables["V_LIST_TERMINAL_SET_STATUS"] != null)) {
-                    base.Tables.Add(new V_LIST_TERMINAL_SET_STATUSDataTable(ds.Tables["V_LIST_TERMINAL_SET_STATUS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -308,6 +308,12 @@ namespace Db {
                     this.tableV_LIST_CURRENCY_RATES.InitVars();
                 }
             }
+            this.tableV_LIST_TERMINAL_SET_STATUS = ((V_LIST_TERMINAL_SET_STATUSDataTable)(base.Tables["V_LIST_TERMINAL_SET_STATUS"]));
+            if ((initTable == true)) {
+                if ((this.tableV_LIST_TERMINAL_SET_STATUS != null)) {
+                    this.tableV_LIST_TERMINAL_SET_STATUS.InitVars();
+                }
+            }
             this.tableV_LIST_TERMINAL_STATUSES = ((V_LIST_TERMINAL_STATUSESDataTable)(base.Tables["V_LIST_TERMINAL_STATUSES"]));
             if ((initTable == true)) {
                 if ((this.tableV_LIST_TERMINAL_STATUSES != null)) {
@@ -332,12 +338,6 @@ namespace Db {
                     this.tableV_PRODUCTS_TO_TERMINALS.InitVars();
                 }
             }
-            this.tableV_LIST_TERMINAL_SET_STATUS = ((V_LIST_TERMINAL_SET_STATUSDataTable)(base.Tables["V_LIST_TERMINAL_SET_STATUS"]));
-            if ((initTable == true)) {
-                if ((this.tableV_LIST_TERMINAL_SET_STATUS != null)) {
-                    this.tableV_LIST_TERMINAL_SET_STATUS.InitVars();
-                }
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -352,6 +352,8 @@ namespace Db {
             base.Tables.Add(this.tableV_LIST_CURRENCIES);
             this.tableV_LIST_CURRENCY_RATES = new V_LIST_CURRENCY_RATESDataTable();
             base.Tables.Add(this.tableV_LIST_CURRENCY_RATES);
+            this.tableV_LIST_TERMINAL_SET_STATUS = new V_LIST_TERMINAL_SET_STATUSDataTable();
+            base.Tables.Add(this.tableV_LIST_TERMINAL_SET_STATUS);
             this.tableV_LIST_TERMINAL_STATUSES = new V_LIST_TERMINAL_STATUSESDataTable();
             base.Tables.Add(this.tableV_LIST_TERMINAL_STATUSES);
             this.tableV_LIST_TERMINALS = new V_LIST_TERMINALSDataTable();
@@ -360,8 +362,6 @@ namespace Db {
             base.Tables.Add(this.tableV_PRODUCTS);
             this.tableV_PRODUCTS_TO_TERMINALS = new V_PRODUCTS_TO_TERMINALSDataTable();
             base.Tables.Add(this.tableV_PRODUCTS_TO_TERMINALS);
-            this.tableV_LIST_TERMINAL_SET_STATUS = new V_LIST_TERMINAL_SET_STATUSDataTable();
-            base.Tables.Add(this.tableV_LIST_TERMINAL_SET_STATUS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -373,6 +373,12 @@ namespace Db {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeV_LIST_CURRENCY_RATES() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeV_LIST_TERMINAL_SET_STATUS() {
             return false;
         }
         
@@ -397,12 +403,6 @@ namespace Db {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeV_PRODUCTS_TO_TERMINALS() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeV_LIST_TERMINAL_SET_STATUS() {
             return false;
         }
         
@@ -468,6 +468,9 @@ namespace Db {
         public delegate void V_LIST_CURRENCY_RATESRowChangeEventHandler(object sender, V_LIST_CURRENCY_RATESRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler(object sender, V_LIST_TERMINAL_SET_STATUSRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void V_LIST_TERMINAL_STATUSESRowChangeEventHandler(object sender, V_LIST_TERMINAL_STATUSESRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -478,9 +481,6 @@ namespace Db {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void V_PRODUCTS_TO_TERMINALSRowChangeEventHandler(object sender, V_PRODUCTS_TO_TERMINALSRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler(object sender, V_LIST_TERMINAL_SET_STATUSRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1106,6 +1106,313 @@ namespace Db {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "V_LIST_CURRENCY_RATESDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class V_LIST_TERMINAL_SET_STATUSDataTable : global::System.Data.TypedTableBase<V_LIST_TERMINAL_SET_STATUSRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnINSERT_DATE;
+            
+            private global::System.Data.DataColumn columnUSER_ID;
+            
+            private global::System.Data.DataColumn columnSTATUS_CODE;
+            
+            private global::System.Data.DataColumn columnTERMINAL_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_LIST_TERMINAL_SET_STATUSDataTable() {
+                this.TableName = "V_LIST_TERMINAL_SET_STATUS";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_LIST_TERMINAL_SET_STATUSDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected V_LIST_TERMINAL_SET_STATUSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn INSERT_DATEColumn {
+                get {
+                    return this.columnINSERT_DATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn USER_IDColumn {
+                get {
+                    return this.columnUSER_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn STATUS_CODEColumn {
+                get {
+                    return this.columnSTATUS_CODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TERMINAL_IDColumn {
+                get {
+                    return this.columnTERMINAL_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_LIST_TERMINAL_SET_STATUSRow this[int index] {
+                get {
+                    return ((V_LIST_TERMINAL_SET_STATUSRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddV_LIST_TERMINAL_SET_STATUSRow(V_LIST_TERMINAL_SET_STATUSRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_LIST_TERMINAL_SET_STATUSRow AddV_LIST_TERMINAL_SET_STATUSRow(decimal ID, System.DateTime INSERT_DATE, decimal USER_ID, decimal STATUS_CODE, decimal TERMINAL_ID) {
+                V_LIST_TERMINAL_SET_STATUSRow rowV_LIST_TERMINAL_SET_STATUSRow = ((V_LIST_TERMINAL_SET_STATUSRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        INSERT_DATE,
+                        USER_ID,
+                        STATUS_CODE,
+                        TERMINAL_ID};
+                rowV_LIST_TERMINAL_SET_STATUSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_LIST_TERMINAL_SET_STATUSRow);
+                return rowV_LIST_TERMINAL_SET_STATUSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                V_LIST_TERMINAL_SET_STATUSDataTable cln = ((V_LIST_TERMINAL_SET_STATUSDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new V_LIST_TERMINAL_SET_STATUSDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnINSERT_DATE = base.Columns["INSERT_DATE"];
+                this.columnUSER_ID = base.Columns["USER_ID"];
+                this.columnSTATUS_CODE = base.Columns["STATUS_CODE"];
+                this.columnTERMINAL_ID = base.Columns["TERMINAL_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnINSERT_DATE = new global::System.Data.DataColumn("INSERT_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnINSERT_DATE);
+                this.columnUSER_ID = new global::System.Data.DataColumn("USER_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUSER_ID);
+                this.columnSTATUS_CODE = new global::System.Data.DataColumn("STATUS_CODE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSTATUS_CODE);
+                this.columnTERMINAL_ID = new global::System.Data.DataColumn("TERMINAL_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTERMINAL_ID);
+                this.columnID.AllowDBNull = false;
+                this.columnUSER_ID.AllowDBNull = false;
+                this.columnSTATUS_CODE.AllowDBNull = false;
+                this.columnTERMINAL_ID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_LIST_TERMINAL_SET_STATUSRow NewV_LIST_TERMINAL_SET_STATUSRow() {
+                return ((V_LIST_TERMINAL_SET_STATUSRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new V_LIST_TERMINAL_SET_STATUSRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(V_LIST_TERMINAL_SET_STATUSRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.V_LIST_TERMINAL_SET_STATUSRowChanged != null)) {
+                    this.V_LIST_TERMINAL_SET_STATUSRowChanged(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.V_LIST_TERMINAL_SET_STATUSRowChanging != null)) {
+                    this.V_LIST_TERMINAL_SET_STATUSRowChanging(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.V_LIST_TERMINAL_SET_STATUSRowDeleted != null)) {
+                    this.V_LIST_TERMINAL_SET_STATUSRowDeleted(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.V_LIST_TERMINAL_SET_STATUSRowDeleting != null)) {
+                    this.V_LIST_TERMINAL_SET_STATUSRowDeleting(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveV_LIST_TERMINAL_SET_STATUSRow(V_LIST_TERMINAL_SET_STATUSRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ds ds = new ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "V_LIST_TERMINAL_SET_STATUSDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2287,9 +2594,9 @@ namespace Db {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class V_PRODUCTS_TO_TERMINALSDataTable : global::System.Data.TypedTableBase<V_PRODUCTS_TO_TERMINALSRow> {
             
-            private global::System.Data.DataColumn columnID;
-            
             private global::System.Data.DataColumn columnTERMINAL_ID;
+            
+            private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnNAME;
             
@@ -2346,17 +2653,17 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
+            public global::System.Data.DataColumn TERMINAL_IDColumn {
                 get {
-                    return this.columnID;
+                    return this.columnTERMINAL_ID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TERMINAL_IDColumn {
+            public global::System.Data.DataColumn IDColumn {
                 get {
-                    return this.columnTERMINAL_ID;
+                    return this.columnID;
                 }
             }
             
@@ -2477,11 +2784,11 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_PRODUCTS_TO_TERMINALSRow AddV_PRODUCTS_TO_TERMINALSRow(decimal ID, decimal TERMINAL_ID, string NAME, string NAME_AZ, string NAME_RU, string NAME_EN, string ASSEMBLY, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal USER_ID, decimal ACTIVE, decimal ORDER_NUM) {
+            public V_PRODUCTS_TO_TERMINALSRow AddV_PRODUCTS_TO_TERMINALSRow(decimal TERMINAL_ID, decimal ID, string NAME, string NAME_AZ, string NAME_RU, string NAME_EN, string ASSEMBLY, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal USER_ID, decimal ACTIVE, decimal ORDER_NUM) {
                 V_PRODUCTS_TO_TERMINALSRow rowV_PRODUCTS_TO_TERMINALSRow = ((V_PRODUCTS_TO_TERMINALSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
                         TERMINAL_ID,
+                        ID,
                         NAME,
                         NAME_AZ,
                         NAME_RU,
@@ -2514,8 +2821,8 @@ namespace Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
                 this.columnTERMINAL_ID = base.Columns["TERMINAL_ID"];
+                this.columnID = base.Columns["ID"];
                 this.columnNAME = base.Columns["NAME"];
                 this.columnNAME_AZ = base.Columns["NAME_AZ"];
                 this.columnNAME_RU = base.Columns["NAME_RU"];
@@ -2531,10 +2838,10 @@ namespace Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
                 this.columnTERMINAL_ID = new global::System.Data.DataColumn("TERMINAL_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTERMINAL_ID);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNAME);
                 this.columnNAME_AZ = new global::System.Data.DataColumn("NAME_AZ", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2555,8 +2862,8 @@ namespace Db {
                 base.Columns.Add(this.columnACTIVE);
                 this.columnORDER_NUM = new global::System.Data.DataColumn("ORDER_NUM", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnORDER_NUM);
-                this.columnID.AllowDBNull = false;
                 this.columnTERMINAL_ID.AllowDBNull = false;
+                this.columnID.AllowDBNull = false;
                 this.columnNAME.AllowDBNull = false;
                 this.columnNAME.MaxLength = 150;
                 this.columnNAME_AZ.MaxLength = 2000;
@@ -2655,313 +2962,6 @@ namespace Db {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "V_PRODUCTS_TO_TERMINALSDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class V_LIST_TERMINAL_SET_STATUSDataTable : global::System.Data.TypedTableBase<V_LIST_TERMINAL_SET_STATUSRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnINSERT_DATE;
-            
-            private global::System.Data.DataColumn columnUSER_ID;
-            
-            private global::System.Data.DataColumn columnSTATUS_CODE;
-            
-            private global::System.Data.DataColumn columnTERMINAL_ID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_TERMINAL_SET_STATUSDataTable() {
-                this.TableName = "V_LIST_TERMINAL_SET_STATUS";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal V_LIST_TERMINAL_SET_STATUSDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected V_LIST_TERMINAL_SET_STATUSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn INSERT_DATEColumn {
-                get {
-                    return this.columnINSERT_DATE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn USER_IDColumn {
-                get {
-                    return this.columnUSER_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn STATUS_CODEColumn {
-                get {
-                    return this.columnSTATUS_CODE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TERMINAL_IDColumn {
-                get {
-                    return this.columnTERMINAL_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_TERMINAL_SET_STATUSRow this[int index] {
-                get {
-                    return ((V_LIST_TERMINAL_SET_STATUSRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event V_LIST_TERMINAL_SET_STATUSRowChangeEventHandler V_LIST_TERMINAL_SET_STATUSRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddV_LIST_TERMINAL_SET_STATUSRow(V_LIST_TERMINAL_SET_STATUSRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_TERMINAL_SET_STATUSRow AddV_LIST_TERMINAL_SET_STATUSRow(decimal ID, System.DateTime INSERT_DATE, decimal USER_ID, decimal STATUS_CODE, decimal TERMINAL_ID) {
-                V_LIST_TERMINAL_SET_STATUSRow rowV_LIST_TERMINAL_SET_STATUSRow = ((V_LIST_TERMINAL_SET_STATUSRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ID,
-                        INSERT_DATE,
-                        USER_ID,
-                        STATUS_CODE,
-                        TERMINAL_ID};
-                rowV_LIST_TERMINAL_SET_STATUSRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowV_LIST_TERMINAL_SET_STATUSRow);
-                return rowV_LIST_TERMINAL_SET_STATUSRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                V_LIST_TERMINAL_SET_STATUSDataTable cln = ((V_LIST_TERMINAL_SET_STATUSDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new V_LIST_TERMINAL_SET_STATUSDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnINSERT_DATE = base.Columns["INSERT_DATE"];
-                this.columnUSER_ID = base.Columns["USER_ID"];
-                this.columnSTATUS_CODE = base.Columns["STATUS_CODE"];
-                this.columnTERMINAL_ID = base.Columns["TERMINAL_ID"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnINSERT_DATE = new global::System.Data.DataColumn("INSERT_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnINSERT_DATE);
-                this.columnUSER_ID = new global::System.Data.DataColumn("USER_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUSER_ID);
-                this.columnSTATUS_CODE = new global::System.Data.DataColumn("STATUS_CODE", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSTATUS_CODE);
-                this.columnTERMINAL_ID = new global::System.Data.DataColumn("TERMINAL_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTERMINAL_ID);
-                this.columnID.AllowDBNull = false;
-                this.columnUSER_ID.AllowDBNull = false;
-                this.columnSTATUS_CODE.AllowDBNull = false;
-                this.columnTERMINAL_ID.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_TERMINAL_SET_STATUSRow NewV_LIST_TERMINAL_SET_STATUSRow() {
-                return ((V_LIST_TERMINAL_SET_STATUSRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new V_LIST_TERMINAL_SET_STATUSRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(V_LIST_TERMINAL_SET_STATUSRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.V_LIST_TERMINAL_SET_STATUSRowChanged != null)) {
-                    this.V_LIST_TERMINAL_SET_STATUSRowChanged(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.V_LIST_TERMINAL_SET_STATUSRowChanging != null)) {
-                    this.V_LIST_TERMINAL_SET_STATUSRowChanging(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.V_LIST_TERMINAL_SET_STATUSRowDeleted != null)) {
-                    this.V_LIST_TERMINAL_SET_STATUSRowDeleted(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.V_LIST_TERMINAL_SET_STATUSRowDeleting != null)) {
-                    this.V_LIST_TERMINAL_SET_STATUSRowDeleting(this, new V_LIST_TERMINAL_SET_STATUSRowChangeEvent(((V_LIST_TERMINAL_SET_STATUSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveV_LIST_TERMINAL_SET_STATUSRow(V_LIST_TERMINAL_SET_STATUSRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ds ds = new ds();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "V_LIST_TERMINAL_SET_STATUSDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3189,6 +3189,94 @@ namespace Db {
                 set {
                     this[this.tableV_LIST_CURRENCY_RATES.USER_IDColumn] = value;
                 }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class V_LIST_TERMINAL_SET_STATUSRow : global::System.Data.DataRow {
+            
+            private V_LIST_TERMINAL_SET_STATUSDataTable tableV_LIST_TERMINAL_SET_STATUS;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_LIST_TERMINAL_SET_STATUSRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableV_LIST_TERMINAL_SET_STATUS = ((V_LIST_TERMINAL_SET_STATUSDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ID {
+                get {
+                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.IDColumn]));
+                }
+                set {
+                    this[this.tableV_LIST_TERMINAL_SET_STATUS.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime INSERT_DATE {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'INSERT_DATE\' in table \'V_LIST_TERMINAL_SET_STATUS\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal USER_ID {
+                get {
+                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.USER_IDColumn]));
+                }
+                set {
+                    this[this.tableV_LIST_TERMINAL_SET_STATUS.USER_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal STATUS_CODE {
+                get {
+                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.STATUS_CODEColumn]));
+                }
+                set {
+                    this[this.tableV_LIST_TERMINAL_SET_STATUS.STATUS_CODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TERMINAL_ID {
+                get {
+                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.TERMINAL_IDColumn]));
+                }
+                set {
+                    this[this.tableV_LIST_TERMINAL_SET_STATUS.TERMINAL_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsINSERT_DATENull() {
+                return this.IsNull(this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetINSERT_DATENull() {
+                this[this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3726,23 +3814,23 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal ID {
-                get {
-                    return ((decimal)(this[this.tableV_PRODUCTS_TO_TERMINALS.IDColumn]));
-                }
-                set {
-                    this[this.tableV_PRODUCTS_TO_TERMINALS.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal TERMINAL_ID {
                 get {
                     return ((decimal)(this[this.tableV_PRODUCTS_TO_TERMINALS.TERMINAL_IDColumn]));
                 }
                 set {
                     this[this.tableV_PRODUCTS_TO_TERMINALS.TERMINAL_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ID {
+                get {
+                    return ((decimal)(this[this.tableV_PRODUCTS_TO_TERMINALS.IDColumn]));
+                }
+                set {
+                    this[this.tableV_PRODUCTS_TO_TERMINALS.IDColumn] = value;
                 }
             }
             
@@ -3909,94 +3997,6 @@ namespace Db {
         }
         
         /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class V_LIST_TERMINAL_SET_STATUSRow : global::System.Data.DataRow {
-            
-            private V_LIST_TERMINAL_SET_STATUSDataTable tableV_LIST_TERMINAL_SET_STATUS;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal V_LIST_TERMINAL_SET_STATUSRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableV_LIST_TERMINAL_SET_STATUS = ((V_LIST_TERMINAL_SET_STATUSDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal ID {
-                get {
-                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.IDColumn]));
-                }
-                set {
-                    this[this.tableV_LIST_TERMINAL_SET_STATUS.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime INSERT_DATE {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'INSERT_DATE\' in table \'V_LIST_TERMINAL_SET_STATUS\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal USER_ID {
-                get {
-                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.USER_IDColumn]));
-                }
-                set {
-                    this[this.tableV_LIST_TERMINAL_SET_STATUS.USER_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal STATUS_CODE {
-                get {
-                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.STATUS_CODEColumn]));
-                }
-                set {
-                    this[this.tableV_LIST_TERMINAL_SET_STATUS.STATUS_CODEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal TERMINAL_ID {
-                get {
-                    return ((decimal)(this[this.tableV_LIST_TERMINAL_SET_STATUS.TERMINAL_IDColumn]));
-                }
-                set {
-                    this[this.tableV_LIST_TERMINAL_SET_STATUS.TERMINAL_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsINSERT_DATENull() {
-                return this.IsNull(this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetINSERT_DATENull() {
-                this[this.tableV_LIST_TERMINAL_SET_STATUS.INSERT_DATEColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4050,6 +4050,40 @@ namespace Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_LIST_CURRENCY_RATESRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class V_LIST_TERMINAL_SET_STATUSRowChangeEvent : global::System.EventArgs {
+            
+            private V_LIST_TERMINAL_SET_STATUSRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_LIST_TERMINAL_SET_STATUSRowChangeEvent(V_LIST_TERMINAL_SET_STATUSRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_LIST_TERMINAL_SET_STATUSRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4186,40 +4220,6 @@ namespace Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_PRODUCTS_TO_TERMINALSRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class V_LIST_TERMINAL_SET_STATUSRowChangeEvent : global::System.EventArgs {
-            
-            private V_LIST_TERMINAL_SET_STATUSRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_TERMINAL_SET_STATUSRowChangeEvent(V_LIST_TERMINAL_SET_STATUSRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_TERMINAL_SET_STATUSRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4580,6 +4580,216 @@ namespace Db.dsTableAdapters {
         public virtual ds.V_LIST_CURRENCY_RATESDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             ds.V_LIST_CURRENCY_RATESDataTable dataTable = new ds.V_LIST_CURRENCY_RATESDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class V_LIST_TERMINAL_SET_STATUSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
+        
+        private global::Oracle.DataAccess.Client.OracleConnection _connection;
+        
+        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
+        
+        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public V_LIST_TERMINAL_SET_STATUSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "V_LIST_TERMINAL_SET_STATUS";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("INSERT_DATE", "INSERT_DATE");
+            tableMapping.ColumnMappings.Add("USER_ID", "USER_ID");
+            tableMapping.ColumnMappings.Add("STATUS_CODE", "STATUS_CODE");
+            tableMapping.ColumnMappings.Add("TERMINAL_ID", "TERMINAL_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
+            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, INSERT_DATE, USER_ID, STATUS_CODE, TERMINAL_ID FROM CASHIN.V_LIST_TERM" +
+                "INAL_SET_STATUS";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT ID, INSERT_DATE, USER_ID, STATUS_CODE, TERMINAL_ID FROM CASHIN.V_LIST_TERM" +
+                "INAL_SET_STATUS WHERE terminal_id = :terminalId";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":terminalId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TERMINAL_ID";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ds.V_LIST_TERMINAL_SET_STATUSDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByTerminalId(ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable, decimal terminalId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_LIST_TERMINAL_SET_STATUSDataTable GetDataByTerminalId(decimal terminalId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -5276,8 +5486,8 @@ namespace Db.dsTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "V_PRODUCTS_TO_TERMINALS";
-            tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("TERMINAL_ID", "TERMINAL_ID");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("NAME", "NAME");
             tableMapping.ColumnMappings.Add("NAME_AZ", "NAME_AZ");
             tableMapping.ColumnMappings.Add("NAME_RU", "NAME_RU");
@@ -5304,8 +5514,8 @@ namespace Db.dsTableAdapters {
             this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, TERMINAL_ID, ACTIVE, ASSEMBLY, INSERT_DATE, \"NAME\", NAME_AZ, NAME_EN, " +
-                "NAME_RU, ORDER_NUM, UPDATE_DATE, USER_ID FROM CASHIN.V_PRODUCTS_TO_TERMINALS";
+            this._commandCollection[0].CommandText = "SELECT TERMINAL_ID, ID, \"NAME\", NAME_AZ, NAME_RU, NAME_EN, ASSEMBLY, INSERT_DATE," +
+                " UPDATE_DATE, USER_ID, ACTIVE, ORDER_NUM FROM CASHIN.V_PRODUCTS_TO_TERMINALS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -5368,216 +5578,6 @@ namespace Db.dsTableAdapters {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
             ds.V_PRODUCTS_TO_TERMINALSDataTable dataTable = new ds.V_PRODUCTS_TO_TERMINALSDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class V_LIST_TERMINAL_SET_STATUSTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
-        
-        private global::Oracle.DataAccess.Client.OracleConnection _connection;
-        
-        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
-        
-        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public V_LIST_TERMINAL_SET_STATUSTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "V_LIST_TERMINAL_SET_STATUS";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("INSERT_DATE", "INSERT_DATE");
-            tableMapping.ColumnMappings.Add("USER_ID", "USER_ID");
-            tableMapping.ColumnMappings.Add("STATUS_CODE", "STATUS_CODE");
-            tableMapping.ColumnMappings.Add("TERMINAL_ID", "TERMINAL_ID");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
-            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
-            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, INSERT_DATE, USER_ID, STATUS_CODE, TERMINAL_ID FROM CASHIN.V_LIST_TERM" +
-                "INAL_SET_STATUS";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT ID, INSERT_DATE, USER_ID, STATUS_CODE, TERMINAL_ID FROM CASHIN.V_LIST_TERM" +
-                "INAL_SET_STATUS WHERE terminal_id = :terminalId";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
-            param.ParameterName = ":terminalId";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
-            param.IsNullable = true;
-            param.SourceColumn = "TERMINAL_ID";
-            this._commandCollection[1].Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ds.V_LIST_TERMINAL_SET_STATUSDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByTerminalId(ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable, decimal terminalId) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ds.V_LIST_TERMINAL_SET_STATUSDataTable GetDataByTerminalId(decimal terminalId) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
-            ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

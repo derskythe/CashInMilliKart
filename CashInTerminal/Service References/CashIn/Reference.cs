@@ -15,6 +15,10 @@ namespace CashInTerminal.CashIn {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://cashin/CashInService", ConfigurationName="CashIn.CashInServer")]
     public interface CashInServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/GetPublicKey", ReplyAction="http://cashin/CashInService/CashInServer/GetPublicKeyResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetPublicKey();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/InitTerminal", ReplyAction="http://cashin/CashInService/CashInServer/InitTerminalResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
@@ -735,6 +739,10 @@ namespace CashInTerminal.CashIn {
         
         public CashInServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string GetPublicKey() {
+            return base.Channel.GetPublicKey();
         }
         
         public CashInTerminal.CashIn.AuthResult InitTerminal(int terminalId, string authKey, string publicKey) {

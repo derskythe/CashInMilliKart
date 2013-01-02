@@ -5,6 +5,12 @@
       <xsd:import schemaLocation="http://localhost:4443/CashIn?xsd=xsd0" namespace="http://cashin/CashInService" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="CashInServer_GetPublicKey_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublicKey" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetPublicKey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublicKeyResponse" />
+  </wsdl:message>
   <wsdl:message name="CashInServer_InitTerminal_InputMessage">
     <wsdl:part name="parameters" element="tns:InitTerminal" />
   </wsdl:message>
@@ -48,6 +54,10 @@
     <wsdl:part name="parameters" element="tns:EncashmentResponse" />
   </wsdl:message>
   <wsdl:portType name="CashInServer">
+    <wsdl:operation name="GetPublicKey">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKeyResponse" message="tns:CashInServer_GetPublicKey_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InitTerminal">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/InitTerminal" message="tns:CashInServer_InitTerminal_InputMessage" />
       <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/InitTerminalResponse" message="tns:CashInServer_InitTerminal_OutputMessage" />

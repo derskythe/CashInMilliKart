@@ -86,8 +86,8 @@ namespace CashInTerminal.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=\"C:\\Users\\PVParpura\\Documents\\Visual Studio 2010\\Projects\\CashIn\\Cash" +
-            "InTerminal\\Terminal.s3db\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=\"C:\\Users\\Skif\\Documents\\Visual Studio 2010\\Projects\\CashIn\\CashInTer" +
+            "minal\\Terminal.s3db\"")]
         public string TerminalConnectionString {
             get {
                 return ((string)(this["TerminalConnectionString"]));

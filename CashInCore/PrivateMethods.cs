@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using CashInCore.Properties;
 using Containers;
@@ -18,7 +16,7 @@ namespace CashInCore
 {
     public partial class CashInServer
     {
-        private AsymmetricKeyParameter _PrivateKey;
+        private static AsymmetricKeyParameter _PrivateKey;
 
         private bool CheckSignature(int terminalId, DateTime terminalDate, String signature)
         {
@@ -48,7 +46,8 @@ namespace CashInCore
 
         private string DoSign(int terminalId, DateTime serverTime, byte[] publicCert)
         {
-            return DoSign(terminalId.ToString(CultureInfo.InvariantCulture), serverTime, publicCert);
+            return String.Empty;
+            //return DoSign(terminalId.ToString(CultureInfo.InvariantCulture), serverTime, publicCert);
         }
 
         private string DoSign(String terminalId, DateTime serverTime, byte[] publicCert)
@@ -68,14 +67,15 @@ namespace CashInCore
             return (RsaKeyParameters) reader.ReadObject();
         }
 
-        private AsymmetricKeyParameter GetPrivateKey()
+        private static AsymmetricKeyParameter GetPrivateKey()
         {
             if (_PrivateKey != null)
             {
                 return _PrivateKey;
             }
 
-            using (var stream = new MemoryStream(UrlBase64.Decode(Settings.Default.PrivateKey)))
+            Log.Debug(Settings.Default.PrivateKey);
+            using (var stream = new MemoryStream(Encoding.ASCII.GetBytes(Settings.Default.PrivateKey)))
             {
                 //var privateKeyStream = new StreamReader(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "cert_private.pem");
                 var privateKeyStream = new StreamReader(stream);

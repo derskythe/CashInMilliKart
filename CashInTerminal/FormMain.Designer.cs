@@ -69,7 +69,6 @@
             this.lblMoneyCurrency = new System.Windows.Forms.Label();
             this.lblMoneyTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnMoneyBack = new System.Windows.Forms.Button();
             this.btnMoneyNext = new System.Windows.Forms.Button();
             this.pnlPaySuccess = new System.Windows.Forms.Panel();
             this.btnSuccessNext = new System.Windows.Forms.Button();
@@ -194,6 +193,8 @@
             resources.ApplyResources(this.pnlClientCode, "pnlClientCode");
             this.pnlClientCode.Name = "pnlClientCode";
             this.pnlClientCode.VisibleChanged += new System.EventHandler(this.PnlClientCodeVisibleChanged);
+            this.pnlClientCode.Click += new System.EventHandler(this.PnlClientCodeClick);
+            this.pnlClientCode.MouseHover += new System.EventHandler(this.pnlClientCode_MouseHover);
             // 
             // btnClientCode9
             // 
@@ -383,7 +384,6 @@
             this.pnlMoney.Controls.Add(this.lblMoneyCurrency);
             this.pnlMoney.Controls.Add(this.lblMoneyTotal);
             this.pnlMoney.Controls.Add(this.label2);
-            this.pnlMoney.Controls.Add(this.btnMoneyBack);
             this.pnlMoney.Controls.Add(this.btnMoneyNext);
             resources.ApplyResources(this.pnlMoney, "pnlMoney");
             this.pnlMoney.Name = "pnlMoney";
@@ -403,13 +403,6 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // btnMoneyBack
-            // 
-            resources.ApplyResources(this.btnMoneyBack, "btnMoneyBack");
-            this.btnMoneyBack.Name = "btnMoneyBack";
-            this.btnMoneyBack.UseVisualStyleBackColor = true;
-            this.btnMoneyBack.Click += new System.EventHandler(this.BtnMoneyBackClick);
-            // 
             // btnMoneyNext
             // 
             resources.ApplyResources(this.btnMoneyNext, "btnMoneyNext");
@@ -419,9 +412,9 @@
             // 
             // pnlPaySuccess
             // 
+            this.pnlPaySuccess.Controls.Add(this.lblSuccessTotalAmount);
             this.pnlPaySuccess.Controls.Add(this.btnSuccessNext);
             this.pnlPaySuccess.Controls.Add(this.lblSuccessWelcome);
-            this.pnlPaySuccess.Controls.Add(this.lblSuccessTotalAmount);
             this.pnlPaySuccess.Controls.Add(this.label3);
             resources.ApplyResources(this.pnlPaySuccess, "pnlPaySuccess");
             this.pnlPaySuccess.Name = "pnlPaySuccess";
@@ -431,6 +424,7 @@
             resources.ApplyResources(this.btnSuccessNext, "btnSuccessNext");
             this.btnSuccessNext.Name = "btnSuccessNext";
             this.btnSuccessNext.UseVisualStyleBackColor = true;
+            this.btnSuccessNext.Click += new System.EventHandler(this.BtnSuccessNextClick);
             // 
             // lblSuccessWelcome
             // 
@@ -682,13 +676,13 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
+            this.Controls.Add(this.pnlPaySuccess);
             this.Controls.Add(this.pnlMoney);
             this.Controls.Add(this.pnlDebitInfo);
             this.Controls.Add(this.pnlCreditInfo);
             this.Controls.Add(this.pnlActivation);
             this.Controls.Add(this.pnlEncashment);
             this.Controls.Add(this.pnlOutOfOrder);
-            this.Controls.Add(this.pnlPaySuccess);
             this.Controls.Add(this.pnlClientCode);
             this.Controls.Add(this.pnlTestMode);
             this.Controls.Add(this.pnlProducts);
@@ -701,6 +695,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
             this.Load += new System.EventHandler(this.FormMainLoad);
+            this.Click += new System.EventHandler(this.FormMainClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormMain_MouseClick);
             this.pnlLanguage.ResumeLayout(false);
             this.pnlProducts.ResumeLayout(false);
             this.pnlClientCode.ResumeLayout(false);
@@ -770,7 +766,6 @@
         private System.Windows.Forms.Label lblMoneyCurrency;
         private System.Windows.Forms.Label lblMoneyTotal;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnMoneyBack;
         private System.Windows.Forms.Button btnMoneyNext;
         private System.Windows.Forms.Button btnSuccessNext;
         private System.Windows.Forms.Label lblSuccessWelcome;

@@ -390,6 +390,8 @@ namespace CashInTerminal {
             
             private global::System.Data.DataColumn columnTransactionId;
             
+            private global::System.Data.DataColumn columnAmount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CasseteBanknotesDataTable() {
@@ -449,6 +451,14 @@ namespace CashInTerminal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AmountColumn {
+                get {
+                    return this.columnAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -484,12 +494,13 @@ namespace CashInTerminal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CasseteBanknotesRow AddCasseteBanknotesRow(System.DateTime InsertDate, string Currency, string TransactionId) {
+            public CasseteBanknotesRow AddCasseteBanknotesRow(System.DateTime InsertDate, string Currency, string TransactionId, decimal Amount) {
                 CasseteBanknotesRow rowCasseteBanknotesRow = ((CasseteBanknotesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         InsertDate,
                         Currency,
-                        TransactionId};
+                        TransactionId,
+                        Amount};
                 rowCasseteBanknotesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCasseteBanknotesRow);
                 return rowCasseteBanknotesRow;
@@ -515,6 +526,7 @@ namespace CashInTerminal {
                 this.columnInsertDate = base.Columns["InsertDate"];
                 this.columnCurrency = base.Columns["Currency"];
                 this.columnTransactionId = base.Columns["TransactionId"];
+                this.columnAmount = base.Columns["Amount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -526,6 +538,8 @@ namespace CashInTerminal {
                 base.Columns.Add(this.columnCurrency);
                 this.columnTransactionId = new global::System.Data.DataColumn("TransactionId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionId);
+                this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmount);
                 this.columnCurrency.MaxLength = 3;
                 this.columnTransactionId.MaxLength = 50;
             }
@@ -1647,6 +1661,22 @@ namespace CashInTerminal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Amount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableCasseteBanknotes.AmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'CasseteBanknotes\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCasseteBanknotes.AmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsInsertDateNull() {
                 return this.IsNull(this.tableCasseteBanknotes.InsertDateColumn);
             }
@@ -1679,6 +1709,18 @@ namespace CashInTerminal {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTransactionIdNull() {
                 this[this.tableCasseteBanknotes.TransactionIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAmountNull() {
+                return this.IsNull(this.tableCasseteBanknotes.AmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAmountNull() {
+                this[this.tableCasseteBanknotes.AmountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2360,11 +2402,12 @@ namespace CashInTerminal.dsTableAdapters {
             tableMapping.ColumnMappings.Add("InsertDate", "InsertDate");
             tableMapping.ColumnMappings.Add("Currency", "Currency");
             tableMapping.ColumnMappings.Add("TransactionId", "TransactionId");
+            tableMapping.ColumnMappings.Add("Amount", "Amount");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [CasseteBanknotes] ([InsertDate], [Currency], [TransactionId]) VALUES" +
-                " (@InsertDate, @Currency, @TransactionId)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [CasseteBanknotes] ([InsertDate], [Currency], [TransactionId], [Amoun" +
+                "t]) VALUES (@InsertDate, @Currency, @TransactionId, @Amount)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@InsertDate";
@@ -2382,6 +2425,12 @@ namespace CashInTerminal.dsTableAdapters {
             param.DbType = global::System.Data.DbType.String;
             param.SourceColumn = "TransactionId";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Amount";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SourceColumn = "Amount";
+            this._adapter.InsertCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2394,10 +2443,10 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SQLite.SQLiteCommand[5];
+            this._commandCollection = new global::System.Data.SQLite.SQLiteCommand[6];
             this._commandCollection[0] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [InsertDate], [Currency], [TransactionId] FROM [CasseteBanknotes]";
+            this._commandCollection[0].CommandText = "SELECT InsertDate, Currency, TransactionId, Amount FROM CasseteBanknotes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -2421,8 +2470,8 @@ namespace CashInTerminal.dsTableAdapters {
             this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "INSERT INTO [CasseteBanknotes] ([InsertDate], [Currency], [TransactionId]) VALUES" +
-                " (@InsertDate, @Currency, @TransactionId)";
+            this._commandCollection[4].CommandText = "INSERT INTO [CasseteBanknotes] ([InsertDate], [Currency], [TransactionId], [Amoun" +
+                "t]) VALUES (@InsertDate, @Currency, @TransactionId, @Amount)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@InsertDate";
@@ -2443,6 +2492,23 @@ namespace CashInTerminal.dsTableAdapters {
             param.Size = 50;
             param.SourceColumn = "TransactionId";
             this._commandCollection[4].Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Amount";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.Size = 8;
+            param.SourceColumn = "Amount";
+            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT SUM(Amount) FROM CasseteBanknotes WHERE Currency = @Currency";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Currency";
+            param.DbType = global::System.Data.DbType.String;
+            param.Size = 3;
+            param.SourceColumn = "Currency";
+            this._commandCollection[5].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2502,7 +2568,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> InsertDate, string Currency, string TransactionId) {
+        public virtual int Insert(global::System.Nullable<global::System.DateTime> InsertDate, string Currency, string TransactionId, global::System.Nullable<decimal> Amount) {
             if ((InsertDate.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(InsertDate.Value));
             }
@@ -2520,6 +2586,12 @@ namespace CashInTerminal.dsTableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(TransactionId));
+            }
+            if ((Amount.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(Amount.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2621,7 +2693,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertTransactionBanknotes(global::System.Nullable<global::System.DateTime> InsertDate, string Currency, string TransactionId) {
+        public virtual int InsertTransactionBanknotes(global::System.Nullable<global::System.DateTime> InsertDate, string Currency, string TransactionId, global::System.Nullable<decimal> Amount) {
             global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[4];
             if ((InsertDate.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(InsertDate.Value));
@@ -2641,6 +2713,12 @@ namespace CashInTerminal.dsTableAdapters {
             else {
                 command.Parameters[2].Value = ((string)(TransactionId));
             }
+            if ((Amount.HasValue == true)) {
+                command.Parameters[3].Value = ((decimal)(Amount.Value));
+            }
+            else {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2656,6 +2734,40 @@ namespace CashInTerminal.dsTableAdapters {
                 }
             }
             return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object Total(string Currency) {
+            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[5];
+            if ((Currency == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(Currency));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -3523,7 +3635,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SQLite.SQLiteCommand[7];
+            this._commandCollection = new global::System.Data.SQLite.SQLiteCommand[8];
             this._commandCollection[0] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [Id], [ProductId], [Currency], [CurrencyRate], [Amount], [InsertDate], [Tr" +
@@ -3543,97 +3655,83 @@ namespace CashInTerminal.dsTableAdapters {
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT MAX(id) FROM Payments";
+            this._commandCollection[2].CommandText = "SELECT [Id], [ProductId], [Currency], [CurrencyRate], [Amount], [InsertDate], [Tr" +
+                "ansactionId], [Confirmed] FROM [Payments] WHERE [Confirmed] = 1";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO Payments\r\n                         (ProductId, Currency, CurrencyRate" +
+            this._commandCollection[3].CommandText = "SELECT MAX(id) FROM Payments";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "INSERT INTO Payments\r\n                         (ProductId, Currency, CurrencyRate" +
                 ", Amount, TransactionId, Confirmed)\r\nVALUES        (@ProductId, @Currency, @Curr" +
                 "encyRate, @Amount, @TransactionId, @Confirmed)";
-            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@ProductId";
             param.DbType = global::System.Data.DbType.Int64;
             param.DbType = global::System.Data.DbType.Int64;
             param.Size = 8;
             param.SourceColumn = "ProductId";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Currency";
             param.DbType = global::System.Data.DbType.String;
             param.Size = 3;
             param.SourceColumn = "Currency";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@CurrencyRate";
             param.DbType = global::System.Data.DbType.Decimal;
             param.DbType = global::System.Data.DbType.Double;
             param.Size = 8;
             param.SourceColumn = "CurrencyRate";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Amount";
             param.DbType = global::System.Data.DbType.Int64;
             param.DbType = global::System.Data.DbType.Int64;
             param.Size = 8;
             param.SourceColumn = "Amount";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@TransactionId";
             param.DbType = global::System.Data.DbType.String;
             param.Size = 50;
             param.SourceColumn = "TransactionId";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Confirmed";
             param.DbType = global::System.Data.DbType.Int64;
             param.DbType = global::System.Data.DbType.Int64;
             param.Size = 8;
             param.SourceColumn = "Confirmed";
-            this._commandCollection[3].Parameters.Add(param);
-            this._commandCollection[4] = new global::System.Data.SQLite.SQLiteCommand();
-            this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE [Payments] SET [Currency] = @Currency, [CurrencyRate] = @CurrencyRate, [Am" +
+            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "UPDATE [Payments] SET [Currency] = @Currency, [CurrencyRate] = @CurrencyRate, [Am" +
                 "ount] = @Amount WHERE [Id] = @Original_Id";
-            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Currency";
             param.DbType = global::System.Data.DbType.String;
             param.Size = 3;
             param.SourceColumn = "Currency";
-            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@CurrencyRate";
             param.DbType = global::System.Data.DbType.Decimal;
             param.DbType = global::System.Data.DbType.Double;
             param.Size = 8;
             param.SourceColumn = "CurrencyRate";
-            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Amount";
             param.DbType = global::System.Data.DbType.Int64;
             param.DbType = global::System.Data.DbType.Int64;
             param.Size = 8;
             param.SourceColumn = "Amount";
-            this._commandCollection[4].Parameters.Add(param);
-            param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Id";
-            param.DbType = global::System.Data.DbType.Int64;
-            param.DbType = global::System.Data.DbType.Int64;
-            param.Size = 8;
-            param.SourceColumn = "Id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._commandCollection[4].Parameters.Add(param);
-            this._commandCollection[5] = new global::System.Data.SQLite.SQLiteCommand();
-            this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "UPDATE [Payments] SET [Confirmed] = @Confirmed WHERE [Id] = @Original_Id";
-            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Confirmed";
-            param.DbType = global::System.Data.DbType.Int64;
-            param.DbType = global::System.Data.DbType.Int64;
-            param.Size = 8;
-            param.SourceColumn = "Confirmed";
             this._commandCollection[5].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_Id";
@@ -3645,13 +3743,14 @@ namespace CashInTerminal.dsTableAdapters {
             this._commandCollection[5].Parameters.Add(param);
             this._commandCollection[6] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "UPDATE [Payments] SET [TransactionId] = @TransactionId WHERE [Id] = @Original_Id";
+            this._commandCollection[6].CommandText = "UPDATE [Payments] SET [Confirmed] = @Confirmed WHERE [Id] = @Original_Id";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@TransactionId";
-            param.DbType = global::System.Data.DbType.String;
-            param.Size = 50;
-            param.SourceColumn = "TransactionId";
+            param.ParameterName = "@Confirmed";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.Size = 8;
+            param.SourceColumn = "Confirmed";
             this._commandCollection[6].Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_Id";
@@ -3661,6 +3760,24 @@ namespace CashInTerminal.dsTableAdapters {
             param.SourceColumn = "Id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._commandCollection[6].Parameters.Add(param);
+            this._commandCollection[7] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[7].Connection = this.Connection;
+            this._commandCollection[7].CommandText = "UPDATE [Payments] SET [TransactionId] = @TransactionId WHERE [Id] = @Original_Id";
+            this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@TransactionId";
+            param.DbType = global::System.Data.DbType.String;
+            param.Size = 50;
+            param.SourceColumn = "TransactionId";
+            this._commandCollection[7].Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_Id";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.Size = 8;
+            param.SourceColumn = "Id";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._commandCollection[7].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3682,6 +3799,30 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ds.PaymentsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.PaymentsDataTable dataTable = new ds.PaymentsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByConfirmed(ds.PaymentsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.PaymentsDataTable GetDataByConfirmed() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             ds.PaymentsDataTable dataTable = new ds.PaymentsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3957,7 +4098,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual object GetInsertId() {
-            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[2];
+            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[3];
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3985,7 +4126,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int InsertTransaction(long ProductId, string Currency, global::System.Nullable<decimal> CurrencyRate, long Amount, string TransactionId, global::System.Nullable<long> Confirmed) {
-            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[3];
+            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[4];
             command.Parameters[0].Value = ((long)(ProductId));
             if ((Currency == null)) {
                 command.Parameters[1].Value = global::System.DBNull.Value;
@@ -4034,7 +4175,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateAmount(string Currency, global::System.Nullable<decimal> CurrencyRate, long Amount, long Original_Id) {
-            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[4];
+            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[5];
             if ((Currency == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -4071,7 +4212,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateConfirmed(global::System.Nullable<long> Confirmed, long Original_Id) {
-            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[5];
+            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[6];
             if ((Confirmed.HasValue == true)) {
                 command.Parameters[0].Value = ((long)(Confirmed.Value));
             }
@@ -4101,7 +4242,7 @@ namespace CashInTerminal.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateTransactionId(string TransactionId, long Original_Id) {
-            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[6];
+            global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[7];
             if ((TransactionId == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }

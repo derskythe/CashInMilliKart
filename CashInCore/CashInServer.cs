@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Text;
+using CashInCore.Properties;
 using Containers;
 using Containers.Enums;
 using Db;
 using NLog;
 using Org.BouncyCastle.Utilities.Encoders;
+using crypto;
 
 namespace CashInCore
 {
@@ -21,6 +23,35 @@ namespace CashInCore
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+
+        static CashInServer()
+        {
+            Log.Debug("Constructor");
+            try
+            {
+                if (String.IsNullOrEmpty(Settings.Default.PrivateKey) ||
+                    String.IsNullOrEmpty(Settings.Default.PublicKey))
+                {
+                    var keys = Wrapper.SaveToString(Wrapper.GenerateKeys(1024));
+                    Settings.Default.PrivateKey = keys[0];
+                    Settings.Default.PublicKey = keys[1];
+
+                    Settings.Default.Save();
+                }
+
+                GetPrivateKey();
+            }
+            catch (Exception e)
+            {
+                Log.ErrorException(e.Message, e);
+            }
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public string GetPublicKey()
+        {
+            return Settings.Default.PublicKey;
+        }
 
         [OperationBehavior(AutoDisposeParameters = true)]
         public AuthResult InitTerminal(int terminalId, string authKey, string publicKey)
@@ -57,11 +88,12 @@ namespace CashInCore
                 }
 
                 OracleDb.Instance.UpdateTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0);
-                OracleDb.Instance.UpdateTerminalKey(terminalId, UrlBase64.Decode(publicKey));
+                OracleDb.Instance.UpdateTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
 
                 result.Code = ResultCodes.Ok;
+                result.PublicKey = Settings.Default.PublicKey;
 
-                Log.Info("Init terminal " + terminal + " Terminal info:\n" + terminal);
+                Log.Info("Init terminal " + terminal.Id + " Terminal info:\n" + terminal);
             }
             catch (Exception exp)
             {
@@ -80,6 +112,7 @@ namespace CashInCore
             try
             {
                 Terminal terminalInfo;
+                Log.Debug(request);
                 result = (PingResult)AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.UpdateTerminalStatus(request.TerminalId, request.TerminalStatus, request.CashCodeStatus);
@@ -180,6 +213,8 @@ namespace CashInCore
             {
                 Terminal terminalInfo;
                 result = AuthTerminal(result, request, out terminalInfo);
+
+                Log.Debug("Payment: " + request);
 
                 OracleDb.Instance.SavePayment(request);
 

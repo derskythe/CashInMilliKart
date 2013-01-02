@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
@@ -30,11 +31,15 @@ namespace CashInTerminal
 
         private delegate void SetStackedAmountDelegate(object item);
 
+        private delegate void EnableMoneyNextButtonDelegate(object item);
+
         private int _SelectedProduct;
         private CashInServer _Server;
         private TextBox _PanelActivationFocus;
         private TextBox _PanelClientCodeFocus;
         private long _PaymentId;
+        private int _OrderNumber;
+        private string _TransactionId;
         private String _CurrentCurrency;
         private String _SelectedPanel;
 
@@ -85,7 +90,8 @@ namespace CashInTerminal
                 _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.B_9600);
                 _CcnetDevice.Init();
                 _CcnetDevice.BillStacked += CcnetDeviceBillStacked;
-                _CcnetDevice.ReadCommand += new CCNETDevice.ReadCommandDelegate(CcnetDeviceReadCommand);
+                _CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
+                //_CcnetDevice.Reset();
 
                 _Init &= true;
             }
@@ -112,6 +118,9 @@ namespace CashInTerminal
             try
             {
                 _Server = new CashInServerClient();
+                var publicKey = _Server.GetPublicKey();
+                Log.Debug("Public key " + publicKey);
+                Settings.Default.ServerPublicKey = publicKey;
             }
             catch (Exception exp)
             {
@@ -134,9 +143,11 @@ namespace CashInTerminal
             {
                 ChangePannel(pnlOutOfOrder);
             }
+
+            _CheckCurrencyTimer = new System.Threading.Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
+            _CheckProductsTimer = new System.Threading.Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
+            _CheckInactivityTimer = new System.Threading.Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
         }
-
-
 
         #endregion
 
@@ -149,6 +160,18 @@ namespace CashInTerminal
             else
             {
                 lblMoneyTotal.Text = amount.ToString();
+            }
+        }
+
+        private void EnableMoneyNextButton(object param)
+        {
+            if (btnMoneyNext.InvokeRequired)
+            {
+                btnMoneyNext.Invoke(new EnableMoneyNextButtonDelegate(EnableMoneyNextButton), param);
+            }
+            else
+            {
+                btnMoneyNext.Enabled = true;
             }
         }
 
@@ -275,6 +298,8 @@ namespace CashInTerminal
             }
         }
 
+        #region Client Code buttons
+
         private void BtnClientCodeBackspaceClick(object sender, EventArgs e)
         {
             if (_PanelClientCodeFocus.Text.Length > 0)
@@ -338,6 +363,8 @@ namespace CashInTerminal
             _PanelClientCodeFocus.Text += "9";
         }
 
+        #endregion
+
         private void BtnCreditInfoBackClick(object sender, EventArgs e)
         {
             ChangePannel(pnlClientCode);
@@ -364,22 +391,28 @@ namespace CashInTerminal
 
         private void StartCashcode()
         {
+            btnMoneyNext.Enabled = false;
             SetStackedAmount("0");
             try
             {
+                _OrderNumber = 0;
                 _PaymentId = _Db.InsertTransaction(_SelectedProduct, _CurrentCurrency, 1, 0,
                                                    Convert.ToInt32(Settings.Default.TerminalCode), false);
+                _TransactionId = String.Format("{0}{1}{2}", Settings.Default.TerminalCode,
+                                               DateTime.Now.DayOfYear.ToString("000"), _PaymentId);
 
-                _Db.UpdateTransactionId(_PaymentId, String.Format("{0}0000{1}", Settings.Default.TerminalCode, _PaymentId));
+                _Db.UpdateTransactionId(_PaymentId, _TransactionId);
                 _Db.InsertPaymentValue(_PaymentId, txtClientCodeClient.Text, 0);
                 _Db.InsertPaymentValue(_PaymentId, txtClientCodePassport.Text, 1);
+
+                Log.Info("Starting transId: {0}, PaymentId: {1}", _TransactionId, _PaymentId);
             }
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);
             }
             _CcnetDevice.Poll();
-            _CcnetDevice.EnableAll();
+            _CcnetDevice.Enable(_CurrentCurrency.ToLower());
             _CcnetDevice.StartPool = true;
         }
 
@@ -393,7 +426,16 @@ namespace CashInTerminal
         {
             try
             {
+                var msg = new StringBuilder();
+                foreach (var currency in _Currencies)
+                {
+                    var total = _Db.GetCasseteTotal(currency.Name);
 
+                    msg.Append(total).Append(" ").Append(currency.Name).Append("\n");
+                }
+
+                Log.Info(msg.ToString());
+                MessageBox.Show(msg.ToString());
             }
             catch (Exception exp)
             {
@@ -427,7 +469,13 @@ namespace CashInTerminal
         {
             _Running = false;
 
+            _CheckCurrencyTimer.Dispose();
+            _CheckProductsTimer.Dispose();
+            _CheckInactivityTimer.Dispose();
+
             Thread.Sleep(250);
+
+            _CcnetDevice.Close();
             _CcnetDevice.Dispose();
         }
 
@@ -469,7 +517,23 @@ namespace CashInTerminal
 
                     _AuthTerminal = true;
                     ChangePannel(pnlProducts);
+                    btnActivation.Enabled = true;
                     Cursor.Current = Cursors.Default;
+
+                    try
+                    {
+                        var checkCurrencyTimerCaller = new CheckCurrencyTimerCaller(CheckCurrencyTimer);
+                        checkCurrencyTimerCaller.Invoke(null);
+
+                        var checkProductsTimerCaller = new CheckProductsTimerCaller(CheckProductsTimer);
+                        checkProductsTimerCaller.Invoke(null);
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                    }
+
+                    return;
                 }
 
                 errorMessage = String.Format("ErrorCode: {0}, Description: {1}", result.ResultCodes, result.Description);
@@ -485,6 +549,8 @@ namespace CashInTerminal
 
             MessageBox.Show(errorMessage);
         }
+
+        #region Activate Buttons
 
         private void BtnActivationClearClick(object sender, EventArgs e)
         {
@@ -564,6 +630,8 @@ namespace CashInTerminal
             _PanelActivationFocus = txtActivationTerminal;
         }
 
+        #endregion
+
         private void PnlClientCodeVisibleChanged(object sender, EventArgs e)
         {
             _PanelClientCodeFocus = txtClientCodeClient;
@@ -571,7 +639,19 @@ namespace CashInTerminal
 
         private void CcnetDeviceBillStacked(CCNETDeviceState e)
         {
+            Log.Info(String.Format("Stacked {0} {1}", e.Nominal, e.Currency));
+            EnableMoneyNextButton(null);
             SetStackedAmount(e.Amount);
+
+            try
+            {
+                _Db.InsertBanknote(_PaymentId, e.Nominal, e.Currency, _OrderNumber++);
+                _Db.InsertTransactionBanknotes(e.Nominal, e.Currency, _TransactionId);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private void CcnetDeviceReadCommand(CCNETDeviceState e)
@@ -595,8 +675,19 @@ namespace CashInTerminal
 
         private void BtnMoneyNextClick(object sender, EventArgs e)
         {
+            btnMoneyNext.Enabled = false;
             try
             {
+                StopCashcode();
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            try
+            {
+                _Db.UpdateAmount(_PaymentId, lblMoneyCurrency.Text, 1, Convert.ToInt32(lblMoneyTotal.Text));
                 _Db.ConfirmTransaction(_PaymentId);
             }
             catch (Exception exp)
@@ -604,12 +695,47 @@ namespace CashInTerminal
                 Log.ErrorException(exp.Message, exp);
             }
 
+            lblSuccessTotalAmount.Text = lblMoneyTotal.Text + @" " + lblMoneyCurrency.Text;
             PrintCheck();
+
+            btnMoneyNext.Enabled = true;
+            ChangePannel(pnlPaySuccess);
         }
 
         private void PrintCheck()
         {
             //throw new NotImplementedException();
+        }
+
+        private void FormMainClick(object sender, EventArgs e)
+        {
+            if (_SelectedPanel == "pnlClientCode")
+            {
+                Log.Debug("Click");
+            }
+        }
+
+        private void PnlClientCodeClick(object sender, EventArgs e)
+        {
+            Log.Debug("Click");
+        }
+
+        private void FormMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_SelectedPanel == "pnlClientCode")
+            {
+                Log.Debug("Click");
+            }
+        }
+
+        private void pnlClientCode_MouseHover(object sender, EventArgs e)
+        {
+            Log.Debug("Click");
+        }
+
+        private void BtnSuccessNextClick(object sender, EventArgs e)
+        {
+            ChangePannel(pnlProducts);
         }
     }
 }

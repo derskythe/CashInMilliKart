@@ -8,6 +8,8 @@ namespace CashInCore
     public interface ICashInServer
     {
         [OperationContract]
+        string GetPublicKey();
+        [OperationContract]
         AuthResult InitTerminal(int terminalId, string authKey, string publicKey);
         [OperationContract]
         PingResult Ping(PingRequest request);

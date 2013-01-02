@@ -12,75 +12,283 @@ namespace CashInTerminal
     {
         private Thread _PingThread;
         private Thread _SendPaymentThread;
-        private const int PING_TIMEOUT = 60 * 1000;
-        private const int SEND_PAYMENT_TIMEOUT = 1000;
+        private Timer _CheckCurrencyTimer;
+        private Timer _CheckProductsTimer;
+        private Timer _CheckInactivityTimer;
+        private const int PING_TIMEOUT = 30 * 1000;
+        private const int SEND_PAYMENT_TIMEOUT = 10000;
+        private const int CHECK_CURRENCY_TIMER = 30 * 60 * 1000;
+        private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
+        private const int CHECK_INACTIVITY = 10 * 1000;
+        private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Seconds!
+        private readonly List<Currency> _Currencies = new List<Currency>();
+        private readonly List<Product> _Products = new List<Product>();
 
-        private void PingThread()
+        private uint _LastActivity;
+
+        public delegate void CheckCurrencyTimerCaller(object param);
+        public delegate void CheckProductsTimerCaller(object param);
+
+        private void CheckInactivityTimer(object param)
         {
-            while (_Running && _Init && _AuthTerminal)
+            Log.Debug(Utilities.GetLastInputTime());
+            if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlLanguage" && _SelectedPanel != "pnlTestMode" && _SelectedPanel != "pnlEncashment")
+            {
+                _LastActivity = Utilities.GetLastInputTime();
+                if (_LastActivity > MAX_INACTIVITY_PERIOD)
+                {
+                    ChangePannel(pnlLanguage);
+                }
+            }
+            else
+            {
+                _LastActivity = 0;
+            }
+        }
+
+        private void CheckCurrencyTimer(object param)
+        {
+            if (_Running && _Init && _AuthTerminal)
             {
                 try
                 {
-                    var request = new PingRequest
+                    var now = DateTime.Now;
+                    var request = new StandardRequest
                         {
-                            CashCodeStatus = (int) _CcnetDevice.DeviceState.StateCode,
-                            SystemTime = DateTime.Now,
+                            SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                            TerminalStatus = !_EncashmentMode ? (int) TerminalCodes.Ok : (int)TerminalCodes.Encashment
+                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
                         };
-                    var result = _Server.Ping(request);
 
-                    if (result != null)
+                    var response = _Server.ListCurrencies(request);
+
+                    if (response.ResultCodes == ResultCodes.Ok)
                     {
-                        if (result.ResultCodes != ResultCodes.Ok)
+                        lock (_Currencies)
                         {
-                            Log.Warn(String.Format("Server return: {0}, {1}", result.ResultCodes, result.Description));
-                        }
-                        else
-                        {
-                            switch ((TerminalCommands)result.Command)
+                            _Currencies.Clear();
+                            foreach (var item in response.Currencies)
                             {
-                                case TerminalCommands.OutOfService:
-                                    Log.Warn("Received command " + TerminalCommands.OutOfService.ToString());
-                                    ChangePannel(pnlOutOfOrder);
-                                    break;
-
-                                case TerminalCommands.TestMode:
-                                    Log.Warn("Received command " + TerminalCommands.TestMode.ToString());
-                                    ChangePannel(pnlTestMode);
-                                    break;
-
-                                case TerminalCommands.Idle:
-                                case TerminalCommands.NormalMode:
-                                    if (_SelectedPanel == "pnlOutOfOrder" || _SelectedPanel == "pnlTestMode")
-                                    {
-                                        ChangePannel(pnlProducts);
-                                    }
-                                    break;
+                                _Currencies.Add(item);
                             }
-
-                            var cmd = new StandardRequest
-                                {
-                                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                                    SystemTime = DateTime.Now
-                                };
-                            var secondResult = _Server.CommandReceived(cmd);
-
-                            // TODO : Добавить обработчик этого
                         }
                     }
                     else
                     {
-                        Log.Error("Result is null");
+                        Log.Warn(response.ResultCodes + " " + response.Description);
                     }
                 }
                 catch (Exception exp)
                 {
                     Log.ErrorException(exp.Message, exp);
                 }
+            }
+        }
+
+        private void CheckProductsTimer(object param)
+        {
+            if (_Running && _Init && _AuthTerminal)
+            {
+                try
+                {
+                    var now = DateTime.Now;
+                    var request = new StandardRequest
+                    {
+                        SystemTime = now,
+                        TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                    };
+
+                    var response = _Server.ListProducts(request);
+
+                    if (response.ResultCodes == ResultCodes.Ok)
+                    {
+                        lock (_Products)
+                        {
+                            _Products.Clear();
+                            foreach (var item in response.Products)
+                            {
+                                _Products.Add(item);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Log.Warn(response.ResultCodes + " " + response.Description);
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Log.ErrorException(exp.Message, exp);
+                }
+            }
+        }
+
+        private void PingThread()
+        {
+            while (_Running)
+            {
+                while (_Init && _AuthTerminal)
+                {
+                    try
+                    {
+                        var now = DateTime.Now;
+                        var request = new PingRequest
+                            {
+                                CashCodeStatus = (int)_CcnetDevice.DeviceState.StateCode,
+                                SystemTime = now,
+                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                TerminalStatus = !_EncashmentMode ? (int)TerminalCodes.Ok : (int)TerminalCodes.Encashment,
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                            };
+                        var result = _Server.Ping(request);
+
+                        if (result != null)
+                        {
+                            if (result.ResultCodes != ResultCodes.Ok)
+                            {
+                                Log.Warn(String.Format("Server return: {0}, {1}", result.ResultCodes, result.Description));
+                            }
+                            else
+                            {
+                                switch ((TerminalCommands)result.Command)
+                                {
+                                    case TerminalCommands.OutOfService:
+                                        Log.Warn("Received command " + TerminalCommands.OutOfService.ToString());
+
+                                        if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlPaySuccess")
+                                        {
+                                            ChangePannel(pnlOutOfOrder);
+
+                                            now = DateTime.Now;
+                                            var cmd = new StandardRequest
+                                                {
+                                                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                                    SystemTime = now,
+                                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                                };
+                                            var secondResult = _Server.CommandReceived(cmd);
+                                        }
+                                        break;
+
+                                    case TerminalCommands.TestMode:
+                                        Log.Warn("Received command " + TerminalCommands.TestMode.ToString());
+                                        if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlPaySuccess")
+                                        {
+                                            ChangePannel(pnlTestMode);
+
+                                            now = DateTime.Now;
+                                            var cmd = new StandardRequest
+                                            {
+                                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                                SystemTime = now,
+                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                            };
+                                            var secondResult = _Server.CommandReceived(cmd);
+                                        }
+                                        break;
+
+                                    case TerminalCommands.Encash:
+                                        Log.Warn("Received command " + TerminalCommands.Encash.ToString());
+
+                                        if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlPaySuccess")
+                                        {
+                                            DoEncashment();
+                                        }
+                                        break;
+
+                                    case TerminalCommands.Idle:
+                                    case TerminalCommands.NormalMode:
+                                        if (_SelectedPanel == "pnlOutOfOrder" || _SelectedPanel == "pnlTestMode")
+                                        {
+                                            ChangePannel(pnlLanguage);
+                                        }
+                                        {
+                                            now = DateTime.Now;
+                                            var cmd = new StandardRequest
+                                            {
+                                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                                SystemTime = now,
+                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                            };
+                                            var secondResult = _Server.CommandReceived(cmd);
+                                        }
+                                        break;
+                                }
+                                // TODO : Добавить обработчик этого
+                            }
+                        }
+                        else
+                        {
+                            Log.Error("Result is null");
+                        }
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                    }
+                    Thread.Sleep(PING_TIMEOUT);
+                }
+
                 Thread.Sleep(PING_TIMEOUT);
             }
         }
+
+        private void DoEncashment()
+        {
+            ChangePannel(pnlEncashment);
+
+            var now = DateTime.Now;
+            var cmd = new StandardRequest
+                {
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    SystemTime = now,
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                };
+            var secondResult = _Server.CommandReceived(cmd);
+
+            try
+            {
+                var request = new Encashment();
+
+                var amountList = new List<int>();
+                var curList = new List<string>();
+                foreach (var currency in _Currencies)
+                {
+                    var total = _Db.GetCasseteTotal(currency.Name);
+
+                    amountList.Add(total);
+                    curList.Add(currency.Name);
+                }
+
+                now = DateTime.Now;
+                request.SystemTime = now;
+                request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
+                request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys);
+                request.Amounts = amountList.ToArray();
+                request.Currencies = curList.ToArray();
+
+                var result = _Server.Encashment(request);
+
+                if (result != null)
+                {
+                    Log.Info(String.Format("Server answer {0} {1}", result.ResultCodes, result.Description));
+                }
+                else
+                {
+                    Log.Warn("Result is null");
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+            catch
+            {
+                Log.Error("Unknown error");
+            }
+        }
+
 
         private void SendPaymentThread()
         {
@@ -97,14 +305,19 @@ namespace CashInTerminal
                         var values = _Db.GetPaymentValues(row.Id);
                         var banknotes = _Db.GetPaymentBanknotes(row.Id);
 
-                        var request = new PaymentInfoByProducts();
-                        request.TerminalDate = DateTime.Now;
-                        request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
-                        request.TransactionId = row.TransactionId;
-                        request.ProductId = (int)row.ProductId;
-                        request.Currency = row.Currency;
-                        request.CurrencyRate = (float)row.CurrencyRate;
-                        request.Amount = (int)row.Amount;
+                        var now = DateTime.Now;
+                        var request = new PaymentInfoByProducts
+                            {
+                                TerminalDate = now,
+                                SystemTime = now,
+                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                TransactionId = row.TransactionId,
+                                ProductId = (int)row.ProductId,
+                                Currency = row.Currency,
+                                CurrencyRate = (float)row.CurrencyRate,
+                                Amount = (int)row.Amount,
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                            };
 
                         var valuesList = new List<String>();
                         var banknotesList = new List<int>();
@@ -130,17 +343,21 @@ namespace CashInTerminal
                         }
                         else if (response != null)
                         {
-                            Log.Error(String.Format("Server answer: {0}, {1}", response.ResultCodes, response.Description));
+                            Log.Warn(String.Format("Server answer: {0}, {1}", response.ResultCodes, response.Description));
                         }
                         else
                         {
-                            Log.Error("Response is null");
+                            Log.Warn("Response is null");
                         }
                     }
                 }
                 catch (Exception exp)
                 {
                     Log.ErrorException(exp.Message, exp);
+                }
+                catch
+                {
+                    Log.Error("Non cachable exception");
                 }
 
                 try
@@ -156,6 +373,10 @@ namespace CashInTerminal
                 catch (Exception exp)
                 {
                     Log.ErrorException(exp.Message, exp);
+                }
+                catch
+                {
+                    Log.Error("Non cachable exception");
                 }
                 Thread.Sleep(SEND_PAYMENT_TIMEOUT);
             }

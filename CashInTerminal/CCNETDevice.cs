@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using CashControlTerminal;
 
@@ -9,7 +10,7 @@ namespace CashInTerminal
         #region Fields
 
         static private SerialStream _SerialDevice;
-        
+
         static private bool _StartPool;
         static private bool _ParseRead;
 
@@ -17,14 +18,17 @@ namespace CashInTerminal
         private const int MAX_RESPONSE_TIME = 250;
         private const int MAX_PACKET_LENGTH = 255;
 
-        private Thread _ResponseReaderThread, _PoolThread, _SendThread, _EventThread;
-        private CCNETDeviceState _DeviceState;
-        private string _Currency;
+        private readonly Thread _ResponseReaderThread;
+        private readonly Thread _PoolThread;
+        private readonly Thread _SendThread;
+        private Thread _EventThread;
+        private readonly CCNETDeviceState _DeviceState;
+        private List<string> _CurrencyList;
         private int _Port;
         private CCNETPortSpeed _PortSpeed;
-        private Object _ResponseSignal;
+        private readonly Object _ResponseSignal;
         private CCNETPacket _ResponsePacket;
-        private EventWaitHandle _Wait = new AutoResetEvent(false);
+        private readonly EventWaitHandle _Wait = new AutoResetEvent(false);
         private bool _TimedOut;
         private bool _Disposing = false;
 
@@ -62,21 +66,22 @@ namespace CashInTerminal
             }
         }
 
-        public string Currency
+        public List<String> Currency
         {
             get
             {
-                return _Currency;
+                return _CurrencyList;
             }
+            set { _CurrencyList = value; }
         }
 
-        #endregion      
+        #endregion
 
         #region Constructor/Destructor/Dispose
 
         public CCNETDevice()
         {
-            _StartPool = false;           
+            _StartPool = false;
             _DeviceState = new CCNETDeviceState();
             //if (currency.Length == 0)
             //{
@@ -86,7 +91,7 @@ namespace CashInTerminal
             //{
             //    _Currency = currency;
             //}
-            _Currency = "azn";
+            //_Currency = "azn";
             _ResponseSignal = new Object();
 
             // Create the Thread used to read responses
@@ -98,7 +103,7 @@ namespace CashInTerminal
             _PoolThread.IsBackground = true;
 
             _SerialDevice = new SerialStream();
-            
+
         }
 
         public void Open(int port, CCNETPortSpeed speed)
@@ -113,13 +118,13 @@ namespace CashInTerminal
                 // "\\\\.\\COM3",
                 _SerialDevice.Open("\\\\.\\COM" + _Port);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 // "Error: " + e.Message, 
                 return;
             }
 
-            _SerialDevice.SetPortSettings(                
+            _SerialDevice.SetPortSettings(
                 (uint)_PortSpeed,
                 SerialStream.FlowControl.None,
                 SerialStream.Parity.None,
@@ -129,12 +134,12 @@ namespace CashInTerminal
             // Set timeout so read ends after 20ms of silence after a response
             _SerialDevice.SetTimeouts(200, 11, 200, 11, 200);
 
-            if(_ResponseReaderThread.ThreadState == (ThreadState.Background | ThreadState.Unstarted))
+            if (_ResponseReaderThread.ThreadState == (ThreadState.Background | ThreadState.Unstarted))
             {
                 _ResponseReaderThread.Start();
             }
 
-            if(_PoolThread.ThreadState == (ThreadState.Background | ThreadState.Unstarted))
+            if (_PoolThread.ThreadState == (ThreadState.Background | ThreadState.Unstarted))
             {
                 _PoolThread.Start();
             }
@@ -143,17 +148,17 @@ namespace CashInTerminal
 
         public void Close()
         {
-            if(!_SerialDevice.Closed)
+            if (!_SerialDevice.Closed)
             {
-                _SerialDevice.Close();                
+                _SerialDevice.Close();
             }
 
-            if(_ResponseReaderThread.ThreadState == ThreadState.Running)
+            if (_ResponseReaderThread.ThreadState == ThreadState.Running)
             {
                 _ParseRead = false;
             }
 
-            if(_PoolThread.ThreadState == ThreadState.Running)
+            if (_PoolThread.ThreadState == ThreadState.Running)
             {
                 _StartPool = false;
             }
@@ -162,7 +167,7 @@ namespace CashInTerminal
         public void Dispose()
         {
             _Disposing = true;
-            if (_ResponseReaderThread != null && _ResponseReaderThread.IsAlive )
+            if (_ResponseReaderThread != null && _ResponseReaderThread.IsAlive)
             {
                 _ResponseReaderThread.Join(5000);
             }
@@ -185,8 +190,7 @@ namespace CashInTerminal
 
         public void Init()
         {
-            Thread initThread = new Thread(new ThreadStart(InitPool));
-            initThread.IsBackground = true;
+            var initThread = new Thread(InitPool) { IsBackground = true };
             initThread.Start();
             _DeviceState.Init = true;
         }
@@ -212,7 +216,7 @@ namespace CashInTerminal
                 Thread.Sleep(POLLING_INTERVAL);
                 Send(CCNETCommand.GetStatus, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                byte[] sec = {0x00, 0x00, 0x00};
+                byte[] sec = { 0x00, 0x00, 0x00 };
                 Send(CCNETCommand.SetSecurity, sec);
                 Thread.Sleep(POLLING_INTERVAL);
                 Send(CCNETCommand.Identification, null);
@@ -247,29 +251,29 @@ namespace CashInTerminal
                 int bufferIndex = 0;
                 int startPacketIndex = 0;
 
-                while(!_Disposing)
+                while (!_Disposing)
                 {
-                    if(_ParseRead)
+                    if (_ParseRead)
                     {
                         try
                         {
-                            if(_SerialDevice.CanRead && !_SerialDevice.Closed)
+                            if (_SerialDevice.CanRead && !_SerialDevice.Closed)
                             {
                                 bytesRead = _SerialDevice.Read(receiveBuffer);
                             }
 
-                            if(bytesRead > 0)
+                            if (bytesRead > 0)
                             {
                                 _TimedOut = false;
                                 AddPacket(receiveBuffer, 0);
                                 Array.Clear(receiveBuffer, 0, 128);
                             }
                         }
-                        catch(TimeoutException)
+                        catch (TimeoutException)
                         {
                             _TimedOut = true;
                         }
-                        catch(ThreadAbortException exp)
+                        catch (ThreadAbortException exp)
                         {
                             throw exp;
                         }
@@ -279,7 +283,7 @@ namespace CashInTerminal
                     }
                 }
             }
-            catch(ThreadAbortException)
+            catch (ThreadAbortException)
             {
                 System.Threading.Thread.CurrentThread.Abort();
             }
@@ -287,7 +291,7 @@ namespace CashInTerminal
 
         private void StartPooling()
         {
-            while(!_Disposing)
+            while (!_Disposing)
             {
                 if (_DeviceState.BillEnable)
                 {
@@ -312,7 +316,7 @@ namespace CashInTerminal
             byte addr = buffer[(startIndex + 1) % buffer.Length];
             byte dataLength = buffer[(startIndex + 2) % buffer.Length];
             byte cmd = buffer[(startIndex + 3) % buffer.Length];
-            
+
             ushort crc = 0;
             byte[] data = null;
             int dataSection = 0;
@@ -320,7 +324,7 @@ namespace CashInTerminal
             if (dataLength >= 7)
             {
                 data = new byte[dataLength - 6];
-                for (int i = 0; i < (dataLength-6); i++)
+                for (int i = 0; i < (dataLength - 6); i++)
                 {
                     data[i] = buffer[(startIndex + 4 + i) % buffer.Length];
                 }
@@ -336,16 +340,16 @@ namespace CashInTerminal
         {
             CCNETPacket packet = CreatePacket(buffer, startIndex);
 
-            if(packet.Cmd != (byte)CCNETCommand.Ok || packet.Cmd != (byte)CCNETCommand.NotMount)
+            if (packet.Cmd != (byte)CCNETCommand.Ok || packet.Cmd != (byte)CCNETCommand.NotMount)
             {
                 SendACK(); // Патч для быстрого ответа. Сначала отвечаем, а потом смотрим, чего там не так.
                 ParseCommand(packet);
             }
-            
+
             AddResponsePacket();
 
             return true;
-        }     
+        }
 
         private void AddResponsePacket()
         {
@@ -395,7 +399,7 @@ namespace CashInTerminal
 
                 try
                 {
-                    if(_SerialDevice.CanWrite && !_SerialDevice.Closed)
+                    if (_SerialDevice.CanWrite && !_SerialDevice.Closed)
                     {
                         _SerialDevice.Write(packetXMitBuffer);
                         _SerialDevice.PurgeAll();
@@ -420,8 +424,80 @@ namespace CashInTerminal
 
         public void EnableAll()
         {
+            _DeviceState.Amount = 0;
+            _DeviceState.Nominal = 0;
+
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
-            byte[] billmask = new byte[] { 0xFF, 0xFF, 0xFF };
+            var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+            if (_CurrencyList != null)
+            {
+                foreach (var item in _CurrencyList)
+                {
+                    switch (item)
+                    {
+                        case Currencies.Azn:
+                            billmask[0] = 0x7D;
+                            break;
+
+                        case Currencies.Eur:
+                            billmask[1] = 0x7F;
+                            break;
+
+                        case Currencies.Usd:
+                            billmask[2] = 0x7F;
+                            break;
+                    }
+                }
+            }
+            //for( int i = 0; i <= 2; i++ )
+            //{
+            //    billmask[i] = 0xff;
+            //}
+
+            //for (int i = 3; i <= 5; i++)
+            //{
+            //    billmask[i] = 0x00;
+            //}
+
+            Send(CCNETCommand.EnableDisable, billmask);
+
+            _DeviceState.BillEnable = true;
+        }
+
+        public void Enable(string currency)
+        {
+            _DeviceState.Amount = 0;
+            _DeviceState.Nominal = 0;
+
+            //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
+            var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+            var curr = currency.ToUpper();
+            if (_CurrencyList == null)
+            {
+                _CurrencyList = new List<string>();
+            }
+            else
+            {
+                _CurrencyList.Clear();
+            }
+            _CurrencyList.Add(curr);
+
+            switch (curr)
+            {
+                case Currencies.Azn:
+                    billmask[0] = 0x7D;
+                    break;
+
+                case Currencies.Eur:
+                    billmask[1] = 0x7F;
+                    break;
+
+                case Currencies.Usd:
+                    billmask[2] = 0x7F;
+                    break;
+            }
             //for( int i = 0; i <= 2; i++ )
             //{
             //    billmask[i] = 0xff;
@@ -439,10 +515,11 @@ namespace CashInTerminal
 
         public void Disable()
         {
-            byte[] disable = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+            byte[] disable = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
             Send(CCNETCommand.EnableDisable, disable);
             _DeviceState.BillEnable = false;
             _DeviceState.Nominal = 0;
+            _DeviceState.Amount = 0;
 
             Thread.Sleep(100);
         }
@@ -491,7 +568,7 @@ namespace CashInTerminal
                 _DeviceState.StateCode = (CCNETCommand)packet.Cmd;
             }
 
-            
+
             if (packet.Data != null && packet.Data.Length > 0)
             {
                 _DeviceState.SubStateCode = packet.Data[0];
@@ -505,7 +582,7 @@ namespace CashInTerminal
 
                 case CCNETCommand.UnitDisabled:
                     _DeviceState.StateCodeOut = CCNETCommand.UnitDisabled;
-                    if (_DeviceState.BillEnable) 
+                    if (_DeviceState.BillEnable)
                     {
                         EnableAll();
                     }
@@ -581,35 +658,109 @@ namespace CashInTerminal
                     _DeviceState.StateCodeOut = CCNETCommand.BillAccepting;
                     _DeviceState.Stacking = true;
 
-                    if ( _Currency.ToLower() == "azn" ) 
+                    foreach (var currency in _CurrencyList)
                     {
-                        switch (_DeviceState.SubStateCode)
+                        if (currency == Currencies.Azn)
                         {
-                            //case CcnetBillTypes.Azn1: // 1 AZN
-                            //    _DeviceState.Nominal = 1;
-                            //    break;
+                            _DeviceState.Currency = Currencies.Azn;
+                            switch (_DeviceState.SubStateCode)
+                            {
+                                case CcnetBillTypes.Azn1: // 1 AZN
+                                    _DeviceState.Nominal = 1;
 
-                            case CcnetBillTypes.Azn5: // 5 AZN
-                                _DeviceState.Nominal = 5;
-                                break;
+                                    break;
 
-                            case CcnetBillTypes.Azn10: // 10 AZN
-                                _DeviceState.Nominal = 10;
-                                break;
+                                case CcnetBillTypes.Azn5: // 5 AZN
+                                    _DeviceState.Nominal = 5;
+                                    break;
 
-                            case CcnetBillTypes.Azn20: // 20 AZN
-                                _DeviceState.Nominal = 20;
-                                break;
+                                case CcnetBillTypes.Azn10: // 10 AZN
+                                    _DeviceState.Nominal = 10;
+                                    break;
 
-                            case CcnetBillTypes.Azn50: // 50 AZN
-                                _DeviceState.Nominal = 50;
-                                break;
+                                case CcnetBillTypes.Azn20: // 20 AZN
+                                    _DeviceState.Nominal = 20;
+                                    break;
 
-                            case CcnetBillTypes.Azn100:
-                                _DeviceState.Nominal = 100;
-                                break;
+                                case CcnetBillTypes.Azn50: // 50 AZN
+                                    _DeviceState.Nominal = 50;
+                                    break;
+
+                                case CcnetBillTypes.Azn100:
+                                    _DeviceState.Nominal = 100;
+                                    break;
+                            }
+                        }
+                        else if (currency == Currencies.Usd)
+                        {
+                            _DeviceState.Currency = Currencies.Usd;
+                            switch (_DeviceState.SubStateCode)
+                            {
+                                case CcnetBillTypes.Usd1:
+                                    _DeviceState.Nominal = 1;
+                                    break;
+
+                                case CcnetBillTypes.Usd2:
+                                    _DeviceState.Nominal = 2;
+                                    break;
+
+                                case CcnetBillTypes.Usd5:
+                                    _DeviceState.Nominal = 5;
+                                    break;
+
+                                case CcnetBillTypes.Usd10:
+                                    _DeviceState.Nominal = 10;
+                                    break;
+
+                                case CcnetBillTypes.Usd20:
+                                    _DeviceState.Nominal = 20;
+                                    break;
+
+                                case CcnetBillTypes.Usd50:
+                                    _DeviceState.Nominal = 50;
+                                    break;
+
+                                case CcnetBillTypes.Usd100:
+                                    _DeviceState.Nominal = 100;
+                                    break;
+                            }
+                        }
+                        else if (currency == Currencies.Eur)
+                        {
+                            _DeviceState.Currency = Currencies.Eur;
+                            switch (_DeviceState.SubStateCode)
+                            {
+                                case CcnetBillTypes.Eur5:
+                                    _DeviceState.Nominal = 5;
+                                    break;
+
+                                case CcnetBillTypes.Eur10:
+                                    _DeviceState.Nominal = 10;
+                                    break;
+
+                                case CcnetBillTypes.Eur20:
+                                    _DeviceState.Nominal = 20;
+                                    break;
+
+                                case CcnetBillTypes.Eur50:
+                                    _DeviceState.Nominal = 50;
+                                    break;
+
+                                case CcnetBillTypes.Eur100:
+                                    _DeviceState.Nominal = 100;
+                                    break;
+
+                                case CcnetBillTypes.Eur200:
+                                    _DeviceState.Nominal = 200;
+                                    break;
+
+                                case CcnetBillTypes.Eur500:
+                                    _DeviceState.Nominal = 500;
+                                    break;
+                            }
                         }
                     }
+
 
                     if (_DeviceState.Nominal > 0)
                     {
@@ -955,8 +1106,8 @@ namespace CashInTerminal
             }
         }
 
-        #endregion       
-        
+        #endregion
+
     }
 
     #region CCNETCommand
@@ -1153,7 +1304,7 @@ namespace CashInTerminal
         Poll = 0x33                         // POLL. Ping
     }
 
-    #endregion             
+    #endregion
 
     #region CCNETDeviceState
 
@@ -1301,6 +1452,15 @@ namespace CashInTerminal
                 _Nominal = value;
             }
         }
+
+        private string _Currency;
+
+        public string Currency
+        {
+            get { return _Currency; }
+            set { _Currency = value; }
+        }
+
         private string _DeviceStateDescription; // описание состояния
 
         /// <summary>
@@ -1371,9 +1531,10 @@ namespace CashInTerminal
         {
             return
                 string.Format(
-                    "StateCode: {0}, SubStateCode: {1}, StateCodeOut: {2}, BillEnable: {3}, AcceptEnable: {4}, FatalError: {5}, Amount: {6}, WasAmount: {7}, Nominal: {8}, DeviceStateDescription: {9}, SubDeviceStateDescription: {10}, Stacking: {11}, Init: {12}",
+                    "StateCode: {0}, SubStateCode: {1}, StateCodeOut: {2}, BillEnable: {3}, AcceptEnable: {4}, FatalError: {5}, Amount: {6}, WasAmount: {7}, Nominal: {8}, Currency: {9}, DeviceStateDescription: {10}, SubDeviceStateDescription: {11}, Stacking: {12}, Init: {13}",
                     _StateCode, _SubStateCode, _StateCodeOut, _BillEnable, _AcceptEnable, _FatalError, _Amount,
-                    _WasAmount, _Nominal, _DeviceStateDescription, _SubDeviceStateDescription, _Stacking, _Init);
+                    _WasAmount, _Nominal, _Currency, _DeviceStateDescription, _SubDeviceStateDescription, _Stacking,
+                    _Init);
         }
     }
 

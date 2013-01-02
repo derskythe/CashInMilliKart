@@ -19,7 +19,7 @@ namespace CashInTerminal
             var adapter = new PaymentsTableAdapter { Connection = _Connection };
             var table = new ds.PaymentsDataTable();
 
-            adapter.Fill(table);
+            adapter.FillByConfirmed(table);
 
             var rowList = new List<ds.PaymentsRow>();
 
@@ -29,6 +29,20 @@ namespace CashInTerminal
             }
 
             return rowList;
+        }
+
+        public int GetCasseteTotal(string currency)
+        {
+            var adapter = new CasseteBanknotesTableAdapter {Connection = _Connection};
+
+            var raw = adapter.Total(currency);
+
+            if (raw != null && raw != DBNull.Value)
+            {
+                return Convert.ToInt32(raw);
+            }
+
+            return 0;
         }
 
         public List<ds.CasseteBanknotesRow> ListCasseteBanknotes()
@@ -98,7 +112,7 @@ namespace CashInTerminal
                                       bool confirmed)
         {
             var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.InsertTransaction(productId, currency, currencyRate, amount, null, 0);
+            adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0);
 
             var insertId = adapter.GetInsertId();
 
@@ -146,10 +160,10 @@ namespace CashInTerminal
             adapter.DeleteAll();
         }
 
-        public void InsertTransactionBanknotes(String currency, String transId)
+        public void InsertTransactionBanknotes(int amount, String currency, String transId)
         {
             var adapter = new CasseteBanknotesTableAdapter { Connection = _Connection };
-            adapter.Insert(DateTime.Now, currency, transId);
+            adapter.Insert(DateTime.Now, currency, transId, amount);
         }
 
         public int CountCasseteBanknotes()
