@@ -73,6 +73,7 @@ namespace CashInTerminal
                     Settings.Default.Save();
                 }
 
+                Log.Debug("Local public key: " + Settings.Default.PublicKey);
                 _LocalKeys = Wrapper.GetKeys(Settings.Default.PrivateKey, Settings.Default.PublicKey);
 
                 _Init &= true;
@@ -449,7 +450,7 @@ namespace CashInTerminal
         {
             Cursor.Current = Cursors.WaitCursor;
 
-            _CcnetDevice.Reset();
+            //_CcnetDevice.Reset();
 
             try
             {
@@ -510,6 +511,8 @@ namespace CashInTerminal
                 {
                     throw new NullReferenceException("Server response is null");
                 }
+
+                //CheckSignature(result);
 
                 if (result.ResultCodes == ResultCodes.Ok)
                 {

@@ -20,8 +20,8 @@ namespace CashInCore
 
         private bool CheckSignature(int terminalId, DateTime terminalDate, String signature)
         {
-            return true;
-            //return CheckSignature(terminalId.ToString(CultureInfo.InvariantCulture), terminalDate, signature);
+            //return true;
+            return CheckSignature(terminalId.ToString(CultureInfo.InvariantCulture), terminalDate, signature);
         }
 
         private bool CheckSignature(String terminalId, DateTime terminalDate, String signature)
@@ -46,8 +46,8 @@ namespace CashInCore
 
         private string DoSign(int terminalId, DateTime serverTime, byte[] publicCert)
         {
-            return String.Empty;
-            //return DoSign(terminalId.ToString(CultureInfo.InvariantCulture), serverTime, publicCert);
+            //return String.Empty;
+            return DoSign(terminalId.ToString(CultureInfo.InvariantCulture), serverTime, publicCert);
         }
 
         private string DoSign(String terminalId, DateTime serverTime, byte[] publicCert)

@@ -62,6 +62,8 @@ namespace CashInTerminal
 
                     var response = _Server.ListCurrencies(request);
 
+                    CheckSignature(response);
+
                     if (response.ResultCodes == ResultCodes.Ok)
                     {
                         lock (_Currencies)
@@ -100,6 +102,8 @@ namespace CashInTerminal
                     };
 
                     var response = _Server.ListProducts(request);
+
+                    CheckSignature(response);
 
                     if (response.ResultCodes == ResultCodes.Ok)
                     {
@@ -142,6 +146,8 @@ namespace CashInTerminal
                                 Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                             };
                         var result = _Server.Ping(request);
+
+                        CheckSignature(result);
 
                         if (result != null)
                         {
@@ -238,17 +244,19 @@ namespace CashInTerminal
         {
             ChangePannel(pnlEncashment);
 
-            var now = DateTime.Now;
-            var cmd = new StandardRequest
+            try
+            {
+                var now = DateTime.Now;
+                var cmd = new StandardRequest
                 {
                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                     SystemTime = now,
                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                 };
-            var secondResult = _Server.CommandReceived(cmd);
+                var secondResult = _Server.CommandReceived(cmd);
 
-            try
-            {
+                CheckSignature(secondResult);
+
                 var request = new Encashment();
 
                 var amountList = new List<int>();
@@ -273,6 +281,7 @@ namespace CashInTerminal
                 if (result != null)
                 {
                     Log.Info(String.Format("Server answer {0} {1}", result.ResultCodes, result.Description));
+                    CheckSignature(secondResult);
                 }
                 else
                 {
@@ -379,6 +388,14 @@ namespace CashInTerminal
                     Log.Error("Non cachable exception");
                 }
                 Thread.Sleep(SEND_PAYMENT_TIMEOUT);
+            }
+        }
+
+        private void CheckSignature(StandardResult request)
+        {
+            if (! Utilities.CheckSignature(Settings.Default.TerminalCode, request.SystemTime, request.Sign, _LocalKeys))
+            {
+                throw new Exception("Invalid signature");
             }
         }
     }

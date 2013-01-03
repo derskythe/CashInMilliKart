@@ -88,10 +88,13 @@ namespace CashInCore
                 }
 
                 OracleDb.Instance.UpdateTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0);
+
+                var terminalKey = Encoding.ASCII.GetBytes(publicKey);
                 OracleDb.Instance.UpdateTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
 
                 result.Code = ResultCodes.Ok;
                 result.PublicKey = Settings.Default.PublicKey;
+                result.Sign = DoSign(terminalId, result.SystemTime, terminalKey);
 
                 Log.Info("Init terminal " + terminal.Id + " Terminal info:\n" + terminal);
             }

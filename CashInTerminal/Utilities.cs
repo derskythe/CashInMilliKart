@@ -39,6 +39,24 @@ namespace CashInTerminal
             return String.Empty;
         }
 
+        public static bool CheckSignature(String terminalId, DateTime terminalDate, String signature, AsymmetricCipherKeyPair keys)
+        {
+            var correctString = terminalId + terminalDate.ToString(CultureInfo.InvariantCulture);
+            var raw = Wrapper.Decrypt(UrlBase64.Decode(signature), keys.Private);
+
+            if (raw == null || raw.Length == 0)
+            {
+                return false;
+            }
+
+            if (correctString == Encoding.UTF8.GetString(raw))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static bool CheckServerSign(String signature, String terminalId, DateTime terminalDate, AsymmetricCipherKeyPair keys)
         {
             try

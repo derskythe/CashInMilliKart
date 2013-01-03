@@ -72,7 +72,7 @@ namespace crypto
             var privateKeyStreamReader = new StreamReader(privateKeyStream);
             var privateKeyReader = new PemReader(privateKeyStreamReader);
 
-            var privateKey = ((AsymmetricCipherKeyPair)privateKeyReader.ReadObject()).Private;
+            var privateKey = (RsaKeyParameters)privateKeyReader.ReadObject();
 
             privateKeyStream.Close();
             privateKeyStreamReader.Close();
