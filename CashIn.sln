@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crypto", "BouncyCastle\cryp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashInTerminal", "CashInTerminal\CashInTerminal.csproj", "{7293BE71-6520-48D9-A58F-031279157624}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -87,6 +89,16 @@ Global
 		{7293BE71-6520-48D9-A58F-031279157624}.Release|Mixed Platforms.Build.0 = Release|x86
 		{7293BE71-6520-48D9-A58F-031279157624}.Release|x86.ActiveCfg = Release|x86
 		{7293BE71-6520-48D9-A58F-031279157624}.Release|x86.Build.0 = Release|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Debug|x86.ActiveCfg = Debug|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Debug|x86.Build.0 = Debug|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Release|Any CPU.ActiveCfg = Release|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Release|x86.ActiveCfg = Release|x86
+		{943AFB2B-B35D-4CA6-8DE9-97A51692A08C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

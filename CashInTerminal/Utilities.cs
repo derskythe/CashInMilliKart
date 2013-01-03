@@ -22,13 +22,13 @@ namespace CashInTerminal
         [DllImport("user32.dll")]
         static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
-        public static string Sign(String terminalId, DateTime now, ref AsymmetricCipherKeyPair keys)
+        public static string Sign(String terminalId, DateTime now, AsymmetricKeyParameter keys)
         {
             try
             {
                 var correctString = terminalId + now.ToString(CultureInfo.InvariantCulture);
 
-                var encrypted = Wrapper.Encrypt(Encoding.ASCII.GetBytes(correctString), keys.Private);
+                var encrypted = Wrapper.Encrypt(Encoding.ASCII.GetBytes(correctString), keys);
                 return Encoding.ASCII.GetString(UrlBase64.Encode(encrypted));
             }
             catch (Exception e)
@@ -37,6 +37,31 @@ namespace CashInTerminal
             }
 
             return String.Empty;
+        }
+
+        public static bool CheckServerSign(String signature, String terminalId, DateTime terminalDate, AsymmetricCipherKeyPair keys)
+        {
+            try
+            {
+                var correctString = terminalId + terminalDate.ToString(CultureInfo.InvariantCulture);
+                var raw = Wrapper.Decrypt(UrlBase64.Decode(signature), keys.Private);
+
+                if (raw == null || raw.Length == 0)
+                {
+                    return false;
+                }
+
+                if (correctString == Encoding.UTF8.GetString(raw))
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Log.ErrorException(e.Message, e);
+            }
+
+            return false;
         }
 
         public static uint GetLastInputTime()

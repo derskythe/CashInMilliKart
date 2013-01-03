@@ -19,7 +19,8 @@ namespace CashInTerminal
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
-        private AsymmetricCipherKeyPair _Keys;
+        private AsymmetricCipherKeyPair _LocalKeys;
+        private AsymmetricKeyParameter _ServerPublicKey;
         private CCNETDevice _CcnetDevice;
         private bool _Init;
         private bool _AuthTerminal;
@@ -72,7 +73,7 @@ namespace CashInTerminal
                     Settings.Default.Save();
                 }
 
-                _Keys = Wrapper.GetKeys(Settings.Default.PrivateKey, Settings.Default.PublicKey);
+                _LocalKeys = Wrapper.GetKeys(Settings.Default.PrivateKey, Settings.Default.PublicKey);
 
                 _Init &= true;
             }
@@ -121,6 +122,7 @@ namespace CashInTerminal
                 var publicKey = _Server.GetPublicKey();
                 Log.Debug("Public key " + publicKey);
                 Settings.Default.ServerPublicKey = publicKey;
+                _ServerPublicKey = Wrapper.GetKey(Settings.Default.ServerPublicKey);
             }
             catch (Exception exp)
             {

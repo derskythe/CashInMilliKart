@@ -66,6 +66,20 @@ namespace crypto
             return keyPair;
         }
 
+        public static AsymmetricKeyParameter GetKey(string keyString)
+        {
+            var privateKeyStream = new MemoryStream(Encoding.ASCII.GetBytes(keyString));
+            var privateKeyStreamReader = new StreamReader(privateKeyStream);
+            var privateKeyReader = new PemReader(privateKeyStreamReader);
+
+            var privateKey = ((AsymmetricCipherKeyPair)privateKeyReader.ReadObject()).Private;
+
+            privateKeyStream.Close();
+            privateKeyStreamReader.Close();
+
+            return privateKey;
+        }
+
         public static byte[] Encrypt(byte[] data, AsymmetricKeyParameter key)
         {
             var e = new RsaEngine();

@@ -31,7 +31,7 @@ namespace CashInTerminal
 
         private void CheckInactivityTimer(object param)
         {
-            Log.Debug(Utilities.GetLastInputTime());
+            //Log.Debug(Utilities.GetLastInputTime());
             if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlLanguage" && _SelectedPanel != "pnlTestMode" && _SelectedPanel != "pnlEncashment")
             {
                 _LastActivity = Utilities.GetLastInputTime();
@@ -57,7 +57,7 @@ namespace CashInTerminal
                         {
                             SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                         };
 
                     var response = _Server.ListCurrencies(request);
@@ -96,7 +96,7 @@ namespace CashInTerminal
                     {
                         SystemTime = now,
                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                     };
 
                     var response = _Server.ListProducts(request);
@@ -139,7 +139,7 @@ namespace CashInTerminal
                                 SystemTime = now,
                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                 TerminalStatus = !_EncashmentMode ? (int)TerminalCodes.Ok : (int)TerminalCodes.Encashment,
-                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                             };
                         var result = _Server.Ping(request);
 
@@ -165,7 +165,7 @@ namespace CashInTerminal
                                                 {
                                                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                                     SystemTime = now,
-                                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                                                 };
                                             var secondResult = _Server.CommandReceived(cmd);
                                         }
@@ -182,7 +182,7 @@ namespace CashInTerminal
                                             {
                                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                                 SystemTime = now,
-                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                                             };
                                             var secondResult = _Server.CommandReceived(cmd);
                                         }
@@ -209,7 +209,7 @@ namespace CashInTerminal
                                             {
                                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                                 SystemTime = now,
-                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                                             };
                                             var secondResult = _Server.CommandReceived(cmd);
                                         }
@@ -243,7 +243,7 @@ namespace CashInTerminal
                 {
                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                     SystemTime = now,
-                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                 };
             var secondResult = _Server.CommandReceived(cmd);
 
@@ -264,7 +264,7 @@ namespace CashInTerminal
                 now = DateTime.Now;
                 request.SystemTime = now;
                 request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
-                request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys);
+                request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
                 request.Amounts = amountList.ToArray();
                 request.Currencies = curList.ToArray();
 
@@ -316,7 +316,7 @@ namespace CashInTerminal
                                 Currency = row.Currency,
                                 CurrencyRate = (float)row.CurrencyRate,
                                 Amount = (int)row.Amount,
-                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, ref _Keys)
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                             };
 
                         var valuesList = new List<String>();
