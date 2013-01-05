@@ -165,15 +165,7 @@ namespace CashInTerminal
                                         if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlPaySuccess")
                                         {
                                             ChangePannel(pnlOutOfOrder);
-
-                                            now = DateTime.Now;
-                                            var cmd = new StandardRequest
-                                                {
-                                                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                                                    SystemTime = now,
-                                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                                                };
-                                            var secondResult = _Server.CommandReceived(cmd);
+                                            CommandReceived();
                                         }
                                         break;
 
@@ -182,15 +174,7 @@ namespace CashInTerminal
                                         if (_SelectedPanel != "pnlMoney" && _SelectedPanel != "pnlPaySuccess")
                                         {
                                             ChangePannel(pnlTestMode);
-
-                                            now = DateTime.Now;
-                                            var cmd = new StandardRequest
-                                            {
-                                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                                                SystemTime = now,
-                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                                            };
-                                            var secondResult = _Server.CommandReceived(cmd);
+                                            CommandReceived();
                                         }
                                         break;
 
@@ -205,20 +189,13 @@ namespace CashInTerminal
 
                                     case TerminalCommands.Idle:
                                     case TerminalCommands.NormalMode:
-                                        if (_SelectedPanel == "pnlOutOfOrder" || _SelectedPanel == "pnlTestMode")
+                                        if ((_SelectedPanel == "pnlOutOfOrder" || _SelectedPanel == "pnlTestMode"))
                                         {
+                                            GetTerminalInfo();
                                             ChangePannel(pnlLanguage);
                                         }
-                                        {
-                                            now = DateTime.Now;
-                                            var cmd = new StandardRequest
-                                            {
-                                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                                                SystemTime = now,
-                                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                                            };
-                                            var secondResult = _Server.CommandReceived(cmd);
-                                        }
+
+                                        CommandReceived();
                                         break;
                                 }
                                 // TODO : Добавить обработчик этого
@@ -240,21 +217,42 @@ namespace CashInTerminal
             }
         }
 
+        private void GetTerminalInfo()
+        {
+            DateTime now = DateTime.Now;
+            var cmd = new StandardRequest
+                {
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    SystemTime = now,
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                };
+            var response = _Server.GetTerminalInfo(cmd);
+
+            if (response != null)
+            {
+                _TerminalInfo = response.Terminal;
+            }
+        }
+
+        private StandardResult CommandReceived()
+        {
+            DateTime now = DateTime.Now;
+            var cmd = new StandardRequest
+                {
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    SystemTime = now,
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                };
+            return _Server.CommandReceived(cmd);
+        }
+
         private void DoEncashment()
         {
             ChangePannel(pnlEncashment);
 
             try
             {
-                var now = DateTime.Now;
-                var cmd = new StandardRequest
-                {
-                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                    SystemTime = now,
-                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                };
-                var secondResult = _Server.CommandReceived(cmd);
-
+                var secondResult = CommandReceived();
                 CheckSignature(secondResult);
 
                 var request = new Encashment();
@@ -269,7 +267,7 @@ namespace CashInTerminal
                     curList.Add(currency.Name);
                 }
 
-                now = DateTime.Now;
+                var now = DateTime.Now;
                 request.SystemTime = now;
                 request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
                 request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
@@ -393,7 +391,7 @@ namespace CashInTerminal
 
         private void CheckSignature(StandardResult request)
         {
-            if (! Utilities.CheckSignature(Settings.Default.TerminalCode, request.SystemTime, request.Sign, _LocalKeys))
+            if (!Utilities.CheckSignature(Settings.Default.TerminalCode, request.SystemTime, request.Sign, _LocalKeys))
             {
                 throw new Exception("Invalid signature");
             }

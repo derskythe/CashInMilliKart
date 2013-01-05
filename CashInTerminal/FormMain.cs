@@ -25,6 +25,7 @@ namespace CashInTerminal
         private bool _Init;
         private bool _AuthTerminal;
         private bool _EncashmentMode;
+        private Terminal _TerminalInfo;
         private LocalDb _Db;
         private bool _Running = true;
         private delegate void PanelShowDelegate(object item);
@@ -527,6 +528,8 @@ namespace CashInTerminal
 
                     try
                     {
+                        GetTerminalInfo();
+
                         var checkCurrencyTimerCaller = new CheckCurrencyTimerCaller(CheckCurrencyTimer);
                         checkCurrencyTimerCaller.Invoke(null);
 

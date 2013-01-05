@@ -66,6 +66,7 @@
     <Compile Include="StandardResult.cs" />
     <Compile Include="Terminal.cs" />
     <Compile Include="Enums\TerminalCodes.cs" />
+    <Compile Include="TerminalInfoResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Containers.pfx" />

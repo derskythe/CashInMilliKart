@@ -71,9 +71,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnMoneyNext = new System.Windows.Forms.Button();
             this.pnlPaySuccess = new System.Windows.Forms.Panel();
+            this.lblSuccessTotalAmount = new System.Windows.Forms.Label();
             this.btnSuccessNext = new System.Windows.Forms.Button();
             this.lblSuccessWelcome = new System.Windows.Forms.Label();
-            this.lblSuccessTotalAmount = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pnlTestMode = new System.Windows.Forms.Panel();
             this.pnlEncashment = new System.Windows.Forms.Panel();
@@ -419,6 +419,11 @@
             resources.ApplyResources(this.pnlPaySuccess, "pnlPaySuccess");
             this.pnlPaySuccess.Name = "pnlPaySuccess";
             // 
+            // lblSuccessTotalAmount
+            // 
+            resources.ApplyResources(this.lblSuccessTotalAmount, "lblSuccessTotalAmount");
+            this.lblSuccessTotalAmount.Name = "lblSuccessTotalAmount";
+            // 
             // btnSuccessNext
             // 
             resources.ApplyResources(this.btnSuccessNext, "btnSuccessNext");
@@ -430,11 +435,6 @@
             // 
             resources.ApplyResources(this.lblSuccessWelcome, "lblSuccessWelcome");
             this.lblSuccessWelcome.Name = "lblSuccessWelcome";
-            // 
-            // lblSuccessTotalAmount
-            // 
-            resources.ApplyResources(this.lblSuccessTotalAmount, "lblSuccessTotalAmount");
-            this.lblSuccessTotalAmount.Name = "lblSuccessTotalAmount";
             // 
             // label3
             // 

@@ -10,6 +10,84 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTerminalInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:StandardRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="StandardRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminalId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseMessage" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SystemTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sign" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StandardResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ResultCodes" type="tns:ResultCodes" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ResultCodes">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Ok" />
+          <xs:enumeration value="InvalidNumber" />
+          <xs:enumeration value="InvalidParameters" />
+          <xs:enumeration value="InvalidTerminal" />
+          <xs:enumeration value="InvalidKey" />
+          <xs:enumeration value="InvalidSignature" />
+          <xs:enumeration value="UnknownError" />
+          <xs:enumeration value="SystemError" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="TerminalInfoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Terminal" type="tns:Terminal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Terminal">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IdentityName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignKey" type="xs:base64Binary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Ip" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TmpKey" type="xs:base64Binary" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastStatusType" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeStatus" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastStatusUpdate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetTerminalInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetTerminalInfoResult" type="tns:TerminalInfoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="InitTerminal">
     <xs:complexType>
       <xs:sequence>
@@ -35,38 +113,6 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="StandardResult">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseMessage">
-        <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="ResultCodes" type="tns:ResultCodes" />
-          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="BaseMessage" abstract="true">
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="SystemTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Sign" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="ResultCodes">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="Ok" />
-          <xs:enumeration value="InvalidNumber" />
-          <xs:enumeration value="InvalidParameters" />
-          <xs:enumeration value="InvalidTerminal" />
-          <xs:enumeration value="InvalidKey" />
-          <xs:enumeration value="InvalidSignature" />
-          <xs:enumeration value="UnknownError" />
-          <xs:enumeration value="SystemError" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
-  </xs:simpleType>
   <xs:element name="Ping">
     <xs:complexType>
       <xs:sequence>
@@ -81,15 +127,6 @@
           <xs:element minOccurs="1" maxOccurs="1" name="TerminalStatus" type="xs:int" />
           <xs:element minOccurs="1" maxOccurs="1" name="CashCodeStatus" type="xs:int" />
           <xs:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="StandardRequest">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseMessage">
-        <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminalId" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

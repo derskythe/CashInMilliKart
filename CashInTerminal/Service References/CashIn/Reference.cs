@@ -19,6 +19,11 @@ namespace CashInTerminal.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetPublicKey();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/GetTerminalInfo", ReplyAction="http://cashin/CashInService/CashInServer/GetTerminalInfoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminal.CashIn.TerminalInfoResult GetTerminalInfo(CashInTerminal.CashIn.StandardRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/InitTerminal", ReplyAction="http://cashin/CashInService/CashInServer/InitTerminalResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
@@ -56,111 +61,42 @@ namespace CashInTerminal.CashIn {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class AuthResult : StandardResult {
-        
-        private string publicKeyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string PublicKey {
-            get {
-                return this.publicKeyField;
-            }
-            set {
-                this.publicKeyField = value;
-                this.RaisePropertyChanged("PublicKey");
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CurrenciesResult))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductResult))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingResult))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class StandardResult : BaseMessage {
-        
-        private ResultCodes resultCodesField;
-        
-        private string descriptionField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public ResultCodes ResultCodes {
-            get {
-                return this.resultCodesField;
-            }
-            set {
-                this.resultCodesField = value;
-                this.RaisePropertyChanged("ResultCodes");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string Description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                this.descriptionField = value;
-                this.RaisePropertyChanged("Description");
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.FlagsAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public enum ResultCodes {
-        
-        /// <remarks/>
-        Ok = 1,
-        
-        /// <remarks/>
-        InvalidNumber = 2,
-        
-        /// <remarks/>
-        InvalidParameters = 4,
-        
-        /// <remarks/>
-        InvalidTerminal = 8,
-        
-        /// <remarks/>
-        InvalidKey = 16,
-        
-        /// <remarks/>
-        InvalidSignature = 32,
-        
-        /// <remarks/>
-        UnknownError = 64,
-        
-        /// <remarks/>
-        SystemError = 128,
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentInfoByProducts))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingRequest))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class StandardRequest : BaseMessage {
+        
+        private int terminalIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int TerminalId {
+            get {
+                return this.terminalIdField;
+            }
+            set {
+                this.terminalIdField = value;
+                this.RaisePropertyChanged("TerminalId");
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CurrenciesResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentInfoByProducts))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingRequest))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -397,27 +333,348 @@ namespace CashInTerminal.CashIn {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentInfoByProducts))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingRequest))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class StandardRequest : BaseMessage {
+    public partial class Terminal : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private int terminalIdField;
+        private decimal idField;
+        
+        private string nameField;
+        
+        private string addressField;
+        
+        private string identityNameField;
+        
+        private byte[] signKeyField;
+        
+        private string ipField;
+        
+        private byte[] tmpKeyField;
+        
+        private decimal lastStatusTypeField;
+        
+        private decimal lastCashcodeStatusField;
+        
+        private System.DateTime lastStatusUpdateField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public int TerminalId {
+        public decimal Id {
             get {
-                return this.terminalIdField;
+                return this.idField;
             }
             set {
-                this.terminalIdField = value;
-                this.RaisePropertyChanged("TerminalId");
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Address {
+            get {
+                return this.addressField;
+            }
+            set {
+                this.addressField = value;
+                this.RaisePropertyChanged("Address");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string IdentityName {
+            get {
+                return this.identityNameField;
+            }
+            set {
+                this.identityNameField = value;
+                this.RaisePropertyChanged("IdentityName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=4)]
+        public byte[] SignKey {
+            get {
+                return this.signKeyField;
+            }
+            set {
+                this.signKeyField = value;
+                this.RaisePropertyChanged("SignKey");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string Ip {
+            get {
+                return this.ipField;
+            }
+            set {
+                this.ipField = value;
+                this.RaisePropertyChanged("Ip");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=6)]
+        public byte[] TmpKey {
+            get {
+                return this.tmpKeyField;
+            }
+            set {
+                this.tmpKeyField = value;
+                this.RaisePropertyChanged("TmpKey");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public decimal LastStatusType {
+            get {
+                return this.lastStatusTypeField;
+            }
+            set {
+                this.lastStatusTypeField = value;
+                this.RaisePropertyChanged("LastStatusType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public decimal LastCashcodeStatus {
+            get {
+                return this.lastCashcodeStatusField;
+            }
+            set {
+                this.lastCashcodeStatusField = value;
+                this.RaisePropertyChanged("LastCashcodeStatus");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public System.DateTime LastStatusUpdate {
+            get {
+                return this.lastStatusUpdateField;
+            }
+            set {
+                this.lastStatusUpdateField = value;
+                this.RaisePropertyChanged("LastStatusUpdate");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CurrenciesResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class StandardResult : BaseMessage {
+        
+        private ResultCodes resultCodesField;
+        
+        private string descriptionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public ResultCodes ResultCodes {
+            get {
+                return this.resultCodesField;
+            }
+            set {
+                this.resultCodesField = value;
+                this.RaisePropertyChanged("ResultCodes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+                this.RaisePropertyChanged("Description");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.FlagsAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public enum ResultCodes {
+        
+        /// <remarks/>
+        Ok = 1,
+        
+        /// <remarks/>
+        InvalidNumber = 2,
+        
+        /// <remarks/>
+        InvalidParameters = 4,
+        
+        /// <remarks/>
+        InvalidTerminal = 8,
+        
+        /// <remarks/>
+        InvalidKey = 16,
+        
+        /// <remarks/>
+        InvalidSignature = 32,
+        
+        /// <remarks/>
+        UnknownError = 64,
+        
+        /// <remarks/>
+        SystemError = 128,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class CurrenciesResult : StandardResult {
+        
+        private Currency[] currenciesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        public Currency[] Currencies {
+            get {
+                return this.currenciesField;
+            }
+            set {
+                this.currenciesField = value;
+                this.RaisePropertyChanged("Currencies");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class ProductResult : StandardResult {
+        
+        private Product[] productsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        public Product[] Products {
+            get {
+                return this.productsField;
+            }
+            set {
+                this.productsField = value;
+                this.RaisePropertyChanged("Products");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PingResult : StandardResult {
+        
+        private int commandField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int Command {
+            get {
+                return this.commandField;
+            }
+            set {
+                this.commandField = value;
+                this.RaisePropertyChanged("Command");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class AuthResult : StandardResult {
+        
+        private string publicKeyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string PublicKey {
+            get {
+                return this.publicKeyField;
+            }
+            set {
+                this.publicKeyField = value;
+                this.RaisePropertyChanged("PublicKey");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class TerminalInfoResult : StandardResult {
+        
+        private Terminal terminalField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public Terminal Terminal {
+            get {
+                return this.terminalField;
+            }
+            set {
+                this.terminalField = value;
+                this.RaisePropertyChanged("Terminal");
             }
         }
     }
@@ -645,75 +902,6 @@ namespace CashInTerminal.CashIn {
         }
     }
     
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class CurrenciesResult : StandardResult {
-        
-        private Currency[] currenciesField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        public Currency[] Currencies {
-            get {
-                return this.currenciesField;
-            }
-            set {
-                this.currenciesField = value;
-                this.RaisePropertyChanged("Currencies");
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class ProductResult : StandardResult {
-        
-        private Product[] productsField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        public Product[] Products {
-            get {
-                return this.productsField;
-            }
-            set {
-                this.productsField = value;
-                this.RaisePropertyChanged("Products");
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class PingResult : StandardResult {
-        
-        private int commandField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public int Command {
-            get {
-                return this.commandField;
-            }
-            set {
-                this.commandField = value;
-                this.RaisePropertyChanged("Command");
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface CashInServerChannel : CashInTerminal.CashIn.CashInServer, System.ServiceModel.IClientChannel {
     }
@@ -743,6 +931,10 @@ namespace CashInTerminal.CashIn {
         
         public string GetPublicKey() {
             return base.Channel.GetPublicKey();
+        }
+        
+        public CashInTerminal.CashIn.TerminalInfoResult GetTerminalInfo(CashInTerminal.CashIn.StandardRequest request) {
+            return base.Channel.GetTerminalInfo(request);
         }
         
         public CashInTerminal.CashIn.AuthResult InitTerminal(int terminalId, string authKey, string publicKey) {

@@ -1864,7 +1864,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSuccessTotalAmount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 138</value>
+    <value>-256, -31</value>
   </data>
   <data name="lblSuccessTotalAmount.Size" type="System.Drawing.Size, System.Drawing">
     <value>713, 24</value>
@@ -1900,7 +1900,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSuccessNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>568, 388</value>
+    <value>-373, -46</value>
   </data>
   <data name="btnSuccessNext.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -1933,7 +1933,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSuccessWelcome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 233</value>
+    <value>-256, 64</value>
   </data>
   <data name="lblSuccessWelcome.Size" type="System.Drawing.Size, System.Drawing">
     <value>713, 24</value>
@@ -1969,7 +1969,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 91</value>
+    <value>-256, -78</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>713, 24</value>
@@ -1996,10 +1996,10 @@
     <value>3</value>
   </data>
   <data name="pnlPaySuccess.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 25</value>
+    <value>232, 131</value>
   </data>
   <data name="pnlPaySuccess.Size" type="System.Drawing.Size, System.Drawing">
-    <value>883, 438</value>
+    <value>200, 100</value>
   </data>
   <data name="pnlPaySuccess.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>

@@ -147,6 +147,9 @@
     <None Include="Service References\CashIn\CashInTerminal.CashIn.StandardResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CashIn\CashInTerminal.CashIn.TerminalInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Terminal.s3db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

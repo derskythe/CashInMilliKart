@@ -156,6 +156,35 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public TerminalInfoResult GetTerminalInfo(StandardRequest request)
+        {
+            Log.Info("GetTerminalInfo");
+
+            var result = new TerminalInfoResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (TerminalInfoResult)AuthTerminal(result, request, out terminalInfo);
+
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+
+                terminalInfo.SignKey = new byte[0];
+                terminalInfo.TmpKey = new byte[0];
+
+                result.Terminal = terminalInfo;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public ProductResult ListProducts(StandardRequest request)
         {
             Log.Info("ListProducts");

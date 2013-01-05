@@ -11,6 +11,12 @@
   <wsdl:message name="CashInServer_GetPublicKey_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPublicKeyResponse" />
   </wsdl:message>
+  <wsdl:message name="CashInServer_GetTerminalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalInfo" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetTerminalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="CashInServer_InitTerminal_InputMessage">
     <wsdl:part name="parameters" element="tns:InitTerminal" />
   </wsdl:message>
@@ -57,6 +63,10 @@
     <wsdl:operation name="GetPublicKey">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
       <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKeyResponse" message="tns:CashInServer_GetPublicKey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalInfo">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetTerminalInfo" message="tns:CashInServer_GetTerminalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetTerminalInfoResponse" message="tns:CashInServer_GetTerminalInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InitTerminal">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/InitTerminal" message="tns:CashInServer_InitTerminal_InputMessage" />

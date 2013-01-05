@@ -10,6 +10,8 @@ namespace CashInCore
         [OperationContract]
         string GetPublicKey();
         [OperationContract]
+        TerminalInfoResult GetTerminalInfo(StandardRequest request);
+        [OperationContract]
         AuthResult InitTerminal(int terminalId, string authKey, string publicKey);
         [OperationContract]
         PingResult Ping(PingRequest request);
