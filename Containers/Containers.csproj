@@ -47,12 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessRole.cs" />
     <Compile Include="AuthResult.cs" />
     <Compile Include="BaseMessage.cs" />
     <Compile Include="CommandResult.cs" />
     <Compile Include="CurrenciesResult.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="Encashment.cs" />
+    <Compile Include="EncashmentCurrency.cs" />
     <Compile Include="EnumEx.cs" />
     <Compile Include="Enums\TerminalCommands.cs" />
     <Compile Include="PaymentInfoByProducts.cs" />
@@ -62,11 +64,14 @@
     <Compile Include="ProductResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\ResultCodes.cs" />
+    <Compile Include="RoleField.cs" />
     <Compile Include="StandardRequest.cs" />
     <Compile Include="StandardResult.cs" />
     <Compile Include="Terminal.cs" />
     <Compile Include="Enums\TerminalCodes.cs" />
     <Compile Include="TerminalInfoResult.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Containers.pfx" />

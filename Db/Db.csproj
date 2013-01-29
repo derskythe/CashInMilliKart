@@ -53,16 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs" />
     <Compile Include="Convertor.cs" />
     <Compile Include="ds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsTableAdapters\V_LIST_ACTIVE_SESSIONSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_LIST_CURRENCIESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="dsTableAdapters\V_LIST_CURRENCY_RATESTableAdapters.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_LIST_ENCASHMENTTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_LIST_ENCASHMENT_CURRENCIESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="dsTableAdapters\V_LIST_TERMINALSTableAdapters.cs">
@@ -74,10 +84,22 @@
     <Compile Include="dsTableAdapters\V_LIST_TERMINAL_STATUSESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_LIST_USERSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_PRODUCTSTableAdapters.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="dsTableAdapters\V_PRODUCTS_TO_TERMINALSTableAdapters.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_ROLESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_ROLES_TO_SECTIONSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_ROLES_TO_USERSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="OracleDb.cs" />

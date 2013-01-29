@@ -20,6 +20,10 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
+            var salt = Wrapper.GenerateSalt();
+            var encPassword = Wrapper.ComputeHash("this is realy, realy, realy, realy, realy big password!", salt);
+
+
             var keys = Wrapper.SaveToString(Wrapper.GenerateKeys(1024));
             var PrivateKey1 = keys[0];
             var PublicKey1 = keys[1];

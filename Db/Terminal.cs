@@ -53,7 +53,7 @@ namespace Db
             var adapter = new V_LIST_TERMINALSTableAdapter { Connection = _OraCon, BindByName = true };
 
             var table = new ds.V_LIST_TERMINALSDataTable();
-            adapter.Fill(table);
+            adapter.FillById(table, id);
 
             foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
             {
@@ -155,7 +155,7 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
-        public void UpdateTerminalStatus(int terminalId, int terminalStatus, int cashCodeStatus)
+        public void SaveTerminalStatus(int terminalId, int terminalStatus, int cashCodeStatus)
         {
             CheckConnection();
 
@@ -163,14 +163,14 @@ namespace Db
                                    " v_status_type => :v_status_type, " +
                                    " v_cashcode_status => :v_cashcode_status); end;";
             var cmd = new OracleCommand(cmdText, _OraCon);
-            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, System.Data.ParameterDirection.Input).Value = terminalId;
-            cmd.Parameters.Add("v_status_type", OracleDbType.Int32, System.Data.ParameterDirection.Input).Value = terminalStatus;
-            cmd.Parameters.Add("v_cashcode_status", OracleDbType.Int32, System.Data.ParameterDirection.Input).Value = cashCodeStatus;
+            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, ParameterDirection.Input).Value = terminalId;
+            cmd.Parameters.Add("v_status_type", OracleDbType.Int32, ParameterDirection.Input).Value = terminalStatus;
+            cmd.Parameters.Add("v_cashcode_status", OracleDbType.Int32, ParameterDirection.Input).Value = cashCodeStatus;
 
             cmd.ExecuteNonQuery();
         }
 
-        public void UpdateTerminalKey(int terminalId, byte[] newKey)
+        public void SaveTerminalKey(int terminalId, byte[] newKey)
         {
             CheckConnection();
 

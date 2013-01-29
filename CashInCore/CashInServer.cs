@@ -87,10 +87,10 @@ namespace CashInCore
                     throw new Exception(String.Format("Codes not equal. TerminalKey: {0}, Db key: {1}", Encoding.ASCII.GetString(terminal.TmpKey), authKey));
                 }
 
-                OracleDb.Instance.UpdateTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0);
+                OracleDb.Instance.SaveTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0);
 
                 var terminalKey = Encoding.ASCII.GetBytes(publicKey);
-                OracleDb.Instance.UpdateTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
+                OracleDb.Instance.SaveTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
 
                 result.Code = ResultCodes.Ok;
                 result.PublicKey = Settings.Default.PublicKey;
@@ -118,7 +118,7 @@ namespace CashInCore
                 Log.Debug(request);
                 result = (PingResult)AuthTerminal(result, request, out terminalInfo);
 
-                OracleDb.Instance.UpdateTerminalStatus(request.TerminalId, request.TerminalStatus, request.CashCodeStatus);
+                OracleDb.Instance.SaveTerminalStatus(request.TerminalId, request.TerminalStatus, request.CashCodeStatus);
                 result.Command = OracleDb.Instance.GetTerminalStatus(request.TerminalId);
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

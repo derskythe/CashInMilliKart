@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Containers;
 
 namespace Db
@@ -66,7 +65,126 @@ namespace Db
                     IsoName = row.ISO_NAME,
                     Name = row.NAME,
                     DefaultCurrency = row.DEFAULT_CURRENCY > 0 ? true : false,
-                    CurrencyRate = row.IsCURRENCY_RATENull() ? decimal.MinusOne : row.CURRENCY_RATE
+                    CurrencyRate = row.IsRATENull() ? 1 : row.RATE
+                };
+
+            return result;
+        }
+
+        public static RoleField ToRoleField(ds.V_ROLES_TO_USERSRow row)
+        {
+            var result = new RoleField
+                {
+                    Section = row.IsSECTIONNull() ? String.Empty : row.SECTION
+                };
+
+            return result;
+        }
+
+        public static AccessRole ToAccessRole(ds.V_ROLES_TO_USERSRow row)
+        {
+            var result = new AccessRole
+                {
+                    Id = row.ROLE_ID,
+                    Name = row.NAME,
+                    NameAz = row.NAME_AZ,
+                    NameEn = row.NAME_EN,
+                    NameRu = row.NAME_RU,
+                    Section = row.SECTION
+                };
+
+            return result;
+        }
+
+        public static AccessRole ToAccessRole(ds.V_ROLESRow row)
+        {
+            var result = new AccessRole
+            {
+                Id = row.ID,
+                Name = row.NAME,
+                NameAz = row.NAME_AZ,
+                NameEn = row.NAME_EN,
+                NameRu = row.NAME_RU,
+                Section = String.Empty
+            };
+
+            return result;
+        }
+
+        public static User ToUser(ds.V_LIST_USERSRow row)
+        {
+            var result = new User
+                {
+                    Username = row.USERNAME,
+                    Password = row.PASSWORD,
+                    InsertDate = row.INSERT_DATE,
+                    LastUpdate = row.UPDATE_DATE,
+                    Active = row.ACTIVE > 0
+                };
+
+            return result;
+        }
+
+        public static User ToUser(ds.V_LIST_USERSRow row, IEnumerable<AccessRole> fields)
+        {
+            var result = new User
+            {
+                Id = Convert.ToInt32(row.ID),
+                Username = row.USERNAME,
+                Password = row.PASSWORD,
+                InsertDate = row.INSERT_DATE,
+                LastUpdate = row.UPDATE_DATE,
+                Active = row.ACTIVE > 0,
+                RoleFields = fields.ToArray()
+            };
+
+            return result;
+        }
+
+        public static UserSession ToUserSession(ds.V_LIST_ACTIVE_SESSIONSRow row, IEnumerable<AccessRole> fields)
+        {
+            var user = new User
+                {
+                    Active = true,
+                    InsertDate = row.IsINSERT_DATENull() ? DateTime.MinValue : row.INSERT_DATE,
+                    LastUpdate = row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE,
+                    Password = String.Empty,
+                    Username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME,
+                    Id = Convert.ToInt32(row.USER_ID),
+                    RoleFields = fields.ToArray()
+                };
+
+            var result = new UserSession
+                {
+                    Sid = row.SID,
+                    LastUpdate = row.LAST_UPDATE,
+                    StartDate = row.START_DATE,
+                    User = user
+                };
+
+            return result;
+        }
+
+        public static EncashmentCurrency ToEncashmentCurrency(ds.V_LIST_ENCASHMENT_CURRENCIESRow row)
+        {
+            var result = new EncashmentCurrency
+                {
+                    Amount = Convert.ToInt32(row.AMOUNT),
+                    Currency = row.CURRENCY_ID
+                };
+
+            return result;
+        }
+
+        public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, IEnumerable<EncashmentCurrency> currencies)
+        {
+            var result = new Encashment
+                {
+                    Currencies = currencies.ToArray(),
+                    Id = Convert.ToInt32(row.ID),
+                    InsertDate = row.INSERT_DATE,
+                    TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),
+                    UserId = row.IsUSER_IDNull() ? Int32.MinValue : Convert.ToInt32(row.USER_ID)
                 };
 
             return result;

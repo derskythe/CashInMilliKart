@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Crypto.Prng;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Security;
+using Org.BouncyCastle.Utilities.Encoders;
 
 namespace crypto
 {
@@ -114,7 +118,44 @@ namespace crypto
                 output.AddRange(e.ProcessBlock(data, chunkPosition,
                   chunkSize));
             }
+
             return output.ToArray();
+        }
+
+        public static string ComputeHash(string input, string salt)
+        {
+            var inputBytes = Encoding.UTF8.GetBytes(input);
+            var saltArray = UrlBase64.Decode(salt);
+
+            var saltedInput = new Byte[saltArray.Length + inputBytes.Length];
+            saltArray.CopyTo(saltedInput, 0);
+            inputBytes.CopyTo(saltedInput, saltArray.Length);
+
+            Byte[] hashedBytes = GetSha512(saltedInput);
+
+            return Encoding.ASCII.GetString(UrlBase64.Encode(hashedBytes));
+        }
+
+        private static byte[] GetSha512(byte[] key)
+        {
+            var digester = new SHA512Managed();
+            digester.Initialize();
+            return digester.ComputeHash(key);
+        }
+
+        public static string GenerateSalt()
+        {
+            return Encoding.ASCII.GetString(UrlBase64.Encode(GenerateSalt(64)));
+        }
+
+        public static byte[] GenerateSalt(int len)
+        {
+            var generator = new DigestRandomGenerator(new Sha512Digest());
+            generator.AddSeedMaterial(DateTime.Now.Ticks);
+            var result = new byte[len];
+            generator.NextBytes(result);
+
+            return result;
         }
     }
 }

@@ -1,8 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
 
 namespace Db.dsTableAdapters
 {
-    public partial class V_LIST_CURRENCIESTableAdapter
+    public partial class V_LIST_USERSTableAdapter
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Browsable(true)]

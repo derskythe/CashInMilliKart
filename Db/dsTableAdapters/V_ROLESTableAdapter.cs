@@ -2,7 +2,7 @@
 
 namespace Db.dsTableAdapters
 {
-    public partial class V_LIST_CURRENCIESTableAdapter
+    public partial class V_ROLESTableAdapter
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Browsable(true)]

@@ -8,9 +8,26 @@ namespace Containers
     [DataContract(Name = "Encashment", Namespace = "urn:CashIn")]
     public class Encashment : StandardRequest
     {
+        private int _Id;
         private int _UserId;
-        private string[] _Currencies;
-        private int[] _Amounts;
+        private EncashmentCurrency[] _Currencies;
+        private DateTime _InsertDate;
+
+        [XmlElement(ElementName = "Id")]
+        [DataMember(Name = "Id")]
+        public int Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+
+        [XmlElement(ElementName = "InsertDate")]
+        [DataMember(Name = "InsertDate")]
+        public DateTime InsertDate
+        {
+            get { return _InsertDate; }
+            set { _InsertDate = value; }
+        }
 
         [XmlElement(ElementName = "UserId")]
         [DataMember(Name = "UserId")]
@@ -22,36 +39,28 @@ namespace Containers
 
         [XmlArray("Currencies")]
         [DataMember(Name = "Currencies")]
-        public string[] Currencies
+        public EncashmentCurrency[] Currencies
         {
             get { return _Currencies; }
             set { _Currencies = value; }
-        }
-
-        [XmlArray("Amounts")]
-        [DataMember(Name = "Amounts")]
-        public int[] Amounts
-        {
-            get { return _Amounts; }
-            set { _Amounts = value; }
         }
 
         public Encashment()
         {
         }
 
-        public Encashment(int terminalId, int userId, string[] currencies, int[] amounts)
+        public Encashment(int terminalId, int userId, EncashmentCurrency[] currencies)
         {
             _TerminalId = terminalId;
             _UserId = userId;
             _Currencies = currencies;
-            _Amounts = amounts;
+            
         }
 
         public override string ToString()
         {
-            return string.Format("TerminalId: {0}, UserId: {1}, Currencies: {2}, Amounts: {3}", _TerminalId, _UserId,
-                                 EnumEx.ToStringArray(_Currencies), EnumEx.ToStringArray(_Amounts));
+            return string.Format("{0}, Id: {1}, UserId: {2}, Currencies: {3}, InsertDate: {4}", base.ToString(), _Id,
+                                 _UserId, EnumEx.ToStringArray(_Currencies), _InsertDate);
         }
     }
 }

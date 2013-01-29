@@ -2,7 +2,7 @@
 
 namespace Db.dsTableAdapters
 {
-    public partial class V_LIST_CURRENCIESTableAdapter
+    public partial class V_LIST_ACTIVE_SESSIONSTableAdapter
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Browsable(true)]
@@ -23,7 +23,7 @@ namespace Db.dsTableAdapters
             }
             set
             {
-                for (int i = 0; (i < CommandCollection.Length); i = (i + 1))
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1))
                 {
                     if ((CommandCollection[i] != null))
                     {
