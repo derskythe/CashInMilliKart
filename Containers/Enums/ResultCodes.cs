@@ -27,6 +27,12 @@ namespace Containers.Enums
         [Description("Invalid signature of message")]
         InvalidSignature = 5,
 
+        [Description("Invalid username or password")]
+        InvalidUsernameOrPassword = 6,
+
+        [Description("Invalid session")]
+        InvalidSession = 7,
+
         [Description("Unknown Error")]
         UnknownError = 128,
 

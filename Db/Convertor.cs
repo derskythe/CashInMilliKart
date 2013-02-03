@@ -119,7 +119,8 @@ namespace Db
                     Password = row.PASSWORD,
                     InsertDate = row.INSERT_DATE,
                     LastUpdate = row.UPDATE_DATE,
-                    Active = row.ACTIVE > 0
+                    Active = row.ACTIVE > 0,
+                    Salt = row.SALT
                 };
 
             return result;
@@ -135,7 +136,8 @@ namespace Db
                 InsertDate = row.INSERT_DATE,
                 LastUpdate = row.UPDATE_DATE,
                 Active = row.ACTIVE > 0,
-                RoleFields = fields.ToArray()
+                RoleFields = fields.ToArray(),
+                Salt = row.SALT
             };
 
             return result;
@@ -149,6 +151,7 @@ namespace Db
                     InsertDate = row.IsINSERT_DATENull() ? DateTime.MinValue : row.INSERT_DATE,
                     LastUpdate = row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE,
                     Password = String.Empty,
+                    Salt = String.Empty,
                     Username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME,
                     Id = Convert.ToInt32(row.USER_ID),
                     RoleFields = fields.ToArray()

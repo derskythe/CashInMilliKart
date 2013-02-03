@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRole.cs" />
+    <Compile Include="Admin\LoginResult.cs" />
+    <Compile Include="Admin\SessionResult.cs" />
     <Compile Include="AuthResult.cs" />
     <Compile Include="BaseMessage.cs" />
     <Compile Include="CommandResult.cs" />

@@ -6,7 +6,6 @@ using Containers;
 using Containers.Enums;
 using Db;
 using NLog;
-using Org.BouncyCastle.Utilities.Encoders;
 using crypto;
 
 namespace CashInCore

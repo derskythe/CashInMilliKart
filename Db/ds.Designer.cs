@@ -4220,6 +4220,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnDELETED;
             
+            private global::System.Data.DataColumn columnSALT;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_LIST_USERSDataTable() {
@@ -4311,6 +4313,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SALTColumn {
+                get {
+                    return this.columnSALT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4346,7 +4356,7 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_USERSRow AddV_LIST_USERSRow(decimal ID, string USERNAME, string PASSWORD, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal ACTIVE, decimal DELETED) {
+            public V_LIST_USERSRow AddV_LIST_USERSRow(decimal ID, string USERNAME, string PASSWORD, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal ACTIVE, decimal DELETED, string SALT) {
                 V_LIST_USERSRow rowV_LIST_USERSRow = ((V_LIST_USERSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -4355,7 +4365,8 @@ namespace Db {
                         INSERT_DATE,
                         UPDATE_DATE,
                         ACTIVE,
-                        DELETED};
+                        DELETED,
+                        SALT};
                 rowV_LIST_USERSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_LIST_USERSRow);
                 return rowV_LIST_USERSRow;
@@ -4385,6 +4396,7 @@ namespace Db {
                 this.columnUPDATE_DATE = base.Columns["UPDATE_DATE"];
                 this.columnACTIVE = base.Columns["ACTIVE"];
                 this.columnDELETED = base.Columns["DELETED"];
+                this.columnSALT = base.Columns["SALT"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4404,6 +4416,8 @@ namespace Db {
                 base.Columns.Add(this.columnACTIVE);
                 this.columnDELETED = new global::System.Data.DataColumn("DELETED", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDELETED);
+                this.columnSALT = new global::System.Data.DataColumn("SALT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSALT);
                 this.columnID.AllowDBNull = false;
                 this.columnUSERNAME.AllowDBNull = false;
                 this.columnUSERNAME.MaxLength = 100;
@@ -4411,6 +4425,7 @@ namespace Db {
                 this.columnPASSWORD.MaxLength = 100;
                 this.columnACTIVE.AllowDBNull = false;
                 this.columnDELETED.AllowDBNull = false;
+                this.columnSALT.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6896,6 +6911,22 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SALT {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_LIST_USERS.SALTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SALT\' in table \'V_LIST_USERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_USERS.SALTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsINSERT_DATENull() {
                 return this.IsNull(this.tableV_LIST_USERS.INSERT_DATEColumn);
             }
@@ -6916,6 +6947,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetUPDATE_DATENull() {
                 this[this.tableV_LIST_USERS.UPDATE_DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSALTNull() {
+                return this.IsNull(this.tableV_LIST_USERS.SALTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSALTNull() {
+                this[this.tableV_LIST_USERS.SALTColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9858,6 +9901,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("UPDATE_DATE", "UPDATE_DATE");
             tableMapping.ColumnMappings.Add("ACTIVE", "ACTIVE");
             tableMapping.ColumnMappings.Add("DELETED", "DELETED");
+            tableMapping.ColumnMappings.Add("SALT", "SALT");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -9871,17 +9915,17 @@ namespace Db.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[3];
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[4];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED FROM CAS" +
-                "HIN.V_LIST_USERS";
+            this._commandCollection[0].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
+                "OM CASHIN.V_LIST_USERS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED FROM CAS" +
-                "HIN.V_LIST_USERS WHERE username = :username AND password = :password AND active " +
-                "= 1 AND deleted = 0";
+            this._commandCollection[1].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
+                "OM CASHIN.V_LIST_USERS WHERE (USERNAME = :username) AND (PASSWORD = :password) A" +
+                "ND (ACTIVE = 1) AND (DELETED = 0)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":username";
@@ -9899,8 +9943,8 @@ namespace Db.dsTableAdapters {
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED FROM CAS" +
-                "HIN.V_LIST_USERS WHERE id = :id";
+            this._commandCollection[2].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
+                "OM CASHIN.V_LIST_USERS WHERE (ID = :id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":id";
@@ -9909,6 +9953,18 @@ namespace Db.dsTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "ID";
             this._commandCollection[2].Parameters.Add(param);
+            this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
+                "OM CASHIN.V_LIST_USERS WHERE (USERNAME = :username)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":username";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
+            param.Size = 100;
+            param.IsNullable = true;
+            param.SourceColumn = "USERNAME";
+            this._commandCollection[3].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10004,6 +10060,42 @@ namespace Db.dsTableAdapters {
         public virtual ds.V_LIST_USERSDataTable GetDataById(decimal id) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(id));
+            ds.V_LIST_USERSDataTable dataTable = new ds.V_LIST_USERSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByUsername(ds.V_LIST_USERSDataTable dataTable, string username) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((username == null)) {
+                throw new global::System.ArgumentNullException("username");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(username));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_LIST_USERSDataTable GetDataByUsername(string username) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((username == null)) {
+                throw new global::System.ArgumentNullException("username");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(username));
+            }
             ds.V_LIST_USERSDataTable dataTable = new ds.V_LIST_USERSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

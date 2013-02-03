@@ -188,6 +188,22 @@ namespace Db
             return null;
         }
 
+        public User GetUser(string username)
+        {
+            CheckConnection();
+
+            var adapter = new V_LIST_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_LIST_USERSDataTable();
+            adapter.FillByUsername(table, username);
+
+            foreach (ds.V_LIST_USERSRow row in table.Rows)
+            {
+                return Convertor.ToUser(row);
+            }
+
+            return null;
+        }
+
         public IEnumerable<User> ListUsers()
         {
             CheckConnection();
