@@ -38,6 +38,7 @@ namespace CashInTerminal
         private int _SelectedProduct;
         private CashInServer _Server;
         private TextBox _PanelActivationFocus;
+        private TextBox _PanelDebitInfoActivationFocus;
         private TextBox _PanelClientCodeFocus;
         private long _PaymentId;
         private int _OrderNumber;
@@ -250,6 +251,8 @@ namespace CashInTerminal
         {
             txtClientCodeClient.Text = String.Empty;
             txtClientCodePassport.Text = String.Empty;
+            txtDebitClientCode.Text = String.Empty;
+            txtDebitClientCodePassport.Text = String.Empty;
         }
 
         private void BtnPayCreditClick(object sender, EventArgs e)
@@ -263,7 +266,7 @@ namespace CashInTerminal
         {
             _SelectedProduct = 2;
             CleanPrevUserData();
-            ChangePannel(pnlClientCode);
+            ChangePannel(pnlDebitClientCode);
         }
 
         private void BtnClientCodeBackClick(object sender, EventArgs e)
@@ -717,23 +720,23 @@ namespace CashInTerminal
 
         private void FormMainClick(object sender, EventArgs e)
         {
-            if (_SelectedPanel == "pnlClientCode")
-            {
-                Log.Debug("Click");
-            }
+            //if (_SelectedPanel == "pnlClientCode")
+            //{
+            //    Log.Debug("Click");
+            //}
         }
 
         private void PnlClientCodeClick(object sender, EventArgs e)
         {
-            Log.Debug("Click");
+            //Log.Debug("Click");
         }
 
         private void FormMain_MouseClick(object sender, MouseEventArgs e)
         {
-            if (_SelectedPanel == "pnlClientCode")
-            {
-                Log.Debug("Click");
-            }
+            //if (_SelectedPanel == "pnlClientCode")
+            //{
+            //    Log.Debug("Click");
+            //}
         }
 
         private void pnlClientCode_MouseHover(object sender, EventArgs e)
@@ -744,6 +747,115 @@ namespace CashInTerminal
         private void BtnSuccessNextClick(object sender, EventArgs e)
         {
             ChangePannel(pnlProducts);
+        }
+
+        private void txtDebitClientCode_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus = txtDebitClientCode;
+        }
+
+        private void txtDebitClientCodePassport_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus = txtDebitClientCodePassport;
+        }
+
+        private void btnDebitClientCodeBackspace_Click(object sender, EventArgs e)
+        {
+            if (_PanelDebitInfoActivationFocus.Text.Length > 0)
+            {
+                _PanelDebitInfoActivationFocus.Text = _PanelDebitInfoActivationFocus.Text.Substring(0, _PanelDebitInfoActivationFocus.Text.Length - 1);
+            }
+        }
+
+        private void btnDebitClientCode0_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "0";
+        }
+
+        private void btnDebitClientCodeClear_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text = string.Empty;
+        }
+
+        private void btnDebitClientCode1_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "1";
+        }
+
+        private void btnDebitClientCode2_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "2";
+        }
+
+        private void btnDebitClientCode3_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "3";
+        }
+
+        private void btnDebitClientCode4_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "4";
+        }
+
+        private void btnDebitClientCode5_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "5";
+        }
+
+        private void btnDebitClientCode6_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "6";
+        }
+
+        private void btnDebitClientCode7_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "7";
+        }
+
+        private void btnDebitClientCode8_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "8";
+        }
+
+        private void btnDebitClientCode9_Click(object sender, EventArgs e)
+        {
+            _PanelDebitInfoActivationFocus.Text += "9";
+        }
+
+        private void btnDebitClientCodePrev_Click(object sender, EventArgs e)
+        {
+            _SelectedProduct = 0;
+            ChangePannel(pnlProducts);
+        }
+
+        private void btnDebitClientCodeNext_Click(object sender, EventArgs e)
+        {
+            if (txtDebitClientCode.Text.Length == 0 || txtDebitClientCodePassport.Text.Length == 0)
+            {
+                return;
+            }
+
+            switch (_SelectedProduct)
+            {
+                case 1:
+                    lblCreditInfoFullname.Text = "TestFirstName TestLastName TestMiddleName";
+                    lblCreditInfoAccountNumber.Text = txtClientCodeClient.Text;
+                    lblCreditInfoPassport.Text = txtClientCodePassport.Text;
+                    lblCreditInfoProductName.Text = "Test product";
+                    lblCreditInfoCurrentAmount.Text = "1000 AZN";
+                    lblCreditInfoTotalAmount.Text = "2000 AZN";
+                    lblCreditInfoDate.Text = DateTime.Now.AddMonths(6).ToLongDateString();
+                    ChangePannel(pnlCreditInfo);
+                    break;
+
+                case 2:
+                    lblDebitInfoFullname.Text = "TestFirstName TestLastName TestMiddleName";
+                    lblDebitInfoAccount.Text = txtClientCodeClient.Text;
+                    lblDebitInfoPassport.Text = txtClientCodePassport.Text;
+                    lblDebitInfoDate.Text = DateTime.Now.AddMonths(-6).ToLongDateString();
+                    ChangePannel(pnlDebitInfo);
+                    break;
+            }
         }
     }
 }

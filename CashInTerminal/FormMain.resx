@@ -117,69 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;btnEnglish.Name" xml:space="preserve">
-    <value>btnEnglish</value>
-  </data>
-  <data name="&gt;&gt;btnEnglish.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnEnglish.Parent" xml:space="preserve">
-    <value>pnlLanguage</value>
-  </data>
-  <data name="&gt;&gt;btnEnglish.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnRussian.Name" xml:space="preserve">
-    <value>btnRussian</value>
-  </data>
-  <data name="&gt;&gt;btnRussian.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRussian.Parent" xml:space="preserve">
-    <value>pnlLanguage</value>
-  </data>
-  <data name="&gt;&gt;btnRussian.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnAzeri.Name" xml:space="preserve">
-    <value>btnAzeri</value>
-  </data>
-  <data name="&gt;&gt;btnAzeri.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAzeri.Parent" xml:space="preserve">
-    <value>pnlLanguage</value>
-  </data>
-  <data name="&gt;&gt;btnAzeri.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pnlLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 25</value>
-  </data>
-  <data name="pnlLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pnlLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pnlLanguage.Name" xml:space="preserve">
-    <value>pnlLanguage</value>
-  </data>
-  <data name="&gt;&gt;pnlLanguage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlLanguage.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlLanguage.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnEnglish.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnEnglish.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
@@ -192,6 +134,7 @@
   <data name="btnEnglish.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnEnglish.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -273,50 +216,26 @@
   <data name="&gt;&gt;btnAzeri.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;btnPayDebit.Name" xml:space="preserve">
-    <value>btnPayDebit</value>
+  <data name="pnlLanguage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 25</value>
   </data>
-  <data name="&gt;&gt;btnPayDebit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPayDebit.Parent" xml:space="preserve">
-    <value>pnlProducts</value>
-  </data>
-  <data name="&gt;&gt;btnPayDebit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnPayCredit.Name" xml:space="preserve">
-    <value>btnPayCredit</value>
-  </data>
-  <data name="&gt;&gt;btnPayCredit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPayCredit.Parent" xml:space="preserve">
-    <value>pnlProducts</value>
-  </data>
-  <data name="&gt;&gt;btnPayCredit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlProducts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 131</value>
-  </data>
-  <data name="pnlProducts.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pnlLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 100</value>
   </data>
-  <data name="pnlProducts.TabIndex" type="System.Int32, mscorlib">
+  <data name="pnlLanguage.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;pnlProducts.Name" xml:space="preserve">
-    <value>pnlProducts</value>
+  <data name="&gt;&gt;pnlLanguage.Name" xml:space="preserve">
+    <value>pnlLanguage</value>
   </data>
-  <data name="&gt;&gt;pnlProducts.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlLanguage.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlProducts.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlLanguage.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlProducts.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;pnlLanguage.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
   <data name="btnPayDebit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -328,7 +247,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnPayDebit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-30, 71</value>
+    <value>-30, 72</value>
   </data>
   <data name="btnPayDebit.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -337,7 +256,7 @@
     <value>3</value>
   </data>
   <data name="btnPayDebit.Text" xml:space="preserve">
-    <value>Депозит</value>
+    <value>Пополнение счета</value>
   </data>
   <data name="&gt;&gt;btnPayDebit.Name" xml:space="preserve">
     <value>btnPayDebit</value>
@@ -361,7 +280,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnPayCredit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-30, -20</value>
+    <value>-30, -19</value>
   </data>
   <data name="btnPayCredit.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -370,7 +289,7 @@
     <value>2</value>
   </data>
   <data name="btnPayCredit.Text" xml:space="preserve">
-    <value>Погашение кредита</value>
+    <value>Оплата кредита</value>
   </data>
   <data name="&gt;&gt;btnPayCredit.Name" xml:space="preserve">
     <value>btnPayCredit</value>
@@ -384,242 +303,26 @@
   <data name="&gt;&gt;btnPayCredit.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;btnClientCode9.Name" xml:space="preserve">
-    <value>btnClientCode9</value>
+  <data name="pnlProducts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 129</value>
   </data>
-  <data name="&gt;&gt;btnClientCode9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnlProducts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 102</value>
   </data>
-  <data name="&gt;&gt;btnClientCode9.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode9.ZOrder" xml:space="preserve">
+  <data name="pnlProducts.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;btnClientCode8.Name" xml:space="preserve">
-    <value>btnClientCode8</value>
+  <data name="&gt;&gt;pnlProducts.Name" xml:space="preserve">
+    <value>pnlProducts</value>
   </data>
-  <data name="&gt;&gt;btnClientCode8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode8.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode8.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode7.Name" xml:space="preserve">
-    <value>btnClientCode7</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode7.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode7.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode6.Name" xml:space="preserve">
-    <value>btnClientCode6</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode6.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode6.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode5.Name" xml:space="preserve">
-    <value>btnClientCode5</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode5.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode5.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode4.Name" xml:space="preserve">
-    <value>btnClientCode4</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode4.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode4.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode3.Name" xml:space="preserve">
-    <value>btnClientCode3</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode3.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode2.Name" xml:space="preserve">
-    <value>btnClientCode2</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode2.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode1.Name" xml:space="preserve">
-    <value>btnClientCode1</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode1.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeClear.Name" xml:space="preserve">
-    <value>btnClientCodeClear</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeClear.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeClear.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeClear.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode0.Name" xml:space="preserve">
-    <value>btnClientCode0</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode0.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCode0.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBackspace.Name" xml:space="preserve">
-    <value>btnClientCodeBackspace</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBackspace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBackspace.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBackspace.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lblClientCode.Name" xml:space="preserve">
-    <value>lblClientCode</value>
-  </data>
-  <data name="&gt;&gt;lblClientCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblClientCode.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;lblClientCode.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodePassport.Name" xml:space="preserve">
-    <value>txtClientCodePassport</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodePassport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodePassport.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodePassport.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodeClient.Name" xml:space="preserve">
-    <value>txtClientCodeClient</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodeClient.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodeClient.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;txtClientCodeClient.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBack.Name" xml:space="preserve">
-    <value>btnClientCodeBack</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBack.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeBack.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeNext.Name" xml:space="preserve">
-    <value>btnClientCodeNext</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeNext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeNext.Parent" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;btnClientCodeNext.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="pnlClientCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 237</value>
-  </data>
-  <data name="pnlClientCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
-  </data>
-  <data name="pnlClientCode.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;pnlClientCode.Name" xml:space="preserve">
-    <value>pnlClientCode</value>
-  </data>
-  <data name="&gt;&gt;pnlClientCode.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlProducts.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlClientCode.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlProducts.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlClientCode.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;pnlProducts.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="btnClientCode9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -631,7 +334,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, -111</value>
+    <value>387, -48</value>
   </data>
   <data name="btnClientCode9.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -664,7 +367,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, -111</value>
+    <value>333, -48</value>
   </data>
   <data name="btnClientCode8.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -697,7 +400,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, -111</value>
+    <value>279, -48</value>
   </data>
   <data name="btnClientCode7.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -730,7 +433,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, -59</value>
+    <value>387, 4</value>
   </data>
   <data name="btnClientCode6.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -763,7 +466,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, -59</value>
+    <value>333, 4</value>
   </data>
   <data name="btnClientCode5.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -796,7 +499,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, -59</value>
+    <value>279, 4</value>
   </data>
   <data name="btnClientCode4.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -829,7 +532,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, -5</value>
+    <value>387, 58</value>
   </data>
   <data name="btnClientCode3.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -862,7 +565,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, -5</value>
+    <value>333, 58</value>
   </data>
   <data name="btnClientCode2.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -895,7 +598,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, -5</value>
+    <value>279, 58</value>
   </data>
   <data name="btnClientCode1.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -928,7 +631,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCodeClear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 47</value>
+    <value>387, 110</value>
   </data>
   <data name="btnClientCodeClear.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -961,7 +664,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 47</value>
+    <value>333, 110</value>
   </data>
   <data name="btnClientCode0.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -991,7 +694,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="btnClientCodeBackspace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 47</value>
+    <value>279, 110</value>
   </data>
   <data name="btnClientCodeBackspace.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -1027,16 +730,16 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-247, -10</value>
+    <value>-247, 53</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 24</value>
+    <value>176, 24</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>№ паспорта</value>
+    <value>№ паспорта AZE</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -1060,16 +763,16 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="lblClientCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-247, -101</value>
+    <value>-247, -38</value>
   </data>
   <data name="lblClientCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
+    <value>249, 24</value>
   </data>
   <data name="lblClientCode.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="lblClientCode.Text" xml:space="preserve">
-    <value>Код клиента</value>
+    <value>Середина номера счета</value>
   </data>
   <data name="&gt;&gt;lblClientCode.Name" xml:space="preserve">
     <value>lblClientCode</value>
@@ -1090,7 +793,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="txtClientCodePassport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-243, 30</value>
+    <value>-243, 93</value>
   </data>
   <data name="txtClientCodePassport.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 29</value>
@@ -1117,7 +820,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="txtClientCodeClient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-243, -66</value>
+    <value>-243, -3</value>
   </data>
   <data name="txtClientCodeClient.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 29</value>
@@ -1147,7 +850,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCodeBack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 51</value>
+    <value>94, 177</value>
   </data>
   <data name="btnClientCodeBack.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -1180,7 +883,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCodeNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-156, 51</value>
+    <value>-156, 177</value>
   </data>
   <data name="btnClientCodeNext.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -1203,134 +906,26 @@
   <data name="&gt;&gt;btnClientCodeNext.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;lblCreditInfoDate.Name" xml:space="preserve">
-    <value>lblCreditInfoDate</value>
+  <data name="pnlClientCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 237</value>
   </data>
-  <data name="&gt;&gt;lblCreditInfoDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnlClientCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 226</value>
   </data>
-  <data name="&gt;&gt;lblCreditInfoDate.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoDate.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoTotalAmount.Name" xml:space="preserve">
-    <value>lblCreditInfoTotalAmount</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoTotalAmount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoTotalAmount.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoTotalAmount.ZOrder" xml:space="preserve">
+  <data name="pnlClientCode.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;lblCreditInfoCurrentAmount.Name" xml:space="preserve">
-    <value>lblCreditInfoCurrentAmount</value>
+  <data name="&gt;&gt;pnlClientCode.Name" xml:space="preserve">
+    <value>pnlClientCode</value>
   </data>
-  <data name="&gt;&gt;lblCreditInfoCurrentAmount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoCurrentAmount.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoCurrentAmount.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoProductName.Name" xml:space="preserve">
-    <value>lblCreditInfoProductName</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoProductName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoProductName.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoProductName.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoPassport.Name" xml:space="preserve">
-    <value>lblCreditInfoPassport</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoPassport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoPassport.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoPassport.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoAccountNumber.Name" xml:space="preserve">
-    <value>lblCreditInfoAccountNumber</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoAccountNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoAccountNumber.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoAccountNumber.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoFullname.Name" xml:space="preserve">
-    <value>lblCreditInfoFullname</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoFullname.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoFullname.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCreditInfoFullname.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoBack.Name" xml:space="preserve">
-    <value>btnCreditInfoBack</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoBack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoBack.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoBack.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoNext.Name" xml:space="preserve">
-    <value>btnCreditInfoNext</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoNext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoNext.Parent" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;btnCreditInfoNext.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="pnlCreditInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 343</value>
-  </data>
-  <data name="pnlCreditInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 104</value>
-  </data>
-  <data name="pnlCreditInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;pnlCreditInfo.Name" xml:space="preserve">
-    <value>pnlCreditInfo</value>
-  </data>
-  <data name="&gt;&gt;pnlCreditInfo.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlClientCode.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlCreditInfo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlClientCode.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlCreditInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;pnlClientCode.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lblCreditInfoDate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1647,74 +1242,26 @@
   <data name="&gt;&gt;btnCreditInfoNext.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;lblMoneyCurrency.Name" xml:space="preserve">
-    <value>lblMoneyCurrency</value>
+  <data name="pnlCreditInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 343</value>
   </data>
-  <data name="&gt;&gt;lblMoneyCurrency.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnlCreditInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 104</value>
   </data>
-  <data name="&gt;&gt;lblMoneyCurrency.Parent" xml:space="preserve">
-    <value>pnlMoney</value>
-  </data>
-  <data name="&gt;&gt;lblMoneyCurrency.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblMoneyTotal.Name" xml:space="preserve">
-    <value>lblMoneyTotal</value>
-  </data>
-  <data name="&gt;&gt;lblMoneyTotal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMoneyTotal.Parent" xml:space="preserve">
-    <value>pnlMoney</value>
-  </data>
-  <data name="&gt;&gt;lblMoneyTotal.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>pnlMoney</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+  <data name="pnlCreditInfo.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;btnMoneyNext.Name" xml:space="preserve">
-    <value>btnMoneyNext</value>
+  <data name="&gt;&gt;pnlCreditInfo.Name" xml:space="preserve">
+    <value>pnlCreditInfo</value>
   </data>
-  <data name="&gt;&gt;btnMoneyNext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMoneyNext.Parent" xml:space="preserve">
-    <value>pnlMoney</value>
-  </data>
-  <data name="&gt;&gt;btnMoneyNext.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="pnlMoney.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 25</value>
-  </data>
-  <data name="pnlMoney.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 100</value>
-  </data>
-  <data name="pnlMoney.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;pnlMoney.Name" xml:space="preserve">
-    <value>pnlMoney</value>
-  </data>
-  <data name="&gt;&gt;pnlMoney.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlCreditInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlMoney.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlCreditInfo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlMoney.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;pnlCreditInfo.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="lblMoneyCurrency.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1853,6 +1400,27 @@
   </data>
   <data name="&gt;&gt;btnMoneyNext.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="pnlMoney.Location" type="System.Drawing.Point, System.Drawing">
+    <value>235, 25</value>
+  </data>
+  <data name="pnlMoney.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 100</value>
+  </data>
+  <data name="pnlMoney.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pnlMoney.Name" xml:space="preserve">
+    <value>pnlMoney</value>
+  </data>
+  <data name="&gt;&gt;pnlMoney.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlMoney.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlMoney.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="lblSuccessTotalAmount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2014,7 +1582,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlPaySuccess.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="pnlTestMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>232, 237</value>
@@ -2035,64 +1603,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlTestMode.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lblEncashmentTotal.Name" xml:space="preserve">
-    <value>lblEncashmentTotal</value>
-  </data>
-  <data name="&gt;&gt;lblEncashmentTotal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblEncashmentTotal.Parent" xml:space="preserve">
-    <value>pnlEncashment</value>
-  </data>
-  <data name="&gt;&gt;lblEncashmentTotal.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentFinish.Name" xml:space="preserve">
-    <value>btnEncashmentFinish</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentFinish.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentFinish.Parent" xml:space="preserve">
-    <value>pnlEncashment</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentFinish.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentPrint.Name" xml:space="preserve">
-    <value>btnEncashmentPrint</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentPrint.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentPrint.Parent" xml:space="preserve">
-    <value>pnlEncashment</value>
-  </data>
-  <data name="&gt;&gt;btnEncashmentPrint.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="pnlEncashment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 344</value>
-  </data>
-  <data name="pnlEncashment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 103</value>
-  </data>
-  <data name="pnlEncashment.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;pnlEncashment.Name" xml:space="preserve">
-    <value>pnlEncashment</value>
-  </data>
-  <data name="&gt;&gt;pnlEncashment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlEncashment.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlEncashment.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>11</value>
   </data>
   <data name="lblEncashmentTotal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2196,38 +1707,26 @@
   <data name="&gt;&gt;btnEncashmentPrint.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="pnlEncashment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 344</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnlEncashment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 103</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>pnlOutOfOrder</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="pnlOutOfOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>438, 25</value>
-  </data>
-  <data name="pnlOutOfOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
-  </data>
-  <data name="pnlOutOfOrder.TabIndex" type="System.Int32, mscorlib">
+  <data name="pnlEncashment.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;pnlOutOfOrder.Name" xml:space="preserve">
-    <value>pnlOutOfOrder</value>
+  <data name="&gt;&gt;pnlEncashment.Name" xml:space="preserve">
+    <value>pnlEncashment</value>
   </data>
-  <data name="&gt;&gt;pnlOutOfOrder.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlEncashment.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlOutOfOrder.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlEncashment.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlOutOfOrder.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;pnlEncashment.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2265,98 +1764,26 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;lblDebitInfoDate.Name" xml:space="preserve">
-    <value>lblDebitInfoDate</value>
+  <data name="pnlOutOfOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>438, 25</value>
   </data>
-  <data name="&gt;&gt;lblDebitInfoDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnlOutOfOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 100</value>
   </data>
-  <data name="&gt;&gt;lblDebitInfoDate.Parent" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoDate.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoPassport.Name" xml:space="preserve">
-    <value>lblDebitInfoPassport</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoPassport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoPassport.Parent" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoPassport.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoAccount.Name" xml:space="preserve">
-    <value>lblDebitInfoAccount</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoAccount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoAccount.Parent" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoAccount.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoFullname.Name" xml:space="preserve">
-    <value>lblDebitInfoFullname</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoFullname.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoFullname.Parent" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDebitInfoFullname.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnDebitInfoBack.Name" xml:space="preserve">
-    <value>btnDebitInfoBack</value>
-  </data>
-  <data name="&gt;&gt;btnDebitInfoBack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDebitInfoBack.Parent" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;btnDebitInfoBack.ZOrder" xml:space="preserve">
+  <data name="pnlOutOfOrder.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;btnDebitInfoNext.Name" xml:space="preserve">
-    <value>btnDebitInfoNext</value>
+  <data name="&gt;&gt;pnlOutOfOrder.Name" xml:space="preserve">
+    <value>pnlOutOfOrder</value>
   </data>
-  <data name="&gt;&gt;btnDebitInfoNext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDebitInfoNext.Parent" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;btnDebitInfoNext.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="pnlDebitInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>438, 129</value>
-  </data>
-  <data name="pnlDebitInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 102</value>
-  </data>
-  <data name="pnlDebitInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;pnlDebitInfo.Name" xml:space="preserve">
-    <value>pnlDebitInfo</value>
-  </data>
-  <data name="&gt;&gt;pnlDebitInfo.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlOutOfOrder.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlDebitInfo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlOutOfOrder.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlDebitInfo.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;pnlOutOfOrder.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="lblDebitInfoDate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -2568,242 +1995,26 @@
   <data name="&gt;&gt;btnDebitInfoNext.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;txtActivationCode.Name" xml:space="preserve">
-    <value>txtActivationCode</value>
+  <data name="pnlDebitInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>438, 129</value>
   </data>
-  <data name="&gt;&gt;txtActivationCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnlDebitInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 102</value>
   </data>
-  <data name="&gt;&gt;txtActivationCode.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;txtActivationCode.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnActivation9.Name" xml:space="preserve">
-    <value>btnActivation9</value>
-  </data>
-  <data name="&gt;&gt;btnActivation9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation9.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation9.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnActivation8.Name" xml:space="preserve">
-    <value>btnActivation8</value>
-  </data>
-  <data name="&gt;&gt;btnActivation8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation8.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation8.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnActivation7.Name" xml:space="preserve">
-    <value>btnActivation7</value>
-  </data>
-  <data name="&gt;&gt;btnActivation7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation7.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation7.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnActivation6.Name" xml:space="preserve">
-    <value>btnActivation6</value>
-  </data>
-  <data name="&gt;&gt;btnActivation6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation6.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation6.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnActivation5.Name" xml:space="preserve">
-    <value>btnActivation5</value>
-  </data>
-  <data name="&gt;&gt;btnActivation5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation5.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation5.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnActivation4.Name" xml:space="preserve">
-    <value>btnActivation4</value>
-  </data>
-  <data name="&gt;&gt;btnActivation4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation4.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation4.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnActivation3.Name" xml:space="preserve">
-    <value>btnActivation3</value>
-  </data>
-  <data name="&gt;&gt;btnActivation3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation3.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation3.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnActivation2.Name" xml:space="preserve">
-    <value>btnActivation2</value>
-  </data>
-  <data name="&gt;&gt;btnActivation2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation2.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation2.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btnActivation1.Name" xml:space="preserve">
-    <value>btnActivation1</value>
-  </data>
-  <data name="&gt;&gt;btnActivation1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation1.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation1.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btnActivationBackspace.Name" xml:space="preserve">
-    <value>btnActivationBackspace</value>
-  </data>
-  <data name="&gt;&gt;btnActivationBackspace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivationBackspace.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivationBackspace.ZOrder" xml:space="preserve">
+  <data name="pnlDebitInfo.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;btnActivation0.Name" xml:space="preserve">
-    <value>btnActivation0</value>
+  <data name="&gt;&gt;pnlDebitInfo.Name" xml:space="preserve">
+    <value>pnlDebitInfo</value>
   </data>
-  <data name="&gt;&gt;btnActivation0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation0.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation0.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;btnActivationClear.Name" xml:space="preserve">
-    <value>btnActivationClear</value>
-  </data>
-  <data name="&gt;&gt;btnActivationClear.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivationClear.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivationClear.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;btnActivation.Name" xml:space="preserve">
-    <value>btnActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnActivation.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;btnActivation.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;txtActivationTerminal.Name" xml:space="preserve">
-    <value>txtActivationTerminal</value>
-  </data>
-  <data name="&gt;&gt;txtActivationTerminal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtActivationTerminal.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;txtActivationTerminal.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="pnlActivation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>438, 237</value>
-  </data>
-  <data name="pnlActivation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
-  </data>
-  <data name="pnlActivation.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;pnlActivation.Name" xml:space="preserve">
-    <value>pnlActivation</value>
-  </data>
-  <data name="&gt;&gt;pnlActivation.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlDebitInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlActivation.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlDebitInfo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlActivation.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;pnlDebitInfo.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="txtActivationCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -3395,6 +2606,726 @@
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>17</value>
+  </data>
+  <data name="pnlActivation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>438, 237</value>
+  </data>
+  <data name="pnlActivation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 100</value>
+  </data>
+  <data name="pnlActivation.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;pnlActivation.Name" xml:space="preserve">
+    <value>pnlActivation</value>
+  </data>
+  <data name="&gt;&gt;pnlActivation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlActivation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlActivation.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, -111</value>
+  </data>
+  <data name="btnDebitClientCode9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode9.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode9.Text" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.Name" xml:space="preserve">
+    <value>btnDebitClientCode9</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnDebitClientCode8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>375, -111</value>
+  </data>
+  <data name="btnDebitClientCode8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode8.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode8.Text" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.Name" xml:space="preserve">
+    <value>btnDebitClientCode8</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnDebitClientCode7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, -111</value>
+  </data>
+  <data name="btnDebitClientCode7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode7.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode7.Text" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.Name" xml:space="preserve">
+    <value>btnDebitClientCode7</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnDebitClientCode6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, -59</value>
+  </data>
+  <data name="btnDebitClientCode6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode6.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode6.Text" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.Name" xml:space="preserve">
+    <value>btnDebitClientCode6</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnDebitClientCode5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>375, -59</value>
+  </data>
+  <data name="btnDebitClientCode5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode5.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode5.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.Name" xml:space="preserve">
+    <value>btnDebitClientCode5</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnDebitClientCode4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, -59</value>
+  </data>
+  <data name="btnDebitClientCode4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode4.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode4.Text" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.Name" xml:space="preserve">
+    <value>btnDebitClientCode4</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnDebitClientCode3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, -5</value>
+  </data>
+  <data name="btnDebitClientCode3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode3.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode3.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.Name" xml:space="preserve">
+    <value>btnDebitClientCode3</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnDebitClientCode2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>375, -5</value>
+  </data>
+  <data name="btnDebitClientCode2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode2.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.Name" xml:space="preserve">
+    <value>btnDebitClientCode2</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btnDebitClientCode1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, -5</value>
+  </data>
+  <data name="btnDebitClientCode1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode1.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.Name" xml:space="preserve">
+    <value>btnDebitClientCode1</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodeClear.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, 47</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCodeClear.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Text" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.Name" xml:space="preserve">
+    <value>btnDebitClientCodeClear</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btnDebitClientCode0.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode0.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>375, 47</value>
+  </data>
+  <data name="btnDebitClientCode0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCode0.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode0.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.Name" xml:space="preserve">
+    <value>btnDebitClientCode0</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 47</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 46</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Text" xml:space="preserve">
+    <value>◄</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.Name" xml:space="preserve">
+    <value>btnDebitClientCodeBackspace</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-205, -10</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 24</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>№ паспорта</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-205, -101</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 24</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Код клиента</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="txtDebitClientCodePassport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="txtDebitClientCodePassport.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="txtDebitClientCodePassport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-201, 30</value>
+  </data>
+  <data name="txtDebitClientCodePassport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 29</value>
+  </data>
+  <data name="txtDebitClientCodePassport.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCodePassport.Name" xml:space="preserve">
+    <value>txtDebitClientCodePassport</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCodePassport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCodePassport.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCodePassport.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="txtDebitClientCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="txtDebitClientCode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="txtDebitClientCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-201, -66</value>
+  </data>
+  <data name="txtDebitClientCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 29</value>
+  </data>
+  <data name="txtDebitClientCode.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.Name" xml:space="preserve">
+    <value>txtDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodePrev.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 51</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 50</value>
+  </data>
+  <data name="btnDebitClientCodePrev.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Text" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.Name" xml:space="preserve">
+    <value>btnDebitClientCodePrev</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodeNext.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-71, 51</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 50</value>
+  </data>
+  <data name="btnDebitClientCodeNext.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Text" xml:space="preserve">
+    <value>Дальше</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.Name" xml:space="preserve">
+    <value>btnDebitClientCodeNext</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.Parent" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="pnlDebitClientCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>722, 25</value>
+  </data>
+  <data name="pnlDebitClientCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 100</value>
+  </data>
+  <data name="pnlDebitClientCode.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;pnlDebitClientCode.Name" xml:space="preserve">
+    <value>pnlDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;pnlDebitClientCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlDebitClientCode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlDebitClientCode.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label10.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-214, -122</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>713, 24</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Не правильный номер. </value>
+  </data>
+  <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>pnlInvalidNumber</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button13.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="button13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  </data>
+  <data name="button13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 50</value>
+  </data>
+  <data name="button13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 50</value>
+  </data>
+  <data name="button13.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="button13.Text" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="&gt;&gt;button13.Name" xml:space="preserve">
+    <value>button13</value>
+  </data>
+  <data name="&gt;&gt;button13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button13.Parent" xml:space="preserve">
+    <value>pnlInvalidNumber</value>
+  </data>
+  <data name="&gt;&gt;button13.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlInvalidNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>722, 132</value>
+  </data>
+  <data name="pnlInvalidNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 99</value>
+  </data>
+  <data name="pnlInvalidNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;pnlInvalidNumber.Name" xml:space="preserve">
+    <value>pnlInvalidNumber</value>
+  </data>
+  <data name="&gt;&gt;pnlInvalidNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlInvalidNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlInvalidNumber.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

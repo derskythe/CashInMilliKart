@@ -108,6 +108,28 @@
             this.txtActivationTerminal = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.pnlDebitClientCode = new System.Windows.Forms.Panel();
+            this.btnDebitClientCode9 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode8 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode7 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode6 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode5 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode4 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode3 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode2 = new System.Windows.Forms.Button();
+            this.btnDebitClientCode1 = new System.Windows.Forms.Button();
+            this.btnDebitClientCodeClear = new System.Windows.Forms.Button();
+            this.btnDebitClientCode0 = new System.Windows.Forms.Button();
+            this.btnDebitClientCodeBackspace = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtDebitClientCodePassport = new System.Windows.Forms.TextBox();
+            this.txtDebitClientCode = new System.Windows.Forms.TextBox();
+            this.btnDebitClientCodePrev = new System.Windows.Forms.Button();
+            this.btnDebitClientCodeNext = new System.Windows.Forms.Button();
+            this.pnlInvalidNumber = new System.Windows.Forms.Panel();
+            this.button13 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.pnlLanguage.SuspendLayout();
             this.pnlProducts.SuspendLayout();
             this.pnlClientCode.SuspendLayout();
@@ -118,6 +140,8 @@
             this.pnlOutOfOrder.SuspendLayout();
             this.pnlDebitInfo.SuspendLayout();
             this.pnlActivation.SuspendLayout();
+            this.pnlDebitClientCode.SuspendLayout();
+            this.pnlInvalidNumber.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLanguage
@@ -671,11 +695,176 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
+            // pnlDebitClientCode
+            // 
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode9);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode8);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode7);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode6);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode5);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode4);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode3);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode2);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode1);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCodeClear);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCode0);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCodeBackspace);
+            this.pnlDebitClientCode.Controls.Add(this.label8);
+            this.pnlDebitClientCode.Controls.Add(this.label9);
+            this.pnlDebitClientCode.Controls.Add(this.txtDebitClientCodePassport);
+            this.pnlDebitClientCode.Controls.Add(this.txtDebitClientCode);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCodePrev);
+            this.pnlDebitClientCode.Controls.Add(this.btnDebitClientCodeNext);
+            resources.ApplyResources(this.pnlDebitClientCode, "pnlDebitClientCode");
+            this.pnlDebitClientCode.Name = "pnlDebitClientCode";
+            // 
+            // btnDebitClientCode9
+            // 
+            resources.ApplyResources(this.btnDebitClientCode9, "btnDebitClientCode9");
+            this.btnDebitClientCode9.Name = "btnDebitClientCode9";
+            this.btnDebitClientCode9.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode9.Click += new System.EventHandler(this.btnDebitClientCode9_Click);
+            // 
+            // btnDebitClientCode8
+            // 
+            resources.ApplyResources(this.btnDebitClientCode8, "btnDebitClientCode8");
+            this.btnDebitClientCode8.Name = "btnDebitClientCode8";
+            this.btnDebitClientCode8.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode8.Click += new System.EventHandler(this.btnDebitClientCode8_Click);
+            // 
+            // btnDebitClientCode7
+            // 
+            resources.ApplyResources(this.btnDebitClientCode7, "btnDebitClientCode7");
+            this.btnDebitClientCode7.Name = "btnDebitClientCode7";
+            this.btnDebitClientCode7.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode7.Click += new System.EventHandler(this.btnDebitClientCode7_Click);
+            // 
+            // btnDebitClientCode6
+            // 
+            resources.ApplyResources(this.btnDebitClientCode6, "btnDebitClientCode6");
+            this.btnDebitClientCode6.Name = "btnDebitClientCode6";
+            this.btnDebitClientCode6.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode6.Click += new System.EventHandler(this.btnDebitClientCode6_Click);
+            // 
+            // btnDebitClientCode5
+            // 
+            resources.ApplyResources(this.btnDebitClientCode5, "btnDebitClientCode5");
+            this.btnDebitClientCode5.Name = "btnDebitClientCode5";
+            this.btnDebitClientCode5.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode5.Click += new System.EventHandler(this.btnDebitClientCode5_Click);
+            // 
+            // btnDebitClientCode4
+            // 
+            resources.ApplyResources(this.btnDebitClientCode4, "btnDebitClientCode4");
+            this.btnDebitClientCode4.Name = "btnDebitClientCode4";
+            this.btnDebitClientCode4.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode4.Click += new System.EventHandler(this.btnDebitClientCode4_Click);
+            // 
+            // btnDebitClientCode3
+            // 
+            resources.ApplyResources(this.btnDebitClientCode3, "btnDebitClientCode3");
+            this.btnDebitClientCode3.Name = "btnDebitClientCode3";
+            this.btnDebitClientCode3.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode3.Click += new System.EventHandler(this.btnDebitClientCode3_Click);
+            // 
+            // btnDebitClientCode2
+            // 
+            resources.ApplyResources(this.btnDebitClientCode2, "btnDebitClientCode2");
+            this.btnDebitClientCode2.Name = "btnDebitClientCode2";
+            this.btnDebitClientCode2.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode2.Click += new System.EventHandler(this.btnDebitClientCode2_Click);
+            // 
+            // btnDebitClientCode1
+            // 
+            resources.ApplyResources(this.btnDebitClientCode1, "btnDebitClientCode1");
+            this.btnDebitClientCode1.Name = "btnDebitClientCode1";
+            this.btnDebitClientCode1.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode1.Click += new System.EventHandler(this.btnDebitClientCode1_Click);
+            // 
+            // btnDebitClientCodeClear
+            // 
+            resources.ApplyResources(this.btnDebitClientCodeClear, "btnDebitClientCodeClear");
+            this.btnDebitClientCodeClear.Name = "btnDebitClientCodeClear";
+            this.btnDebitClientCodeClear.UseVisualStyleBackColor = true;
+            this.btnDebitClientCodeClear.Click += new System.EventHandler(this.btnDebitClientCodeClear_Click);
+            // 
+            // btnDebitClientCode0
+            // 
+            resources.ApplyResources(this.btnDebitClientCode0, "btnDebitClientCode0");
+            this.btnDebitClientCode0.Name = "btnDebitClientCode0";
+            this.btnDebitClientCode0.UseVisualStyleBackColor = true;
+            this.btnDebitClientCode0.Click += new System.EventHandler(this.btnDebitClientCode0_Click);
+            // 
+            // btnDebitClientCodeBackspace
+            // 
+            resources.ApplyResources(this.btnDebitClientCodeBackspace, "btnDebitClientCodeBackspace");
+            this.btnDebitClientCodeBackspace.Name = "btnDebitClientCodeBackspace";
+            this.btnDebitClientCodeBackspace.UseVisualStyleBackColor = true;
+            this.btnDebitClientCodeBackspace.Click += new System.EventHandler(this.btnDebitClientCodeBackspace_Click);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // txtDebitClientCodePassport
+            // 
+            resources.ApplyResources(this.txtDebitClientCodePassport, "txtDebitClientCodePassport");
+            this.txtDebitClientCodePassport.Name = "txtDebitClientCodePassport";
+            this.txtDebitClientCodePassport.Click += new System.EventHandler(this.txtDebitClientCodePassport_Click);
+            // 
+            // txtDebitClientCode
+            // 
+            resources.ApplyResources(this.txtDebitClientCode, "txtDebitClientCode");
+            this.txtDebitClientCode.Name = "txtDebitClientCode";
+            this.txtDebitClientCode.Click += new System.EventHandler(this.txtDebitClientCode_Click);
+            // 
+            // btnDebitClientCodePrev
+            // 
+            resources.ApplyResources(this.btnDebitClientCodePrev, "btnDebitClientCodePrev");
+            this.btnDebitClientCodePrev.Name = "btnDebitClientCodePrev";
+            this.btnDebitClientCodePrev.UseVisualStyleBackColor = true;
+            this.btnDebitClientCodePrev.Click += new System.EventHandler(this.btnDebitClientCodePrev_Click);
+            // 
+            // btnDebitClientCodeNext
+            // 
+            resources.ApplyResources(this.btnDebitClientCodeNext, "btnDebitClientCodeNext");
+            this.btnDebitClientCodeNext.Name = "btnDebitClientCodeNext";
+            this.btnDebitClientCodeNext.UseVisualStyleBackColor = true;
+            this.btnDebitClientCodeNext.Click += new System.EventHandler(this.btnDebitClientCodeNext_Click);
+            // 
+            // pnlInvalidNumber
+            // 
+            this.pnlInvalidNumber.Controls.Add(this.label10);
+            this.pnlInvalidNumber.Controls.Add(this.button13);
+            resources.ApplyResources(this.pnlInvalidNumber, "pnlInvalidNumber");
+            this.pnlInvalidNumber.Name = "pnlInvalidNumber";
+            // 
+            // button13
+            // 
+            resources.ApplyResources(this.button13, "button13");
+            this.button13.Name = "button13";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
+            this.Controls.Add(this.pnlInvalidNumber);
+            this.Controls.Add(this.pnlClientCode);
+            this.Controls.Add(this.pnlDebitClientCode);
+            this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlPaySuccess);
             this.Controls.Add(this.pnlMoney);
             this.Controls.Add(this.pnlDebitInfo);
@@ -683,9 +872,7 @@
             this.Controls.Add(this.pnlActivation);
             this.Controls.Add(this.pnlEncashment);
             this.Controls.Add(this.pnlOutOfOrder);
-            this.Controls.Add(this.pnlClientCode);
             this.Controls.Add(this.pnlTestMode);
-            this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlLanguage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -709,6 +896,9 @@
             this.pnlDebitInfo.ResumeLayout(false);
             this.pnlActivation.ResumeLayout(false);
             this.pnlActivation.PerformLayout();
+            this.pnlDebitClientCode.ResumeLayout(false);
+            this.pnlDebitClientCode.PerformLayout();
+            this.pnlInvalidNumber.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -794,6 +984,28 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtActivationCode;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel pnlDebitClientCode;
+        private System.Windows.Forms.Button btnDebitClientCode9;
+        private System.Windows.Forms.Button btnDebitClientCode8;
+        private System.Windows.Forms.Button btnDebitClientCode7;
+        private System.Windows.Forms.Button btnDebitClientCode6;
+        private System.Windows.Forms.Button btnDebitClientCode5;
+        private System.Windows.Forms.Button btnDebitClientCode4;
+        private System.Windows.Forms.Button btnDebitClientCode3;
+        private System.Windows.Forms.Button btnDebitClientCode2;
+        private System.Windows.Forms.Button btnDebitClientCode1;
+        private System.Windows.Forms.Button btnDebitClientCodeClear;
+        private System.Windows.Forms.Button btnDebitClientCode0;
+        private System.Windows.Forms.Button btnDebitClientCodeBackspace;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtDebitClientCodePassport;
+        private System.Windows.Forms.TextBox txtDebitClientCode;
+        private System.Windows.Forms.Button btnDebitClientCodePrev;
+        private System.Windows.Forms.Button btnDebitClientCodeNext;
+        private System.Windows.Forms.Panel pnlInvalidNumber;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button13;
     }
 }
 
