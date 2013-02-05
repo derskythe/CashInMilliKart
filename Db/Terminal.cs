@@ -223,10 +223,10 @@ namespace Db
 
             terminalId.Value = info.TerminalId;
             currencies.Value = info.Currencies;
-            amounts.Value = info.Amounts;
+            //amounts.Value = info.Amounts;
 
             currencies.Size = info.Currencies.Length;
-            amounts.Size = info.Amounts.Length;
+            //amounts.Size = info.Amounts.Length;
 
             cmd.Parameters.Add(terminalId);
             cmd.Parameters.Add(currencies);

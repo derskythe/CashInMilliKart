@@ -58,6 +58,7 @@
     <Compile Include="CCNETDevice.cs" />
     <Compile Include="CcnetDeviceState.cs" />
     <Compile Include="CCNETPortSpeed.cs" />
+    <Compile Include="ClientInfo.cs" />
     <Compile Include="Controls\MenuButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -71,11 +72,108 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FormActivation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormActivation.Designer.cs">
+      <DependentUpon>FormActivation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditClientCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditClientCode.Designer.cs">
+      <DependentUpon>FormCreditClientCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditClientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditClientInfo.Designer.cs">
+      <DependentUpon>FormCreditClientInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditSelectAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditSelectAccount.Designer.cs">
+      <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDebitClientCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebitClientCode.Designer.cs">
+      <DependentUpon>FormDebitClientCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDebitClientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebitClientInfo.Designer.cs">
+      <DependentUpon>FormDebitClientInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEncashment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEncashment.Designer.cs">
+      <DependentUpon>FormEncashment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEnum.cs" />
+    <Compile Include="FormInvalidNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvalidNumber.Designer.cs">
+      <DependentUpon>FormInvalidNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLanguage.Designer.cs">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMdiChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMdiChild.Designer.cs">
+      <DependentUpon>FormMdiChild.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMdiMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMdiMain.Designer.cs">
+      <DependentUpon>FormMdiMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMoneyInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMoneyInput.Designer.cs">
+      <DependentUpon>FormMoneyInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutOfOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOutOfOrder.Designer.cs">
+      <DependentUpon>FormOutOfOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPaySuccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPaySuccess.Designer.cs">
+      <DependentUpon>FormPaySuccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProducts.Designer.cs">
+      <DependentUpon>FormProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTestMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTestMode.Designer.cs">
+      <DependentUpon>FormTestMode.cs</DependentUpon>
     </Compile>
     <Compile Include="LocalDb.cs" />
     <Compile Include="Program.cs" />
@@ -90,8 +188,56 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="FormActivation.resx">
+      <DependentUpon>FormActivation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditClientCode.resx">
+      <DependentUpon>FormCreditClientCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditClientInfo.resx">
+      <DependentUpon>FormCreditClientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditSelectAccount.resx">
+      <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitClientCode.resx">
+      <DependentUpon>FormDebitClientCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitClientInfo.resx">
+      <DependentUpon>FormDebitClientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEncashment.resx">
+      <DependentUpon>FormEncashment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvalidNumber.resx">
+      <DependentUpon>FormInvalidNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLanguage.resx">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMdiChild.resx">
+      <DependentUpon>FormMdiChild.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMdiMain.resx">
+      <DependentUpon>FormMdiMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMoneyInput.resx">
+      <DependentUpon>FormMoneyInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutOfOrder.resx">
+      <DependentUpon>FormOutOfOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaySuccess.resx">
+      <DependentUpon>FormPaySuccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProducts.resx">
+      <DependentUpon>FormProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTestMode.resx">
+      <DependentUpon>FormTestMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

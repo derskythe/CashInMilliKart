@@ -128,8 +128,9 @@
             this.btnDebitClientCodePrev = new System.Windows.Forms.Button();
             this.btnDebitClientCodeNext = new System.Windows.Forms.Button();
             this.pnlInvalidNumber = new System.Windows.Forms.Panel();
-            this.button13 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pnlLanguage.SuspendLayout();
             this.pnlProducts.SuspendLayout();
             this.pnlClientCode.SuspendLayout();
@@ -845,16 +846,21 @@
             resources.ApplyResources(this.pnlInvalidNumber, "pnlInvalidNumber");
             this.pnlInvalidNumber.Name = "pnlInvalidNumber";
             // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // button13
             // 
             resources.ApplyResources(this.button13, "button13");
             this.button13.Name = "button13";
             this.button13.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // menuStrip1
             // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
             // 
             // FormMain
             // 
@@ -874,7 +880,9 @@
             this.Controls.Add(this.pnlOutOfOrder);
             this.Controls.Add(this.pnlTestMode);
             this.Controls.Add(this.pnlLanguage);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMain";
@@ -900,6 +908,7 @@
             this.pnlDebitClientCode.PerformLayout();
             this.pnlInvalidNumber.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1006,6 +1015,7 @@
         private System.Windows.Forms.Panel pnlInvalidNumber;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
 

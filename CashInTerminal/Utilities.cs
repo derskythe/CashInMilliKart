@@ -96,7 +96,7 @@ namespace CashInTerminal
             }
 
             return ((idleTime > 0) ? (idleTime / 1000) : 0);
-        }
+        }        
     }
 
     [StructLayout(LayoutKind.Sequential)]

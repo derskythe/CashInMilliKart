@@ -334,7 +334,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, -48</value>
+    <value>387, -111</value>
   </data>
   <data name="btnClientCode9.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -367,7 +367,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, -48</value>
+    <value>333, -111</value>
   </data>
   <data name="btnClientCode8.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -400,7 +400,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, -48</value>
+    <value>279, -111</value>
   </data>
   <data name="btnClientCode7.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -433,7 +433,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 4</value>
+    <value>387, -59</value>
   </data>
   <data name="btnClientCode6.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -466,7 +466,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 4</value>
+    <value>333, -59</value>
   </data>
   <data name="btnClientCode5.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -499,7 +499,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 4</value>
+    <value>279, -59</value>
   </data>
   <data name="btnClientCode4.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -532,7 +532,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 58</value>
+    <value>387, -5</value>
   </data>
   <data name="btnClientCode3.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -565,7 +565,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 58</value>
+    <value>333, -5</value>
   </data>
   <data name="btnClientCode2.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -598,7 +598,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 58</value>
+    <value>279, -5</value>
   </data>
   <data name="btnClientCode1.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -631,7 +631,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCodeClear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 110</value>
+    <value>387, 47</value>
   </data>
   <data name="btnClientCodeClear.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -664,7 +664,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCode0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 110</value>
+    <value>333, 47</value>
   </data>
   <data name="btnClientCode0.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -694,7 +694,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="btnClientCodeBackspace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 110</value>
+    <value>279, 47</value>
   </data>
   <data name="btnClientCodeBackspace.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 46</value>
@@ -730,7 +730,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-247, 53</value>
+    <value>-247, -10</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 24</value>
@@ -763,7 +763,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="lblClientCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-247, -38</value>
+    <value>-247, -101</value>
   </data>
   <data name="lblClientCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 24</value>
@@ -793,7 +793,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="txtClientCodePassport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-243, 93</value>
+    <value>-243, 30</value>
   </data>
   <data name="txtClientCodePassport.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 29</value>
@@ -820,7 +820,7 @@
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="txtClientCodeClient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-243, -3</value>
+    <value>-243, -66</value>
   </data>
   <data name="txtClientCodeClient.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 29</value>
@@ -850,7 +850,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCodeBack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 177</value>
+    <value>94, 51</value>
   </data>
   <data name="btnClientCodeBack.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -883,7 +883,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClientCodeNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-156, 177</value>
+    <value>-156, 51</value>
   </data>
   <data name="btnClientCodeNext.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 50</value>
@@ -910,7 +910,7 @@
     <value>26, 237</value>
   </data>
   <data name="pnlClientCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 226</value>
+    <value>200, 100</value>
   </data>
   <data name="pnlClientCode.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3326,6 +3326,36 @@
   </data>
   <data name="&gt;&gt;pnlInvalidNumber.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1053, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="menuStrip1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
