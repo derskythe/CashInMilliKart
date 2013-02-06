@@ -72,17 +72,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Enums\DebitPayType.cs" />
     <Compile Include="FormActivation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormActivation.Designer.cs">
       <DependentUpon>FormActivation.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreditClientCode.cs">
+    <Compile Include="FormClientCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCreditClientCode.Designer.cs">
-      <DependentUpon>FormCreditClientCode.cs</DependentUpon>
+    <Compile Include="FormClientCode.Designer.cs">
+      <DependentUpon>FormClientCode.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCreditClientInfo.cs">
       <SubType>Form</SubType>
@@ -96,11 +97,11 @@
     <Compile Include="FormCreditSelectAccount.Designer.cs">
       <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDebitClientCode.cs">
+    <Compile Include="FormDebitCardFull.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDebitClientCode.Designer.cs">
-      <DependentUpon>FormDebitClientCode.cs</DependentUpon>
+    <Compile Include="FormDebitCardFull.Designer.cs">
+      <DependentUpon>FormDebitCardFull.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDebitClientInfo.cs">
       <SubType>Form</SubType>
@@ -108,13 +109,25 @@
     <Compile Include="FormDebitClientInfo.Designer.cs">
       <DependentUpon>FormDebitClientInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDebitPayType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebitPayType.Designer.cs">
+      <DependentUpon>FormDebitPayType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDebitSelectAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDebitSelectAccount.Designer.cs">
+      <DependentUpon>FormDebitSelectAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEncashment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEncashment.Designer.cs">
       <DependentUpon>FormEncashment.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEnum.cs" />
+    <Compile Include="Enums\FormEnum.cs" />
     <Compile Include="FormInvalidNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,8 +204,8 @@
     <EmbeddedResource Include="FormActivation.resx">
       <DependentUpon>FormActivation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCreditClientCode.resx">
-      <DependentUpon>FormCreditClientCode.cs</DependentUpon>
+    <EmbeddedResource Include="FormClientCode.resx">
+      <DependentUpon>FormClientCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreditClientInfo.resx">
       <DependentUpon>FormCreditClientInfo.cs</DependentUpon>
@@ -200,11 +213,17 @@
     <EmbeddedResource Include="FormCreditSelectAccount.resx">
       <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDebitClientCode.resx">
-      <DependentUpon>FormDebitClientCode.cs</DependentUpon>
+    <EmbeddedResource Include="FormDebitCardFull.resx">
+      <DependentUpon>FormDebitCardFull.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDebitClientInfo.resx">
       <DependentUpon>FormDebitClientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitPayType.resx">
+      <DependentUpon>FormDebitPayType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitSelectAccount.resx">
+      <DependentUpon>FormDebitSelectAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEncashment.resx">
       <DependentUpon>FormEncashment.cs</DependentUpon>
