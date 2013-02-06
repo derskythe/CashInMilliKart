@@ -56,8 +56,7 @@
             this.txtActivationCode.Name = "txtActivationCode";
             this.txtActivationCode.Size = new System.Drawing.Size(389, 29);
             this.txtActivationCode.TabIndex = 42;
-            this.txtActivationCode.Click += new System.EventHandler(this.txtActivationCode_Click);
-            this.txtActivationCode.TextChanged += new System.EventHandler(this.txtActivationCode_TextChanged);
+            this.txtActivationCode.Click += new System.EventHandler(this.TxtActivationCodeClick);
             // 
             // label7
             // 
@@ -82,7 +81,7 @@
             this.btnActivation9.TabIndex = 37;
             this.btnActivation9.Text = "9";
             this.btnActivation9.UseVisualStyleBackColor = true;
-            this.btnActivation9.Click += new System.EventHandler(this.btnActivation9_Click);
+            this.btnActivation9.Click += new System.EventHandler(this.BtnActivation9Click);
             // 
             // btnActivation8
             // 
@@ -95,7 +94,7 @@
             this.btnActivation8.TabIndex = 36;
             this.btnActivation8.Text = "8";
             this.btnActivation8.UseVisualStyleBackColor = true;
-            this.btnActivation8.Click += new System.EventHandler(this.btnActivation8_Click);
+            this.btnActivation8.Click += new System.EventHandler(this.BtnActivation8Click);
             // 
             // btnActivation7
             // 
@@ -108,7 +107,7 @@
             this.btnActivation7.TabIndex = 35;
             this.btnActivation7.Text = "7";
             this.btnActivation7.UseVisualStyleBackColor = true;
-            this.btnActivation7.Click += new System.EventHandler(this.btnActivation7_Click);
+            this.btnActivation7.Click += new System.EventHandler(this.BtnActivation7Click);
             // 
             // btnActivation6
             // 
@@ -121,7 +120,7 @@
             this.btnActivation6.TabIndex = 40;
             this.btnActivation6.Text = "6";
             this.btnActivation6.UseVisualStyleBackColor = true;
-            this.btnActivation6.Click += new System.EventHandler(this.btnActivation6_Click);
+            this.btnActivation6.Click += new System.EventHandler(this.BtnActivation6Click);
             // 
             // btnActivation5
             // 
@@ -134,7 +133,7 @@
             this.btnActivation5.TabIndex = 39;
             this.btnActivation5.Text = "5";
             this.btnActivation5.UseVisualStyleBackColor = true;
-            this.btnActivation5.Click += new System.EventHandler(this.btnActivation5_Click);
+            this.btnActivation5.Click += new System.EventHandler(this.BtnActivation5Click);
             // 
             // btnActivation4
             // 
@@ -147,7 +146,7 @@
             this.btnActivation4.TabIndex = 38;
             this.btnActivation4.Text = "4";
             this.btnActivation4.UseVisualStyleBackColor = true;
-            this.btnActivation4.Click += new System.EventHandler(this.btnActivation4_Click);
+            this.btnActivation4.Click += new System.EventHandler(this.BtnActivation4Click);
             // 
             // btnActivation3
             // 
@@ -160,7 +159,7 @@
             this.btnActivation3.TabIndex = 31;
             this.btnActivation3.Text = "3";
             this.btnActivation3.UseVisualStyleBackColor = true;
-            this.btnActivation3.Click += new System.EventHandler(this.btnActivation3_Click);
+            this.btnActivation3.Click += new System.EventHandler(this.BtnActivation3Click);
             // 
             // btnActivation2
             // 
@@ -173,7 +172,7 @@
             this.btnActivation2.TabIndex = 30;
             this.btnActivation2.Text = "2";
             this.btnActivation2.UseVisualStyleBackColor = true;
-            this.btnActivation2.Click += new System.EventHandler(this.btnActivation2_Click);
+            this.btnActivation2.Click += new System.EventHandler(this.BtnActivation2Click);
             // 
             // btnActivation1
             // 
@@ -186,7 +185,7 @@
             this.btnActivation1.TabIndex = 29;
             this.btnActivation1.Text = "1";
             this.btnActivation1.UseVisualStyleBackColor = true;
-            this.btnActivation1.Click += new System.EventHandler(this.btnActivation1_Click);
+            this.btnActivation1.Click += new System.EventHandler(this.BtnActivation1Click);
             // 
             // btnActivationBackspace
             // 
@@ -199,7 +198,7 @@
             this.btnActivationBackspace.TabIndex = 34;
             this.btnActivationBackspace.Text = "C";
             this.btnActivationBackspace.UseVisualStyleBackColor = true;
-            this.btnActivationBackspace.Click += new System.EventHandler(this.btnActivationBackspace_Click);
+            this.btnActivationBackspace.Click += new System.EventHandler(this.BtnActivationBackspaceClick);
             // 
             // btnActivation0
             // 
@@ -212,7 +211,7 @@
             this.btnActivation0.TabIndex = 33;
             this.btnActivation0.Text = "0";
             this.btnActivation0.UseVisualStyleBackColor = true;
-            this.btnActivation0.Click += new System.EventHandler(this.btnActivation0_Click);
+            this.btnActivation0.Click += new System.EventHandler(this.BtnActivation0Click);
             // 
             // btnActivationClear
             // 
@@ -225,7 +224,7 @@
             this.btnActivationClear.TabIndex = 32;
             this.btnActivationClear.Text = "◄";
             this.btnActivationClear.UseVisualStyleBackColor = true;
-            this.btnActivationClear.Click += new System.EventHandler(this.btnActivationClear_Click);
+            this.btnActivationClear.Click += new System.EventHandler(this.BtnActivationClearClick);
             // 
             // btnActivation
             // 
@@ -238,7 +237,7 @@
             this.btnActivation.TabIndex = 28;
             this.btnActivation.Text = "Завершить";
             this.btnActivation.UseVisualStyleBackColor = true;
-            this.btnActivation.Click += new System.EventHandler(this.btnActivation_Click);
+            this.btnActivation.Click += new System.EventHandler(this.BtnActivationClick);
             // 
             // txtActivationTerminal
             // 
@@ -248,7 +247,8 @@
             this.txtActivationTerminal.Name = "txtActivationTerminal";
             this.txtActivationTerminal.Size = new System.Drawing.Size(389, 29);
             this.txtActivationTerminal.TabIndex = 27;
-            this.txtActivationTerminal.Click += new System.EventHandler(this.txtActivationTerminal_Click);
+            this.txtActivationTerminal.Click += new System.EventHandler(this.TxtActivationTerminalClick);
+            this.txtActivationTerminal.TextChanged += new System.EventHandler(this.TxtActivationTerminalTextChanged);
             // 
             // label6
             // 

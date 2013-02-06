@@ -651,6 +651,15 @@ namespace CashInTerminal
             }
         }
 
+        public void StartTimers()
+        {
+            var checkCurrencyTimerCaller = new FormMain.CheckCurrencyTimerCaller(CheckCurrencyTimer);
+            checkCurrencyTimerCaller.Invoke(null);
+
+            var checkProductsTimerCaller = new FormMain.CheckProductsTimerCaller(CheckProductsTimer);
+            checkProductsTimerCaller.Invoke(null);
+        }
+
         private void FormMdiMainFormClosing(object sender, FormClosingEventArgs e)
         {
             _Running = false;

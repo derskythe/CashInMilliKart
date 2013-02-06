@@ -56,6 +56,7 @@
             this.btnEncashmentFinish.TabIndex = 10;
             this.btnEncashmentFinish.Text = "Завершить";
             this.btnEncashmentFinish.UseVisualStyleBackColor = true;
+            this.btnEncashmentFinish.Click += new System.EventHandler(this.BtnEncashmentFinishClick);
             // 
             // btnEncashmentPrint
             // 
@@ -68,6 +69,7 @@
             this.btnEncashmentPrint.TabIndex = 9;
             this.btnEncashmentPrint.Text = "Печать чека";
             this.btnEncashmentPrint.UseVisualStyleBackColor = true;
+            this.btnEncashmentPrint.Click += new System.EventHandler(this.BtnEncashmentPrintClick);
             // 
             // FormEncashment
             // 
