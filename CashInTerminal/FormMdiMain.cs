@@ -103,31 +103,7 @@ namespace CashInTerminal
             get { return _Server; }
             set { _Server = value; }
         }
-
-        public long PaymentId
-        {
-            get { return _PaymentId; }
-            set { _PaymentId = value; }
-        }
-
-        public int OrderNumber
-        {
-            get { return _OrderNumber; }
-            set { _OrderNumber = value; }
-        }
-
-        public string TransactionId
-        {
-            get { return _TransactionId; }
-            set { _TransactionId = value; }
-        }
-
-        public string CurrentCurrency
-        {
-            get { return _CurrentCurrency; }
-            set { _CurrentCurrency = value; }
-        }
-
+       
         public List<Currency> Currencies
         {
             get { return _Currencies; }

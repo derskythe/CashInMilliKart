@@ -75,13 +75,13 @@
             this.btnMoneyNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoneyNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnMoneyNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMoneyNext.Location = new System.Drawing.Point(651, 428);
+            this.btnMoneyNext.Location = new System.Drawing.Point(331, 428);
             this.btnMoneyNext.Name = "btnMoneyNext";
             this.btnMoneyNext.Size = new System.Drawing.Size(260, 50);
             this.btnMoneyNext.TabIndex = 9;
-            this.btnMoneyNext.Text = "Дальше";
+            this.btnMoneyNext.Text = "Оплатить";
             this.btnMoneyNext.UseVisualStyleBackColor = true;
-            this.btnMoneyNext.Click += new System.EventHandler(this.btnMoneyNext_Click);
+            this.btnMoneyNext.Click += new System.EventHandler(this.BtnMoneyNextClick);
             // 
             // FormMoneyInput
             // 
@@ -95,6 +95,8 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormMoneyInput";
             this.Text = "FormMoneyInput";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMoneyInputFormClosing);
+            this.Load += new System.EventHandler(this.FormMoneyInputLoad);
             this.ResumeLayout(false);
 
         }

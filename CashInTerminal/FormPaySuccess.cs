@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace CashInTerminal
 {
@@ -16,9 +9,16 @@ namespace CashInTerminal
             InitializeComponent();
         }
 
-        private void btnSuccessNext_Click(object sender, EventArgs e)
+        private void BtnSuccessNextClick(object sender, EventArgs e)
         {
+            ChangeView(new FormProducts());
+        }
 
+        private void FormPaySuccessLoad(object sender, EventArgs e)
+        {
+            base.OnLoad(e);
+
+            lblSuccessTotalAmount.Text = FormMain.ClientInfo.CashCodeAmount + @" " + FormMain.ClientInfo.CurrentCurrency;
         }
     }
 }

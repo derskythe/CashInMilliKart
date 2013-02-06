@@ -55,7 +55,7 @@
             this.btbBack.TabIndex = 9;
             this.btbBack.Text = "Назад";
             this.btbBack.UseVisualStyleBackColor = true;
-            this.btbBack.Click += new System.EventHandler(this.btbBack_Click);
+            this.btbBack.Click += new System.EventHandler(this.BtbBackClick);
             // 
             // FormInvalidNumber
             // 

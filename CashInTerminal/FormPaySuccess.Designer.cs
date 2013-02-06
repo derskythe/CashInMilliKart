@@ -57,7 +57,7 @@
             this.btnSuccessNext.TabIndex = 13;
             this.btnSuccessNext.Text = "Дальше";
             this.btnSuccessNext.UseVisualStyleBackColor = true;
-            this.btnSuccessNext.Click += new System.EventHandler(this.btnSuccessNext_Click);
+            this.btnSuccessNext.Click += new System.EventHandler(this.BtnSuccessNextClick);
             // 
             // lblSuccessWelcome
             // 
@@ -95,6 +95,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormPaySuccess";
             this.Text = "FormPaySuccess";
+            this.Load += new System.EventHandler(this.FormPaySuccessLoad);
             this.ResumeLayout(false);
 
         }
