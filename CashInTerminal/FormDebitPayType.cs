@@ -33,5 +33,10 @@ namespace CashInTerminal
             FormMain.ClientInfo.DebitPayType = DebitPayType.DebitAccount;
             ChangeView(new FormClientCode());
         }
+
+        private void BtnBackClick(object sender, EventArgs e)
+        {
+            ChangeView(new FormProducts());
+        }
     }
 }

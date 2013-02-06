@@ -25,8 +25,6 @@ namespace CashInTerminal
 
         private void FormCreditSelectAccountLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
-
             var buffer = new object[5];
             var rows = new List<DataGridViewRow>();
             Random rnd = new SecureRandom();

@@ -33,16 +33,42 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.dataGridSelect = new System.Windows.Forms.DataGridView();
             this.tdAccountNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tdType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tdDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tdAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tdCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelect)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBack.Location = new System.Drawing.Point(12, 537);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(260, 50);
+            this.btnBack.TabIndex = 12;
+            this.btnBack.Text = "Назад";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.BtnBackClick);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNext.Location = new System.Drawing.Point(868, 537);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(260, 50);
+            this.btnNext.TabIndex = 11;
+            this.btnNext.Text = "Дальше";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.BtnNextClick);
             // 
             // dataGridSelect
             // 
@@ -50,18 +76,21 @@
             this.dataGridSelect.AllowUserToDeleteRows = false;
             this.dataGridSelect.AllowUserToResizeColumns = false;
             this.dataGridSelect.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dataGridSelect.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridSelect.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridSelect.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridSelect.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -81,7 +110,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridSelect.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridSelect.Location = new System.Drawing.Point(9, 7);
+            this.dataGridSelect.Location = new System.Drawing.Point(9, 63);
             this.dataGridSelect.MultiSelect = false;
             this.dataGridSelect.Name = "dataGridSelect";
             this.dataGridSelect.ReadOnly = true;
@@ -98,7 +127,7 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dataGridSelect.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridSelect.Size = new System.Drawing.Size(991, 460);
+            this.dataGridSelect.Size = new System.Drawing.Size(1123, 416);
             this.dataGridSelect.TabIndex = 0;
             this.dataGridSelect.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSelectCellClick);
             // 
@@ -132,37 +161,11 @@
             this.tdCurrency.Name = "tdCurrency";
             this.tdCurrency.ReadOnly = true;
             // 
-            // btnBack
-            // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBack.Location = new System.Drawing.Point(12, 485);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(260, 50);
-            this.btnBack.TabIndex = 12;
-            this.btnBack.Text = "Назад";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.BtnBackClick);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.btnNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNext.Location = new System.Drawing.Point(736, 485);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(260, 50);
-            this.btnNext.TabIndex = 11;
-            this.btnNext.Text = "Дальше";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.BtnNextClick);
-            // 
             // FormCreditSelectAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 547);
+            this.ClientSize = new System.Drawing.Size(1140, 599);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.dataGridSelect);

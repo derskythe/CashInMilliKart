@@ -32,7 +32,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_PRODUCTS_TO_TERMINALSTableAdapter {Connection = _OraCon, BindByName = true};
+            var adapter = new V_PRODUCTS_TO_TERMINALSTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_PRODUCTS_TO_TERMINALSDataTable();
             adapter.Fill(table);
 
@@ -86,7 +86,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_TERMINAL_SET_STATUSTableAdapter {Connection = _OraCon, BindByName = true};
+            var adapter = new V_LIST_TERMINAL_SET_STATUSTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
             adapter.FillByTerminalId(table, terminalId);
 
@@ -222,11 +222,19 @@ namespace Db
             amounts.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
 
             terminalId.Value = info.TerminalId;
-            currencies.Value = info.Currencies;
-            //amounts.Value = info.Amounts;
+            var amount = new List<int>();
+            var currencyList = new List<string>();
 
-            currencies.Size = info.Currencies.Length;
-            //amounts.Size = info.Amounts.Length;
+            foreach (var currency in info.Currencies)
+            {
+                amount.Add(currency.Amount);
+                currencyList.Add(currency.Currency);
+            }
+            currencies.Value = currencyList.ToArray();
+            amounts.Value = amount.ToArray();
+
+            currencies.Size = currencyList.Count;
+            amounts.Size = amount.Count;
 
             cmd.Parameters.Add(terminalId);
             cmd.Parameters.Add(currencies);

@@ -16,7 +16,7 @@ namespace CashInTerminal
 
         private void FormPaySuccessLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
+            //base.OnLoad(e);
 
             lblSuccessTotalAmount.Text = FormMain.ClientInfo.CashCodeAmount + @" " + FormMain.ClientInfo.CurrentCurrency;
         }

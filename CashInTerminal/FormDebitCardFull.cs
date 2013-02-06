@@ -87,7 +87,7 @@ namespace CashInTerminal
             {
                 FormMain.ClientInfo.AccountNumber = "12345";
                 FormMain.ClientInfo.Passport = "12345";
-                ChangeView(new FormDebitClientInfo());
+                ChangeView(new FormDebitSelectAccount());
             }
         }
 

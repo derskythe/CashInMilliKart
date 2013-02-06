@@ -53,10 +53,9 @@
             this.Name = "FormMdiMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMdiMain";
-            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMdiMainFormClosing);
-            this.Load += new System.EventHandler(this.FormMdiMain_Load);
+            this.Load += new System.EventHandler(this.FormMdiMainLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

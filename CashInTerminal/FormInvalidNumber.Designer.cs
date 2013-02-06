@@ -46,7 +46,7 @@
             // 
             // btbBack
             // 
-            this.btbBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btbBack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btbBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btbBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btbBack.Location = new System.Drawing.Point(331, 428);

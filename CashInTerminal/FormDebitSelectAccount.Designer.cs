@@ -48,7 +48,7 @@
             this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBack.Location = new System.Drawing.Point(12, 534);
+            this.btnBack.Location = new System.Drawing.Point(12, 471);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(260, 50);
             this.btnBack.TabIndex = 15;
@@ -61,7 +61,7 @@
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNext.Location = new System.Drawing.Point(772, 534);
+            this.btnNext.Location = new System.Drawing.Point(805, 471);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(260, 50);
             this.btnNext.TabIndex = 14;
@@ -75,12 +75,15 @@
             this.dataGridSelect.AllowUserToDeleteRows = false;
             this.dataGridSelect.AllowUserToResizeColumns = false;
             this.dataGridSelect.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Navy;
             this.dataGridSelect.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridSelect.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridSelect.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridSelect.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -101,11 +104,12 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridSelect.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridSelect.Location = new System.Drawing.Point(12, 12);
+            this.dataGridSelect.Location = new System.Drawing.Point(12, 44);
             this.dataGridSelect.MultiSelect = false;
             this.dataGridSelect.Name = "dataGridSelect";
             this.dataGridSelect.ReadOnly = true;
@@ -122,15 +126,17 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dataGridSelect.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridSelect.Size = new System.Drawing.Size(1020, 447);
+            this.dataGridSelect.Size = new System.Drawing.Size(1053, 376);
             this.dataGridSelect.TabIndex = 13;
             this.dataGridSelect.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSelectCellClick);
             // 
             // tdAccountNumber
             // 
+            this.tdAccountNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.tdAccountNumber.HeaderText = "Номер счета";
             this.tdAccountNumber.Name = "tdAccountNumber";
             this.tdAccountNumber.ReadOnly = true;
+            this.tdAccountNumber.Width = 175;
             // 
             // tdType
             // 
@@ -154,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 596);
+            this.ClientSize = new System.Drawing.Size(1077, 533);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.dataGridSelect);

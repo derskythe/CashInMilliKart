@@ -72,7 +72,7 @@
             // 
             // btnMoneyNext
             // 
-            this.btnMoneyNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoneyNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnMoneyNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnMoneyNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnMoneyNext.Location = new System.Drawing.Point(331, 428);

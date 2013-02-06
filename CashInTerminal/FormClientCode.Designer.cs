@@ -300,7 +300,6 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormCreditClientCode";
             this.Text = "FormCreditClientCode";
-            this.Load += new System.EventHandler(this.FormCreditClientCode_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

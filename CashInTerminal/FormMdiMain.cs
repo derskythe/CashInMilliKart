@@ -29,14 +29,14 @@ namespace CashInTerminal
         private Terminal _TerminalInfo;
         private LocalDb _Db;
         private bool _Running = true;
-        private delegate void PanelShowDelegate(object item);
-        private delegate void PanelHideDelegate(object item);
-
-        private delegate void SetStackedAmountDelegate(object item);
-
-        private delegate void EnableMoneyNextButtonDelegate(object item);
 
         private ClientInfo _ClientInfo = new ClientInfo();
+
+        private delegate void CloseFormDelegate(object item);
+
+        private delegate void OpenFormDelegate(object item);
+
+        private delegate void SetFormParentDelegate(object item);
 
         public AsymmetricCipherKeyPair LocalKeys
         {
@@ -103,7 +103,7 @@ namespace CashInTerminal
             get { return _Server; }
             set { _Server = value; }
         }
-       
+
         public List<Currency> Currencies
         {
             get { return _Currencies; }
@@ -119,10 +119,6 @@ namespace CashInTerminal
         //private TextBox _PanelActivationFocus;
         //private TextBox _PanelDebitInfoActivationFocus;
         //private TextBox _PanelClientCodeFocus;
-        private long _PaymentId;
-        private int _OrderNumber;
-        private string _TransactionId;
-        private String _CurrentCurrency;
         private Form _CurrentForm;
 
         #region Threads
@@ -154,7 +150,7 @@ namespace CashInTerminal
             Log.Info("Started");
         }
 
-        private void FormMdiMain_Load(object sender, EventArgs e)
+        private void FormMdiMainLoad(object sender, EventArgs e)
         {
 
             OpenForm(new FormOutOfOrder());
@@ -164,7 +160,7 @@ namespace CashInTerminal
                 var client = control as MdiClient;
                 if (client != null)
                 {
-                    client.BackColor = Control.DefaultBackColor;
+                    client.BackColor = DefaultBackColor;
                     break;
                 }
             }
@@ -243,12 +239,6 @@ namespace CashInTerminal
 
             _AuthTerminal = !String.IsNullOrEmpty(Settings.Default.TerminalCode);
 
-            _PingThread = new Thread(PingThread);
-            _PingThread.Start();
-
-            _SendPaymentThread = new Thread(SendPaymentThread);
-            _SendPaymentThread.Start();
-
             if (_Init && !_AuthTerminal)
             {
                 OpenForm(new FormActivation());
@@ -257,28 +247,96 @@ namespace CashInTerminal
             {
                 OpenForm(new FormOutOfOrder());
             }
+            else
+            {
+                OpenForm(new FormLanguage());
+
+            }
+
+            _PingThread = new Thread(PingThread);
+            _PingThread.Start();
+
+            _SendPaymentThread = new Thread(SendPaymentThread);
+            _SendPaymentThread.Start();
 
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
         }
 
-        public void OpenForm(Form f)
+        private void CloseForm(object form)
         {
-            if (_CurrentForm != null)
+            if (_CurrentForm != null && _CurrentForm.InvokeRequired)
             {
-                _CurrentForm.Close();
+                _CurrentForm.Invoke(new CloseFormDelegate(CloseForm), form);
+            }
+            else
+            {
+                if (_CurrentForm != null)
+                {
+                    _CurrentForm.Close();
+                }
+
+                _CurrentForm = (Form)form;
+            }
+        }
+
+        private void OpenFormI(object form)
+        {
+            var f = (Form)form;
+            if (f == null)
+            {
+                return;
+            }
+            if (f.InvokeRequired)
+            {
+                f.Invoke(new OpenFormDelegate(OpenFormI), f);
+            }
+            else
+            {
+                SetFormParent(f);
+                f.Show();
+                f.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void SetFormParent(object form)
+        {
+            var f = (Form) form;
+            if (f == null)
+            {
+                return;
             }
 
-            _CurrentForm = f;
-            f.MdiParent = this;
-            f.Show();
-            f.WindowState = FormWindowState.Maximized;
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new SetFormParentDelegate(SetFormParent), f);
+            }
+            else
+            {
+                f.MdiParent = this;
+            }
+        }
+
+        public void OpenForm(Form f)
+        {
+            CloseForm(f);
+            OpenFormI(f);
+
+            //if (_CurrentForm != null)
+            //{
+            //    _CurrentForm.Close();
+            //}
+
+            //_CurrentForm = f;
+            //f.MdiParent = this;
+            //f.Show();
+            //f.WindowState = FormWindowState.Maximized;
         }
 
         public void MinimizeAllChildren()
         {
-            foreach (Form f in this.MdiChildren)
+            foreach (Form f in MdiChildren)
             {
                 f.WindowState = FormWindowState.Minimized;
             }
@@ -286,17 +344,28 @@ namespace CashInTerminal
 
         private void CheckInactivityTimer(object param)
         {
-            if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Language && _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment)
+            try
             {
-                _LastActivity = Utilities.GetLastInputTime();
-                if (_LastActivity > MAX_INACTIVITY_PERIOD)
+                if (_CurrentForm != null)
                 {
-                    OpenForm(new FormLanguage());
+                    if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Language &&
+                        _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment)
+                    {
+                        _LastActivity = Utilities.GetLastInputTime();
+                        if (_LastActivity > MAX_INACTIVITY_PERIOD) 
+                        {
+                            OpenForm(new FormLanguage());
+                        }
+                    }
+                    else
+                    {
+                        _LastActivity = 0;
+                    }
                 }
             }
-            else
+            catch (Exception exp)
             {
-                _LastActivity = 0;
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -511,22 +580,21 @@ namespace CashInTerminal
 
                 var request = new Encashment();
 
-                var amountList = new List<int>();
-                var curList = new List<string>();
+                var currList = new List<EncashmentCurrency>();
                 foreach (var currency in _Currencies)
                 {
                     var total = _Db.GetCasseteTotal(currency.Name);
 
-                    amountList.Add(total);
-                    curList.Add(currency.Name);
+                    var item = new EncashmentCurrency { Amount = total, Currency = currency.Name };
+                    currList.Add(item);
                 }
 
                 var now = DateTime.Now;
                 request.SystemTime = now;
                 request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
                 request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
-                request.Amounts = amountList.ToArray();
-                request.Currencies = curList.ToArray();
+
+                request.Currencies = currList.ToArray();
 
                 var result = _Server.Encashment(request);
 

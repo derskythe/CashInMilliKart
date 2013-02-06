@@ -48,10 +48,10 @@
             // 
             // btnSuccessNext
             // 
-            this.btnSuccessNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSuccessNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSuccessNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnSuccessNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSuccessNext.Location = new System.Drawing.Point(651, 428);
+            this.btnSuccessNext.Location = new System.Drawing.Point(331, 428);
             this.btnSuccessNext.Name = "btnSuccessNext";
             this.btnSuccessNext.Size = new System.Drawing.Size(260, 50);
             this.btnSuccessNext.TabIndex = 13;

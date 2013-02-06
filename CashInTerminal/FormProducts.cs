@@ -18,7 +18,7 @@ namespace CashInTerminal
         private void BtnPayDebitClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.ProductCode = 2;
-            ChangeView(new FormDebitCardFull());
+            ChangeView(new FormDebitPayType());
         }        
     }
 }

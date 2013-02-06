@@ -257,22 +257,21 @@ namespace CashInTerminal
 
                 var request = new Encashment();
 
-                var amountList = new List<int>();
-                var curList = new List<string>();
+                var currList = new List<EncashmentCurrency>();
                 foreach (var currency in _Currencies)
                 {
                     var total = _Db.GetCasseteTotal(currency.Name);
 
-                    amountList.Add(total);
-                    curList.Add(currency.Name);
+                    var item = new EncashmentCurrency {Amount = total, Currency = currency.Name};
+                    currList.Add(item);
                 }
 
                 var now = DateTime.Now;
                 request.SystemTime = now;
                 request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
                 request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
-                request.Amounts = amountList.ToArray();
-                request.Currencies = curList.ToArray();
+
+                request.Currencies = currList.ToArray();
 
                 var result = _Server.Encashment(request);
 

@@ -29,7 +29,7 @@ namespace CashInTerminal
 
         private void FormDebitClientInfoLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
+            //base.OnLoad(e);
 
             lblDebitInfoFullname.Text = @"TestFirstName TestLastName TestMiddleName";
             lblDebitInfoAccount.Text = FormMain.ClientInfo.AccountNumber;

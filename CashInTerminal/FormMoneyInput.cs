@@ -45,7 +45,7 @@ namespace CashInTerminal
 
         private void FormMoneyInputLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
+            //base.OnLoad(e);
 
             lblMoneyCurrency.Text = FormMain.ClientInfo.CurrentCurrency;
             lblMoneyTotal.Text = @"0";

@@ -21,7 +21,7 @@ namespace CashInTerminal
 
         private void FormCreditClientInfoLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
+            //base.OnLoad(e);
 
             lblCreditInfoFullname.Text = "TestFirstName TestLastName TestMiddleName";
             lblCreditInfoAccountNumber.Text = FormMain.ClientInfo.AccountNumber;

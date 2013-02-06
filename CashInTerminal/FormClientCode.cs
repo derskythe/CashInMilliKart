@@ -43,7 +43,7 @@ namespace CashInTerminal
 
         private void BtnClientCodeClearClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += String.Empty;
+            SelectedBox.Text = String.Empty;
         }
 
         private void BtnClientCode1Click(object sender, EventArgs e)
@@ -112,7 +112,18 @@ namespace CashInTerminal
                 FormMain.ClientInfo.Passport = txtClientCodePassport.Text;
                 FormMain.ClientInfo.AccountNumber = txtClientCodeClient.Text;
 
-                ChangeView(new FormCreditSelectAccount());
+                switch (FormMain.ClientInfo.ProductCode)
+                {
+                    case 1:
+                        ChangeView(new FormCreditSelectAccount());
+
+                        break;
+
+                    case 2:
+                        ChangeView(new FormDebitSelectAccount());
+
+                        break;
+                }
             }
             else
             {

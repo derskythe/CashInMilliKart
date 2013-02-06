@@ -52,6 +52,8 @@
           <xs:enumeration value="InvalidTerminal" />
           <xs:enumeration value="InvalidKey" />
           <xs:enumeration value="InvalidSignature" />
+          <xs:enumeration value="InvalidUsernameOrPassword" />
+          <xs:enumeration value="InvalidSession" />
           <xs:enumeration value="UnknownError" />
           <xs:enumeration value="SystemError" />
         </xs:restriction>
@@ -287,12 +289,24 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:StandardRequest">
         <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="InsertDate" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="UserId" type="xs:int" />
-          <xs:element minOccurs="0" maxOccurs="1" name="Currencies" type="tns:ArrayOfString" />
-          <xs:element minOccurs="0" maxOccurs="1" name="Amounts" type="tns:ArrayOfInt" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Currencies" type="tns:ArrayOfEncashmentCurrency" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfEncashmentCurrency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EncashmentCurrency" nillable="true" type="tns:EncashmentCurrency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EncashmentCurrency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:int" />
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="EncashmentResponse">
     <xs:complexType>

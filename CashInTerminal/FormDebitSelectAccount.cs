@@ -22,18 +22,18 @@ namespace CashInTerminal
             }
             else
             {
-                ChangeView(new FormDebitClientInfo());
+                ChangeView(new FormClientCode());
             }
         }
 
         private void BtnNextClick(object sender, EventArgs e)
         {
-            ChangeView(new FormMoneyInput());
+            ChangeView(new FormDebitClientInfo());
         }
 
         private void FormDebitSelectAccountLoad(object sender, EventArgs e)
         {
-            base.OnLoad(e);
+            //base.OnLoad(e);
 
             var buffer = new object[4];
             var rows = new List<DataGridViewRow>();

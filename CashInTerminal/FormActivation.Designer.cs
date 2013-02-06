@@ -248,7 +248,6 @@
             this.txtActivationTerminal.Size = new System.Drawing.Size(389, 29);
             this.txtActivationTerminal.TabIndex = 27;
             this.txtActivationTerminal.Click += new System.EventHandler(this.TxtActivationTerminalClick);
-            this.txtActivationTerminal.TextChanged += new System.EventHandler(this.TxtActivationTerminalTextChanged);
             // 
             // label6
             // 

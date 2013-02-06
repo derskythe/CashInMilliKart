@@ -491,6 +491,52 @@ namespace CashInTerminal.CashIn {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class EncashmentCurrency : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string currencyField;
+        
+        private int amountField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Currency {
+            get {
+                return this.currencyField;
+            }
+            set {
+                this.currencyField = value;
+                this.RaisePropertyChanged("Currency");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+                this.RaisePropertyChanged("Amount");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CurrenciesResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingResult))]
@@ -558,10 +604,16 @@ namespace CashInTerminal.CashIn {
         InvalidSignature = 32,
         
         /// <remarks/>
-        UnknownError = 64,
+        InvalidUsernameOrPassword = 64,
         
         /// <remarks/>
-        SystemError = 128,
+        InvalidSession = 128,
+        
+        /// <remarks/>
+        UnknownError = 256,
+        
+        /// <remarks/>
+        SystemError = 512,
     }
     
     /// <remarks/>
@@ -687,14 +739,40 @@ namespace CashInTerminal.CashIn {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
     public partial class Encashment : StandardRequest {
         
+        private int idField;
+        
+        private System.DateTime insertDateField;
+        
         private int userIdField;
         
-        private string[] currenciesField;
-        
-        private int[] amountsField;
+        private EncashmentCurrency[] currenciesField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public System.DateTime InsertDate {
+            get {
+                return this.insertDateField;
+            }
+            set {
+                this.insertDateField = value;
+                this.RaisePropertyChanged("InsertDate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public int UserId {
             get {
                 return this.userIdField;
@@ -706,26 +784,14 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        public string[] Currencies {
+        [System.Xml.Serialization.XmlArrayAttribute(Order=3)]
+        public EncashmentCurrency[] Currencies {
             get {
                 return this.currenciesField;
             }
             set {
                 this.currenciesField = value;
                 this.RaisePropertyChanged("Currencies");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=2)]
-        public int[] Amounts {
-            get {
-                return this.amountsField;
-            }
-            set {
-                this.amountsField = value;
-                this.RaisePropertyChanged("Amounts");
             }
         }
     }
