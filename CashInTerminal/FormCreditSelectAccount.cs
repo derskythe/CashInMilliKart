@@ -15,7 +15,7 @@ namespace CashInTerminal
 
         private void BtnBackClick(object sender, EventArgs e)
         {
-            ChangeView(new FormCreditClientCode());
+            ChangeView(new FormClientCode());
         }
 
         private void BtnNextClick(object sender, EventArgs e)

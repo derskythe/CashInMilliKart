@@ -34,6 +34,7 @@
             this.lblDebitInfoFullname = new System.Windows.Forms.Label();
             this.btnDebitInfoBack = new System.Windows.Forms.Button();
             this.btnDebitInfoNext = new System.Windows.Forms.Button();
+            this.lblCurrency = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDebitInfoDate
@@ -41,7 +42,7 @@
             this.lblDebitInfoDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDebitInfoDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoDate.Location = new System.Drawing.Point(105, 219);
+            this.lblDebitInfoDate.Location = new System.Drawing.Point(105, 206);
             this.lblDebitInfoDate.Name = "lblDebitInfoDate";
             this.lblDebitInfoDate.Size = new System.Drawing.Size(713, 24);
             this.lblDebitInfoDate.TabIndex = 13;
@@ -53,7 +54,7 @@
             this.lblDebitInfoPassport.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDebitInfoPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoPassport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoPassport.Location = new System.Drawing.Point(105, 178);
+            this.lblDebitInfoPassport.Location = new System.Drawing.Point(105, 169);
             this.lblDebitInfoPassport.Name = "lblDebitInfoPassport";
             this.lblDebitInfoPassport.Size = new System.Drawing.Size(713, 24);
             this.lblDebitInfoPassport.TabIndex = 11;
@@ -65,7 +66,7 @@
             this.lblDebitInfoAccount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDebitInfoAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoAccount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoAccount.Location = new System.Drawing.Point(105, 137);
+            this.lblDebitInfoAccount.Location = new System.Drawing.Point(105, 132);
             this.lblDebitInfoAccount.Name = "lblDebitInfoAccount";
             this.lblDebitInfoAccount.Size = new System.Drawing.Size(713, 24);
             this.lblDebitInfoAccount.TabIndex = 12;
@@ -95,7 +96,7 @@
             this.btnDebitInfoBack.TabIndex = 9;
             this.btnDebitInfoBack.Text = "Назад";
             this.btnDebitInfoBack.UseVisualStyleBackColor = true;
-            this.btnDebitInfoBack.Click += new System.EventHandler(this.btnDebitInfoBack_Click);
+            this.btnDebitInfoBack.Click += new System.EventHandler(this.BtnDebitInfoBackClick);
             // 
             // btnDebitInfoNext
             // 
@@ -108,13 +109,26 @@
             this.btnDebitInfoNext.TabIndex = 8;
             this.btnDebitInfoNext.Text = "Дальше";
             this.btnDebitInfoNext.UseVisualStyleBackColor = true;
-            this.btnDebitInfoNext.Click += new System.EventHandler(this.btnDebitInfoNext_Click);
+            this.btnDebitInfoNext.Click += new System.EventHandler(this.BtnDebitInfoNextClick);
+            // 
+            // lblCurrency
+            // 
+            this.lblCurrency.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrency.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.lblCurrency.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblCurrency.Location = new System.Drawing.Point(105, 243);
+            this.lblCurrency.Name = "lblCurrency";
+            this.lblCurrency.Size = new System.Drawing.Size(713, 24);
+            this.lblCurrency.TabIndex = 14;
+            this.lblCurrency.Text = ".";
+            this.lblCurrency.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormDebitClientInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 490);
+            this.Controls.Add(this.lblCurrency);
             this.Controls.Add(this.lblDebitInfoDate);
             this.Controls.Add(this.lblDebitInfoPassport);
             this.Controls.Add(this.lblDebitInfoAccount);
@@ -124,6 +138,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormDebitClientInfo";
             this.Text = "FormDebitClientInfo";
+            this.Load += new System.EventHandler(this.FormDebitClientInfoLoad);
             this.ResumeLayout(false);
 
         }
@@ -136,6 +151,7 @@
         private System.Windows.Forms.Label lblDebitInfoFullname;
         private System.Windows.Forms.Button btnDebitInfoBack;
         private System.Windows.Forms.Button btnDebitInfoNext;
+        private System.Windows.Forms.Label lblCurrency;
 
     }
 }
