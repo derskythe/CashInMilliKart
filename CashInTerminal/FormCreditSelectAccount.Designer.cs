@@ -111,7 +111,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridSelect.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridSelect.Location = new System.Drawing.Point(9, 63);
+            this.dataGridSelect.Location = new System.Drawing.Point(9, 42);
             this.dataGridSelect.MultiSelect = false;
             this.dataGridSelect.Name = "dataGridSelect";
             this.dataGridSelect.ReadOnly = true;
@@ -128,7 +128,7 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dataGridSelect.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridSelect.Size = new System.Drawing.Size(1123, 416);
+            this.dataGridSelect.Size = new System.Drawing.Size(1123, 437);
             this.dataGridSelect.TabIndex = 0;
             this.dataGridSelect.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSelectCellClick);
             // 

@@ -35,7 +35,7 @@ namespace CashInTerminal
             var rows = new List<DataGridViewRow>();
             Random rnd = new SecureRandom();
 
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 5; i++)
             {
                 buffer[0] = rnd.Next().ToString(CultureInfo.InvariantCulture);
                 buffer[1] = "Потребительский";
