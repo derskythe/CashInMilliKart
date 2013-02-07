@@ -11,7 +11,7 @@ namespace CashInTerminal
 
         private void BtnSuccessNextClick(object sender, EventArgs e)
         {
-            ChangeView(new FormProducts());
+            ChangeView(typeof( FormProducts));
         }
 
         private void FormPaySuccessLoad(object sender, EventArgs e)

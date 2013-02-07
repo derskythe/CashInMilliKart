@@ -9,19 +9,19 @@ namespace CashInTerminal
             InitializeComponent();
         }
 
-        private void btnAzeri_Click(object sender, EventArgs e)
+        private void BtnAzeriClick(object sender, EventArgs e)
         {
-            ChangeView(new FormProducts());
+            ChangeView(typeof(FormProducts));
         }
 
-        private void btnRussian_Click(object sender, EventArgs e)
+        private void BtnRussianClick(object sender, EventArgs e)
         {
-            ChangeView(new FormProducts());
+            ChangeView(typeof(FormProducts));
         }
 
-        private void btnEnglish_Click(object sender, EventArgs e)
+        private void BtnEnglishClick(object sender, EventArgs e)
         {
-            ChangeView(new FormProducts());
+            ChangeView(typeof(FormProducts));
         }
     }
 }

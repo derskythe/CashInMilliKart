@@ -32,6 +32,7 @@
             this.lblMoneyTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnMoneyNext = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMoneyCurrency
@@ -72,16 +73,29 @@
             // 
             // btnMoneyNext
             // 
-            this.btnMoneyNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnMoneyNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoneyNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnMoneyNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMoneyNext.Location = new System.Drawing.Point(331, 428);
+            this.btnMoneyNext.Location = new System.Drawing.Point(651, 428);
             this.btnMoneyNext.Name = "btnMoneyNext";
             this.btnMoneyNext.Size = new System.Drawing.Size(260, 50);
             this.btnMoneyNext.TabIndex = 9;
             this.btnMoneyNext.Text = "Оплатить";
             this.btnMoneyNext.UseVisualStyleBackColor = true;
             this.btnMoneyNext.Click += new System.EventHandler(this.BtnMoneyNextClick);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBack.Location = new System.Drawing.Point(12, 428);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(260, 50);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "Назад";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.BtnBackClick);
             // 
             // FormMoneyInput
             // 
@@ -91,6 +105,7 @@
             this.Controls.Add(this.lblMoneyCurrency);
             this.Controls.Add(this.lblMoneyTotal);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnMoneyNext);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormMoneyInput";
@@ -107,6 +122,7 @@
         private System.Windows.Forms.Label lblMoneyTotal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnMoneyNext;
+        private System.Windows.Forms.Button btnBack;
 
     }
 }

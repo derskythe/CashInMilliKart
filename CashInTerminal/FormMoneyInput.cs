@@ -9,6 +9,8 @@ namespace CashInTerminal
         private delegate void SetStackedAmountDelegate(object item);
         private delegate void EnableMoneyNextButtonDelegate(object item);
 
+        private delegate void DisableBackButtonDelegate();
+
         public FormMoneyInput()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace CashInTerminal
             //PrintCheck();
 
             btnMoneyNext.Enabled = true;
-            ChangeView(new FormPaySuccess());
+            ChangeView(typeof(FormPaySuccess));
         }
 
         private void FormMoneyInputLoad(object sender, EventArgs e)
@@ -65,12 +67,18 @@ namespace CashInTerminal
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
         {
             Log.Info(String.Format("Stacked {0} {1}", ccnetDeviceState.Nominal, ccnetDeviceState.Currency));
-            EnableMoneyNextButton(null);
-            SetStackedAmount(ccnetDeviceState.Amount);
-            FormMain.ClientInfo.CashCodeAmount += ccnetDeviceState.Amount;
 
             try
             {
+                DisableBackButton();
+                EnableMoneyNextButton(null);
+
+                SetStackedAmount(ccnetDeviceState.Amount);
+                lock (FormMain.ClientInfo)
+                {
+                    FormMain.ClientInfo.CashCodeAmount = ccnetDeviceState.Amount;
+                }
+
                 FormMain.Db.InsertBanknote(FormMain.ClientInfo.PaymentId, ccnetDeviceState.Nominal,
                                            ccnetDeviceState.Currency, FormMain.ClientInfo.OrderNumber++);
                 FormMain.Db.InsertTransactionBanknotes(ccnetDeviceState.Nominal, ccnetDeviceState.Currency,
@@ -91,9 +99,11 @@ namespace CashInTerminal
         private void StartCashcode()
         {
             btnMoneyNext.Enabled = false;
-            SetStackedAmount("0");
+
             try
             {
+                SetStackedAmount("0");
+
                 FormMain.ClientInfo.OrderNumber = 0;
                 FormMain.ClientInfo.PaymentId = FormMain.Db.InsertTransaction(FormMain.ClientInfo.ProductCode, FormMain.ClientInfo.CurrentCurrency, 1, 0,
                                                    Convert.ToInt32(Settings.Default.TerminalCode), false);
@@ -142,6 +152,34 @@ namespace CashInTerminal
             else
             {
                 btnMoneyNext.Enabled = true;
+            }
+        }
+
+        private void DisableBackButton()
+        {
+            if (btnBack.InvokeRequired)
+            {
+                btnBack.Invoke(new DisableBackButtonDelegate(DisableBackButton));
+            }
+            else
+            {
+                btnBack.Enabled = false;
+            }
+        }
+
+        private void BtnBackClick(object sender, EventArgs e)
+        {
+            StopCashcode();
+
+            switch (FormMain.ClientInfo.ProductCode)
+            {
+                case 1:
+                    ChangeView(typeof(FormCreditClientInfo));
+                    break;
+
+                case 2:
+                    ChangeView(typeof(FormDebitClientInfo));
+                    break;
             }
         }
     }

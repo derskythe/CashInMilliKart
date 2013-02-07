@@ -126,7 +126,7 @@ namespace CashInTerminal
                         Log.ErrorException(exp.Message, exp);
                     }
 
-                    ChangeView(new FormProducts());
+                    ChangeView(typeof( FormProducts));
 
                     return;
                 }

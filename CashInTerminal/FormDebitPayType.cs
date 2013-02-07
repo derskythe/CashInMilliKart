@@ -13,30 +13,30 @@ namespace CashInTerminal
         private void BtnByCardFullClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.DebitPayType = DebitPayType.ByCardFull;
-            ChangeView(new FormDebitCardFull());
+            ChangeView(typeof(FormDebitCardFull));
         }
 
         private void BtnByCardAccountNumberClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.DebitPayType = DebitPayType.ByCardAccount;
-            ChangeView(new FormClientCode());
+            ChangeView(typeof(FormClientCode));
         }
 
         private void BtnCurrentClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.DebitPayType = DebitPayType.Current;
-            ChangeView(new FormClientCode());
+            ChangeView(typeof(FormClientCode));
         }
 
         private void BtnDepositClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.DebitPayType = DebitPayType.DebitAccount;
-            ChangeView(new FormClientCode());
+            ChangeView(typeof(FormClientCode));
         }
 
         private void BtnBackClick(object sender, EventArgs e)
         {
-            ChangeView(new FormProducts());
+            ChangeView(typeof(FormProducts));
         }
     }
 }

@@ -11,12 +11,12 @@ namespace CashInTerminal
 
         private void BtnCreditInfoBackClick(object sender, EventArgs e)
         {
-            ChangeView(new FormCreditSelectAccount());
+            ChangeView(typeof(FormCreditSelectAccount));
         }
 
         private void BtnCreditInfoNextClick(object sender, EventArgs e)
         {
-            ChangeView(new FormMoneyInput());
+            ChangeView(typeof(FormMoneyInput));
         }
 
         private void FormCreditClientInfoLoad(object sender, EventArgs e)

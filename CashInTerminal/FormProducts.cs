@@ -12,13 +12,13 @@ namespace CashInTerminal
         private void BtnPayCreditClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.ProductCode = 1;
-            ChangeView(new FormClientCode());
+            ChangeView(typeof(FormClientCode));
         }
 
         private void BtnPayDebitClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.ProductCode = 2;
-            ChangeView(new FormDebitPayType());
-        }        
+            ChangeView(typeof(FormDebitPayType));
+        }
     }
 }

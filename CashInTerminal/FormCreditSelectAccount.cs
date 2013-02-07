@@ -15,12 +15,18 @@ namespace CashInTerminal
 
         private void BtnBackClick(object sender, EventArgs e)
         {
-            ChangeView(new FormClientCode());
+            ChangeView(typeof(FormClientCode));
         }
 
         private void BtnNextClick(object sender, EventArgs e)
         {
-            ChangeView(new FormCreditClientInfo());
+            foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
+            {
+                FormMain.ClientInfo.CreditAccountNumber = row.Cells[0].Value.ToString();
+                FormMain.ClientInfo.CurrentCurrency = row.Cells[4].Value.ToString();
+                break;
+            }
+            ChangeView(typeof(FormCreditClientInfo));
         }
 
         private void FormCreditSelectAccountLoad(object sender, EventArgs e)
@@ -46,12 +52,7 @@ namespace CashInTerminal
 
         private void DataGridSelectCellClick(object sender, DataGridViewCellEventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
-            {
-                FormMain.ClientInfo.CreditAccountNumber = row.Cells[0].Value.ToString();
-                FormMain.ClientInfo.CurrentCurrency = row.Cells[4].Value.ToString();
-                break;
-            }
+            
         }
     }
 }

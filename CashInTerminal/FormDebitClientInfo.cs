@@ -12,19 +12,12 @@ namespace CashInTerminal
 
         private void BtnDebitInfoBackClick(object sender, EventArgs e)
         {
-            if (FormMain.ClientInfo.DebitPayType == DebitPayType.ByCardFull)
-            {
-                ChangeView(new FormDebitCardFull());
-            }
-            else
-            {
-                ChangeView(new FormClientCode());
-            }
+            ChangeView(typeof(FormDebitSelectAccount));
         }
 
         private void BtnDebitInfoNextClick(object sender, EventArgs e)
         {
-            ChangeView(new FormMoneyInput());
+            ChangeView(typeof(FormMoneyInput));
         }
 
         private void FormDebitClientInfoLoad(object sender, EventArgs e)

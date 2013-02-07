@@ -50,7 +50,7 @@ namespace CashInTerminal
             FormMain.EncashmentMode = false;
 
             Cursor.Current = Cursors.Default;
-            ChangeView(new FormProducts());
+            ChangeView(typeof(FormProducts));
         }
     }
 }

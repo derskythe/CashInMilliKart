@@ -18,17 +18,24 @@ namespace CashInTerminal
         {
             if (FormMain.ClientInfo.DebitPayType == DebitPayType.ByCardFull)
             {
-                ChangeView(new FormDebitCardFull());
+                ChangeView(typeof(FormDebitCardFull));
             }
             else
             {
-                ChangeView(new FormClientCode());
+                ChangeView(typeof(FormClientCode));
             }
         }
 
         private void BtnNextClick(object sender, EventArgs e)
         {
-            ChangeView(new FormDebitClientInfo());
+            foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
+            {
+                FormMain.ClientInfo.CreditAccountNumber = row.Cells[0].Value.ToString();
+                FormMain.ClientInfo.CurrentCurrency = row.Cells[3].Value.ToString();
+                break;
+            }
+
+            ChangeView(typeof(FormDebitClientInfo));
         }
 
         private void FormDebitSelectAccountLoad(object sender, EventArgs e)
@@ -55,12 +62,7 @@ namespace CashInTerminal
 
         private void DataGridSelectCellClick(object sender, DataGridViewCellEventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
-            {
-                FormMain.ClientInfo.CreditAccountNumber = row.Cells[0].Value.ToString();
-                FormMain.ClientInfo.CurrentCurrency = row.Cells[3].Value.ToString();
-                break;
-            }
-        }        
+            
+        }
     }
 }

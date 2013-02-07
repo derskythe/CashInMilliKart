@@ -15,17 +15,17 @@ namespace CashInTerminal
             switch (FormMain.ClientInfo.ProductCode)
             {
                 case 1:
-                    ChangeView(new FormClientCode());
+                    ChangeView(typeof(FormClientCode));
                     break;
 
                 case 2:
                     if (FormMain.ClientInfo.DebitPayType != DebitPayType.ByCardFull)
                     {
-                        ChangeView(new FormClientCode());
+                        ChangeView(typeof(FormClientCode));
                     }
                     else
                     {
-                        ChangeView(new FormDebitCardFull());
+                        ChangeView(typeof(FormDebitCardFull));
                     }
                     break;
             }

@@ -40,7 +40,7 @@
             this.Name = "FormMdiChild";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormLanguage_Load);
+            this.Load += new System.EventHandler(this.FormLanguageLoad);
             this.ResumeLayout(false);
 
         }

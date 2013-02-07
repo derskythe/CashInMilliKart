@@ -44,7 +44,7 @@
             this.btnEnglish.TabIndex = 5;
             this.btnEnglish.Text = "English";
             this.btnEnglish.UseVisualStyleBackColor = true;
-            this.btnEnglish.Click += new System.EventHandler(this.btnEnglish_Click);
+            this.btnEnglish.Click += new System.EventHandler(this.BtnEnglishClick);
             // 
             // btnRussian
             // 
@@ -57,7 +57,7 @@
             this.btnRussian.TabIndex = 4;
             this.btnRussian.Text = "Russian";
             this.btnRussian.UseVisualStyleBackColor = true;
-            this.btnRussian.Click += new System.EventHandler(this.btnRussian_Click);
+            this.btnRussian.Click += new System.EventHandler(this.BtnRussianClick);
             // 
             // btnAzeri
             // 
@@ -70,7 +70,7 @@
             this.btnAzeri.TabIndex = 3;
             this.btnAzeri.Text = "Azeri";
             this.btnAzeri.UseVisualStyleBackColor = true;
-            this.btnAzeri.Click += new System.EventHandler(this.btnAzeri_Click);
+            this.btnAzeri.Click += new System.EventHandler(this.BtnAzeriClick);
             // 
             // FormLanguage
             // 
@@ -83,7 +83,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormLanguage";
             this.Text = "FormLanguage";
-            this.Load += new System.EventHandler(this.FormLanguage_Load);
+            this.Load += new System.EventHandler(this.FormLanguageLoad);
             this.ResumeLayout(false);
 
         }

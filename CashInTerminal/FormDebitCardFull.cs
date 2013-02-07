@@ -74,20 +74,20 @@ namespace CashInTerminal
 
         private void BtnDebitClientCodePrevClick(object sender, EventArgs e)
         {
-            ChangeView(new FormDebitPayType());
+            ChangeView(typeof(FormDebitPayType));
         }
 
         private void BtnDebitClientCodeNextClick(object sender, EventArgs e)
         {
             if (txtDebitClientCode.Text != @"1234567890123456")
             {
-                ChangeView(new FormInvalidNumber());
+                ChangeView(typeof(FormInvalidNumber));
             }
             else
             {
                 FormMain.ClientInfo.AccountNumber = "12345";
                 FormMain.ClientInfo.Passport = "12345";
-                ChangeView(new FormDebitSelectAccount());
+                ChangeView(typeof(FormDebitSelectAccount));
             }
         }
 
@@ -101,6 +101,6 @@ namespace CashInTerminal
             {
                 btnDebitClientCodeNext.Enabled = false;
             }
-        }        
+        }
     }
 }

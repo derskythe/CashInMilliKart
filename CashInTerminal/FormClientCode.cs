@@ -96,11 +96,11 @@ namespace CashInTerminal
             switch (FormMain.ClientInfo.ProductCode)
             {
                 case 1:
-                    ChangeView(new FormProducts());
+                    ChangeView(typeof(FormProducts));
                     break;
 
                 case 2:
-                    ChangeView(new FormDebitPayType());
+                    ChangeView(typeof(FormDebitPayType));
                     break;
             }
         }
@@ -115,19 +115,19 @@ namespace CashInTerminal
                 switch (FormMain.ClientInfo.ProductCode)
                 {
                     case 1:
-                        ChangeView(new FormCreditSelectAccount());
+                        ChangeView(typeof(FormCreditSelectAccount));
 
                         break;
 
                     case 2:
-                        ChangeView(new FormDebitSelectAccount());
+                        ChangeView(typeof(FormDebitSelectAccount));
 
                         break;
                 }
             }
             else
             {
-                ChangeView(new FormInvalidNumber());
+                ChangeView(typeof(FormInvalidNumber));
             }
         }
     }

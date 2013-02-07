@@ -30,17 +30,17 @@ namespace CashInTerminal
             InitializeComponent();
         }
 
-        protected void FormLanguage_Load(object sender, EventArgs e)
+        protected void FormLanguageLoad(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
         }
 
-        protected void ChangeView(Form form)
+        protected void ChangeView(Type form)
         {
             if (ParentForm != null)
             {
                 FormMain.OpenForm(form);
-                Close();
+                //Close();
             }
         }
     }

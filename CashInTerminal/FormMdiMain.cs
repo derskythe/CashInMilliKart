@@ -34,7 +34,7 @@ namespace CashInTerminal
 
         private delegate void CloseFormDelegate(object item);
 
-        private delegate void OpenFormDelegate(object item);
+        private delegate void OpenFormDelegate(Type item);
 
         private delegate void SetFormParentDelegate(object item);
 
@@ -153,7 +153,7 @@ namespace CashInTerminal
         private void FormMdiMainLoad(object sender, EventArgs e)
         {
 
-            OpenForm(new FormOutOfOrder());
+            OpenForm(typeof(FormOutOfOrder));
 
             foreach (Control control in Controls)
             {
@@ -236,20 +236,22 @@ namespace CashInTerminal
             {
                 Log.ErrorException(exp.Message, exp);
             }
+            Settings.Default.TerminalCode = String.Empty;
+            Settings.Default.Save();
 
             _AuthTerminal = !String.IsNullOrEmpty(Settings.Default.TerminalCode);
 
             if (_Init && !_AuthTerminal)
             {
-                OpenForm(new FormActivation());
+                OpenForm(typeof(FormActivation));
             }
             else if (!_Init)
             {
-                OpenForm(new FormOutOfOrder());
+                OpenForm(typeof(FormOutOfOrder));
             }
             else
             {
-                OpenForm(new FormLanguage());
+                OpenForm(typeof(FormLanguage));
 
             }
 
@@ -294,9 +296,8 @@ namespace CashInTerminal
             }
             else
             {
-                SetFormParent(f);
-                f.Show();
                 f.WindowState = FormWindowState.Maximized;
+                f.Show();
             }
         }
 
@@ -318,10 +319,34 @@ namespace CashInTerminal
             }
         }
 
-        public void OpenForm(Form f)
+        public void OpenForm(Type f)
         {
-            CloseForm(f);
-            OpenFormI(f);
+            if (InvokeRequired)
+            {
+                var form = new OpenFormDelegate(OpenForm);
+                Invoke(form, f);
+            }
+            else
+            {
+                if (f != null)
+                {
+                    var inst = Activator.CreateInstance(f);
+                    var child = (Form)inst;
+                    child.MdiParent = this;
+                    child.Show();
+
+                    if (_CurrentForm != null)
+                    {
+                        _CurrentForm.Close();
+                    }
+
+                    _CurrentForm = (Form)inst;
+                }
+            }
+
+            //CloseForm(f);
+            //SetFormParent(f);
+            //OpenFormI(f);
 
             //if (_CurrentForm != null)
             //{
@@ -354,7 +379,7 @@ namespace CashInTerminal
                         _LastActivity = Utilities.GetLastInputTime();
                         if (_LastActivity > MAX_INACTIVITY_PERIOD) 
                         {
-                            OpenForm(new FormLanguage());
+                            OpenForm(typeof(FormLanguage));
                         }
                     }
                     else
@@ -487,7 +512,7 @@ namespace CashInTerminal
 
                                         if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess)
                                         {
-                                            OpenForm(new FormOutOfOrder());
+                                            OpenForm(typeof(FormOutOfOrder));
                                             CommandReceived();
                                         }
                                         break;
@@ -496,7 +521,7 @@ namespace CashInTerminal
                                         Log.Warn("Received command " + TerminalCommands.TestMode.ToString());
                                         if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess)
                                         {
-                                            OpenForm(new FormTestMode());
+                                            OpenForm(typeof(FormTestMode));
                                             CommandReceived();
                                         }
                                         break;
@@ -515,7 +540,7 @@ namespace CashInTerminal
                                         if ((_CurrentForm.Name == FormEnum.OutOfOrder || _CurrentForm.Name == FormEnum.TestMode))
                                         {
                                             GetTerminalInfo();
-                                            OpenForm(new FormLanguage());
+                                            OpenForm(typeof(FormLanguage));
                                         }
 
                                         CommandReceived();
@@ -571,10 +596,10 @@ namespace CashInTerminal
 
         private void DoEncashment()
         {
-            OpenForm(new FormEncashment());
-
             try
             {
+                OpenForm(typeof(FormEncashment));
+
                 var secondResult = CommandReceived();
                 CheckSignature(secondResult);
 
