@@ -13,6 +13,15 @@ namespace Containers.Admin
     public class LoginResult : StandardResult
     {
         private User _UserInfo;
+        private String _Sid;
+
+        [XmlElement(ElementName = "Sid")]
+        [DataMember(Name = "Sid")]
+        public string Sid
+        {
+            get { return _Sid; }
+            set { _Sid = value; }
+        }
 
         [XmlElement(ElementName = "UserInfo")]
         [DataMember(Name = "UserInfo")]

@@ -33,6 +33,9 @@ namespace Containers.Enums
         [Description("Invalid session")]
         InvalidSession = 7,
 
+        [Description("Insufficient privileges")]
+        NoPriv = 8,
+
         [Description("Unknown Error")]
         UnknownError = 128,
 

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using Containers;
 using Containers.Admin;
 using Containers.Enums;
+using Db;
 using NLog;
 using crypto;
 
@@ -33,7 +32,7 @@ namespace CashInCore
 
             try
             {
-                var user = Db.OracleDb.Instance.GetUser(username);
+                var user = OracleDb.Instance.GetUser(username);
 
                 if (user == null)
                 {
@@ -44,7 +43,7 @@ namespace CashInCore
                 }
 
                 var encPassword = Wrapper.ComputeHash(password, user.Salt);
-                user = Db.OracleDb.Instance.CheckUser(username, encPassword);
+                user = OracleDb.Instance.CheckUser(username, encPassword);
 
                 if (user == null)
                 {
@@ -56,6 +55,10 @@ namespace CashInCore
 
                 CleanCredentials(ref user);
                 result.UserInfo = user;
+                result.Sid = Guid.NewGuid().ToString();
+
+                OracleDb.Instance.StartSession(result.Sid, user.Id);
+
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -66,12 +69,13 @@ namespace CashInCore
             return result;
         }
 
-        private SessionResult CheckSession(String sid)
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public SessionResult CheckSession(String sid)
         {
             var result = new SessionResult();
             try
             {
-                var session = Db.OracleDb.Instance.CheckSession(sid);
+                var session = OracleDb.Instance.CheckSession(sid);
 
                 if (session == null)
                 {
@@ -79,6 +83,7 @@ namespace CashInCore
                     throw new Exception("Session not found");
                 }
 
+                OracleDb.Instance.UpdateSession(sid, session.User.Id);
                 result.Session = session;
                 result.Code = ResultCodes.Ok;
             }
@@ -88,6 +93,151 @@ namespace CashInCore
             }
 
             return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult SaveUser(String sid, User userInfo)
+        {
+            Log.Info(String.Format("SID: {0}, userInfo: {1}", sid, userInfo));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditUsers))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SaveUser(userInfo.Id > 0 ? (int?)userInfo.Id : null, userInfo.Username,
+                                           userInfo.Password,
+                                           String.IsNullOrEmpty(userInfo.Password)
+                                               ? Wrapper.GenerateSalt()
+                                               : String.Empty);
+
+                result.Code = ResultCodes.Ok;
+
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult DeleteUser(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}, Id: {1}", sid, id));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditUsers))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.DeleteUser(id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        public StandardResult SetStatusCode(String sid, int terminalId, int statusCode)
+        {
+            Log.Info(String.Format("SID: {0}, terminalId: {1}, statusCode: {2}", sid, terminalId, statusCode));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.SendTerminalStatus))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SetTerminalStatusCode(session.Session.User.Id, terminalId, statusCode);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        public StandardResult SaveUserRole(String sid, int userId, int roleId)
+        {
+            Log.Info(String.Format("SID: {0}, userId: {1}, roleId: {2}", sid, userId, roleId));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditUsers))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SetUserRole(userId, roleId);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        private bool HasPriv(IEnumerable<AccessRole> roles, String requiredPriv)
+        {
+            foreach (var role in roles)
+            {
+                if (role.Section == requiredPriv)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void CleanCredentials(ref User user)

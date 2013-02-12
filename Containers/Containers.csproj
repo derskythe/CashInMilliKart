@@ -58,6 +58,7 @@
     <Compile Include="Encashment.cs" />
     <Compile Include="EncashmentCurrency.cs" />
     <Compile Include="EnumEx.cs" />
+    <Compile Include="Enums\RoleSections.cs" />
     <Compile Include="Enums\TerminalCommands.cs" />
     <Compile Include="PaymentInfoByProducts.cs" />
     <Compile Include="PingRequest.cs" />
