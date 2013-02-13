@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRole.cs" />
+    <Compile Include="Admin\ListEncashmentResult.cs" />
+    <Compile Include="Admin\ListProductHistory.cs" />
+    <Compile Include="Admin\ListProductsResult.cs" />
+    <Compile Include="Admin\ListRolesResult.cs" />
+    <Compile Include="Admin\ListTerminalsResult.cs" />
+    <Compile Include="Admin\ListUsersResult.cs" />
     <Compile Include="Admin\LoginResult.cs" />
     <Compile Include="Admin\SessionResult.cs" />
     <Compile Include="AuthResult.cs" />

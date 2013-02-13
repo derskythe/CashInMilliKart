@@ -15,7 +15,7 @@ namespace CashInCore
         InstanceContextMode = InstanceContextMode.PerSession,
         UseSynchronizationContext = true,
         ConfigurationName = "CashInCore.CashInAdminServer")]
-    public class CashInAdminServer
+    public class CashInAdminServer : ICashInAdminServer
     {
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -165,6 +165,7 @@ namespace CashInCore
             return result;
         }
 
+        [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult SetStatusCode(String sid, int terminalId, int statusCode)
         {
             Log.Info(String.Format("SID: {0}, terminalId: {1}, statusCode: {2}", sid, terminalId, statusCode));
@@ -196,6 +197,7 @@ namespace CashInCore
             return result;
         }
 
+        [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult SaveUserRole(String sid, int userId, int roleId)
         {
             Log.Info(String.Format("SID: {0}, userId: {1}, roleId: {2}", sid, userId, roleId));
@@ -217,6 +219,267 @@ namespace CashInCore
                 }
 
                 OracleDb.Instance.SetUserRole(userId, roleId);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult SaveCurrency(string sid, Currency currency)
+        {
+            Log.Info(String.Format("SID: {0}, currency: {1}", sid, currency));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCurrency))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SaveCurrency(currency.Id, currency.IsoName, currency.Name, currency.DefaultCurrency, session.Session.User.Id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult SaveCurrencyRate(String sid, string currency, decimal rate)
+        {
+            Log.Info(String.Format("SID: {0}, currency: {1}, rate: {2}", sid, currency, rate));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCurrency))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SaveCurrencyRate(currency, rate, session.Session.User.Id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListUsersResult ListUsers(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListUsersResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewUsers))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Users = OracleDb.Instance.ListUsers();                
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListRolesResult ListRoles(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListRolesResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewUsers))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Roles = OracleDb.Instance.ListRoles();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListTerminalsResult ListTerminals(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListTerminalsResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Terminals = OracleDb.Instance.ListTerminals();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListEncashmentResult ListEncashment(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListEncashmentResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Encashments = OracleDb.Instance.ListEncashment();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListProductsResult ListProducts(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListProductsResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProducts))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                
+                result.Products = OracleDb.Instance.ListProducts();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListProductHistory ListProductHistory(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListProductHistory();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProducts))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                // TODO : Add method!
+                // TODO : 
+                // TODO : 
+                // TODO : 
+                //result.History = OracleDb.Instance.ListProducts();
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
