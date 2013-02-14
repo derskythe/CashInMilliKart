@@ -10,7 +10,7 @@ namespace Containers.Admin
     [DataContract(Name = "ListProductsResult", Namespace = "urn:CashIn")]
     public class ListProductsResult : StandardResult
     {
-        private IEnumerable<Product> _Products;
+        private List<Product> _Products;
 
         public ListProductsResult(ResultCodes code) : base(code)
         {
@@ -18,7 +18,7 @@ namespace Containers.Admin
 
         [XmlArray("Products")]
         [DataMember(Name = "Products")]
-        public IEnumerable<Product> Products
+        public List<Product> Products
         {
             get { return _Products; }
             set { _Products = value; }

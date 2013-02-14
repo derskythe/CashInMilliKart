@@ -57,6 +57,23 @@ namespace Containers
             throw new ArgumentException("Not found.", "description");
         }
 
+        public static T[] ConvertToArray<T>(IEnumerable<T> values)
+        {
+            if (values == null)
+            {
+                return null;
+            }
+
+            var result = new List<T>();
+
+            foreach (var value in values)
+            {
+               result.Add(value); 
+            }
+
+            return result.ToArray();
+        }
+
         public static String ToStringArray<T>(IEnumerable<T> array)
         {
             var result = new StringBuilder();

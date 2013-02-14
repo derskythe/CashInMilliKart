@@ -10,11 +10,11 @@ namespace Containers.Admin
     [DataContract(Name = "ListEncashmentResult", Namespace = "urn:CashIn")]
     public class ListEncashmentResult : StandardResult
     {
-        private IEnumerable<Encashment> _Encashments;
+        private List<Encashment> _Encashments;
        
         [XmlArray("Encashments")]
         [DataMember(Name = "Encashments")]
-        public IEnumerable<Encashment> Encashments
+        public List<Encashment> Encashments
         {
             get { return _Encashments; }
             set { _Encashments = value; }

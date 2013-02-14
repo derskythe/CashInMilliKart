@@ -126,7 +126,7 @@ namespace Db
             return result;
         }
 
-        public static User ToUser(ds.V_LIST_USERSRow row, IEnumerable<AccessRole> fields)
+        public static User ToUser(ds.V_LIST_USERSRow row, List<AccessRole> fields)
         {
             var result = new User
             {
@@ -143,7 +143,7 @@ namespace Db
             return result;
         }
 
-        public static UserSession ToUserSession(ds.V_LIST_ACTIVE_SESSIONSRow row, IEnumerable<AccessRole> fields)
+        public static UserSession ToUserSession(ds.V_LIST_ACTIVE_SESSIONSRow row, List<AccessRole> fields)
         {
             var user = new User
                 {
@@ -179,7 +179,7 @@ namespace Db
             return result;
         }
 
-        public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, IEnumerable<EncashmentCurrency> currencies)
+        public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, List<EncashmentCurrency> currencies)
         {
             var result = new Encashment
                 {
@@ -188,6 +188,43 @@ namespace Db
                     InsertDate = row.INSERT_DATE,
                     TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),
                     UserId = row.IsUSER_IDNull() ? Int32.MinValue : Convert.ToInt32(row.USER_ID)
+                };
+
+            return result;
+        }
+
+        public static ProductHistoryValue ToProductHistoryValue(ds.V_PRODUCTS_HISTORY_VALUESRow row)
+        {
+            var result = new ProductHistoryValue
+                {
+                    Id = row.ID,
+                    Value = row.VALUE
+                };
+
+            return result;
+        }
+
+        public static ProductHistory ToProductHistory(ds.V_PRODUCTS_HISTORYRow row, List<ProductHistoryValue> values)
+        {
+            var result = new ProductHistory
+                {
+                    Address = row.IsADDRESSNull() ? String.Empty : row.ADDRESS,
+                    Amount = row.AMOUNT,
+                    CurrencyId = row.CURRENCY_ID,
+                    Id = row.ID,
+                    IdentityName = row.IsIDENTITY_NAMENull() ? String.Empty : row.IDENTITY_NAME,
+                    InsertDate = row.INSERT_DATE,
+                    Name = row.IsNAMENull() ? String.Empty : row.NAME,
+                    NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
+                    NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                    NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                    Values = values,
+                    TerminalId = row.TERMINAL_ID,
+                    TerminalDate = row.IsTERMINAL_DATENull() ? DateTime.MinValue : row.TERMINAL_DATE,
+                    ProductId = row.PRODUCT_ID,
+                    ProductName = row.IsPRODUCT_NAMENull() ? String.Empty : row.PRODUCT_NAME,
+                    Rate = row.IsRATENull() ? 1 : row.RATE,
+                    TransactionId = row.IsTRANSACTION_IDNull() ? String.Empty : row.TRANSACTION_ID
                 };
 
             return result;

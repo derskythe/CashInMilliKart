@@ -314,7 +314,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Users = OracleDb.Instance.ListUsers();                
+                result.Users = OracleDb.Instance.ListUsers();
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -442,7 +442,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                
+
                 result.Products = OracleDb.Instance.ListProducts();
                 result.Code = ResultCodes.Ok;
             }
@@ -455,10 +455,10 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListProductHistory ListProductHistory(String sid)
+        public ListProductHistoryResult ListProductHistory(String sid)
         {
             Log.Info(String.Format("SID: {0}", sid));
-            var result = new ListProductHistory();
+            var result = new ListProductHistoryResult();
 
             try
             {
@@ -469,17 +469,77 @@ namespace CashInCore
                     throw new Exception("Invalid session");
                 }
 
-                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProducts))
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProductsHistory))
                 {
                     result.Code = ResultCodes.NoPriv;
                     throw new Exception("No priv");
                 }
 
-                // TODO : Add method!
-                // TODO : 
-                // TODO : 
-                // TODO : 
-                //result.History = OracleDb.Instance.ListProducts();
+                result.Histories = OracleDb.Instance.ListProductHistory();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListProductHistoryResult ListProductHistoryByDate(String sid, DateTime from, DateTime to)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListProductHistoryResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProductsHistory))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Histories = OracleDb.Instance.ListProductHistory(from, to);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListProductHistoryResult ListProductHistoryByTransactionId(String sid, String transactionId)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListProductHistoryResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProductsHistory))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Histories = OracleDb.Instance.ListProductHistory(transactionId);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)

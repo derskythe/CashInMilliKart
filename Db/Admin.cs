@@ -125,7 +125,7 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
-        public IEnumerable<ds.V_ROLES_TO_USERSRow> ListRolesToUsersRoleId(int roleId)
+        public ds.V_ROLES_TO_USERSRow[] ListRolesToUsersRoleId(int roleId)
         {
             CheckConnection();
 
@@ -133,13 +133,16 @@ namespace Db
             var table = new ds.V_ROLES_TO_USERSDataTable();
             adapter.FillByRoleId(table, roleId);
 
+            var result = new List<ds.V_ROLES_TO_USERSRow>();
             foreach (ds.V_ROLES_TO_USERSRow row in table.Rows)
             {
-                yield return row;
+                result.Add(row);
             }
+
+            return result.ToArray();
         }
 
-        public IEnumerable<AccessRole> ListRolesToUsersUserId(decimal userId)
+        public List<AccessRole> ListRolesToUsersUserId(decimal userId)
         {
             CheckConnection();
 
@@ -147,10 +150,13 @@ namespace Db
             var table = new ds.V_ROLES_TO_USERSDataTable();
             adapter.FillByUserId(table, userId);
 
+            var result = new List<AccessRole>();
             foreach (ds.V_ROLES_TO_USERSRow row in table.Rows)
             {
-                yield return Convertor.ToAccessRole(row);
+                result.Add(Convertor.ToAccessRole(row));
             }
+
+            return result;
         }
 
         public User CheckUser(string username, string password)
@@ -204,7 +210,7 @@ namespace Db
             return null;
         }
 
-        public IEnumerable<User> ListUsers()
+        public User[] ListUsers()
         {
             CheckConnection();
 
@@ -213,15 +219,18 @@ namespace Db
             var table = new ds.V_LIST_USERSDataTable();
             adapter.Fill(table);
 
+            var result = new List<User>();
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
                 var user = Convertor.ToUser(row, roles);
-                yield return user;
+                result.Add(user);
             }
+
+            return result.ToArray();
         }
 
-        public IEnumerable<AccessRole> ListRoles()
+        public AccessRole[] ListRoles()
         {
             CheckConnection();
 
@@ -229,10 +238,13 @@ namespace Db
             var table = new ds.V_ROLESDataTable();
             adapter.Fill(table);
 
+            var result = new List<AccessRole>();
             foreach (ds.V_ROLESRow row in table.Rows)
             {
-                yield return Convertor.ToAccessRole(row);
+                result.Add(Convertor.ToAccessRole(row));
             }
+
+            return result.ToArray();
         }
 
         public UserSession CheckSession(String sid)
@@ -252,7 +264,7 @@ namespace Db
             return null;
         }
 
-        public IEnumerable<Terminal> ListTerminals()
+        public Terminal[] ListTerminals()
         {
             CheckConnection();
 
@@ -260,38 +272,121 @@ namespace Db
 
             var table = new ds.V_LIST_TERMINALSDataTable();
             adapter.Fill(table);
-
+            var result = new List<Terminal>();
             foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
             {
-                yield return Convertor.ToTerminal(item);
+                result.Add(Convertor.ToTerminal(item));
             }
+
+            return result.ToArray();
         }
 
-        public IEnumerable<Encashment> ListEncashment()
+        public List<Encashment> ListEncashment()
         {
             CheckConnection();
             var adapter = new V_LIST_ENCASHMENTTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_LIST_ENCASHMENTDataTable();
             adapter.Fill(table);
 
+            var result = new List<Encashment>();
+
             foreach (ds.V_LIST_ENCASHMENTRow row in table.Rows)
             {
                 var fields = ListEncashmentCurrencies(row.ID);
-                yield return Convertor.ToEncashment(row, fields);
+                result.Add(Convertor.ToEncashment(row, fields));
             }
+
+            return result;
         }
 
-        public IEnumerable<EncashmentCurrency> ListEncashmentCurrencies(decimal id)
+        public List<EncashmentCurrency> ListEncashmentCurrencies(decimal id)
         {
             CheckConnection();
             var adapter = new V_LIST_ENCASHMENT_CURRENCIESTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_LIST_ENCASHMENT_CURRENCIESDataTable();
             adapter.FillByEncashmentId(table, id);
+            var result = new List<EncashmentCurrency>();
 
             foreach (ds.V_LIST_ENCASHMENT_CURRENCIESRow row in table.Rows)
             {
-                yield return Convertor.ToEncashmentCurrency(row);
+                result.Add(Convertor.ToEncashmentCurrency(row));
             }
+
+            return result;
+        }
+
+        public List<ProductHistory> ListProductHistory()
+        {
+            CheckConnection();
+
+            var adapter = new V_PRODUCTS_HISTORYTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+            adapter.Fill(table);
+
+            var result = new List<ProductHistory>();
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                var values = ListProductHistoryValues(row.ID);
+                result.Add(Convertor.ToProductHistory(row, values));
+            }
+
+            return result;
+        }
+
+        public List<ProductHistory> ListProductHistory(DateTime from, DateTime to)
+        {
+            CheckConnection();
+
+            var adapter = new V_PRODUCTS_HISTORYTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+            adapter.FillByDate(table, from, to);
+            var result = new List<ProductHistory>();
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                var values = ListProductHistoryValues(row.ID);
+
+                result.Add(Convertor.ToProductHistory(row, values));
+            }
+
+            return result;
+        }
+
+        public List<ProductHistory> ListProductHistory(String transactionId)
+        {
+            CheckConnection();
+
+            var adapter = new V_PRODUCTS_HISTORYTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+            adapter.FillByTransactionId(table, transactionId);
+            var result = new List<ProductHistory>();
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                var values = ListProductHistoryValues(row.ID);
+                result.Add(Convertor.ToProductHistory(row, values));
+            }
+
+            return result;
+        }
+
+        public List<ProductHistoryValue> ListProductHistoryValues(decimal historyId)
+        {
+            CheckConnection();
+
+            var adapter = new V_PRODUCTS_HISTORY_VALUESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_PRODUCTS_HISTORY_VALUESDataTable();
+            adapter.FillByHistoryId(table, historyId);
+
+            var result = new List<ProductHistoryValue>();
+
+            foreach (ds.V_PRODUCTS_HISTORY_VALUESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToProductHistoryValue(row));
+            }
+
+            return result;
         }
     }
 }

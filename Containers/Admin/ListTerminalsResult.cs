@@ -10,7 +10,7 @@ namespace Containers.Admin
     [DataContract(Name = "ListTerminalsResult", Namespace = "urn:CashIn")]
     public class ListTerminalsResult : StandardResult
     {
-        private IEnumerable<Terminal> _Terminals;
+        private Terminal[] _Terminals;
 
         public ListTerminalsResult(ResultCodes code) : base(code)
         {
@@ -18,7 +18,7 @@ namespace Containers.Admin
 
         [XmlArray("Terminals")]
         [DataMember(Name = "Terminals")]
-        public IEnumerable<Terminal> Terminals
+        public Terminal[] Terminals
         {
             get { return _Terminals; }
             set { _Terminals = value; }

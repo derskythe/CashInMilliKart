@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="AccessRole.cs" />
     <Compile Include="Admin\ListEncashmentResult.cs" />
-    <Compile Include="Admin\ListProductHistory.cs" />
+    <Compile Include="Admin\ListProductHistoryResult.cs" />
     <Compile Include="Admin\ListProductsResult.cs" />
     <Compile Include="Admin\ListRolesResult.cs" />
     <Compile Include="Admin\ListTerminalsResult.cs" />
@@ -70,6 +70,8 @@
     <Compile Include="PingRequest.cs" />
     <Compile Include="PingResult.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductHistory.cs" />
+    <Compile Include="ProductHistoryValue.cs" />
     <Compile Include="ProductResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\ResultCodes.cs" />

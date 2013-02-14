@@ -10,11 +10,11 @@ namespace Containers.Admin
     [DataContract(Name = "ListRolesResult", Namespace = "urn:CashIn")]
     public class ListRolesResult : StandardResult
     {
-        private IEnumerable<AccessRole> _Roles;
+        private AccessRole[] _Roles;
 
         [XmlArray("Roles")]
         [DataMember(Name = "Roles")]
-        public IEnumerable<AccessRole> Roles
+        public AccessRole[] Roles
         {
             get { return _Roles; }
             set { _Roles = value; }

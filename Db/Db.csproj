@@ -90,6 +90,12 @@
     <Compile Include="dsTableAdapters\V_PRODUCTSTableAdapters.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_PRODUCTS_HISTORYTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_PRODUCTS_HISTORY_VALUESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_PRODUCTS_TO_TERMINALSTableAdapters.cs">
       <SubType>Component</SubType>
     </Compile>

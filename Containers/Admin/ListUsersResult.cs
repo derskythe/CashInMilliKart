@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using Containers.Enums;
@@ -10,11 +9,11 @@ namespace Containers.Admin
     [DataContract(Name = "ListUsersResult", Namespace = "urn:CashIn")]
     public class ListUsersResult : StandardResult
     {
-        private IEnumerable<User> _Users;
+        private User[] _Users;
 
         [XmlArray("Users")]
         [DataMember(Name = "Users")]
-        public IEnumerable<User> Users
+        public User[] Users
         {
             get { return _Users; }
             set { _Users = value; }

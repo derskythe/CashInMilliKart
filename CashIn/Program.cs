@@ -9,7 +9,8 @@ namespace CashIn
 {
     class Program
     {
-        private static ServiceHost _Service;
+        private static ServiceHost _CashInTerminalService;
+        private static ServiceHost _CashInAdminService;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -24,13 +25,17 @@ namespace CashIn
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 
-            _Service = new ServiceHost(typeof(CashInServer));
-            _Service.Open();
+            _CashInTerminalService = new ServiceHost(typeof(CashInServer));
+            _CashInTerminalService.Open();
+
+            _CashInAdminService = new ServiceHost(typeof(CashInAdminServer));
+            _CashInAdminService.Open();
 
             Log.Info("Press any key to stop");
             Console.Read();
 
-            _Service.Close();
+            _CashInTerminalService.Close();
+            _CashInAdminService.Close();
         }
     }
 }

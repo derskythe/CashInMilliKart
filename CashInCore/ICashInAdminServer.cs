@@ -49,6 +49,12 @@ namespace CashInCore
         ListProductsResult ListProducts(String sid);
 
         [OperationContract]
-        ListProductHistory ListProductHistory(String sid);
+        ListProductHistoryResult ListProductHistory(String sid);
+
+        [OperationContract]
+        ListProductHistoryResult ListProductHistoryByDate(String sid, DateTime from, DateTime to);
+
+        [OperationContract]
+        ListProductHistoryResult ListProductHistoryByTransactionId(String sid, String transactionId);
     }
 }
