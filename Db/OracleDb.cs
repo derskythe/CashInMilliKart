@@ -39,7 +39,7 @@ namespace Db
             if (_ConnectionString == null)
             {
                 _DbName = dbase;
-                _ConnectionString = "User ID=" + user + ";Data Source=" + dbase + ";Password=" + pass;
+                _ConnectionString = "User ID=" + user + ";Data Source=" + dbase + ";Password=" + pass + ";Min Pool Size=5;Max Pool Size=100;Pooling=True;Validate Connection=true";
             }
         }
 
