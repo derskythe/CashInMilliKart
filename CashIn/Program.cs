@@ -4,6 +4,7 @@ using CashIn.Properties;
 using CashInCore;
 using Db;
 using NLog;
+using crypto;
 
 namespace CashIn
 {
@@ -24,6 +25,17 @@ namespace CashIn
 
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
+
+            var user = OracleDb.Instance.GetUser("skif");
+
+            String salt = String.Empty;
+            String encPass = String.Empty;
+
+
+            salt = Wrapper.GenerateSalt();
+            encPass = Wrapper.ComputeHash("dfl90nhl", salt);
+            
+            OracleDb.Instance.SaveUser(user.Id, user.Username, encPass, salt);
 
             _CashInTerminalService = new ServiceHost(typeof(CashInServer));
             _CashInTerminalService.Open();

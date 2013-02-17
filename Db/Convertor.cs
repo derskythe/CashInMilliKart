@@ -87,9 +87,9 @@ namespace Db
                 {
                     Id = row.ROLE_ID,
                     Name = row.NAME,
-                    NameAz = row.NAME_AZ,
-                    NameEn = row.NAME_EN,
-                    NameRu = row.NAME_RU,
+                    NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
+                    NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                    NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
                     Section = row.SECTION
                 };
 
@@ -102,9 +102,9 @@ namespace Db
             {
                 Id = row.ID,
                 Name = row.NAME,
-                NameAz = row.NAME_AZ,
-                NameEn = row.NAME_EN,
-                NameRu = row.NAME_RU,
+                NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
+                NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
                 Section = String.Empty
             };
 
@@ -115,6 +115,7 @@ namespace Db
         {
             var result = new User
                 {
+                    Id = Convert.ToInt32(row.ID),
                     Username = row.USERNAME,
                     Password = row.PASSWORD,
                     InsertDate = row.INSERT_DATE,

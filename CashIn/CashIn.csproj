@@ -73,6 +73,10 @@
       <Project>{9277C5F0-3204-4088-B846-F78580C26A71}</Project>
       <Name>CashInCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Containers\Containers.csproj">
+      <Project>{A70CBCC4-C84E-4F55-B0D9-435B5EAB1575}</Project>
+      <Name>Containers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Db\Db.csproj">
       <Project>{C8A8D803-3BED-429F-8C78-656E6DC4C30B}</Project>
       <Name>Db</Name>

@@ -116,11 +116,18 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
+                String salt = String.Empty;
+                String encPass = String.Empty;
+
+                if (!String.IsNullOrEmpty(userInfo.Password))
+                {
+                    salt = Wrapper.GenerateSalt();
+                    encPass = Wrapper.ComputeHash(userInfo.Password, salt);
+                }
+
                 OracleDb.Instance.SaveUser(userInfo.Id > 0 ? (int?)userInfo.Id : null, userInfo.Username,
-                                           userInfo.Password,
-                                           String.IsNullOrEmpty(userInfo.Password)
-                                               ? Wrapper.GenerateSalt()
-                                               : String.Empty);
+                                           encPass,
+                                           salt);
 
                 result.Code = ResultCodes.Ok;
 
