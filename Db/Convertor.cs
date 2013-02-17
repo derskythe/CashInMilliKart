@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Containers;
 
 namespace Db
@@ -41,12 +40,12 @@ namespace Db
         {
             var result = new Terminal
                 {
-                    Id = row.ID,
+                    Id = Convert.ToInt32(row.ID),
                     Address = row.ADDRESS,
                     IdentityName = row.IDENTITY_NAME,
                     Ip = row.IsIPNull() ? String.Empty : row.IP,
-                    LastCashcodeStatus = row.IsLAST_CASHCODE_STATUSNull() ? Decimal.MinusOne : row.LAST_CASHCODE_STATUS,
-                    LastStatusType = row.IsLAST_STATUS_TYPENull() ? Decimal.MinusOne : row.LAST_STATUS_TYPE,
+                    LastCashcodeStatus = row.IsLAST_CASHCODE_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_STATUS),
+                    LastStatusType = row.IsLAST_STATUS_TYPENull() ? -1 : Convert.ToInt32(row.LAST_STATUS_TYPE),
                     LastStatusUpdate = row.IsLAST_STATUS_UPDATENull() ? DateTime.MinValue : row.LAST_STATUS_UPDATE,
                     Name = row.NAME,
                     SignKey = row.IsSIGN_KEYNull() ? null : row.SIGN_KEY,
@@ -64,7 +63,7 @@ namespace Db
                     Id = row.ID,
                     IsoName = row.ISO_NAME,
                     Name = row.NAME,
-                    DefaultCurrency = row.DEFAULT_CURRENCY > 0 ? true : false,
+                    DefaultCurrency = row.DEFAULT_CURRENCY > 0,
                     CurrencyRate = row.IsRATENull() ? 1 : row.RATE
                 };
 
@@ -85,7 +84,7 @@ namespace Db
         {
             var result = new AccessRole
                 {
-                    Id = row.ROLE_ID,
+                    Id = Convert.ToInt32(row.ROLE_ID),
                     Name = row.NAME,
                     NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
                     NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
@@ -100,7 +99,7 @@ namespace Db
         {
             var result = new AccessRole
             {
-                Id = row.ID,
+                Id = Convert.ToInt32(row.ID),
                 Name = row.NAME,
                 NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
                 NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,

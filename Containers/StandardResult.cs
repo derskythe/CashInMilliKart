@@ -11,6 +11,7 @@ namespace Containers
     {
         private ResultCodes _Code;
         private String _Description;
+        private int _Id;
 
         [XmlElement(ElementName = "ResultCodes")]
         [DataMember(Name = "ResultCodes")]
@@ -33,6 +34,14 @@ namespace Containers
         {
             get { return _Description; }
             set { _Description = value; }
+        }
+
+        [XmlElement(ElementName = "Id")]
+        [DataMember(Name = "Id")]
+        public int Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
         }
 
         public StandardResult()

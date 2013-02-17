@@ -8,20 +8,20 @@ namespace Containers
     [DataContract(Name = "Terminal", Namespace = "urn:CashIn")]
     public class Terminal
     {
-        private decimal _Id;
+        private int _Id;
         private string _Name;
         private string _Address;
         private string _IdentityName;
         private byte[] _SignKey;
         private string _Ip;
         private byte[] _TmpKey;
-        private decimal _LastStatusType;
-        private decimal _LastCashcodeStatus;
+        private int _LastStatusType;
+        private int _LastCashcodeStatus;
         private DateTime _LastStatusUpdate;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
-        public decimal Id
+        public int Id
         {
             get { return _Id; }
             set { _Id = value; }
@@ -77,7 +77,7 @@ namespace Containers
 
         [XmlElement(ElementName = "LastStatusType")]
         [DataMember(Name = "LastStatusType")]
-        public decimal LastStatusType
+        public int LastStatusType
         {
             get { return _LastStatusType; }
             set { _LastStatusType = value; }
@@ -85,7 +85,7 @@ namespace Containers
 
         [XmlElement(ElementName = "LastCashcodeStatus")]
         [DataMember(Name = "LastCashcodeStatus")]
-        public decimal LastCashcodeStatus
+        public int LastCashcodeStatus
         {
             get { return _LastCashcodeStatus; }
             set { _LastCashcodeStatus = value; }
@@ -103,7 +103,7 @@ namespace Containers
         {
         }
 
-        public Terminal(decimal id, string name, string address, string identityName, byte[] signKey, string ip, byte[] tmpKey, decimal lastStatusType, decimal lastCashcodeStatus, DateTime lastStatusUpdate)
+        public Terminal(int id, string name, string address, string identityName, byte[] signKey, string ip, byte[] tmpKey, int lastStatusType, int lastCashcodeStatus, DateTime lastStatusUpdate)
         {
             _Id = id;
             _Name = name;

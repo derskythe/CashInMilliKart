@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Text;
+using System.Text.RegularExpressions;
 using Containers;
 using Containers.Admin;
 using Containers.Enums;
@@ -96,6 +98,62 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public User GetUser(String sid, String username)
+        {
+            Log.Info(String.Format("SID: {0}, userInfo: {1}", sid, username));
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditUsers))
+                {
+                    throw new Exception("No priv");
+                }
+
+                return OracleDb.Instance.GetUser(username);
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException(ex.Message, ex);
+            }
+
+            return null;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public User GetUserById(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}, userInfo: {1}", sid, id));
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditUsers))
+                {
+                    throw new Exception("No priv");
+                }
+
+                return OracleDb.Instance.GetUser(id);
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException(ex.Message, ex);
+            }
+
+            return null;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult SaveUser(String sid, User userInfo)
         {
             Log.Info(String.Format("SID: {0}, userInfo: {1}", sid, userInfo));
@@ -123,6 +181,12 @@ namespace CashInCore
                 {
                     salt = Wrapper.GenerateSalt();
                     encPass = Wrapper.ComputeHash(userInfo.Password, salt);
+                }
+
+                if (!IsAlphaNum(userInfo.Username))
+                {
+                    result.Code = ResultCodes.InvalidParameters;
+                    throw new Exception(result.Description + " " + userInfo.Username);
                 }
 
                 OracleDb.Instance.SaveUser(userInfo.Id > 0 ? (int?)userInfo.Id : null, userInfo.Username,
@@ -397,6 +461,72 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult SaveTerminal(String sid, Terminal terminal)
+        {
+            Log.Info(String.Format("SID: {0}, Terminal: {1}", sid, terminal));
+            var result = new StandardResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                terminal.TmpKey = Encoding.ASCII.GetBytes("000000");
+
+                result.Id = OracleDb.Instance.SaveTerminal(session.Session.User.Id, terminal);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public TerminalInfoResult GetTerminal(String sid, int terminalId)
+        {
+            Log.Info("GetTerminalInfo");
+
+            var result = new TerminalInfoResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Terminal = OracleDb.Instance.GetTerminal(terminalId);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public ListEncashmentResult ListEncashment(String sid)
         {
             Log.Info(String.Format("SID: {0}", sid));
@@ -574,6 +704,17 @@ namespace CashInCore
         {
             user.Salt = String.Empty;
             user.Password = String.Empty;
+        }
+
+        private bool IsAlphaNum(String value)
+        {
+            Regex rgx = new Regex(@"^[a-z0-9]+$");
+
+            if (rgx.IsMatch(value))
+            {
+
+            }
+            return false;
         }
     }
 }

@@ -56,5 +56,17 @@ namespace CashInCore
 
         [OperationContract]
         ListProductHistoryResult ListProductHistoryByTransactionId(String sid, String transactionId);
+
+        [OperationContract]
+        User GetUser(String sid, String username);
+
+        [OperationContract]
+        User GetUserById(String sid, int id);
+
+        [OperationContract]
+        TerminalInfoResult GetTerminal(String sid, int terminalId);
+
+        [OperationContract]
+        StandardResult SaveTerminal(String sid, Terminal terminal);
     }
 }

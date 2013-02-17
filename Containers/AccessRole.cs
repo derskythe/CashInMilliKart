@@ -8,7 +8,7 @@ namespace Containers
     [DataContract(Name = "AccessRole", Namespace = "urn:CashIn")]
     public class AccessRole
     {
-        private decimal _Id;
+        private int _Id;
         private String _Section;
         private String _Name;
         private String _NameAz;
@@ -17,7 +17,7 @@ namespace Containers
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
-        public decimal Id
+        public int Id
         {
             get { return _Id; }
             set { _Id = value; }
@@ -67,7 +67,7 @@ namespace Containers
         {
         }
 
-        public AccessRole(decimal id, string section, string name, string nameAz, string nameRu, string nameEn)
+        public AccessRole(int id, string section, string name, string nameAz, string nameRu, string nameEn)
         {
             _Id = id;
             _Section = section;

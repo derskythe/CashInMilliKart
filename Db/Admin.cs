@@ -93,6 +93,29 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public int SaveTerminal(int userId, Terminal terminal)
+        {
+            CheckConnection();
+
+            const string cmdText = "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id); end;";
+
+            var cmd = new OracleCommand(cmdText, _OraCon);
+
+            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.InputOutput).Value = terminal.Id > 0 ? (int?)terminal.Id : null;
+            cmd.Parameters.Add("v_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Name;
+            cmd.Parameters.Add("v_address", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Address;
+            cmd.Parameters.Add("v_identity_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.IdentityName;
+            cmd.Parameters.Add("v_ip", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Ip;
+            cmd.Parameters.Add("v_tmp_key", OracleDbType.Blob, ParameterDirection.Input).Value = terminal.TmpKey;
+            cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
+
+            cmd.ExecuteNonQuery();
+
+            var result = cmd.Parameters["v_id"].Value;
+
+            return result == null ? 0 : Convert.ToInt32(result);
+        }
+
         public void SaveCurrency(string id, string isoName, string name, bool defaultCurrency, int userId)
         {
             CheckConnection();
