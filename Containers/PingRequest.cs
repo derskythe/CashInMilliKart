@@ -10,6 +10,7 @@ namespace Containers
     {
         private int _TerminalStatus;
         private int _CashCodeStatus;
+        private int _PrinterStatus;
         private String _ErrorDescription;
 
         [XmlElement(ElementName = "TerminalStatus")]
@@ -28,6 +29,14 @@ namespace Containers
             set { _CashCodeStatus = value; }
         }
 
+        [XmlElement(ElementName = "PrinterStatus")]
+        [DataMember(Name = "PrinterStatus")]
+        public int PrinterStatus
+        {
+            get { return _PrinterStatus; }
+            set { _PrinterStatus = value; }
+        }
+
         [XmlElement(ElementName = "ErrorDescription")]
         [DataMember(Name = "ErrorDescription")]
         public string ErrorDescription
@@ -40,20 +49,29 @@ namespace Containers
         {
         }
 
-        public PingRequest(int terminalId, int terminalStatus, int cashCodeStatus, string errorDescription, string sign)
+        public PingRequest(int terminalStatus, int cashCodeStatus, int printerStatus, string errorDescription)
         {
-            _TerminalId = terminalId;
             _TerminalStatus = terminalStatus;
             _CashCodeStatus = cashCodeStatus;
+            _PrinterStatus = printerStatus;
             _ErrorDescription = errorDescription;
-            _Sign = sign;
+        }
+
+        public PingRequest(int terminalId, int terminalStatus, int cashCodeStatus, int printerStatus, string errorDescription)
+            : base(terminalId)
+        {
+            _TerminalStatus = terminalStatus;
+            _CashCodeStatus = cashCodeStatus;
+            _PrinterStatus = printerStatus;
+            _ErrorDescription = errorDescription;
         }
 
         public override string ToString()
         {
-            return string.Format(
-                "{0}, TerminalId: {1}, TerminalStatus: {2}, CashCodeStatus: {3}, ErrorDescription: {4}", base.ToString(),
-                _TerminalId, _TerminalStatus, _CashCodeStatus, _ErrorDescription);
+            return
+                string.Format(
+                    "{0}, TerminalStatus: {1}, CashCodeStatus: {2}, PrinterStatus: {3}, ErrorDescription: {4}",
+                    base.ToString(), _TerminalStatus, _CashCodeStatus, _PrinterStatus, _ErrorDescription);
         }
     }
 }
