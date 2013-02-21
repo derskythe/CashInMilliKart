@@ -32,6 +32,7 @@
             this.btnSuccessNext = new System.Windows.Forms.Button();
             this.lblSuccessWelcome = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.SuspendLayout();
             // 
             // lblSuccessTotalAmount
@@ -83,6 +84,10 @@
             this.label3.Text = "Получено";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocumentPrintPage);
+            // 
             // FormPaySuccess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,6 +111,7 @@
         private System.Windows.Forms.Button btnSuccessNext;
         private System.Windows.Forms.Label lblSuccessWelcome;
         private System.Windows.Forms.Label label3;
+        private System.Drawing.Printing.PrintDocument printDocument;
 
     }
 }

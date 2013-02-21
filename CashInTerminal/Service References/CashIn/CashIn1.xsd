@@ -38,27 +38,25 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="ResultCodes" type="tns:ResultCodes" />
           <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="ResultCodes">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="Ok" />
-          <xs:enumeration value="InvalidNumber" />
-          <xs:enumeration value="InvalidParameters" />
-          <xs:enumeration value="InvalidTerminal" />
-          <xs:enumeration value="InvalidKey" />
-          <xs:enumeration value="InvalidSignature" />
-          <xs:enumeration value="InvalidUsernameOrPassword" />
-          <xs:enumeration value="InvalidSession" />
-          <xs:enumeration value="UnknownError" />
-          <xs:enumeration value="SystemError" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="InvalidNumber" />
+      <xs:enumeration value="InvalidParameters" />
+      <xs:enumeration value="InvalidTerminal" />
+      <xs:enumeration value="InvalidKey" />
+      <xs:enumeration value="InvalidSignature" />
+      <xs:enumeration value="InvalidUsernameOrPassword" />
+      <xs:enumeration value="InvalidSession" />
+      <xs:enumeration value="NoPriv" />
+      <xs:enumeration value="UnknownError" />
+      <xs:enumeration value="SystemError" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="TerminalInfoResult">
     <xs:complexContent mixed="false">
@@ -71,15 +69,15 @@
   </xs:complexType>
   <xs:complexType name="Terminal">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Address" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="IdentityName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SignKey" type="xs:base64Binary" />
       <xs:element minOccurs="0" maxOccurs="1" name="Ip" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="TmpKey" type="xs:base64Binary" />
-      <xs:element minOccurs="1" maxOccurs="1" name="LastStatusType" type="xs:decimal" />
-      <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeStatus" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastStatusType" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeStatus" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="LastStatusUpdate" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
@@ -127,11 +125,31 @@
       <xs:extension base="tns:StandardRequest">
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="TerminalStatus" type="xs:int" />
-          <xs:element minOccurs="1" maxOccurs="1" name="CashCodeStatus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CashCodeStatus" type="tns:CashCodeDeviceStatus" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrinterStatus" type="tns:PrinterStatus" />
           <xs:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashCodeDeviceStatus">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="StateCode" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StateCodeOut" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BillEnable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FatalError" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeviceStateDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SubDeviceStateDescription" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Init" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PrinterStatus">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ExtendedStatus" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ErrorState" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ExtendedErrorState" type="xs:int" />
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="PingResponse">
     <xs:complexType>

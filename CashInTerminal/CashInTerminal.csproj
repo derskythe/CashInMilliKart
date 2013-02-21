@@ -42,7 +42,10 @@
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -57,10 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CcnetBillTypes.cs" />
-    <Compile Include="CcnetCommand.cs" />
     <Compile Include="CCNETDevice.cs" />
-    <Compile Include="CcnetDeviceState.cs" />
-    <Compile Include="CCNETPortSpeed.cs" />
+    <Compile Include="CCNETDeviceState1.cs" />
+    <Compile Include="Enums\CCNETPortSpeed.cs" />
     <Compile Include="ClientInfo.cs" />
     <Compile Include="Controls\MenuButton.cs">
       <SubType>Component</SubType>
@@ -76,6 +78,10 @@
       <DependentUpon>ds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Enums\DebitPayType.cs" />
+    <Compile Include="Enums\DetectedErrorState.cs" />
+    <Compile Include="Enums\ExtendedDetectedErrorState.cs" />
+    <Compile Include="Enums\ExtendedPrinterStatus.cs" />
+    <Compile Include="Enums\PrinterStatus.cs" />
     <Compile Include="FormActivation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,11 +301,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\CashIn\CashIn.wsdl" />
-    <None Include="Service References\CashIn\CashIn.xsd">
+    <None Include="Service References\CashIn\CashIn1.wsdl" />
+    <None Include="Service References\CashIn\CashIn1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CashIn\CashInServer.wsdl" />
+    <None Include="Service References\CashIn\CashInServer1.wsdl" />
     <None Include="Service References\CashIn\CashInTerminal.CashIn.AuthResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -329,9 +335,6 @@
     <WCFMetadataStorage Include="Service References\CashIn\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\CashIn\CashIn.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\CashIn\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +355,9 @@
       <Project>{A70CBCC4-C84E-4F55-B0D9-435B5EAB1575}</Project>
       <Name>Containers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CashIn\CashIn1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

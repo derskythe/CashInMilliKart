@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:4443/CashIn" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://cashin.terminal.server:4443/CashIn" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CashInServer.wsdl" MetadataType="Wsdl" ID="c46eed3f-ab5a-4cdc-a0cd-4f6600b67862" SourceId="1" SourceUrl="http://localhost:4443/CashIn?wsdl" />
-    <MetadataFile FileName="CashIn.disco" MetadataType="Disco" ID="a655cdf5-ba4d-4fd4-9692-18c682505f19" SourceId="1" SourceUrl="http://localhost:4443/CashIn?disco" />
-    <MetadataFile FileName="CashIn.xsd" MetadataType="Schema" ID="38ebddd2-41b3-4d44-b1ae-0a5b9f17b9af" SourceId="1" SourceUrl="http://localhost:4443/CashIn?xsd=xsd0" />
-    <MetadataFile FileName="CashIn.wsdl" MetadataType="Wsdl" ID="f75c367c-9762-47b4-80cd-6e1a287f92a7" SourceId="1" SourceUrl="http://localhost:4443/CashIn?wsdl=wsdl0" />
+    <MetadataFile FileName="CashIn1.wsdl" MetadataType="Wsdl" ID="2261492f-e781-4a15-a99e-96a2e5813f1a" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?wsdl=wsdl0" />
+    <MetadataFile FileName="CashInServer1.wsdl" MetadataType="Wsdl" ID="7f106f3a-9da7-4473-b8ec-75ef92c99b53" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?wsdl" />
+    <MetadataFile FileName="CashIn1.disco" MetadataType="Disco" ID="40b91b65-5d8c-408c-af66-54f4ea0941c4" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?disco" />
+    <MetadataFile FileName="CashIn1.xsd" MetadataType="Schema" ID="fa5cb90e-0960-4167-8473-f7ae23931052" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

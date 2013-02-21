@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Management;
 using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
+using CashInTerminal.Enums;
 using CashInTerminal.Properties;
 using Containers.Enums;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using crypto;
+using PrinterStatus = CashInTerminal.CashIn.PrinterStatus;
 using ResultCodes = CashInTerminal.CashIn.ResultCodes;
 using Timer = System.Threading.Timer;
 
@@ -23,6 +26,7 @@ namespace CashInTerminal
         private AsymmetricCipherKeyPair _LocalKeys;
         private AsymmetricKeyParameter _ServerPublicKey;
         private CCNETDevice _CcnetDevice;
+        private PrinterStatus _PrinterStatus;
         private bool _Init;
         private bool _AuthTerminal;
         private bool _EncashmentMode;
@@ -196,7 +200,7 @@ namespace CashInTerminal
             try
             {
                 _CcnetDevice = new CCNETDevice();
-                _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.B_9600);
+                _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.S9600);
                 _CcnetDevice.Init();
                 //_CcnetDevice.BillStacked += CcnetDeviceBillStacked;
                 //_CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
@@ -303,15 +307,15 @@ namespace CashInTerminal
 
         private void SetFormParent(object form)
         {
-            var f = (Form) form;
+            var f = (Form)form;
             if (f == null)
             {
                 return;
             }
 
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new SetFormParentDelegate(SetFormParent), f);
+                Invoke(new SetFormParentDelegate(SetFormParent), f);
             }
             else
             {
@@ -377,7 +381,7 @@ namespace CashInTerminal
                         _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment)
                     {
                         _LastActivity = Utilities.GetLastInputTime();
-                        if (_LastActivity > MAX_INACTIVITY_PERIOD) 
+                        if (_LastActivity > MAX_INACTIVITY_PERIOD)
                         {
                             OpenForm(typeof(FormLanguage));
                         }
@@ -484,10 +488,23 @@ namespace CashInTerminal
                 {
                     try
                     {
+                        UpdatePrinterStatus();
+                        var status = new CashCodeDeviceStatus
+                            {
+                                BillEnable = _CcnetDevice.DeviceState.BillEnable,
+                                DeviceStateDescription = _CcnetDevice.DeviceState.DeviceStateDescription,
+                                FatalError = _CcnetDevice.DeviceState.FatalError,
+                                Init = _CcnetDevice.DeviceState.Init,
+                                StateCode = (int)_CcnetDevice.DeviceState.StateCode,
+                                StateCodeOut = (int)_CcnetDevice.DeviceState.StateCodeOut,
+                                SubDeviceStateDescription = _CcnetDevice.DeviceState.SubDeviceStateDescription
+                            };
+
                         var now = DateTime.Now;
                         var request = new PingRequest
                         {
-                            CashCodeStatus = (int)_CcnetDevice.DeviceState.StateCode,
+                            CashCodeStatus = status,
+                            PrinterStatus = _PrinterStatus,
                             SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                             TerminalStatus = !_EncashmentMode ? (int)TerminalCodes.Ok : (int)TerminalCodes.Encashment,
@@ -562,6 +579,58 @@ namespace CashInTerminal
                 }
 
                 Thread.Sleep(PING_TIMEOUT);
+            }
+        }
+
+        private void UpdatePrinterStatus()
+        {
+            int printerStatus = -1, detectedErrorState = -1, extendedDetectedErrorState = -1, extendedPrinterStatus = -1;
+            try
+            {
+                var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Printer");
+
+                foreach (ManagementObject queryObj in searcher.Get())
+                {
+                    if ((bool)queryObj["Default"])
+                    {
+                        foreach (var data in queryObj.Properties)
+                        {
+                            switch (data.Name.ToLower())
+                            {
+                                case "printerstatus":
+                                    printerStatus = Convert.ToInt32(data.Value);
+                                    break;
+
+                                case "detectederrorstate":
+                                    detectedErrorState = Convert.ToInt32(data.Value);
+                                    break;
+
+                                case "extendeddetectederrorstate":
+                                    extendedDetectedErrorState = Convert.ToInt32(data.Value);
+                                    break;
+
+                                case "extendedprinterstatus":
+                                    extendedPrinterStatus = Convert.ToInt32(data.Value);
+                                    break;
+
+                                //default:
+                                //    return data;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log.ErrorException(e.Message, e);
+            }
+
+            lock (_PrinterStatus)
+            {
+                _PrinterStatus.ErrorState = detectedErrorState;
+                _PrinterStatus.ExtendedErrorState = extendedDetectedErrorState;
+                _PrinterStatus.ExtendedStatus = extendedPrinterStatus;
+                _PrinterStatus.Status = printerStatus;
             }
         }
 

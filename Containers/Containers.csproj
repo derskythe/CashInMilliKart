@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Containers.pfx</AssemblyOriginatorKeyFile>
@@ -58,6 +58,8 @@
     <Compile Include="Admin\SessionResult.cs" />
     <Compile Include="AuthResult.cs" />
     <Compile Include="BaseMessage.cs" />
+    <Compile Include="CashCodeDeviceStatus.cs" />
+    <Compile Include="CashCode\CcnetCommand.cs" />
     <Compile Include="CommandResult.cs" />
     <Compile Include="CurrenciesResult.cs" />
     <Compile Include="Currency.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="PaymentInfoByProducts.cs" />
     <Compile Include="PingRequest.cs" />
     <Compile Include="PingResult.cs" />
+    <Compile Include="PrinterStatus.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductHistory.cs" />
     <Compile Include="ProductHistoryValue.cs" />

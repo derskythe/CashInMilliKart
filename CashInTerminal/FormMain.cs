@@ -91,7 +91,7 @@ namespace CashInTerminal
             try
             {
                 _CcnetDevice = new CCNETDevice();
-                _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.B_9600);
+                _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.S9600);
                 _CcnetDevice.Init();
                 _CcnetDevice.BillStacked += CcnetDeviceBillStacked;
                 _CcnetDevice.ReadCommand += CcnetDeviceReadCommand;

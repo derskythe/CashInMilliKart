@@ -136,10 +136,21 @@ namespace CashInTerminal
                 {
                     try
                     {
+                        var status = new CashCodeDeviceStatus
+                            {
+                                BillEnable = _CcnetDevice.DeviceState.BillEnable,
+                                DeviceStateDescription = _CcnetDevice.DeviceState.DeviceStateDescription,
+                                FatalError = _CcnetDevice.DeviceState.FatalError,
+                                Init = _CcnetDevice.DeviceState.Init,
+                                StateCode = (int) _CcnetDevice.DeviceState.StateCode,
+                                StateCodeOut = (int) _CcnetDevice.DeviceState.StateCodeOut,
+                                SubDeviceStateDescription = _CcnetDevice.DeviceState.SubDeviceStateDescription
+                            };
+
                         var now = DateTime.Now;
                         var request = new PingRequest
                             {
-                                CashCodeStatus = (int)_CcnetDevice.DeviceState.StateCode,
+                                CashCodeStatus = status,
                                 SystemTime = now,
                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                 TerminalStatus = !_EncashmentMode ? (int)TerminalCodes.Ok : (int)TerminalCodes.Encashment,

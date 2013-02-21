@@ -117,7 +117,7 @@ namespace CashInCore
                 Log.Debug(request);
                 result = (PingResult)AuthTerminal(result, request, out terminalInfo);
 
-                OracleDb.Instance.SaveTerminalStatus(request.TerminalId, request.TerminalStatus, request.CashCodeStatus);
+                OracleDb.Instance.SaveTerminalStatus(request.TerminalId, request.TerminalStatus, (int)request.CashCodeStatus.StateCodeOut);
                 result.Command = OracleDb.Instance.GetTerminalStatus(request.TerminalId);
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

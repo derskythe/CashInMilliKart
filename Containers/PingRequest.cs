@@ -9,8 +9,8 @@ namespace Containers
     public class PingRequest : StandardRequest
     {
         private int _TerminalStatus;
-        private int _CashCodeStatus;
-        private int _PrinterStatus;
+        private CashCodeDeviceStatus _CashCodeStatus;
+        private PrinterStatus _PrinterStatus;
         private String _ErrorDescription;
 
         [XmlElement(ElementName = "TerminalStatus")]
@@ -23,7 +23,7 @@ namespace Containers
 
         [XmlElement(ElementName = "CashCodeStatus")]
         [DataMember(Name = "CashCodeStatus")]
-        public int CashCodeStatus
+        public CashCodeDeviceStatus CashCodeStatus
         {
             get { return _CashCodeStatus; }
             set { _CashCodeStatus = value; }
@@ -31,7 +31,7 @@ namespace Containers
 
         [XmlElement(ElementName = "PrinterStatus")]
         [DataMember(Name = "PrinterStatus")]
-        public int PrinterStatus
+        public PrinterStatus PrinterStatus
         {
             get { return _PrinterStatus; }
             set { _PrinterStatus = value; }
@@ -49,7 +49,7 @@ namespace Containers
         {
         }
 
-        public PingRequest(int terminalStatus, int cashCodeStatus, int printerStatus, string errorDescription)
+        public PingRequest(int terminalStatus, CashCodeDeviceStatus cashCodeStatus, PrinterStatus printerStatus, string errorDescription)
         {
             _TerminalStatus = terminalStatus;
             _CashCodeStatus = cashCodeStatus;
@@ -57,7 +57,7 @@ namespace Containers
             _ErrorDescription = errorDescription;
         }
 
-        public PingRequest(int terminalId, int terminalStatus, int cashCodeStatus, int printerStatus, string errorDescription)
+        public PingRequest(int terminalId, int terminalStatus, CashCodeDeviceStatus cashCodeStatus, PrinterStatus printerStatus, string errorDescription)
             : base(terminalId)
         {
             _TerminalStatus = terminalStatus;

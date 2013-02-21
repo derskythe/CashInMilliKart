@@ -31,6 +31,7 @@
             this.lblEncashmentTotal = new System.Windows.Forms.Label();
             this.btnEncashmentFinish = new System.Windows.Forms.Button();
             this.btnEncashmentPrint = new System.Windows.Forms.Button();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.SuspendLayout();
             // 
             // lblEncashmentTotal
@@ -71,6 +72,10 @@
             this.btnEncashmentPrint.UseVisualStyleBackColor = true;
             this.btnEncashmentPrint.Click += new System.EventHandler(this.BtnEncashmentPrintClick);
             // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocumentPrintPage);
+            // 
             // FormEncashment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +96,7 @@
         private System.Windows.Forms.Label lblEncashmentTotal;
         private System.Windows.Forms.Button btnEncashmentFinish;
         private System.Windows.Forms.Button btnEncashmentPrint;
+        private System.Drawing.Printing.PrintDocument printDocument;
 
     }
 }
