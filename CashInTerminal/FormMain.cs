@@ -90,11 +90,7 @@ namespace CashInTerminal
             Log.Info("Init Cashcode");
             try
             {
-                _CcnetDevice = new CCNETDevice();
-                _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.S9600);
-                _CcnetDevice.Init();
-                _CcnetDevice.BillStacked += CcnetDeviceBillStacked;
-                _CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
+                InitCashCode(Settings.Default.DevicePort);
                 //_CcnetDevice.Reset();
 
                 _Init &= true;
@@ -155,6 +151,21 @@ namespace CashInTerminal
         }
 
         #endregion
+
+        public void InitCashCode(int port)
+        {
+            if (_CcnetDevice != null)
+            {
+                _CcnetDevice.Close();
+                Thread.Sleep(150);
+            }
+
+            _CcnetDevice = new CCNETDevice();
+            _CcnetDevice.Open(port, CCNETPortSpeed.S9600);
+            _CcnetDevice.Init();
+            _CcnetDevice.BillStacked += CcnetDeviceBillStacked;
+            _CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
+        }
 
         private void SetStackedAmount(object amount)
         {

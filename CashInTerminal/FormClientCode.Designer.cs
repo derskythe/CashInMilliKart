@@ -194,7 +194,7 @@
             // btnClientCodeBackspace
             // 
             this.btnClientCodeBackspace.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCodeBackspace.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCodeBackspace.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeBackspace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnClientCodeBackspace.Location = new System.Drawing.Point(616, 265);
             this.btnClientCodeBackspace.Name = "btnClientCodeBackspace";
@@ -274,7 +274,7 @@
             this.btnClientCodeNext.UseVisualStyleBackColor = true;
             this.btnClientCodeNext.Click += new System.EventHandler(this.BtnClientCodeNextClick);
             // 
-            // FormCreditClientCode
+            // FormClientCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -298,7 +298,7 @@
             this.Controls.Add(this.btnClientCodeBack);
             this.Controls.Add(this.btnClientCodeNext);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "FormCreditClientCode";
+            this.Name = "FormClientCode";
             this.Text = "FormCreditClientCode";
             this.ResumeLayout(false);
             this.PerformLayout();

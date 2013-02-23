@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.Properties;
 
@@ -21,7 +22,9 @@ namespace CashInTerminal
             btnMoneyNext.Enabled = false;
             try
             {
+                Log.Debug("Stopping cashcode");
                 StopCashcode();
+                Log.Debug("Stoped cashcode");
             }
             catch (Exception exp)
             {
@@ -30,8 +33,10 @@ namespace CashInTerminal
 
             try
             {
+                Log.Debug("Update DB");
                 FormMain.Db.UpdateAmount(FormMain.ClientInfo.PaymentId, lblMoneyCurrency.Text, 1, Convert.ToInt32(lblMoneyTotal.Text));
                 FormMain.Db.ConfirmTransaction(FormMain.ClientInfo.PaymentId);
+                Log.Debug("Done");
             }
             catch (Exception exp)
             {
@@ -40,7 +45,7 @@ namespace CashInTerminal
 
             //lblSuccessTotalAmount.Text = lblMoneyTotal.Text + @" " + lblMoneyCurrency.Text;
             //PrintCheck();
-
+            Log.Debug("Change view");
             btnMoneyNext.Enabled = true;
             ChangeView(typeof(FormPaySuccess));
         }
@@ -56,12 +61,13 @@ namespace CashInTerminal
             FormMain.CcnetDevice.BillStacked += CcnetDeviceOnBillStacked;
             FormMain.CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
 
-            StartCashcode();
+            var startCashCodeThread = new Thread(StartCashcode);
+            startCashCodeThread.Start();
         }
 
         private void CcnetDeviceOnReadCommand(CCNETDeviceState ccnetDeviceState)
         {
-            Log.Debug(ccnetDeviceState.ToString());
+            //Log.Debug(ccnetDeviceState.ToString());
         }
 
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)

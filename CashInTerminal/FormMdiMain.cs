@@ -26,11 +26,11 @@ namespace CashInTerminal
         private AsymmetricCipherKeyPair _LocalKeys;
         private AsymmetricKeyParameter _ServerPublicKey;
         private CCNETDevice _CcnetDevice;
-        private PrinterStatus _PrinterStatus;
+        private readonly PrinterStatus _PrinterStatus = new PrinterStatus();
         private bool _Init;
         private bool _AuthTerminal;
         private bool _EncashmentMode;
-        private Terminal _TerminalInfo;
+        private Terminal _TerminalInfo = new Terminal();
         private LocalDb _Db;
         private bool _Running = true;
 
@@ -199,9 +199,11 @@ namespace CashInTerminal
             Log.Info("Init Cashcode");
             try
             {
-                _CcnetDevice = new CCNETDevice();
-                _CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.S9600);
-                _CcnetDevice.Init();
+                InitCashCode(Settings.Default.DevicePort);
+                //_CcnetDevice = new CCNETDevice();
+                //_CcnetDevice.Open(Settings.Default.DevicePort, CCNETPortSpeed.S9600);
+                //_CcnetDevice.Init();
+                //_CcnetDevice.Reset();
                 //_CcnetDevice.BillStacked += CcnetDeviceBillStacked;
                 //_CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
                 //_CcnetDevice.Reset();
@@ -240,8 +242,8 @@ namespace CashInTerminal
             {
                 Log.ErrorException(exp.Message, exp);
             }
-            Settings.Default.TerminalCode = String.Empty;
-            Settings.Default.Save();
+            //Settings.Default.TerminalCode = String.Empty;
+            //Settings.Default.Save();
 
             _AuthTerminal = !String.IsNullOrEmpty(Settings.Default.TerminalCode);
 
@@ -255,8 +257,16 @@ namespace CashInTerminal
             }
             else
             {
-                OpenForm(typeof(FormLanguage));
+                try
+                {
+                    GetTerminalInfo();
+                }
+                catch (Exception exp)
+                {
+                    Log.ErrorException(exp.Message, exp);
+                }
 
+                OpenForm(typeof(FormLanguage));
             }
 
             _PingThread = new Thread(PingThread);
@@ -268,6 +278,21 @@ namespace CashInTerminal
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
+        }
+
+        public void InitCashCode(int port)
+        {
+            if (_CcnetDevice != null)
+            {
+                _CcnetDevice.Close();
+                Thread.Sleep(150);
+            }
+
+            _CcnetDevice = new CCNETDevice();
+            _CcnetDevice.Open(port, CCNETPortSpeed.S9600);
+            _CcnetDevice.Init();
+            //_CcnetDevice.BillStacked += CcnetDeviceBillStacked;
+            //_CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
         }
 
         private void CloseForm(object form)
@@ -631,10 +656,24 @@ namespace CashInTerminal
                 _PrinterStatus.ExtendedErrorState = extendedDetectedErrorState;
                 _PrinterStatus.ExtendedStatus = extendedPrinterStatus;
                 _PrinterStatus.Status = printerStatus;
+
+                try
+                {
+                    Log.Debug(String.Format("ErrorState: {0}, ExtendedErrorState: {1}, ExtendedStatus: {2}, Status: {3}",
+                    ((DetectedErrorState)detectedErrorState).ToString(),
+                    ((ExtendedDetectedErrorState)extendedDetectedErrorState).ToString(),
+                    ((ExtendedPrinterStatus)extendedPrinterStatus).ToString(),
+                    ((ExtendedPrinterStatus)printerStatus).ToString()));
+                }
+                catch (Exception exp)
+                {
+                    Log.ErrorException(exp.Message, exp);
+                }
+
             }
         }
 
-        private void GetTerminalInfo()
+        public void GetTerminalInfo()
         {
             DateTime now = DateTime.Now;
             var cmd = new StandardRequest
@@ -648,6 +687,10 @@ namespace CashInTerminal
             if (response != null)
             {
                 _TerminalInfo = response.Terminal;
+            }
+            else
+            {
+                Log.Error("Terminal info is null");
             }
         }
 

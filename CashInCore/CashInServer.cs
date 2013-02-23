@@ -55,7 +55,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public AuthResult InitTerminal(int terminalId, string authKey, string publicKey)
         {
-            Log.Info("InitTerminal");
+            Log.Info("InitTerminal. terminalId: {0}, authKey: {1}, publicKey: {2}");
             var result = new AuthResult();
 
             try
@@ -78,6 +78,12 @@ namespace CashInCore
                 {
                     result.Code = ResultCodes.InvalidTerminal;
                     throw new Exception("Terminal not found in DB");
+                }
+
+                if (terminal.TmpKey == null)
+                {
+                    result.Code = ResultCodes.InvalidTerminal;
+                    throw new Exception(String.Format("Code is empty. TerminalId: {0}", terminalId));
                 }
 
                 if (Encoding.ASCII.GetString(terminal.TmpKey) != authKey)

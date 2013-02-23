@@ -192,7 +192,7 @@
             // btnDebitClientCodeBackspace
             // 
             this.btnDebitClientCodeBackspace.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDebitClientCodeBackspace.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnDebitClientCodeBackspace.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnDebitClientCodeBackspace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnDebitClientCodeBackspace.Location = new System.Drawing.Point(646, 260);
             this.btnDebitClientCodeBackspace.Name = "btnDebitClientCodeBackspace";

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -36,9 +37,10 @@ namespace CashInTerminal
                     msg.Append(total).Append(" ").Append(currency.Name).Append("\n");
                 }
 
-                _StreamToPrint = String.Format(PRINT_TEMPLATE, DateTime.Now, FormMain.TerminalInfo.Id, msg.ToString());
+                _StreamToPrint = String.Format(PRINT_TEMPLATE, DateTime.Now, FormMain.TerminalInfo.Id, msg);
 
                 Log.Info(msg.ToString());
+                printDocument.PrintController = new StandardPrintController();
                 printDocument.Print();
                 MessageBox.Show(msg.ToString());
             }

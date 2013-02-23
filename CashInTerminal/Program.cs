@@ -6,9 +6,7 @@ using System.Windows.Forms;
 namespace CashInTerminal
 {
     static class Program
-    {
-        
-
+    {       
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -20,6 +18,8 @@ namespace CashInTerminal
             {
                 if (mutexCreated)
                 {
+                    //MakePortable(Properties.Settings.Default);
+
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new FormMdiMain());
@@ -41,5 +41,15 @@ namespace CashInTerminal
 
             
         }
+
+        //private static void MakePortable(ApplicationSettingsBase settings)
+        //{
+        //    var portableSettingsProvider =
+        //        new PortableSettingsProvider(settings.GetType().Name + ".config");
+        //    settings.Providers.Add(portableSettingsProvider);
+        //    foreach (SettingsProperty prop in settings.Properties)
+        //        prop.Provider = portableSettingsProvider;
+        //    settings.Reload();
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
@@ -22,15 +23,15 @@ namespace CashInTerminal
 
         private void BtnActivationClearClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += String.Empty;
+            if (SelectedBox.Text.Length > 0)
+            {
+                SelectedBox.Text = SelectedBox.Text.Substring(0, SelectedBox.Text.Length - 1);
+            }            
         }
 
         private void BtnActivationBackspaceClick(object sender, EventArgs e)
         {
-            if (SelectedBox.Text.Length > 0)
-            {
-                SelectedBox.Text = SelectedBox.Text.Substring(0, SelectedBox.Text.Length - 1);
-            }
+            SelectedBox.Text += String.Empty;
         }
 
         private void BtnActivation0Click(object sender, EventArgs e)
@@ -108,6 +109,13 @@ namespace CashInTerminal
 
                 if (result.ResultCodes == ResultCodes.Ok)
                 {
+                    int port = 0;
+                    if (cmbPorts.SelectedIndex >= 0)
+                    {
+                        port = Convert.ToInt32(Convert.ToString(cmbPorts.SelectedItem).Substring(3));
+                    }
+
+                    Settings.Default.DevicePort = port;
                     Log.Info("Success activation!");
                     Settings.Default.TerminalCode = txtActivationTerminal.Text;
                     Settings.Default.Save();
@@ -169,6 +177,58 @@ namespace CashInTerminal
             if (response != null)
             {
                 FormMain.TerminalInfo = response.Terminal;
+            }
+        }
+
+        private void FormActivation_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                GetComList(cmbPorts);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
+
+        private void GetComList(ComboBox comboBoxCom)
+        {
+            string[] comList = System.IO.Ports.SerialPort.GetPortNames();
+            Array.Sort(comList);
+
+            foreach (string s in comList)
+            {
+                var regexp = new System.Text.RegularExpressions.Regex("^[A-Z]+[0-9]+");
+                string str = regexp.Match(s).Value;
+
+                comboBoxCom.Items.Add(str);
+            }
+
+            if (comboBoxCom.SelectedItem == null || comboBoxCom.SelectedIndex == -1)
+            {
+                comboBoxCom.SelectedIndex = 0;
+            }
+        }
+
+        private void BtnTestClick(object sender, EventArgs e)
+        {
+            int port = 0;
+            if (cmbPorts.SelectedIndex >= 0)
+            {
+                port = Convert.ToInt32(Convert.ToString(cmbPorts.SelectedItem).Substring(3));
+            }
+
+            try
+            {
+                FormMain.InitCashCode(port);
+                FormMain.CcnetDevice.Reset();
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+
+                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
