@@ -657,18 +657,18 @@ namespace CashInTerminal
                 _PrinterStatus.ExtendedStatus = extendedPrinterStatus;
                 _PrinterStatus.Status = printerStatus;
 
-                try
-                {
-                    Log.Debug(String.Format("ErrorState: {0}, ExtendedErrorState: {1}, ExtendedStatus: {2}, Status: {3}",
-                    ((DetectedErrorState)detectedErrorState).ToString(),
-                    ((ExtendedDetectedErrorState)extendedDetectedErrorState).ToString(),
-                    ((ExtendedPrinterStatus)extendedPrinterStatus).ToString(),
-                    ((ExtendedPrinterStatus)printerStatus).ToString()));
-                }
-                catch (Exception exp)
-                {
-                    Log.ErrorException(exp.Message, exp);
-                }
+                //try
+                //{
+                //    Log.Debug(String.Format("ErrorState: {0}, ExtendedErrorState: {1}, ExtendedStatus: {2}, Status: {3}",
+                //    ((DetectedErrorState)detectedErrorState).ToString(),
+                //    ((ExtendedDetectedErrorState)extendedDetectedErrorState).ToString(),
+                //    ((ExtendedPrinterStatus)extendedPrinterStatus).ToString(),
+                //    ((ExtendedPrinterStatus)printerStatus).ToString()));
+                //}
+                //catch (Exception exp)
+                //{
+                //    Log.ErrorException(exp.Message, exp);
+                //}
 
             }
         }

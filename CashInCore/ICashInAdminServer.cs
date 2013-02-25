@@ -68,5 +68,11 @@ namespace CashInCore
 
         [OperationContract]
         StandardResult SaveTerminal(String sid, Terminal terminal);
+
+        [OperationContract]
+        ListCurrenciesResult ListCurrencies(String sid);
+
+        [OperationContract]
+        StandardResult UpdateProfile(String sid, string newPassword);
     }
 }

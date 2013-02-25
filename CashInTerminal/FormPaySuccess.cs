@@ -16,9 +16,10 @@ namespace CashInTerminal
             "-------------------------------------------------\n" +
             "№ терминала: {1}\n" +
             "Код: {2}\n" +
-            "Операция: {3}\n" +
-            "Номер счета: {4}\n" +
-            "Сумма: {5}\n" +
+            "Код транзакции: {3}\n" +
+            "Операция: {4}\n" +
+            "Номер счета: {5}\n" +
+            "Сумма: {6}\n" +
             "-------------------------------------------------\n" +
             "\n" +
             "\n" +
@@ -69,8 +70,9 @@ namespace CashInTerminal
                 Log.Debug("Update print info");
                 _StreamToPrint = String.Format(PRINT_TEMPLATE,
                     DateTime.Now,
-                    FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                    FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]",                    
                     FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                    FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
                                                productName,
                                                accountNumber,
                                                lblSuccessTotalAmount.Text);

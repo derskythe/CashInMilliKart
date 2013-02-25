@@ -689,6 +689,69 @@ namespace CashInCore
             return result;
         }
 
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCurrenciesResult ListCurrencies(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListCurrenciesResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewCurrency))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Currencies = OracleDb.Instance.ListCurrencies();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult UpdateProfile(String sid, string newPassword)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new StandardResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                string salt = Wrapper.GenerateSalt();
+                string encPass = Wrapper.ComputeHash(newPassword, salt);
+
+                OracleDb.Instance.SaveUser(session.Session.User.Id, session.Session.User.Username, encPass, salt);
+
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
         private bool HasPriv(IEnumerable<AccessRole> roles, String requiredPriv)
         {
             foreach (var role in roles)
