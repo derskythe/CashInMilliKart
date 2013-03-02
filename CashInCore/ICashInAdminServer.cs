@@ -2,6 +2,7 @@
 using System.ServiceModel;
 using Containers;
 using Containers.Admin;
+using Containers.Enums;
 
 namespace CashInCore
 {
@@ -34,28 +35,28 @@ namespace CashInCore
         StandardResult SaveCurrencyRate(String sid, String currency, decimal rate);
 
         [OperationContract]
-        ListUsersResult ListUsers(String sid);
+        ListUsersResult ListUsers(String sid, UsersColumns sortColumn, SortType sortType);
 
         [OperationContract]
         ListRolesResult ListRoles(String sid);
 
         [OperationContract]
-        ListTerminalsResult ListTerminals(String sid);
+        ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType);
 
         [OperationContract]
-        ListEncashmentResult ListEncashment(String sid);
+        ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType);
 
         [OperationContract]
         ListProductsResult ListProducts(String sid);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistory(String sid);
+        ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistoryByDate(String sid, DateTime from, DateTime to);
+        ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistoryByTransactionId(String sid, String transactionId);
+        ListProductHistoryResult ListProductHistoryByTransactionId(string sid, string transactionId, ProductHistoryColumns sortColumn, SortType sortType);
 
         [OperationContract]
         User GetUser(String sid, String username);
@@ -67,12 +68,18 @@ namespace CashInCore
         TerminalInfoResult GetTerminal(String sid, int terminalId);
 
         [OperationContract]
-        StandardResult SaveTerminal(String sid, Terminal terminal);
+        SaveTerminalResult SaveTerminal(String sid, Terminal terminal);
 
         [OperationContract]
-        ListCurrenciesResult ListCurrencies(String sid);
+        ListCurrenciesResult ListCurrencies(String sid, CurrencyColumns sortColumn, SortType sortType);
 
         [OperationContract]
         StandardResult UpdateProfile(String sid, string newPassword);
+
+        [OperationContract]
+        EncashmentResult GetEncashment(String sid, int id);
+
+        [OperationContract]
+        CurrencyResult GetCurrency(String sid, string id);
     }
 }

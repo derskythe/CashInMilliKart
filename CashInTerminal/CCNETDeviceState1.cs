@@ -6,6 +6,20 @@ namespace CashInTerminal
     public class CCNETDeviceState
     {
         private CCNETCommand _StateCode; // внутр. состояние
+        private byte _SubStateCode; // подкод состояния
+        private CCNETCommand _StateCodeOut; // внеш. состояние
+        private bool _BillEnable; // мы включены и нормально работаем
+        private bool _AcceptEnable; // Мы ждем денег
+        private bool _FatalError;  // фатальная ошибка. устройство не может работать
+        private int _Amount; // Сумма в купюроприемнике
+        private int _WasAmount; // Было в купюроприемнике
+        private int _Nominal; // номинал последней принятой купюры
+        private string _DeviceStateDescription; // описание состояния
+        private string _SubDeviceStateDescription; // дополнительное описание состояния
+        private bool _Init; // Мы загружены
+        private string _Currency;
+        private bool _Stacking; // В режиме приема купюры.
+
         /// <summary>
         /// Внутр. состояние
         /// </summary>
@@ -20,7 +34,7 @@ namespace CashInTerminal
                 _StateCode = value;
             }
         }
-        private byte _SubStateCode; // подкод состояния
+
         /// <summary>
         /// Подкод состояния
         /// </summary>
@@ -35,7 +49,6 @@ namespace CashInTerminal
                 _SubStateCode = value;
             }
         }
-        private CCNETCommand _StateCodeOut; // внеш. состояние
 
         /// <summary>
         /// внеш. состояние
@@ -51,7 +64,6 @@ namespace CashInTerminal
                 _StateCodeOut = value;
             }
         }
-        private bool _BillEnable; // мы включены и нормально работаем
 
         /// <summary>
         /// мы включены и нормально работаем
@@ -67,7 +79,7 @@ namespace CashInTerminal
                 _BillEnable = value;
             }
         }
-        private bool _AcceptEnable; // Мы ждем денег
+
 
         /// <summary>
         /// Мы ждем денег
@@ -83,7 +95,7 @@ namespace CashInTerminal
                 _AcceptEnable = value;
             }
         }
-        private bool _FatalError;  // фатальная ошибка. устройство не может работать
+
 
         /// <summary>
         /// фатальная ошибка. устройство не может работать
@@ -99,7 +111,7 @@ namespace CashInTerminal
                 _FatalError = value;
             }
         }
-        private int _Amount; // Сумма в купюроприемнике
+
 
         /// <summary>
         /// Сумма в купюроприемнике
@@ -115,7 +127,7 @@ namespace CashInTerminal
                 _Amount = value;
             }
         }
-        private int _WasAmount; // Было в купюроприемнике
+
 
         /// <summary>
         /// Было в купюроприемнике
@@ -131,7 +143,7 @@ namespace CashInTerminal
                 _WasAmount = value;
             }
         }
-        private int _Nominal; // номинал последней принятой купюры
+
 
         /// <summary>
         /// номинал последней принятой купюры
@@ -147,7 +159,7 @@ namespace CashInTerminal
                 _Nominal = value;
             }
         }
-        private string _DeviceStateDescription; // описание состояния
+
 
         /// <summary>
         /// описание состояния
@@ -163,7 +175,6 @@ namespace CashInTerminal
                 _DeviceStateDescription = value;
             }
         }
-        private string _SubDeviceStateDescription; // дополнительное описание состояния
 
         /// <summary>
         /// дополнительное описание состояния
@@ -179,9 +190,7 @@ namespace CashInTerminal
                 _SubDeviceStateDescription = value;
             }
         }
-        private bool _Stacking; // В режиме приема купюры.
-
-
+        
         /// <summary>
         /// В режиме приема купюры
         /// </summary>
@@ -196,7 +205,6 @@ namespace CashInTerminal
                 _Stacking = value;
             }
         }
-        private bool _Init; // Мы загружены
 
         /// <summary>
         /// Мы загружены
@@ -213,12 +221,26 @@ namespace CashInTerminal
             }
         }
 
-        private string _Currency;
-
         public string Currency
         {
             get { return _Currency; }
             set { _Currency = value; }
+        }
+
+        public CashCodeDeviceStatus ToCashCodeDeviceStatus()
+        {
+            var result = new CashCodeDeviceStatus()
+            {
+                BillEnable = _BillEnable,
+                DeviceStateDescription = _DeviceStateDescription,
+                FatalError = _FatalError,
+                Init = _Init,
+                StateCode = (int)_StateCode,
+                StateCodeOut = (int)_StateCodeOut,
+                SubDeviceStateDescription = _SubDeviceStateDescription
+            };
+
+            return result;
         }
     }
 }

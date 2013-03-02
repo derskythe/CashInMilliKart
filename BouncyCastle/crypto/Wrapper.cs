@@ -157,5 +157,17 @@ namespace crypto
 
             return result;
         }
+
+        public static string GetRandomMac()
+        {
+            var str = new StringBuilder();
+            var rnd = new SecureRandom();
+            for (int i = 0; i < 8; i++)
+            {
+                str.Append(rnd.Next(0, 9));
+            }
+
+            return str.ToString();
+        }
     }
 }

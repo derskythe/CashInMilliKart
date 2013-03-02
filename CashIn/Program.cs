@@ -26,6 +26,8 @@ namespace CashIn
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 
+            
+
             var user = OracleDb.Instance.GetUser("skif");
 
             String salt = String.Empty;

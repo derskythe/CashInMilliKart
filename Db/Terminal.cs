@@ -155,17 +155,43 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
-        public void SaveTerminalStatus(int terminalId, int terminalStatus, int cashCodeStatus)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="terminalId"></param>
+        /// <param name="terminalStatus"></param>
+        /// <param name="cashCodeStatus"></param>
+        /// <param name="printerStatus"></param>
+        /// <param name="cashcodeError"></param>
+        /// <param name="cashcodeOutStatus"></param>
+        /// <param name="cashcodeSuberror"></param>
+        /// <param name="printerErrorState"></param>
+        /// <param name="printerExtendedErrorState"></param>
+        public void SaveTerminalStatus(int terminalId, int terminalStatus, int cashCodeStatus, int printerStatus, int cashcodeError, int cashcodeOutStatus, int cashcodeSuberror, int printerErrorState, int printerExtendedErrorState)
         {
             CheckConnection();
 
-            const string cmdText = "begin main.save_terminal_status(v_terminal_id => :v_terminal_id, " +
-                                   " v_status_type => :v_status_type, " +
-                                   " v_cashcode_status => :v_cashcode_status); end;";
+            const string cmdText = "begin main.save_terminal_status(" +
+                                   "v_terminal_id => :v_terminal_id, " +
+                                   "v_status_type => :v_status_type, " +
+                                   "v_cashcode_status => :v_cashcode_status, " +
+                                   "v_printer_status => :v_printer_status, " +
+                                   "v_cashcode_error => :v_cashcode_error, " +
+                                   "v_cashcode_out_status => :v_cashcode_out_status, " +
+                                   "v_cashcode_suberror => :v_cashcode_suberror, " +
+                                   "v_printer_error_state => :v_printer_error_state, " +
+                                   "v_printer_extended_error_state => :v_printer_extended_error_state); " +
+                                   "end; ";
             var cmd = new OracleCommand(cmdText, _OraCon);
             cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, ParameterDirection.Input).Value = terminalId;
             cmd.Parameters.Add("v_status_type", OracleDbType.Int32, ParameterDirection.Input).Value = terminalStatus;
             cmd.Parameters.Add("v_cashcode_status", OracleDbType.Int32, ParameterDirection.Input).Value = cashCodeStatus;
+            cmd.Parameters.Add("v_printer_status", OracleDbType.Int32, ParameterDirection.Input).Value = printerStatus;
+            cmd.Parameters.Add("v_cashcode_error", OracleDbType.Int32, ParameterDirection.Input).Value = cashcodeError;
+            cmd.Parameters.Add("v_cashcode_out_status", OracleDbType.Int32, ParameterDirection.Input).Value = cashcodeOutStatus;
+            cmd.Parameters.Add("v_cashcode_suberror", OracleDbType.Int32, ParameterDirection.Input).Value = cashcodeSuberror;
+            cmd.Parameters.Add("v_printer_error_state", OracleDbType.Int32, ParameterDirection.Input).Value = printerErrorState;
+            cmd.Parameters.Add("v_printer_extended_error_state", OracleDbType.Int32, ParameterDirection.Input).Value = printerExtendedErrorState;
 
             cmd.ExecuteNonQuery();
         }

@@ -11,6 +11,8 @@ namespace Containers
     {
         private int _StateCode;
         private int _StateCodeOut;
+        private int _ErrorCode;
+        private int _SubErrorCode;
         private bool _BillEnable;
         private bool _FatalError;
         private string _DeviceStateDescription;
@@ -31,6 +33,22 @@ namespace Containers
         {
             get { return _StateCodeOut; }
             set { _StateCodeOut = value; }
+        }
+
+        [XmlElement(ElementName = "ErrorCode")]
+        [DataMember(Name = "ErrorCode")]
+        public int ErrorCode
+        {
+            get { return _ErrorCode; }
+            set { _ErrorCode = value; }
+        }
+
+        [XmlElement(ElementName = "SubErrorCode")]
+        [DataMember(Name = "SubErrorCode")]
+        public int SubErrorCode
+        {
+            get { return _SubErrorCode; }
+            set { _SubErrorCode = value; }
         }
 
         [XmlElement(ElementName = "BillEnable")]
@@ -103,9 +121,9 @@ namespace Containers
         {
             return
                 string.Format(
-                    "StateCode: {0}, StateCodeOut: {1}, FatalError: {2}, BillEnable: {3}, DeviceStateDescription: {4}, SubDeviceStateDescription: {5}, Init: {6}",
-                    _StateCode, _StateCodeOut, _FatalError, _BillEnable, _DeviceStateDescription,
-                    _SubDeviceStateDescription, _Init);
+                    "StateCode: {0}, StateCodeOut: {1}, ErrorCode: {2}, SubErrorCode: {3}, BillEnable: {4}, FatalError: {5}, DeviceStateDescription: {6}, SubDeviceStateDescription: {7}, Init: {8}",
+                    _StateCode, _StateCodeOut, _ErrorCode, _SubErrorCode, _BillEnable, _FatalError,
+                    _DeviceStateDescription, _SubDeviceStateDescription, _Init);
         }
     }
 }

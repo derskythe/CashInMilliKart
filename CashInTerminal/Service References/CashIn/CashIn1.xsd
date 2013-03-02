@@ -79,6 +79,25 @@
       <xs:element minOccurs="1" maxOccurs="1" name="LastStatusType" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeStatus" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="LastStatusUpdate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastPrinterStatus" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeError" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeOutStatus" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeSuberror" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastPrinterErrorState" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastPrinterExtErrorState" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TerminalStatusDesc" type="tns:MultiLanguageString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CashcodeDesc" type="tns:MultiLanguageString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrinterStatusDesc" type="tns:MultiLanguageString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrinterErrorStatusDesc" type="tns:MultiLanguageString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrinterExtErrorStatusDesc" type="tns:MultiLanguageString" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BillsCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MultiLanguageString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValueEn" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ValueRu" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ValueAz" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GetTerminalInfoResponse">
@@ -136,6 +155,8 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="StateCode" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="StateCodeOut" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubErrorCode" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="BillEnable" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="FatalError" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="DeviceStateDescription" type="xs:string" />
@@ -311,6 +332,8 @@
           <xs:element minOccurs="1" maxOccurs="1" name="InsertDate" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="UserId" type="xs:int" />
           <xs:element minOccurs="0" maxOccurs="1" name="Currencies" type="tns:ArrayOfEncashmentCurrency" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Terminal" type="tns:Terminal" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

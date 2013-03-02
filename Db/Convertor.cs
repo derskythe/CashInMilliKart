@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Containers;
+using Containers.Admin;
 
 namespace Db
 {
@@ -38,6 +39,41 @@ namespace Db
 
         public static Terminal ToTerminal(ds.V_LIST_TERMINALSRow row)
         {
+            var terminalStatusDesc = new MultiLanguageString(
+                row.IsTERMINAL_STATUS_ENNull() ? String.Empty : row.TERMINAL_STATUS_EN,
+                row.IsTERMINAL_STATUS_RUNull() ? String.Empty : row.TERMINAL_STATUS_RU,
+                row.IsTERMINAL_STATUS_AZNull() ? String.Empty : row.TERMINAL_STATUS_AZ
+                );
+            terminalStatusDesc.ReInit();
+
+            var cashcodeDesc = new MultiLanguageString(
+                row.IsCASHCODE_ENNull() ? String.Empty : row.CASHCODE_EN,
+                row.IsCASHCODE_RUNull() ? String.Empty : row.CASHCODE_RU,
+                row.IsCASHCODE_AZNull() ? String.Empty : row.CASHCODE_AZ
+                );
+            cashcodeDesc.ReInit();
+
+            var printerStatusDesc = new MultiLanguageString(
+                row.IsPRINTER_STATUS_ENNull() ? String.Empty : row.PRINTER_STATUS_EN,
+                row.IsPRINTER_STATUS_RUNull() ? String.Empty : row.PRINTER_STATUS_RU,
+                row.IsPRINTER_STATUS_AZNull() ? String.Empty : row.PRINTER_STATUS_AZ
+                );
+            printerStatusDesc.ReInit();
+
+            var printerErrorStatusDesc = new MultiLanguageString(
+                row.IsPRINTER_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_ERROR_STATUS_EN,
+                row.IsPRINTER_ERROR_STATUS_RUNull() ? String.Empty : row.PRINTER_ERROR_STATUS_RU,
+                row.IsPRINTER_ERROR_STATUS_AZNull() ? String.Empty : row.PRINTER_ERROR_STATUS_AZ
+                );
+            printerErrorStatusDesc.ReInit();
+
+            var printerExtErrorStatusDesc = new MultiLanguageString(
+                row.IsPRINTER_EXT_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_EN,
+                row.IsPRINTER_EXT_ERROR_STATUS_RUNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_RU,
+                row.IsPRINTER_EXT_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_EN
+                );
+            printerExtErrorStatusDesc.ReInit();
+            
             var result = new Terminal
                 {
                     Id = Convert.ToInt32(row.ID),
@@ -49,9 +85,86 @@ namespace Db
                     LastStatusUpdate = row.IsLAST_STATUS_UPDATENull() ? DateTime.MinValue : row.LAST_STATUS_UPDATE,
                     Name = row.NAME,
                     SignKey = row.IsSIGN_KEYNull() ? null : row.SIGN_KEY,
-                    TmpKey = row.IsTMP_KEYNull() ? null : row.TMP_KEY
-
+                    TmpKey = row.IsTMP_KEYNull() ? null : row.TMP_KEY,
+                    BillsCount = row.IsBILLS_COUNTNull() ? 0 : row.BILLS_COUNT,
+                    LastPrinterStatus = row.IsLAST_PRINTER_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_PRINTER_STATUS),
+                    LastCashcodeError = row.IsLAST_CASHCODE_ERRORNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_ERROR),
+                    LastCashcodeOutStatus = row.IsLAST_CASHCODE_OUT_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_OUT_STATUS),
+                    LastCashcodeSuberror = row.IsLAST_CASHCODE_SUBERRORNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_SUBERROR),
+                    LastPrinterErrorState = row.IsLAST_PRINTER_ERROR_STATENull() ? -1 : Convert.ToInt32(row.LAST_PRINTER_ERROR_STATE),
+                    LastPrinterExtErrorState = row.IsLAST_PRINTER_EXT_ERROR_STATENull() ? -1 : Convert.ToInt32(row.LAST_PRINTER_EXT_ERROR_STATE),
+                    TerminalStatusDesc = terminalStatusDesc,
+                    CashcodeDesc = cashcodeDesc,
+                    PrinterStatusDesc = printerStatusDesc,
+                    PrinterErrorStatusDesc = printerErrorStatusDesc,
+                    PrinterExtErrorStatusDesc = printerExtErrorStatusDesc
                 };
+
+            return result;
+        }
+
+        public static Terminal ToTerminal(ds.V_LIST_ENCASHMENTRow row)
+        {
+            var terminalStatusDesc = new MultiLanguageString(
+                row.IsTERMINAL_STATUS_ENNull() ? String.Empty : row.TERMINAL_STATUS_EN,
+                row.IsTERMINAL_STATUS_RUNull() ? String.Empty : row.TERMINAL_STATUS_RU,
+                row.IsTERMINAL_STATUS_AZNull() ? String.Empty : row.TERMINAL_STATUS_AZ
+                );
+            terminalStatusDesc.ReInit();
+
+            var cashcodeDesc = new MultiLanguageString(
+                row.IsCASHCODE_ENNull() ? String.Empty : row.CASHCODE_EN,
+                row.IsCASHCODE_RUNull() ? String.Empty : row.CASHCODE_RU,
+                row.IsCASHCODE_AZNull() ? String.Empty : row.CASHCODE_AZ
+                );
+            cashcodeDesc.ReInit();
+
+            var printerStatusDesc = new MultiLanguageString(
+                row.IsPRINTER_STATUS_ENNull() ? String.Empty : row.PRINTER_STATUS_EN,
+                row.IsPRINTER_STATUS_RUNull() ? String.Empty : row.PRINTER_STATUS_RU,
+                row.IsPRINTER_STATUS_AZNull() ? String.Empty : row.PRINTER_STATUS_AZ
+                );
+            printerStatusDesc.ReInit();
+
+            var printerErrorStatusDesc = new MultiLanguageString(
+                row.IsPRINTER_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_ERROR_STATUS_EN,
+                row.IsPRINTER_ERROR_STATUS_RUNull() ? String.Empty : row.PRINTER_ERROR_STATUS_RU,
+                row.IsPRINTER_ERROR_STATUS_AZNull() ? String.Empty : row.PRINTER_ERROR_STATUS_AZ
+                );
+            printerErrorStatusDesc.ReInit();
+
+            var printerExtErrorStatusDesc = new MultiLanguageString(
+                row.IsPRINTER_EXT_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_EN,
+                row.IsPRINTER_EXT_ERROR_STATUS_RUNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_RU,
+                row.IsPRINTER_EXT_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_EN
+                );
+            printerExtErrorStatusDesc.ReInit();
+
+            var result = new Terminal
+            {
+                Id = Convert.ToInt32(row.ID),
+                Address = row.ADDRESS,
+                IdentityName = row.IDENTITY_NAME,
+                Ip = row.IsIPNull() ? String.Empty : row.IP,
+                LastCashcodeStatus = row.IsLAST_CASHCODE_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_STATUS),
+                LastStatusType = row.IsLAST_STATUS_TYPENull() ? -1 : Convert.ToInt32(row.LAST_STATUS_TYPE),
+                LastStatusUpdate = row.IsLAST_STATUS_UPDATENull() ? DateTime.MinValue : row.LAST_STATUS_UPDATE,
+                Name = row.NAME,
+                SignKey = null,
+                TmpKey = null,
+                BillsCount = row.IsBILLS_COUNTNull() ? 0 : row.BILLS_COUNT,
+                LastPrinterStatus = row.IsLAST_PRINTER_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_PRINTER_STATUS),
+                LastCashcodeError = row.IsLAST_CASHCODE_ERRORNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_ERROR),
+                LastCashcodeOutStatus = row.IsLAST_CASHCODE_OUT_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_OUT_STATUS),
+                LastCashcodeSuberror = row.IsLAST_CASHCODE_SUBERRORNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_SUBERROR),
+                LastPrinterErrorState = row.IsLAST_PRINTER_ERROR_STATENull() ? -1 : Convert.ToInt32(row.LAST_PRINTER_ERROR_STATE),
+                LastPrinterExtErrorState = row.IsLAST_PRINTER_EXT_ERROR_STATENull() ? -1 : Convert.ToInt32(row.LAST_PRINTER_EXT_ERROR_STATE),
+                TerminalStatusDesc = terminalStatusDesc,
+                CashcodeDesc = cashcodeDesc,
+                PrinterStatusDesc = printerStatusDesc,
+                PrinterErrorStatusDesc = printerErrorStatusDesc,
+                PrinterExtErrorStatusDesc = printerExtErrorStatusDesc
+            };
 
             return result;
         }
@@ -179,15 +292,14 @@ namespace Db
             return result;
         }
 
-        public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, List<EncashmentCurrency> currencies)
+        public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, List<EncashmentCurrency> currencies, Terminal terminal, String username)
         {
             var result = new Encashment
                 {
                     Currencies = currencies.ToArray(),
                     Id = Convert.ToInt32(row.ID),
                     InsertDate = row.INSERT_DATE,
-                    TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),
-                    UserId = row.IsUSER_IDNull() ? Int32.MinValue : Convert.ToInt32(row.USER_ID)
+                    TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),                    
                 };
 
             return result;

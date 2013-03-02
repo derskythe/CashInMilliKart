@@ -1,4 +1,4 @@
-﻿namespace CashInTerminal
+﻿namespace CashInTerminal.Enums
 {
     public enum CCNETPortSpeed
     {

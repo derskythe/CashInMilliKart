@@ -64,7 +64,7 @@ namespace CashInCore
             var keyStream = new StreamReader(stream);
             var reader = new PemReader(keyStream);
 
-            return (RsaKeyParameters) reader.ReadObject();
+            return (RsaKeyParameters)reader.ReadObject();
         }
 
         private static AsymmetricKeyParameter GetPrivateKey()
@@ -81,7 +81,7 @@ namespace CashInCore
                 var privateKeyStream = new StreamReader(stream);
                 var privateKeyReader = new PemReader(privateKeyStream);
 
-                _PrivateKey = ((AsymmetricCipherKeyPair) privateKeyReader.ReadObject()).Private;
+                _PrivateKey = ((AsymmetricCipherKeyPair)privateKeyReader.ReadObject()).Private;
             }
             return _PrivateKey;
         }
@@ -109,5 +109,5 @@ namespace CashInCore
 
             return response;
         }
-}
+    }
 }

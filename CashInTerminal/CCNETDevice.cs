@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using CashControlTerminal;
+using CashInTerminal.Enums;
 using Containers.CashCode;
 
 namespace CashInTerminal

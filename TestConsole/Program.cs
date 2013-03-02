@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
+using CashInTerminal.Enums;
+using Containers.Enums;
+using Db;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
+using TestConsole.Properties;
 using crypto;
 
 namespace TestConsole
@@ -18,6 +22,14 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
+            OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
+            OracleDb.Instance.CheckConnection();
+
+            var list1 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
+            var list2 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
+
+            GetValueFromDescription<ExtendedPrinterStatus>(String.Empty);
+
             var salt = Wrapper.GenerateSalt();
             var encPassword = Wrapper.ComputeHash("this is realy, realy, realy, realy, realy big password!", salt);
 
@@ -44,6 +56,41 @@ namespace TestConsole
             Console.WriteLine("Press ENTER to exit");
             Console.ReadLine();
         }
+
+        public static void GetValueFromDescription<T>(string description)
+        {
+            var str = new StringBuilder();
+            var str2 = new StringBuilder();
+            var type = typeof(T);
+            if (!type.IsEnum) throw new InvalidOperationException();
+            foreach (var field in type.GetFields())
+            {
+                try
+                {                    
+                    //str.Append(field.Name + "=" + field.GetRawConstantValue()).Append("\r\n");
+                    Console.WriteLine(field.Name + "=" + field.GetRawConstantValue());
+
+                    str.Append("insert into PRINTER_STATUS (id, name, desc_id) values (");
+                    str.Append(field.GetRawConstantValue())
+                       .Append(", '")
+                       .Append(field.Name)
+                       .Append("', 'print.status.code.")
+                       .Append(field.Name.ToLower())
+                       .Append("');\r\n");
+
+                    str2.Append("insert into descriptions (id, lang, value) values (")
+                        .Append("'print.status.code.")
+                        .Append(field.Name.ToLower())
+                        .Append("', 'en', '").Append(field.Name)
+                        .Append("');\r\n");
+                }
+                catch
+                {
+                }                
+            }
+
+            Console.WriteLine(str.ToString());
+        }        
 
         public static string Sign(String terminalId, DateTime now, AsymmetricCipherKeyPair keys)
         {

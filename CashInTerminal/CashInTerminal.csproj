@@ -156,12 +156,6 @@
     <Compile Include="FormMdiChild.Designer.cs">
       <DependentUpon>FormMdiChild.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMdiMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,9 +201,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Threads.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="FormActivation.resx">
       <DependentUpon>FormActivation.cs</DependentUpon>
@@ -246,9 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMdiChild.resx">
       <DependentUpon>FormMdiChild.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMdiMain.resx">
       <DependentUpon>FormMdiMain.cs</DependentUpon>

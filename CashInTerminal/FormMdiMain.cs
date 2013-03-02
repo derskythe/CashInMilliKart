@@ -233,10 +233,7 @@ namespace CashInTerminal
             try
             {
                 _Server = new CashInServerClient();
-                var publicKey = _Server.GetPublicKey();
-                Log.Debug("Public key " + publicKey);
-                Settings.Default.ServerPublicKey = publicKey;
-                _ServerPublicKey = Wrapper.GetKey(Settings.Default.ServerPublicKey);
+                GetPublicKey();
             }
             catch (Exception exp)
             {
@@ -278,6 +275,15 @@ namespace CashInTerminal
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
+        }
+
+        private void GetPublicKey()
+        {
+            var publicKey = _Server.GetPublicKey();
+            Log.Debug("Public key " + publicKey);
+            Settings.Default.ServerPublicKey = publicKey;
+            _ServerPublicKey = Wrapper.GetKey(Settings.Default.ServerPublicKey);
+            Settings.Default.Save();
         }
 
         public void InitCashCode(int port)
@@ -350,6 +356,7 @@ namespace CashInTerminal
 
         public void OpenForm(Type f)
         {
+            Log.Debug("OpenForm. New form " + f.Name);
             if (InvokeRequired)
             {
                 var form = new OpenFormDelegate(OpenForm);
@@ -403,7 +410,8 @@ namespace CashInTerminal
                 if (_CurrentForm != null)
                 {
                     if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Language &&
-                        _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment)
+                        _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment && 
+                        _CurrentForm.Name != FormEnum.OutOfOrder)
                     {
                         _LastActivity = Utilities.GetLastInputTime();
                         if (_LastActivity > MAX_INACTIVITY_PERIOD)
@@ -513,22 +521,25 @@ namespace CashInTerminal
                 {
                     try
                     {
+                        // Check public key
+                        if (_ServerPublicKey == null)
+                        {
+                            GetPublicKey();
+                        }
+
+                        if (_ServerPublicKey == null)
+                        {
+                            Thread.Sleep(PING_TIMEOUT);
+                            continue;
+                        }
+
                         UpdatePrinterStatus();
-                        var status = new CashCodeDeviceStatus
-                            {
-                                BillEnable = _CcnetDevice.DeviceState.BillEnable,
-                                DeviceStateDescription = _CcnetDevice.DeviceState.DeviceStateDescription,
-                                FatalError = _CcnetDevice.DeviceState.FatalError,
-                                Init = _CcnetDevice.DeviceState.Init,
-                                StateCode = (int)_CcnetDevice.DeviceState.StateCode,
-                                StateCodeOut = (int)_CcnetDevice.DeviceState.StateCodeOut,
-                                SubDeviceStateDescription = _CcnetDevice.DeviceState.SubDeviceStateDescription
-                            };
+
 
                         var now = DateTime.Now;
                         var request = new PingRequest
                         {
-                            CashCodeStatus = status,
+                            CashCodeStatus = _CcnetDevice.DeviceState.ToCashCodeDeviceStatus(),
                             PrinterStatus = _PrinterStatus,
                             SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
@@ -536,20 +547,29 @@ namespace CashInTerminal
                             Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                         };
                         var result = _Server.Ping(request);
-
-                        CheckSignature(result);
-
+                        
                         if (result != null)
                         {
+                            CheckSignature(result);
                             if (result.ResultCodes != ResultCodes.Ok)
                             {
                                 Log.Warn(String.Format("Server return: {0}, {1}", result.ResultCodes, result.Description));
                             }
                             else
                             {
+                                try
+                                {
+                                    Utilities.UpdateSystemTime(result.SystemTime);
+                                }
+                                catch (Exception exp)
+                                {
+                                    Log.ErrorException(exp.Message, exp);
+                                } 
+
                                 switch ((TerminalCommands)result.Command)
                                 {
                                     case TerminalCommands.OutOfService:
+                                    case TerminalCommands.Stop:
                                         Log.Warn("Received command " + TerminalCommands.OutOfService.ToString());
 
                                         if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess)
@@ -581,6 +601,7 @@ namespace CashInTerminal
                                     case TerminalCommands.NormalMode:
                                         if ((_CurrentForm.Name == FormEnum.OutOfOrder || _CurrentForm.Name == FormEnum.TestMode))
                                         {
+                                            Log.Warn("Received command " + ((TerminalCommands)result.Command).ToString());
                                             GetTerminalInfo();
                                             OpenForm(typeof(FormLanguage));
                                         }
@@ -594,10 +615,22 @@ namespace CashInTerminal
                         else
                         {
                             Log.Error("Result is null");
+
+                            if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess && _CurrentForm.Name != FormEnum.Encashment)
+                            {
+                                Log.Warn("Out of order");
+                                OpenForm(typeof(FormOutOfOrder));
+                            }
                         }
                     }
                     catch (Exception exp)
                     {
+                        // Out of order, if exception
+                        if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess && _CurrentForm.Name != FormEnum.Encashment)
+                        {
+                            Log.Warn("Out of order");
+                            OpenForm(typeof(FormOutOfOrder));
+                        }
                         Log.ErrorException(exp.Message, exp);
                     }
                     Thread.Sleep(PING_TIMEOUT);
@@ -675,7 +708,7 @@ namespace CashInTerminal
 
         public void GetTerminalInfo()
         {
-            DateTime now = DateTime.Now;
+            var now = DateTime.Now;
             var cmd = new StandardRequest
             {
                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
@@ -696,7 +729,7 @@ namespace CashInTerminal
 
         private StandardResult CommandReceived()
         {
-            DateTime now = DateTime.Now;
+            var now = DateTime.Now;
             var cmd = new StandardRequest
             {
                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
@@ -858,10 +891,10 @@ namespace CashInTerminal
 
         public void StartTimers()
         {
-            var checkCurrencyTimerCaller = new FormMain.CheckCurrencyTimerCaller(CheckCurrencyTimer);
+            var checkCurrencyTimerCaller = new CheckCurrencyTimerCaller(CheckCurrencyTimer);
             checkCurrencyTimerCaller.Invoke(null);
 
-            var checkProductsTimerCaller = new FormMain.CheckProductsTimerCaller(CheckProductsTimer);
+            var checkProductsTimerCaller = new CheckProductsTimerCaller(CheckProductsTimer);
             checkProductsTimerCaller.Invoke(null);
         }
 

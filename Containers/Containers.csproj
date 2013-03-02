@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRole.cs" />
+    <Compile Include="Admin\CurrencyResult.cs" />
+    <Compile Include="Admin\EncashmentResult.cs" />
     <Compile Include="Admin\ListCurrenciesResult.cs" />
     <Compile Include="Admin\ListEncashmentResult.cs" />
     <Compile Include="Admin\ListProductHistoryResult.cs" />
@@ -57,6 +59,8 @@
     <Compile Include="Admin\ListTerminalsResult.cs" />
     <Compile Include="Admin\ListUsersResult.cs" />
     <Compile Include="Admin\LoginResult.cs" />
+    <Compile Include="Admin\MultiLanguageString.cs" />
+    <Compile Include="Admin\SaveTerminalResult.cs" />
     <Compile Include="Admin\SessionResult.cs" />
     <Compile Include="AuthResult.cs" />
     <Compile Include="BaseMessage.cs" />
@@ -68,8 +72,14 @@
     <Compile Include="Encashment.cs" />
     <Compile Include="EncashmentCurrency.cs" />
     <Compile Include="EnumEx.cs" />
+    <Compile Include="Enums\CurrencyColumns.cs" />
+    <Compile Include="Enums\EncashmentColumns.cs" />
+    <Compile Include="Enums\ProductHistoryColumns.cs" />
     <Compile Include="Enums\RoleSections.cs" />
+    <Compile Include="Enums\SortType.cs" />
+    <Compile Include="Enums\TerminalColumns.cs" />
     <Compile Include="Enums\TerminalCommands.cs" />
+    <Compile Include="Enums\UsersColumns.cs" />
     <Compile Include="PaymentInfoByProducts.cs" />
     <Compile Include="PingRequest.cs" />
     <Compile Include="PingResult.cs" />

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -367,7 +365,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListUsersResult ListUsers(String sid)
+        public ListUsersResult ListUsers(String sid, UsersColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListUsersResult();
@@ -387,7 +385,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Users = OracleDb.Instance.ListUsers();
+                result.Users = OracleDb.Instance.ListUsers(sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -431,7 +429,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListTerminalsResult ListTerminals(String sid)
+        public ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListTerminalsResult();
@@ -451,7 +449,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Terminals = OracleDb.Instance.ListTerminals();
+                result.Terminals = OracleDb.Instance.ListTerminals(sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -463,10 +461,10 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public StandardResult SaveTerminal(String sid, Terminal terminal)
+        public SaveTerminalResult SaveTerminal(String sid, Terminal terminal)
         {
             Log.Info(String.Format("SID: {0}, Terminal: {1}", sid, terminal));
-            var result = new StandardResult();
+            var result = new SaveTerminalResult();
 
             try
             {
@@ -483,7 +481,8 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                terminal.TmpKey = Encoding.ASCII.GetBytes("000000");
+                result.Mac = Wrapper.GetRandomMac();
+                terminal.TmpKey = Encoding.ASCII.GetBytes(result.Mac);
 
                 result.Id = OracleDb.Instance.SaveTerminal(session.Session.User.Id, terminal);
                 result.Code = ResultCodes.Ok;
@@ -529,7 +528,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListEncashmentResult ListEncashment(String sid)
+        public ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListEncashmentResult();
@@ -549,7 +548,71 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Encashments = OracleDb.Instance.ListEncashment();
+                result.Encashments = OracleDb.Instance.ListEncashment(sortColumn, sortType);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public CurrencyResult GetCurrency(String sid, string id)
+        {
+            Log.Info(String.Format("SID: {0}, ID: {1}", sid, id));
+            var result = new CurrencyResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Currency = OracleDb.Instance.GetCurrencies(id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public EncashmentResult GetEncashment(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}, ID: {1}", sid, id));
+            var result = new EncashmentResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Encashment = OracleDb.Instance.GetEncashment(id);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -594,7 +657,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListProductHistoryResult ListProductHistory(String sid)
+        public ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListProductHistoryResult();
@@ -614,7 +677,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Histories = OracleDb.Instance.ListProductHistory();
+                result.Histories = OracleDb.Instance.ListProductHistory(sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -626,7 +689,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListProductHistoryResult ListProductHistoryByDate(String sid, DateTime from, DateTime to)
+        public ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListProductHistoryResult();
@@ -646,7 +709,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Histories = OracleDb.Instance.ListProductHistory(from, to);
+                result.Histories = OracleDb.Instance.ListProductHistory(from, to, sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -658,7 +721,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListProductHistoryResult ListProductHistoryByTransactionId(String sid, String transactionId)
+        public ListProductHistoryResult ListProductHistoryByTransactionId(string sid, string transactionId, ProductHistoryColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListProductHistoryResult();
@@ -678,7 +741,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Histories = OracleDb.Instance.ListProductHistory(transactionId);
+                result.Histories = OracleDb.Instance.ListProductHistory(transactionId, sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -690,7 +753,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListCurrenciesResult ListCurrencies(String sid)
+        public ListCurrenciesResult ListCurrencies(String sid, CurrencyColumns sortColumn, SortType sortType)
         {
             Log.Info(String.Format("SID: {0}", sid));
 
@@ -711,7 +774,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Currencies = OracleDb.Instance.ListCurrencies();
+                result.Currencies = OracleDb.Instance.ListCurrencies(sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -773,11 +836,11 @@ namespace CashInCore
 
         private bool IsAlphaNum(String value)
         {
-            Regex rgx = new Regex(@"^[a-z0-9]+$");
+            var rgx = new Regex(@"^[a-z0-9]+$");
 
             if (rgx.IsMatch(value))
             {
-
+                return true;
             }
             return false;
         }

@@ -338,6 +338,66 @@ namespace CashInTerminal.CashIn {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class MultiLanguageString : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string valueEnField;
+        
+        private string valueRuField;
+        
+        private string valueAzField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ValueEn {
+            get {
+                return this.valueEnField;
+            }
+            set {
+                this.valueEnField = value;
+                this.RaisePropertyChanged("ValueEn");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string ValueRu {
+            get {
+                return this.valueRuField;
+            }
+            set {
+                this.valueRuField = value;
+                this.RaisePropertyChanged("ValueRu");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string ValueAz {
+            get {
+                return this.valueAzField;
+            }
+            set {
+                this.valueAzField = value;
+                this.RaisePropertyChanged("ValueAz");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
     public partial class Terminal : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int idField;
@@ -359,6 +419,30 @@ namespace CashInTerminal.CashIn {
         private int lastCashcodeStatusField;
         
         private System.DateTime lastStatusUpdateField;
+        
+        private int lastPrinterStatusField;
+        
+        private int lastCashcodeErrorField;
+        
+        private int lastCashcodeOutStatusField;
+        
+        private int lastCashcodeSuberrorField;
+        
+        private int lastPrinterErrorStateField;
+        
+        private int lastPrinterExtErrorStateField;
+        
+        private MultiLanguageString terminalStatusDescField;
+        
+        private MultiLanguageString cashcodeDescField;
+        
+        private MultiLanguageString printerStatusDescField;
+        
+        private MultiLanguageString printerErrorStatusDescField;
+        
+        private MultiLanguageString printerExtErrorStatusDescField;
+        
+        private int billsCountField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -477,6 +561,150 @@ namespace CashInTerminal.CashIn {
             set {
                 this.lastStatusUpdateField = value;
                 this.RaisePropertyChanged("LastStatusUpdate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public int LastPrinterStatus {
+            get {
+                return this.lastPrinterStatusField;
+            }
+            set {
+                this.lastPrinterStatusField = value;
+                this.RaisePropertyChanged("LastPrinterStatus");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public int LastCashcodeError {
+            get {
+                return this.lastCashcodeErrorField;
+            }
+            set {
+                this.lastCashcodeErrorField = value;
+                this.RaisePropertyChanged("LastCashcodeError");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public int LastCashcodeOutStatus {
+            get {
+                return this.lastCashcodeOutStatusField;
+            }
+            set {
+                this.lastCashcodeOutStatusField = value;
+                this.RaisePropertyChanged("LastCashcodeOutStatus");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public int LastCashcodeSuberror {
+            get {
+                return this.lastCashcodeSuberrorField;
+            }
+            set {
+                this.lastCashcodeSuberrorField = value;
+                this.RaisePropertyChanged("LastCashcodeSuberror");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public int LastPrinterErrorState {
+            get {
+                return this.lastPrinterErrorStateField;
+            }
+            set {
+                this.lastPrinterErrorStateField = value;
+                this.RaisePropertyChanged("LastPrinterErrorState");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public int LastPrinterExtErrorState {
+            get {
+                return this.lastPrinterExtErrorStateField;
+            }
+            set {
+                this.lastPrinterExtErrorStateField = value;
+                this.RaisePropertyChanged("LastPrinterExtErrorState");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public MultiLanguageString TerminalStatusDesc {
+            get {
+                return this.terminalStatusDescField;
+            }
+            set {
+                this.terminalStatusDescField = value;
+                this.RaisePropertyChanged("TerminalStatusDesc");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public MultiLanguageString CashcodeDesc {
+            get {
+                return this.cashcodeDescField;
+            }
+            set {
+                this.cashcodeDescField = value;
+                this.RaisePropertyChanged("CashcodeDesc");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        public MultiLanguageString PrinterStatusDesc {
+            get {
+                return this.printerStatusDescField;
+            }
+            set {
+                this.printerStatusDescField = value;
+                this.RaisePropertyChanged("PrinterStatusDesc");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        public MultiLanguageString PrinterErrorStatusDesc {
+            get {
+                return this.printerErrorStatusDescField;
+            }
+            set {
+                this.printerErrorStatusDescField = value;
+                this.RaisePropertyChanged("PrinterErrorStatusDesc");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        public MultiLanguageString PrinterExtErrorStatusDesc {
+            get {
+                return this.printerExtErrorStatusDescField;
+            }
+            set {
+                this.printerExtErrorStatusDescField = value;
+                this.RaisePropertyChanged("PrinterExtErrorStatusDesc");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        public int BillsCount {
+            get {
+                return this.billsCountField;
+            }
+            set {
+                this.billsCountField = value;
+                this.RaisePropertyChanged("BillsCount");
             }
         }
         
@@ -622,6 +850,10 @@ namespace CashInTerminal.CashIn {
         
         private int stateCodeOutField;
         
+        private int errorCodeField;
+        
+        private int subErrorCodeField;
+        
         private bool billEnableField;
         
         private bool fatalErrorField;
@@ -658,6 +890,30 @@ namespace CashInTerminal.CashIn {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int ErrorCode {
+            get {
+                return this.errorCodeField;
+            }
+            set {
+                this.errorCodeField = value;
+                this.RaisePropertyChanged("ErrorCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public int SubErrorCode {
+            get {
+                return this.subErrorCodeField;
+            }
+            set {
+                this.subErrorCodeField = value;
+                this.RaisePropertyChanged("SubErrorCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
         public bool BillEnable {
             get {
                 return this.billEnableField;
@@ -669,7 +925,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public bool FatalError {
             get {
                 return this.fatalErrorField;
@@ -681,7 +937,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public string DeviceStateDescription {
             get {
                 return this.deviceStateDescriptionField;
@@ -693,7 +949,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public string SubDeviceStateDescription {
             get {
                 return this.subDeviceStateDescriptionField;
@@ -705,7 +961,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public bool Init {
             get {
                 return this.initField;
@@ -953,6 +1209,10 @@ namespace CashInTerminal.CashIn {
         
         private EncashmentCurrency[] currenciesField;
         
+        private string usernameField;
+        
+        private Terminal terminalField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int Id {
@@ -998,6 +1258,30 @@ namespace CashInTerminal.CashIn {
             set {
                 this.currenciesField = value;
                 this.RaisePropertyChanged("Currencies");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+                this.RaisePropertyChanged("Username");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public Terminal Terminal {
+            get {
+                return this.terminalField;
+            }
+            set {
+                this.terminalField = value;
+                this.RaisePropertyChanged("Terminal");
             }
         }
     }
