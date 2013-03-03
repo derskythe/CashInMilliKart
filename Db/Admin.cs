@@ -5,6 +5,7 @@ using Containers;
 using Containers.Enums;
 using Db.dsTableAdapters;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace Db
 {
@@ -98,23 +99,24 @@ namespace Db
         {
             CheckConnection();
 
-            const string cmdText = "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id); end;";
+            const string cmdText = "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id, v_return_id => :v_return_id); end;";
 
             var cmd = new OracleCommand(cmdText, _OraCon);
 
-            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.InputOutput).Value = terminal.Id > 0 ? (int?)terminal.Id : null;
+            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal.Id > 0 ? (int?)terminal.Id : null;
             cmd.Parameters.Add("v_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Name;
             cmd.Parameters.Add("v_address", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Address;
             cmd.Parameters.Add("v_identity_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.IdentityName;
             cmd.Parameters.Add("v_ip", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Ip;
             cmd.Parameters.Add("v_tmp_key", OracleDbType.Blob, ParameterDirection.Input).Value = terminal.TmpKey;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
+            cmd.Parameters.Add("v_return_id", OracleDbType.Int32, ParameterDirection.Output);
 
             cmd.ExecuteNonQuery();
 
-            var result = cmd.Parameters["v_id"].Value;
+            var result = cmd.Parameters["v_return_id"].Value;
 
-            return result == null ? 0 : Convert.ToInt32(result);
+            return result == null ? 0 : ((OracleDecimal)(result)).ToInt32();
         }
 
         public void SaveCurrency(string id, string isoName, string name, bool defaultCurrency, int userId)
@@ -129,7 +131,7 @@ namespace Db
             cmd.Parameters.Add("v_id", OracleDbType.Varchar2, ParameterDirection.Input).Value = id;
             cmd.Parameters.Add("v_iso_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = isoName;
             cmd.Parameters.Add("v_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = name;
-            cmd.Parameters.Add("v_default_currency", OracleDbType.Varchar2, ParameterDirection.Input).Value = defaultCurrency;
+            cmd.Parameters.Add("v_default_currency", OracleDbType.Int16, ParameterDirection.Input).Value = defaultCurrency ? 1 : 0;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
 
             cmd.ExecuteNonQuery();

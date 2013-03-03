@@ -57,7 +57,9 @@ namespace Db
 
             foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
             {
-                return Convertor.ToTerminal(item);
+                var result = Convertor.ToTerminal(item);
+                //Log.Debug(result);
+                return result;
             }
 
             return null;

@@ -25,6 +25,8 @@ namespace TestConsole
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 
+            var terminal = OracleDb.Instance.GetTerminal(3);
+
             var list1 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
             var list2 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
 

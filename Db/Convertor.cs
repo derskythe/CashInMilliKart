@@ -73,7 +73,7 @@ namespace Db
                 row.IsPRINTER_EXT_ERROR_STATUS_ENNull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_EN
                 );
             printerExtErrorStatusDesc.ReInit();
-            
+
             var result = new Terminal
                 {
                     Id = Convert.ToInt32(row.ID),
@@ -142,7 +142,7 @@ namespace Db
 
             var result = new Terminal
             {
-                Id = Convert.ToInt32(row.ID),
+                Id = Convert.ToInt32(row.TERMINAL_ID),
                 Address = row.ADDRESS,
                 IdentityName = row.IDENTITY_NAME,
                 Ip = row.IsIPNull() ? String.Empty : row.IP,
@@ -299,7 +299,9 @@ namespace Db
                     Currencies = currencies.ToArray(),
                     Id = Convert.ToInt32(row.ID),
                     InsertDate = row.INSERT_DATE,
-                    TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),                    
+                    TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),
+                    Terminal = terminal,
+                    Username = username
                 };
 
             return result;

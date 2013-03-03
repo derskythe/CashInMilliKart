@@ -114,8 +114,9 @@ namespace CashInCore
                 {
                     throw new Exception("No priv");
                 }
-
-                return OracleDb.Instance.GetUser(username);
+                var user = OracleDb.Instance.GetUser(username);
+                CleanCredentials(ref user);
+                return user;
             }
             catch (Exception ex)
             {
@@ -143,7 +144,9 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                return OracleDb.Instance.GetUser(id);
+                var user = OracleDb.Instance.GetUser(id);
+                CleanCredentials(ref user);
+                return user;
             }
             catch (Exception ex)
             {
@@ -498,7 +501,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public TerminalInfoResult GetTerminal(String sid, int terminalId)
         {
-            Log.Info("GetTerminalInfo");
+            Log.Info(String.Format("GetTerminalInfo. SID: {0}, terminalId: {1}", sid, terminalId));
 
             var result = new TerminalInfoResult();
 
@@ -517,7 +520,12 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Terminal = OracleDb.Instance.GetTerminal(terminalId);
+                var terminal = OracleDb.Instance.GetTerminal(terminalId);
+                if (terminal != null)
+                {
+                    result.Code = ResultCodes.Ok;
+                    result.Terminal = terminal;
+                }
             }
             catch (Exception exp)
             {

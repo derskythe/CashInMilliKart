@@ -55,6 +55,10 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Convertor.cs" />
+    <Compile Include="ds.cs">
+      <DependentUpon>ds.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
