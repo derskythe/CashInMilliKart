@@ -28,7 +28,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public LoginResult Login(string username, string password)
         {
-            Log.Info("Login");
+            Log.Info(String.Format("Login. Username: {0}", username));
 
             var result = new LoginResult();
 
@@ -796,7 +796,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult UpdateProfile(String sid, string newPassword)
         {
-            Log.Info(String.Format("SID: {0}", sid));
+            Log.Info(String.Format("SID: {0}, NewPassword: {1}", sid, newPassword));
 
             var result = new StandardResult();
             try

@@ -214,7 +214,8 @@ namespace Db
 
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
-                return Convertor.ToUser(row);
+                var roles = ListRolesToUsersUserId(row.ID);
+                return Convertor.ToUser(row, roles);
             }
 
             return null;
@@ -230,7 +231,8 @@ namespace Db
 
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
-                return Convertor.ToUser(row);
+                var roles = ListRolesToUsersUserId(row.ID);
+                return Convertor.ToUser(row, roles);
             }
 
             return null;
@@ -246,7 +248,8 @@ namespace Db
 
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
-                return Convertor.ToUser(row);
+                var roles = ListRolesToUsersUserId(row.ID);
+                return Convertor.ToUser(row, roles);
             }
 
             return null;
