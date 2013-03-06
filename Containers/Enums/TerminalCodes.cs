@@ -18,6 +18,15 @@ namespace Containers.Enums
         [Description("Encashment")]
         Encashment = 2,
 
+        [Description("Out of order")]
+        OutOfOrder = 3,
+
+        [Description("Not initiated")]
+        NotInitiated = 4,
+
+        [Description("Test mode")]
+        TestMode = 32,
+
         [Description("Unknown Error")]
         UnknownError = 128,
 
