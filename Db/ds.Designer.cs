@@ -2539,6 +2539,22 @@ namespace Db {
             
             private global::System.Data.DataColumn columnBILLS_COUNT;
             
+            private global::System.Data.DataColumn columnTERMINAL_STATUS_NAME;
+            
+            private global::System.Data.DataColumn columnCASHCODE_STATUS_NAME;
+            
+            private global::System.Data.DataColumn columnPRINTER_STATUS_NAME;
+            
+            private global::System.Data.DataColumn columnPRINTER_ERROR_STATUS_NAME;
+            
+            private global::System.Data.DataColumn columnPRINTER_EXT_ERROR_STATUS_NAME;
+            
+            private global::System.Data.DataColumn columnTERMINAL_STATUS_TYPE;
+            
+            private global::System.Data.DataColumn columnCASHCODE_STATUS_TYPE;
+            
+            private global::System.Data.DataColumn columnPRINTER_STATUS_TYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_LIST_TERMINALSDataTable() {
@@ -2854,6 +2870,70 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TERMINAL_STATUS_NAMEColumn {
+                get {
+                    return this.columnTERMINAL_STATUS_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CASHCODE_STATUS_NAMEColumn {
+                get {
+                    return this.columnCASHCODE_STATUS_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PRINTER_STATUS_NAMEColumn {
+                get {
+                    return this.columnPRINTER_STATUS_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PRINTER_ERROR_STATUS_NAMEColumn {
+                get {
+                    return this.columnPRINTER_ERROR_STATUS_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PRINTER_EXT_ERROR_STATUS_NAMEColumn {
+                get {
+                    return this.columnPRINTER_EXT_ERROR_STATUS_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TERMINAL_STATUS_TYPEColumn {
+                get {
+                    return this.columnTERMINAL_STATUS_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CASHCODE_STATUS_TYPEColumn {
+                get {
+                    return this.columnCASHCODE_STATUS_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PRINTER_STATUS_TYPEColumn {
+                get {
+                    return this.columnPRINTER_STATUS_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2924,7 +3004,15 @@ namespace Db {
                         string PRINTER_EXT_ERROR_STATUS_AZ, 
                         string PRINTER_EXT_ERROR_STATUS_RU, 
                         string PRINTER_EXT_ERROR_STATUS_EN, 
-                        int BILLS_COUNT) {
+                        int BILLS_COUNT, 
+                        string TERMINAL_STATUS_NAME, 
+                        string CASHCODE_STATUS_NAME, 
+                        string PRINTER_STATUS_NAME, 
+                        string PRINTER_ERROR_STATUS_NAME, 
+                        string PRINTER_EXT_ERROR_STATUS_NAME, 
+                        int TERMINAL_STATUS_TYPE, 
+                        int CASHCODE_STATUS_TYPE, 
+                        int PRINTER_STATUS_TYPE) {
                 V_LIST_TERMINALSRow rowV_LIST_TERMINALSRow = ((V_LIST_TERMINALSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -2961,7 +3049,15 @@ namespace Db {
                         PRINTER_EXT_ERROR_STATUS_AZ,
                         PRINTER_EXT_ERROR_STATUS_RU,
                         PRINTER_EXT_ERROR_STATUS_EN,
-                        BILLS_COUNT};
+                        BILLS_COUNT,
+                        TERMINAL_STATUS_NAME,
+                        CASHCODE_STATUS_NAME,
+                        PRINTER_STATUS_NAME,
+                        PRINTER_ERROR_STATUS_NAME,
+                        PRINTER_EXT_ERROR_STATUS_NAME,
+                        TERMINAL_STATUS_TYPE,
+                        CASHCODE_STATUS_TYPE,
+                        PRINTER_STATUS_TYPE};
                 rowV_LIST_TERMINALSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_LIST_TERMINALSRow);
                 return rowV_LIST_TERMINALSRow;
@@ -3019,6 +3115,14 @@ namespace Db {
                 this.columnPRINTER_EXT_ERROR_STATUS_RU = base.Columns["PRINTER_EXT_ERROR_STATUS_RU"];
                 this.columnPRINTER_EXT_ERROR_STATUS_EN = base.Columns["PRINTER_EXT_ERROR_STATUS_EN"];
                 this.columnBILLS_COUNT = base.Columns["BILLS_COUNT"];
+                this.columnTERMINAL_STATUS_NAME = base.Columns["TERMINAL_STATUS_NAME"];
+                this.columnCASHCODE_STATUS_NAME = base.Columns["CASHCODE_STATUS_NAME"];
+                this.columnPRINTER_STATUS_NAME = base.Columns["PRINTER_STATUS_NAME"];
+                this.columnPRINTER_ERROR_STATUS_NAME = base.Columns["PRINTER_ERROR_STATUS_NAME"];
+                this.columnPRINTER_EXT_ERROR_STATUS_NAME = base.Columns["PRINTER_EXT_ERROR_STATUS_NAME"];
+                this.columnTERMINAL_STATUS_TYPE = base.Columns["TERMINAL_STATUS_TYPE"];
+                this.columnCASHCODE_STATUS_TYPE = base.Columns["CASHCODE_STATUS_TYPE"];
+                this.columnPRINTER_STATUS_TYPE = base.Columns["PRINTER_STATUS_TYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3094,6 +3198,22 @@ namespace Db {
                 base.Columns.Add(this.columnPRINTER_EXT_ERROR_STATUS_EN);
                 this.columnBILLS_COUNT = new global::System.Data.DataColumn("BILLS_COUNT", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBILLS_COUNT);
+                this.columnTERMINAL_STATUS_NAME = new global::System.Data.DataColumn("TERMINAL_STATUS_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTERMINAL_STATUS_NAME);
+                this.columnCASHCODE_STATUS_NAME = new global::System.Data.DataColumn("CASHCODE_STATUS_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCASHCODE_STATUS_NAME);
+                this.columnPRINTER_STATUS_NAME = new global::System.Data.DataColumn("PRINTER_STATUS_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRINTER_STATUS_NAME);
+                this.columnPRINTER_ERROR_STATUS_NAME = new global::System.Data.DataColumn("PRINTER_ERROR_STATUS_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRINTER_ERROR_STATUS_NAME);
+                this.columnPRINTER_EXT_ERROR_STATUS_NAME = new global::System.Data.DataColumn("PRINTER_EXT_ERROR_STATUS_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRINTER_EXT_ERROR_STATUS_NAME);
+                this.columnTERMINAL_STATUS_TYPE = new global::System.Data.DataColumn("TERMINAL_STATUS_TYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTERMINAL_STATUS_TYPE);
+                this.columnCASHCODE_STATUS_TYPE = new global::System.Data.DataColumn("CASHCODE_STATUS_TYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCASHCODE_STATUS_TYPE);
+                this.columnPRINTER_STATUS_TYPE = new global::System.Data.DataColumn("PRINTER_STATUS_TYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRINTER_STATUS_TYPE);
                 this.columnID.AllowDBNull = false;
                 this.columnNAME.AllowDBNull = false;
                 this.columnNAME.MaxLength = 255;
@@ -3120,6 +3240,11 @@ namespace Db {
                 this.columnPRINTER_EXT_ERROR_STATUS_AZ.MaxLength = 4000;
                 this.columnPRINTER_EXT_ERROR_STATUS_RU.MaxLength = 4000;
                 this.columnPRINTER_EXT_ERROR_STATUS_EN.MaxLength = 4000;
+                this.columnTERMINAL_STATUS_NAME.MaxLength = 100;
+                this.columnCASHCODE_STATUS_NAME.MaxLength = 100;
+                this.columnPRINTER_STATUS_NAME.MaxLength = 100;
+                this.columnPRINTER_ERROR_STATUS_NAME.MaxLength = 100;
+                this.columnPRINTER_EXT_ERROR_STATUS_NAME.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9019,6 +9144,142 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TERMINAL_STATUS_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_LIST_TERMINALS.TERMINAL_STATUS_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TERMINAL_STATUS_NAME\' in table \'V_LIST_TERMINALS\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.TERMINAL_STATUS_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CASHCODE_STATUS_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_LIST_TERMINALS.CASHCODE_STATUS_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CASHCODE_STATUS_NAME\' in table \'V_LIST_TERMINALS\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.CASHCODE_STATUS_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PRINTER_STATUS_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_LIST_TERMINALS.PRINTER_STATUS_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRINTER_STATUS_NAME\' in table \'V_LIST_TERMINALS\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.PRINTER_STATUS_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PRINTER_ERROR_STATUS_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_LIST_TERMINALS.PRINTER_ERROR_STATUS_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRINTER_ERROR_STATUS_NAME\' in table \'V_LIST_TERMINALS\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.PRINTER_ERROR_STATUS_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PRINTER_EXT_ERROR_STATUS_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_LIST_TERMINALS.PRINTER_EXT_ERROR_STATUS_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRINTER_EXT_ERROR_STATUS_NAME\' in table \'V_LIST_TERMINALS\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.PRINTER_EXT_ERROR_STATUS_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int TERMINAL_STATUS_TYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableV_LIST_TERMINALS.TERMINAL_STATUS_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TERMINAL_STATUS_TYPE\' in table \'V_LIST_TERMINALS\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.TERMINAL_STATUS_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CASHCODE_STATUS_TYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableV_LIST_TERMINALS.CASHCODE_STATUS_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CASHCODE_STATUS_TYPE\' in table \'V_LIST_TERMINALS\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.CASHCODE_STATUS_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int PRINTER_STATUS_TYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableV_LIST_TERMINALS.PRINTER_STATUS_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRINTER_STATUS_TYPE\' in table \'V_LIST_TERMINALS\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.PRINTER_STATUS_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSIGN_KEYNull() {
                 return this.IsNull(this.tableV_LIST_TERMINALS.SIGN_KEYColumn);
             }
@@ -9351,6 +9612,102 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBILLS_COUNTNull() {
                 this[this.tableV_LIST_TERMINALS.BILLS_COUNTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTERMINAL_STATUS_NAMENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.TERMINAL_STATUS_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTERMINAL_STATUS_NAMENull() {
+                this[this.tableV_LIST_TERMINALS.TERMINAL_STATUS_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCASHCODE_STATUS_NAMENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.CASHCODE_STATUS_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCASHCODE_STATUS_NAMENull() {
+                this[this.tableV_LIST_TERMINALS.CASHCODE_STATUS_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPRINTER_STATUS_NAMENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.PRINTER_STATUS_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPRINTER_STATUS_NAMENull() {
+                this[this.tableV_LIST_TERMINALS.PRINTER_STATUS_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPRINTER_ERROR_STATUS_NAMENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.PRINTER_ERROR_STATUS_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPRINTER_ERROR_STATUS_NAMENull() {
+                this[this.tableV_LIST_TERMINALS.PRINTER_ERROR_STATUS_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPRINTER_EXT_ERROR_STATUS_NAMENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.PRINTER_EXT_ERROR_STATUS_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPRINTER_EXT_ERROR_STATUS_NAMENull() {
+                this[this.tableV_LIST_TERMINALS.PRINTER_EXT_ERROR_STATUS_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTERMINAL_STATUS_TYPENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.TERMINAL_STATUS_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTERMINAL_STATUS_TYPENull() {
+                this[this.tableV_LIST_TERMINALS.TERMINAL_STATUS_TYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCASHCODE_STATUS_TYPENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.CASHCODE_STATUS_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCASHCODE_STATUS_TYPENull() {
+                this[this.tableV_LIST_TERMINALS.CASHCODE_STATUS_TYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPRINTER_STATUS_TYPENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.PRINTER_STATUS_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPRINTER_STATUS_TYPENull() {
+                this[this.tableV_LIST_TERMINALS.PRINTER_STATUS_TYPEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13023,7 +13380,7 @@ namespace Db.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[3];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, INSERT_DATE, USER_ID, STATUS_CODE, TERMINAL_ID, NAME_AZ, NAME_EN, NAME" +
@@ -13041,6 +13398,26 @@ namespace Db.dsTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "TERMINAL_ID";
             this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT ID, INSERT_DATE, USER_ID, STATUS_CODE, TERMINAL_ID, NAME_AZ, NAME_EN, NAME" +
+                "_RU FROM CASHIN.V_LIST_TERMINAL_SET_STATUS WHERE terminal_id = :terminalId AND r" +
+                "ownum = 1 and status_code = :statusCode ORDER BY insert_date DESC";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":terminalId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TERMINAL_ID";
+            this._commandCollection[2].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":statusCode";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "STATUS_CODE";
+            this._commandCollection[2].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13088,6 +13465,34 @@ namespace Db.dsTableAdapters {
         public virtual ds.V_LIST_TERMINAL_SET_STATUSDataTable GetDataByTerminalId(decimal terminalId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByTerminalIdAndStatusCode(ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable, decimal terminalId, decimal statusCode) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(statusCode));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_LIST_TERMINAL_SET_STATUSDataTable GetDataByTerminalIdAndStatusCode(decimal terminalId, decimal statusCode) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(statusCode));
             ds.V_LIST_TERMINAL_SET_STATUSDataTable dataTable = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -13442,6 +13847,14 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("PRINTER_EXT_ERROR_STATUS_RU", "PRINTER_EXT_ERROR_STATUS_RU");
             tableMapping.ColumnMappings.Add("PRINTER_EXT_ERROR_STATUS_EN", "PRINTER_EXT_ERROR_STATUS_EN");
             tableMapping.ColumnMappings.Add("BILLS_COUNT", "BILLS_COUNT");
+            tableMapping.ColumnMappings.Add("TERMINAL_STATUS_NAME", "TERMINAL_STATUS_NAME");
+            tableMapping.ColumnMappings.Add("CASHCODE_STATUS_NAME", "CASHCODE_STATUS_NAME");
+            tableMapping.ColumnMappings.Add("PRINTER_STATUS_NAME", "PRINTER_STATUS_NAME");
+            tableMapping.ColumnMappings.Add("PRINTER_ERROR_STATUS_NAME", "PRINTER_ERROR_STATUS_NAME");
+            tableMapping.ColumnMappings.Add("PRINTER_EXT_ERROR_STATUS_NAME", "PRINTER_EXT_ERROR_STATUS_NAME");
+            tableMapping.ColumnMappings.Add("TERMINAL_STATUS_TYPE", "TERMINAL_STATUS_TYPE");
+            tableMapping.ColumnMappings.Add("CASHCODE_STATUS_TYPE", "CASHCODE_STATUS_TYPE");
+            tableMapping.ColumnMappings.Add("PRINTER_STATUS_TYPE", "PRINTER_STATUS_TYPE");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13458,11 +13871,11 @@ namespace Db.dsTableAdapters {
             this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, ""NAME"", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT FROM CASHIN.V_LIST_TERMINALS";
+            this._commandCollection[0].CommandText = @"SELECT ID, ""NAME"", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE FROM CASHIN.V_LIST_TERMINALS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT ID, ""NAME"", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT FROM CASHIN.V_LIST_TERMINALS WHERE (ID = :id)";
+            this._commandCollection[1].CommandText = @"SELECT ID, ""NAME"", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE FROM CASHIN.V_LIST_TERMINALS WHERE (ID = :id)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":id";

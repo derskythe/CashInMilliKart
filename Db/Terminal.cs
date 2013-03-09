@@ -157,6 +157,23 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public int GetLastTerminalCommandUserId(int terminalId, int statusCode)
+        {
+            CheckConnection();
+
+            var adapter = new V_LIST_TERMINAL_SET_STATUSTableAdapter {Connection = _OraCon, BindByName = true};
+            var table = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
+
+            adapter.FillByTerminalIdAndStatusCode(table, terminalId, statusCode);
+
+            foreach (ds.V_LIST_TERMINAL_SET_STATUSRow row in table.Rows)
+            {
+                return Convert.ToInt32(row.USER_ID);
+            }
+
+            return 0;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -194,6 +211,21 @@ namespace Db
             cmd.Parameters.Add("v_cashcode_suberror", OracleDbType.Int32, ParameterDirection.Input).Value = cashcodeSuberror;
             cmd.Parameters.Add("v_printer_error_state", OracleDbType.Int32, ParameterDirection.Input).Value = printerErrorState;
             cmd.Parameters.Add("v_printer_extended_error_state", OracleDbType.Int32, ParameterDirection.Input).Value = printerExtendedErrorState;
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void SaveTerminalStatus(int terminalId, int terminalStatus)
+        {
+            CheckConnection();
+
+            const string cmdText = "begin main.save_terminal_status(" +
+                                   "v_terminal_id => :v_terminal_id, " +
+                                   "v_status_type => :v_status_type); " +
+                                   "end;";
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, ParameterDirection.Input).Value = terminalId;
+            cmd.Parameters.Add("v_status_type", OracleDbType.Int32, ParameterDirection.Input).Value = terminalStatus;
 
             cmd.ExecuteNonQuery();
         }

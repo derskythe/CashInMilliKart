@@ -83,7 +83,6 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormLanguage";
             this.Text = "FormLanguage";
-            this.Load += new System.EventHandler(this.FormLanguageLoad);
             this.ResumeLayout(false);
 
         }

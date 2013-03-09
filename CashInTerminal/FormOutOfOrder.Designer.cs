@@ -42,6 +42,7 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Терминал временно не работает. Приносим извинения";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // FormOutOfOrder
             // 

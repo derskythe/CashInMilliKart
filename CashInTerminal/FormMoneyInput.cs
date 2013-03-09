@@ -151,25 +151,39 @@ namespace CashInTerminal
 
         private void EnableMoneyNextButton(object param)
         {
-            if (btnMoneyNext.InvokeRequired)
+            try
             {
-                btnMoneyNext.Invoke(new EnableMoneyNextButtonDelegate(EnableMoneyNextButton), param);
+                if (btnMoneyNext.InvokeRequired)
+                {
+                    btnMoneyNext.Invoke(new EnableMoneyNextButtonDelegate(EnableMoneyNextButton), param);
+                }
+                else
+                {
+                    btnMoneyNext.Enabled = true;
+                }
             }
-            else
+            catch (Exception exp)
             {
-                btnMoneyNext.Enabled = true;
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
         private void DisableBackButton()
         {
-            if (btnBack.InvokeRequired)
+            try
             {
-                btnBack.Invoke(new DisableBackButtonDelegate(DisableBackButton));
+                if (btnBack.InvokeRequired)
+                {
+                    btnBack.Invoke(new DisableBackButtonDelegate(DisableBackButton));
+                }
+                else
+                {
+                    btnBack.Enabled = false;
+                }
             }
-            else
+            catch (Exception exp)
             {
-                btnBack.Enabled = false;
+                Log.ErrorException(exp.Message, exp);
             }
         }
 

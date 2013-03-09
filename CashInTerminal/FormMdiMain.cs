@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Management;
 using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
 using CashInTerminal.Properties;
-using Containers.Enums;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using crypto;
 using PrinterStatus = CashInTerminal.CashIn.PrinterStatus;
 using ResultCodes = CashInTerminal.CashIn.ResultCodes;
 using Timer = System.Threading.Timer;
+using TerminalCodes = Containers.Enums.TerminalCodes;
 
 namespace CashInTerminal
 {
@@ -29,18 +30,18 @@ namespace CashInTerminal
         private readonly PrinterStatus _PrinterStatus = new PrinterStatus();
         private bool _Init;
         private bool _AuthTerminal;
-        private bool _EncashmentMode;
+        private TerminalCodes _TerminalStatus;
         private Terminal _TerminalInfo = new Terminal();
         private LocalDb _Db;
         private bool _Running = true;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
-        private delegate void CloseFormDelegate(object item);
+        //private delegate void CloseFormDelegate(object item);
 
         private delegate void OpenFormDelegate(Type item);
 
-        private delegate void SetFormParentDelegate(object item);
+        //private delegate void SetFormParentDelegate(object item);
 
         public AsymmetricCipherKeyPair LocalKeys
         {
@@ -72,10 +73,10 @@ namespace CashInTerminal
             set { _AuthTerminal = value; }
         }
 
-        public bool EncashmentMode
+        public TerminalCodes TerminalStatus
         {
-            get { return _EncashmentMode; }
-            set { _EncashmentMode = value; }
+            get { return _TerminalStatus; }
+            set { _TerminalStatus = value; }
         }
 
         public Terminal TerminalInfo
@@ -132,11 +133,13 @@ namespace CashInTerminal
         private Timer _CheckCurrencyTimer;
         private Timer _CheckProductsTimer;
         private Timer _CheckInactivityTimer;
+        private Timer _CheckApplicationUpdateTimer;
         private const int PING_TIMEOUT = 30 * 1000;
         private const int SEND_PAYMENT_TIMEOUT = 10000;
         private const int CHECK_CURRENCY_TIMER = 30 * 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
+        private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 60 * 1000;
         private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
@@ -156,7 +159,6 @@ namespace CashInTerminal
 
         private void FormMdiMainLoad(object sender, EventArgs e)
         {
-
             OpenForm(typeof(FormOutOfOrder));
 
             foreach (Control control in Controls)
@@ -246,10 +248,12 @@ namespace CashInTerminal
 
             if (_Init && !_AuthTerminal)
             {
+                _TerminalStatus = TerminalCodes.Auth;
                 OpenForm(typeof(FormActivation));
             }
             else if (!_Init)
             {
+                _TerminalStatus = TerminalCodes.OutOfOrder;
                 OpenForm(typeof(FormOutOfOrder));
             }
             else
@@ -275,7 +279,91 @@ namespace CashInTerminal
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
+            _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
         }
+
+        #region Application Update
+
+        private void ApplicationUpdateTimer(object state)
+        {
+            if (_CurrentForm != null)
+            {
+                if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                    _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment &&
+                    _CurrentForm.Name != FormEnum.OutOfOrder && _CurrentForm.Name != FormEnum.PaySuccess)
+                {
+                    UpdateCheckInfo info;
+
+                    // Check if the application was deployed via ClickOnce.
+                    if (!ApplicationDeployment.IsNetworkDeployed)
+                    {
+                        Log.Warn("Is this NOT deployed via ClickOnce");
+                        return;
+                    }
+
+                    ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
+
+                    try
+                    {
+                        info = updateCheck.CheckForDetailedUpdate();
+                    }
+                    catch (DeploymentDownloadException)
+                    {
+                        Log.Error("Couldn't retrieve info on this app");
+                        return;
+                    }
+                    catch (InvalidDeploymentException)
+                    {
+                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                        return;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                        return;
+                    }
+
+                    if (info.UpdateAvailable)
+                    {
+                        if (info.IsUpdateRequired)
+                        {
+                            Log.Info("A required update is available, which will be installed now");
+                            UpdateApplication();
+                        }
+                        else
+                        {
+                            Log.Info("An update is available");
+                            UpdateApplication();
+                        }
+
+                        return;
+                    }
+
+                    Log.Info("There's no update");
+                }
+                else
+                {
+                    Log.Info("Can't check update this time");
+                }
+            }
+        }
+
+        private void UpdateApplication()
+        {
+            try
+            {
+                ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
+                updateCheck.Update();
+                Log.Info("The application has been upgraded, and will now restart.");
+                Application.Restart();
+            }
+            catch (DeploymentDownloadException exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
+
+        #endregion
 
         private void GetPublicKey()
         {
@@ -301,58 +389,58 @@ namespace CashInTerminal
             //_CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
         }
 
-        private void CloseForm(object form)
-        {
-            if (_CurrentForm != null && _CurrentForm.InvokeRequired)
-            {
-                _CurrentForm.Invoke(new CloseFormDelegate(CloseForm), form);
-            }
-            else
-            {
-                if (_CurrentForm != null)
-                {
-                    _CurrentForm.Close();
-                }
+        //private void CloseForm(object form)
+        //{
+        //    if (_CurrentForm != null && _CurrentForm.InvokeRequired)
+        //    {
+        //        _CurrentForm.Invoke(new CloseFormDelegate(CloseForm), form);
+        //    }
+        //    else
+        //    {
+        //        if (_CurrentForm != null)
+        //        {
+        //            _CurrentForm.Close();
+        //        }
 
-                _CurrentForm = (Form)form;
-            }
-        }
+        //        _CurrentForm = (Form)form;
+        //    }
+        //}
 
-        private void OpenFormI(object form)
-        {
-            var f = (Form)form;
-            if (f == null)
-            {
-                return;
-            }
-            if (f.InvokeRequired)
-            {
-                f.Invoke(new OpenFormDelegate(OpenFormI), f);
-            }
-            else
-            {
-                f.WindowState = FormWindowState.Maximized;
-                f.Show();
-            }
-        }
+        //private void OpenFormI(object form)
+        //{
+        //    var f = (Form)form;
+        //    if (f == null)
+        //    {
+        //        return;
+        //    }
+        //    if (f.InvokeRequired)
+        //    {
+        //        f.Invoke(new OpenFormDelegate(OpenFormI), f);
+        //    }
+        //    else
+        //    {
+        //        f.WindowState = FormWindowState.Maximized;
+        //        f.Show();
+        //    }
+        //}
 
-        private void SetFormParent(object form)
-        {
-            var f = (Form)form;
-            if (f == null)
-            {
-                return;
-            }
+        //private void SetFormParent(object form)
+        //{
+        //    var f = (Form)form;
+        //    if (f == null)
+        //    {
+        //        return;
+        //    }
 
-            if (InvokeRequired)
-            {
-                Invoke(new SetFormParentDelegate(SetFormParent), f);
-            }
-            else
-            {
-                f.MdiParent = this;
-            }
-        }
+        //    if (InvokeRequired)
+        //    {
+        //        Invoke(new SetFormParentDelegate(SetFormParent), f);
+        //    }
+        //    else
+        //    {
+        //        f.MdiParent = this;
+        //    }
+        //}
 
         public void OpenForm(Type f)
         {
@@ -364,20 +452,17 @@ namespace CashInTerminal
             }
             else
             {
-                if (f != null)
+                var inst = Activator.CreateInstance(f);
+                var child = (Form)inst;
+                child.MdiParent = this;
+                child.Show();
+
+                if (_CurrentForm != null)
                 {
-                    var inst = Activator.CreateInstance(f);
-                    var child = (Form)inst;
-                    child.MdiParent = this;
-                    child.Show();
-
-                    if (_CurrentForm != null)
-                    {
-                        _CurrentForm.Close();
-                    }
-
-                    _CurrentForm = (Form)inst;
+                    _CurrentForm.Close();
                 }
+
+                _CurrentForm = (Form)inst;
             }
 
             //CloseForm(f);
@@ -410,7 +495,7 @@ namespace CashInTerminal
                 if (_CurrentForm != null)
                 {
                     if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Language &&
-                        _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment && 
+                        _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment &&
                         _CurrentForm.Name != FormEnum.OutOfOrder)
                     {
                         _LastActivity = Utilities.GetLastInputTime();
@@ -537,71 +622,112 @@ namespace CashInTerminal
 
 
                         var now = DateTime.Now;
+                        //var terminalStatus = (int) TerminalCodes.Ok;
+
+                        //if (_TerminalStatus)
+                        //{
+                        //    terminalStatus = (int) TerminalCodes.Encashment;
+                        //} else if ( _TerminalInfo.)
                         var request = new PingRequest
-                        {
-                            CashCodeStatus = _CcnetDevice.DeviceState.ToCashCodeDeviceStatus(),
-                            PrinterStatus = _PrinterStatus,
-                            SystemTime = now,
-                            TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                            TerminalStatus = !_EncashmentMode ? (int)TerminalCodes.Ok : (int)TerminalCodes.Encashment,
-                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                        };
+                            {
+                                CashCodeStatus = _CcnetDevice.DeviceState.ToCashCodeDeviceStatus(),
+                                PrinterStatus = _PrinterStatus,
+                                SystemTime = now,
+                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                TerminalStatus = (int)_TerminalStatus,
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                            };
                         var result = _Server.Ping(request);
-                        
-                        if (result != null)
+
+                        Log.Debug(String.Format("Current terminal status: {0}", _TerminalStatus.ToString()));
+
+                        if (result != null && CheckSignature(result))
                         {
-                            CheckSignature(result);
                             if (result.ResultCodes != ResultCodes.Ok)
                             {
                                 Log.Warn(String.Format("Server return: {0}, {1}", result.ResultCodes, result.Description));
+
+                                if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess &&
+                                _CurrentForm.Name != FormEnum.Encashment)
+                                {
+                                    _TerminalStatus = TerminalCodes.NetworkError;
+                                    Log.Warn("Out of order");
+                                    OpenForm(typeof(FormOutOfOrder));
+                                }
                             }
                             else
                             {
                                 try
                                 {
+                                    if (result.SystemTime > now.AddHours(+1) || result.SystemTime < now.AddHours(-1))
+                                    {
+                                        Log.Warn("System time changing");
+                                    }
                                     Utilities.UpdateSystemTime(result.SystemTime);
                                 }
                                 catch (Exception exp)
                                 {
                                     Log.ErrorException(exp.Message, exp);
-                                } 
+                                }
 
-                                switch ((TerminalCommands)result.Command)
+                                switch ((Containers.Enums.TerminalCommands)result.Command)
                                 {
-                                    case TerminalCommands.OutOfService:
-                                    case TerminalCommands.Stop:
-                                        Log.Warn("Received command " + TerminalCommands.OutOfService.ToString());
-
-                                        if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess)
+                                    case Containers.Enums.TerminalCommands.OutOfService:
+                                    case Containers.Enums.TerminalCommands.Stop:
+                                        Log.Warn("Received command " +
+                                                 Containers.Enums.TerminalCommands.OutOfService.ToString());
+                                        _TerminalStatus = TerminalCodes.OutOfOrder;
+                                        if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                                            _CurrentForm.Name != FormEnum.PaySuccess)
                                         {
                                             OpenForm(typeof(FormOutOfOrder));
                                             CommandReceived();
                                         }
                                         break;
 
-                                    case TerminalCommands.TestMode:
-                                        Log.Warn("Received command " + TerminalCommands.TestMode.ToString());
-                                        if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess)
+                                    case Containers.Enums.TerminalCommands.TestMode:
+                                        Log.Warn("Received command " +
+                                                 Containers.Enums.TerminalCommands.TestMode.ToString());
+                                        _TerminalStatus = TerminalCodes.TestMode;
+                                        if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                                            _CurrentForm.Name != FormEnum.PaySuccess)
                                         {
                                             OpenForm(typeof(FormTestMode));
                                             CommandReceived();
                                         }
                                         break;
 
-                                    case TerminalCommands.Encash:
-                                        Log.Warn("Received command " + TerminalCommands.Encash.ToString());
+                                    case Containers.Enums.TerminalCommands.Encash:
+                                        Log.Warn("Received command " +
+                                                 Containers.Enums.TerminalCommands.Encash.ToString());
+                                        _TerminalStatus = TerminalCodes.Encashment;
 
-                                        if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess)
+                                        if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                                            _CurrentForm.Name != FormEnum.PaySuccess)
                                         {
                                             DoEncashment();
                                         }
                                         break;
 
-                                    case TerminalCommands.Idle:
-                                    case TerminalCommands.NormalMode:
-                                        if ((_CurrentForm.Name == FormEnum.OutOfOrder || _CurrentForm.Name == FormEnum.TestMode))
+                                    case Containers.Enums.TerminalCommands.NormalMode:
+                                    case Containers.Enums.TerminalCommands.Idle:
+                                        /* if (_TerminalStatus == TerminalCodes.NetworkError)
                                         {
-                                            Log.Warn("Received command " + ((TerminalCommands)result.Command).ToString());
+                                            _TerminalStatus = TerminalCodes.Ok;
+
+                                            Log.Warn("Received command " +
+                                                     ((Containers.Enums.TerminalCommands)result.Command).ToString());
+                                            GetPublicKey();
+                                            GetTerminalInfo();
+                                            OpenForm(typeof(FormLanguage));
+                                        } else  */
+                                        if ((_CurrentForm.Name == FormEnum.OutOfOrder ||
+                                            _CurrentForm.Name == FormEnum.TestMode))
+                                        {
+                                            _TerminalStatus = TerminalCodes.Ok;
+                                            Log.Warn("Received command " +
+                                                     ((Containers.Enums.TerminalCommands)result.Command).ToString());
+                                            GetPublicKey();
                                             GetTerminalInfo();
                                             OpenForm(typeof(FormLanguage));
                                         }
@@ -616,18 +742,32 @@ namespace CashInTerminal
                         {
                             Log.Error("Result is null");
 
-                            if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess && _CurrentForm.Name != FormEnum.Encashment)
+                            if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess &&
+                                _CurrentForm.Name != FormEnum.Encashment)
                             {
+                                _TerminalStatus = TerminalCodes.NetworkError;
                                 Log.Warn("Out of order");
                                 OpenForm(typeof(FormOutOfOrder));
                             }
                         }
+                    }
+                    catch (System.ServiceModel.EndpointNotFoundException exp)
+                    {
+                        // Out of order, if exception
+                        if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess && _CurrentForm.Name != FormEnum.Encashment)
+                        {
+                            _TerminalStatus = TerminalCodes.NetworkError;
+                            Log.Warn("Network error. Out of order");
+                            OpenForm(typeof(FormOutOfOrder));
+                        }
+                        Log.Error(exp.Message);
                     }
                     catch (Exception exp)
                     {
                         // Out of order, if exception
                         if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess && _CurrentForm.Name != FormEnum.Encashment)
                         {
+                            _TerminalStatus = TerminalCodes.OutOfOrder;
                             Log.Warn("Out of order");
                             OpenForm(typeof(FormOutOfOrder));
                         }
@@ -729,11 +869,13 @@ namespace CashInTerminal
 
         private StandardResult CommandReceived()
         {
+            Log.Debug(((int)_TerminalStatus));
             var now = DateTime.Now;
             var cmd = new StandardRequest
             {
                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                 SystemTime = now,
+                CommandResult = ((int)_TerminalStatus),
                 Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
             };
             return _Server.CommandReceived(cmd);
@@ -755,7 +897,8 @@ namespace CashInTerminal
                 {
                     var total = _Db.GetCasseteTotal(currency.Name);
 
-                    var item = new EncashmentCurrency { Amount = total, Currency = currency.Name };
+                    var item = new EncashmentCurrency { Amount = total, Currency = currency.Id };
+                    Log.Info(String.Format("Encashment. {0} {1}", total, currency.Id));
                     currList.Add(item);
                 }
 
@@ -838,6 +981,7 @@ namespace CashInTerminal
 
                         if (response != null && response.ResultCodes == ResultCodes.Ok)
                         {
+                            Log.Info("Send to server is okay");
                             listToDelete.Enqueue(row.Id);
                         }
                         else if (response != null)
@@ -881,12 +1025,34 @@ namespace CashInTerminal
             }
         }
 
-        private void CheckSignature(StandardResult request)
+        private bool CheckSignature(StandardResult request)
         {
-            if (!Utilities.CheckSignature(Settings.Default.TerminalCode, request.SystemTime, request.Sign, _LocalKeys))
+            try
             {
-                throw new Exception("Invalid signature");
+                if (String.IsNullOrEmpty(Settings.Default.TerminalCode))
+                {
+                    Log.Debug("Terminal code is null");
+                }
+                if (String.IsNullOrEmpty(request.Sign))
+                {
+                    Log.Debug("Sign is null");
+                }
+                if (_LocalKeys == null)
+                {
+                    Log.Debug("LocalKeys is null");
+                }
+
+                if (Utilities.CheckSignature(Settings.Default.TerminalCode, request.SystemTime, request.Sign, _LocalKeys))
+                {
+                    return true;
+                }
             }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return false;
         }
 
         public void StartTimers()
@@ -905,6 +1071,7 @@ namespace CashInTerminal
             _CheckCurrencyTimer.Dispose();
             _CheckProductsTimer.Dispose();
             _CheckInactivityTimer.Dispose();
+            _CheckApplicationUpdateTimer.Dispose();
 
             Thread.Sleep(250);
 

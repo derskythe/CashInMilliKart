@@ -31,6 +31,14 @@ namespace Containers
         private MultiLanguageString _PrinterStatusDesc;
         private MultiLanguageString _PrinterErrorStatusDesc;
         private MultiLanguageString _PrinterExtErrorStatusDesc;
+        private String _TerminalStatusName;
+        private String _CashcodeStatusName;
+        private String _PrinterStatusName;
+        private String _PrinterErrorStatusName;
+        private String _PrinterExtErrorStatusName;
+        private int _TerminalStatusType;
+        private int _CashcodeStatusType;
+        private int _PrinterStatusType;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
@@ -208,11 +216,75 @@ namespace Containers
             set { _BillsCount = value; }
         }
 
+        [XmlElement(ElementName = "TerminalStatusName")]
+        [DataMember(Name = "TerminalStatusName")]
+        public string TerminalStatusName
+        {
+            get { return _TerminalStatusName; }
+            set { _TerminalStatusName = value; }
+        }
+
+        [XmlElement(ElementName = "CashcodeStatusName")]
+        [DataMember(Name = "CashcodeStatusName")]
+        public string CashcodeStatusName
+        {
+            get { return _CashcodeStatusName; }
+            set { _CashcodeStatusName = value; }
+        }
+
+        [XmlElement(ElementName = "PrinterStatusName")]
+        [DataMember(Name = "PrinterStatusName")]
+        public string PrinterStatusName
+        {
+            get { return _PrinterStatusName; }
+            set { _PrinterStatusName = value; }
+        }
+
+        [XmlElement(ElementName = "PrinterErrorStatusName")]
+        [DataMember(Name = "PrinterErrorStatusName")]
+        public string PrinterErrorStatusName
+        {
+            get { return _PrinterErrorStatusName; }
+            set { _PrinterErrorStatusName = value; }
+        }
+
+        [XmlElement(ElementName = "PrinterExtErrorStatusName")]
+        [DataMember(Name = "PrinterExtErrorStatusName")]
+        public string PrinterExtErrorStatusName
+        {
+            get { return _PrinterExtErrorStatusName; }
+            set { _PrinterExtErrorStatusName = value; }
+        }
+
+        [XmlElement(ElementName = "TerminalStatusType")]
+        [DataMember(Name = "TerminalStatusType")]
+        public int TerminalStatusType
+        {
+            get { return _TerminalStatusType; }
+            set { _TerminalStatusType = value; }
+        }
+
+        [XmlElement(ElementName = "CashcodeStatusType")]
+        [DataMember(Name = "CashcodeStatusType")]
+        public int CashcodeStatusType
+        {
+            get { return _CashcodeStatusType; }
+            set { _CashcodeStatusType = value; }
+        }
+
+        [XmlElement(ElementName = "PrinterStatusType")]
+        [DataMember(Name = "PrinterStatusType")]
+        public int PrinterStatusType
+        {
+            get { return _PrinterStatusType; }
+            set { _PrinterStatusType = value; }
+        }
+
         public Terminal()
         {
         }
 
-        public Terminal(int id, string name, string address, string identityName, byte[] signKey, string ip, byte[] tmpKey, int lastStatusType, int lastCashcodeStatus, int billsCount, DateTime lastStatusUpdate, int lastPrinterStatus, int lastCashcodeError, int lastCashcodeOutStatus, int lastCashcodeSuberror, int lastPrinterErrorState, int lastPrinterExtErrorState, MultiLanguageString terminalStatusDesc, MultiLanguageString cashcodeDesc, MultiLanguageString printerStatusDesc, MultiLanguageString printerErrorStatusDesc, MultiLanguageString printerExtErrorStatusDesc)
+        public Terminal(int id, string name, string address, string identityName, byte[] signKey, string ip, byte[] tmpKey, int lastStatusType, int lastCashcodeStatus, int billsCount, DateTime lastStatusUpdate, int lastPrinterStatus, int lastCashcodeError, int lastCashcodeOutStatus, int lastCashcodeSuberror, int lastPrinterErrorState, int lastPrinterExtErrorState, MultiLanguageString terminalStatusDesc, MultiLanguageString cashcodeDesc, MultiLanguageString printerStatusDesc, MultiLanguageString printerErrorStatusDesc, MultiLanguageString printerExtErrorStatusDesc, string terminalStatusName, string cashcodeStatusName, string printerStatusName, string printerErrorStatusName, string printerExtErrorStatusName, int terminalStatusType, int cashcodeStatusType, int printerStatusType)
         {
             _Id = id;
             _Name = name;
@@ -236,17 +308,33 @@ namespace Containers
             _PrinterStatusDesc = printerStatusDesc;
             _PrinterErrorStatusDesc = printerErrorStatusDesc;
             _PrinterExtErrorStatusDesc = printerExtErrorStatusDesc;
+            _TerminalStatusName = terminalStatusName;
+            _CashcodeStatusName = cashcodeStatusName;
+            _PrinterStatusName = printerStatusName;
+            _PrinterErrorStatusName = printerErrorStatusName;
+            _PrinterExtErrorStatusName = printerExtErrorStatusName;
+            _TerminalStatusType = terminalStatusType;
+            _CashcodeStatusType = cashcodeStatusType;
+            _PrinterStatusType = printerStatusType;
         }
 
         public override string ToString()
         {
             return
                 string.Format(
-                    "Id: {0}, Name: {1}, Address: {2}, Ip: {3}, LastStatusType: {4}, LastCashcodeStatus: {5}, BillsCount: {6}, LastStatusUpdate: {7}, LastPrinterStatus: {8}, LastCashcodeError: {9}, LastCashcodeOutStatus: {10}, LastCashcodeSuberror: {11}, LastPrinterErrorState: {12}, LastPrinterExtErrorState: {13}, TerminalStatusDesc: {14}, CashcodeDesc: {15}, PrinterStatusDesc: {16}, PrinterErrorStatusDesc: {17}, PrinterExtErrorStatusDesc: {18}",
-                    _Id, _Name, _Address, _Ip, _LastStatusType, _LastCashcodeStatus, _BillsCount, _LastStatusUpdate,
-                    _LastPrinterStatus, _LastCashcodeError, _LastCashcodeOutStatus, _LastCashcodeSuberror,
-                    _LastPrinterErrorState, _LastPrinterExtErrorState, _TerminalStatusDesc, _CashcodeDesc,
-                    _PrinterStatusDesc, _PrinterErrorStatusDesc, _PrinterExtErrorStatusDesc);
+                    "Id: {0}, Name: {1}, Address: {2}, IdentityName: {3}, SignKey: {4}, Ip: {5}, TmpKey: {6}, LastStatusType: {7}, LastCashcodeStatus: {8}, BillsCount: {9}, LastStatusUpdate: {10}, LastPrinterStatus: {11}, LastCashcodeError: {12}, LastCashcodeOutStatus: {13}, LastCashcodeSuberror: {14}, LastPrinterErrorState: {15}, LastPrinterExtErrorState: {16}, TerminalStatusDesc: {17}, CashcodeDesc: {18}, PrinterStatusDesc: {19}, PrinterErrorStatusDesc: {20}, PrinterExtErrorStatusDesc: {21}, TerminalStatusName: {22}, CashcodeStatusName: {23}, PrinterStatusName: {24}, PrinterErrorStatusName: {25}, PrinterExtErrorStatusName: {26}, TerminalStatusType: {27}, CashcodeStatusType: {28}, PrinterStatusType: {29}, Id: {30}, Name: {31}, Address: {32}, IdentityName: {33}, SignKey: {34}, Ip: {35}, TmpKey: {36}, LastStatusType: {37}, LastCashcodeStatus: {38}, LastStatusUpdate: {39}, LastPrinterStatus: {40}, LastCashcodeError: {41}, LastCashcodeOutStatus: {42}, LastCashcodeSuberror: {43}, LastPrinterErrorState: {44}, LastPrinterExtErrorState: {45}, TerminalStatusDesc: {46}, CashcodeDesc: {47}, PrinterStatusDesc: {48}, PrinterErrorStatusDesc: {49}, PrinterExtErrorStatusDesc: {50}, BillsCount: {51}, TerminalStatusName: {52}, CashcodeStatusName: {53}, PrinterStatusName: {54}, PrinterErrorStatusName: {55}, PrinterExtErrorStatusName: {56}, TerminalStatusType: {57}, CashcodeStatusType: {58}, PrinterStatusType: {59}",
+                    _Id, _Name, _Address, _IdentityName, _SignKey, _Ip, _TmpKey, _LastStatusType, _LastCashcodeStatus,
+                    _BillsCount, _LastStatusUpdate, _LastPrinterStatus, _LastCashcodeError, _LastCashcodeOutStatus,
+                    _LastCashcodeSuberror, _LastPrinterErrorState, _LastPrinterExtErrorState, _TerminalStatusDesc,
+                    _CashcodeDesc, _PrinterStatusDesc, _PrinterErrorStatusDesc, _PrinterExtErrorStatusDesc,
+                    _TerminalStatusName, _CashcodeStatusName, _PrinterStatusName, _PrinterErrorStatusName,
+                    _PrinterExtErrorStatusName, _TerminalStatusType, _CashcodeStatusType, _PrinterStatusType, Id, Name,
+                    Address, IdentityName, SignKey, Ip, TmpKey, LastStatusType, LastCashcodeStatus, LastStatusUpdate,
+                    LastPrinterStatus, LastCashcodeError, LastCashcodeOutStatus, LastCashcodeSuberror,
+                    LastPrinterErrorState, LastPrinterExtErrorState, TerminalStatusDesc, CashcodeDesc, PrinterStatusDesc,
+                    PrinterErrorStatusDesc, PrinterExtErrorStatusDesc, BillsCount, TerminalStatusName,
+                    CashcodeStatusName, PrinterStatusName, PrinterErrorStatusName, PrinterExtErrorStatusName,
+                    TerminalStatusType, CashcodeStatusType, PrinterStatusType);
         }
     }
 }

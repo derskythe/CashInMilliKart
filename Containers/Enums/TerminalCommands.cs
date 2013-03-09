@@ -15,6 +15,8 @@ namespace Containers.Enums
         Encash = 1,
         [Description("Start test mode for testing printer and cashcode")]
         TestMode = 2,
+        [Description("Network error")]
+        NetworkError = 3,
         [Description("Start normal mode")]
         NormalMode = 32,
         [Description("Stop working")]

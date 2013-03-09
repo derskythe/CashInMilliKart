@@ -22,6 +22,7 @@
       <xs:extension base="tns:BaseMessage">
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="TerminalId" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CommandResult" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -91,6 +92,14 @@
       <xs:element minOccurs="0" maxOccurs="1" name="PrinterErrorStatusDesc" type="tns:MultiLanguageString" />
       <xs:element minOccurs="0" maxOccurs="1" name="PrinterExtErrorStatusDesc" type="tns:MultiLanguageString" />
       <xs:element minOccurs="1" maxOccurs="1" name="BillsCount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TerminalStatusName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CashcodeStatusName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrinterStatusName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrinterErrorStatusName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrinterExtErrorStatusName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TerminalStatusType" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CashcodeStatusType" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PrinterStatusType" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MultiLanguageString">

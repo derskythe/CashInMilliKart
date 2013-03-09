@@ -124,8 +124,8 @@ namespace CashInCore
                 result = (PingResult)AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.SaveTerminalStatus(
-                    request.TerminalId, 
-                    request.TerminalStatus, 
+                    request.TerminalId,
+                    request.TerminalStatus,
                     request.CashCodeStatus.StateCodeOut,
                     request.PrinterStatus.Status,
                     request.CashCodeStatus.ErrorCode,
@@ -148,7 +148,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult CommandReceived(StandardRequest request)
         {
-            Log.Debug("CommandReceived");
+            Log.Debug("CommandReceived. " + request);
             var result = new StandardResult();
 
             try
@@ -157,7 +157,9 @@ namespace CashInCore
                 result = AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.TerminalSetDone(request.TerminalId);
-
+                OracleDb.Instance.SaveTerminalStatus(
+                    request.TerminalId,
+                    request.CommandResult);
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
             }
@@ -278,7 +280,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult Encashment(Encashment request)
         {
-            Log.Info("Encashment");
+            Log.Info("Encashment. " + request);
 
             var result = new StandardResult();
 
@@ -288,6 +290,8 @@ namespace CashInCore
                 result = AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.SaveEncashment(request);
+                var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId, (int)TerminalCommands.Encash);
+                OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

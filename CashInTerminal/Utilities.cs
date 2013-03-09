@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,10 +20,12 @@ namespace CashInTerminal
 
         [DllImport("user32.dll")]
         static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
-       
-        [DllImportAttribute("kernel32.dll", EntryPoint = "SetSystemTime")]
-        [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        private static extern bool SetSystemTime([InAttribute] ref SYSTEMTIME lpSystemTime);
+
+        [DllImport("kernel32.dll", EntryPoint = "GetSystemTime", SetLastError = true)]
+        public extern static void Win32GetSystemTime(ref SystemTime sysTime);
+
+        [DllImport("kernel32.dll", EntryPoint = "SetSystemTime", SetLastError = true)]
+        public extern static bool Win32SetSystemTime(ref SystemTime sysTime);
 
         public static string Sign(String terminalId, DateTime now, AsymmetricKeyParameter keys)
         {
@@ -104,19 +107,23 @@ namespace CashInTerminal
 
         public static void UpdateSystemTime(DateTime newDate)
         {
-            var systime = new SYSTEMTIME
+            newDate = newDate.ToUniversalTime();
+            var updatedTime = new SystemTime
                 {
-                    wYear = (ushort) newDate.Year,
-                    wMonth = (ushort) newDate.Month,
-                    wDay = (ushort) newDate.Day,
-                    wDayOfWeek = (ushort) newDate.DayOfWeek,
-                    wHour = (ushort) newDate.Hour,
-                    wMinute = (ushort) newDate.Minute,
-                    wSecond = (ushort) newDate.Second,
-                    wMilliseconds = (ushort) newDate.Millisecond
+                    Year = (ushort) newDate.Year,
+                    Month = (ushort) newDate.Month,
+                    Day = (ushort) newDate.Day,
+                    Hour = (ushort) newDate.Hour,
+                    Minute = (ushort) newDate.Minute,
+                    Second = (ushort) newDate.Second
                 };
 
-            SetSystemTime(ref systime);
+            //Log.Info(newDate.ToLongTimeString());
+
+            if (!Win32SetSystemTime(ref updatedTime))
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
         }
     }
 
@@ -134,18 +141,17 @@ namespace CashInTerminal
         public UInt32 dwTime;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    struct SYSTEMTIME
+    public struct SystemTime
     {
-        public ushort wYear;
-        public ushort wMonth;
-        public ushort wDayOfWeek;
-        public ushort wDay;
-        public ushort wHour;
-        public ushort wMinute;
-        public ushort wSecond;
-        public ushort wMilliseconds;
-    }
+        public ushort Year;
+        public ushort Month;
+        public ushort DayOfWeek;
+        public ushort Day;
+        public ushort Hour;
+        public ushort Minute;
+        public ushort Second;
+        public ushort Millisecond;
+    };
     // ReSharper restore MemberCanBePrivate.Local
     // ReSharper restore FieldCanBeMadeReadOnly.Local
     // ReSharper restore InconsistentNaming

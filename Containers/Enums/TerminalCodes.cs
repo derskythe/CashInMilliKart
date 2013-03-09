@@ -24,6 +24,9 @@ namespace Containers.Enums
         [Description("Not initiated")]
         NotInitiated = 4,
 
+        [Description("Network error")]
+        NetworkError = 5,
+
         [Description("Test mode")]
         TestMode = 32,
 

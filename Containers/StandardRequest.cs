@@ -9,6 +9,7 @@ namespace Containers
     public class StandardRequest : BaseMessage
     {
         protected int _TerminalId;
+        private int _CommandResult;
 
         [XmlElement(ElementName = "TerminalId")]
         [DataMember(Name = "TerminalId")]
@@ -16,6 +17,14 @@ namespace Containers
         {
             get { return _TerminalId; }
             set { _TerminalId = value; }
+        }
+
+        [XmlElement(ElementName = "CommandResult")]
+        [DataMember(Name = "CommandResult")]
+        public int CommandResult
+        {
+            get { return _CommandResult; }
+            set { _CommandResult = value; }
         }
 
         public StandardRequest()
@@ -29,7 +38,8 @@ namespace Containers
 
         public override string ToString()
         {
-            return string.Format("{0}, TerminalId: {1}", base.ToString(), _TerminalId);
+            return string.Format("{0}, TerminalId: {1}, CommandResult: {2}", base.ToString(), _TerminalId,
+                                 _CommandResult);
         }
     }
 }

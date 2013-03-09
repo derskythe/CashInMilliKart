@@ -73,6 +73,8 @@ namespace CashInTerminal.CashIn {
         
         private int terminalIdField;
         
+        private int commandResultField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int TerminalId {
@@ -82,6 +84,18 @@ namespace CashInTerminal.CashIn {
             set {
                 this.terminalIdField = value;
                 this.RaisePropertyChanged("TerminalId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int CommandResult {
+            get {
+                return this.commandResultField;
+            }
+            set {
+                this.commandResultField = value;
+                this.RaisePropertyChanged("CommandResult");
             }
         }
     }
@@ -444,6 +458,22 @@ namespace CashInTerminal.CashIn {
         
         private int billsCountField;
         
+        private string terminalStatusNameField;
+        
+        private string cashcodeStatusNameField;
+        
+        private string printerStatusNameField;
+        
+        private string printerErrorStatusNameField;
+        
+        private string printerExtErrorStatusNameField;
+        
+        private int terminalStatusTypeField;
+        
+        private int cashcodeStatusTypeField;
+        
+        private int printerStatusTypeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int Id {
@@ -705,6 +735,102 @@ namespace CashInTerminal.CashIn {
             set {
                 this.billsCountField = value;
                 this.RaisePropertyChanged("BillsCount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        public string TerminalStatusName {
+            get {
+                return this.terminalStatusNameField;
+            }
+            set {
+                this.terminalStatusNameField = value;
+                this.RaisePropertyChanged("TerminalStatusName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        public string CashcodeStatusName {
+            get {
+                return this.cashcodeStatusNameField;
+            }
+            set {
+                this.cashcodeStatusNameField = value;
+                this.RaisePropertyChanged("CashcodeStatusName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        public string PrinterStatusName {
+            get {
+                return this.printerStatusNameField;
+            }
+            set {
+                this.printerStatusNameField = value;
+                this.RaisePropertyChanged("PrinterStatusName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        public string PrinterErrorStatusName {
+            get {
+                return this.printerErrorStatusNameField;
+            }
+            set {
+                this.printerErrorStatusNameField = value;
+                this.RaisePropertyChanged("PrinterErrorStatusName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        public string PrinterExtErrorStatusName {
+            get {
+                return this.printerExtErrorStatusNameField;
+            }
+            set {
+                this.printerExtErrorStatusNameField = value;
+                this.RaisePropertyChanged("PrinterExtErrorStatusName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        public int TerminalStatusType {
+            get {
+                return this.terminalStatusTypeField;
+            }
+            set {
+                this.terminalStatusTypeField = value;
+                this.RaisePropertyChanged("TerminalStatusType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        public int CashcodeStatusType {
+            get {
+                return this.cashcodeStatusTypeField;
+            }
+            set {
+                this.cashcodeStatusTypeField = value;
+                this.RaisePropertyChanged("CashcodeStatusType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        public int PrinterStatusType {
+            get {
+                return this.printerStatusTypeField;
+            }
+            set {
+                this.printerStatusTypeField = value;
+                this.RaisePropertyChanged("PrinterStatusType");
             }
         }
         

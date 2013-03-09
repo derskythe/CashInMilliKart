@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblApplicationVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lblApplicationVersion
+            // 
+            this.lblApplicationVersion.Location = new System.Drawing.Point(733, 9);
+            this.lblApplicationVersion.Name = "lblApplicationVersion";
+            this.lblApplicationVersion.Size = new System.Drawing.Size(178, 17);
+            this.lblApplicationVersion.TabIndex = 7;
             // 
             // FormMdiChild
             // 
@@ -36,6 +44,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 490);
             this.ControlBox = false;
+            this.Controls.Add(this.lblApplicationVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMdiChild";
             this.TopMost = true;
@@ -46,5 +55,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblApplicationVersion;
     }
 }

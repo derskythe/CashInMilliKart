@@ -4,6 +4,7 @@ using System.Drawing.Printing;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -64,7 +65,7 @@ namespace CashInTerminal
             }
 
             Thread.Sleep(1000);
-            FormMain.EncashmentMode = false;
+            FormMain.TerminalStatus = TerminalCodes.Ok;
 
             Cursor.Current = Cursors.Default;
             ChangeView(typeof(FormProducts));

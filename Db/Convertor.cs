@@ -97,7 +97,15 @@ namespace Db
                     CashcodeDesc = cashcodeDesc,
                     PrinterStatusDesc = printerStatusDesc,
                     PrinterErrorStatusDesc = printerErrorStatusDesc,
-                    PrinterExtErrorStatusDesc = printerExtErrorStatusDesc
+                    PrinterExtErrorStatusDesc = printerExtErrorStatusDesc,
+                    CashcodeStatusName = row.IsCASHCODE_STATUS_NAMENull() ? String.Empty : row.CASHCODE_STATUS_NAME,
+                    PrinterErrorStatusName = row.IsPRINTER_ERROR_STATUS_NAMENull() ? String.Empty : row.PRINTER_ERROR_STATUS_NAME,
+                    PrinterExtErrorStatusName = row.IsPRINTER_ERROR_STATUS_NAMENull() ? String.Empty : row.PRINTER_EXT_ERROR_STATUS_NAME,
+                    PrinterStatusName = row.IsPRINTER_STATUS_NAMENull() ? String.Empty : row.PRINTER_STATUS_NAME,
+                    TerminalStatusName = row.IsTERMINAL_STATUS_NAMENull() ? String.Empty : row.TERMINAL_STATUS_NAME,
+                    TerminalStatusType = row.IsTERMINAL_STATUS_TYPENull() ? 0 : row.TERMINAL_STATUS_TYPE,
+                    CashcodeStatusType = row.IsCASHCODE_STATUS_TYPENull() ? 0 : row.CASHCODE_STATUS_TYPE,
+                    PrinterStatusType = row.IsPRINTER_STATUS_TYPENull() ? 0 : row.PRINTER_STATUS_TYPE
                 };
 
             return result;
