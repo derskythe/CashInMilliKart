@@ -278,6 +278,28 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult UpdateTerminalVersion(TerminalVersionRequest request)
+        {
+            Log.Info("UpdateTerminalVersion. "+request.ToString());
+            var result = new StandardResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = AuthTerminal(result, request, out terminalInfo);
+
+                OracleDb.Instance.SaveTerminalVersion(request.TerminalId, request.Version);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult Encashment(Encashment request)
         {
             Log.Info("Encashment. " + request);

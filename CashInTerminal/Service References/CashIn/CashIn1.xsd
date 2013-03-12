@@ -100,6 +100,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="TerminalStatusType" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="CashcodeStatusType" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="PrinterStatusType" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MultiLanguageString">
@@ -362,6 +363,29 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="1" name="EncashmentResult" type="tns:StandardResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTerminalVersion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:TerminalVersionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TerminalVersionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateTerminalVersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="UpdateTerminalVersionResult" type="tns:StandardResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

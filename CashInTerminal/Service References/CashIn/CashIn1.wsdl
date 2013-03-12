@@ -59,6 +59,12 @@
   <wsdl:message name="CashInServer_Encashment_OutputMessage">
     <wsdl:part name="parameters" element="tns:EncashmentResponse" />
   </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersion" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersionResponse" />
+  </wsdl:message>
   <wsdl:portType name="CashInServer">
     <wsdl:operation name="GetPublicKey">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
@@ -95,6 +101,10 @@
     <wsdl:operation name="Encashment">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/Encashment" message="tns:CashInServer_Encashment_InputMessage" />
       <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/EncashmentResponse" message="tns:CashInServer_Encashment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalVersion">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersion" message="tns:CashInServer_UpdateTerminalVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionResponse" message="tns:CashInServer_UpdateTerminalVersion_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

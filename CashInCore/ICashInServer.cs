@@ -25,5 +25,7 @@ namespace CashInCore
         StandardResult Payment(PaymentInfoByProducts request);
         [OperationContract]
         StandardResult Encashment(Encashment request);
+        [OperationContract]
+        StandardResult UpdateTerminalVersion(TerminalVersionRequest request);
     }
 }

@@ -58,9 +58,15 @@ namespace CashInTerminal.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminal.CashIn.StandardResult Encashment(CashInTerminal.CashIn.Encashment request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersion", ReplyAction="http://cashin/CashInService/CashInServer/UpdateTerminalVersionResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminal.CashIn.StandardResult UpdateTerminalVersion(CashInTerminal.CashIn.TerminalVersionRequest request);
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentInfoByProducts))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingRequest))]
@@ -108,6 +114,7 @@ namespace CashInTerminal.CashIn {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentInfoByProducts))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PingRequest))]
@@ -474,6 +481,8 @@ namespace CashInTerminal.CashIn {
         
         private int printerStatusTypeField;
         
+        private string versionField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int Id {
@@ -831,6 +840,18 @@ namespace CashInTerminal.CashIn {
             set {
                 this.printerStatusTypeField = value;
                 this.RaisePropertyChanged("PrinterStatusType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        public string Version {
+            get {
+                return this.versionField;
+            }
+            set {
+                this.versionField = value;
+                this.RaisePropertyChanged("Version");
             }
         }
         
@@ -1325,6 +1346,29 @@ namespace CashInTerminal.CashIn {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class TerminalVersionRequest : StandardRequest {
+        
+        private string versionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Version {
+            get {
+                return this.versionField;
+            }
+            set {
+                this.versionField = value;
+                this.RaisePropertyChanged("Version");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
     public partial class Encashment : StandardRequest {
         
         private int idField;
@@ -1659,6 +1703,10 @@ namespace CashInTerminal.CashIn {
         
         public CashInTerminal.CashIn.StandardResult Encashment(CashInTerminal.CashIn.Encashment request) {
             return base.Channel.Encashment(request);
+        }
+        
+        public CashInTerminal.CashIn.StandardResult UpdateTerminalVersion(CashInTerminal.CashIn.TerminalVersionRequest request) {
+            return base.Channel.UpdateTerminalVersion(request);
         }
     }
 }

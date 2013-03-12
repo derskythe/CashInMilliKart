@@ -96,6 +96,7 @@
     <Compile Include="Terminal.cs" />
     <Compile Include="Enums\TerminalCodes.cs" />
     <Compile Include="TerminalInfoResult.cs" />
+    <Compile Include="TerminalVersionRequest.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserSession.cs" />
   </ItemGroup>

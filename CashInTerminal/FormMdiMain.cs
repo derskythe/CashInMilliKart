@@ -857,13 +857,27 @@ namespace CashInTerminal
             };
             var response = _Server.GetTerminalInfo(cmd);
 
-            if (response != null)
+            if (response != null && response.ResultCodes == ResultCodes.Ok)
             {
                 _TerminalInfo = response.Terminal;
             }
             else
             {
                 Log.Error("Terminal info is null");
+            }
+
+            var versionRequest = new TerminalVersionRequest
+                {
+                    TerminalId = cmd.TerminalId,
+                    SystemTime = now,
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                    Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                };
+
+            var versionResponse = _Server.UpdateTerminalVersion(versionRequest);
+            if (versionResponse == null || versionResponse.ResultCodes != ResultCodes.Ok)
+            {
+                Log.Error("Can't update version");
             }
         }
 

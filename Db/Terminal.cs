@@ -247,6 +247,19 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public void SaveTerminalVersion(int terminalId, string version)
+        {
+            CheckConnection();
+
+            const string cmdText =
+                "begin main.save_terminal_version(v_terminal_id => :v_terminal_id, v_version => :v_version); end;";
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, ParameterDirection.Input).Value = terminalId;
+            cmd.Parameters.Add("v_version", OracleDbType.Varchar2, ParameterDirection.Input).Value = version;
+
+            cmd.ExecuteNonQuery();
+        }
+
         public void TerminalSetDone(int terminalId)
         {
             CheckConnection();

@@ -105,7 +105,8 @@ namespace Db
                     TerminalStatusName = row.IsTERMINAL_STATUS_NAMENull() ? String.Empty : row.TERMINAL_STATUS_NAME,
                     TerminalStatusType = row.IsTERMINAL_STATUS_TYPENull() ? 0 : row.TERMINAL_STATUS_TYPE,
                     CashcodeStatusType = row.IsCASHCODE_STATUS_TYPENull() ? 0 : row.CASHCODE_STATUS_TYPE,
-                    PrinterStatusType = row.IsPRINTER_STATUS_TYPENull() ? 0 : row.PRINTER_STATUS_TYPE
+                    PrinterStatusType = row.IsPRINTER_STATUS_TYPENull() ? 0 : row.PRINTER_STATUS_TYPE,
+                    Version = row.IsTERMINAL_VERSIONNull() ? String.Empty : row.TERMINAL_VERSION
                 };
 
             return result;
