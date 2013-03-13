@@ -352,5 +352,20 @@ namespace Db
 
             return result;
         }
+
+        public static Banknote ToBanknote(ds.V_BANKNOTESRow row)
+        {
+            var result = new Banknote(
+                row.ID,
+                row.AMOUNT,
+                row.TERMINAL_ID,
+                row.INSERT_DATE,
+                row.CURRENCY_ID,
+                row.IsENCASHMENT_IDNull() ? 0 : row.ENCASHMENT_ID,
+                row.HISTORY_ID
+                );
+
+            return result;
+        }
     }
 }

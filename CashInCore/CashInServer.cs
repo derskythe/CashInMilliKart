@@ -300,6 +300,31 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult TerminalRestarted(StandardRequest request)
+        {
+            Log.Info("TerminalRestarted. " + request);
+            var result = new StandardResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = AuthTerminal(result, request, out terminalInfo);
+
+                var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId, (int)TerminalCommands.Restart);
+                OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception e)
+            {
+                Log.ErrorException(e.Message, e);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult Encashment(Encashment request)
         {
             Log.Info("Encashment. " + request);

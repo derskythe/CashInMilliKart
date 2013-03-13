@@ -1,4 +1,4 @@
-﻿namespace CashInTerminal
+﻿namespace CashInTerminal.Enums
 {
     class FormEnum
     {
@@ -8,5 +8,6 @@
         public const string Encashment = "FormEncashment";
         public const string PaySuccess = "FormPaySuccess";
         public const string OutOfOrder = "FormOutOfOrder";
+        public const string Activation = "FormActivation";
     }
 }

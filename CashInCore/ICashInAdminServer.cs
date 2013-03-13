@@ -81,5 +81,14 @@ namespace CashInCore
 
         [OperationContract]
         CurrencyResult GetCurrency(String sid, string id);
+
+        [OperationContract]
+        ListBanknotesResult GetBanknotesByTerminal(String sid, int terminalId);
+
+        [OperationContract]
+        ListBanknotesResult GetBanknotesByEncashment(String sid, int encashmentId);
+
+        [OperationContract]
+        ListBanknotesResult GetBanknotesByHistory(String sid, int historyId);
     }
 }

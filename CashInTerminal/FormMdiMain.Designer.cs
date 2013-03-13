@@ -54,7 +54,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMdiMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormMdiMain";
+            this.Text = "CashIn Terminal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMdiMainFormClosing);
             this.Load += new System.EventHandler(this.FormMdiMainLoad);

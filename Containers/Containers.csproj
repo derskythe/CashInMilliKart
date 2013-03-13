@@ -50,6 +50,7 @@
     <Compile Include="AccessRole.cs" />
     <Compile Include="Admin\CurrencyResult.cs" />
     <Compile Include="Admin\EncashmentResult.cs" />
+    <Compile Include="Admin\ListBanknotesResult.cs" />
     <Compile Include="Admin\ListCurrenciesResult.cs" />
     <Compile Include="Admin\ListEncashmentResult.cs" />
     <Compile Include="Admin\ListProductHistoryResult.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Admin\SaveTerminalResult.cs" />
     <Compile Include="Admin\SessionResult.cs" />
     <Compile Include="AuthResult.cs" />
+    <Compile Include="Banknote.cs" />
     <Compile Include="BaseMessage.cs" />
     <Compile Include="CashCodeDeviceStatus.cs" />
     <Compile Include="CashCode\CcnetCommand.cs" />

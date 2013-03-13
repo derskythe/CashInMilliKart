@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Net.Mime;
 using System.Text;
 using CashInTerminal.Enums;
 using Containers.Enums;
@@ -22,6 +23,8 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
+            //Console.WriteLine(MediaTypeNames.Application.ExecutablePath);
+
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 

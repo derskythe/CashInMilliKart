@@ -22,6 +22,8 @@ namespace Containers.Enums
         [Description("Stop working")]
         Stop = 128,
         [Description("Show out of service screen")]
-        OutOfService = 256
+        OutOfService = 256,
+        [Description("Restart")]
+        Restart = 512
     }
 }

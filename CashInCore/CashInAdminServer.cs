@@ -823,6 +823,102 @@ namespace CashInCore
             return result;
         }
 
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListBanknotesResult GetBanknotesByTerminal(String sid, int terminalId)
+        {
+            Log.Info(String.Format("SID: {0}, terminalId: {1}", sid, terminalId));
+
+            var result = new ListBanknotesResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Banknotes = OracleDb.Instance.GetBanknotesByTerminalId(terminalId);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListBanknotesResult GetBanknotesByEncashment(String sid, int encashmentId)
+        {
+            Log.Info(String.Format("SID: {0}, encashmentId: {1}", sid, encashmentId));
+
+            var result = new ListBanknotesResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Banknotes = OracleDb.Instance.GetBanknotesByEncashmentId(encashmentId);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListBanknotesResult GetBanknotesByHistory(String sid, int historyId)
+        {
+            Log.Info(String.Format("SID: {0}, encashmentId: {1}", sid, historyId));
+
+            var result = new ListBanknotesResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewProductsHistory))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Banknotes = OracleDb.Instance.GetBanknotesByHistoryId(historyId);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
         private bool HasPriv(IEnumerable<AccessRole> roles, String requiredPriv)
         {
             foreach (var role in roles)

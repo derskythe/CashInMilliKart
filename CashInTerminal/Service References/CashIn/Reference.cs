@@ -63,6 +63,11 @@ namespace CashInTerminal.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminal.CashIn.StandardResult UpdateTerminalVersion(CashInTerminal.CashIn.TerminalVersionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/TerminalRestarted", ReplyAction="http://cashin/CashInService/CashInServer/TerminalRestartedResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminal.CashIn.StandardResult TerminalRestarted(CashInTerminal.CashIn.StandardRequest request);
     }
     
     /// <remarks/>
@@ -1707,6 +1712,10 @@ namespace CashInTerminal.CashIn {
         
         public CashInTerminal.CashIn.StandardResult UpdateTerminalVersion(CashInTerminal.CashIn.TerminalVersionRequest request) {
             return base.Channel.UpdateTerminalVersion(request);
+        }
+        
+        public CashInTerminal.CashIn.StandardResult TerminalRestarted(CashInTerminal.CashIn.StandardRequest request) {
+            return base.Channel.TerminalRestarted(request);
         }
     }
 }

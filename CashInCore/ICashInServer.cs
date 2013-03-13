@@ -9,23 +9,35 @@ namespace CashInCore
     {
         [OperationContract]
         string GetPublicKey();
+
         [OperationContract]
         TerminalInfoResult GetTerminalInfo(StandardRequest request);
+
         [OperationContract]
         AuthResult InitTerminal(int terminalId, string authKey, string publicKey);
+
         [OperationContract]
         PingResult Ping(PingRequest request);
+
         [OperationContract]
         StandardResult CommandReceived(StandardRequest request);
+
         [OperationContract]
         ProductResult ListProducts(StandardRequest request);
+
         [OperationContract]
         CurrenciesResult ListCurrencies(StandardRequest request);
+
         [OperationContract]
         StandardResult Payment(PaymentInfoByProducts request);
+
         [OperationContract]
         StandardResult Encashment(Encashment request);
+
         [OperationContract]
         StandardResult UpdateTerminalVersion(TerminalVersionRequest request);
+
+        [OperationContract]
+        StandardResult TerminalRestarted(StandardRequest request);
     }
 }

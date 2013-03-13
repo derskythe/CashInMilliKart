@@ -41,7 +41,8 @@ namespace Db
         {
             CheckConnection();
 
-            const string cmdText = "begin main.save_user(v_id => :v_id, v_username => :v_username, v_password => :v_password, v_salt => :v_salt); end;";
+            const string cmdText =
+                "begin main.save_user(v_id => :v_id, v_username => :v_username, v_password => :v_password, v_salt => :v_salt); end;";
 
             var cmd = new OracleCommand(cmdText, _OraCon);
 
@@ -99,14 +100,18 @@ namespace Db
         {
             CheckConnection();
 
-            const string cmdText = "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id, v_return_id => :v_return_id); end;";
+            const string cmdText =
+                "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id, v_return_id => :v_return_id); end;";
 
             var cmd = new OracleCommand(cmdText, _OraCon);
 
-            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal.Id > 0 ? (int?)terminal.Id : null;
+            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal.Id > 0
+                                                                                                 ? (int?) terminal.Id
+                                                                                                 : null;
             cmd.Parameters.Add("v_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Name;
             cmd.Parameters.Add("v_address", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Address;
-            cmd.Parameters.Add("v_identity_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.IdentityName;
+            cmd.Parameters.Add("v_identity_name", OracleDbType.Varchar2, ParameterDirection.Input).Value =
+                terminal.IdentityName;
             cmd.Parameters.Add("v_ip", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Ip;
             cmd.Parameters.Add("v_tmp_key", OracleDbType.Blob, ParameterDirection.Input).Value = terminal.TmpKey;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
@@ -116,7 +121,7 @@ namespace Db
 
             var result = cmd.Parameters["v_return_id"].Value;
 
-            return result == null ? 0 : ((OracleDecimal)(result)).ToInt32();
+            return result == null ? 0 : ((OracleDecimal) (result)).ToInt32();
         }
 
         public void SaveCurrency(string id, string isoName, string name, bool defaultCurrency, int userId)
@@ -131,7 +136,8 @@ namespace Db
             cmd.Parameters.Add("v_id", OracleDbType.Varchar2, ParameterDirection.Input).Value = id;
             cmd.Parameters.Add("v_iso_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = isoName;
             cmd.Parameters.Add("v_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = name;
-            cmd.Parameters.Add("v_default_currency", OracleDbType.Int16, ParameterDirection.Input).Value = defaultCurrency ? 1 : 0;
+            cmd.Parameters.Add("v_default_currency", OracleDbType.Int16, ParameterDirection.Input).Value =
+                defaultCurrency ? 1 : 0;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
 
             cmd.ExecuteNonQuery();
@@ -141,7 +147,8 @@ namespace Db
         {
             CheckConnection();
 
-            const string cmdText = "begin main.save_currency_rate(v_currency_id => :v_currency_id, v_rate => :v_rate, v_user_id => :v_user_id); end; ";
+            const string cmdText =
+                "begin main.save_currency_rate(v_currency_id => :v_currency_id, v_rate => :v_rate, v_user_id => :v_user_id); end; ";
             var cmd = new OracleCommand(cmdText, _OraCon);
 
             cmd.Parameters.Add("v_currency_id", OracleDbType.Varchar2, ParameterDirection.Input).Value = currency;
@@ -155,7 +162,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_ROLES_TO_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_ROLES_TO_USERSTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_ROLES_TO_USERSDataTable();
             adapter.FillByRoleId(table, roleId);
 
@@ -172,7 +179,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_ROLES_TO_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_ROLES_TO_USERSTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_ROLES_TO_USERSDataTable();
             adapter.FillByUserId(table, userId);
 
@@ -189,7 +196,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_USERSTableAdapter {Connection = _OraCon, BindByName = true};
 
             var table = new ds.V_LIST_USERSDataTable();
             adapter.FillByActive(table, username, password);
@@ -208,7 +215,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_USERSTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_LIST_USERSDataTable();
             adapter.FillById(table, id);
 
@@ -225,7 +232,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_USERSTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_LIST_USERSDataTable();
             adapter.FillById(table, id);
 
@@ -242,7 +249,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_USERSTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_LIST_USERSDataTable();
             adapter.FillByUsername(table, username);
 
@@ -279,7 +286,8 @@ namespace Db
                     break;
             }
 
-            var cmdText = String.Format("select * from V_LIST_CURRENCIES t ORDER BY {0} {1}", column, sortType.ToString());
+            var cmdText = String.Format("select * from V_LIST_CURRENCIES t ORDER BY {0} {1}", column,
+                                        sortType.ToString());
             var cmd = new OracleCommand(cmdText, _OraCon);
             var adapter = new OracleDataAdapter(cmd);
 
@@ -357,7 +365,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_ROLESTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_ROLESTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_ROLESDataTable();
             adapter.Fill(table);
 
@@ -374,7 +382,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_ACTIVE_SESSIONSTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_ACTIVE_SESSIONSTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_LIST_ACTIVE_SESSIONSDataTable();
             adapter.FillBySid(table, sid);
 
@@ -431,7 +439,7 @@ namespace Db
                     break;
 
                 case TerminalColumns.LastUpdate:
-                    column = "t.LAST_UPDATE"; 
+                    column = "t.LAST_UPDATE";
                     break;
 
                 case TerminalColumns.Name:
@@ -459,7 +467,8 @@ namespace Db
                     break;
             }
 
-            string cmdtxt = String.Format("select * from v_list_terminals t ORDER BY {0} {1}", column, sortType.ToString());
+            string cmdtxt = String.Format("select * from v_list_terminals t ORDER BY {0} {1}", column,
+                                          sortType.ToString());
             var cmd = new OracleCommand(cmdtxt, _OraCon);
             var adapter = new OracleDataAdapter(cmd);
             var table = new ds.V_LIST_TERMINALSDataTable();
@@ -497,7 +506,8 @@ namespace Db
                     break;
             }
 
-            string cmdtxt = String.Format("select * from v_list_encashment t ORDER BY {0} {1}", column, sortType.ToString());
+            string cmdtxt = String.Format("select * from v_list_encashment t ORDER BY {0} {1}", column,
+                                          sortType.ToString());
             var cmd = new OracleCommand(cmdtxt, _OraCon);
             var adapter = new OracleDataAdapter(cmd);
             var table = new ds.V_LIST_ENCASHMENTDataTable();
@@ -520,7 +530,7 @@ namespace Db
         public Encashment GetEncashment(int id)
         {
             CheckConnection();
-            var adapter = new V_LIST_ENCASHMENTTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_ENCASHMENTTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_LIST_ENCASHMENTDataTable();
             adapter.FillById(table, id);
 
@@ -539,7 +549,7 @@ namespace Db
         public List<EncashmentCurrency> ListEncashmentCurrencies(decimal id)
         {
             CheckConnection();
-            var adapter = new V_LIST_ENCASHMENT_CURRENCIESTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_ENCASHMENT_CURRENCIESTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_LIST_ENCASHMENT_CURRENCIESDataTable();
             adapter.FillByEncashmentId(table, id);
             var result = new List<EncashmentCurrency>();
@@ -558,7 +568,8 @@ namespace Db
 
             string column = GetProductHistoryColumn(sortColumn);
 
-            string cmdtxt = String.Format("select * from v_products_history t ORDER BY {0} {1}", column, sortType.ToString());
+            string cmdtxt = String.Format("select * from v_products_history t ORDER BY {0} {1}", column,
+                                          sortType.ToString());
             var cmd = new OracleCommand(cmdtxt, _OraCon);
             var adapter = new OracleDataAdapter(cmd);
             var table = new ds.V_PRODUCTS_HISTORYDataTable();
@@ -631,7 +642,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_CURRENCIESTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_LIST_CURRENCIESTableAdapter {Connection = _OraCon, BindByName = true};
 
             var table = new ds.V_LIST_CURRENCIESDataTable();
             adapter.FillById(table, id);
@@ -646,13 +657,17 @@ namespace Db
             return null;
         }
 
-        public List<ProductHistory> ListProductHistory(DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType)
+        public List<ProductHistory> ListProductHistory(DateTime from, DateTime to, ProductHistoryColumns sortColumn,
+                                                       SortType sortType)
         {
             CheckConnection();
 
             string column = GetProductHistoryColumn(sortColumn);
 
-            string cmdtxt = String.Format("select * from v_products_history t WHERE INSERT_DATE BETWEEN :dateFrom AND :dateTo ORDER BY {0} {1}", column, sortType.ToString());
+            string cmdtxt =
+                String.Format(
+                    "select * from v_products_history t WHERE INSERT_DATE BETWEEN :dateFrom AND :dateTo ORDER BY {0} {1}",
+                    column, sortType.ToString());
             var cmd = new OracleCommand(cmdtxt, _OraCon);
             cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
             cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
@@ -673,13 +688,16 @@ namespace Db
             return result;
         }
 
-        public List<ProductHistory> ListProductHistory(String transactionId, ProductHistoryColumns sortColumn, SortType sortType)
+        public List<ProductHistory> ListProductHistory(String transactionId, ProductHistoryColumns sortColumn,
+                                                       SortType sortType)
         {
             CheckConnection();
 
             string column = GetProductHistoryColumn(sortColumn);
 
-            string cmdtxt = String.Format("select * from v_products_history t WHERE TRANSACTION_ID = :transId ORDER BY {0} {1}", column, sortType.ToString());
+            string cmdtxt =
+                String.Format("select * from v_products_history t WHERE TRANSACTION_ID = :transId ORDER BY {0} {1}",
+                              column, sortType.ToString());
             var cmd = new OracleCommand(cmdtxt, _OraCon);
             cmd.Parameters.Add("transId", OracleDbType.Varchar2, ParameterDirection.Input).Value = transactionId;
 
@@ -702,7 +720,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_PRODUCTS_HISTORY_VALUESTableAdapter { Connection = _OraCon, BindByName = true };
+            var adapter = new V_PRODUCTS_HISTORY_VALUESTableAdapter {Connection = _OraCon, BindByName = true};
             var table = new ds.V_PRODUCTS_HISTORY_VALUESDataTable();
             adapter.FillByHistoryId(table, historyId);
 
@@ -711,6 +729,63 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORY_VALUESRow row in table.Rows)
             {
                 result.Add(Convertor.ToProductHistoryValue(row));
+            }
+
+            return result;
+        }
+
+        public List<Banknote> GetBanknotesByTerminalId(int terminalId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTESDataTable();
+
+            adapter.FillByTerminalId(table, terminalId);
+
+            var result = new List<Banknote>();
+
+            foreach (ds.V_BANKNOTESRow row in table.Rows)
+            {
+                  result.Add(Convertor.ToBanknote(row));
+            }
+
+            return result;
+        }
+
+        public List<Banknote> GetBanknotesByEncashmentId(int encashmentId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTESDataTable();
+
+            adapter.FillByEncashmentId(table, encashmentId);
+
+            var result = new List<Banknote>();
+
+            foreach (ds.V_BANKNOTESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknote(row));
+            }
+
+            return result;
+        }
+
+        public List<Banknote> GetBanknotesByHistoryId(int historyId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTESDataTable();
+
+            adapter.FillByHistoryId(table, historyId);
+
+            var result = new List<Banknote>();
+
+            foreach (ds.V_BANKNOTESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknote(row));
             }
 
             return result;

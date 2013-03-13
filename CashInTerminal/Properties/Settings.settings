@@ -25,5 +25,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">data source="C:\Users\Skif\Documents\Visual Studio 2010\Projects\CashIn\CashInTerminal\Terminal.s3db"</Value>
     </Setting>
+    <Setting Name="ApplicationPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\CashIn</Value>
+    </Setting>
+    <Setting Name="DbPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\CashIn\Terminal.s3db</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

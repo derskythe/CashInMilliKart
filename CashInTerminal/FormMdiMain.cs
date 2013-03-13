@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Deployment.Application;
+using System.Diagnostics;
+using System.IO;
 using System.Management;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
@@ -14,6 +17,7 @@ using PrinterStatus = CashInTerminal.CashIn.PrinterStatus;
 using ResultCodes = CashInTerminal.CashIn.ResultCodes;
 using Timer = System.Threading.Timer;
 using TerminalCodes = Containers.Enums.TerminalCodes;
+using ThreadState = System.Threading.ThreadState;
 
 namespace CashInTerminal
 {
@@ -130,16 +134,17 @@ namespace CashInTerminal
 
         private Thread _PingThread;
         private Thread _SendPaymentThread;
+        private Thread _TerminationThread;
         private Timer _CheckCurrencyTimer;
         private Timer _CheckProductsTimer;
         private Timer _CheckInactivityTimer;
         private Timer _CheckApplicationUpdateTimer;
         private const int PING_TIMEOUT = 30 * 1000;
-        private const int SEND_PAYMENT_TIMEOUT = 10000;
+        private const int SEND_PAYMENT_TIMEOUT = 10 * 1000;
         private const int CHECK_CURRENCY_TIMER = 30 * 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
-        private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 60 * 1000;
+        private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 1000;
         private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
@@ -170,6 +175,28 @@ namespace CashInTerminal
                     break;
                 }
             }
+            string currentDeployment = String.Empty;
+
+            try
+            {
+                currentDeployment = ApplicationDeployment.CurrentDeployment.DataDirectory;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
+
+            Log.Info(String.Format("Trying to start system.\nTerminalId: {0},\nComPort: {1},\nData dir: {2},\nExec path: {3}\nCurrent build: {4}\nFile Version: {5}",
+                                   Settings.Default.TerminalCode,
+                                   Settings.Default.DevicePort,
+                                   currentDeployment,
+                                   Path.GetDirectoryName(Application.ExecutablePath),
+                                   assembly.GetName().Version,
+                                   version
+                                   ));
 
             _Init = true;
             // Init keys
@@ -194,7 +221,7 @@ namespace CashInTerminal
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);
-                _Init &= false;
+                _Init = false;
             }
 
             // Init cashcode
@@ -215,7 +242,7 @@ namespace CashInTerminal
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);
-                _Init &= false;
+                _Init = false;
             }
 
             // Init DB
@@ -227,7 +254,7 @@ namespace CashInTerminal
             }
             catch (Exception exp)
             {
-                _Init &= false;
+                _Init = false;
                 Log.ErrorException(exp.Message, exp);
             }
 
@@ -248,7 +275,7 @@ namespace CashInTerminal
 
             if (_Init && !_AuthTerminal)
             {
-                _TerminalStatus = TerminalCodes.Auth;
+                _TerminalStatus = TerminalCodes.Ok;
                 OpenForm(typeof(FormActivation));
             }
             else if (!_Init)
@@ -286,65 +313,72 @@ namespace CashInTerminal
 
         private void ApplicationUpdateTimer(object state)
         {
-            if (_CurrentForm != null)
+            try
             {
-                if (_CurrentForm.Name != FormEnum.MoneyInput &&
-                    _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment &&
-                    _CurrentForm.Name != FormEnum.OutOfOrder && _CurrentForm.Name != FormEnum.PaySuccess)
+                if (_CurrentForm != null)
                 {
-                    UpdateCheckInfo info;
+                    if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                        _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment &&
+                        _CurrentForm.Name != FormEnum.OutOfOrder && _CurrentForm.Name != FormEnum.PaySuccess)
+                    {
+                        UpdateCheckInfo info;
 
-                    // Check if the application was deployed via ClickOnce.
-                    if (!ApplicationDeployment.IsNetworkDeployed)
-                    {
-                        Log.Warn("Is this NOT deployed via ClickOnce");
-                        return;
-                    }
-
-                    ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
-
-                    try
-                    {
-                        info = updateCheck.CheckForDetailedUpdate();
-                    }
-                    catch (DeploymentDownloadException)
-                    {
-                        Log.Error("Couldn't retrieve info on this app");
-                        return;
-                    }
-                    catch (InvalidDeploymentException)
-                    {
-                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
-                        return;
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
-                        return;
-                    }
-
-                    if (info.UpdateAvailable)
-                    {
-                        if (info.IsUpdateRequired)
+                        // Check if the application was deployed via ClickOnce.
+                        if (!ApplicationDeployment.IsNetworkDeployed)
                         {
-                            Log.Info("A required update is available, which will be installed now");
-                            UpdateApplication();
-                        }
-                        else
-                        {
-                            Log.Info("An update is available");
-                            UpdateApplication();
+                            Log.Warn("Is this NOT deployed via ClickOnce");
+                            return;
                         }
 
-                        return;
-                    }
+                        ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
 
-                    Log.Info("There's no update");
+                        try
+                        {
+                            info = updateCheck.CheckForDetailedUpdate();
+                        }
+                        catch (DeploymentDownloadException)
+                        {
+                            Log.Error("Couldn't retrieve info on this app");
+                            return;
+                        }
+                        catch (InvalidDeploymentException)
+                        {
+                            Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                            return;
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                            return;
+                        }
+
+                        if (info.UpdateAvailable)
+                        {
+                            if (info.IsUpdateRequired)
+                            {
+                                Log.Info("A required update is available, which will be installed now");
+                                UpdateApplication();
+                            }
+                            else
+                            {
+                                Log.Info("An update is available");
+                                UpdateApplication();
+                            }
+
+                            return;
+                        }
+
+                        Log.Info("There's no update");
+                    }
+                    else
+                    {
+                        Log.Info("Can't check update this time");
+                    }
                 }
-                else
-                {
-                    Log.Info("Can't check update this time");
-                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -355,12 +389,40 @@ namespace CashInTerminal
                 ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
                 updateCheck.Update();
                 Log.Info("The application has been upgraded, and will now restart.");
-                Application.Restart();
+
+                RestartApplication();
             }
             catch (DeploymentDownloadException exp)
             {
                 Log.ErrorException(exp.Message, exp);
             }
+        }
+
+        private void RestartApplication()
+        {
+            //// Shut down the current app instance.
+            //Application.Exit();
+
+            //// Restart the app passing "/restart [processId]" as cmd line args
+            //Process.Start(Application.ExecutablePath, "/restart " + Process.GetCurrentProcess().Id);
+            OpenForm(typeof(FormOutOfOrder));
+            _Running = false;
+
+            if (_TerminationThread == null || _TerminationThread.ThreadState != ThreadState.Running)
+            {
+                _TerminationThread = new Thread(TerminationThread);
+                _TerminationThread.Start();
+            }
+        }
+
+        private void TerminationThread()
+        {
+            Thread.Sleep(5);
+            DoClose();
+            Log.Debug("Thread.Sleep(150)");
+            Thread.Sleep(150);
+            Log.Debug("Application.Restart");
+            Application.Restart();
         }
 
         #endregion
@@ -496,7 +558,8 @@ namespace CashInTerminal
                 {
                     if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Language &&
                         _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment &&
-                        _CurrentForm.Name != FormEnum.OutOfOrder)
+                        _CurrentForm.Name != FormEnum.OutOfOrder && _CurrentForm.Name != FormEnum.Activation &&
+                        _CurrentForm.Name != FormEnum.Language)
                     {
                         _LastActivity = Utilities.GetLastInputTime();
                         if (_LastActivity > MAX_INACTIVITY_PERIOD)
@@ -600,9 +663,9 @@ namespace CashInTerminal
 
         private void PingThread()
         {
-            while (_Running)
+            while (_Running && _Init && _AuthTerminal)
             {
-                while (_Init && _AuthTerminal)
+                try
                 {
                     try
                     {
@@ -648,7 +711,7 @@ namespace CashInTerminal
                                 Log.Warn(String.Format("Server return: {0}, {1}", result.ResultCodes, result.Description));
 
                                 if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess &&
-                                _CurrentForm.Name != FormEnum.Encashment)
+                                    _CurrentForm.Name != FormEnum.Encashment)
                                 {
                                     _TerminalStatus = TerminalCodes.NetworkError;
                                     Log.Warn("Out of order");
@@ -672,6 +735,28 @@ namespace CashInTerminal
 
                                 switch ((Containers.Enums.TerminalCommands)result.Command)
                                 {
+                                    case Containers.Enums.TerminalCommands.Restart:
+                                        Log.Warn("Received command " +
+                                                 Containers.Enums.TerminalCommands.Restart.ToString());
+                                        if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                                            _CurrentForm.Name != FormEnum.PaySuccess)
+                                        {
+                                            CommandReceived();
+                                            var stdRequest = new StandardRequest
+                                                {
+                                                    SystemTime = now,
+                                                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                                    Sign =
+                                                        Utilities.Sign(Settings.Default.TerminalCode, now,
+                                                                       _ServerPublicKey)
+                                                };
+
+                                            _Server.TerminalRestarted(stdRequest);
+                                            RestartApplication();
+                                            return;
+                                        }
+                                        break;
+
                                     case Containers.Enums.TerminalCommands.OutOfService:
                                     case Containers.Enums.TerminalCommands.Stop:
                                         Log.Warn("Received command " +
@@ -722,7 +807,7 @@ namespace CashInTerminal
                                             OpenForm(typeof(FormLanguage));
                                         } else  */
                                         if ((_CurrentForm.Name == FormEnum.OutOfOrder ||
-                                            _CurrentForm.Name == FormEnum.TestMode))
+                                             _CurrentForm.Name == FormEnum.TestMode))
                                         {
                                             _TerminalStatus = TerminalCodes.Ok;
                                             Log.Warn("Received command " +
@@ -754,13 +839,19 @@ namespace CashInTerminal
                     catch (System.ServiceModel.EndpointNotFoundException exp)
                     {
                         // Out of order, if exception
-                        if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.PaySuccess && _CurrentForm.Name != FormEnum.Encashment)
+                        if (_CurrentForm.Name != FormEnum.MoneyInput
+                            && _CurrentForm.Name != FormEnum.PaySuccess
+                            && _CurrentForm.Name != FormEnum.Encashment)
                         {
                             _TerminalStatus = TerminalCodes.NetworkError;
                             Log.Warn("Network error. Out of order");
                             OpenForm(typeof(FormOutOfOrder));
                         }
                         Log.Error(exp.Message);
+                    }
+                    catch (ThreadAbortException exp)
+                    {
+                        Log.Error("Aborting Ping Thread. " + exp.Message);
                     }
                     catch (Exception exp)
                     {
@@ -773,10 +864,20 @@ namespace CashInTerminal
                         }
                         Log.ErrorException(exp.Message, exp);
                     }
-                    Thread.Sleep(PING_TIMEOUT);
-                }
 
-                Thread.Sleep(PING_TIMEOUT);
+                    if (_Running)
+                    {
+                        Thread.Sleep(PING_TIMEOUT);
+                    }
+                }
+                catch (ThreadAbortException exp)
+                {
+                    Log.Error("Aborting Ping Thread. " + exp.Message);
+                }
+                catch (Exception exp)
+                {
+                    Log.ErrorException(exp.Message, exp);
+                }
             }
         }
 
@@ -871,7 +972,7 @@ namespace CashInTerminal
                     TerminalId = cmd.TerminalId,
                     SystemTime = now,
                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                    Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                    Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
                 };
 
             var versionResponse = _Server.UpdateTerminalVersion(versionRequest);
@@ -950,92 +1051,107 @@ namespace CashInTerminal
         {
             var listToDelete = new Queue<long>();
 
-            while (_Running && _Init && _AuthTerminal)
+            try
             {
-                try
+                while (_Running && _Init && _AuthTerminal)
                 {
-                    var list = _Db.GetTransactions();
-
-                    foreach (var row in list)
+                    try
                     {
-                        var values = _Db.GetPaymentValues(row.Id);
-                        var banknotes = _Db.GetPaymentBanknotes(row.Id);
+                        var list = _Db.GetTransactions();
 
-                        var now = DateTime.Now;
-                        var request = new PaymentInfoByProducts
+                        foreach (var row in list)
                         {
-                            TerminalDate = now,
-                            SystemTime = now,
-                            TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                            TransactionId = row.TransactionId,
-                            ProductId = (int)row.ProductId,
-                            Currency = row.Currency,
-                            CurrencyRate = (float)row.CurrencyRate,
-                            Amount = (int)row.Amount,
-                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                        };
+                            var values = _Db.GetPaymentValues(row.Id);
+                            var banknotes = _Db.GetPaymentBanknotes(row.Id);
 
-                        var valuesList = new List<String>();
-                        var banknotesList = new List<int>();
+                            var now = DateTime.Now;
+                            var request = new PaymentInfoByProducts
+                                {
+                                    TerminalDate = now,
+                                    SystemTime = now,
+                                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                    TransactionId = row.TransactionId,
+                                    ProductId = (int)row.ProductId,
+                                    Currency = row.Currency,
+                                    CurrencyRate = (float)row.CurrencyRate,
+                                    Amount = (int)row.Amount,
+                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                                };
 
-                        foreach (var value in values)
-                        {
-                            valuesList.Add(value.Value);
-                        }
+                            var valuesList = new List<String>();
+                            var banknotesList = new List<int>();
 
-                        foreach (var banknote in banknotes)
-                        {
-                            banknotesList.Add((int)banknote.Amount);
-                        }
+                            foreach (var value in values)
+                            {
+                                valuesList.Add(value.Value);
+                            }
 
-                        request.Banknotes = banknotesList.ToArray();
-                        request.Values = valuesList.ToArray();
+                            foreach (var banknote in banknotes)
+                            {
+                                banknotesList.Add((int)banknote.Amount);
+                            }
 
-                        var response = _Server.Payment(request);
+                            request.Banknotes = banknotesList.ToArray();
+                            request.Values = valuesList.ToArray();
 
-                        if (response != null && response.ResultCodes == ResultCodes.Ok)
-                        {
-                            Log.Info("Send to server is okay");
-                            listToDelete.Enqueue(row.Id);
-                        }
-                        else if (response != null)
-                        {
-                            Log.Warn(String.Format("Server answer: {0}, {1}", response.ResultCodes, response.Description));
-                        }
-                        else
-                        {
-                            Log.Warn("Response is null");
+                            var response = _Server.Payment(request);
+
+                            if (response != null && response.ResultCodes == ResultCodes.Ok)
+                            {
+                                Log.Info("Send to server is okay");
+                                listToDelete.Enqueue(row.Id);
+                            }
+                            else if (response != null)
+                            {
+                                Log.Warn(String.Format("Server answer: {0}, {1}", response.ResultCodes,
+                                                       response.Description));
+                            }
+                            else
+                            {
+                                Log.Warn("Response is null");
+                            }
                         }
                     }
-                }
-                catch (Exception exp)
-                {
-                    Log.ErrorException(exp.Message, exp);
-                }
-                catch
-                {
-                    Log.Error("Non cachable exception");
-                }
-
-                try
-                {
-                    if (listToDelete.Count > 0)
+                    catch (Exception exp)
                     {
-                        foreach (var item in listToDelete)
+                        Log.ErrorException(exp.Message, exp);
+                    }
+                    catch
+                    {
+                        Log.Error("Non cachable exception");
+                    }
+
+                    try
+                    {
+                        if (listToDelete.Count > 0)
                         {
-                            _Db.DeleteTransaction(item);
+                            foreach (var item in listToDelete)
+                            {
+                                _Db.DeleteTransaction(item);
+                            }
                         }
                     }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                    }
+                    catch
+                    {
+                        Log.Error("Non cachable exception");
+                    }
+                    if (_Running)
+                    {
+                        Thread.Sleep(SEND_PAYMENT_TIMEOUT);
+                    }
                 }
-                catch (Exception exp)
-                {
-                    Log.ErrorException(exp.Message, exp);
-                }
-                catch
-                {
-                    Log.Error("Non cachable exception");
-                }
-                Thread.Sleep(SEND_PAYMENT_TIMEOUT);
+            }
+            catch (ThreadAbortException exp)
+            {
+                Log.Error("Aborting SendPayment Thread. " + exp.Message);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -1080,6 +1196,11 @@ namespace CashInTerminal
 
         private void FormMdiMainFormClosing(object sender, FormClosingEventArgs e)
         {
+            DoClose();
+        }
+
+        private void DoClose()
+        {
             _Running = false;
 
             _CheckCurrencyTimer.Dispose();
@@ -1087,10 +1208,24 @@ namespace CashInTerminal
             _CheckInactivityTimer.Dispose();
             _CheckApplicationUpdateTimer.Dispose();
 
-            Thread.Sleep(250);
-
             _CcnetDevice.Close();
             _CcnetDevice.Dispose();
+
+            if (_PingThread != null)
+            {
+                _PingThread.Join(1000);
+                _PingThread.Abort();
+                Log.Debug("Aborting");
+            }
+
+            Log.Debug("SendPaymentThread");
+            if (_SendPaymentThread != null)
+            {
+                Log.Debug("Join");
+                _SendPaymentThread.Join(1000);
+                Log.Debug("Abort");
+                _SendPaymentThread.Abort();
+            }
         }
     }
 }

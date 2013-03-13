@@ -340,7 +340,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormActivation";
             this.Text = "FormActivation";
-            this.Load += new System.EventHandler(this.FormActivation_Load);
+            this.Load += new System.EventHandler(this.FormActivationLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

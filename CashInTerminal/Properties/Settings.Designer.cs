@@ -93,5 +93,29 @@ namespace CashInTerminal.Properties {
                 return ((string)(this["TerminalConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\CashIn")]
+        public string ApplicationPath {
+            get {
+                return ((string)(this["ApplicationPath"]));
+            }
+            set {
+                this["ApplicationPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\CashIn\\Terminal.s3db")]
+        public string DbPath {
+            get {
+                return ((string)(this["DbPath"]));
+            }
+            set {
+                this["DbPath"] = value;
+            }
+        }
     }
 }

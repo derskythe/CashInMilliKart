@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using CashInTerminal.Properties;
 using CashInTerminal.dsTableAdapters;
 
 namespace CashInTerminal
@@ -11,7 +12,7 @@ namespace CashInTerminal
 
         public LocalDb()
         {
-            _Connection = new SQLiteConnection("Data Source=Terminal.s3db");
+            _Connection = new SQLiteConnection("Data Source=" + Settings.Default.DbPath);
         }
 
         public List<ds.PaymentsRow> GetTransactions()

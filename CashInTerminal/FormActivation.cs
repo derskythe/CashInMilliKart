@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
+using Containers.Enums;
+using ResultCodes = CashInTerminal.CashIn.ResultCodes;
 
 namespace CashInTerminal
 {
@@ -26,7 +27,7 @@ namespace CashInTerminal
             if (SelectedBox.Text.Length > 0)
             {
                 SelectedBox.Text = SelectedBox.Text.Substring(0, SelectedBox.Text.Length - 1);
-            }            
+            }
         }
 
         private void BtnActivationBackspaceClick(object sender, EventArgs e)
@@ -121,6 +122,7 @@ namespace CashInTerminal
                     Settings.Default.Save();
 
                     FormMain.AuthTerminal = true;
+                    FormMain.TerminalStatus = TerminalCodes.Ok;
                     btnActivation.Enabled = true;
                     Cursor.Current = Cursors.Default;
 
@@ -134,7 +136,7 @@ namespace CashInTerminal
                         Log.ErrorException(exp.Message, exp);
                     }
 
-                    ChangeView(typeof( FormProducts));
+                    ChangeView(typeof(FormProducts));
 
                     return;
                 }
@@ -180,7 +182,7 @@ namespace CashInTerminal
             }
         }
 
-        private void FormActivation_Load(object sender, EventArgs e)
+        private void FormActivationLoad(object sender, EventArgs e)
         {
             try
             {

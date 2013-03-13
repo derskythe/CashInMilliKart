@@ -33,7 +33,8 @@
             // 
             // lblApplicationVersion
             // 
-            this.lblApplicationVersion.Location = new System.Drawing.Point(733, 9);
+            this.lblApplicationVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblApplicationVersion.Location = new System.Drawing.Point(12, 9);
             this.lblApplicationVersion.Name = "lblApplicationVersion";
             this.lblApplicationVersion.Size = new System.Drawing.Size(178, 17);
             this.lblApplicationVersion.TabIndex = 7;

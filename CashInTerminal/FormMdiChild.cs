@@ -33,9 +33,9 @@ namespace CashInTerminal
         protected void FormLanguageLoad(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
-#if DEBUG
+
             lblApplicationVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-#endif
+            lblApplicationVersion.Visible = true;
         }
 
         protected void ChangeView(Type form)
