@@ -28,6 +28,7 @@ namespace CashInTerminal
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        // 
         private AsymmetricCipherKeyPair _LocalKeys;
         private AsymmetricKeyParameter _ServerPublicKey;
         private CCNETDevice _CcnetDevice;
