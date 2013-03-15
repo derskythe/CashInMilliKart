@@ -39,5 +39,8 @@ namespace CashInCore
 
         [OperationContract]
         StandardResult TerminalRestarted(StandardRequest request);
+
+        [OperationContract]
+        GetClientInfoResult GetClientInfo(GetClientInfoRequest request);
     }
 }

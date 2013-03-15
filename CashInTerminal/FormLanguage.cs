@@ -23,5 +23,10 @@ namespace CashInTerminal
         {
             ChangeView(typeof(FormProducts));
         }
+
+        private void FormLanguage_Load(object sender, EventArgs e)
+        {
+            ChangeView(typeof(FormProducts));
+        }
     }
 }

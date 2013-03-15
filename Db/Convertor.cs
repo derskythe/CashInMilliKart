@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Containers;
 using Containers.Admin;
 
@@ -274,7 +275,7 @@ namespace Db
                     LastUpdate = row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE,
                     Password = String.Empty,
                     Salt = String.Empty,
-                    Username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME,
+                    Username = row.USERNAME,
                     Id = Convert.ToInt32(row.USER_ID),
                     RoleFields = fields.ToArray()
                 };
@@ -367,5 +368,131 @@ namespace Db
 
             return result;
         }
+
+        public static CheckType ToCheckType(ds.V_CHECK_TYPESRow row)
+        {
+            var value = new MultiLanguageString(
+                row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ
+                );
+            value.ReInit();
+
+            var result = new CheckType(
+                row.ID,
+                value
+                );
+
+            return result;
+        }
+
+        public static CheckFieldType ToCheckFieldType(ds.V_CHECK_FIELD_TYPESRow row)
+        {
+            var value = new MultiLanguageString(
+                row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ
+                );
+            value.ReInit();
+
+            var result = new CheckFieldType(
+                row.ID,
+                value
+                );
+
+            return result;
+        }
+
+        public static CheckField ToCheckField(ds.V_CHECK_FIELDSRow row)
+        {
+            var result = new CheckField(
+                row.ID,
+                row.CHECK_ID,
+                row.IsIMAGENull() ? null : row.IMAGE,
+                row.IsVALUENull() ? String.Empty : row.VALUE,
+                row.FIELD_TYPE,
+                row.ORDER_NUMBER
+                );
+
+            return result;
+        }
+
+        public static CheckTemplate ToCheckTemplate(ds.V_CHECKSRow row, CheckType type, List<CheckField> fields)
+        {
+            var result = new CheckTemplate(
+                row.ID,
+                type,
+                row.LANGUAGE,
+                row.ACTIVE > 0,
+                row.IsINSERT_DATENull() ? DateTime.MinValue : row.INSERT_DATE,
+                row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE,
+                fields
+            );
+
+            return result;
+        }
+
+        public static CheckTemplate ToCheckTemplate(ds.V_CHECKSRow row, List<CheckField> fields)
+        {
+            var value = new MultiLanguageString(
+                row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ
+                );
+
+            var type = new CheckType(
+                row.CHECK_TYPE,
+                value
+                );
+
+            var result = new CheckTemplate(
+                row.ID,
+                type,
+                row.LANGUAGE,
+                row.ACTIVE > 0,
+                row.IsINSERT_DATENull() ? DateTime.MinValue : row.INSERT_DATE,
+                row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE,
+                fields
+            );
+
+            return result;
+        }
+
+        public static ClientInfo ToClientInfo(ds.V_CASHIN_GET_ACCOUNT_INFORow row)
+        {
+            var result = new ClientInfo(
+                row.CRD_NUMBER,
+                row.IsFULL_NAMENull() ? String.Empty : row.FULL_NAME,
+                                        row.IsPASSPORTNUMBERNull() ? String.Empty : row.PASSPORTNUMBER,
+                                        row.IsCREDIT_ACCOUNTNull() ? String.Empty : row.CREDIT_ACCOUNT,
+                                        row.IsCLIENT_ACCOUNTNull() ? String.Empty : row.CLIENT_ACCOUNT,
+                                        row.IsAMOUNT_LEFTNull() ? 0f : row.AMOUNT_LEFT,
+                                        row.IsAMOUNT_LATENull() ? 0f : row.AMOUNT_LATE,
+                                        row.IsCURRENCYNull() ? String.Empty : row.CURRENCY,
+                                        row.IsBEGIN_DATENull() ? DateTime.MinValue : row.BEGIN_DATE,
+                                        row.IsCURRENCY_RATENull() ? 0f : row.CURRENCY_RATE,
+                                        row.IsCLNCODENull() ? String.Empty : row.CLNCODE,
+                                        row.IsCREDIT_AMOUNTNull() ? 0f : row.CREDIT_AMOUNT,
+                                        row.IsCREDIT_NAMENull() ? String.Empty : row.CREDIT_NAME);
+            //row.FULL_NAME = FirstUpper(row.FULL_NAME);
+            return result;
+        }
+
+        //private static String FirstUpper(String value)
+        //{
+        //    if (String.IsNullOrEmpty(value))
+        //    {
+        //        return String.Empty;
+        //    }
+
+        //    var values = value.Split(' ');
+        //    var buffer = new StringBuilder();
+        //    foreach (var s in values)
+        //    {
+        //        buffer.Append(s.Substring(0, 1).ToUpperInvariant() + s.Substring(1).ToLowerInvariant()).Append(" ");
+        //    }
+
+        //    return buffer.ToString().Trim();
+        //}
     }
 }

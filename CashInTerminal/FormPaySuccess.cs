@@ -25,6 +25,22 @@ namespace CashInTerminal
             "\n" +
             "Спасибо\n\n\n\n";
 
+        private const string PRINT_TEMPLATE2 = "    Оплата посредством терминала\n" +
+            "\n" +
+            "Дата: {0:t} {0:d}\n" +
+            "-------------------------------------------------\n" +
+            "№ терминала: {1}\n" +
+            "Код: {2}\n" +
+            "Код транзакции: {3}\n" +
+            "Операция: {4}\n" +
+            "Код клиента: {5}\n" +
+            "Номер счета: {6}\n" +
+            "Сумма: {7}\n" +
+            "-------------------------------------------------\n" +
+            "\n" +
+            "\n" +
+            "Спасибо\n\n\n\n";
+
         public delegate string AsyncMethodCaller();
 
         public FormPaySuccess()
@@ -50,32 +66,42 @@ namespace CashInTerminal
                 lblSuccessTotalAmount.Text = FormMain.ClientInfo.CashCodeAmount + @" " + FormMain.ClientInfo.CurrentCurrency;
             }
 
-            string productName = String.Empty;
-            string accountNumber = String.Empty;
             try
             {
+                string productName;
                 switch (FormMain.ClientInfo.ProductCode)
                 {
                     case 1:
                         productName = "Оплата кредита";
-                        accountNumber = FormMain.ClientInfo.CreditAccountNumber;
+
+                        Log.Debug("Update print info");
+                        _StreamToPrint = String.Format(PRINT_TEMPLATE2,
+                            DateTime.Now,
+                            FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                            FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                            FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                                                       productName,
+                                                       FormMain.ClientInfo.Client.ClientCode,
+                                                       FormMain.ClientInfo.Client.ClientAccount,
+                                                       lblSuccessTotalAmount.Text);
+                        Log.Info("Check \n" + _StreamToPrint);
                         break;
 
                     case 2:
                         productName = "Пополнение счета";
-                        accountNumber = FormMain.ClientInfo.AccountNumber;
+                        string accountNumber = FormMain.ClientInfo.AccountNumber;
+
+                        Log.Debug("Update print info");
+                        _StreamToPrint = String.Format(PRINT_TEMPLATE,
+                            DateTime.Now,
+                            FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                            FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                            FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
+                                                       productName,
+                                                       accountNumber,
+                                                       lblSuccessTotalAmount.Text);
                         break;
                 }
-
-                Log.Debug("Update print info");
-                _StreamToPrint = String.Format(PRINT_TEMPLATE,
-                    DateTime.Now,
-                    FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]",                    
-                    FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
-                    FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
-                                               productName,
-                                               accountNumber,
-                                               lblSuccessTotalAmount.Text);
             }
             catch (Exception exp)
             {
@@ -84,7 +110,7 @@ namespace CashInTerminal
 
             try
             {
-                var printThread = new Thread(new ThreadStart(PrintAsync));
+                var printThread = new Thread(PrintAsync);
                 printThread.Start();
             }
             catch (Exception exp)
@@ -110,7 +136,7 @@ namespace CashInTerminal
             }
 
             Log.Debug("End");
-        }        
+        }
 
         private void PrintDocumentOnEndPrint(object sender, PrintEventArgs printEventArgs)
         {
@@ -125,13 +151,13 @@ namespace CashInTerminal
                 int count = 0;
                 //float leftMargin = ev.MarginBounds.Left;
                 //float topMargin = ev.MarginBounds.Top;
-                const float leftMargin = 25;
+                const float leftMargin = 0;
                 const float topMargin = 0;
                 var messageFont = new Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Point);
                 string line = null;
 
                 // Calculate the number of lines per page.
-                float linesPerPage = ev.MarginBounds.Height/
+                float linesPerPage = ev.MarginBounds.Height /
                                      messageFont.GetHeight(ev.Graphics);
 
                 // Print each line of the file.

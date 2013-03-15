@@ -11,8 +11,7 @@ namespace CashInTerminal.Controls
     {
         public MenuButton()
         {
-            this.Size = new Size(250, 50);
-            
+            this.Size = new Size(250, 50);            
         }
     }
 }

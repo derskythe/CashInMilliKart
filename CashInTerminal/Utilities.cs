@@ -27,6 +27,8 @@ namespace CashInTerminal
         [DllImport("kernel32.dll", EntryPoint = "SetSystemTime", SetLastError = true)]
         public extern static bool Win32SetSystemTime(ref SystemTime sysTime);
 
+        private static readonly CultureInfo _Info = new CultureInfo(0x042C);
+
         public static string Sign(String terminalId, DateTime now, AsymmetricKeyParameter keys)
         {
             try
@@ -124,6 +126,23 @@ namespace CashInTerminal
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
+        }
+
+        public static String FirstUpper(String value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                return String.Empty;
+            }            
+
+            var values = value.Split(' ');
+            var buffer = new StringBuilder();
+            foreach (var s in values)
+            {
+                buffer.Append(s.Substring(0, 1).ToUpper(_Info) + s.Substring(1).ToLower(_Info)).Append(" ");
+            }
+
+            return buffer.ToString().Trim();
         }
     }
 

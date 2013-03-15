@@ -60,10 +60,91 @@ namespace CashInTerminal.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Номер счета.
+        /// </summary>
+        internal static string AccountNumber {
+            get {
+                return ResourceManager.GetString("AccountNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to : .
+        /// </summary>
+        internal static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сумма кредита.
+        /// </summary>
+        internal static string CreditAmount {
+            get {
+                return ResourceManager.GetString("CreditAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Остаток кредита.
+        /// </summary>
+        internal static string CreditAmountLeft {
+            get {
+                return ResourceManager.GetString("CreditAmountLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сумма к оплате.
+        /// </summary>
+        internal static string CreditAmountToPay {
+            get {
+                return ResourceManager.GetString("CreditAmountToPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата кредита.
+        /// </summary>
+        internal static string CreditDate {
+            get {
+                return ResourceManager.GetString("CreditDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Валюта.
+        /// </summary>
+        internal static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ф.И.О..
+        /// </summary>
+        internal static string Fullname {
+            get {
+                return ResourceManager.GetString("Fullname", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap OutOfOrder {
             get {
                 object obj = ResourceManager.GetObject("OutOfOrder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to № паспорта.
+        /// </summary>
+        internal static string PasportNumber {
+            get {
+                return ResourceManager.GetString("PasportNumber", resourceCulture);
             }
         }
     }

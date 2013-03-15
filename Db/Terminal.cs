@@ -315,5 +315,81 @@ namespace Db
 
             cmd.ExecuteNonQuery();
         }
+
+        public List<ClientInfo> ListClients(String clientCode)
+        {
+            CheckConnection();
+
+            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter {Connection = _OraCon, BindByName = true};
+            var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+
+            adapter.FillByClientCode(table, clientCode);
+
+            var result = new List<ClientInfo>();
+
+            foreach (ds.V_CASHIN_GET_ACCOUNT_INFORow row in table.Rows)
+            {
+                result.Add(Convertor.ToClientInfo(row));
+            }
+
+            return result;
+        }
+
+        public List<ClientInfo> ListClients(String creditAccount, String pasportNumber)
+        {
+            CheckConnection();
+
+            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+
+            adapter.FillByCreditAccountAndPassport(table, creditAccount, pasportNumber);
+
+            var result = new List<ClientInfo>();
+
+            foreach (ds.V_CASHIN_GET_ACCOUNT_INFORow row in table.Rows)
+            {
+                result.Add(Convertor.ToClientInfo(row));
+            }
+
+            return result;
+        }
+
+        public List<ClientInfo> ListClientsByClientAccount(String creditAccount)
+        {
+            CheckConnection();
+
+            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+
+            adapter.FillByClientAccount(table, creditAccount);
+
+            var result = new List<ClientInfo>();
+
+            foreach (ds.V_CASHIN_GET_ACCOUNT_INFORow row in table.Rows)
+            {
+                result.Add(Convertor.ToClientInfo(row));
+            }
+
+            return result;
+        }
+
+        public List<ClientInfo> ListClientsBolcard(String digits)
+        {
+            CheckConnection();
+
+            var adapter1 = new V_CASHIN_BOLCARDSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table1 = new ds.V_CASHIN_BOLCARDSDataTable();
+
+            adapter1.FillBy8Digits(table1, digits);
+            foreach (ds.V_CASHIN_BOLCARDSRow row in table1.Rows)
+            {
+                if (!row.IsCLIENT_ACCOUNTNull())
+                {
+                    return ListClientsByClientAccount(row.CLIENT_ACCOUNT);
+                }
+            }
+
+            return new List<ClientInfo>();
+        }
     }
 }

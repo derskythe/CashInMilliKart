@@ -117,8 +117,8 @@ namespace CashInTerminal
                                                DateTime.Now.DayOfYear.ToString("000"), FormMain.ClientInfo.PaymentId);
 
                 FormMain.Db.UpdateTransactionId(FormMain.ClientInfo.PaymentId, FormMain.ClientInfo.TransactionId);
-                FormMain.Db.InsertPaymentValue(FormMain.ClientInfo.PaymentId, FormMain.ClientInfo.CreditAccountNumber, 0);
-                FormMain.Db.InsertPaymentValue(FormMain.ClientInfo.PaymentId, FormMain.ClientInfo.Passport, 1);
+                FormMain.Db.InsertPaymentValue(FormMain.ClientInfo.PaymentId, FormMain.ClientInfo.Client.ClientAccount, 0);
+                FormMain.Db.InsertPaymentValue(FormMain.ClientInfo.PaymentId, FormMain.ClientInfo.Client.PassportNumber, 1);
 
                 Log.Info("Starting transId: {0}, PaymentId: {1}", FormMain.ClientInfo.TransactionId, FormMain.ClientInfo.PaymentId);
             }

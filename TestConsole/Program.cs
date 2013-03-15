@@ -23,6 +23,8 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
+
+            Console.WriteLine(FirstUpper("HƏSƏNOVA ZüLFIYYƏ XUDU QIZI"));
             //Console.WriteLine(MediaTypeNames.Application.ExecutablePath);
 
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
@@ -132,6 +134,23 @@ namespace TestConsole
             }
 
             return false;
+        }
+
+        private static String FirstUpper(String value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                return String.Empty;
+            }
+
+            var values = value.Split(' ');
+            var buffer = new StringBuilder();
+            foreach (var s in values)
+            {
+                buffer.Append(s.Substring(0, 1).ToUpperInvariant() + s.Substring(1).ToLowerInvariant()).Append(" ");
+            }
+
+            return buffer.ToString().Trim();
         }
     }
 }

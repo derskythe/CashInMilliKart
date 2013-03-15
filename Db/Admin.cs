@@ -790,5 +790,78 @@ namespace Db
 
             return result;
         }
+
+        public List<CheckField> ListCheckFields(int checkTemplateId)
+        {
+            CheckConnection();
+
+            var adapter = new V_CHECK_FIELDSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CHECK_FIELDSDataTable();
+
+            adapter.FillByCheckTemplateId(table, checkTemplateId);
+
+            var result = new List<CheckField>();
+
+            foreach (ds.V_CHECK_FIELDSRow row in table.Rows)
+            {
+                result.Add(Convertor.ToCheckField(row));
+            }
+
+            return result;
+        }
+
+        public List<CheckFieldType> ListCheckFieldTypes()
+        {
+            CheckConnection();
+
+            var adapter = new V_CHECK_FIELD_TYPESTableAdapter {Connection = _OraCon, BindByName = true};
+            var table = new ds.V_CHECK_FIELD_TYPESDataTable();
+
+            adapter.Fill(table);
+
+            var result = new List<CheckFieldType>();
+            foreach (ds.V_CHECK_FIELD_TYPESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToCheckFieldType(row));
+            }
+
+            return result;
+        }
+
+        public List<CheckType> ListCheckTypes()
+        {
+            CheckConnection();
+
+            var adapter = new V_CHECK_TYPESTableAdapter() { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CHECK_TYPESDataTable();
+
+            adapter.Fill(table);
+
+            var result = new List<CheckType>();
+            foreach (ds.V_CHECK_TYPESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToCheckType(row));
+            }
+
+            return result;
+        }
+
+        public List<CheckTemplate> ListCheckTemplate()
+        {
+            CheckConnection();
+
+            var adapter = new V_CHECKSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CHECKSDataTable();
+
+            adapter.Fill(table);
+            var result = new List<CheckTemplate>();
+
+            foreach (ds.V_CHECKSRow row in table.Rows)
+            {
+                
+            }
+
+            return result;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace CashInTerminal
+﻿using System;
+
+namespace CashInTerminal
 {
     partial class FormLanguage
     {
@@ -83,6 +85,10 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormLanguage";
             this.Text = "FormLanguage";
+            this.Load += new System.EventHandler(this.FormLanguage_Load);
+            this.Controls.SetChildIndex(this.btnAzeri, 0);
+            this.Controls.SetChildIndex(this.btnRussian, 0);
+            this.Controls.SetChildIndex(this.btnEnglish, 0);
             this.ResumeLayout(false);
 
         }
@@ -91,6 +97,6 @@
 
         private System.Windows.Forms.Button btnEnglish;
         private System.Windows.Forms.Button btnRussian;
-        private System.Windows.Forms.Button btnAzeri;
+        private System.Windows.Forms.Button btnAzeri;        
     }
 }

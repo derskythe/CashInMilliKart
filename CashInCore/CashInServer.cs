@@ -280,7 +280,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult UpdateTerminalVersion(TerminalVersionRequest request)
         {
-            Log.Info("UpdateTerminalVersion. "+request.ToString());
+            Log.Info("UpdateTerminalVersion. " + request.ToString());
             var result = new StandardResult();
 
             try
@@ -346,6 +346,43 @@ namespace CashInCore
             catch (Exception e)
             {
                 Log.ErrorException(e.Message, e);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public GetClientInfoResult GetClientInfo(GetClientInfoRequest request)
+        {
+            Log.Info("GetClientInfo. " + request);
+            var result = new GetClientInfoResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (GetClientInfoResult)AuthTerminal(result, request, out terminalInfo);
+
+                switch (request.ClientInfoType)
+                {
+                    case GetClientInfoType.ByClientCode:
+                        result.Infos = OracleDb.Instance.ListClients(request.ClientCode);
+                        break;
+
+                    case GetClientInfoType.ByPasportAndCreditNumber:
+                        result.Infos = OracleDb.Instance.ListClients(request.CreditAccount, request.PasportNumber);
+                        break;
+
+                    case GetClientInfoType.Bolcard:
+                        result.Infos = OracleDb.Instance.ListClientsBolcard(request.Bolcard8Digits);
+                        break;
+                }
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
 
             return result;

@@ -134,13 +134,14 @@
             // 
             // tdAccountNumber
             // 
+            this.tdAccountNumber.FillWeight = 140F;
             this.tdAccountNumber.HeaderText = "Номер счета";
             this.tdAccountNumber.Name = "tdAccountNumber";
             this.tdAccountNumber.ReadOnly = true;
             // 
             // tdType
             // 
-            this.tdType.HeaderText = "Тип кредита";
+            this.tdType.HeaderText = "Название";
             this.tdType.Name = "tdType";
             this.tdType.ReadOnly = true;
             // 
@@ -152,12 +153,14 @@
             // 
             // tdAmount
             // 
+            this.tdAmount.FillWeight = 70F;
             this.tdAmount.HeaderText = "Сумма";
             this.tdAmount.Name = "tdAmount";
             this.tdAmount.ReadOnly = true;
             // 
             // tdCurrency
             // 
+            this.tdCurrency.FillWeight = 70F;
             this.tdCurrency.HeaderText = "Валюта";
             this.tdCurrency.Name = "tdCurrency";
             this.tdCurrency.ReadOnly = true;
@@ -174,6 +177,9 @@
             this.Name = "FormCreditSelectAccount";
             this.Text = "FormCreditSelectAccount";
             this.Load += new System.EventHandler(this.FormCreditSelectAccountLoad);
+            this.Controls.SetChildIndex(this.dataGridSelect, 0);
+            this.Controls.SetChildIndex(this.btnNext, 0);
+            this.Controls.SetChildIndex(this.btnBack, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelect)).EndInit();
             this.ResumeLayout(false);
 
@@ -182,12 +188,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridSelect;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdAccountNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdType;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdCurrency;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnNext;
     }
 }

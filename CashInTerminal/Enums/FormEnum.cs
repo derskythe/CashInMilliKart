@@ -9,5 +9,6 @@
         public const string PaySuccess = "FormPaySuccess";
         public const string OutOfOrder = "FormOutOfOrder";
         public const string Activation = "FormActivation";
+        public const string Products = "FormProducts";
     }
 }

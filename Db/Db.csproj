@@ -67,6 +67,24 @@
     <Compile Include="dsTableAdapters\V_BANKNOTESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_CASHIN_BOLCARDSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_CASHIN_GET_ACCOUNT_INFOTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_CHECKSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_CHECK_FIELDSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_CHECK_FIELD_TYPESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_CHECK_TYPESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_LIST_ACTIVE_SESSIONSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>

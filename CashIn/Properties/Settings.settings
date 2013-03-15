@@ -3,13 +3,21 @@
   <Profiles />
   <Settings>
     <Setting Name="OracleDb" Type="System.String" Scope="User">
-      <Value Profile="(Default)">orcl</Value>
+      <Value Profile="(Default)">cash</Value>
     </Setting>
     <Setting Name="OracleUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cashin</Value>
+      <Value Profile="(Default)">cashin_new</Value>
     </Setting>
     <Setting Name="OraclePassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cashin</Value>
+      <Value Profile="(Default)">cashin_new</Value>
+    </Setting>
+    <Setting Name="cs" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;DATA SOURCE=CASH;PERSIST SECURITY INFO=True;USER ID=CASHIN_NEW&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;Oracle.DataAccess.Client&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">DATA SOURCE=CASH;PERSIST SECURITY INFO=True;USER ID=CASHIN_NEW</Value>
     </Setting>
   </Settings>
 </SettingsFile>

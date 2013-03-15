@@ -48,11 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRole.cs" />
+    <Compile Include="Admin\CheckFieldResult.cs" />
     <Compile Include="Admin\CurrencyResult.cs" />
     <Compile Include="Admin\EncashmentResult.cs" />
     <Compile Include="Admin\ListBanknotesResult.cs" />
+    <Compile Include="Admin\ListCheckTemplateResult.cs" />
+    <Compile Include="Admin\ListCheckTypeResult.cs" />
     <Compile Include="Admin\ListCurrenciesResult.cs" />
     <Compile Include="Admin\ListEncashmentResult.cs" />
+    <Compile Include="Admin\ListCheckFieldTypeResult.cs" />
     <Compile Include="Admin\ListProductHistoryResult.cs" />
     <Compile Include="Admin\ListProductsResult.cs" />
     <Compile Include="Admin\ListRolesResult.cs" />
@@ -68,6 +72,11 @@
     <Compile Include="BaseMessage.cs" />
     <Compile Include="CashCodeDeviceStatus.cs" />
     <Compile Include="CashCode\CcnetCommand.cs" />
+    <Compile Include="CheckField.cs" />
+    <Compile Include="CheckFieldType.cs" />
+    <Compile Include="CheckTemplate.cs" />
+    <Compile Include="CheckType.cs" />
+    <Compile Include="ClientInfo.cs" />
     <Compile Include="CommandResult.cs" />
     <Compile Include="CurrenciesResult.cs" />
     <Compile Include="Currency.cs" />
@@ -76,12 +85,15 @@
     <Compile Include="EnumEx.cs" />
     <Compile Include="Enums\CurrencyColumns.cs" />
     <Compile Include="Enums\EncashmentColumns.cs" />
+    <Compile Include="Enums\GetClientInfoType.cs" />
     <Compile Include="Enums\ProductHistoryColumns.cs" />
     <Compile Include="Enums\RoleSections.cs" />
     <Compile Include="Enums\SortType.cs" />
     <Compile Include="Enums\TerminalColumns.cs" />
     <Compile Include="Enums\TerminalCommands.cs" />
     <Compile Include="Enums\UsersColumns.cs" />
+    <Compile Include="GetClientInfoRequest.cs" />
+    <Compile Include="GetClientInfoResult.cs" />
     <Compile Include="PaymentInfoByProducts.cs" />
     <Compile Include="PingRequest.cs" />
     <Compile Include="PingResult.cs" />

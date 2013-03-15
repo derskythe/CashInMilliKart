@@ -1,4 +1,6 @@
-﻿namespace CashInTerminal
+﻿using CashInTerminal.Controls;
+
+namespace CashInTerminal
 {
     partial class FormProducts
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPayDebit = new System.Windows.Forms.Button();
-            this.btnPayCredit = new System.Windows.Forms.Button();
+            this.btnPayDebit = new MainButton();
+            this.btnPayCredit = new MainButton();
             this.SuspendLayout();
             // 
             // btnPayDebit
@@ -74,8 +76,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnPayDebit;
-        private System.Windows.Forms.Button btnPayCredit;
+        private MainButton btnPayDebit;
+        private MainButton btnPayCredit;
 
     }
 }

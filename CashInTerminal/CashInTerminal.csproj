@@ -29,7 +29,7 @@
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>41</ApplicationRevision>
+    <ApplicationRevision>59</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -105,6 +105,33 @@
     <Compile Include="CcnetBillTypes.cs" />
     <Compile Include="CCNETDevice.cs" />
     <Compile Include="CCNETDeviceState1.cs" />
+    <Compile Include="Controls\MainButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormCreditByBolcardRetype.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditByBolcardRetype.Designer.cs">
+      <DependentUpon>FormCreditByBolcardRetype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditByBolcard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditByBolcard.Designer.cs">
+      <DependentUpon>FormCreditByBolcard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditByPassport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditByPassport2.Designer.cs">
+      <DependentUpon>FormCreditByPassport2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditByClientCodeRetype.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditByClientCodeRetype.Designer.cs">
+      <DependentUpon>FormCreditByClientCodeRetype.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enums\CCNETPortSpeed.cs" />
     <Compile Include="ClientInfo.cs" />
     <Compile Include="Controls\MenuButton.cs">
@@ -138,6 +165,18 @@
     <Compile Include="FormClientCode.Designer.cs">
       <DependentUpon>FormClientCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCreditByClientCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditByClientCode.Designer.cs">
+      <DependentUpon>FormCreditByClientCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditByPassport1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditByPassport1.Designer.cs">
+      <DependentUpon>FormCreditByPassport1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCreditClientInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +188,12 @@
     </Compile>
     <Compile Include="FormCreditSelectAccount.Designer.cs">
       <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreditTypeSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreditTypeSelect.Designer.cs">
+      <DependentUpon>FormCreditTypeSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDebitCardFull.cs">
       <SubType>Form</SubType>
@@ -245,17 +290,38 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="FormCreditByBolcardRetype.resx">
+      <DependentUpon>FormCreditByBolcardRetype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditByBolcard.resx">
+      <DependentUpon>FormCreditByBolcard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditByPassport2.resx">
+      <DependentUpon>FormCreditByPassport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditByClientCodeRetype.resx">
+      <DependentUpon>FormCreditByClientCodeRetype.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormActivation.resx">
       <DependentUpon>FormActivation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormClientCode.resx">
       <DependentUpon>FormClientCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditByClientCode.resx">
+      <DependentUpon>FormCreditByClientCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditByPassport1.resx">
+      <DependentUpon>FormCreditByPassport1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreditClientInfo.resx">
       <DependentUpon>FormCreditClientInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreditSelectAccount.resx">
       <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditTypeSelect.resx">
+      <DependentUpon>FormCreditTypeSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDebitCardFull.resx">
       <DependentUpon>FormDebitCardFull.cs</DependentUpon>
@@ -346,6 +412,9 @@
     <None Include="Service References\CashIn\CashInTerminal.CashIn.CurrenciesResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CashIn\CashInTerminal.CashIn.GetClientInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CashIn\CashInTerminal.CashIn.PingResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -420,6 +489,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

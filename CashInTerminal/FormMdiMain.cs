@@ -39,6 +39,7 @@ namespace CashInTerminal
         private Terminal _TerminalInfo = new Terminal();
         private LocalDb _Db;
         private bool _Running = true;
+        private CashInTerminal.CashIn.ClientInfo[] _Clients;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
@@ -122,6 +123,12 @@ namespace CashInTerminal
         public List<Product> Products
         {
             get { return _Products; }
+        }
+
+        public CashInTerminal.CashIn.ClientInfo[] Clients
+        {
+            get { return _Clients; }
+            set { _Clients = value; }
         }
 
         private CashInServer _Server;
@@ -295,7 +302,8 @@ namespace CashInTerminal
                     Log.ErrorException(exp.Message, exp);
                 }
 
-                OpenForm(typeof(FormLanguage));
+                //OpenForm(typeof(FormLanguage));
+                OpenForm(typeof(FormProducts));
             }
 
             _PingThread = new Thread(PingThread);
@@ -557,7 +565,7 @@ namespace CashInTerminal
             {
                 if (_CurrentForm != null)
                 {
-                    if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Language &&
+                    if (_CurrentForm.Name != FormEnum.MoneyInput && _CurrentForm.Name != FormEnum.Products &&
                         _CurrentForm.Name != FormEnum.TestMode && _CurrentForm.Name != FormEnum.Encashment &&
                         _CurrentForm.Name != FormEnum.OutOfOrder && _CurrentForm.Name != FormEnum.Activation &&
                         _CurrentForm.Name != FormEnum.Language)
@@ -565,7 +573,7 @@ namespace CashInTerminal
                         _LastActivity = Utilities.GetLastInputTime();
                         if (_LastActivity > MAX_INACTIVITY_PERIOD)
                         {
-                            OpenForm(typeof(FormLanguage));
+                            OpenForm(typeof(FormProducts));
                         }
                     }
                     else
@@ -815,7 +823,8 @@ namespace CashInTerminal
                                                      ((Containers.Enums.TerminalCommands)result.Command).ToString());
                                             GetPublicKey();
                                             GetTerminalInfo();
-                                            OpenForm(typeof(FormLanguage));
+                                            //OpenForm(typeof(FormLanguage));
+                                            OpenForm(typeof(FormProducts));
                                         }
 
                                         CommandReceived();

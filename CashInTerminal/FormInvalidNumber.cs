@@ -1,4 +1,5 @@
 ﻿using System;
+using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
 
 namespace CashInTerminal
@@ -15,7 +16,24 @@ namespace CashInTerminal
             switch (FormMain.ClientInfo.ProductCode)
             {
                 case 1:
-                    ChangeView(typeof(FormClientCode));
+                    switch (FormMain.ClientInfo.GetClientInfoType)
+                    {
+                        case GetClientInfoType.ByClientCode:
+                            ChangeView(typeof(FormCreditByClientCode));
+                            break;
+
+                        case GetClientInfoType.ByPasportAndCreditNumber:
+                            ChangeView(typeof(FormCreditByPassport1));
+                            break;
+
+                        case GetClientInfoType.Bolcard:
+                            ChangeView(typeof(FormCreditByBolcard));
+                            break;
+
+                        default:
+                            ChangeView(typeof(FormCreditTypeSelect));
+                            break;
+                    }
                     break;
 
                 case 2:

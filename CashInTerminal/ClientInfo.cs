@@ -1,4 +1,5 @@
 ﻿using System;
+using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
 
 namespace CashInTerminal
@@ -15,6 +16,8 @@ namespace CashInTerminal
         private int _OrderNumber;
         private String _TransactionId;
         private DebitPayType _DebitPayType;
+        private GetClientInfoType _GetClientInfoType;
+        private CashIn.ClientInfo _Client;
 
         public int ProductCode
         {
@@ -76,6 +79,18 @@ namespace CashInTerminal
             set { _DebitPayType = value; }
         }
 
+        public GetClientInfoType GetClientInfoType
+        {
+            get { return _GetClientInfoType; }
+            set { _GetClientInfoType = value; }
+        }
+
+        public CashIn.ClientInfo Client
+        {
+            get { return _Client; }
+            set { _Client = value; }
+        }
+
         public ClientInfo()
         {
         }
@@ -98,9 +113,9 @@ namespace CashInTerminal
         {
             return
                 string.Format(
-                    "ProductCode: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, DebitPayType: {9}",
+                    "ProductCode: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, DebitPayType: {9}, GetClientInfoType: {10}",
                     _ProductCode, _AccountNumber, _Passport, _CreditAccountNumber, _CurrentCurrency, _CashCodeAmount,
-                    _PaymentId, _OrderNumber, _TransactionId, _DebitPayType);
+                    _PaymentId, _OrderNumber, _TransactionId, _DebitPayType, _GetClientInfoType);
         }
     }
 }

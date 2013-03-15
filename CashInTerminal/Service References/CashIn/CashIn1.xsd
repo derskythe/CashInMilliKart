@@ -403,4 +403,69 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetClientInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:GetClientInfoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetClientInfoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CreditAccount" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PasportNumber" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClientCode" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ClientInfoType" type="tns:GetClientInfoType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Bolcard8Digits" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="GetClientInfoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ByClientCode" />
+      <xs:enumeration value="ByPasportAndCreditNumber" />
+      <xs:enumeration value="Bolcard" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GetClientInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetClientInfoResult" type="tns:GetClientInfoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetClientInfoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Infos" type="tns:ArrayOfClientInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfClientInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClientInfo" nillable="true" type="tns:ClientInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClientInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CreditNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FullName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PassportNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CreditAccount" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ClientAccount" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AmountLeft" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AmountLate" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BeginDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrencyRate" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ClientCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreditAmount" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CreditName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
