@@ -52,6 +52,7 @@
     <Compile Include="Admin\CurrencyResult.cs" />
     <Compile Include="Admin\EncashmentResult.cs" />
     <Compile Include="Admin\ListBanknotesResult.cs" />
+    <Compile Include="Admin\ListBranchesResult.cs" />
     <Compile Include="Admin\ListCheckTemplateResult.cs" />
     <Compile Include="Admin\ListCheckTypeResult.cs" />
     <Compile Include="Admin\ListCurrenciesResult.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="AuthResult.cs" />
     <Compile Include="Banknote.cs" />
     <Compile Include="BaseMessage.cs" />
+    <Compile Include="Branch.cs" />
     <Compile Include="CashCodeDeviceStatus.cs" />
     <Compile Include="CashCode\CcnetCommand.cs" />
     <Compile Include="CheckField.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Encashment.cs" />
     <Compile Include="EncashmentCurrency.cs" />
     <Compile Include="EnumEx.cs" />
+    <Compile Include="Enums\BranchColumns.cs" />
     <Compile Include="Enums\CurrencyColumns.cs" />
     <Compile Include="Enums\EncashmentColumns.cs" />
     <Compile Include="Enums\GetClientInfoType.cs" />

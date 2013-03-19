@@ -111,5 +111,14 @@ namespace CashInCore
 
         [OperationContract]
         StandardResult ActivateCheckTemplate(String sid, int id, bool activationStatus);
+
+        [OperationContract]
+        ListBranchesResult ListBranches(String sid, BranchColumns column, SortType sortType);
+
+        [OperationContract]
+        ListBranchesResult GetBranch(String sid, int id);
+
+        [OperationContract]
+        StandardResult SaveBranch(String sid, Branch branch);
     }
 }

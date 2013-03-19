@@ -67,6 +67,9 @@
     <Compile Include="dsTableAdapters\V_BANKNOTESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_BRANCHESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_CASHIN_BOLCARDSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>

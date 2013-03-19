@@ -15,5 +15,7 @@
         public const string ViewProductsHistory = "view_products_history";
         public const string EditUsers = "edit_users";
         public const string EditCheckConstructor = "edit_check_constructor";
+        public const string ViewBranches = "view_branches";
+        public const string EditBranches = "edit_branches";
     }
 }

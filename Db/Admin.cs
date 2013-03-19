@@ -102,7 +102,7 @@ namespace Db
             CheckConnection();
 
             const string cmdText =
-                "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id, v_return_id => :v_return_id); end;";
+                "begin main.save_terminal(v_id => :v_id, v_name => :v_name, v_address => :v_address, v_identity_name => :v_identity_name, v_ip => :v_ip, v_tmp_key => :v_tmp_key, v_user_id => :v_user_id, v_branch_id => :v_branch_id, v_return_id => :v_return_id); end;";
 
             var cmd = new OracleCommand(cmdText, _OraCon);
 
@@ -116,6 +116,7 @@ namespace Db
             cmd.Parameters.Add("v_ip", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Ip;
             cmd.Parameters.Add("v_tmp_key", OracleDbType.Blob, ParameterDirection.Input).Value = terminal.TmpKey;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
+            cmd.Parameters.Add("v_branch_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal.BranchId;            
             cmd.Parameters.Add("v_return_id", OracleDbType.Int32, ParameterDirection.Output);
 
             cmd.ExecuteNonQuery();
@@ -477,6 +478,10 @@ namespace Db
 
                 case TerminalColumns.StatusUpdate:
                     column = "t.LAST_STATUS_UPDATE";
+                    break;
+
+                case TerminalColumns.Branch:
+                    column = "t.BRANCH_NAME";
                     break;
             }
 
@@ -1036,6 +1041,79 @@ namespace Db
 
             cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = id;
             cmd.Parameters.Add("v_active", OracleDbType.Int32, ParameterDirection.Input).Value = activateStatus ? 1 : 0;
+            cmd.ExecuteNonQuery();
+        }
+
+        public List<Branch> ListBranches(BranchColumns sortColumn, SortType sortType)
+        {
+            CheckConnection();
+
+            var column = String.Empty;
+            switch (sortColumn)
+            {
+                case BranchColumns.Name:
+                    column = "t.NAME";
+                    break;
+
+                case BranchColumns.UserName:
+                    column = "t.USERNAME";
+                    break;
+
+                case BranchColumns.UpdateDate:
+                    column = "t.UPDATE_DATE";
+                    break;
+
+                case BranchColumns.InsertDate:
+                    column = "t.INSERT_DATE";
+                    break;
+
+            }
+
+            var cmdText = String.Format("select * from v_branches t ORDER BY {0} {1}", column,
+                                        sortType.ToString());
+
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            var adapter = new OracleDataAdapter(cmd);
+
+            var table = new ds.V_BRANCHESDataTable();
+
+            adapter.Fill(table);
+            var result = new List<Branch>();
+
+            foreach (ds.V_BRANCHESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBranch(row));
+            }
+
+            return result;
+        }
+
+        public Branch GetBranch(int id)
+        {
+            CheckConnection();
+            var adapter = new V_BRANCHESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BRANCHESDataTable();
+            adapter.FillById(table, id);
+            
+            foreach (ds.V_BRANCHESRow row in table.Rows)
+            {
+                return Convertor.ToBranch(row);
+            }
+
+            return null;
+        }
+
+        public void SaveBranch(int id, String name, int userId)
+        {
+            CheckConnection();
+
+            const string cmdText =
+                "begin main.save_branch(v_id => :v_id, v_name => :v_name, v_user_id => :v_user_id); end; ";
+            var cmd = new OracleCommand(cmdText, _OraCon);
+
+            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = id > 0 ? (int?)id : null;
+            cmd.Parameters.Add("v_name", OracleDbType.NVarchar2, ParameterDirection.Input).Value = name;
+            cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
             cmd.ExecuteNonQuery();
         }
     }

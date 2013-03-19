@@ -162,8 +162,8 @@
             <MainSource>
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_TERMINALS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, "NAME", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE, TERMINAL_VERSION FROM cashin_new.V_LIST_TERMINALS</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, "NAME", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_TERMINALS</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -214,6 +214,8 @@
               <Mapping SourceColumn="CASHCODE_STATUS_TYPE" DataSetColumn="CASHCODE_STATUS_TYPE" />
               <Mapping SourceColumn="PRINTER_STATUS_TYPE" DataSetColumn="PRINTER_STATUS_TYPE" />
               <Mapping SourceColumn="TERMINAL_VERSION" DataSetColumn="TERMINAL_VERSION" />
+              <Mapping SourceColumn="BRANCH_ID" DataSetColumn="BRANCH_ID" />
+              <Mapping SourceColumn="BRANCH_NAME" DataSetColumn="BRANCH_NAME" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRows" Modifier="Public" Name="CountRows" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="CountRows">
@@ -227,7 +229,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_TERMINALS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CASHCODE_STATUS_NAME, CASHCODE_STATUS_TYPE, CREATE_DATE, ID, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_NAME, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_NAME, PRINTER_STATUS_RU, PRINTER_STATUS_TYPE, SIGN_KEY, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_NAME, TERMINAL_STATUS_RU, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, TMP_KEY, USER_ID FROM CASHIN_NEW.V_LIST_TERMINALS WHERE (ID = :id)</CommandText>
+                    <CommandText>SELECT ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CASHCODE_STATUS_NAME, CASHCODE_STATUS_TYPE, CREATE_DATE, ID, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_NAME, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_NAME, PRINTER_STATUS_RU, PRINTER_STATUS_TYPE, SIGN_KEY, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_NAME, TERMINAL_STATUS_RU, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, TMP_KEY, USER_ID, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_TERMINALS WHERE (ID = :id)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="ID" DataSourceName="CASHIN_NEW.V_LIST_TERMINALS" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":id" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -339,8 +341,8 @@
             <MainSource>
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_ENCASHMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME FROM cashin_new.V_LIST_ENCASHMENT</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_ENCASHMENT</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -382,6 +384,8 @@
               <Mapping SourceColumn="PRINTER_EXT_ERROR_STATUS_AZ" DataSetColumn="PRINTER_EXT_ERROR_STATUS_AZ" />
               <Mapping SourceColumn="PRINTER_EXT_ERROR_STATUS_RU" DataSetColumn="PRINTER_EXT_ERROR_STATUS_RU" />
               <Mapping SourceColumn="PRINTER_EXT_ERROR_STATUS_EN" DataSetColumn="PRINTER_EXT_ERROR_STATUS_EN" />
+              <Mapping SourceColumn="BRANCH_ID" DataSetColumn="BRANCH_ID" />
+              <Mapping SourceColumn="BRANCH_NAME" DataSetColumn="BRANCH_NAME" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRows" Modifier="Public" Name="CountRows" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="CountRows">
@@ -395,7 +399,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_ENCASHMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME FROM cashin_new.V_LIST_ENCASHMENT WHERE (ID = :id)</CommandText>
+                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_ENCASHMENT WHERE (ID = :id)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="ID" DataSourceName="CASHIN_NEW.V_LIST_ENCASHMENT" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":id" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -941,6 +945,38 @@
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BRANCHESTableAdapter" GeneratorDataComponentClassName="V_BRANCHESTableAdapter" Name="V_BRANCHES" UserDataComponentName="V_BRANCHESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BRANCHES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, "NAME", INSERT_DATE, UPDATE_DATE, USER_ID, USERNAME FROM CASHIN_NEW.V_BRANCHES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="UPDATE_DATE" DataSetColumn="UPDATE_DATE" />
+              <Mapping SourceColumn="USER_ID" DataSetColumn="USER_ID" />
+              <Mapping SourceColumn="USERNAME" DataSetColumn="USERNAME" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BRANCHES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, "NAME", INSERT_DATE, UPDATE_DATE, USER_ID, USERNAME FROM CASHIN_NEW.V_BRANCHES WHERE id = :id</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="ID" DataSourceName="CASHIN_NEW.V_BRANCHES" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":id" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1349,6 +1385,14 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="BRANCH_ID" msprop:Generator_ColumnVarNameInTable="columnBRANCH_ID" msprop:Generator_ColumnPropNameInRow="BRANCH_ID" msprop:Generator_ColumnPropNameInTable="BRANCH_IDColumn" msprop:Generator_UserColumnName="BRANCH_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="BRANCH_NAME" msprop:Generator_ColumnVarNameInTable="columnBRANCH_NAME" msprop:Generator_ColumnPropNameInRow="BRANCH_NAME" msprop:Generator_ColumnPropNameInTable="BRANCH_NAMEColumn" msprop:Generator_UserColumnName="BRANCH_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1641,6 +1685,14 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRANCH_ID" msprop:Generator_ColumnVarNameInTable="columnBRANCH_ID" msprop:Generator_ColumnPropNameInRow="BRANCH_ID" msprop:Generator_ColumnPropNameInTable="BRANCH_IDColumn" msprop:Generator_UserColumnName="BRANCH_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="BRANCH_NAME" msprop:Generator_ColumnVarNameInTable="columnBRANCH_NAME" msprop:Generator_ColumnPropNameInRow="BRANCH_NAME" msprop:Generator_ColumnPropNameInTable="BRANCH_NAMEColumn" msprop:Generator_UserColumnName="BRANCH_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -2112,6 +2164,30 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_BRANCHES" msprop:Generator_TableClassName="V_BRANCHESDataTable" msprop:Generator_TableVarName="tableV_BRANCHES" msprop:Generator_TablePropName="V_BRANCHES" msprop:Generator_RowDeletingName="V_BRANCHESRowDeleting" msprop:Generator_UserTableName="V_BRANCHES" msprop:Generator_RowChangingName="V_BRANCHESRowChanging" msprop:Generator_RowEvHandlerName="V_BRANCHESRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BRANCHESRowDeleted" msprop:Generator_RowEvArgName="V_BRANCHESRowChangeEvent" msprop:Generator_RowChangedName="V_BRANCHESRowChanged" msprop:Generator_RowClassName="V_BRANCHESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+              <xs:element name="UPDATE_DATE" msprop:Generator_ColumnVarNameInTable="columnUPDATE_DATE" msprop:Generator_ColumnPropNameInRow="UPDATE_DATE" msprop:Generator_ColumnPropNameInTable="UPDATE_DATEColumn" msprop:Generator_UserColumnName="UPDATE_DATE" type="xs:dateTime" />
+              <xs:element name="USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSER_ID" msprop:Generator_ColumnPropNameInRow="USER_ID" msprop:Generator_ColumnPropNameInTable="USER_IDColumn" msprop:Generator_UserColumnName="USER_ID" type="xs:int" />
+              <xs:element name="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" msprop:Generator_UserColumnName="USERNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

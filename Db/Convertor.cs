@@ -8,6 +8,21 @@ namespace Db
 {
     class Convertor
     {
+        public static Branch ToBranch(ds.V_BRANCHESRow row)
+        {
+            var result = new Branch
+                {
+                    Id = row.ID,
+                    InsertDate = row.INSERT_DATE,
+                    Name = row.NAME,
+                    UpdateDate = row.UPDATE_DATE,
+                    UserId = row.USER_ID,
+                    Username = row.USERNAME
+                };
+
+            return result;
+        }
+
         public static Product ToProduct(ds.V_PRODUCTSRow row)
         {
             var result = new Product
@@ -107,7 +122,9 @@ namespace Db
                     TerminalStatusType = row.IsTERMINAL_STATUS_TYPENull() ? 0 : row.TERMINAL_STATUS_TYPE,
                     CashcodeStatusType = row.IsCASHCODE_STATUS_TYPENull() ? 0 : row.CASHCODE_STATUS_TYPE,
                     PrinterStatusType = row.IsPRINTER_STATUS_TYPENull() ? 0 : row.PRINTER_STATUS_TYPE,
-                    Version = row.IsTERMINAL_VERSIONNull() ? String.Empty : row.TERMINAL_VERSION
+                    Version = row.IsTERMINAL_VERSIONNull() ? String.Empty : row.TERMINAL_VERSION,
+                    BranchId = row.IsBRANCH_IDNull() ? 0 : row.BRANCH_ID,
+                    BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME
                 };
 
             return result;
@@ -173,7 +190,9 @@ namespace Db
                 CashcodeDesc = cashcodeDesc,
                 PrinterStatusDesc = printerStatusDesc,
                 PrinterErrorStatusDesc = printerErrorStatusDesc,
-                PrinterExtErrorStatusDesc = printerExtErrorStatusDesc
+                PrinterExtErrorStatusDesc = printerExtErrorStatusDesc,
+                BranchId = row.IsBRANCH_IDNull() ? 0 : row.BRANCH_ID,
+                BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME
             };
 
             return result;

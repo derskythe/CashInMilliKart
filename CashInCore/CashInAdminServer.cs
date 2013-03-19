@@ -1151,6 +1151,102 @@ namespace CashInCore
             return result;
         }
 
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListBranchesResult ListBranches(String sid, BranchColumns column, SortType sortType)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListBranchesResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewBranches))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Branches = OracleDb.Instance.ListBranches(column, sortType);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListBranchesResult GetBranch(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}, Id: {1}", sid, id));
+
+            var result = new ListBranchesResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewBranches))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Branches = new List<Branch> {OracleDb.Instance.GetBranch(id)};
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult SaveBranch(String sid, Branch branch)
+        {
+            Log.Info(String.Format("SID: {0}, Branch: {1}", sid, branch));
+
+            var result = new StandardResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewBranches))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SaveBranch(branch.Id, branch.Name, session.Session.User.Id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
         private bool HasPriv(IEnumerable<AccessRole> roles, String requiredPriv)
         {
             foreach (var role in roles)
