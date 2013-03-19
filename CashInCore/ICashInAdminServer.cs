@@ -41,19 +41,19 @@ namespace CashInCore
         ListRolesResult ListRoles(String sid);
 
         [OperationContract]
-        ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType);
+        ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage);
 
         [OperationContract]
-        ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType);
+        ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage);
 
         [OperationContract]
         ListProductsResult ListProducts(String sid);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType);
+        ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType);
+        ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage);
 
         [OperationContract]
         ListProductHistoryResult ListProductHistoryByTransactionId(string sid, string transactionId, ProductHistoryColumns sortColumn, SortType sortType);
@@ -90,5 +90,26 @@ namespace CashInCore
 
         [OperationContract]
         ListBanknotesResult GetBanknotesByHistory(String sid, int historyId);
+
+        [OperationContract]
+        ListCheckFieldTypeResult ListCheckFieldTypes(String sid);
+
+        [OperationContract]
+        ListCheckTypeResult ListCheckTypes(String sid);
+
+        [OperationContract]
+        ListCheckTemplateResult ListCheckTemplates(String sid);
+
+        [OperationContract]
+        ListCheckTemplateResult GetCheckTemplate(String sid, int id);
+
+        [OperationContract]
+        StandardResult SaveCheckTemplate(String sid, CheckTemplate item);
+
+        [OperationContract]
+        StandardResult DeleteCheckTemplate(String sid, int id);
+
+        [OperationContract]
+        StandardResult ActivateCheckTemplate(String sid, int id, bool activationStatus);
     }
 }

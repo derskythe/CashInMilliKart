@@ -10,7 +10,7 @@ namespace Containers.Admin
     [DataContract(Name = "ListCheckTemplateResult", Namespace = "urn:CashIn")]
     public class ListCheckTemplateResult : StandardResult
     {
-        private List<CheckTemplate> _Templates;
+        private List<CheckTemplate> _Templates = new List<CheckTemplate>();
 
         [XmlArray("Templates")]
         [DataMember(Name = "Templates")]

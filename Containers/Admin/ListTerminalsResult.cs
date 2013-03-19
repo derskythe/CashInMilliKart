@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using Containers.Enums;
@@ -11,6 +10,15 @@ namespace Containers.Admin
     public class ListTerminalsResult : StandardResult
     {
         private Terminal[] _Terminals;
+        private int _Count;
+
+        [XmlElement(ElementName = "Count")]
+        [DataMember(Name = "Count")]
+        public int Count
+        {
+            get { return _Count; }
+            set { _Count = value; }
+        }
 
         public ListTerminalsResult(ResultCodes code) : base(code)
         {
@@ -30,7 +38,7 @@ namespace Containers.Admin
 
         public override string ToString()
         {
-            return string.Format("{0}, Terminals: {1}", base.ToString(), EnumEx.GetStringFromArray(_Terminals));
+            return string.Format("{0}, Terminals: {1}, Count: {2}", base.ToString(), EnumEx.GetStringFromArray(_Terminals), _Count);
         }
     }
 }

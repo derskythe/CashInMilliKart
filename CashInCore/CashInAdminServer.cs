@@ -432,7 +432,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType)
+        public ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListTerminalsResult();
@@ -452,7 +452,9 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Terminals = OracleDb.Instance.ListTerminals(sortColumn, sortType);
+                int count;
+                result.Terminals = OracleDb.Instance.ListTerminals(sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -536,7 +538,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType)
+        public ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListEncashmentResult();
@@ -556,7 +558,9 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Encashments = OracleDb.Instance.ListEncashment(sortColumn, sortType);
+                int count;
+                result.Encashments = OracleDb.Instance.ListEncashment(sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -665,7 +669,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType)
+        public ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListProductHistoryResult();
@@ -685,7 +689,9 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Histories = OracleDb.Instance.ListProductHistory(sortColumn, sortType);
+                int count;
+                result.Histories = OracleDb.Instance.ListProductHistory(sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -697,7 +703,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
-        public ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType)
+        public ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage)
         {
             Log.Info(String.Format("SID: {0}", sid));
             var result = new ListProductHistoryResult();
@@ -717,7 +723,9 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Histories = OracleDb.Instance.ListProductHistory(from, to, sortColumn, sortType);
+                int count;
+                result.Histories = OracleDb.Instance.ListProductHistory(from, to, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -909,6 +917,230 @@ namespace CashInCore
                 }
 
                 result.Banknotes = OracleDb.Instance.GetBanknotesByHistoryId(historyId);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckFieldTypeResult ListCheckFieldTypes(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListCheckFieldTypeResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Types = OracleDb.Instance.ListCheckFieldTypes();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckTypeResult ListCheckTypes(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListCheckTypeResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Types = OracleDb.Instance.ListCheckTypes();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckTemplateResult ListCheckTemplates(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListCheckTemplateResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Templates = OracleDb.Instance.ListCheckTemplate();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckTemplateResult GetCheckTemplate(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}, Id: {1}", sid, id));
+
+            var result = new ListCheckTemplateResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Templates.Add(OracleDb.Instance.GetCheckTemplate(id));
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult SaveCheckTemplate(String sid, CheckTemplate item)
+        {
+            Log.Info(String.Format("SID: {0}, Template: {1}", sid, item));
+
+            var result = new StandardResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.SaveCheckTemplate(item);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult DeleteCheckTemplate(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}, Id: {1}", sid, id));
+
+            var result = new StandardResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.DeleteCheckTemplate(id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult ActivateCheckTemplate(String sid, int id, bool activationStatus)
+        {
+            Log.Info(String.Format("SID: {0}, Id: {1}", sid, id));
+
+            var result = new StandardResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                OracleDb.Instance.ActivateCheckTemplate(id, activationStatus);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)

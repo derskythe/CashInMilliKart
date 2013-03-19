@@ -11,6 +11,15 @@ namespace Containers.Admin
     public class ListProductHistoryResult : StandardResult
     {
         private List<ProductHistory> _Histories;
+        private int _Count;
+
+        [XmlElement(ElementName = "Count")]
+        [DataMember(Name = "Count")]
+        public int Count
+        {
+            get { return _Count; }
+            set { _Count = value; }
+        }
 
         [XmlArray("Histories")]
         [DataMember(Name = "Histories")]
@@ -31,7 +40,7 @@ namespace Containers.Admin
 
         public override string ToString()
         {
-            return string.Format("{0}, Histories: {1}", base.ToString(), EnumEx.GetStringFromArray(_Histories));
+            return string.Format("{0}, Histories: {1}, Count: {2}", base.ToString(), EnumEx.GetStringFromArray(_Histories), _Count);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace CashInTerminal
         private Terminal _TerminalInfo = new Terminal();
         private LocalDb _Db;
         private bool _Running = true;
-        private CashInTerminal.CashIn.ClientInfo[] _Clients;
+        private CashIn.ClientInfo[] _Clients;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
@@ -125,7 +125,7 @@ namespace CashInTerminal
             get { return _Products; }
         }
 
-        public CashInTerminal.CashIn.ClientInfo[] Clients
+        public CashIn.ClientInfo[] Clients
         {
             get { return _Clients; }
             set { _Clients = value; }
@@ -670,6 +670,8 @@ namespace CashInTerminal
             }
         }
 
+        #region PingThread
+
         private void PingThread()
         {
             while (_Running && _Init && _AuthTerminal)
@@ -891,6 +893,10 @@ namespace CashInTerminal
             }
         }
 
+        #endregion
+
+        #region UpdatePrinterStatus
+
         private void UpdatePrinterStatus()
         {
             int printerStatus = -1, detectedErrorState = -1, extendedDetectedErrorState = -1, extendedPrinterStatus = -1;
@@ -957,6 +963,8 @@ namespace CashInTerminal
             }
         }
 
+        #endregion
+
         public void GetTerminalInfo()
         {
             var now = DateTime.Now;
@@ -1005,6 +1013,8 @@ namespace CashInTerminal
             };
             return _Server.CommandReceived(cmd);
         }
+
+        #region DoEncashment
 
         private void DoEncashment()
         {
@@ -1056,6 +1066,9 @@ namespace CashInTerminal
             }
         }
 
+        #endregion
+
+        #region SendPaymentThread
 
         private void SendPaymentThread()
         {
@@ -1165,6 +1178,8 @@ namespace CashInTerminal
             }
         }
 
+        #endregion
+
         private bool CheckSignature(StandardResult request)
         {
             try
@@ -1209,6 +1224,8 @@ namespace CashInTerminal
             DoClose();
         }
 
+        #region DoClose
+
         private void DoClose()
         {
             _Running = false;
@@ -1237,5 +1254,7 @@ namespace CashInTerminal
                 _SendPaymentThread.Abort();
             }
         }
+
+        #endregion
     }
 }

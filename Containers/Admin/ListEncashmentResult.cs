@@ -11,7 +11,16 @@ namespace Containers.Admin
     public class ListEncashmentResult : StandardResult
     {
         private List<Encashment> _Encashments;
-       
+        private int _Count;
+
+        [XmlElement(ElementName = "Count")]
+        [DataMember(Name = "Count")]
+        public int Count
+        {
+            get { return _Count; }
+            set { _Count = value; }
+        }
+
         [XmlArray("Encashments")]
         [DataMember(Name = "Encashments")]
         public List<Encashment> Encashments
@@ -31,7 +40,7 @@ namespace Containers.Admin
 
         public override string ToString()
         {
-            return string.Format("{0}, Encashments: {1}", base.ToString(), EnumEx.GetStringFromArray(_Encashments));
+            return string.Format("{0}, Encashments: {1}, Count: {2}", base.ToString(), EnumEx.GetStringFromArray(_Encashments), _Count);
         }
     }
 }

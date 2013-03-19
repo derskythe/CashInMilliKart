@@ -43,7 +43,7 @@ namespace CashInTerminal
                 Log.Info(msg.ToString());
                 printDocument.PrintController = new StandardPrintController();
                 printDocument.Print();
-                MessageBox.Show(msg.ToString());
+                //MessageBox.Show(msg.ToString());
             }
             catch (Exception exp)
             {

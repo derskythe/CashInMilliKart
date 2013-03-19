@@ -37,6 +37,7 @@
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnCreditInfoBack = new System.Windows.Forms.Button();
             this.btnCreditInfoNext = new System.Windows.Forms.Button();
+            this.lbl8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl7
@@ -44,7 +45,7 @@
             this.lbl7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl7.Location = new System.Drawing.Point(105, 347);
+            this.lbl7.Location = new System.Drawing.Point(105, 279);
             this.lbl7.Name = "lbl7";
             this.lbl7.Size = new System.Drawing.Size(713, 24);
             this.lbl7.TabIndex = 19;
@@ -55,7 +56,7 @@
             this.lbl6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl6.Location = new System.Drawing.Point(105, 306);
+            this.lbl6.Location = new System.Drawing.Point(105, 238);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(713, 24);
             this.lbl6.TabIndex = 18;
@@ -66,7 +67,7 @@
             this.lbl5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl5.Location = new System.Drawing.Point(104, 265);
+            this.lbl5.Location = new System.Drawing.Point(104, 197);
             this.lbl5.Name = "lbl5";
             this.lbl5.Size = new System.Drawing.Size(713, 24);
             this.lbl5.TabIndex = 17;
@@ -77,7 +78,7 @@
             this.lbl4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl4.Location = new System.Drawing.Point(104, 224);
+            this.lbl4.Location = new System.Drawing.Point(104, 156);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(713, 24);
             this.lbl4.TabIndex = 16;
@@ -88,7 +89,7 @@
             this.lbl3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl3.Location = new System.Drawing.Point(104, 183);
+            this.lbl3.Location = new System.Drawing.Point(104, 115);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(713, 24);
             this.lbl3.TabIndex = 15;
@@ -99,7 +100,7 @@
             this.lbl2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl2.Location = new System.Drawing.Point(104, 142);
+            this.lbl2.Location = new System.Drawing.Point(104, 74);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(713, 24);
             this.lbl2.TabIndex = 13;
@@ -110,7 +111,7 @@
             this.lbl1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lbl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl1.Location = new System.Drawing.Point(104, 101);
+            this.lbl1.Location = new System.Drawing.Point(104, 34);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(713, 23);
             this.lbl1.TabIndex = 14;
@@ -142,11 +143,23 @@
             this.btnCreditInfoNext.UseVisualStyleBackColor = true;
             this.btnCreditInfoNext.Click += new System.EventHandler(this.BtnCreditInfoNextClick);
             // 
+            // lbl8
+            // 
+            this.lbl8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.lbl8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbl8.Location = new System.Drawing.Point(104, 320);
+            this.lbl8.Name = "lbl8";
+            this.lbl8.Size = new System.Drawing.Size(713, 24);
+            this.lbl8.TabIndex = 19;
+            this.lbl8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormCreditClientInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 490);
+            this.Controls.Add(this.lbl8);
             this.Controls.Add(this.lbl7);
             this.Controls.Add(this.lbl6);
             this.Controls.Add(this.lbl5);
@@ -169,6 +182,7 @@
             this.Controls.SetChildIndex(this.lbl5, 0);
             this.Controls.SetChildIndex(this.lbl6, 0);
             this.Controls.SetChildIndex(this.lbl7, 0);
+            this.Controls.SetChildIndex(this.lbl8, 0);
             this.ResumeLayout(false);
 
         }
@@ -184,6 +198,7 @@
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Button btnCreditInfoBack;
         private System.Windows.Forms.Button btnCreditInfoNext;
+        private System.Windows.Forms.Label lbl8;
 
     }
 }

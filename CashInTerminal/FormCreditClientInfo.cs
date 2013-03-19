@@ -33,7 +33,8 @@ namespace CashInTerminal
                     lbl4.Text = Resources.CreditDate + Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
                     lbl5.Text = Resources.CreditAmount + Resources.Colon + FormMain.ClientInfo.Client.CreditAmount + @" " + FormMain.ClientInfo.Client.Currency;
                     lbl6.Text = Resources.Currency + Resources.Colon + FormMain.ClientInfo.Client.Currency;
-                    lbl7.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
+                    lbl7.Text = Resources.CreditAmountLeft + Resources.Colon + FormMain.ClientInfo.Client.AmountLeft + @" " + FormMain.ClientInfo.Client.Currency;
+                    lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
 
                 case GetClientInfoType.ByPasportAndCreditNumber:
@@ -43,7 +44,8 @@ namespace CashInTerminal
                     lbl4.Text = Resources.CreditDate + Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
                     lbl5.Text = Resources.CreditAmount + Resources.Colon + FormMain.ClientInfo.Client.CreditAmount + @" " + FormMain.ClientInfo.Client.Currency;
                     lbl6.Text = Resources.Currency + Resources.Colon + FormMain.ClientInfo.Client.Currency;
-                    lbl7.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
+                    lbl7.Text = Resources.CreditAmountLeft + Resources.Colon + FormMain.ClientInfo.Client.AmountLeft + @" " + FormMain.ClientInfo.Client.Currency;
+                    lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
 
                 case GetClientInfoType.Bolcard:
@@ -53,7 +55,8 @@ namespace CashInTerminal
                     lbl4.Text = Resources.CreditDate + Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
                     lbl5.Text = Resources.CreditAmount + Resources.Colon + FormMain.ClientInfo.Client.CreditAmount + @" " + FormMain.ClientInfo.Client.Currency;
                     lbl6.Text = Resources.Currency + Resources.Colon + FormMain.ClientInfo.Client.Currency;
-                    lbl7.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
+                    lbl7.Text = Resources.CreditAmountLeft + Resources.Colon + FormMain.ClientInfo.Client.AmountLeft + @" " + FormMain.ClientInfo.Client.Currency;
+                    lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
             }
         }

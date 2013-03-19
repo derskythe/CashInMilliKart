@@ -377,11 +377,11 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter1 = new V_CASHIN_BOLCARDSTableAdapter { Connection = _OraCon, BindByName = true };
-            var table1 = new ds.V_CASHIN_BOLCARDSDataTable();
+            var adapter = new V_CASHIN_BOLCARDSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CASHIN_BOLCARDSDataTable();
 
-            adapter1.FillBy8Digits(table1, digits);
-            foreach (ds.V_CASHIN_BOLCARDSRow row in table1.Rows)
+            adapter.FillBy8Digits(table, digits);
+            foreach (ds.V_CASHIN_BOLCARDSRow row in table.Rows)
             {
                 if (!row.IsCLIENT_ACCOUNTNull())
                 {
