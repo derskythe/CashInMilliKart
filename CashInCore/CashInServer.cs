@@ -3,6 +3,7 @@ using System.ServiceModel;
 using System.Text;
 using CashInCore.Properties;
 using Containers;
+using Containers.Admin;
 using Containers.Enums;
 using Db;
 using NLog;
@@ -376,6 +377,54 @@ namespace CashInCore
                         result.Infos = OracleDb.Instance.ListClientsBolcard(request.Bolcard8Digits);
                         break;
                 }
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckTemplateResult ListCheckTemplateDigest(StandardRequest request)
+        {
+            Log.Info("ListCheckTemplateDigest. " + request);
+            var result = new ListCheckTemplateResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (ListCheckTemplateResult)AuthTerminal(result, request, out terminalInfo);
+
+                result.Templates = OracleDb.Instance.ListCheckTemplateDigest();
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckTemplateResult ListCheckTemplate(StandardRequest request)
+        {
+            Log.Info("ListCheckTemplate. " + request);
+            var result = new ListCheckTemplateResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (ListCheckTemplateResult)AuthTerminal(result, request, out terminalInfo);
+
+                result.Templates = OracleDb.Instance.ListCheckTemplate();
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

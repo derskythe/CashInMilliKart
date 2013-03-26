@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Containers;
+using Containers.Admin;
 using Db.dsTableAdapters;
 using Oracle.DataAccess.Client;
 
@@ -23,6 +24,31 @@ namespace Db
             foreach (ds.V_PRODUCTSRow item in table.Rows)
             {
                 result.Add(Convertor.ToProduct(item));
+            }
+
+            return result;
+        }
+
+        public List<CheckTemplate> ListCheckTemplateDigest()
+        {
+            CheckConnection();
+
+            var adapter = new V_CHECKSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CHECKSDataTable();
+
+            adapter.Fill(table);
+            var result = new List<CheckTemplate>();
+
+            foreach (ds.V_CHECKSRow row in table.Rows)
+            {
+                //var desc = new MultiLanguageString
+                //{
+                //    ValueAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
+                //    ValueRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                //    ValueEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN
+                //};
+                //var type = new CheckType(row.CHECK_TYPE, desc);                
+                result.Add(Convertor.ToCheckTemplate(row));
             }
 
             return result;
@@ -161,7 +187,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_LIST_TERMINAL_SET_STATUSTableAdapter {Connection = _OraCon, BindByName = true};
+            var adapter = new V_LIST_TERMINAL_SET_STATUSTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_LIST_TERMINAL_SET_STATUSDataTable();
 
             adapter.FillByTerminalIdAndStatusCode(table, terminalId, statusCode);
@@ -320,7 +346,7 @@ namespace Db
         {
             CheckConnection();
 
-            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter {Connection = _OraCon, BindByName = true};
+            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
 
             adapter.FillByClientCode(table, clientCode);

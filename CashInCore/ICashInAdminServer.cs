@@ -120,5 +120,11 @@ namespace CashInCore
 
         [OperationContract]
         StandardResult SaveBranch(String sid, Branch branch);
+
+        [OperationContract]
+        CheckField GetCheckField(String sid, int id);
+
+        [OperationContract]
+        ListCheckTemplateResult GetCheckTemplates(int id);
     }
 }

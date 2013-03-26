@@ -77,6 +77,18 @@
   <wsdl:message name="CashInServer_GetClientInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetClientInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplate" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplateDigest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplateDigest" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplateDigest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplateDigestResponse" />
+  </wsdl:message>
   <wsdl:portType name="CashInServer">
     <wsdl:operation name="GetPublicKey">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
@@ -125,6 +137,14 @@
     <wsdl:operation name="GetClientInfo">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetClientInfo" message="tns:CashInServer_GetClientInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetClientInfoResponse" message="tns:CashInServer_GetClientInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCheckTemplate">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplate" message="tns:CashInServer_ListCheckTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplateResponse" message="tns:CashInServer_ListCheckTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCheckTemplateDigest">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplateDigest" message="tns:CashInServer_ListCheckTemplateDigest_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplateDigestResponse" message="tns:CashInServer_ListCheckTemplateDigest_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

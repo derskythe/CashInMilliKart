@@ -97,6 +97,89 @@ namespace CashInTerminal
             return rowList;
         }
 
+        public List<ds.CheckTemplateRow> GetCheckTemplateByType(long type, String language)
+        {
+            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
+            var table = new ds.CheckTemplateDataTable();
+
+            adapter.FillByType(table, type, language);
+
+            var rowList = new List<ds.CheckTemplateRow>();
+            foreach (ds.CheckTemplateRow row in table.Rows)
+            {
+                rowList.Add(row);
+            }
+
+            return rowList;
+        }
+
+        public List<ds.TemplateFieldRow> ListTemplateFields(long checkTemplateId)
+        {
+            var adapter = new TemplateFieldTableAdapter { Connection = _Connection };
+            var table = new ds.TemplateFieldDataTable();
+
+            adapter.FillByCheckTemplateId(table, checkTemplateId);
+            var rowList = new List<ds.TemplateFieldRow>();
+
+            foreach (ds.TemplateFieldRow row in table.Rows)
+            {
+                rowList.Add(row);
+            }
+
+            return rowList;
+        }
+
+        public void DeleteTemplateByType(long type, String language)
+        {
+            var templates = GetCheckTemplateByType(type, language);
+
+            foreach (ds.CheckTemplateRow row in templates)
+            {
+                DeleteByCheckTemplateId(row.Id);
+            }
+
+            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
+            adapter.DeleteTemplateByType(type, language);
+        }
+
+        public void DeleteByCheckTemplateId(long id)
+        {
+            var adapter = new TemplateFieldTableAdapter { Connection = _Connection };
+            adapter.DeleteByCheckTemplateId(id);
+        }
+
+        public void UpdateTemplate(long id, DateTime updateDate)
+        {
+            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
+            adapter.UpdateTemplate(updateDate, id);
+        }
+
+        public void InsertTemplate(long id, long type, String language, DateTime updateDate)
+        {
+            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
+            adapter.InsertTemplate(id, type, language, updateDate);
+        }
+
+        public ds.CheckTemplateRow GetCheckTemplate(long id)
+        {
+            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
+            var table = new ds.CheckTemplateDataTable();
+
+            adapter.FillById(table, id);
+            foreach (ds.CheckTemplateRow row in table.Rows)
+            {
+                return row;
+            }
+
+            return null;
+        }
+
+        public void InsertCheckTemplateField(long id, long parentId, long type, String value, byte[] image, long orderNumber)
+        {
+            var adapter = new TemplateFieldTableAdapter { Connection = _Connection };
+            adapter.InsertCheckTemplateField(id, parentId, type, value, image, orderNumber);
+        }
+
         public void DeleteTransaction(long id)
         {
             var adapter = new PaymentsTableAdapter { Connection = _Connection };

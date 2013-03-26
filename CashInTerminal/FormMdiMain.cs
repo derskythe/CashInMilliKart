@@ -40,6 +40,8 @@ namespace CashInTerminal
         private LocalDb _Db;
         private bool _Running = true;
         private CashIn.ClientInfo[] _Clients;
+        private Dictionary<int, List<ds.TemplateFieldRow>> _CheckTemplates = new Dictionary<int, List<ds.TemplateFieldRow>>();
+        private String _SelectedLanguage = InterfaceLanguages.Az;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
@@ -65,6 +67,18 @@ namespace CashInTerminal
         {
             get { return _CcnetDevice; }
             set { _CcnetDevice = value; }
+        }
+
+        public Dictionary<int, List<ds.TemplateFieldRow>> CheckTemplates
+        {
+            get { return _CheckTemplates; }
+            set { _CheckTemplates = value; }
+        }
+
+        public string SelectedLanguage
+        {
+            get { return _SelectedLanguage; }
+            set { _SelectedLanguage = value; }
         }
 
         public bool Init
@@ -145,11 +159,13 @@ namespace CashInTerminal
         private Thread _TerminationThread;
         private Timer _CheckCurrencyTimer;
         private Timer _CheckProductsTimer;
+        private Timer _CheckCheckTemplateTimer;
         private Timer _CheckInactivityTimer;
         private Timer _CheckApplicationUpdateTimer;
         private const int PING_TIMEOUT = 30 * 1000;
         private const int SEND_PAYMENT_TIMEOUT = 10 * 1000;
         private const int CHECK_CURRENCY_TIMER = 30 * 60 * 1000;
+        private const int CHECK_CHECK_TEMPLATE_TIMER = 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
         private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 1000;
@@ -259,6 +275,7 @@ namespace CashInTerminal
             {
                 _Db = new LocalDb();
                 _Db.CountCasseteBanknotes();
+                LoadCheckTemplates();
             }
             catch (Exception exp)
             {
@@ -315,8 +332,11 @@ namespace CashInTerminal
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
+            _CheckCheckTemplateTimer = new Timer(CheckTemplateTimer, null, 0, CHECK_CHECK_TEMPLATE_TIMER);
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
         }
+
+        
 
         #region Application Update
 
@@ -558,6 +578,143 @@ namespace CashInTerminal
                 f.WindowState = FormWindowState.Minimized;
             }
         }
+
+        #region Check Template Stuff
+
+        private void CheckTemplateTimer(object state)
+        {
+            try
+            {
+                var now = DateTime.Now;
+                var request = new StandardRequest
+                {
+                    SystemTime = now,
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                };
+
+                var response = _Server.ListCheckTemplateDigest(request);
+
+                CheckSignature(response);
+
+                if (response.ResultCodes == ResultCodes.Ok)
+                {
+                    //lock (_Currencies)
+                    //{
+                    //    _Currencies.Clear();
+                    //    foreach (var item in response.Currencies)
+                    //    {
+                    //        _Currencies.Add(item);
+                    //    }
+                    //}
+                    bool oldData = false;
+                    foreach (var template in response.Templates)
+                    {
+                        var dbValue =_Db.GetCheckTemplate(template.Id);
+
+                        if (dbValue == null || dbValue.UpdateDate < template.UpdateDate)
+                        {
+                            oldData = true;
+                            break;
+                        }
+                    }
+
+                    if (oldData)
+                    {
+                        // Updating Db values
+                        now = DateTime.Now;
+                        request = new StandardRequest
+                        {
+                            SystemTime = now,
+                            TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                        };
+
+                        response = _Server.ListCheckTemplate(request);
+
+                        foreach (var template in response.Templates)
+                        {
+                            var dbValue = _Db.GetCheckTemplate(template.Id);
+
+                            if (dbValue == null )
+                            {
+                                // If value is new, we must delete all prev data by this language
+                                _Db.DeleteTemplateByType(template.CheckType.Id, template.Language.ToLower());
+                                
+                                _Db.InsertTemplate(template.Id, template.CheckType.Id, template.Language, template.UpdateDate);
+                                foreach (var field in template.Fields)
+                                {
+                                    _Db.InsertCheckTemplateField(field.Id, field.CheckId, field.FieldType, field.Value, field.Image, field.Order);
+                                }
+                            } else if (dbValue.UpdateDate < template.UpdateDate)
+                            {
+                                // Data updated, first, update fields. 
+                                _Db.DeleteByCheckTemplateId(dbValue.Id);
+
+                                foreach (var field in template.Fields)
+                                {
+                                    _Db.InsertCheckTemplateField(field.Id, field.CheckId, field.FieldType, field.Value, field.Image, field.Order);
+                                }
+
+                                _Db.UpdateTemplate(template.Id, template.UpdateDate);
+                            }
+                        }
+
+                        LoadCheckTemplates();
+                    }
+                }
+                else
+                {
+                    Log.Warn(response.ResultCodes + " " + response.Description);
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
+
+        private void LoadCheckTemplates()
+        {
+            Log.Info("Start update CheckTemplates");
+            lock (_CheckTemplates)
+            {
+                _CheckTemplates.Clear();
+
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditPayment, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditPayment, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditPayment, InterfaceLanguages.Ru);
+
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.Ru);
+            }
+        }
+
+        private void UpdateCheckTemplateKey(int productId, String language)
+        {
+            var templateList = _Db.GetCheckTemplateByType(productId, language);
+
+            foreach (var row in templateList)
+            {
+                var key = GetCheckTemplateHashCode((int) row.Type, row.Language);
+                var fields = _Db.ListTemplateFields(row.Id);
+
+                _CheckTemplates.Add(key, fields);
+            }
+        }
+
+        public int GetCheckTemplateHashCode(int type, String language)
+        {
+            if (String.IsNullOrEmpty(language))
+            {
+                return type;
+            }
+
+            return language.GetHashCode() + type;
+        }
+
+        #endregion
 
         private void CheckInactivityTimer(object param)
         {

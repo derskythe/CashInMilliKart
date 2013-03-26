@@ -88,6 +88,17 @@ namespace Containers
             _Fields = fields;
         }
 
+        public CheckTemplate(int id, CheckType checkType, string language, bool active, DateTime insertDate, DateTime updateDate)
+        {
+            _Id = id;
+            _CheckType = checkType;
+            _Language = language;
+            _Active = active;
+            _InsertDate = insertDate;
+            _UpdateDate = updateDate;
+            _Fields = new List<CheckField>();
+        }
+
         public override string ToString()
         {
             return

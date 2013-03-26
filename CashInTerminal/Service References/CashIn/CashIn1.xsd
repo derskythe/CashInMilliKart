@@ -101,6 +101,8 @@
       <xs:element minOccurs="1" maxOccurs="1" name="CashcodeStatusType" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="PrinterStatusType" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BranchId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BranchName" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MultiLanguageString">
@@ -468,4 +470,78 @@
       <xs:element minOccurs="0" maxOccurs="1" name="CreditName" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:element name="ListCheckTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:StandardRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListCheckTemplateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListCheckTemplateResult" type="tns:ListCheckTemplateResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ListCheckTemplateResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Templates" type="tns:ArrayOfCheckTemplate" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCheckTemplate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CheckTemplate" nillable="true" type="tns:CheckTemplate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckTemplate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CheckType" type="tns:CheckType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Language" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InsertDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UpdateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfCheckField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="tns:MultiLanguageString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCheckField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CheckField" nillable="true" type="tns:CheckField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckField">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CheckId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Image" type="xs:base64Binary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FieldType" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Order" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListCheckTemplateDigest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:StandardRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListCheckTemplateDigestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListCheckTemplateDigestResult" type="tns:ListCheckTemplateResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

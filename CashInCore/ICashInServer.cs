@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using Containers;
+using Containers.Admin;
 
 namespace CashInCore
 {
@@ -42,5 +43,11 @@ namespace CashInCore
 
         [OperationContract]
         GetClientInfoResult GetClientInfo(GetClientInfoRequest request);
+
+        [OperationContract]
+        ListCheckTemplateResult ListCheckTemplate(StandardRequest request);
+
+        [OperationContract]
+        ListCheckTemplateResult ListCheckTemplateDigest(StandardRequest request);
     }
 }

@@ -29,7 +29,7 @@
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>59</ApplicationRevision>
+    <ApplicationRevision>66</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -108,6 +108,10 @@
     <Compile Include="Controls\MainButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Enums\CheckTemplateTypes.cs" />
+    <Compile Include="Enums\InterfaceLanguages.cs" />
+    <Compile Include="Enums\TemplateFields.cs" />
+    <Compile Include="Enums\TemplateFieldType.cs" />
     <Compile Include="FormCreditByBolcardRetype.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +417,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CashIn\CashInTerminal.CashIn.GetClientInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CashIn\CashInTerminal.CashIn.ListCheckTemplateResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CashIn\CashInTerminal.CashIn.PingResult.datasource">

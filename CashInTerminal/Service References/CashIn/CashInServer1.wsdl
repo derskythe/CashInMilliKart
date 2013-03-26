@@ -112,6 +112,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListCheckTemplate">
+      <soap:operation soapAction="http://cashin/CashInService/CashInServer/ListCheckTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListCheckTemplateDigest">
+      <soap:operation soapAction="http://cashin/CashInService/CashInServer/ListCheckTemplateDigest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CashInServer">
     <wsdl:port name="SOAP" binding="tns:SOAP">

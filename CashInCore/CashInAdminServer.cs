@@ -852,7 +852,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Banknotes = OracleDb.Instance.GetBanknotesByTerminalId(terminalId);
+                result.Banknotes = OracleDb.Instance.GetBanknotesByTerminalIdNotEncashed(terminalId);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -1024,6 +1024,35 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public CheckField GetCheckField(String sid, int id)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            CheckField result = null;
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                {
+                    throw new Exception("No priv");
+                }
+
+                result = OracleDb.Instance.GetCheckField(id);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public ListCheckTemplateResult GetCheckTemplate(String sid, int id)
         {
             Log.Info(String.Format("SID: {0}, Id: {1}", sid, id));
@@ -1076,7 +1105,48 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                OracleDb.Instance.SaveCheckTemplate(item);
+                int id = OracleDb.Instance.SaveCheckTemplate(item);
+
+                List<CheckField> oldList = null;
+                if (item.Id > 0)
+                {
+                    oldList = OracleDb.Instance.ListCheckFields(item.Id);
+
+                    Log.Debug(EnumEx.GetStringFromArray(oldList));
+                }
+
+                var saveList = new List<CheckField>();
+
+                foreach (var field in item.Fields)
+                {
+                    if (field.Id > 0)
+                    {
+                        foreach (var checkField in oldList)
+                        {
+                            if (checkField.Id == field.Id)
+                            {
+                                if ((checkField.Image != null && checkField.Image.Length > 0) && (field.Image == null || field.Image.Length == 0))
+                                {
+                                    // Save image from old value, if item just taking new order or something like that
+                                    field.Image = checkField.Image;
+                                    Log.Debug("Saving image");
+                                }
+                                field.CheckId = id;
+                                saveList.Add(field);
+                                break;
+                            } 
+                        }
+                    }
+                    else
+                    {
+                        field.CheckId = id;
+                        saveList.Add(field);
+                    }
+                }
+
+                Log.Debug(EnumEx.GetStringFromArray(saveList));
+
+                OracleDb.Instance.SaveCheckField(saveList);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -1237,6 +1307,23 @@ namespace CashInCore
                 }
 
                 OracleDb.Instance.SaveBranch(branch.Id, branch.Name, session.Session.User.Id);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListCheckTemplateResult GetCheckTemplates(int id)
+        {           
+            var result = new ListCheckTemplateResult();
+            try
+            {               
+                result.Templates.Add(OracleDb.Instance.GetCheckTemplate(id));
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)

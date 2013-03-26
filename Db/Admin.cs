@@ -829,6 +829,25 @@ namespace Db
             return result;
         }
 
+        public List<Banknote> GetBanknotesByTerminalIdNotEncashed(int terminalId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTESDataTable();
+
+            adapter.FillByTerminalIdNotEncashed(table, terminalId);
+
+            var result = new List<Banknote>();
+
+            foreach (ds.V_BANKNOTESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknote(row));
+            }
+
+            return result;
+        }
+
         public List<Banknote> GetBanknotesByEncashmentId(int encashmentId)
         {
             CheckConnection();
@@ -884,6 +903,25 @@ namespace Db
             }
 
             return result;
+        }
+
+        public CheckField GetCheckField(int id)
+        {
+            CheckConnection();
+
+            var adapter = new V_CHECK_FIELDSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CHECK_FIELDSDataTable();
+
+            adapter.FillById(table, id);
+
+            var result = new List<CheckField>();
+
+            foreach (ds.V_CHECK_FIELDSRow row in table.Rows)
+            {
+                return Convertor.ToCheckField(row);
+            }
+
+            return null;
         }
 
         public List<CheckFieldType> ListCheckFieldTypes()
@@ -976,12 +1014,12 @@ namespace Db
             return result;
         }
 
-        public void SaveCheckTemplate(CheckTemplate template)
+        public int SaveCheckTemplate(CheckTemplate template)
         {
             CheckConnection();
 
             const string cmdText =
-                "begin main.save_check(v_id => :v_id, v_check_type => :v_check_type, v_language => :v_language, v_active => :v_active); end;";
+                "begin main.save_check(v_id => :v_id, v_check_type => :v_check_type, v_language => :v_language, v_active => :v_active, v_return_id => :v_return_id); end;";
 
             var cmd = new OracleCommand(cmdText, _OraCon);
 
@@ -989,8 +1027,13 @@ namespace Db
             cmd.Parameters.Add("v_check_type", OracleDbType.Int32, ParameterDirection.Input).Value = template.CheckType.Id;
             cmd.Parameters.Add("v_language", OracleDbType.Varchar2, ParameterDirection.Input).Value = template.Language;
             cmd.Parameters.Add("v_active", OracleDbType.Int16, ParameterDirection.Input).Value = template.Active ? 1 : 0;
+            cmd.Parameters.Add("v_return_id", OracleDbType.Int32, ParameterDirection.Output);
 
             cmd.ExecuteNonQuery();
+
+            var result = cmd.Parameters["v_return_id"].Value;
+
+            return result == null ? 0 : ((OracleDecimal)(result)).ToInt32();
         }
 
         public void SaveCheckField(List<CheckField> fields)
@@ -1015,6 +1058,19 @@ namespace Db
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public void DeleteCheckField(int id)
+        {
+            CheckConnection();
+
+            const string cmdText =
+                "begin main.delete_check_field(v_id => :v_id); end;";
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = id > 0
+                                                                                                 ? (int?)id
+                                                                                                 : null;
+            cmd.ExecuteNonQuery();
         }
 
         public void DeleteCheckTemplate(int id)

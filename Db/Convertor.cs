@@ -477,6 +477,31 @@ namespace Db
             return result;
         }
 
+        public static CheckTemplate ToCheckTemplate(ds.V_CHECKSRow row)
+        {
+            var value = new MultiLanguageString(
+                row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+                row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ
+                );
+
+            var type = new CheckType(
+                row.CHECK_TYPE,
+                value
+                );
+
+            var result = new CheckTemplate(
+                row.ID,
+                type,
+                row.LANGUAGE,
+                row.ACTIVE > 0,
+                row.IsINSERT_DATENull() ? DateTime.MinValue : row.INSERT_DATE,
+                row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE                
+            );
+
+            return result;
+        }
+
         public static ClientInfo ToClientInfo(ds.V_CASHIN_GET_ACCOUNT_INFORow row)
         {
             var result = new ClientInfo(
