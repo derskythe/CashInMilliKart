@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using CashControlTerminal;
 using CashInTerminal.Enums;
+using Containers;
 using Containers.CashCode;
 using NLog;
 
@@ -807,142 +808,38 @@ namespace CashInTerminal
 
         private void ProccessStateCode()
         {
-            switch (_DeviceState.StateCode)
-            {
-                case CCNETCommand.Idle:
-                    _DeviceState.DeviceStateDescription = "Ожидание наличности";
-                    break;
+            //switch (_DeviceState.StateCode)
+            //{
 
-                case CCNETCommand.Inactive:
-                    _DeviceState.DeviceStateDescription = "Не активен";
-                    break;
+            //    case CCNETCommand.Inactive:
+            //        _DeviceState.DeviceStateDescription = "Не активен";
+            //        break;
 
-                case CCNETCommand.ReadyForTransaction:
-                    _DeviceState.DeviceStateDescription = "Готов к транзакциям";
-                    break;
+            //    case CCNETCommand.ReadyForTransaction:
+            //        _DeviceState.DeviceStateDescription = "Готов к транзакциям";
+            //        break;
 
-                case CCNETCommand.Ok:
-                    _DeviceState.DeviceStateDescription = "ACK";
-                    break;
+            //    case CCNETCommand.Ok:
+            //        _DeviceState.DeviceStateDescription = "ACK";
+            //        break;
 
-                case CCNETCommand.NotMount:
-                    _DeviceState.DeviceStateDescription = "NAK";
-                    break;
+            //    case CCNETCommand.NotMount:
+            //        _DeviceState.DeviceStateDescription = "NAK";
+            //        break;
 
-                case CCNETCommand.PowerUp:
-                case CCNETCommand.PowerUpWithBillInAcceptor:
-                case CCNETCommand.PowerUpWithBillInStacker:
-                    _DeviceState.DeviceStateDescription = "Включение питания";
-                    break;
+            //    case CCNETCommand.PowerUp:
+            //    case CCNETCommand.PowerUpWithBillInAcceptor:
+            //    case CCNETCommand.PowerUpWithBillInStacker:
+            //        _DeviceState.DeviceStateDescription = EnumEx.GetDescription(CCNETCommand.PowerUp);
+            //        break;
 
-                case CCNETCommand.FatalError:
-                    _DeviceState.DeviceStateDescription = "Фатальная ошибка";
-                    break;
+            //    default:
+            //        _DeviceState.DeviceStateDescription = EnumEx.GetDescription(_DeviceState.StateCode);
+            //        break;
 
-                case CCNETCommand.Error:
-                    _DeviceState.DeviceStateDescription = "Сбой оборудования";
-                    break;
+            //}
 
-                case CCNETCommand.Initialize:
-                    _DeviceState.DeviceStateDescription = "Инициализация";
-                    break;
-
-                case CCNETCommand.Wait:
-                    _DeviceState.DeviceStateDescription = "Ожидание наличности";
-                    break;
-
-                case CCNETCommand.Accepting:
-                    _DeviceState.DeviceStateDescription = "Разрешение";
-                    break;
-
-                case CCNETCommand.Stacking:
-                    _DeviceState.DeviceStateDescription = "Укладка купюры";
-                    break;
-
-                case CCNETCommand.BillReturning:
-                    _DeviceState.DeviceStateDescription = "Возврат";
-                    break;
-
-                case CCNETCommand.UnitDisabled:
-                    _DeviceState.DeviceStateDescription = "Готов к работе";
-                    break;
-
-                case CCNETCommand.Hold:
-                    _DeviceState.DeviceStateDescription = "Удержание";
-                    break;
-
-                case CCNETCommand.Busy:
-                    _DeviceState.DeviceStateDescription = "Занят";
-                    break;
-
-                case CCNETCommand.Dispensing:
-                    _DeviceState.DeviceStateDescription = "Выдача";
-                    break;
-
-                case CCNETCommand.Unloading:
-                    _DeviceState.DeviceStateDescription = "Выгрузка";
-                    break;
-
-                case CCNETCommand.CasseseteInsert:
-                    _DeviceState.DeviceStateDescription = "Установка кассеты";
-                    break;
-
-                case CCNETCommand.Gone:
-                    _DeviceState.DeviceStateDescription = "Выдано";
-                    break;
-
-                case CCNETCommand.Unload:
-                    _DeviceState.DeviceStateDescription = "Разгружено";
-                    break;
-
-                case CCNETCommand.UnknownBill:
-                    _DeviceState.DeviceStateDescription = "Неверный код купюры";
-                    break;
-
-                case CCNETCommand.CasseteInsert:
-                    _DeviceState.DeviceStateDescription = "Кассета установлена";
-                    break;
-
-                case CCNETCommand.Reset:
-                    _DeviceState.DeviceStateDescription = "Неверная команда";
-                    break;
-
-                case CCNETCommand.CasseteFull:
-                    _DeviceState.DeviceStateDescription = "Кассета переполнена";
-                    break;
-
-                case CCNETCommand.CasseteRemoved:
-                    _DeviceState.DeviceStateDescription = "Кассета снята";
-                    break;
-
-                case CCNETCommand.PaperJam:
-                    _DeviceState.DeviceStateDescription = "Купюра застряла";
-                    break;
-
-                case CCNETCommand.PaperJam2:
-                    _DeviceState.DeviceStateDescription = "Купюра застряла";
-                    break;
-
-                case CCNETCommand.Hacking:
-                    _DeviceState.DeviceStateDescription = "Взлом";
-                    break;
-
-                case CCNETCommand.Pause:
-                    _DeviceState.DeviceStateDescription = "Пауза";
-                    break;
-
-                case CCNETCommand.BillReceiving:
-                    _DeviceState.DeviceStateDescription = "Приём купюры";
-                    break;
-
-                case CCNETCommand.BillStacked:
-                    _DeviceState.DeviceStateDescription = "Купюра уложена";
-                    break;
-
-                case CCNETCommand.BillReturned:
-                    _DeviceState.DeviceStateDescription = "Возвращена";
-                    break;
-            }
+            _DeviceState.DeviceStateDescription = EnumEx.GetDescription(_DeviceState.StateCode);
         }
 
         #endregion
