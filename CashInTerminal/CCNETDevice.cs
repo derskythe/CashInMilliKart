@@ -4,12 +4,19 @@ using System.Threading;
 using CashControlTerminal;
 using CashInTerminal.Enums;
 using Containers.CashCode;
+using NLog;
 
 namespace CashInTerminal
 {
     public sealed class CCNETDevice : IDisposable
     {
         #region Fields
+
+        // ReSharper disable FieldCanBeMadeReadOnly.Local
+        // ReSharper disable InconsistentNaming
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        // ReSharper restore InconsistentNaming
+        // ReSharper restore FieldCanBeMadeReadOnly.Local
 
         static private SerialStream _SerialDevice;
 
@@ -18,21 +25,23 @@ namespace CashInTerminal
 
         private const int POLLING_INTERVAL = 1000;
         private const int MAX_RESPONSE_TIME = 250;
-        private const int MAX_PACKET_LENGTH = 255;
+        /*
+                private const int MAX_PACKET_LENGTH = 255;
+        */
 
         private readonly Thread _ResponseReaderThread;
         private readonly Thread _PoolThread;
-        private readonly Thread _SendThread;
-        private Thread _EventThread;
+        //private readonly Thread _SendThread;
+        //private Thread _EventThread;
         private readonly CCNETDeviceState _DeviceState;
         private List<string> _CurrencyList;
         private int _Port;
         private CCNETPortSpeed _PortSpeed;
         private readonly Object _ResponseSignal;
-        private CCNETPacket _ResponsePacket;
+        //private CCNETPacket _ResponsePacket;
         private readonly EventWaitHandle _Wait = new AutoResetEvent(false);
         private bool _TimedOut;
-        private bool _Disposing = false;
+        private bool _Disposing;
 
         public delegate void ReadCommandDelegate(CCNETDeviceState e);
         public delegate void BillStackedDelegate(CCNETDeviceState e);
@@ -77,6 +86,12 @@ namespace CashInTerminal
             set { _CurrencyList = value; }
         }
 
+        public bool TimedOut
+        {
+            get { return _TimedOut; }
+            set { _TimedOut = value; }
+        }
+
         #endregion
 
         #region Constructor/Destructor/Dispose
@@ -97,12 +112,10 @@ namespace CashInTerminal
             _ResponseSignal = new Object();
 
             // Create the Thread used to read responses
-            _ResponseReaderThread = new Thread(new ThreadStart(ReadResponseThread));
-            _ResponseReaderThread.IsBackground = true;
+            _ResponseReaderThread = new Thread(ReadResponseThread) { IsBackground = true };
 
             // Create the Thread used to send POOL command
-            _PoolThread = new Thread(new ThreadStart(StartPooling));
-            _PoolThread.IsBackground = true;
+            _PoolThread = new Thread(StartPooling) { IsBackground = true };
 
             _SerialDevice = new SerialStream();
 
@@ -120,9 +133,10 @@ namespace CashInTerminal
                 // "\\\\.\\COM3",
                 _SerialDevice.Open("\\\\.\\COM" + _Port);
             }
-            catch (Exception e)
+            catch (Exception exp)
             {
                 // "Error: " + e.Message, 
+                Log.ErrorException(exp.Message, exp);
                 return;
             }
 
@@ -179,10 +193,10 @@ namespace CashInTerminal
                 _PoolThread.Join(5000);
             }
 
-            if (_SendThread != null && _SendThread.IsAlive)
-            {
-                _SendThread.Join(5000);
-            }
+            //if (_SendThread != null && _SendThread.IsAlive)
+            //{
+            //    _SendThread.Join(5000);
+            //}
 
             _Wait.Close();
             _SerialDevice.Close();
@@ -199,7 +213,7 @@ namespace CashInTerminal
 
         public void ResetNominal()
         {
-            this._DeviceState.Nominal = 0;
+            _DeviceState.Nominal = 0;
         }
 
         #region Threads
@@ -238,9 +252,10 @@ namespace CashInTerminal
                     ProccessStateCode();
                 }
             }
-            catch (ThreadAbortException)
+            catch (ThreadAbortException exp)
             {
-                System.Threading.Thread.CurrentThread.Abort();
+                Log.Error(exp.Message);
+                //Thread.CurrentThread.Abort();
             }
         }
 
@@ -250,8 +265,8 @@ namespace CashInTerminal
             {
                 byte[] receiveBuffer = new byte[128];
                 int bytesRead = 0;
-                int bufferIndex = 0;
-                int startPacketIndex = 0;
+                //int bufferIndex = 0;
+                //int startPacketIndex = 0;
 
                 while (!_Disposing)
                 {
@@ -271,23 +286,26 @@ namespace CashInTerminal
                                 Array.Clear(receiveBuffer, 0, 128);
                             }
                         }
-                        catch (TimeoutException)
+                        catch (TimeoutException exp)
                         {
+                            Log.Error(exp.Message);
                             _TimedOut = true;
                         }
                         catch (ThreadAbortException exp)
                         {
-                            throw exp;
+                            Log.Error(exp.Message);
                         }
-                        catch
+                        catch (Exception exp)
                         {
+                            Log.ErrorException(exp.Message, exp);
                         }
                     }
                 }
             }
-            catch (ThreadAbortException)
+            catch (ThreadAbortException exp)
             {
-                System.Threading.Thread.CurrentThread.Abort();
+                Log.Error(exp.Message);
+                //Thread.CurrentThread.Abort();
             }
         }
 
@@ -314,7 +332,7 @@ namespace CashInTerminal
 
         private CCNETPacket CreatePacket(byte[] buffer, int startIndex)
         {
-            byte sync = buffer[startIndex];
+            //byte sync = buffer[startIndex];
             byte addr = buffer[(startIndex + 1) % buffer.Length];
             byte dataLength = buffer[(startIndex + 2) % buffer.Length];
             byte cmd = buffer[(startIndex + 3) % buffer.Length];
@@ -333,24 +351,22 @@ namespace CashInTerminal
                 dataSection = data.Length;
             }
 
-            crc |= (ushort)buffer[(startIndex + 4 + dataSection) % buffer.Length];
+            crc |= buffer[(startIndex + 4 + dataSection) % buffer.Length];
             crc |= (ushort)(buffer[(startIndex + 4 + dataSection + 1) % buffer.Length] << 8);
             return new CCNETPacket(addr, cmd, data, crc);
         }
 
-        private bool AddPacket(byte[] buffer, int startIndex)
+        private void AddPacket(byte[] buffer, int startIndex)
         {
             CCNETPacket packet = CreatePacket(buffer, startIndex);
 
             if (packet.Cmd != (byte)CCNETCommand.Ok || packet.Cmd != (byte)CCNETCommand.NotMount)
             {
-                SendACK(); // Патч для быстрого ответа. Сначала отвечаем, а потом смотрим, чего там не так.
+                SendAck();
                 ParseCommand(packet);
             }
 
             AddResponsePacket();
-
-            return true;
         }
 
         private void AddResponsePacket()
@@ -365,7 +381,7 @@ namespace CashInTerminal
         {
             ushort crcvalue;
 
-            CCNETPacket packet = new CCNETPacket(0x03, (byte)cmd, data);
+            var packet = new CCNETPacket(0x03, (byte)cmd, data);
 
             byte[] crc = new byte[packet.Lng - 2];
             crc[0] = packet.Sync;
@@ -376,7 +392,7 @@ namespace CashInTerminal
             {
                 Array.Copy(data, 0, crc, 4, data.Length);
             }
-            crcvalue = CCNETCRCGenerator.GenerateCRC(crc, Convert.ToUInt16(crc.Length));
+            crcvalue = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
 
 
             byte[] packetXMitBuffer = new byte[packet.Lng];
@@ -396,7 +412,7 @@ namespace CashInTerminal
 
             lock (_ResponseSignal)
             {
-                _ResponsePacket = null;
+                //_ResponsePacket = null;
                 // comPort
 
                 try
@@ -409,15 +425,13 @@ namespace CashInTerminal
                 }
                 catch (Exception exp)
                 {
-
+                    Log.ErrorException(exp.Message, exp);
                     //throw new Exception(exp.Message.ToString());
                 }
 
                 Monitor.Wait(_ResponseSignal, MAX_RESPONSE_TIME);
                 Thread.Sleep(0);
             }
-
-            return;
         }
 
         #endregion
@@ -541,17 +555,17 @@ namespace CashInTerminal
             Send(CCNETCommand.Poll, null);
         }
 
-        private void Hold()
-        {
-            Send(CCNETCommand.Hold, null);
-        }
+        //private void Hold()
+        //{
+        //    Send(CCNETCommand.Hold, null);
+        //}
 
-        private void SendNAK()
-        {
-            Send(CCNETCommand.NotMount, null);
-        }
+        //private void SendNAK()
+        //{
+        //    Send(CCNETCommand.NotMount, null);
+        //}
 
-        private void SendACK()
+        private void SendAck()
         {
             Send(CCNETCommand.Ok, null);
         }
@@ -563,7 +577,7 @@ namespace CashInTerminal
         private void ParseCommand(CCNETPacket packet)
         {
             //int length;
-            int len_command = packet.Lng;
+            //int lenCommand = packet.Lng;
 
             if (packet.Cmd != 0)
             {
@@ -781,13 +795,10 @@ namespace CashInTerminal
                 case CCNETCommand.BillReturned:
                     _DeviceState.StateCodeOut = CCNETCommand.BillReturned;
                     break;
-
-                default:
-                    break;
             }
 
             ProccessStateCode();
-            this.ReadCommand(_DeviceState);
+            ReadCommand(_DeviceState);
         }
 
         #endregion
@@ -940,12 +951,12 @@ namespace CashInTerminal
 
         internal class CCNETPacket
         {
-            private byte sync;
-            private byte address;
-            private byte cmd;
-            private byte lng;
-            private byte[] data;
-            private ushort crc;
+            private readonly byte _Sync;
+            private readonly byte _Address;
+            private readonly byte _Cmd;
+            private readonly byte _Lng;
+            private readonly byte[] _Data;
+            private readonly ushort _Crc;
 
             public CCNETPacket(byte address, byte cmd, byte[] data)
             {
@@ -958,15 +969,14 @@ namespace CashInTerminal
                     if (dataLength > 250)
                     {
                         return;
-                        // пока не реализовано
                     }
                 }
 
-                this.sync = 0x02;
-                this.address = address;
-                this.lng = Convert.ToByte(dataLength + 6);
-                this.cmd = cmd;
-                this.data = data;
+                _Sync = 0x02;
+                _Address = address;
+                _Lng = Convert.ToByte(dataLength + 6);
+                _Cmd = cmd;
+                _Data = data;
             }
 
             public CCNETPacket(byte address, byte cmd, byte[] data, ushort crc)
@@ -984,19 +994,19 @@ namespace CashInTerminal
                     }
                 }
 
-                this.sync = 0x02;
-                this.address = address;
-                this.lng = Convert.ToByte(dataLength + 6);
-                this.cmd = cmd;
-                this.data = data;
-                this.crc = crc;
+                _Sync = 0x02;
+                _Address = address;
+                _Lng = Convert.ToByte(dataLength + 6);
+                _Cmd = cmd;
+                _Data = data;
+                _Crc = crc;
             }
 
             public byte Sync
             {
                 get
                 {
-                    return this.sync;
+                    return _Sync;
                 }
             }
 
@@ -1004,7 +1014,7 @@ namespace CashInTerminal
             {
                 get
                 {
-                    return this.address;
+                    return _Address;
                 }
             }
 
@@ -1012,7 +1022,7 @@ namespace CashInTerminal
             {
                 get
                 {
-                    return this.lng;
+                    return _Lng;
                 }
             }
 
@@ -1020,7 +1030,7 @@ namespace CashInTerminal
             {
                 get
                 {
-                    return this.cmd;
+                    return _Cmd;
                 }
             }
 
@@ -1028,15 +1038,15 @@ namespace CashInTerminal
             {
                 get
                 {
-                    return this.data;
+                    return _Data;
                 }
             }
 
-            public ushort CRC
+            public ushort Crc
             {
                 get
                 {
-                    return this.crc;
+                    return _Crc;
                 }
             }
         }
@@ -1045,66 +1055,63 @@ namespace CashInTerminal
 
         #region CCNETCRCGenerator
 
+        // ReSharper disable InconsistentNaming
         internal class CCNETCRCGenerator
+        // ReSharper restore InconsistentNaming
         {
             const int POLYNOMINAL = 0x08408;
-            static private ushort byteCRC_h;
-            static private ushort byteCRC_l;
+            static private ushort _ByteCrcH;
+            static private ushort _ByteCrcL;
 
-            public CCNETCRCGenerator()
-            {
-
-            }
-
-            public static ushort GenerateCRC(byte[] DataBuf, ushort BufLen)
+            public static ushort GenerateCrc(byte[] dataBuf, ushort bufLen)
             {
                 ushort i;
-                byteCRC_h = byteCRC_l = 0;
-                for (i = 0; i < BufLen; i++)
+                _ByteCrcH = _ByteCrcL = 0;
+                for (i = 0; i < bufLen; i++)
                 {
-                    calc_crc(DataBuf[i]);
+                    CalcCrc(dataBuf[i]);
                 }
-                i = byteCRC_h;
+                i = _ByteCrcH;
                 i <<= 8;
-                i += byteCRC_l;
+                i += _ByteCrcL;
                 return i;
             }
 
-            public static byte[] GenerateCRC(byte[] DataBuf, ushort BufLen, bool returnArray)
+            public static byte[] GenerateCrc(byte[] dataBuf, ushort bufLen, bool returnArray)
             {
                 ushort i;
                 byte[] result = new byte[2];
-                byteCRC_h = byteCRC_l = 0;
-                for (i = 0; i < BufLen; i++)
+                _ByteCrcH = _ByteCrcL = 0;
+                for (i = 0; i < bufLen; i++)
                 {
-                    calc_crc(DataBuf[i]);
+                    CalcCrc(dataBuf[i]);
                 }
 
-                i = byteCRC_h;
+                i = _ByteCrcH;
                 i <<= 8;
-                i += byteCRC_l;
+                i += _ByteCrcL;
 
                 result[0] = Convert.ToByte(i >> 8);
-                result[1] = Convert.ToByte(byteCRC_l);
+                result[1] = Convert.ToByte(_ByteCrcL);
                 return result;
             }
 
-            static private void calc_crc(byte mbyte)
+            static private void CalcCrc(byte mbyte)
             {
                 ushort i, c;
                 ushort temp_crc;
-                byteCRC_h ^= mbyte;
-                temp_crc = byteCRC_l;
+                _ByteCrcH ^= mbyte;
+                temp_crc = _ByteCrcL;
                 temp_crc <<= 8;
-                temp_crc |= byteCRC_h;
+                temp_crc |= _ByteCrcH;
                 for (i = 0; i < 8; i++)
                 {
                     c = (ushort)(temp_crc & 0x01);
                     temp_crc >>= 1;
                     if (c != 0) temp_crc ^= POLYNOMINAL;
                 }
-                byteCRC_l = Convert.ToUInt16(temp_crc >> 8);
-                byteCRC_h = Convert.ToUInt16(temp_crc);
+                _ByteCrcL = Convert.ToUInt16(temp_crc >> 8);
+                _ByteCrcH = Convert.ToUInt16(temp_crc);
             }
         }
 
