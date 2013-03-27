@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using CashControlTerminal;
 using CashInTerminal.Enums;
@@ -35,7 +34,7 @@ namespace CashInTerminal
         //private readonly Thread _SendThread;
         //private Thread _EventThread;
         private readonly CCNETDeviceState _DeviceState;
-        private List<string> _CurrencyList;
+        private String _CurrentCurrency;
         private int _Port;
         private CCNETPortSpeed _PortSpeed;
         private readonly Object _ResponseSignal;
@@ -78,13 +77,28 @@ namespace CashInTerminal
             }
         }
 
-        public List<String> Currency
+        public String CurrentCurrency
         {
             get
             {
-                return _CurrencyList;
+                return _CurrentCurrency;
             }
-            set { _CurrencyList = value; }
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    _CurrentCurrency = value.ToUpperInvariant();
+                    if (_CurrentCurrency != Currencies.Azn && _CurrentCurrency != Currencies.Eur &&
+                        _CurrentCurrency != Currencies.Usd)
+                    {
+                        _CurrentCurrency = Currencies.Azn;
+                    }
+                }
+                else
+                {
+                    _CurrentCurrency = Currencies.Azn;
+                }
+            }
         }
 
         public bool TimedOut
@@ -447,26 +461,26 @@ namespace CashInTerminal
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
             var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-            if (_CurrencyList != null)
+            //if (_CurrentCurrency != null)
+            //{
+            //    foreach (var item in _CurrentCurrency)
+            //    {
+            switch (_CurrentCurrency)
             {
-                foreach (var item in _CurrencyList)
-                {
-                    switch (item)
-                    {
-                        case Currencies.Azn:
-                            billmask[0] = 0x7D;
-                            break;
+                case Currencies.Azn:
+                    billmask[0] = 0x7D;
+                    break;
 
-                        case Currencies.Eur:
-                            billmask[1] = 0x7F;
-                            break;
+                case Currencies.Eur:
+                    billmask[1] = 0x7F;
+                    break;
 
-                        case Currencies.Usd:
-                            billmask[2] = 0x7F;
-                            break;
-                    }
-                }
+                case Currencies.Usd:
+                    billmask[2] = 0x7F;
+                    break;
             }
+            //    }
+            //}
             //for( int i = 0; i <= 2; i++ )
             //{
             //    billmask[i] = 0xff;
@@ -490,18 +504,18 @@ namespace CashInTerminal
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
             var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-            var curr = currency.ToUpper();
-            if (_CurrencyList == null)
-            {
-                _CurrencyList = new List<string>();
-            }
-            else
-            {
-                _CurrencyList.Clear();
-            }
-            _CurrencyList.Add(curr);
+            CurrentCurrency = currency;
+            //if (_CurrentCurrency == null)
+            //{
+            //    _CurrentCurrency = new List<string>();
+            //}
+            //else
+            //{
+            //    _CurrentCurrency.Clear();
+            //}
+            //_CurrentCurrency.Add(curr);
 
-            switch (curr)
+            switch (CurrentCurrency)
             {
                 case Currencies.Azn:
                     billmask[0] = 0x7D;
@@ -675,108 +689,193 @@ namespace CashInTerminal
                     _DeviceState.StateCodeOut = CCNETCommand.BillAccepting;
                     _DeviceState.Stacking = true;
 
-                    foreach (var currency in _CurrencyList)
+                    _DeviceState.Currency = CurrentCurrency;
+                    switch (_DeviceState.SubStateCode)
                     {
-                        if (currency == Currencies.Azn)
-                        {
-                            _DeviceState.Currency = Currencies.Azn;
-                            switch (_DeviceState.SubStateCode)
-                            {
-                                case CcnetBillTypes.Azn1: // 1 AZN
-                                    _DeviceState.Nominal = 1;
+                        case CcnetBillTypes.Azn1: // 1 AZN
+                            _DeviceState.Nominal = 1;
 
-                                    break;
+                            break;
 
-                                case CcnetBillTypes.Azn5: // 5 AZN
-                                    _DeviceState.Nominal = 5;
-                                    break;
+                        case CcnetBillTypes.Azn5: // 5 AZN
+                            _DeviceState.Nominal = 5;
+                            break;
 
-                                case CcnetBillTypes.Azn10: // 10 AZN
-                                    _DeviceState.Nominal = 10;
-                                    break;
+                        case CcnetBillTypes.Azn10: // 10 AZN
+                            _DeviceState.Nominal = 10;
+                            break;
 
-                                case CcnetBillTypes.Azn20: // 20 AZN
-                                    _DeviceState.Nominal = 20;
-                                    break;
+                        case CcnetBillTypes.Azn20: // 20 AZN
+                            _DeviceState.Nominal = 20;
+                            break;
 
-                                case CcnetBillTypes.Azn50: // 50 AZN
-                                    _DeviceState.Nominal = 50;
-                                    break;
+                        case CcnetBillTypes.Azn50: // 50 AZN
+                            _DeviceState.Nominal = 50;
+                            break;
 
-                                case CcnetBillTypes.Azn100:
-                                    _DeviceState.Nominal = 100;
-                                    break;
-                            }
-                        }
-                        else if (currency == Currencies.Usd)
-                        {
-                            _DeviceState.Currency = Currencies.Usd;
-                            switch (_DeviceState.SubStateCode)
-                            {
-                                case CcnetBillTypes.Usd1:
-                                    _DeviceState.Nominal = 1;
-                                    break;
+                        case CcnetBillTypes.Azn100:
+                            _DeviceState.Nominal = 100;
+                            break;
 
-                                case CcnetBillTypes.Usd2:
-                                    _DeviceState.Nominal = 2;
-                                    break;
+                        case CcnetBillTypes.Usd1:
+                            _DeviceState.Nominal = 1;
+                            break;
 
-                                case CcnetBillTypes.Usd5:
-                                    _DeviceState.Nominal = 5;
-                                    break;
+                        case CcnetBillTypes.Usd2:
+                            _DeviceState.Nominal = 2;
+                            break;
 
-                                case CcnetBillTypes.Usd10:
-                                    _DeviceState.Nominal = 10;
-                                    break;
+                        case CcnetBillTypes.Usd5:
+                            _DeviceState.Nominal = 5;
+                            break;
 
-                                case CcnetBillTypes.Usd20:
-                                    _DeviceState.Nominal = 20;
-                                    break;
+                        case CcnetBillTypes.Usd10:
+                            _DeviceState.Nominal = 10;
+                            break;
 
-                                case CcnetBillTypes.Usd50:
-                                    _DeviceState.Nominal = 50;
-                                    break;
+                        case CcnetBillTypes.Usd20:
+                            _DeviceState.Nominal = 20;
+                            break;
 
-                                case CcnetBillTypes.Usd100:
-                                    _DeviceState.Nominal = 100;
-                                    break;
-                            }
-                        }
-                        else if (currency == Currencies.Eur)
-                        {
-                            _DeviceState.Currency = Currencies.Eur;
-                            switch (_DeviceState.SubStateCode)
-                            {
-                                case CcnetBillTypes.Eur5:
-                                    _DeviceState.Nominal = 5;
-                                    break;
+                        case CcnetBillTypes.Usd50:
+                            _DeviceState.Nominal = 50;
+                            break;
 
-                                case CcnetBillTypes.Eur10:
-                                    _DeviceState.Nominal = 10;
-                                    break;
+                        case CcnetBillTypes.Usd100:
+                            _DeviceState.Nominal = 100;
+                            break;
 
-                                case CcnetBillTypes.Eur20:
-                                    _DeviceState.Nominal = 20;
-                                    break;
+                        case CcnetBillTypes.Eur5:
+                            _DeviceState.Nominal = 5;
+                            break;
 
-                                case CcnetBillTypes.Eur50:
-                                    _DeviceState.Nominal = 50;
-                                    break;
+                        case CcnetBillTypes.Eur10:
+                            _DeviceState.Nominal = 10;
+                            break;
 
-                                case CcnetBillTypes.Eur100:
-                                    _DeviceState.Nominal = 100;
-                                    break;
+                        case CcnetBillTypes.Eur20:
+                            _DeviceState.Nominal = 20;
+                            break;
 
-                                case CcnetBillTypes.Eur200:
-                                    _DeviceState.Nominal = 200;
-                                    break;
+                        case CcnetBillTypes.Eur50:
+                            _DeviceState.Nominal = 50;
+                            break;
 
-                                case CcnetBillTypes.Eur500:
-                                    _DeviceState.Nominal = 500;
-                                    break;
-                            }
-                        }
+                        case CcnetBillTypes.Eur100:
+                            _DeviceState.Nominal = 100;
+                            break;
+
+                        case CcnetBillTypes.Eur200:
+                            _DeviceState.Nominal = 200;
+                            break;
+
+                        case CcnetBillTypes.Eur500:
+                            _DeviceState.Nominal = 500;
+                            break;
                     }
+
+                    //foreach (var currency in _CurrentCurrency)
+                    //{
+                    //    if (currency == Currencies.Azn)
+                    //    {
+                    //        _DeviceState.Currency = Currencies.Azn;
+                    //        switch (_DeviceState.SubStateCode)
+                    //        {
+                    //            case CcnetBillTypes.Azn1: // 1 AZN
+                    //                _DeviceState.Nominal = 1;
+
+                    //                break;
+
+                    //            case CcnetBillTypes.Azn5: // 5 AZN
+                    //                _DeviceState.Nominal = 5;
+                    //                break;
+
+                    //            case CcnetBillTypes.Azn10: // 10 AZN
+                    //                _DeviceState.Nominal = 10;
+                    //                break;
+
+                    //            case CcnetBillTypes.Azn20: // 20 AZN
+                    //                _DeviceState.Nominal = 20;
+                    //                break;
+
+                    //            case CcnetBillTypes.Azn50: // 50 AZN
+                    //                _DeviceState.Nominal = 50;
+                    //                break;
+
+                    //            case CcnetBillTypes.Azn100:
+                    //                _DeviceState.Nominal = 100;
+                    //                break;
+                    //        }
+                    //    }
+                    //    else if (currency == Currencies.Usd)
+                    //    {
+                    //        _DeviceState.Currency = Currencies.Usd;
+                    //        switch (_DeviceState.SubStateCode)
+                    //        {
+                    //            case CcnetBillTypes.Usd1:
+                    //                _DeviceState.Nominal = 1;
+                    //                break;
+
+                    //            case CcnetBillTypes.Usd2:
+                    //                _DeviceState.Nominal = 2;
+                    //                break;
+
+                    //            case CcnetBillTypes.Usd5:
+                    //                _DeviceState.Nominal = 5;
+                    //                break;
+
+                    //            case CcnetBillTypes.Usd10:
+                    //                _DeviceState.Nominal = 10;
+                    //                break;
+
+                    //            case CcnetBillTypes.Usd20:
+                    //                _DeviceState.Nominal = 20;
+                    //                break;
+
+                    //            case CcnetBillTypes.Usd50:
+                    //                _DeviceState.Nominal = 50;
+                    //                break;
+
+                    //            case CcnetBillTypes.Usd100:
+                    //                _DeviceState.Nominal = 100;
+                    //                break;
+                    //        }
+                    //    }
+                    //    else if (currency == Currencies.Eur)
+                    //    {
+                    //        _DeviceState.Currency = Currencies.Eur;
+                    //        switch (_DeviceState.SubStateCode)
+                    //        {
+                    //            case CcnetBillTypes.Eur5:
+                    //                _DeviceState.Nominal = 5;
+                    //                break;
+
+                    //            case CcnetBillTypes.Eur10:
+                    //                _DeviceState.Nominal = 10;
+                    //                break;
+
+                    //            case CcnetBillTypes.Eur20:
+                    //                _DeviceState.Nominal = 20;
+                    //                break;
+
+                    //            case CcnetBillTypes.Eur50:
+                    //                _DeviceState.Nominal = 50;
+                    //                break;
+
+                    //            case CcnetBillTypes.Eur100:
+                    //                _DeviceState.Nominal = 100;
+                    //                break;
+
+                    //            case CcnetBillTypes.Eur200:
+                    //                _DeviceState.Nominal = 200;
+                    //                break;
+
+                    //            case CcnetBillTypes.Eur500:
+                    //                _DeviceState.Nominal = 500;
+                    //                break;
+                    //        }
+                    //    }
+                    //}
 
 
                     if (_DeviceState.Nominal > 0)
