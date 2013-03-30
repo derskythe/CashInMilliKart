@@ -49,212 +49,227 @@
             // btnClientCode9
             // 
             this.btnClientCode9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode9.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode9.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode9.Location = new System.Drawing.Point(754, 51);
+            this.btnClientCode9.Location = new System.Drawing.Point(1021, 119);
             this.btnClientCode9.Name = "btnClientCode9";
-            this.btnClientCode9.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode9.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode9.TabIndex = 33;
             this.btnClientCode9.Text = "9";
-            this.btnClientCode9.UseVisualStyleBackColor = true;
+            this.btnClientCode9.UseVisualStyleBackColor = false;
             this.btnClientCode9.Click += new System.EventHandler(this.BtnClientCode9Click);
             // 
             // btnClientCode8
             // 
             this.btnClientCode8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode8.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode8.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode8.Location = new System.Drawing.Point(700, 51);
+            this.btnClientCode8.Location = new System.Drawing.Point(937, 119);
             this.btnClientCode8.Name = "btnClientCode8";
-            this.btnClientCode8.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode8.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode8.TabIndex = 37;
             this.btnClientCode8.Text = "8";
-            this.btnClientCode8.UseVisualStyleBackColor = true;
+            this.btnClientCode8.UseVisualStyleBackColor = false;
             this.btnClientCode8.Click += new System.EventHandler(this.BtnClientCode8Click);
             // 
             // btnClientCode7
             // 
             this.btnClientCode7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode7.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode7.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode7.Location = new System.Drawing.Point(646, 51);
+            this.btnClientCode7.Location = new System.Drawing.Point(853, 119);
             this.btnClientCode7.Name = "btnClientCode7";
-            this.btnClientCode7.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode7.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode7.TabIndex = 38;
             this.btnClientCode7.Text = "7";
-            this.btnClientCode7.UseVisualStyleBackColor = true;
+            this.btnClientCode7.UseVisualStyleBackColor = false;
             this.btnClientCode7.Click += new System.EventHandler(this.BtnClientCode7Click);
             // 
             // btnClientCode6
             // 
             this.btnClientCode6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode6.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode6.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode6.Location = new System.Drawing.Point(754, 103);
+            this.btnClientCode6.Location = new System.Drawing.Point(1021, 194);
             this.btnClientCode6.Name = "btnClientCode6";
-            this.btnClientCode6.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode6.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode6.TabIndex = 35;
             this.btnClientCode6.Text = "6";
-            this.btnClientCode6.UseVisualStyleBackColor = true;
+            this.btnClientCode6.UseVisualStyleBackColor = false;
             this.btnClientCode6.Click += new System.EventHandler(this.BtnClientCode6Click);
             // 
             // btnClientCode5
             // 
             this.btnClientCode5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode5.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode5.Location = new System.Drawing.Point(700, 103);
+            this.btnClientCode5.Location = new System.Drawing.Point(937, 194);
             this.btnClientCode5.Name = "btnClientCode5";
-            this.btnClientCode5.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode5.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode5.TabIndex = 36;
             this.btnClientCode5.Text = "5";
-            this.btnClientCode5.UseVisualStyleBackColor = true;
+            this.btnClientCode5.UseVisualStyleBackColor = false;
             this.btnClientCode5.Click += new System.EventHandler(this.BtnClientCode5Click);
             // 
             // btnClientCode4
             // 
             this.btnClientCode4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode4.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode4.Location = new System.Drawing.Point(646, 103);
+            this.btnClientCode4.Location = new System.Drawing.Point(853, 194);
             this.btnClientCode4.Name = "btnClientCode4";
-            this.btnClientCode4.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode4.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode4.TabIndex = 41;
             this.btnClientCode4.Text = "4";
-            this.btnClientCode4.UseVisualStyleBackColor = true;
+            this.btnClientCode4.UseVisualStyleBackColor = false;
             this.btnClientCode4.Click += new System.EventHandler(this.BtnClientCode4Click);
             // 
             // btnClientCode3
             // 
             this.btnClientCode3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode3.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode3.Location = new System.Drawing.Point(754, 157);
+            this.btnClientCode3.Location = new System.Drawing.Point(1021, 269);
             this.btnClientCode3.Name = "btnClientCode3";
-            this.btnClientCode3.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode3.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode3.TabIndex = 42;
             this.btnClientCode3.Text = "3";
-            this.btnClientCode3.UseVisualStyleBackColor = true;
+            this.btnClientCode3.UseVisualStyleBackColor = false;
             this.btnClientCode3.Click += new System.EventHandler(this.BtnClientCode3Click);
             // 
             // btnClientCode2
             // 
             this.btnClientCode2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode2.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode2.Location = new System.Drawing.Point(700, 157);
+            this.btnClientCode2.Location = new System.Drawing.Point(937, 269);
             this.btnClientCode2.Name = "btnClientCode2";
-            this.btnClientCode2.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode2.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode2.TabIndex = 39;
             this.btnClientCode2.Text = "2";
-            this.btnClientCode2.UseVisualStyleBackColor = true;
+            this.btnClientCode2.UseVisualStyleBackColor = false;
             this.btnClientCode2.Click += new System.EventHandler(this.BtnClientCode2Click);
             // 
             // btnClientCode1
             // 
             this.btnClientCode1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode1.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode1.Location = new System.Drawing.Point(646, 157);
+            this.btnClientCode1.Location = new System.Drawing.Point(853, 269);
             this.btnClientCode1.Name = "btnClientCode1";
-            this.btnClientCode1.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode1.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode1.TabIndex = 40;
             this.btnClientCode1.Text = "1";
-            this.btnClientCode1.UseVisualStyleBackColor = true;
+            this.btnClientCode1.UseVisualStyleBackColor = false;
             this.btnClientCode1.Click += new System.EventHandler(this.BtnClientCode1Click);
             // 
             // btnClientCodeClear
             // 
             this.btnClientCodeClear.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCodeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCodeClear.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCodeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeClear.Location = new System.Drawing.Point(754, 209);
+            this.btnClientCodeClear.Location = new System.Drawing.Point(1021, 344);
             this.btnClientCodeClear.Name = "btnClientCodeClear";
-            this.btnClientCodeClear.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCodeClear.Size = new System.Drawing.Size(78, 69);
             this.btnClientCodeClear.TabIndex = 34;
             this.btnClientCodeClear.Text = "C";
-            this.btnClientCodeClear.UseVisualStyleBackColor = true;
+            this.btnClientCodeClear.UseVisualStyleBackColor = false;
             this.btnClientCodeClear.Click += new System.EventHandler(this.BtnClientCodeClearClick);
             // 
             // btnClientCode0
             // 
             this.btnClientCode0.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCode0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCode0.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCode0.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode0.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode0.Location = new System.Drawing.Point(700, 209);
+            this.btnClientCode0.Location = new System.Drawing.Point(937, 344);
             this.btnClientCode0.Name = "btnClientCode0";
-            this.btnClientCode0.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCode0.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode0.TabIndex = 31;
             this.btnClientCode0.Text = "0";
-            this.btnClientCode0.UseVisualStyleBackColor = true;
+            this.btnClientCode0.UseVisualStyleBackColor = false;
             this.btnClientCode0.Click += new System.EventHandler(this.BtnClientCode0Click);
             // 
             // btnClientCodeBackspace
             // 
             this.btnClientCodeBackspace.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClientCodeBackspace.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnClientCodeBackspace.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCodeBackspace.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeBackspace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeBackspace.Location = new System.Drawing.Point(646, 209);
+            this.btnClientCodeBackspace.Location = new System.Drawing.Point(853, 344);
             this.btnClientCodeBackspace.Name = "btnClientCodeBackspace";
-            this.btnClientCodeBackspace.Size = new System.Drawing.Size(48, 46);
+            this.btnClientCodeBackspace.Size = new System.Drawing.Size(78, 69);
             this.btnClientCodeBackspace.TabIndex = 32;
             this.btnClientCodeBackspace.Text = "◄";
-            this.btnClientCodeBackspace.UseVisualStyleBackColor = true;
+            this.btnClientCodeBackspace.UseVisualStyleBackColor = false;
             this.btnClientCodeBackspace.Click += new System.EventHandler(this.BtnClientCodeBackspaceClick);
             // 
             // lblClientCode
             // 
             this.lblClientCode.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblClientCode.AutoSize = true;
-            this.lblClientCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.lblClientCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblClientCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblClientCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblClientCode.Location = new System.Drawing.Point(120, 61);
+            this.lblClientCode.Location = new System.Drawing.Point(104, 119);
             this.lblClientCode.Name = "lblClientCode";
-            this.lblClientCode.Size = new System.Drawing.Size(274, 24);
+            this.lblClientCode.Size = new System.Drawing.Size(499, 42);
             this.lblClientCode.TabIndex = 30;
             this.lblClientCode.Text = "Подтвердите номер счета";
             // 
             // txtClientCodeClient
             // 
             this.txtClientCodeClient.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtClientCodeClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.txtClientCodeClient.Location = new System.Drawing.Point(124, 96);
+            this.txtClientCodeClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.txtClientCodeClient.Location = new System.Drawing.Point(111, 177);
             this.txtClientCodeClient.Name = "txtClientCodeClient";
-            this.txtClientCodeClient.Size = new System.Drawing.Size(389, 29);
+            this.txtClientCodeClient.Size = new System.Drawing.Size(389, 49);
             this.txtClientCodeClient.TabIndex = 29;
             this.txtClientCodeClient.Click += new System.EventHandler(this.TxtClientCodeClientClick);
             // 
             // btnClientCodeBack
             // 
             this.btnClientCodeBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClientCodeBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCodeBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCodeBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeBack.Location = new System.Drawing.Point(12, 428);
+            this.btnClientCodeBack.Location = new System.Drawing.Point(12, 557);
             this.btnClientCodeBack.Name = "btnClientCodeBack";
-            this.btnClientCodeBack.Size = new System.Drawing.Size(260, 50);
+            this.btnClientCodeBack.Size = new System.Drawing.Size(321, 76);
             this.btnClientCodeBack.TabIndex = 28;
             this.btnClientCodeBack.Text = "Назад";
-            this.btnClientCodeBack.UseVisualStyleBackColor = true;
+            this.btnClientCodeBack.UseVisualStyleBackColor = false;
             this.btnClientCodeBack.Click += new System.EventHandler(this.BtnClientCodeBackClick);
             // 
             // btnClientCodeNext
             // 
             this.btnClientCodeNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClientCodeNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnClientCodeNext.BackColor = System.Drawing.Color.Transparent;
+            this.btnClientCodeNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeNext.Location = new System.Drawing.Point(651, 428);
+            this.btnClientCodeNext.Location = new System.Drawing.Point(853, 557);
             this.btnClientCodeNext.Name = "btnClientCodeNext";
-            this.btnClientCodeNext.Size = new System.Drawing.Size(260, 50);
+            this.btnClientCodeNext.Size = new System.Drawing.Size(321, 76);
             this.btnClientCodeNext.TabIndex = 27;
             this.btnClientCodeNext.Text = "Дальше";
-            this.btnClientCodeNext.UseVisualStyleBackColor = true;
+            this.btnClientCodeNext.UseVisualStyleBackColor = false;
             this.btnClientCodeNext.Click += new System.EventHandler(this.BtnClientCodeNextClick);
             // 
-            // FormCreditByClientCodeRetype
+            // FormCreditByBolcardRetype
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 490);
+            this.ClientSize = new System.Drawing.Size(1186, 645);
             this.Controls.Add(this.btnClientCode9);
             this.Controls.Add(this.btnClientCode8);
             this.Controls.Add(this.btnClientCode7);
@@ -272,7 +287,7 @@
             this.Controls.Add(this.btnClientCodeBack);
             this.Controls.Add(this.btnClientCodeNext);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "FormCreditByClientCodeRetype";
+            this.Name = "FormCreditByBolcardRetype";
             this.Text = "FormCreditByClientCode";
             this.Load += new System.EventHandler(this.FormCreditByClientCodeRetypeLoad);
             this.Controls.SetChildIndex(this.btnClientCodeNext, 0);

@@ -60,5 +60,50 @@ namespace CashInTerminal
                     break;
             }
         }
+
+        private void lbl8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblApplicationVersion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

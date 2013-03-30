@@ -35,11 +35,12 @@
             // label10
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label10.Location = new System.Drawing.Point(105, 134);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(713, 24);
+            this.label10.Size = new System.Drawing.Size(713, 75);
             this.label10.TabIndex = 10;
             this.label10.Text = "Не правильный номер. ";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -47,14 +48,15 @@
             // btbBack
             // 
             this.btbBack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btbBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btbBack.BackColor = System.Drawing.Color.Transparent;
+            this.btbBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btbBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btbBack.Location = new System.Drawing.Point(331, 428);
+            this.btbBack.Location = new System.Drawing.Point(301, 402);
             this.btbBack.Name = "btbBack";
-            this.btbBack.Size = new System.Drawing.Size(260, 50);
+            this.btbBack.Size = new System.Drawing.Size(321, 76);
             this.btbBack.TabIndex = 9;
             this.btbBack.Text = "Назад";
-            this.btbBack.UseVisualStyleBackColor = true;
+            this.btbBack.UseVisualStyleBackColor = false;
             this.btbBack.Click += new System.EventHandler(this.BtbBackClick);
             // 
             // FormInvalidNumber
@@ -67,6 +69,8 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormInvalidNumber";
             this.Text = "FormInvalidNumber";
+            this.Controls.SetChildIndex(this.btbBack, 0);
+            this.Controls.SetChildIndex(this.label10, 0);
             this.ResumeLayout(false);
 
         }

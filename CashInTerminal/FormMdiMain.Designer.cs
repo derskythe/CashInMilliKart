@@ -34,6 +34,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(292, 24);
@@ -58,6 +59,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMdiMainFormClosing);
             this.Load += new System.EventHandler(this.FormMdiMainLoad);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormMdiMainPaint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

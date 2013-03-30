@@ -38,40 +38,43 @@ namespace CashInTerminal
             // btnEnglish
             // 
             this.btnEnglish.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEnglish.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnEnglish.BackColor = System.Drawing.Color.Transparent;
+            this.btnEnglish.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnEnglish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnglish.Location = new System.Drawing.Point(354, 368);
+            this.btnEnglish.Location = new System.Drawing.Point(178, 354);
             this.btnEnglish.Name = "btnEnglish";
-            this.btnEnglish.Size = new System.Drawing.Size(260, 50);
+            this.btnEnglish.Size = new System.Drawing.Size(613, 79);
             this.btnEnglish.TabIndex = 5;
             this.btnEnglish.Text = "English";
-            this.btnEnglish.UseVisualStyleBackColor = true;
+            this.btnEnglish.UseVisualStyleBackColor = false;
             this.btnEnglish.Click += new System.EventHandler(this.BtnEnglishClick);
             // 
             // btnRussian
             // 
             this.btnRussian.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRussian.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnRussian.BackColor = System.Drawing.Color.Transparent;
+            this.btnRussian.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnRussian.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRussian.Location = new System.Drawing.Point(354, 249);
+            this.btnRussian.Location = new System.Drawing.Point(178, 235);
             this.btnRussian.Name = "btnRussian";
-            this.btnRussian.Size = new System.Drawing.Size(260, 50);
+            this.btnRussian.Size = new System.Drawing.Size(613, 79);
             this.btnRussian.TabIndex = 4;
             this.btnRussian.Text = "Russian";
-            this.btnRussian.UseVisualStyleBackColor = true;
+            this.btnRussian.UseVisualStyleBackColor = false;
             this.btnRussian.Click += new System.EventHandler(this.BtnRussianClick);
             // 
             // btnAzeri
             // 
             this.btnAzeri.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAzeri.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnAzeri.BackColor = System.Drawing.Color.Transparent;
+            this.btnAzeri.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnAzeri.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAzeri.Location = new System.Drawing.Point(354, 124);
+            this.btnAzeri.Location = new System.Drawing.Point(178, 110);
             this.btnAzeri.Name = "btnAzeri";
-            this.btnAzeri.Size = new System.Drawing.Size(260, 50);
+            this.btnAzeri.Size = new System.Drawing.Size(613, 79);
             this.btnAzeri.TabIndex = 3;
             this.btnAzeri.Text = "Azeri";
-            this.btnAzeri.UseVisualStyleBackColor = true;
+            this.btnAzeri.UseVisualStyleBackColor = false;
             this.btnAzeri.Click += new System.EventHandler(this.BtnAzeriClick);
             // 
             // FormLanguage

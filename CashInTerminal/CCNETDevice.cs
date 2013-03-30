@@ -373,6 +373,11 @@ namespace CashInTerminal
 
         private void AddPacket(byte[] buffer, int startIndex)
         {
+            if (buffer == null)
+            {
+                return;
+            }
+
             CCNETPacket packet = CreatePacket(buffer, startIndex);
 
             if (packet.Cmd != (byte)CCNETCommand.Ok || packet.Cmd != (byte)CCNETCommand.NotMount)
@@ -591,6 +596,11 @@ namespace CashInTerminal
 
         private void ParseCommand(CCNETPacket packet)
         {
+            if (packet == null)
+            {
+                Log.Warn("Packet is null");
+                return;
+            }
             //int length;
             //int lenCommand = packet.Lng;
 

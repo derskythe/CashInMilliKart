@@ -58,6 +58,7 @@ namespace CashInTerminal
             }
 
             dataGridSelect.Rows.AddRange(rows.ToArray());
+            ResizeDataGrid(dataGridSelect);
         }
 
         private void DataGridSelectCellClick(object sender, DataGridViewCellEventArgs e)

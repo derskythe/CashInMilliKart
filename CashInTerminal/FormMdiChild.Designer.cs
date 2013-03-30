@@ -34,6 +34,7 @@
             // lblApplicationVersion
             // 
             this.lblApplicationVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblApplicationVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblApplicationVersion.Location = new System.Drawing.Point(12, 9);
             this.lblApplicationVersion.Name = "lblApplicationVersion";
             this.lblApplicationVersion.Size = new System.Drawing.Size(178, 17);
@@ -43,7 +44,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 490);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
+            this.ClientSize = new System.Drawing.Size(1186, 645);
             this.ControlBox = false;
             this.Controls.Add(this.lblApplicationVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

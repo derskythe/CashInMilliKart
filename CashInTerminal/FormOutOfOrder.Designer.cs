@@ -39,11 +39,12 @@
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label4.Location = new System.Drawing.Point(105, 286);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(713, 24);
+            this.label4.Size = new System.Drawing.Size(713, 135);
             this.label4.TabIndex = 9;
             this.label4.Text = "Терминал временно не работает. Приносим извинения";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -52,6 +53,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(331, 13);
             this.pictureBox1.Name = "pictureBox1";
