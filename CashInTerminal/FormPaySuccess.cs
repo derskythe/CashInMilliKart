@@ -263,7 +263,13 @@ namespace CashInTerminal
             value = value.Replace(TemplateFields.DateTime, _DateNow);
             value = value.Replace(TemplateFields.OperationCode, FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
             value = value.Replace(TemplateFields.ProductName, "Credit payment");
-            value = value.Replace(TemplateFields.TerminalId, FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+                        value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+            if (FormMain.TerminalInfo != null)
+            {
+                value = value.Replace(TemplateFields.Branch, FormMain.TerminalInfo.BranchName);
+                value = value.Replace(TemplateFields.TerminalId, FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture));
+                value = value.Replace(TemplateFields.Address, FormMain.TerminalInfo.Address);
+            }
             value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
 
             return value;

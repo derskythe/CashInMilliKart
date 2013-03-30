@@ -182,7 +182,12 @@ namespace CashInTerminal
             value = value.Replace(TemplateFields.DateTime, _DateNow);
             value = value.Replace(TemplateFields.OperationCode, String.Empty);
             value = value.Replace(TemplateFields.ProductName, String.Empty);
-            value = value.Replace(TemplateFields.TerminalId, FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+            if (FormMain.TerminalInfo != null)
+            {
+                value = value.Replace(TemplateFields.Branch, FormMain.TerminalInfo.BranchName);
+                value = value.Replace(TemplateFields.TerminalId, FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture));
+                value = value.Replace(TemplateFields.Address, FormMain.TerminalInfo.Address);
+            }
             value = value.Replace(TemplateFields.TransactionId, String.Empty);
 
             return value;

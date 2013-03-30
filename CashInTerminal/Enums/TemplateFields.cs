@@ -11,5 +11,7 @@
         public const string ProductName = "[ProductName]";
         public const string ClientCode = "[ClientCode]";
         public const string ClientAccount = "[ClientAccount]";
+        public const string Branch = "[Branch]";
+        public const string Address = "[Address]";
     }
 }
