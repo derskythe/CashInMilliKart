@@ -130,6 +130,25 @@ namespace Db
             return result;
         }
 
+        public static TerminalStatusCode ToTerminalStatusCode(ds.V_TERMINAL_STATUS_CODESRow row)
+        {
+            var terminalStatusDesc = new MultiLanguageString(
+               row.IsTERMINAL_STATUS_ENNull() ? String.Empty : row.TERMINAL_STATUS_EN,
+               row.IsTERMINAL_STATUS_RUNull() ? String.Empty : row.TERMINAL_STATUS_RU,
+               row.IsTERMINAL_STATUS_AZNull() ? String.Empty : row.TERMINAL_STATUS_AZ
+               );
+
+            var result = new TerminalStatusCode
+                {
+                    Id = Convert.ToInt32(row.ID),
+                    Name = row.IsNAMENull() ? String.Empty : row.NAME,
+                    Type = Convert.ToInt32(row.TYPE),
+                    Value = terminalStatusDesc
+                };
+
+            return result;
+        }
+
         public static Terminal ToTerminal(ds.V_LIST_ENCASHMENTRow row)
         {
             var terminalStatusDesc = new MultiLanguageString(
@@ -324,13 +343,31 @@ namespace Db
         public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, List<EncashmentCurrency> currencies, Terminal terminal, String username)
         {
             var result = new Encashment
+            {
+                Currencies = currencies.ToArray(),
+                Id = Convert.ToInt32(row.ID),
+                InsertDate = row.INSERT_DATE,
+                TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),
+                Terminal = terminal,
+                Username = username,
+                Count = 0
+            };
+
+            return result;
+        }
+
+        public static Encashment ToEncashment(ds.V_LIST_ENCASHMENTRow row, List<EncashmentCurrency> currencies, Terminal terminal, String username, List<Banknote> banknotes)
+        {
+            var result = new Encashment
                 {
                     Currencies = currencies.ToArray(),
                     Id = Convert.ToInt32(row.ID),
                     InsertDate = row.INSERT_DATE,
                     TerminalId = row.IsTERMINAL_IDNull() ? Int32.MinValue : Convert.ToInt32(row.TERMINAL_ID),
                     Terminal = terminal,
-                    Username = username
+                    Username = username,
+                    Banknotes = banknotes,
+                    Count = banknotes.Count
                 };
 
             return result;
@@ -347,7 +384,7 @@ namespace Db
             return result;
         }
 
-        public static ProductHistory ToProductHistory(ds.V_PRODUCTS_HISTORYRow row, List<ProductHistoryValue> values)
+        public static ProductHistory ToProductHistory(ds.V_PRODUCTS_HISTORYRow row, List<ProductHistoryValue> values, List<Banknote> banknotes)
         {
             var result = new ProductHistory
                 {
@@ -367,7 +404,8 @@ namespace Db
                     ProductId = row.PRODUCT_ID,
                     ProductName = row.IsPRODUCT_NAMENull() ? String.Empty : row.PRODUCT_NAME,
                     Rate = row.IsRATENull() ? 1 : row.RATE,
-                    TransactionId = row.IsTRANSACTION_IDNull() ? String.Empty : row.TRANSACTION_ID
+                    TransactionId = row.IsTRANSACTION_IDNull() ? String.Empty : row.TRANSACTION_ID,
+                    Banknotes = banknotes
                 };
 
             return result;

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Containers
@@ -28,6 +26,7 @@ namespace Containers
         private string _NameRu;
         private string _NameEn;
         private List<ProductHistoryValue> _Values;
+        private List<Banknote> _Banknotes;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
@@ -165,6 +164,14 @@ namespace Containers
             set { _Values = value; }
         }
 
+        [XmlArray("Banknotes")]
+        [DataMember(Name = "Banknotes")]
+        public List<Banknote> Banknotes
+        {
+            get { return _Banknotes; }
+            set { _Banknotes = value; }
+        }
+
         public ProductHistory()
         {
         }
@@ -193,9 +200,10 @@ namespace Containers
         {
             return
                 string.Format(
-                    "Id: {0}, TransactionId: {1}, TerminalId: {2}, Name: {3}, Address: {4}, IdentityName: {5}, ProductId: {6}, CurrencyId: {7}, Rate: {8}, InsertDate: {9}, Amount: {10}, TerminalDate: {11}, ProductName: {12}, NameAz: {13}, NameRu: {14}, NameEn: {15}, Values: {16}",
+                    "Id: {0}, TransactionId: {1}, TerminalId: {2}, Name: {3}, Address: {4}, IdentityName: {5}, ProductId: {6}, CurrencyId: {7}, Rate: {8}, InsertDate: {9}, Amount: {10}, TerminalDate: {11}, ProductName: {12}, NameAz: {13}, NameRu: {14}, NameEn: {15}, Values: {16}, Banknotes: {17}",
                     _Id, _TransactionId, _TerminalId, _Name, _Address, _IdentityName, _ProductId, _CurrencyId, _Rate,
-                    _InsertDate, _Amount, _TerminalDate, _ProductName, _NameAz, _NameRu, _NameEn, EnumEx.GetStringFromArray(_Values));
+                    _InsertDate, _Amount, _TerminalDate, _ProductName, _NameAz, _NameRu, _NameEn,
+                    EnumEx.GetStringFromArray(_Values), EnumEx.GetStringFromArray(_Banknotes));
         }
     }
 }

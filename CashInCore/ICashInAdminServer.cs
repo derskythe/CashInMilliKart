@@ -41,22 +41,28 @@ namespace CashInCore
         ListRolesResult ListRoles(String sid);
 
         [OperationContract]
-        ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage);
+        ListTerminalsResult ListTerminals(string sid, TerminalColumns sortColumn, SortType sortType, int rowNum,
+                                          int perPage);
 
         [OperationContract]
-        ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage);
+        ListEncashmentResult ListEncashment(string sid, EncashmentColumns sortColumn, SortType sortType, int rowNum,
+                                            int perPage);
 
         [OperationContract]
         ListProductsResult ListProducts(String sid);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage);
+        ListProductHistoryResult ListProductHistory(string sid, ProductHistoryColumns sortColumn, SortType sortType,
+                                                    int rowNum, int perPage);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to, ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage);
+        ListProductHistoryResult ListProductHistoryByDate(string sid, DateTime from, DateTime to,
+                                                          ProductHistoryColumns sortColumn, SortType sortType,
+                                                          int rowNum, int perPage);
 
         [OperationContract]
-        ListProductHistoryResult ListProductHistoryByTransactionId(string sid, string transactionId, ProductHistoryColumns sortColumn, SortType sortType);
+        ListProductHistoryResult ListProductHistoryByTransactionId(string sid, string transactionId,
+                                                                   ProductHistoryColumns sortColumn, SortType sortType);
 
         [OperationContract]
         User GetUser(String sid, String username);
@@ -126,5 +132,30 @@ namespace CashInCore
 
         [OperationContract]
         ListCheckTemplateResult GetCheckTemplates(int id);
+
+        [OperationContract]
+        ListEncashmentResult ListEncashmentByTerminal(string sid, int terminalId, EncashmentColumns sortColumn,
+                                                      SortType sortType, int rowNum, int perPage);
+
+        [OperationContract]
+        ListTerminalsResult ListTerminalsByTerminalStatus(string sid, int statusId, TerminalColumns sortColumn,
+                                                          SortType sortType, int rowNum, int perPage);
+        [OperationContract]
+        ListTerminalsResult ListTerminalsByBranchId(string sid, int id, TerminalColumns sortColumn, SortType sortType,
+                                                    int rowNum, int perPage);
+
+        [OperationContract]
+        ListEncashmentResult ListEncashmentByBranchId(string sid, int branchId, EncashmentColumns sortColumn,
+                                                      SortType sortType, int rowNum, int perPage);
+        [OperationContract]
+        ListEncashmentResult ListEncashmentByDate(string sid, DateTime from, DateTime to, EncashmentColumns sortColumn,
+                                                  SortType sortType, int rowNum, int perPage);
+        [OperationContract]
+        ListTerminalStatusResult ListTerminalStatusCode(String sid);
+
+        [OperationContract]
+        ListEncashmentResult ListEncashmentByAllParams(string sid, int terminalId, int branchId, DateTime from,
+                                                       DateTime to, EncashmentColumns sortColumn, SortType sortType,
+                                                       int rowNum, int perPage);
     }
 }

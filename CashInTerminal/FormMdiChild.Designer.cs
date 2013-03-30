@@ -51,6 +51,7 @@
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormLanguageLoad);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormMdiChildPaint);
             this.ResumeLayout(false);
 
         }

@@ -116,7 +116,7 @@ namespace Db
             cmd.Parameters.Add("v_ip", OracleDbType.Varchar2, ParameterDirection.Input).Value = terminal.Ip;
             cmd.Parameters.Add("v_tmp_key", OracleDbType.Blob, ParameterDirection.Input).Value = terminal.TmpKey;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
-            cmd.Parameters.Add("v_branch_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal.BranchId;            
+            cmd.Parameters.Add("v_branch_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal.BranchId;
             cmd.Parameters.Add("v_return_id", OracleDbType.Int32, ParameterDirection.Output);
 
             cmd.ExecuteNonQuery();
@@ -413,6 +413,111 @@ namespace Db
                 return null;
             }
 
+            var column = GetTerminalSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_terminals t) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage);
+            //string cmdtxt = String.Format("SELECT * FROM v_list_terminals t ORDER BY {0} {1}", column,
+            //                              sortType.ToString());
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            //cmd.Parameters.Add("rowNum", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum;
+            //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_TERMINALSDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Terminal>();
+            foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
+            {
+                result.Add(Convertor.ToTerminal(item));
+            }
+
+            return result.ToArray();
+        }
+
+        public Terminal[] ListTerminals(int terminalStatus, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            IDbCommand command = new OracleCommand();
+            command.CommandText = String.Format("SELECT COUNT(*) FROM v_list_terminals t WHERE t.LAST_STATUS_TYPE = {0}",
+                terminalStatus);
+            command.CommandType = CommandType.Text;
+            command.Connection = _OraCon;
+            object rawValue = command.ExecuteScalar();
+            count = rawValue != null ? Convert.ToInt32(rawValue) : 0;
+
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            var column = GetTerminalSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_terminals t WHERE t.LAST_STATUS_TYPE = {4}) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage, terminalStatus);
+            //string cmdtxt = String.Format("SELECT * FROM v_list_terminals t ORDER BY {0} {1}", column,
+            //                              sortType.ToString());
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            //cmd.Parameters.Add("rowNum", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum;
+            //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_TERMINALSDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Terminal>();
+            foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
+            {
+                result.Add(Convertor.ToTerminal(item));
+            }
+
+            return result.ToArray();
+        }
+
+        public Terminal[] ListTerminalsByBranchId(int branchId, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            IDbCommand command = new OracleCommand();
+            command.CommandText = String.Format("SELECT COUNT(*) FROM v_list_terminals t WHERE t.BRANCH_ID = {0}",
+                branchId);
+            command.CommandType = CommandType.Text;
+            command.Connection = _OraCon;
+            object rawValue = command.ExecuteScalar();
+            count = rawValue != null ? Convert.ToInt32(rawValue) : 0;
+
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            var column = GetTerminalSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_terminals t WHERE t.BRANCH_ID = {4}) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage, branchId);
+            //string cmdtxt = String.Format("SELECT * FROM v_list_terminals t ORDER BY {0} {1}", column,
+            //                              sortType.ToString());
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            //cmd.Parameters.Add("rowNum", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum;
+            //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_TERMINALSDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Terminal>();
+            foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
+            {
+                result.Add(Convertor.ToTerminal(item));
+            }
+
+            return result.ToArray();
+        }
+
+        private static string GetTerminalSortColumn(TerminalColumns sortColumn)
+        {
             var column = String.Empty;
             switch (sortColumn)
             {
@@ -484,26 +589,7 @@ namespace Db
                     column = "t.BRANCH_NAME";
                     break;
             }
-
-            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_terminals t) WHERE rn BETWEEN {2} and {3} ORDER BY rn", 
-                column, sortType.ToString(), rowNum, rowNum + perPage);
-            //string cmdtxt = String.Format("SELECT * FROM v_list_terminals t ORDER BY {0} {1}", column,
-            //                              sortType.ToString());
-            var cmd = new OracleCommand(cmdtxt, _OraCon);
-            //cmd.Parameters.Add("rowNum", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum;
-            //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
-
-            var adapter = new OracleDataAdapter(cmd);
-            var table = new ds.V_LIST_TERMINALSDataTable();
-            adapter.Fill(table);
-
-            var result = new List<Terminal>();
-            foreach (ds.V_LIST_TERMINALSRow item in table.Rows)
-            {
-                result.Add(Convertor.ToTerminal(item));
-            }
-
-            return result.ToArray();
+            return column;
         }
 
         public List<Encashment> ListEncashment(EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
@@ -522,6 +608,37 @@ namespace Db
                 return null;
             }
 
+            var column = GetEncashmentSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_encashment t) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage);
+
+            //string cmdtxt = String.Format("SELECT * FROM v_list_encashment t ORDER BY {0} {1}", column,
+            //                              sortType.ToString());
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            //cmd.Parameters.Add("rowNum", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum;
+            //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_ENCASHMENTDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Encashment>();
+
+            foreach (ds.V_LIST_ENCASHMENTRow row in table.Rows)
+            {
+                var fields = ListEncashmentCurrencies(row.ID);
+                var terminal = Convertor.ToTerminal(row);
+                var username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME;
+
+                result.Add(Convertor.ToEncashment(row, fields, terminal, username));
+            }
+
+            return result;
+        }
+
+        private static string GetEncashmentSortColumn(EncashmentColumns sortColumn)
+        {
             var column = String.Empty;
             switch (sortColumn)
             {
@@ -541,15 +658,251 @@ namespace Db
                     column = "t.username";
                     break;
             }
+            return column;
+        }
 
-            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_encashment t) WHERE rn BETWEEN {2} and {3} ORDER BY rn", 
-                column, sortType.ToString(), rowNum, rowNum + perPage);
+        public List<Encashment> ListEncashment(int terminalId, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            IDbCommand command = new OracleCommand();
+            command.CommandText = String.Format("SELECT COUNT(*) FROM v_list_encashment t WHERE t.terminal_id = {0}",
+                terminalId);
+            command.CommandType = CommandType.Text;
+            command.Connection = _OraCon;
+            object rawValue = command.ExecuteScalar();
+            count = rawValue != null ? Convert.ToInt32(rawValue) : 0;
+
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            var column = GetEncashmentSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_encashment t WHERE t.terminal_id = {4}) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage, terminalId);
 
             //string cmdtxt = String.Format("SELECT * FROM v_list_encashment t ORDER BY {0} {1}", column,
             //                              sortType.ToString());
             var cmd = new OracleCommand(cmdtxt, _OraCon);
             //cmd.Parameters.Add("rowNum", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum;
             //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_ENCASHMENTDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Encashment>();
+
+            foreach (ds.V_LIST_ENCASHMENTRow row in table.Rows)
+            {
+                var fields = ListEncashmentCurrencies(row.ID);
+                var terminal = Convertor.ToTerminal(row);
+                var username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME;
+
+                result.Add(Convertor.ToEncashment(row, fields, terminal, username));
+            }
+
+            return result;
+        }
+
+        public List<Encashment> ListEncashmentBranchId(int id, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            var command = new OracleCommand("SELECT COUNT(*) FROM v_list_encashment t WHERE t.BRANCH_ID = :branchId")
+                {
+                    CommandType = CommandType.Text,
+                    Connection = _OraCon
+                };
+            command.Parameters.Add("branchId", OracleDbType.Int32, ParameterDirection.Input).Value = id;
+            object rawValue = command.ExecuteScalar();
+            count = rawValue != null ? Convert.ToInt32(rawValue) : 0;
+
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            var column = GetEncashmentSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_encashment t WHERE t.BRANCH_ID = :branchId) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage);
+
+            //string cmdtxt = String.Format("SELECT * FROM v_list_encashment t ORDER BY {0} {1}", column,
+            //                              sortType.ToString());
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            cmd.Parameters.Add("branchId", OracleDbType.Int32, ParameterDirection.Input).Value = id;
+            //cmd.Parameters.Add("rowNum2", OracleDbType.Int32, ParameterDirection.Input).Value = rowNum + perPage;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_ENCASHMENTDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Encashment>();
+
+            foreach (ds.V_LIST_ENCASHMENTRow row in table.Rows)
+            {
+                var fields = ListEncashmentCurrencies(row.ID);
+                var terminal = Convertor.ToTerminal(row);
+                var username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME;
+
+                result.Add(Convertor.ToEncashment(row, fields, terminal, username));
+            }
+
+            return result;
+        }
+
+        public List<Encashment> ListEncashment(int terminalId, int branchId, DateTime from, DateTime to, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            var command = new OracleCommand
+            {
+                CommandType = CommandType.Text,
+                Connection = _OraCon
+            };
+
+            var cmd = new OracleCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = _OraCon;
+
+            const string sql = "SELECT COUNT(*) FROM v_list_encashment t";
+            var whereSql = String.Empty;
+
+            // Bind by name not exists!
+            if (terminalId > 0)
+            {
+                whereSql = " WHERE t.terminal_id = :terminalId ";
+                command.Parameters.Add("terminalId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+                cmd.Parameters.Add("terminalId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+            }
+            if (branchId > 0)
+            {
+                if (String.IsNullOrEmpty(whereSql))
+                {
+                    whereSql = " WHERE t.BRANCH_ID = :branchId ";
+                }
+                else
+                {
+                    whereSql += " AND t.BRANCH_ID = :branchId ";
+                }
+
+                command.Parameters.Add("branchId", OracleDbType.Int32, ParameterDirection.Input).Value = branchId;
+                cmd.Parameters.Add("branchId", OracleDbType.Int32, ParameterDirection.Input).Value = branchId;
+            }
+
+            if (from != DateTime.MinValue && to != DateTime.MinValue)
+            {
+                if (String.IsNullOrEmpty(whereSql))
+                {
+                    whereSql = " WHERE t.insert_date BETWEEN :dateFrom AND :dateTo ";
+                }
+                else
+                {
+                    whereSql += " AND t.insert_date BETWEEN :dateFrom AND :dateTo ";
+                }
+
+                command.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+                command.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+                cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+                cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+            }
+            else if (from != DateTime.MinValue)
+            {
+                if (String.IsNullOrEmpty(whereSql))
+                {
+                    whereSql = " WHERE t.insert_date > :dateFrom ";
+                }
+                else
+                {
+                    whereSql += " AND t.insert_date > :dateFrom ";
+                }
+
+                command.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+                cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+            }
+            else if (to != DateTime.MinValue)
+            {
+                if (String.IsNullOrEmpty(whereSql))
+                {
+                    whereSql = " WHERE t.insert_date < :dateTo ";
+                }
+                else
+                {
+                    whereSql += " AND t.insert_date < :dateTo ";
+                }
+
+                command.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+                cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+            }
+
+            command.CommandText = sql + whereSql;
+            Log.Debug(sql + whereSql);
+
+            object rawValue = command.ExecuteScalar();
+            count = rawValue != null ? Convert.ToInt32(rawValue) : 0;
+
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            var column = GetEncashmentSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_encashment t {4}) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage, whereSql);
+            cmd.CommandText = cmdtxt;
+            Log.Debug(cmdtxt);
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_ENCASHMENTDataTable();
+            adapter.Fill(table);
+
+            var result = new List<Encashment>();
+
+            foreach (ds.V_LIST_ENCASHMENTRow row in table.Rows)
+            {
+                var fields = ListEncashmentCurrencies(row.ID);
+                var terminal = Convertor.ToTerminal(row);
+                var username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME;
+
+                result.Add(Convertor.ToEncashment(row, fields, terminal, username));
+            }
+
+            return result;
+        }
+
+        public List<Encashment> ListEncashment(DateTime from, DateTime to, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            var command = new OracleCommand("SELECT COUNT(*) FROM v_list_encashment t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo")
+                {
+                    CommandType = CommandType.Text,
+                    Connection = _OraCon
+                };
+            command.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+            command.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+            object rawValue = command.ExecuteScalar();
+            count = rawValue != null ? Convert.ToInt32(rawValue) : 0;
+
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            var column = GetEncashmentSortColumn(sortColumn);
+
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM WHERE insert_date BETWEEN :dateFrom AND :dateTo) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+                column, sortType.ToString(), rowNum, rowNum + perPage);
+
+            //string cmdtxt = String.Format("SELECT * FROM v_list_encashment t ORDER BY {0} {1}", column,
+            //                              sortType.ToString());
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+            cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
 
             var adapter = new OracleDataAdapter(cmd);
             var table = new ds.V_LIST_ENCASHMENTDataTable();
@@ -581,8 +934,9 @@ namespace Db
                 var fields = ListEncashmentCurrencies(row.ID);
                 var terminal = Convertor.ToTerminal(row);
                 var username = row.IsUSERNAMENull() ? String.Empty : row.USERNAME;
+                var banknotes = ListBanknotesByEncashmentId(row.ID);
 
-                return Convertor.ToEncashment(row, fields, terminal, username);
+                return Convertor.ToEncashment(row, fields, terminal, username, banknotes);
             }
 
             return null;
@@ -621,7 +975,7 @@ namespace Db
             }
 
             string column = GetProductHistoryColumn(sortColumn);
-            var cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE rn BETWEEN {2} and {3} ORDER BY rn", 
+            var cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                 column, sortType.ToString(), rowNum, rowNum + perPage);
             //var cmdtxt = String.Format("SELECT * FROM v_products_history t WHERE rownum BETWEEN :rowNum AND :rowNum2 ORDER BY {0} {1}", column,
             //                              sortType.ToString());
@@ -638,7 +992,8 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
             {
                 var values = ListProductHistoryValues(row.ID);
-                result.Add(Convertor.ToProductHistory(row, values));
+                var banknotes = ListBanknotesByHistoryId(row.ID);
+                result.Add(Convertor.ToProductHistory(row, values, banknotes));
             }
 
             return result;
@@ -757,8 +1112,9 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
             {
                 var values = ListProductHistoryValues(row.ID);
+                var banknotes = ListBanknotesByHistoryId(row.ID);
 
-                result.Add(Convertor.ToProductHistory(row, values));
+                result.Add(Convertor.ToProductHistory(row, values, banknotes));
             }
 
             return result;
@@ -786,7 +1142,8 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
             {
                 var values = ListProductHistoryValues(row.ID);
-                result.Add(Convertor.ToProductHistory(row, values));
+                var banknotes = ListBanknotesByHistoryId(row.ID);
+                result.Add(Convertor.ToProductHistory(row, values, banknotes));
             }
 
             return result;
@@ -810,7 +1167,7 @@ namespace Db
             return result;
         }
 
-        public List<Banknote> GetBanknotesByTerminalId(int terminalId)
+        public List<Banknote> ListBanknotesByTerminalId(int terminalId)
         {
             CheckConnection();
 
@@ -829,7 +1186,7 @@ namespace Db
             return result;
         }
 
-        public List<Banknote> GetBanknotesByTerminalIdNotEncashed(int terminalId)
+        public List<Banknote> ListBanknotesByTerminalIdNotEncashed(int terminalId)
         {
             CheckConnection();
 
@@ -848,7 +1205,7 @@ namespace Db
             return result;
         }
 
-        public List<Banknote> GetBanknotesByEncashmentId(int encashmentId)
+        public List<Banknote> ListBanknotesByEncashmentId(decimal encashmentId)
         {
             CheckConnection();
 
@@ -856,6 +1213,25 @@ namespace Db
             var table = new ds.V_BANKNOTESDataTable();
 
             adapter.FillByEncashmentId(table, encashmentId);
+
+            var result = new List<Banknote>();
+
+            foreach (ds.V_BANKNOTESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknote(row));
+            }
+
+            return result;
+        }
+
+        public List<Banknote> ListBanknotesByHistoryId(decimal id)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTESDataTable();
+
+            adapter.FillByHistoryId(table, id);
 
             var result = new List<Banknote>();
 
@@ -914,7 +1290,7 @@ namespace Db
 
             adapter.FillById(table, id);
 
-            var result = new List<CheckField>();
+            //var result = new List<CheckField>();
 
             foreach (ds.V_CHECK_FIELDSRow row in table.Rows)
             {
@@ -1150,7 +1526,7 @@ namespace Db
             var adapter = new V_BRANCHESTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_BRANCHESDataTable();
             adapter.FillById(table, id);
-            
+
             foreach (ds.V_BRANCHESRow row in table.Rows)
             {
                 return Convertor.ToBranch(row);
@@ -1171,6 +1547,25 @@ namespace Db
             cmd.Parameters.Add("v_name", OracleDbType.NVarchar2, ParameterDirection.Input).Value = name;
             cmd.Parameters.Add("v_user_id", OracleDbType.Int32, ParameterDirection.Input).Value = userId;
             cmd.ExecuteNonQuery();
+        }
+
+        public List<TerminalStatusCode> ListTerminalStatusCode()
+        {
+            CheckConnection();
+
+            var adapter = new V_TERMINAL_STATUS_CODESTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_TERMINAL_STATUS_CODESDataTable();
+
+            adapter.Fill(table);
+
+            var result = new List<TerminalStatusCode>();
+
+            foreach (ds.V_TERMINAL_STATUS_CODESRow row in table.Rows)
+            {
+                result.Add(Convertor.ToTerminalStatusCode(row));
+            }
+
+            return result;
         }
     }
 }

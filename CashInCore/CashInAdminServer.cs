@@ -466,6 +466,74 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public ListTerminalsResult ListTerminalsByTerminalStatus(string sid, int statusId, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListTerminalsResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Terminals = OracleDb.Instance.ListTerminals(statusId, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListTerminalsResult ListTerminalsByBranchId(string sid, int id, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListTerminalsResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Terminals = OracleDb.Instance.ListTerminalsByBranchId(id, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public SaveTerminalResult SaveTerminal(String sid, Terminal terminal)
         {
             Log.Info(String.Format("SID: {0}, Terminal: {1}", sid, terminal));
@@ -560,6 +628,143 @@ namespace CashInCore
 
                 int count;
                 result.Encashments = OracleDb.Instance.ListEncashment(sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListEncashmentResult ListEncashmentByTerminal(string sid, int terminalId, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}, terminalId: {1}", sid, terminalId));
+            var result = new ListEncashmentResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Encashments = OracleDb.Instance.ListEncashment(terminalId, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListEncashmentResult ListEncashmentByBranchId(string sid, int branchId, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}, branchId: {1}", sid, branchId));
+            var result = new ListEncashmentResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Encashments = OracleDb.Instance.ListEncashmentBranchId(branchId, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListEncashmentResult ListEncashmentByAllParams(string sid, int terminalId, int branchId, DateTime from, DateTime to, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}, terminalId: {1}, branchId: {2}, from: {3}, to: {4}, Min: {5}", sid, terminalId, branchId, from, to, DateTime.MinValue));
+            var result = new ListEncashmentResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Encashments = OracleDb.Instance.ListEncashment(terminalId, branchId, from, to, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListEncashmentResult ListEncashmentByDate(string sid, DateTime from, DateTime to, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}, from: {1}: to: {2}", sid, from, to));
+            var result = new ListEncashmentResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Encashments = OracleDb.Instance.ListEncashment(from, to, sortColumn, sortType, rowNum, perPage, out count);
                 result.Count = count;
                 result.Code = ResultCodes.Ok;
             }
@@ -852,7 +1057,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Banknotes = OracleDb.Instance.GetBanknotesByTerminalIdNotEncashed(terminalId);
+                result.Banknotes = OracleDb.Instance.ListBanknotesByTerminalIdNotEncashed(terminalId);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -884,7 +1089,7 @@ namespace CashInCore
                     throw new Exception("No priv");
                 }
 
-                result.Banknotes = OracleDb.Instance.GetBanknotesByEncashmentId(encashmentId);
+                result.Banknotes = OracleDb.Instance.ListBanknotesByEncashmentId(encashmentId);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
@@ -1324,6 +1529,38 @@ namespace CashInCore
             try
             {               
                 result.Templates.Add(OracleDb.Instance.GetCheckTemplate(id));
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListTerminalStatusResult ListTerminalStatusCode(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListTerminalStatusResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewBranches))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.Statuses = OracleDb.Instance.ListTerminalStatusCode();
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)

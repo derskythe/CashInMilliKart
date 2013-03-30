@@ -136,6 +136,9 @@
     <Compile Include="dsTableAdapters\V_ROLES_TO_USERSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_TERMINAL_STATUS_CODESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="OracleDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

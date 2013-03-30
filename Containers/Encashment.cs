@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
@@ -14,6 +15,8 @@ namespace Containers
         private Terminal _Terminal;
         private EncashmentCurrency[] _Currencies;
         private DateTime _InsertDate;
+        private List<Banknote> _Banknotes;
+        private int _Count;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
@@ -63,6 +66,22 @@ namespace Containers
             set { _Terminal = value; }
         }
 
+        [XmlArray("Banknotes")]
+        [DataMember(Name = "Banknotes")]
+        public List<Banknote> Banknotes
+        {
+            get { return _Banknotes; }
+            set { _Banknotes = value; }
+        }
+
+        [XmlElement(ElementName = "Count")]
+        [DataMember(Name = "Count")]
+        public int Count
+        {
+            get { return _Count; }
+            set { _Count = value; }
+        }
+
         public Encashment()
         {
         }
@@ -81,9 +100,9 @@ namespace Containers
         {
             return
                 string.Format(
-                    "{0}, Id: {1}, UserId: {2}, Username: {3}, Terminal: {4}, Currencies: {5}, InsertDate: {6}",
+                    "{0}, Id: {1}, UserId: {2}, Username: {3}, Terminal: {4}, Currencies: {5}, InsertDate: {6}, Banknotes: {7}, Count: {8}",
                     base.ToString(), _Id, _UserId, _Username, _Terminal, EnumEx.GetStringFromArray(_Currencies),
-                    _InsertDate);
+                    _InsertDate, EnumEx.GetStringFromArray(_Banknotes), _Count);
         }
     }
 }
