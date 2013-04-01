@@ -43,7 +43,7 @@
             this.lblDebitInfoDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDebitInfoDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoDate.Location = new System.Drawing.Point(237, 293);
+            this.lblDebitInfoDate.Location = new System.Drawing.Point(154, 344);
             this.lblDebitInfoDate.Name = "lblDebitInfoDate";
             this.lblDebitInfoDate.Size = new System.Drawing.Size(713, 52);
             this.lblDebitInfoDate.TabIndex = 13;
@@ -56,7 +56,7 @@
             this.lblDebitInfoPassport.BackColor = System.Drawing.Color.Transparent;
             this.lblDebitInfoPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoPassport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoPassport.Location = new System.Drawing.Point(237, 216);
+            this.lblDebitInfoPassport.Location = new System.Drawing.Point(154, 267);
             this.lblDebitInfoPassport.Name = "lblDebitInfoPassport";
             this.lblDebitInfoPassport.Size = new System.Drawing.Size(713, 52);
             this.lblDebitInfoPassport.TabIndex = 11;
@@ -69,7 +69,7 @@
             this.lblDebitInfoAccount.BackColor = System.Drawing.Color.Transparent;
             this.lblDebitInfoAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoAccount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoAccount.Location = new System.Drawing.Point(237, 139);
+            this.lblDebitInfoAccount.Location = new System.Drawing.Point(154, 190);
             this.lblDebitInfoAccount.Name = "lblDebitInfoAccount";
             this.lblDebitInfoAccount.Size = new System.Drawing.Size(713, 52);
             this.lblDebitInfoAccount.TabIndex = 12;
@@ -82,7 +82,7 @@
             this.lblDebitInfoFullname.BackColor = System.Drawing.Color.Transparent;
             this.lblDebitInfoFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblDebitInfoFullname.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDebitInfoFullname.Location = new System.Drawing.Point(237, 63);
+            this.lblDebitInfoFullname.Location = new System.Drawing.Point(154, 114);
             this.lblDebitInfoFullname.Name = "lblDebitInfoFullname";
             this.lblDebitInfoFullname.Size = new System.Drawing.Size(713, 52);
             this.lblDebitInfoFullname.TabIndex = 10;
@@ -95,7 +95,7 @@
             this.btnDebitInfoBack.BackColor = System.Drawing.Color.Transparent;
             this.btnDebitInfoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnDebitInfoBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitInfoBack.Location = new System.Drawing.Point(12, 557);
+            this.btnDebitInfoBack.Location = new System.Drawing.Point(12, 658);
             this.btnDebitInfoBack.Name = "btnDebitInfoBack";
             this.btnDebitInfoBack.Size = new System.Drawing.Size(321, 76);
             this.btnDebitInfoBack.TabIndex = 9;
@@ -109,7 +109,7 @@
             this.btnDebitInfoNext.BackColor = System.Drawing.Color.Transparent;
             this.btnDebitInfoNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnDebitInfoNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitInfoNext.Location = new System.Drawing.Point(853, 557);
+            this.btnDebitInfoNext.Location = new System.Drawing.Point(687, 658);
             this.btnDebitInfoNext.Name = "btnDebitInfoNext";
             this.btnDebitInfoNext.Size = new System.Drawing.Size(321, 76);
             this.btnDebitInfoNext.TabIndex = 8;
@@ -123,7 +123,7 @@
             this.lblCurrency.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrency.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblCurrency.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCurrency.Location = new System.Drawing.Point(237, 370);
+            this.lblCurrency.Location = new System.Drawing.Point(154, 421);
             this.lblCurrency.Name = "lblCurrency";
             this.lblCurrency.Size = new System.Drawing.Size(713, 52);
             this.lblCurrency.TabIndex = 14;
@@ -134,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 645);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.lblCurrency);
             this.Controls.Add(this.lblDebitInfoDate);
             this.Controls.Add(this.lblDebitInfoPassport);

@@ -38,7 +38,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(105, 134);
+            this.label10.Location = new System.Drawing.Point(154, 262);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(713, 75);
             this.label10.TabIndex = 10;
@@ -51,7 +51,7 @@
             this.btbBack.BackColor = System.Drawing.Color.Transparent;
             this.btbBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btbBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btbBack.Location = new System.Drawing.Point(301, 402);
+            this.btbBack.Location = new System.Drawing.Point(350, 658);
             this.btbBack.Name = "btbBack";
             this.btbBack.Size = new System.Drawing.Size(321, 76);
             this.btbBack.TabIndex = 9;
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 490);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btbBack);
             this.Location = new System.Drawing.Point(0, 0);

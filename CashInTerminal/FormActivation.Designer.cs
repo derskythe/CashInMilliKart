@@ -55,7 +55,7 @@
             // 
             this.txtActivationCode.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtActivationCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.txtActivationCode.Location = new System.Drawing.Point(406, 265);
+            this.txtActivationCode.Location = new System.Drawing.Point(322, 289);
             this.txtActivationCode.Name = "txtActivationCode";
             this.txtActivationCode.Size = new System.Drawing.Size(389, 49);
             this.txtActivationCode.TabIndex = 42;
@@ -67,7 +67,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(238, 236);
+            this.label7.Location = new System.Drawing.Point(154, 260);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(713, 24);
             this.label7.TabIndex = 41;
@@ -80,7 +80,7 @@
             this.btnActivation9.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation9.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation9.Location = new System.Drawing.Point(656, 323);
+            this.btnActivation9.Location = new System.Drawing.Point(572, 347);
             this.btnActivation9.Name = "btnActivation9";
             this.btnActivation9.Size = new System.Drawing.Size(78, 69);
             this.btnActivation9.TabIndex = 37;
@@ -94,7 +94,7 @@
             this.btnActivation8.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation8.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation8.Location = new System.Drawing.Point(572, 323);
+            this.btnActivation8.Location = new System.Drawing.Point(488, 347);
             this.btnActivation8.Name = "btnActivation8";
             this.btnActivation8.Size = new System.Drawing.Size(78, 69);
             this.btnActivation8.TabIndex = 36;
@@ -108,7 +108,7 @@
             this.btnActivation7.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation7.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation7.Location = new System.Drawing.Point(488, 323);
+            this.btnActivation7.Location = new System.Drawing.Point(404, 347);
             this.btnActivation7.Name = "btnActivation7";
             this.btnActivation7.Size = new System.Drawing.Size(78, 69);
             this.btnActivation7.TabIndex = 35;
@@ -122,7 +122,7 @@
             this.btnActivation6.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation6.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation6.Location = new System.Drawing.Point(656, 398);
+            this.btnActivation6.Location = new System.Drawing.Point(572, 422);
             this.btnActivation6.Name = "btnActivation6";
             this.btnActivation6.Size = new System.Drawing.Size(78, 69);
             this.btnActivation6.TabIndex = 40;
@@ -136,7 +136,7 @@
             this.btnActivation5.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation5.Location = new System.Drawing.Point(572, 398);
+            this.btnActivation5.Location = new System.Drawing.Point(488, 422);
             this.btnActivation5.Name = "btnActivation5";
             this.btnActivation5.Size = new System.Drawing.Size(78, 69);
             this.btnActivation5.TabIndex = 39;
@@ -150,7 +150,7 @@
             this.btnActivation4.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation4.Location = new System.Drawing.Point(488, 398);
+            this.btnActivation4.Location = new System.Drawing.Point(404, 422);
             this.btnActivation4.Name = "btnActivation4";
             this.btnActivation4.Size = new System.Drawing.Size(78, 69);
             this.btnActivation4.TabIndex = 38;
@@ -164,7 +164,7 @@
             this.btnActivation3.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation3.Location = new System.Drawing.Point(656, 473);
+            this.btnActivation3.Location = new System.Drawing.Point(572, 497);
             this.btnActivation3.Name = "btnActivation3";
             this.btnActivation3.Size = new System.Drawing.Size(78, 69);
             this.btnActivation3.TabIndex = 31;
@@ -178,7 +178,7 @@
             this.btnActivation2.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation2.Location = new System.Drawing.Point(572, 473);
+            this.btnActivation2.Location = new System.Drawing.Point(488, 497);
             this.btnActivation2.Name = "btnActivation2";
             this.btnActivation2.Size = new System.Drawing.Size(78, 69);
             this.btnActivation2.TabIndex = 30;
@@ -192,7 +192,7 @@
             this.btnActivation1.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation1.Location = new System.Drawing.Point(488, 473);
+            this.btnActivation1.Location = new System.Drawing.Point(404, 497);
             this.btnActivation1.Name = "btnActivation1";
             this.btnActivation1.Size = new System.Drawing.Size(78, 69);
             this.btnActivation1.TabIndex = 29;
@@ -206,7 +206,7 @@
             this.btnActivationBackspace.BackColor = System.Drawing.Color.Transparent;
             this.btnActivationBackspace.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivationBackspace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivationBackspace.Location = new System.Drawing.Point(656, 548);
+            this.btnActivationBackspace.Location = new System.Drawing.Point(572, 572);
             this.btnActivationBackspace.Name = "btnActivationBackspace";
             this.btnActivationBackspace.Size = new System.Drawing.Size(78, 69);
             this.btnActivationBackspace.TabIndex = 34;
@@ -220,7 +220,7 @@
             this.btnActivation0.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation0.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation0.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation0.Location = new System.Drawing.Point(572, 548);
+            this.btnActivation0.Location = new System.Drawing.Point(488, 572);
             this.btnActivation0.Name = "btnActivation0";
             this.btnActivation0.Size = new System.Drawing.Size(78, 69);
             this.btnActivation0.TabIndex = 33;
@@ -233,12 +233,12 @@
             this.btnActivationClear.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnActivationClear.BackColor = System.Drawing.Color.Transparent;
             this.btnActivationClear.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivationClear.Image = global::CashInTerminal.Properties.Resources.backspace32;
             this.btnActivationClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivationClear.Location = new System.Drawing.Point(488, 548);
+            this.btnActivationClear.Location = new System.Drawing.Point(404, 572);
             this.btnActivationClear.Name = "btnActivationClear";
             this.btnActivationClear.Size = new System.Drawing.Size(78, 69);
             this.btnActivationClear.TabIndex = 32;
-            this.btnActivationClear.Text = "◄";
             this.btnActivationClear.UseVisualStyleBackColor = false;
             this.btnActivationClear.Click += new System.EventHandler(this.BtnActivationClearClick);
             // 
@@ -248,7 +248,7 @@
             this.btnActivation.BackColor = System.Drawing.Color.Transparent;
             this.btnActivation.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnActivation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnActivation.Location = new System.Drawing.Point(859, 621);
+            this.btnActivation.Location = new System.Drawing.Point(690, 669);
             this.btnActivation.Name = "btnActivation";
             this.btnActivation.Size = new System.Drawing.Size(318, 65);
             this.btnActivation.TabIndex = 28;
@@ -260,7 +260,7 @@
             // 
             this.txtActivationTerminal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtActivationTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.txtActivationTerminal.Location = new System.Drawing.Point(406, 184);
+            this.txtActivationTerminal.Location = new System.Drawing.Point(322, 208);
             this.txtActivationTerminal.Name = "txtActivationTerminal";
             this.txtActivationTerminal.Size = new System.Drawing.Size(389, 49);
             this.txtActivationTerminal.TabIndex = 27;
@@ -272,7 +272,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(238, 157);
+            this.label6.Location = new System.Drawing.Point(154, 181);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(713, 24);
             this.label6.TabIndex = 25;
@@ -285,7 +285,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(238, 45);
+            this.label5.Location = new System.Drawing.Point(154, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(713, 24);
             this.label5.TabIndex = 26;
@@ -298,7 +298,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(238, 77);
+            this.label1.Location = new System.Drawing.Point(154, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(713, 24);
             this.label1.TabIndex = 25;
@@ -311,7 +311,7 @@
             this.cmbPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPorts.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.cmbPorts.FormattingEnabled = true;
-            this.cmbPorts.Location = new System.Drawing.Point(477, 105);
+            this.cmbPorts.Location = new System.Drawing.Point(393, 129);
             this.cmbPorts.Name = "cmbPorts";
             this.cmbPorts.Size = new System.Drawing.Size(121, 50);
             this.cmbPorts.TabIndex = 43;
@@ -321,7 +321,7 @@
             this.btnTest.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnTest.BackColor = System.Drawing.Color.Transparent;
             this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnTest.Location = new System.Drawing.Point(604, 106);
+            this.btnTest.Location = new System.Drawing.Point(520, 130);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(133, 48);
             this.btnTest.TabIndex = 44;
@@ -333,7 +333,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 698);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.cmbPorts);
             this.Controls.Add(this.txtActivationCode);

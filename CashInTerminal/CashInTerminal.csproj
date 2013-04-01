@@ -29,7 +29,7 @@
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>75</ApplicationRevision>
+    <ApplicationRevision>92</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -436,6 +436,8 @@
     </None>
     <None Include="Resources\OutOfOrder.png" />
     <None Include="Resources\1363119153_LAN_Unavailable2.png" />
+    <None Include="Resources\backspace32.png" />
+    <None Include="Resources\backspace.png" />
     <Content Include="Terminal.s3db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

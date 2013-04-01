@@ -41,7 +41,7 @@
             this.lblSuccessTotalAmount.BackColor = System.Drawing.Color.Transparent;
             this.lblSuccessTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblSuccessTotalAmount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSuccessTotalAmount.Location = new System.Drawing.Point(105, 152);
+            this.lblSuccessTotalAmount.Location = new System.Drawing.Point(154, 280);
             this.lblSuccessTotalAmount.Name = "lblSuccessTotalAmount";
             this.lblSuccessTotalAmount.Size = new System.Drawing.Size(713, 62);
             this.lblSuccessTotalAmount.TabIndex = 12;
@@ -54,7 +54,7 @@
             this.btnSuccessNext.BackColor = System.Drawing.Color.Transparent;
             this.btnSuccessNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnSuccessNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSuccessNext.Location = new System.Drawing.Point(301, 402);
+            this.btnSuccessNext.Location = new System.Drawing.Point(350, 658);
             this.btnSuccessNext.Name = "btnSuccessNext";
             this.btnSuccessNext.Size = new System.Drawing.Size(321, 76);
             this.btnSuccessNext.TabIndex = 13;
@@ -68,7 +68,7 @@
             this.lblSuccessWelcome.BackColor = System.Drawing.Color.Transparent;
             this.lblSuccessWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblSuccessWelcome.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSuccessWelcome.Location = new System.Drawing.Point(105, 242);
+            this.lblSuccessWelcome.Location = new System.Drawing.Point(154, 370);
             this.lblSuccessWelcome.Name = "lblSuccessWelcome";
             this.lblSuccessWelcome.Size = new System.Drawing.Size(713, 62);
             this.lblSuccessWelcome.TabIndex = 10;
@@ -81,7 +81,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(105, 94);
+            this.label3.Location = new System.Drawing.Point(154, 222);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(713, 62);
             this.label3.TabIndex = 11;
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 490);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.lblSuccessTotalAmount);
             this.Controls.Add(this.btnSuccessNext);
             this.Controls.Add(this.lblSuccessWelcome);

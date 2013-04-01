@@ -45,14 +45,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
-            this.ClientSize = new System.Drawing.Size(1186, 645);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.ControlBox = false;
             this.Controls.Add(this.lblApplicationVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMdiChild";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormLanguageLoad);
+            this.Load += new System.EventHandler(this.FormChildLoad);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormMdiChildPaint);
             this.ResumeLayout(false);
 

@@ -40,7 +40,7 @@
             this.lblEncashmentTotal.BackColor = System.Drawing.Color.Transparent;
             this.lblEncashmentTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblEncashmentTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblEncashmentTotal.Location = new System.Drawing.Point(105, 93);
+            this.lblEncashmentTotal.Location = new System.Drawing.Point(154, 221);
             this.lblEncashmentTotal.Name = "lblEncashmentTotal";
             this.lblEncashmentTotal.Size = new System.Drawing.Size(713, 50);
             this.lblEncashmentTotal.TabIndex = 11;
@@ -53,7 +53,7 @@
             this.btnEncashmentFinish.BackColor = System.Drawing.Color.Transparent;
             this.btnEncashmentFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnEncashmentFinish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEncashmentFinish.Location = new System.Drawing.Point(301, 402);
+            this.btnEncashmentFinish.Location = new System.Drawing.Point(350, 658);
             this.btnEncashmentFinish.Name = "btnEncashmentFinish";
             this.btnEncashmentFinish.Size = new System.Drawing.Size(321, 76);
             this.btnEncashmentFinish.TabIndex = 10;
@@ -67,7 +67,7 @@
             this.btnEncashmentPrint.BackColor = System.Drawing.Color.Transparent;
             this.btnEncashmentPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnEncashmentPrint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEncashmentPrint.Location = new System.Drawing.Point(301, 187);
+            this.btnEncashmentPrint.Location = new System.Drawing.Point(350, 315);
             this.btnEncashmentPrint.Name = "btnEncashmentPrint";
             this.btnEncashmentPrint.Size = new System.Drawing.Size(321, 76);
             this.btnEncashmentPrint.TabIndex = 9;
@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 490);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.lblEncashmentTotal);
             this.Controls.Add(this.btnEncashmentFinish);
             this.Controls.Add(this.btnEncashmentPrint);

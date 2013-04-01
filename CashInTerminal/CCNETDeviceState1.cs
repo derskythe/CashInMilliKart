@@ -242,5 +242,15 @@ namespace CashInTerminal
 
             return result;
         }
+
+        public override string ToString()
+        {
+            return
+                string.Format(
+                    "StateCode: {0}, SubStateCode: {1}, StateCodeOut: {2}, BillEnable: {3}, AcceptEnable: {4}, FatalError: {5}, Amount: {6}, WasAmount: {7}, Nominal: {8}, DeviceStateDescription: {9}, SubDeviceStateDescription: {10}, Init: {11}, Currency: {12}, Stacking: {13}",
+                    _StateCode, _SubStateCode, _StateCodeOut, _BillEnable, _AcceptEnable, _FatalError, _Amount,
+                    _WasAmount, _Nominal, _DeviceStateDescription, _SubDeviceStateDescription, _Init, _Currency,
+                    _Stacking);
+        }
     }
 }

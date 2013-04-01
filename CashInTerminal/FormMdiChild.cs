@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using NLog;
 
 namespace CashInTerminal
@@ -32,9 +33,12 @@ namespace CashInTerminal
             InitializeComponent();
         }
 
-        protected void FormLanguageLoad(object sender, EventArgs e)
+        protected void FormChildLoad(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
+            Bounds = Screen.PrimaryScreen.Bounds;
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
 
             lblApplicationVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             lblApplicationVersion.Visible = true;

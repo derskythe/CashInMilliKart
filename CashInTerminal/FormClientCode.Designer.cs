@@ -54,7 +54,7 @@
             this.btnClientCode9.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode9.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode9.Location = new System.Drawing.Point(1024, 117);
+            this.btnClientCode9.Location = new System.Drawing.Point(859, 148);
             this.btnClientCode9.Name = "btnClientCode9";
             this.btnClientCode9.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode9.TabIndex = 17;
@@ -68,7 +68,7 @@
             this.btnClientCode8.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode8.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode8.Location = new System.Drawing.Point(938, 117);
+            this.btnClientCode8.Location = new System.Drawing.Point(773, 148);
             this.btnClientCode8.Name = "btnClientCode8";
             this.btnClientCode8.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode8.TabIndex = 21;
@@ -82,7 +82,7 @@
             this.btnClientCode7.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode7.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode7.Location = new System.Drawing.Point(852, 117);
+            this.btnClientCode7.Location = new System.Drawing.Point(687, 148);
             this.btnClientCode7.Name = "btnClientCode7";
             this.btnClientCode7.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode7.TabIndex = 22;
@@ -96,7 +96,7 @@
             this.btnClientCode6.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode6.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode6.Location = new System.Drawing.Point(1024, 192);
+            this.btnClientCode6.Location = new System.Drawing.Point(859, 223);
             this.btnClientCode6.Name = "btnClientCode6";
             this.btnClientCode6.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode6.TabIndex = 19;
@@ -110,7 +110,7 @@
             this.btnClientCode5.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode5.Location = new System.Drawing.Point(938, 192);
+            this.btnClientCode5.Location = new System.Drawing.Point(773, 223);
             this.btnClientCode5.Name = "btnClientCode5";
             this.btnClientCode5.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode5.TabIndex = 20;
@@ -124,7 +124,7 @@
             this.btnClientCode4.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode4.Location = new System.Drawing.Point(852, 192);
+            this.btnClientCode4.Location = new System.Drawing.Point(687, 223);
             this.btnClientCode4.Name = "btnClientCode4";
             this.btnClientCode4.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode4.TabIndex = 25;
@@ -138,7 +138,7 @@
             this.btnClientCode3.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode3.Location = new System.Drawing.Point(1024, 267);
+            this.btnClientCode3.Location = new System.Drawing.Point(859, 298);
             this.btnClientCode3.Name = "btnClientCode3";
             this.btnClientCode3.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode3.TabIndex = 26;
@@ -152,7 +152,7 @@
             this.btnClientCode2.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode2.Location = new System.Drawing.Point(938, 267);
+            this.btnClientCode2.Location = new System.Drawing.Point(773, 298);
             this.btnClientCode2.Name = "btnClientCode2";
             this.btnClientCode2.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode2.TabIndex = 23;
@@ -166,7 +166,7 @@
             this.btnClientCode1.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode1.Location = new System.Drawing.Point(852, 267);
+            this.btnClientCode1.Location = new System.Drawing.Point(687, 298);
             this.btnClientCode1.Name = "btnClientCode1";
             this.btnClientCode1.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode1.TabIndex = 24;
@@ -180,7 +180,7 @@
             this.btnClientCodeClear.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCodeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeClear.Location = new System.Drawing.Point(1024, 342);
+            this.btnClientCodeClear.Location = new System.Drawing.Point(859, 373);
             this.btnClientCodeClear.Name = "btnClientCodeClear";
             this.btnClientCodeClear.Size = new System.Drawing.Size(78, 69);
             this.btnClientCodeClear.TabIndex = 18;
@@ -194,7 +194,7 @@
             this.btnClientCode0.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCode0.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCode0.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCode0.Location = new System.Drawing.Point(938, 342);
+            this.btnClientCode0.Location = new System.Drawing.Point(773, 373);
             this.btnClientCode0.Name = "btnClientCode0";
             this.btnClientCode0.Size = new System.Drawing.Size(78, 69);
             this.btnClientCode0.TabIndex = 15;
@@ -207,12 +207,12 @@
             this.btnClientCodeBackspace.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnClientCodeBackspace.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCodeBackspace.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold);
+            this.btnClientCodeBackspace.Image = global::CashInTerminal.Properties.Resources.backspace32;
             this.btnClientCodeBackspace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeBackspace.Location = new System.Drawing.Point(852, 342);
+            this.btnClientCodeBackspace.Location = new System.Drawing.Point(687, 373);
             this.btnClientCodeBackspace.Name = "btnClientCodeBackspace";
             this.btnClientCodeBackspace.Size = new System.Drawing.Size(78, 69);
             this.btnClientCodeBackspace.TabIndex = 16;
-            this.btnClientCodeBackspace.Text = "◄";
             this.btnClientCodeBackspace.UseVisualStyleBackColor = false;
             this.btnClientCodeBackspace.Click += new System.EventHandler(this.BtnClientCodeBackspaceClick);
             // 
@@ -223,7 +223,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(238, 242);
+            this.label1.Location = new System.Drawing.Point(155, 293);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(324, 42);
             this.label1.TabIndex = 14;
@@ -236,7 +236,7 @@
             this.lblClientCode.BackColor = System.Drawing.Color.Transparent;
             this.lblClientCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblClientCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblClientCode.Location = new System.Drawing.Point(238, 115);
+            this.lblClientCode.Location = new System.Drawing.Point(155, 166);
             this.lblClientCode.Name = "lblClientCode";
             this.lblClientCode.Size = new System.Drawing.Size(463, 42);
             this.lblClientCode.TabIndex = 13;
@@ -246,7 +246,7 @@
             // 
             this.txtClientCodePassport.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtClientCodePassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.txtClientCodePassport.Location = new System.Drawing.Point(245, 301);
+            this.txtClientCodePassport.Location = new System.Drawing.Point(162, 352);
             this.txtClientCodePassport.Name = "txtClientCodePassport";
             this.txtClientCodePassport.Size = new System.Drawing.Size(389, 49);
             this.txtClientCodePassport.TabIndex = 12;
@@ -256,7 +256,7 @@
             // 
             this.txtClientCodeClient.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtClientCodeClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.txtClientCodeClient.Location = new System.Drawing.Point(245, 172);
+            this.txtClientCodeClient.Location = new System.Drawing.Point(162, 223);
             this.txtClientCodeClient.Name = "txtClientCodeClient";
             this.txtClientCodeClient.Size = new System.Drawing.Size(389, 49);
             this.txtClientCodeClient.TabIndex = 11;
@@ -268,7 +268,7 @@
             this.btnClientCodeBack.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCodeBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeBack.Location = new System.Drawing.Point(12, 557);
+            this.btnClientCodeBack.Location = new System.Drawing.Point(12, 658);
             this.btnClientCodeBack.Name = "btnClientCodeBack";
             this.btnClientCodeBack.Size = new System.Drawing.Size(321, 76);
             this.btnClientCodeBack.TabIndex = 10;
@@ -282,7 +282,7 @@
             this.btnClientCodeNext.BackColor = System.Drawing.Color.Transparent;
             this.btnClientCodeNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnClientCodeNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClientCodeNext.Location = new System.Drawing.Point(853, 557);
+            this.btnClientCodeNext.Location = new System.Drawing.Point(687, 658);
             this.btnClientCodeNext.Name = "btnClientCodeNext";
             this.btnClientCodeNext.Size = new System.Drawing.Size(321, 76);
             this.btnClientCodeNext.TabIndex = 9;
@@ -294,7 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 645);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.btnClientCode9);
             this.Controls.Add(this.btnClientCode8);
             this.Controls.Add(this.btnClientCode7);

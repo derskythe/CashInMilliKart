@@ -476,11 +476,23 @@ namespace CashInTerminal
             }
 
             _CcnetDevice = new CCNETDevice();
+            _CcnetDevice.BillStacked += CcnetDeviceOnBillStacked;
+            //_CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
             _CcnetDevice.Open(port, CCNETPortSpeed.S9600);
             _CcnetDevice.Init();
-            //_CcnetDevice.BillStacked += CcnetDeviceBillStacked;
-            //_CcnetDevice.ReadCommand += CcnetDeviceReadCommand;
+            
+            
         }
+
+        private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
+        {
+            Log.Debug(ccnetDeviceState.ToString());
+        }
+
+        //private void CcnetDeviceOnReadCommand(CCNETDeviceState ccnetDeviceState)
+        //{
+        //    Log.Debug(ccnetDeviceState);
+        //}
 
         //private void CloseForm(object form)
         //{
@@ -549,6 +561,7 @@ namespace CashInTerminal
                 var child = (Form)inst;
                 child.MdiParent = this;
                 child.Show();
+                child.Visible = true;
 
                 if (_CurrentForm != null)
                 {
@@ -1393,6 +1406,7 @@ namespace CashInTerminal
             _CheckProductsTimer.Dispose();
             _CheckInactivityTimer.Dispose();
             _CheckApplicationUpdateTimer.Dispose();
+            _CheckCheckTemplateTimer.Dispose();
 
             _CcnetDevice.Close();
             _CcnetDevice.Dispose();

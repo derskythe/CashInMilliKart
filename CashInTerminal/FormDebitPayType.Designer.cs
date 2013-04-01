@@ -41,7 +41,7 @@
             this.btnBack.BackColor = System.Drawing.Color.Transparent;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBack.Location = new System.Drawing.Point(12, 557);
+            this.btnBack.Location = new System.Drawing.Point(12, 658);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(321, 76);
             this.btnBack.TabIndex = 11;
@@ -51,13 +51,13 @@
             // 
             // btnByCardFull
             // 
-            this.btnByCardFull.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnByCardFull.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnByCardFull.BackColor = System.Drawing.Color.Transparent;
             this.btnByCardFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnByCardFull.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnByCardFull.Location = new System.Drawing.Point(225, 136);
+            this.btnByCardFull.Location = new System.Drawing.Point(12, 63);
             this.btnByCardFull.Name = "btnByCardFull";
-            this.btnByCardFull.Size = new System.Drawing.Size(735, 79);
+            this.btnByCardFull.Size = new System.Drawing.Size(996, 105);
             this.btnByCardFull.TabIndex = 11;
             this.btnByCardFull.Text = "Карточный. Полный номер карты";
             this.btnByCardFull.UseVisualStyleBackColor = false;
@@ -65,13 +65,13 @@
             // 
             // btnByCardAccountNumber
             // 
-            this.btnByCardAccountNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnByCardAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnByCardAccountNumber.BackColor = System.Drawing.Color.Transparent;
             this.btnByCardAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnByCardAccountNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnByCardAccountNumber.Location = new System.Drawing.Point(225, 233);
+            this.btnByCardAccountNumber.Location = new System.Drawing.Point(12, 174);
             this.btnByCardAccountNumber.Name = "btnByCardAccountNumber";
-            this.btnByCardAccountNumber.Size = new System.Drawing.Size(735, 79);
+            this.btnByCardAccountNumber.Size = new System.Drawing.Size(996, 105);
             this.btnByCardAccountNumber.TabIndex = 12;
             this.btnByCardAccountNumber.Text = "Карточный. Номер счета";
             this.btnByCardAccountNumber.UseVisualStyleBackColor = false;
@@ -79,13 +79,13 @@
             // 
             // btnCurrent
             // 
-            this.btnCurrent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCurrent.BackColor = System.Drawing.Color.Transparent;
             this.btnCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCurrent.Location = new System.Drawing.Point(225, 330);
+            this.btnCurrent.Location = new System.Drawing.Point(12, 285);
             this.btnCurrent.Name = "btnCurrent";
-            this.btnCurrent.Size = new System.Drawing.Size(735, 79);
+            this.btnCurrent.Size = new System.Drawing.Size(996, 105);
             this.btnCurrent.TabIndex = 12;
             this.btnCurrent.Text = "Текущий";
             this.btnCurrent.UseVisualStyleBackColor = false;
@@ -93,13 +93,13 @@
             // 
             // btnDeposit
             // 
-            this.btnDeposit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDeposit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeposit.BackColor = System.Drawing.Color.Transparent;
             this.btnDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnDeposit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeposit.Location = new System.Drawing.Point(227, 430);
+            this.btnDeposit.Location = new System.Drawing.Point(12, 396);
             this.btnDeposit.Name = "btnDeposit";
-            this.btnDeposit.Size = new System.Drawing.Size(735, 79);
+            this.btnDeposit.Size = new System.Drawing.Size(996, 105);
             this.btnDeposit.TabIndex = 12;
             this.btnDeposit.Text = "Депозитный";
             this.btnDeposit.UseVisualStyleBackColor = false;
@@ -109,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 645);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.btnDeposit);
             this.Controls.Add(this.btnCurrent);
             this.Controls.Add(this.btnByCardAccountNumber);

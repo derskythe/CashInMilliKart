@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using CashControlTerminal;
 using CashInTerminal.Enums;
@@ -43,10 +44,10 @@ namespace CashInTerminal
         private bool _TimedOut;
         private bool _Disposing;
 
-        public delegate void ReadCommandDelegate(CCNETDeviceState e);
-        public delegate void BillStackedDelegate(CCNETDeviceState e);
-        public event ReadCommandDelegate ReadCommand;
-        public event BillStackedDelegate BillStacked;
+        public delegate void ReadCommandHandler(CCNETDeviceState e);
+        public delegate void BillStackedHandler(CCNETDeviceState e);
+        public event ReadCommandHandler ReadCommand = delegate { };
+        public event BillStackedHandler BillStacked = delegate { };
 
         #endregion
 
@@ -278,7 +279,7 @@ namespace CashInTerminal
         {
             try
             {
-                byte[] receiveBuffer = new byte[128];
+                byte[] receiveBuffer = Enumerable.Repeat((byte)0x0, 128).ToArray();
                 int bytesRead = 0;
                 //int bufferIndex = 0;
                 //int startPacketIndex = 0;
@@ -298,7 +299,7 @@ namespace CashInTerminal
                             {
                                 _TimedOut = false;
                                 AddPacket(receiveBuffer, 0);
-                                Array.Clear(receiveBuffer, 0, 128);
+                                receiveBuffer = Enumerable.Repeat((byte)0x0, 128).ToArray();
                             }
                         }
                         catch (TimeoutException exp)
@@ -603,13 +604,12 @@ namespace CashInTerminal
             }
             //int length;
             //int lenCommand = packet.Lng;
-
+            
             if (packet.Cmd != 0)
             {
                 _DeviceState.StateCode = (CCNETCommand)packet.Cmd;
             }
-
-
+            
             if (packet.Data != null && packet.Data.Length > 0)
             {
                 _DeviceState.SubStateCode = packet.Data[0];
@@ -947,7 +947,7 @@ namespace CashInTerminal
             //        break;
 
             //}
-
+            
             _DeviceState.DeviceStateDescription = EnumEx.GetDescription(_DeviceState.StateCode);
         }
 

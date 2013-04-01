@@ -41,7 +41,7 @@ namespace CashInTerminal
             this.btnEnglish.BackColor = System.Drawing.Color.Transparent;
             this.btnEnglish.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnEnglish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEnglish.Location = new System.Drawing.Point(178, 354);
+            this.btnEnglish.Location = new System.Drawing.Point(204, 456);
             this.btnEnglish.Name = "btnEnglish";
             this.btnEnglish.Size = new System.Drawing.Size(613, 79);
             this.btnEnglish.TabIndex = 5;
@@ -55,7 +55,7 @@ namespace CashInTerminal
             this.btnRussian.BackColor = System.Drawing.Color.Transparent;
             this.btnRussian.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnRussian.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRussian.Location = new System.Drawing.Point(178, 235);
+            this.btnRussian.Location = new System.Drawing.Point(204, 337);
             this.btnRussian.Name = "btnRussian";
             this.btnRussian.Size = new System.Drawing.Size(613, 79);
             this.btnRussian.TabIndex = 4;
@@ -69,7 +69,7 @@ namespace CashInTerminal
             this.btnAzeri.BackColor = System.Drawing.Color.Transparent;
             this.btnAzeri.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnAzeri.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAzeri.Location = new System.Drawing.Point(178, 110);
+            this.btnAzeri.Location = new System.Drawing.Point(204, 212);
             this.btnAzeri.Name = "btnAzeri";
             this.btnAzeri.Size = new System.Drawing.Size(613, 79);
             this.btnAzeri.TabIndex = 3;
@@ -81,7 +81,7 @@ namespace CashInTerminal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 543);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.btnEnglish);
             this.Controls.Add(this.btnRussian);
             this.Controls.Add(this.btnAzeri);

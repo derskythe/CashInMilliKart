@@ -41,7 +41,7 @@
             this.lblMoneyCurrency.BackColor = System.Drawing.Color.Transparent;
             this.lblMoneyCurrency.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblMoneyCurrency.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMoneyCurrency.Location = new System.Drawing.Point(471, 160);
+            this.lblMoneyCurrency.Location = new System.Drawing.Point(520, 288);
             this.lblMoneyCurrency.Name = "lblMoneyCurrency";
             this.lblMoneyCurrency.Size = new System.Drawing.Size(132, 64);
             this.lblMoneyCurrency.TabIndex = 10;
@@ -54,7 +54,7 @@
             this.lblMoneyTotal.BackColor = System.Drawing.Color.Transparent;
             this.lblMoneyTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lblMoneyTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMoneyTotal.Location = new System.Drawing.Point(319, 160);
+            this.lblMoneyTotal.Location = new System.Drawing.Point(368, 288);
             this.lblMoneyTotal.Name = "lblMoneyTotal";
             this.lblMoneyTotal.Size = new System.Drawing.Size(132, 64);
             this.lblMoneyTotal.TabIndex = 12;
@@ -67,7 +67,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(42, 96);
+            this.label2.Location = new System.Drawing.Point(91, 224);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(839, 64);
             this.label2.TabIndex = 11;
@@ -80,7 +80,7 @@
             this.btnMoneyNext.BackColor = System.Drawing.Color.Transparent;
             this.btnMoneyNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnMoneyNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMoneyNext.Location = new System.Drawing.Point(590, 402);
+            this.btnMoneyNext.Location = new System.Drawing.Point(687, 658);
             this.btnMoneyNext.Name = "btnMoneyNext";
             this.btnMoneyNext.Size = new System.Drawing.Size(321, 76);
             this.btnMoneyNext.TabIndex = 9;
@@ -94,7 +94,7 @@
             this.btnBack.BackColor = System.Drawing.Color.Transparent;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBack.Location = new System.Drawing.Point(12, 402);
+            this.btnBack.Location = new System.Drawing.Point(12, 658);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(321, 76);
             this.btnBack.TabIndex = 9;
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 490);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.lblMoneyCurrency);
             this.Controls.Add(this.lblMoneyTotal);
             this.Controls.Add(this.label2);

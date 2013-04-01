@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace CashInTerminal
 {
@@ -19,6 +20,11 @@ namespace CashInTerminal
         {
             FormMain.ClientInfo.ProductCode = 2;
             ChangeView(typeof(FormDebitPayType));
+        }
+
+        private void FormProductsLoad(object sender, EventArgs e)
+        {
+            Log.Debug(String.Format("ClientRect: {0}, ClientSize: {1}", ClientRectangle, ClientSize));
         }
     }
 }

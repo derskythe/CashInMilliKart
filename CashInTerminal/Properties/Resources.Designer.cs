@@ -69,6 +69,20 @@ namespace CashInTerminal.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap backspace {
+            get {
+                object obj = ResourceManager.GetObject("backspace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap backspace32 {
+            get {
+                object obj = ResourceManager.GetObject("backspace32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to : .
         /// </summary>

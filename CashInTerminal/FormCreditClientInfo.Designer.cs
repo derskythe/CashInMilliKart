@@ -46,7 +46,7 @@
             this.lbl7.BackColor = System.Drawing.Color.Transparent;
             this.lbl7.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl7.Location = new System.Drawing.Point(237, 390);
+            this.lbl7.Location = new System.Drawing.Point(154, 441);
             this.lbl7.Name = "lbl7";
             this.lbl7.Size = new System.Drawing.Size(713, 52);
             this.lbl7.TabIndex = 19;
@@ -59,7 +59,7 @@
             this.lbl6.BackColor = System.Drawing.Color.Transparent;
             this.lbl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl6.Location = new System.Drawing.Point(237, 333);
+            this.lbl6.Location = new System.Drawing.Point(154, 384);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(713, 52);
             this.lbl6.TabIndex = 18;
@@ -72,7 +72,7 @@
             this.lbl5.BackColor = System.Drawing.Color.Transparent;
             this.lbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl5.Location = new System.Drawing.Point(236, 276);
+            this.lbl5.Location = new System.Drawing.Point(153, 327);
             this.lbl5.Name = "lbl5";
             this.lbl5.Size = new System.Drawing.Size(713, 52);
             this.lbl5.TabIndex = 17;
@@ -85,7 +85,7 @@
             this.lbl4.BackColor = System.Drawing.Color.Transparent;
             this.lbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl4.Location = new System.Drawing.Point(236, 219);
+            this.lbl4.Location = new System.Drawing.Point(153, 270);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(713, 52);
             this.lbl4.TabIndex = 16;
@@ -98,7 +98,7 @@
             this.lbl3.BackColor = System.Drawing.Color.Transparent;
             this.lbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl3.Location = new System.Drawing.Point(236, 162);
+            this.lbl3.Location = new System.Drawing.Point(153, 213);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(713, 52);
             this.lbl3.TabIndex = 15;
@@ -111,7 +111,7 @@
             this.lbl2.BackColor = System.Drawing.Color.Transparent;
             this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl2.Location = new System.Drawing.Point(236, 105);
+            this.lbl2.Location = new System.Drawing.Point(153, 156);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(713, 52);
             this.lbl2.TabIndex = 13;
@@ -124,7 +124,7 @@
             this.lbl1.BackColor = System.Drawing.Color.Transparent;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl1.Location = new System.Drawing.Point(236, 49);
+            this.lbl1.Location = new System.Drawing.Point(153, 100);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(713, 51);
             this.lbl1.TabIndex = 14;
@@ -137,7 +137,7 @@
             this.btnCreditInfoBack.BackColor = System.Drawing.Color.Transparent;
             this.btnCreditInfoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnCreditInfoBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCreditInfoBack.Location = new System.Drawing.Point(12, 557);
+            this.btnCreditInfoBack.Location = new System.Drawing.Point(12, 658);
             this.btnCreditInfoBack.Name = "btnCreditInfoBack";
             this.btnCreditInfoBack.Size = new System.Drawing.Size(321, 76);
             this.btnCreditInfoBack.TabIndex = 12;
@@ -151,7 +151,7 @@
             this.btnCreditInfoNext.BackColor = System.Drawing.Color.Transparent;
             this.btnCreditInfoNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnCreditInfoNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCreditInfoNext.Location = new System.Drawing.Point(853, 557);
+            this.btnCreditInfoNext.Location = new System.Drawing.Point(687, 658);
             this.btnCreditInfoNext.Name = "btnCreditInfoNext";
             this.btnCreditInfoNext.Size = new System.Drawing.Size(321, 76);
             this.btnCreditInfoNext.TabIndex = 11;
@@ -165,7 +165,7 @@
             this.lbl8.BackColor = System.Drawing.Color.Transparent;
             this.lbl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.lbl8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl8.Location = new System.Drawing.Point(236, 447);
+            this.lbl8.Location = new System.Drawing.Point(153, 498);
             this.lbl8.Name = "lbl8";
             this.lbl8.Size = new System.Drawing.Size(713, 52);
             this.lbl8.TabIndex = 19;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 645);
+            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.lbl8);
             this.Controls.Add(this.lbl7);
             this.Controls.Add(this.lbl6);
