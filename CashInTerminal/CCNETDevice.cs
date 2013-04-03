@@ -262,8 +262,6 @@ namespace CashInTerminal
                 {
                     Send(CCNETCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
-
-                    // что-то случилось и ничего не запустилось
                     _DeviceState.StateCode = CCNETCommand.FatalError;
                     ProccessStateCode();
                 }

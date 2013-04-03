@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
 
@@ -6,7 +9,8 @@ namespace CashInTerminal
 {
     public partial class FormCreditClientInfo : FormMdiChild
     {
-        const string DATE_FORMAT = "dd MMMM yyyy";
+        private const string DATE_FORMAT = "dd MMMM yyyy";
+        private readonly Color _BorderColor = Color.FromArgb(148, 183, 228);
         public FormCreditClientInfo()
         {
             InitializeComponent();
@@ -61,49 +65,10 @@ namespace CashInTerminal
             }
         }
 
-        private void lbl8_Click(object sender, EventArgs e)
+        private void GroupBox1Paint(object sender, PaintEventArgs e)
         {
-
-        }
-
-        private void lbl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblApplicationVersion_Click(object sender, EventArgs e)
-        {
-
-        }
+            //e.Graphics.Clear(SystemColors.Control);
+            //ControlPaint.DrawBorder(e.Graphics, ClientRectangle, _BorderColor, ButtonBorderStyle.Solid);
+        }        
     }
 }
