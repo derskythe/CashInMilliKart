@@ -161,5 +161,12 @@ namespace CashInTerminal.Properties {
                 return ResourceManager.GetString("PasportNumber", resourceCulture);
             }
         }
+        
+        internal static System.Drawing.Bitmap ServiceNotAvailable {
+            get {
+                object obj = ResourceManager.GetObject("ServiceNotAvailable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
