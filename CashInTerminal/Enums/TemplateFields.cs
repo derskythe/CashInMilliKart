@@ -13,5 +13,6 @@
         public const string ClientAccount = "[ClientAccount]";
         public const string Branch = "[Branch]";
         public const string Address = "[Address]";
+        public const string FullPaymentFlag = "[FullPayment]";
     }
 }

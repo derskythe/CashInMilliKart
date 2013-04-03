@@ -7,12 +7,14 @@ using System.IO;
 using System.Threading;
 using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
+using CashInTerminal.Properties;
 
 namespace CashInTerminal
 {
     public partial class FormPaySuccess : FormMdiChild
     {
         String _StreamToPrint = String.Empty;
+        private string _ProductName;
         //private const string PRINT_TEMPLATE =
         //    "    Оплата посредством терминала\n" +
         //    "\n" +
@@ -74,7 +76,7 @@ namespace CashInTerminal
 
             try
             {
-                string productName;
+                _ProductName = GetProductName(FormMain.ClientInfo.ProductCode);
                 _DateNow = Utilities.FormatDate(DateTime.Now);
                 switch (FormMain.ClientInfo.ProductCode)
                 {
@@ -91,13 +93,13 @@ namespace CashInTerminal
                         //                               FormMain.ClientInfo.Client.ClientCode,
                         //                               FormMain.ClientInfo.Client.ClientAccount,
                         //                               lblSuccessTotalAmount.Text);
-                        
+
                         lock (FormMain.CheckTemplates)
                         {
                             _Template = new List<CheckField>();
                             List<ds.TemplateFieldRow> rows;
                             FormMain.CheckTemplates.TryGetValue(
-                                FormMain.GetCheckTemplateHashCode((int) CheckTemplateTypes.CreditPayment,
+                                FormMain.GetCheckTemplateHashCode((int)CheckTemplateTypes.CreditPayment,
                                                                   FormMain.SelectedLanguage), out rows);
                             if (rows != null)
                             {
@@ -105,11 +107,11 @@ namespace CashInTerminal
                                 {
                                     var field = new CheckField
                                         {
-                                            Id = (int) row.Id,
-                                            CheckId = (int) row.CheckTemplateId,
-                                            FieldType = (int) row.Type,
+                                            Id = (int)row.Id,
+                                            CheckId = (int)row.CheckTemplateId,
+                                            FieldType = (int)row.Type,
                                             Image = row.IsImageNull() ? null : row.Image,
-                                            Order = row.IsOrderNumberNull() ? 0 : (int) row.OrderNumber,
+                                            Order = row.IsOrderNumberNull() ? 0 : (int)row.OrderNumber,
                                             Value = row.IsValueNull() ? String.Empty : ReplaceTemplateFields(row.Value)
                                         };
 
@@ -122,7 +124,7 @@ namespace CashInTerminal
                         break;
 
                     case 2:
-                        productName = "Пополнение счета";
+                        _ProductName = "Пополнение счета";
                         lock (FormMain.CheckTemplates)
                         {
                             _Template = new List<CheckField>();
@@ -166,6 +168,28 @@ namespace CashInTerminal
                 Log.ErrorException(exp.Message, exp);
             }
             Log.Debug("End");
+        }
+
+        private String GetProductName(int id)
+        {
+            foreach (var item in FormMain.Products)
+            {
+                if (id == item.Id)
+                {
+                    if (!String.IsNullOrEmpty(item.NameAz))
+                    {
+                        return item.NameAz;
+                    }
+                    if (!String.IsNullOrEmpty(item.NameEn))
+                    {
+                        return item.NameEn;
+                    }
+
+                    return item.NameRu;
+                }
+            }
+
+            return String.Empty;
         }
 
         private void PrintAsync()
@@ -252,7 +276,7 @@ namespace CashInTerminal
 
                 font.Dispose();
             }
-        }       
+        }
 
         private string ReplaceTemplateFields(String value)
         {
@@ -262,8 +286,8 @@ namespace CashInTerminal
             value = value.Replace(TemplateFields.Currency, FormMain.ClientInfo.CurrentCurrency);
             value = value.Replace(TemplateFields.DateTime, _DateNow);
             value = value.Replace(TemplateFields.OperationCode, FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
-            value = value.Replace(TemplateFields.ProductName, "Credit payment");
-                        value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+            value = value.Replace(TemplateFields.ProductName, _ProductName);
+            value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
             if (FormMain.TerminalInfo != null)
             {
                 value = value.Replace(TemplateFields.Branch, FormMain.TerminalInfo.BranchName);
@@ -271,6 +295,8 @@ namespace CashInTerminal
                 value = value.Replace(TemplateFields.Address, FormMain.TerminalInfo.Address);
             }
             value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+            value = value.Replace(TemplateFields.FullPaymentFlag, FormMain.ClientInfo != null && FormMain.ClientInfo.Client.AmountLate < FormMain.ClientInfo.CashCodeAmount ? Resources.No : Resources.Yes);
+
 
             return value;
         }

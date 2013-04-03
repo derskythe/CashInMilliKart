@@ -146,6 +146,15 @@ namespace CashInTerminal.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap OutOfOrder {
             get {
                 object obj = ResourceManager.GetObject("OutOfOrder", resourceCulture);
@@ -166,6 +175,15 @@ namespace CashInTerminal.Properties {
             get {
                 object obj = ResourceManager.GetObject("ServiceNotAvailable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
