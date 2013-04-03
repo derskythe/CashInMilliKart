@@ -113,7 +113,6 @@ namespace CashInTerminal
             this.groupBox1.Size = new System.Drawing.Size(787, 322);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GroupBox1Paint);
             // 
             // lbl6
             // 

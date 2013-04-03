@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
@@ -9,8 +8,7 @@ namespace CashInTerminal
 {
     public partial class FormCreditClientInfo : FormMdiChild
     {
-        private const string DATE_FORMAT = "dd MMMM yyyy";
-        private readonly Color _BorderColor = Color.FromArgb(148, 183, 228);
+        private const string DATE_FORMAT = "dd MMMM yyyy";        
         public FormCreditClientInfo()
         {
             InitializeComponent();
@@ -63,12 +61,6 @@ namespace CashInTerminal
                     lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
             }
-        }
-
-        private void GroupBox1Paint(object sender, PaintEventArgs e)
-        {
-            //e.Graphics.Clear(SystemColors.Control);
-            //ControlPaint.DrawBorder(e.Graphics, ClientRectangle, _BorderColor, ButtonBorderStyle.Solid);
-        }        
+        }          
     }
 }
