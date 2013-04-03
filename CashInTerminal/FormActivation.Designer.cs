@@ -311,9 +311,9 @@
             this.cmbPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPorts.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.cmbPorts.FormattingEnabled = true;
-            this.cmbPorts.Location = new System.Drawing.Point(393, 129);
+            this.cmbPorts.Location = new System.Drawing.Point(322, 129);
             this.cmbPorts.Name = "cmbPorts";
-            this.cmbPorts.Size = new System.Drawing.Size(121, 50);
+            this.cmbPorts.Size = new System.Drawing.Size(192, 50);
             this.cmbPorts.TabIndex = 43;
             // 
             // btnTest

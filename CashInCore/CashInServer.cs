@@ -213,7 +213,9 @@ namespace CashInCore
                 Terminal terminalInfo;
                 result = (ProductResult)AuthTerminal(result, request, out terminalInfo);
 
-                var list = OracleDb.Instance.ListProducts(request.TerminalId);
+                //var list = OracleDb.Instance.ListProducts(request.TerminalId);
+                var list = OracleDb.Instance.ListProducts();
+                Log.Debug(EnumEx.GetStringFromArray(list));
                 result.Products = list.ToArray();
 
                 result.Code = ResultCodes.Ok;

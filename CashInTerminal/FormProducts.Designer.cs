@@ -30,59 +30,44 @@ namespace CashInTerminal
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPayDebit = new CashInTerminal.Controls.MainButton();
-            this.btnPayCredit = new CashInTerminal.Controls.MainButton();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
-            // btnPayDebit
+            // tableLayoutPanel
             // 
-            this.btnPayDebit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPayDebit.BackColor = System.Drawing.Color.Transparent;
-            this.btnPayDebit.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayDebit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPayDebit.Location = new System.Drawing.Point(12, 139);
-            this.btnPayDebit.Name = "btnPayDebit";
-            this.btnPayDebit.Size = new System.Drawing.Size(996, 105);
-            this.btnPayDebit.TabIndex = 5;
-            this.btnPayDebit.Text = "Пополнение счета";
-            this.btnPayDebit.UseVisualStyleBackColor = false;
-            this.btnPayDebit.Click += new System.EventHandler(this.BtnPayDebitClick);
-            // 
-            // btnPayCredit
-            // 
-            this.btnPayCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPayCredit.BackColor = System.Drawing.Color.Transparent;
-            this.btnPayCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayCredit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPayCredit.Location = new System.Drawing.Point(12, 25);
-            this.btnPayCredit.Name = "btnPayCredit";
-            this.btnPayCredit.Size = new System.Drawing.Size(996, 105);
-            this.btnPayCredit.TabIndex = 4;
-            this.btnPayCredit.Text = "Оплата кредита";
-            this.btnPayCredit.UseVisualStyleBackColor = false;
-            this.btnPayCredit.Click += new System.EventHandler(this.BtnPayCreditClick);
+            this.tableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel.ColumnCount = 1;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.Location = new System.Drawing.Point(12, 39);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 1;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(996, 1);
+            this.tableLayoutPanel.TabIndex = 8;
             // 
             // FormProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 746);
-            this.Controls.Add(this.btnPayDebit);
-            this.Controls.Add(this.btnPayCredit);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormProducts";
-            this.Text = "FormProducts";
+            this.Text = "a";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormProductsFormClosed);
             this.Load += new System.EventHandler(this.FormProductsLoad);
-            this.Controls.SetChildIndex(this.btnPayCredit, 0);
-            this.Controls.SetChildIndex(this.btnPayDebit, 0);
+            this.Controls.SetChildIndex(this.tableLayoutPanel, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MainButton btnPayDebit;
-        private MainButton btnPayCredit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+
 
     }
 }

@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Management;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
@@ -50,6 +51,10 @@ namespace CashInTerminal
         //private delegate void CloseFormDelegate(object item);
 
         private delegate void OpenFormDelegate(Type item);
+
+        public delegate void ProductUpdateHandler();
+
+        public event ProductUpdateHandler ProductUpdate;
 
         //private delegate void SetFormParentDelegate(object item);
 
@@ -191,6 +196,7 @@ namespace CashInTerminal
         private void FormMdiMainLoad(object sender, EventArgs e)
         {
             OpenForm(typeof(FormOutOfOrder));
+            ProductUpdate += delegate { };            
 
             foreach (Control control in Controls)
             {
@@ -224,6 +230,12 @@ namespace CashInTerminal
                                    version
                                    ));
 
+            var startUpThread = new Thread(DoStartUp);
+            startUpThread.Start();
+        }
+
+        private void DoStartUp()
+        {
             _Init = true;
             // Init keys
             Log.Info("Init keys");
@@ -333,12 +345,11 @@ namespace CashInTerminal
 
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
-            _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, 0, CHECK_INACTIVITY);
+            _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, CHECK_INACTIVITY, CHECK_INACTIVITY);
             _CheckCheckTemplateTimer = new Timer(CheckTemplateTimer, null, 0, CHECK_CHECK_TEMPLATE_TIMER);
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
-        }
 
-        
+        }
 
         #region Application Update
 
@@ -480,8 +491,8 @@ namespace CashInTerminal
             //_CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
             _CcnetDevice.Open(port, CCNETPortSpeed.S9600);
             _CcnetDevice.Init();
-            
-            
+
+
         }
 
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
@@ -550,6 +561,20 @@ namespace CashInTerminal
         public void OpenForm(Type f)
         {
             Log.Debug("OpenForm. New form " + f.Name);
+            var t = new StackTrace();
+            if (t.GetFrames() != null)
+            {
+                var stack = new StringBuilder();
+                foreach (StackFrame frame in t.GetFrames())
+                {
+                    stack.Append("Method: ")
+                         .Append(frame.GetMethod())
+                         .Append(" \tLine: ")
+                         .Append(frame.GetFileLineNumber()).Append(" ");
+                }
+
+                Log.Debug(stack.ToString());
+            }
             if (InvokeRequired)
             {
                 var form = new OpenFormDelegate(OpenForm);
@@ -557,6 +582,8 @@ namespace CashInTerminal
             }
             else
             {
+                //if (_CurrentForm != null && f.Name != _CurrentForm.Name)
+                //{
                 var inst = Activator.CreateInstance(f);
                 var child = (Form)inst;
                 child.MdiParent = this;
@@ -565,10 +592,12 @@ namespace CashInTerminal
 
                 if (_CurrentForm != null)
                 {
+                    Log.Debug("CurrentForm: " + _CurrentForm.Name);
                     _CurrentForm.Close();
                 }
 
                 _CurrentForm = (Form)inst;
+                //}
             }
 
             //CloseForm(f);
@@ -588,7 +617,7 @@ namespace CashInTerminal
 
         public void MinimizeAllChildren()
         {
-            foreach (Form f in MdiChildren)
+            foreach (var f in MdiChildren)
             {
                 f.WindowState = FormWindowState.Minimized;
             }
@@ -598,94 +627,101 @@ namespace CashInTerminal
 
         private void CheckTemplateTimer(object state)
         {
-            try
+            if (_Running && _Init && _AuthTerminal)
             {
-                var now = DateTime.Now;
-                var request = new StandardRequest
+                try
                 {
-                    SystemTime = now,
-                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                };
-
-                var response = _Server.ListCheckTemplateDigest(request);
-
-                CheckSignature(response);
-
-                if (response.ResultCodes == ResultCodes.Ok)
-                {
-                    //lock (_Currencies)
-                    //{
-                    //    _Currencies.Clear();
-                    //    foreach (var item in response.Currencies)
-                    //    {
-                    //        _Currencies.Add(item);
-                    //    }
-                    //}
-                    bool oldData = false;
-                    foreach (var template in response.Templates)
-                    {
-                        var dbValue =_Db.GetCheckTemplate(template.Id);
-
-                        if (dbValue == null || dbValue.UpdateDate < template.UpdateDate)
-                        {
-                            oldData = true;
-                            break;
-                        }
-                    }
-
-                    if (oldData)
-                    {
-                        // Updating Db values
-                        now = DateTime.Now;
-                        request = new StandardRequest
+                    var now = DateTime.Now;
+                    var request = new StandardRequest
                         {
                             SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                             Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                         };
 
-                        response = _Server.ListCheckTemplate(request);
+                    var response = _Server.ListCheckTemplateDigest(request);
 
+                    CheckSignature(response);
+
+                    if (response.ResultCodes == ResultCodes.Ok)
+                    {
+                        //lock (_Currencies)
+                        //{
+                        //    _Currencies.Clear();
+                        //    foreach (var item in response.Currencies)
+                        //    {
+                        //        _Currencies.Add(item);
+                        //    }
+                        //}
+                        bool oldData = false;
                         foreach (var template in response.Templates)
                         {
                             var dbValue = _Db.GetCheckTemplate(template.Id);
 
-                            if (dbValue == null )
+                            if (dbValue == null || dbValue.UpdateDate < template.UpdateDate)
                             {
-                                // If value is new, we must delete all prev data by this language
-                                _Db.DeleteTemplateByType(template.CheckType.Id, template.Language.ToLower());
-                                
-                                _Db.InsertTemplate(template.Id, template.CheckType.Id, template.Language, template.UpdateDate);
-                                foreach (var field in template.Fields)
-                                {
-                                    _Db.InsertCheckTemplateField(field.Id, field.CheckId, field.FieldType, field.Value, field.Image, field.Order);
-                                }
-                            } else if (dbValue.UpdateDate < template.UpdateDate)
-                            {
-                                // Data updated, first, update fields. 
-                                _Db.DeleteByCheckTemplateId(dbValue.Id);
-
-                                foreach (var field in template.Fields)
-                                {
-                                    _Db.InsertCheckTemplateField(field.Id, field.CheckId, field.FieldType, field.Value, field.Image, field.Order);
-                                }
-
-                                _Db.UpdateTemplate(template.Id, template.UpdateDate);
+                                oldData = true;
+                                break;
                             }
                         }
 
-                        LoadCheckTemplates();
+                        if (oldData)
+                        {
+                            // Updating Db values
+                            now = DateTime.Now;
+                            request = new StandardRequest
+                                {
+                                    SystemTime = now,
+                                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                                };
+
+                            response = _Server.ListCheckTemplate(request);
+
+                            foreach (var template in response.Templates)
+                            {
+                                var dbValue = _Db.GetCheckTemplate(template.Id);
+
+                                if (dbValue == null)
+                                {
+                                    // If value is new, we must delete all prev data by this language
+                                    _Db.DeleteTemplateByType(template.CheckType.Id, template.Language.ToLower());
+
+                                    _Db.InsertTemplate(template.Id, template.CheckType.Id, template.Language,
+                                                       template.UpdateDate);
+                                    foreach (var field in template.Fields)
+                                    {
+                                        _Db.InsertCheckTemplateField(field.Id, field.CheckId, field.FieldType,
+                                                                     field.Value, field.Image, field.Order);
+                                    }
+                                }
+                                else if (dbValue.UpdateDate < template.UpdateDate)
+                                {
+                                    // Data updated, first, update fields. 
+                                    _Db.DeleteByCheckTemplateId(dbValue.Id);
+
+                                    foreach (var field in template.Fields)
+                                    {
+                                        _Db.InsertCheckTemplateField(field.Id, field.CheckId, field.FieldType,
+                                                                     field.Value, field.Image, field.Order);
+                                    }
+
+                                    _Db.UpdateTemplate(template.Id, template.UpdateDate);
+                                }
+                            }
+
+                            LoadCheckTemplates();
+                        }
+                    }
+                    else
+                    {
+                        Log.Warn(response.ResultCodes + " " + response.Description);
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    Log.Warn(response.ResultCodes + " " + response.Description);
+                    Log.ErrorException(exp.Message, exp);
                 }
-            }
-            catch (Exception exp)
-            {
-                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -712,7 +748,7 @@ namespace CashInTerminal
 
             foreach (var row in templateList)
             {
-                var key = GetCheckTemplateHashCode((int) row.Type, row.Language);
+                var key = GetCheckTemplateHashCode((int)row.Type, row.Language);
                 var fields = _Db.ListTemplateFields(row.Id);
 
                 _CheckTemplates.Add(key, fields);
@@ -801,44 +837,50 @@ namespace CashInTerminal
             }
         }
 
+        public void ForceCheckProducts()
+        {
+            try
+            {
+                var now = DateTime.Now;
+                var request = new StandardRequest
+                {
+                    SystemTime = now,
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                };
+
+                var response = _Server.ListProducts(request);
+
+                CheckSignature(response);
+
+                if (response.ResultCodes == ResultCodes.Ok)
+                {
+                    lock (_Products)
+                    {
+                        _Products.Clear();
+                        foreach (var item in response.Products)
+                        {
+                            _Products.Add(item);
+                        }
+                    }
+                    ProductUpdate();
+                }
+                else
+                {
+                    Log.Warn(response.ResultCodes + " " + response.Description);
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
+
         private void CheckProductsTimer(object param)
         {
             if (_Running && _Init && _AuthTerminal)
             {
-                try
-                {
-                    var now = DateTime.Now;
-                    var request = new StandardRequest
-                    {
-                        SystemTime = now,
-                        TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
-                    };
-
-                    var response = _Server.ListProducts(request);
-
-                    CheckSignature(response);
-
-                    if (response.ResultCodes == ResultCodes.Ok)
-                    {
-                        lock (_Products)
-                        {
-                            _Products.Clear();
-                            foreach (var item in response.Products)
-                            {
-                                _Products.Add(item);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Log.Warn(response.ResultCodes + " " + response.Description);
-                    }
-                }
-                catch (Exception exp)
-                {
-                    Log.ErrorException(exp.Message, exp);
-                }
+                ForceCheckProducts();
             }
         }
 

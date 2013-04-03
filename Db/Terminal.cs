@@ -69,7 +69,7 @@ namespace Db
             }
 
             return result;
-        }
+        }        
 
         public Terminal GetTerminal(int id)
         {
