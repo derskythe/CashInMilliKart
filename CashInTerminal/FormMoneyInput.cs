@@ -113,7 +113,8 @@ namespace CashInTerminal
                 FormMain.ClientInfo.OrderNumber = 0;
                 FormMain.ClientInfo.PaymentId = FormMain.Db.InsertTransaction(FormMain.ClientInfo.ProductCode, FormMain.ClientInfo.CurrentCurrency, 1, 0,
                                                    Convert.ToInt32(Settings.Default.TerminalCode), false);
-                FormMain.ClientInfo.TransactionId = String.Format("{0}{1}{2}", Settings.Default.TerminalCode,
+                int termCode = Convert.ToInt32(Settings.Default.TerminalCode);
+                FormMain.ClientInfo.TransactionId = String.Format("{0}{1}{2}", termCode.ToString("000"),
                                                DateTime.Now.DayOfYear.ToString("000"), FormMain.ClientInfo.PaymentId);
 
                 FormMain.Db.UpdateTransactionId(FormMain.ClientInfo.PaymentId, FormMain.ClientInfo.TransactionId);
