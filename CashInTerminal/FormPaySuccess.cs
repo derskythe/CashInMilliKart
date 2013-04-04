@@ -78,6 +78,8 @@ namespace CashInTerminal
             {
                 _ProductName = GetProductName(FormMain.ClientInfo.ProductCode);
                 _DateNow = Utilities.FormatDate(DateTime.Now);
+                
+                // TODO : Переделать
                 switch (FormMain.ClientInfo.ProductCode)
                 {
                     case 1:
@@ -295,7 +297,7 @@ namespace CashInTerminal
                 value = value.Replace(TemplateFields.Address, FormMain.TerminalInfo.Address);
             }
             value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
-            value = value.Replace(TemplateFields.FullPaymentFlag, FormMain.ClientInfo != null && FormMain.ClientInfo.Client.AmountLate < FormMain.ClientInfo.CashCodeAmount ? Resources.No : Resources.Yes);
+            value = value.Replace(TemplateFields.FullPaymentFlag, FormMain.ClientInfo != null && FormMain.ClientInfo.Client.AmountLate > FormMain.ClientInfo.CashCodeAmount ? Resources.No : Resources.Yes);
 
 
             return value;

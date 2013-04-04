@@ -55,7 +55,7 @@
             this.btnClientCode9.Location = new System.Drawing.Point(855, 153);
             this.btnClientCode9.Name = "btnClientCode9";
             this.btnClientCode9.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode9.TabIndex = 33;
+            this.btnClientCode9.TabIndex = 2;
             this.btnClientCode9.Text = "9";
             this.btnClientCode9.UseVisualStyleBackColor = false;
             this.btnClientCode9.Click += new System.EventHandler(this.BtnClientCode9Click);
@@ -69,7 +69,7 @@
             this.btnClientCode8.Location = new System.Drawing.Point(771, 153);
             this.btnClientCode8.Name = "btnClientCode8";
             this.btnClientCode8.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode8.TabIndex = 37;
+            this.btnClientCode8.TabIndex = 1;
             this.btnClientCode8.Text = "8";
             this.btnClientCode8.UseVisualStyleBackColor = false;
             this.btnClientCode8.Click += new System.EventHandler(this.BtnClientCode8Click);
@@ -83,7 +83,7 @@
             this.btnClientCode7.Location = new System.Drawing.Point(687, 153);
             this.btnClientCode7.Name = "btnClientCode7";
             this.btnClientCode7.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode7.TabIndex = 38;
+            this.btnClientCode7.TabIndex = 0;
             this.btnClientCode7.Text = "7";
             this.btnClientCode7.UseVisualStyleBackColor = false;
             this.btnClientCode7.Click += new System.EventHandler(this.BtnClientCode7Click);
@@ -97,7 +97,7 @@
             this.btnClientCode6.Location = new System.Drawing.Point(855, 228);
             this.btnClientCode6.Name = "btnClientCode6";
             this.btnClientCode6.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode6.TabIndex = 35;
+            this.btnClientCode6.TabIndex = 5;
             this.btnClientCode6.Text = "6";
             this.btnClientCode6.UseVisualStyleBackColor = false;
             this.btnClientCode6.Click += new System.EventHandler(this.BtnClientCode6Click);
@@ -111,7 +111,7 @@
             this.btnClientCode5.Location = new System.Drawing.Point(771, 228);
             this.btnClientCode5.Name = "btnClientCode5";
             this.btnClientCode5.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode5.TabIndex = 36;
+            this.btnClientCode5.TabIndex = 4;
             this.btnClientCode5.Text = "5";
             this.btnClientCode5.UseVisualStyleBackColor = false;
             this.btnClientCode5.Click += new System.EventHandler(this.BtnClientCode5Click);
@@ -125,7 +125,7 @@
             this.btnClientCode4.Location = new System.Drawing.Point(687, 228);
             this.btnClientCode4.Name = "btnClientCode4";
             this.btnClientCode4.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode4.TabIndex = 41;
+            this.btnClientCode4.TabIndex = 3;
             this.btnClientCode4.Text = "4";
             this.btnClientCode4.UseVisualStyleBackColor = false;
             this.btnClientCode4.Click += new System.EventHandler(this.BtnClientCode4Click);
@@ -139,7 +139,7 @@
             this.btnClientCode3.Location = new System.Drawing.Point(855, 303);
             this.btnClientCode3.Name = "btnClientCode3";
             this.btnClientCode3.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode3.TabIndex = 42;
+            this.btnClientCode3.TabIndex = 8;
             this.btnClientCode3.Text = "3";
             this.btnClientCode3.UseVisualStyleBackColor = false;
             this.btnClientCode3.Click += new System.EventHandler(this.BtnClientCode3Click);
@@ -153,7 +153,7 @@
             this.btnClientCode2.Location = new System.Drawing.Point(771, 303);
             this.btnClientCode2.Name = "btnClientCode2";
             this.btnClientCode2.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode2.TabIndex = 39;
+            this.btnClientCode2.TabIndex = 7;
             this.btnClientCode2.Text = "2";
             this.btnClientCode2.UseVisualStyleBackColor = false;
             this.btnClientCode2.Click += new System.EventHandler(this.BtnClientCode2Click);
@@ -167,7 +167,7 @@
             this.btnClientCode1.Location = new System.Drawing.Point(687, 303);
             this.btnClientCode1.Name = "btnClientCode1";
             this.btnClientCode1.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode1.TabIndex = 40;
+            this.btnClientCode1.TabIndex = 6;
             this.btnClientCode1.Text = "1";
             this.btnClientCode1.UseVisualStyleBackColor = false;
             this.btnClientCode1.Click += new System.EventHandler(this.BtnClientCode1Click);
@@ -181,7 +181,7 @@
             this.btnClientCodeClear.Location = new System.Drawing.Point(855, 378);
             this.btnClientCodeClear.Name = "btnClientCodeClear";
             this.btnClientCodeClear.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCodeClear.TabIndex = 34;
+            this.btnClientCodeClear.TabIndex = 11;
             this.btnClientCodeClear.Text = "C";
             this.btnClientCodeClear.UseVisualStyleBackColor = false;
             this.btnClientCodeClear.Click += new System.EventHandler(this.BtnClientCodeClearClick);
@@ -195,7 +195,7 @@
             this.btnClientCode0.Location = new System.Drawing.Point(771, 378);
             this.btnClientCode0.Name = "btnClientCode0";
             this.btnClientCode0.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCode0.TabIndex = 31;
+            this.btnClientCode0.TabIndex = 10;
             this.btnClientCode0.Text = "0";
             this.btnClientCode0.UseVisualStyleBackColor = false;
             this.btnClientCode0.Click += new System.EventHandler(this.BtnClientCode0Click);
@@ -210,7 +210,7 @@
             this.btnClientCodeBackspace.Location = new System.Drawing.Point(687, 378);
             this.btnClientCodeBackspace.Name = "btnClientCodeBackspace";
             this.btnClientCodeBackspace.Size = new System.Drawing.Size(78, 69);
-            this.btnClientCodeBackspace.TabIndex = 32;
+            this.btnClientCodeBackspace.TabIndex = 9;
             this.btnClientCodeBackspace.UseVisualStyleBackColor = false;
             this.btnClientCodeBackspace.Click += new System.EventHandler(this.BtnClientCodeBackspaceClick);
             // 
@@ -234,7 +234,7 @@
             this.txtClientCodeClient.Location = new System.Drawing.Point(28, 228);
             this.txtClientCodeClient.Name = "txtClientCodeClient";
             this.txtClientCodeClient.Size = new System.Drawing.Size(389, 49);
-            this.txtClientCodeClient.TabIndex = 29;
+            this.txtClientCodeClient.TabIndex = 14;
             this.txtClientCodeClient.Click += new System.EventHandler(this.TxtClientCodeClientClick);
             // 
             // btnClientCodeBack
@@ -246,7 +246,7 @@
             this.btnClientCodeBack.Location = new System.Drawing.Point(12, 658);
             this.btnClientCodeBack.Name = "btnClientCodeBack";
             this.btnClientCodeBack.Size = new System.Drawing.Size(321, 76);
-            this.btnClientCodeBack.TabIndex = 28;
+            this.btnClientCodeBack.TabIndex = 12;
             this.btnClientCodeBack.Text = "Назад";
             this.btnClientCodeBack.UseVisualStyleBackColor = false;
             this.btnClientCodeBack.Click += new System.EventHandler(this.BtnClientCodeBackClick);
@@ -260,7 +260,7 @@
             this.btnClientCodeNext.Location = new System.Drawing.Point(687, 658);
             this.btnClientCodeNext.Name = "btnClientCodeNext";
             this.btnClientCodeNext.Size = new System.Drawing.Size(321, 76);
-            this.btnClientCodeNext.TabIndex = 27;
+            this.btnClientCodeNext.TabIndex = 13;
             this.btnClientCodeNext.Text = "Дальше";
             this.btnClientCodeNext.UseVisualStyleBackColor = false;
             this.btnClientCodeNext.Click += new System.EventHandler(this.BtnClientCodeNextClick);

@@ -22,17 +22,17 @@ namespace CashInTerminal
             InitializeComponent();
         }
 
-        private void BtnPayCreditClick(object sender, EventArgs e)
-        {
-            FormMain.ClientInfo.ProductCode = 1;
-            ChangeView(typeof(FormCreditTypeSelect));
-        }
+        //private void BtnPayCreditClick(object sender, EventArgs e)
+        //{
+        //    FormMain.ClientInfo.ProductCode = 1;
+        //    ChangeView(typeof(FormCreditTypeSelect));
+        //}
 
-        private void BtnPayDebitClick(object sender, EventArgs e)
-        {
-            FormMain.ClientInfo.ProductCode = 2;
-            ChangeView(typeof(FormDebitPayType));
-        }
+        //private void BtnPayDebitClick(object sender, EventArgs e)
+        //{
+        //    FormMain.ClientInfo.ProductCode = 2;
+        //    ChangeView(typeof(FormDebitPayType));
+        //}
 
         private void FormProductsLoad(object sender, EventArgs e)
         {
@@ -139,14 +139,19 @@ namespace CashInTerminal
 
                                 if (tableLayoutPanel.Controls.Count > 0)
                                 {
-                                    tableLayoutPanel.Controls.Add(button, 0, AddTableRow());
+                                    var rowNum = AddTableRow();
+                                    Log.Debug(String.Format("Text: {0}, RowNum: {1}", text, rowNum));
+                                    tableLayoutPanel.Controls.Add(button, 0, rowNum);
                                 }
                                 else
                                 {
-                                    tableLayoutPanel.Controls.Add(button, 0, 0);
-                                }
-                                tableLayoutPanel.AutoSize = true;
+                                    var rowNum = AddTableRow();
+                                    Log.Debug(String.Format("Text: {0}, RowNum: {1}", text, rowNum));
+                                    tableLayoutPanel.Controls.Add(button, 0, rowNum);
+                                }                                
                             }
+
+                            tableLayoutPanel.AutoSize = true;
                         }
                     }
                     catch (Exception exp)

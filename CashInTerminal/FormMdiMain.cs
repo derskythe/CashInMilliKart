@@ -334,7 +334,7 @@ namespace CashInTerminal
                 }
 
                 //OpenForm(typeof(FormLanguage));
-                OpenForm(typeof(FormProducts));
+                //OpenForm(typeof(FormProducts));
             }
 
             _PingThread = new Thread(PingThread);
