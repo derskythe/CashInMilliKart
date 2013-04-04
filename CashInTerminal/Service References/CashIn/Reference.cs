@@ -907,6 +907,122 @@ namespace CashInTerminal.CashIn {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class Banknote : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private long idField;
+        
+        private double amountField;
+        
+        private long terminalIdField;
+        
+        private System.DateTime insertDateField;
+        
+        private string currencyIdField;
+        
+        private long encashmentIdField;
+        
+        private long historyIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public long Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public double Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+                this.RaisePropertyChanged("Amount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public long TerminalId {
+            get {
+                return this.terminalIdField;
+            }
+            set {
+                this.terminalIdField = value;
+                this.RaisePropertyChanged("TerminalId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public System.DateTime InsertDate {
+            get {
+                return this.insertDateField;
+            }
+            set {
+                this.insertDateField = value;
+                this.RaisePropertyChanged("InsertDate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string CurrencyId {
+            get {
+                return this.currencyIdField;
+            }
+            set {
+                this.currencyIdField = value;
+                this.RaisePropertyChanged("CurrencyId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public long EncashmentId {
+            get {
+                return this.encashmentIdField;
+            }
+            set {
+                this.encashmentIdField = value;
+                this.RaisePropertyChanged("EncashmentId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public long HistoryId {
+            get {
+                return this.historyIdField;
+            }
+            set {
+                this.historyIdField = value;
+                this.RaisePropertyChanged("HistoryId");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
     public partial class Terminal : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int idField;
@@ -1918,7 +2034,7 @@ namespace CashInTerminal.CashIn {
         
         private string clientCodeField;
         
-        private GetClientInfoType clientInfoTypeField;
+        private int paymentOperationTypeField;
         
         private string bolcard8DigitsField;
         
@@ -1960,13 +2076,13 @@ namespace CashInTerminal.CashIn {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public GetClientInfoType ClientInfoType {
+        public int PaymentOperationType {
             get {
-                return this.clientInfoTypeField;
+                return this.paymentOperationTypeField;
             }
             set {
-                this.clientInfoTypeField = value;
-                this.RaisePropertyChanged("ClientInfoType");
+                this.paymentOperationTypeField = value;
+                this.RaisePropertyChanged("PaymentOperationType");
             }
         }
         
@@ -1981,22 +2097,6 @@ namespace CashInTerminal.CashIn {
                 this.RaisePropertyChanged("Bolcard8Digits");
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public enum GetClientInfoType {
-        
-        /// <remarks/>
-        ByClientCode,
-        
-        /// <remarks/>
-        ByPasportAndCreditNumber,
-        
-        /// <remarks/>
-        Bolcard,
     }
     
     /// <remarks/>
@@ -2041,6 +2141,10 @@ namespace CashInTerminal.CashIn {
         private string usernameField;
         
         private Terminal terminalField;
+        
+        private Banknote[] banknotesField;
+        
+        private int countField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -2111,6 +2215,30 @@ namespace CashInTerminal.CashIn {
             set {
                 this.terminalField = value;
                 this.RaisePropertyChanged("Terminal");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=6)]
+        public Banknote[] Banknotes {
+            get {
+                return this.banknotesField;
+            }
+            set {
+                this.banknotesField = value;
+                this.RaisePropertyChanged("Banknotes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public int Count {
+            get {
+                return this.countField;
+            }
+            set {
+                this.countField = value;
+                this.RaisePropertyChanged("Count");
             }
         }
     }

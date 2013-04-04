@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using CashInTerminal.CashIn;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -14,13 +14,23 @@ namespace CashInTerminal
 
         private void BtnBackClick(object sender, EventArgs e)
         {
-            switch (FormMain.ClientInfo.GetClientInfoType)
+            switch (FormMain.ClientInfo.PaymentOperationType)
             {
-                case GetClientInfoType.ByClientCode:
+                case PaymentOperationType.CreditPaymentByClientCode:
                     ChangeView(typeof(FormCreditByClientCode));
                     break;
 
+                case PaymentOperationType.CreditPaymentByPassportAndAccount:
+                    ChangeView(typeof(FormCreditByPassport1));
+                    break;
 
+                case PaymentOperationType.CreditPaymentBolcard:
+                    ChangeView(typeof(FormCreditByBolcard));
+                    break;
+
+                default:
+                    ChangeView(typeof(FormProducts));
+                    break;
             }            
         }
 

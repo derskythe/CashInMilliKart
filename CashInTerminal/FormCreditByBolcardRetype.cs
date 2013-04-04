@@ -102,7 +102,7 @@ namespace CashInTerminal
                     DateTime now = DateTime.Now;
                     var request = new GetClientInfoRequest
                         {
-                            ClientInfoType = FormMain.ClientInfo.GetClientInfoType,
+                            PaymentOperationType = (int)FormMain.ClientInfo.PaymentOperationType,
                             Bolcard8Digits = FormMain.ClientInfo.AccountNumber,
                             SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),

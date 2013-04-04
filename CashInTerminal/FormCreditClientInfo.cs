@@ -1,6 +1,6 @@
 ﻿using System;
-using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -24,9 +24,9 @@ namespace CashInTerminal
 
         private void FormCreditClientInfoLoad(object sender, EventArgs e)
         {
-            switch (FormMain.ClientInfo.GetClientInfoType)
+            switch (FormMain.ClientInfo.PaymentOperationType)
             {
-                case GetClientInfoType.ByClientCode:
+                case PaymentOperationType.CreditPaymentByClientCode:
                     lbl1.Text = Resources.Fullname + Resources.Colon + Utilities.FirstUpper(FormMain.ClientInfo.Client.FullName);
                     lbl2.Text = Resources.PasportNumber + Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
                     lbl3.Text = Resources.AccountNumber + Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
@@ -37,7 +37,7 @@ namespace CashInTerminal
                     lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
 
-                case GetClientInfoType.ByPasportAndCreditNumber:
+                case PaymentOperationType.CreditPaymentByPassportAndAccount:
                     lbl1.Text = Resources.Fullname + Resources.Colon + Utilities.FirstUpper(FormMain.ClientInfo.Client.FullName);
                     lbl2.Text = Resources.PasportNumber + Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
                     lbl3.Text = Resources.AccountNumber + Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
@@ -48,7 +48,7 @@ namespace CashInTerminal
                     lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
 
-                case GetClientInfoType.Bolcard:
+                case PaymentOperationType.CreditPaymentBolcard:
                     lbl1.Text = Resources.Fullname + Resources.Colon + Utilities.FirstUpper(FormMain.ClientInfo.Client.FullName);
                     lbl2.Text = Resources.PasportNumber + Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
                     lbl3.Text = Resources.AccountNumber + Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
@@ -59,6 +59,6 @@ namespace CashInTerminal
                     lbl8.Text = Resources.CreditAmountToPay + Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
                     break;
             }
-        }          
+        }        
     }
 }

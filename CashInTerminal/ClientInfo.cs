@@ -1,6 +1,5 @@
 ﻿using System;
-using CashInTerminal.CashIn;
-using CashInTerminal.Enums;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -15,8 +14,8 @@ namespace CashInTerminal
         private long _PaymentId;
         private int _OrderNumber;
         private String _TransactionId;
-        private DebitPayType _DebitPayType;
-        private GetClientInfoType _GetClientInfoType;
+        //private DebitPayType _DebitPayType;
+        private PaymentOperationType _PaymentOperationType;
         private CashIn.ClientInfo _Client;
 
         public int ProductCode
@@ -73,16 +72,16 @@ namespace CashInTerminal
             set { _TransactionId = value; }
         }
 
-        public DebitPayType DebitPayType
-        {
-            get { return _DebitPayType; }
-            set { _DebitPayType = value; }
-        }
+        //public DebitPayType DebitPayType
+        //{
+        //    get { return _DebitPayType; }
+        //    set { _DebitPayType = value; }
+        //}
 
-        public GetClientInfoType GetClientInfoType
+        public PaymentOperationType PaymentOperationType
         {
-            get { return _GetClientInfoType; }
-            set { _GetClientInfoType = value; }
+            get { return _PaymentOperationType; }
+            set { _PaymentOperationType = value; }
         }
 
         public CashIn.ClientInfo Client
@@ -95,7 +94,7 @@ namespace CashInTerminal
         {
         }
 
-        public ClientInfo(int productCode, string accountNumber, string passport, string creditAccountNumber, string currentCurrency, int cashCodeAmount, long paymentId, int orderNumber, string transactionId, DebitPayType debitPayType)
+        public ClientInfo(int productCode, string accountNumber, string passport, string creditAccountNumber, string currentCurrency, int cashCodeAmount, long paymentId, int orderNumber, string transactionId)
         {
             _ProductCode = productCode;
             _AccountNumber = accountNumber;
@@ -106,16 +105,16 @@ namespace CashInTerminal
             _PaymentId = paymentId;
             _OrderNumber = orderNumber;
             _TransactionId = transactionId;
-            _DebitPayType = debitPayType;
+            //_DebitPayType = debitPayType;
         }
 
         public override string ToString()
         {
             return
                 string.Format(
-                    "ProductCode: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, DebitPayType: {9}, GetClientInfoType: {10}",
+                    "ProductCode: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, PaymentOperationType: {9}, Client: {10}",
                     _ProductCode, _AccountNumber, _Passport, _CreditAccountNumber, _CurrentCurrency, _CashCodeAmount,
-                    _PaymentId, _OrderNumber, _TransactionId, _DebitPayType, _GetClientInfoType);
+                    _PaymentId, _OrderNumber, _TransactionId, _PaymentOperationType, _Client);
         }
     }
 }

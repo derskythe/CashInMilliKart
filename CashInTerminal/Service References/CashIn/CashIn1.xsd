@@ -346,6 +346,8 @@
           <xs:element minOccurs="0" maxOccurs="1" name="Currencies" type="tns:ArrayOfEncashmentCurrency" />
           <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Terminal" type="tns:Terminal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Banknotes" type="tns:ArrayOfBanknote" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Count" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -359,6 +361,22 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBanknote">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Banknote" nillable="true" type="tns:Banknote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Banknote">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TerminalId" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InsertDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CurrencyId" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EncashmentId" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HistoryId" type="xs:long" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="EncashmentResponse">
@@ -419,19 +437,12 @@
           <xs:element minOccurs="0" maxOccurs="1" name="CreditAccount" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="PasportNumber" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="ClientCode" type="xs:string" />
-          <xs:element minOccurs="1" maxOccurs="1" name="ClientInfoType" type="tns:GetClientInfoType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PaymentOperationType" type="xs:int" />
           <xs:element minOccurs="0" maxOccurs="1" name="Bolcard8Digits" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:simpleType name="GetClientInfoType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="ByClientCode" />
-      <xs:enumeration value="ByPasportAndCreditNumber" />
-      <xs:enumeration value="Bolcard" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:element name="GetClientInfoResponse">
     <xs:complexType>
       <xs:sequence>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -222,7 +223,11 @@ namespace CashInTerminal
 
         private void BtnClientCodeBackClick(object sender, EventArgs e)
         {
-            ChangeView(typeof(FormCreditTypeSelect));
+            //ChangeView(typeof(FormCreditTypeSelect));
+
+            ChangeView(FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.DebitPaymentByPassportAndAccount
+                           ? typeof(FormDebitPayType)
+                           : typeof(FormCreditTypeSelect));
         }
 
         private void BtnClientCodeNextClick(object sender, EventArgs e)

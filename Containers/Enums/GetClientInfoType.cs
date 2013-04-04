@@ -11,10 +11,14 @@ namespace Containers.Enums
     public enum GetClientInfoType
     {
         [EnumMember]
-        ByClientCode = 1,
+        CreditByClientCode = 11,
         [EnumMember]
-        ByPasportAndCreditNumber = 2,
+        CreditByPasportAndCreditNumber = 12,
         [EnumMember]
-        Bolcard = 3
+        Bolcard = 13,
+        [EnumMember]
+        DebitByClientCode = 21,
+        [EnumMember]
+        DebitByPasportAndCreditNumber = 22
     }
 }

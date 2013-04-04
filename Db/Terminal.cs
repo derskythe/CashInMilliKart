@@ -341,14 +341,14 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
-        public List<ClientInfo> ListClients(String clientCode)
+        public List<ClientInfo> ListCreditClients(String clientCode)
         {
             CheckConnection();
 
             var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
 
-            adapter.FillByClientCode(table, clientCode);
+            adapter.FillByCreditClientCode(table, clientCode);
 
             var result = new List<ClientInfo>();
 
@@ -360,7 +360,7 @@ namespace Db
             return result;
         }
 
-        public List<ClientInfo> ListClients(String creditAccount, String pasportNumber)
+        public List<ClientInfo> ListCreditClients(String creditAccount, String pasportNumber)
         {
             CheckConnection();
 
@@ -386,7 +386,7 @@ namespace Db
             var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
             var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
 
-            adapter.FillByClientAccount(table, creditAccount);
+            adapter.FillByCreditClientAccount(table, creditAccount);
 
             var result = new List<ClientInfo>();
 
@@ -416,5 +416,63 @@ namespace Db
 
             return new List<ClientInfo>();
         }
+
+
+        public List<ClientInfo> ListDebitClients(String clientCode)
+        {
+            CheckConnection();
+
+            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+
+            adapter.FillByDebitClientCode(table, clientCode);
+
+            var result = new List<ClientInfo>();
+
+            foreach (ds.V_CASHIN_GET_ACCOUNT_INFORow row in table.Rows)
+            {
+                result.Add(Convertor.ToClientInfo(row));
+            }
+
+            return result;
+        }
+
+        public List<ClientInfo> ListDebitClients(String creditAccount, String pasportNumber)
+        {
+            CheckConnection();
+
+            var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+
+            adapter.FillByDebitAccountAndPassport(table, creditAccount, pasportNumber);
+
+            var result = new List<ClientInfo>();
+
+            foreach (ds.V_CASHIN_GET_ACCOUNT_INFORow row in table.Rows)
+            {
+                result.Add(Convertor.ToClientInfo(row));
+            }
+
+            return result;
+        }
+
+        //public List<ClientInfo> ListDebitByClientAccount(String creditAccount)
+        //{
+        //    CheckConnection();
+
+        //    var adapter = new V_CASHIN_GET_ACCOUNT_INFOTableAdapter { Connection = _OraCon, BindByName = true };
+        //    var table = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+
+        //    adapter.FillByDebitClientAccount(table, creditAccount);
+
+        //    var result = new List<ClientInfo>();
+
+        //    foreach (ds.V_CASHIN_GET_ACCOUNT_INFORow row in table.Rows)
+        //    {
+        //        result.Add(Convertor.ToClientInfo(row));
+        //    }
+
+        //    return result;
+        //}
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using CashInTerminal.Enums;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -12,27 +12,27 @@ namespace CashInTerminal
 
         private void BtnByCardFullClick(object sender, EventArgs e)
         {
-            FormMain.ClientInfo.DebitPayType = DebitPayType.ByCardFull;
-            ChangeView(typeof(FormDebitCardFull));
+            FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.DebitPaymentByClientCode;
+            ChangeView(typeof(FormCreditByClientCode));
         }
 
         private void BtnByCardAccountNumberClick(object sender, EventArgs e)
         {
-            FormMain.ClientInfo.DebitPayType = DebitPayType.ByCardAccount;
-            ChangeView(typeof(FormClientCode));
+            FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.DebitPaymentByPassportAndAccount;
+            ChangeView(typeof(FormCreditByPassport1));
         }
 
-        private void BtnCurrentClick(object sender, EventArgs e)
-        {
-            FormMain.ClientInfo.DebitPayType = DebitPayType.Current;
-            ChangeView(typeof(FormClientCode));
-        }
+        //private void BtnCurrentClick(object sender, EventArgs e)
+        //{
+        //    FormMain.ClientInfo.DebitPayType = DebitPayType.Current;
+        //    ChangeView(typeof(FormClientCode));
+        //}
 
-        private void BtnDepositClick(object sender, EventArgs e)
-        {
-            FormMain.ClientInfo.DebitPayType = DebitPayType.DebitAccount;
-            ChangeView(typeof(FormClientCode));
-        }
+        //private void BtnDepositClick(object sender, EventArgs e)
+        //{
+        //    FormMain.ClientInfo.DebitPayType = DebitPayType.DebitAccount;
+        //    ChangeView(typeof(FormClientCode));
+        //}
 
         private void BtnBackClick(object sender, EventArgs e)
         {

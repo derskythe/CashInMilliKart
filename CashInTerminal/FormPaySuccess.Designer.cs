@@ -39,11 +39,11 @@
             // 
             this.lblSuccessTotalAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblSuccessTotalAmount.BackColor = System.Drawing.Color.Transparent;
-            this.lblSuccessTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.lblSuccessTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuccessTotalAmount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblSuccessTotalAmount.Location = new System.Drawing.Point(154, 280);
             this.lblSuccessTotalAmount.Name = "lblSuccessTotalAmount";
-            this.lblSuccessTotalAmount.Size = new System.Drawing.Size(713, 62);
+            this.lblSuccessTotalAmount.Size = new System.Drawing.Size(713, 107);
             this.lblSuccessTotalAmount.TabIndex = 12;
             this.lblSuccessTotalAmount.Text = "AZN";
             this.lblSuccessTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -58,7 +58,7 @@
             this.btnSuccessNext.Name = "btnSuccessNext";
             this.btnSuccessNext.Size = new System.Drawing.Size(321, 76);
             this.btnSuccessNext.TabIndex = 13;
-            this.btnSuccessNext.Text = "Дальше";
+            this.btnSuccessNext.Text = "Завершить";
             this.btnSuccessNext.UseVisualStyleBackColor = false;
             this.btnSuccessNext.Click += new System.EventHandler(this.BtnSuccessNextClick);
             // 
@@ -66,11 +66,11 @@
             // 
             this.lblSuccessWelcome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblSuccessWelcome.BackColor = System.Drawing.Color.Transparent;
-            this.lblSuccessWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.lblSuccessWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuccessWelcome.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSuccessWelcome.Location = new System.Drawing.Point(154, 370);
+            this.lblSuccessWelcome.Location = new System.Drawing.Point(154, 459);
             this.lblSuccessWelcome.Name = "lblSuccessWelcome";
-            this.lblSuccessWelcome.Size = new System.Drawing.Size(713, 62);
+            this.lblSuccessWelcome.Size = new System.Drawing.Size(713, 104);
             this.lblSuccessWelcome.TabIndex = 10;
             this.lblSuccessWelcome.Text = "Благодарим!";
             this.lblSuccessWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,11 +79,11 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(154, 222);
+            this.label3.Location = new System.Drawing.Point(154, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(713, 62);
+            this.label3.Size = new System.Drawing.Size(713, 128);
             this.label3.TabIndex = 11;
             this.label3.Text = "Получено";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

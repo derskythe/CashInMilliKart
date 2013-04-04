@@ -29,7 +29,7 @@
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>134</ApplicationRevision>
+    <ApplicationRevision>140</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -107,9 +107,6 @@
     <Compile Include="CcnetBillTypes.cs" />
     <Compile Include="CCNETDevice.cs" />
     <Compile Include="CCNETDeviceState1.cs" />
-    <Compile Include="Controls\MainButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\MyGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -143,9 +140,6 @@
     </Compile>
     <Compile Include="Enums\CCNETPortSpeed.cs" />
     <Compile Include="ClientInfo.cs" />
-    <Compile Include="Controls\MenuButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Currencies.cs" />
     <Compile Include="ds.cs">
       <DependentUpon>ds.xsd</DependentUpon>

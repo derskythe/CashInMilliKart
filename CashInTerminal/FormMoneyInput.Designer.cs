@@ -39,11 +39,11 @@
             // 
             this.lblMoneyCurrency.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblMoneyCurrency.BackColor = System.Drawing.Color.Transparent;
-            this.lblMoneyCurrency.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.lblMoneyCurrency.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoneyCurrency.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMoneyCurrency.Location = new System.Drawing.Point(520, 288);
+            this.lblMoneyCurrency.Location = new System.Drawing.Point(435, 288);
             this.lblMoneyCurrency.Name = "lblMoneyCurrency";
-            this.lblMoneyCurrency.Size = new System.Drawing.Size(132, 64);
+            this.lblMoneyCurrency.Size = new System.Drawing.Size(324, 112);
             this.lblMoneyCurrency.TabIndex = 10;
             this.lblMoneyCurrency.Text = "AZN";
             this.lblMoneyCurrency.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -52,11 +52,11 @@
             // 
             this.lblMoneyTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblMoneyTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblMoneyTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.lblMoneyTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoneyTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMoneyTotal.Location = new System.Drawing.Point(368, 288);
+            this.lblMoneyTotal.Location = new System.Drawing.Point(39, 288);
             this.lblMoneyTotal.Name = "lblMoneyTotal";
-            this.lblMoneyTotal.Size = new System.Drawing.Size(132, 64);
+            this.lblMoneyTotal.Size = new System.Drawing.Size(414, 112);
             this.lblMoneyTotal.TabIndex = 12;
             this.lblMoneyTotal.Text = "0";
             this.lblMoneyTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -65,11 +65,11 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(91, 224);
+            this.label2.Location = new System.Drawing.Point(91, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(839, 64);
+            this.label2.Size = new System.Drawing.Size(839, 124);
             this.label2.TabIndex = 11;
             this.label2.Text = "Получено";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

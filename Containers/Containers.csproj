@@ -90,6 +90,7 @@
     <Compile Include="Enums\CurrencyColumns.cs" />
     <Compile Include="Enums\EncashmentColumns.cs" />
     <Compile Include="Enums\GetClientInfoType.cs" />
+    <Compile Include="Enums\PaymentOperationType.cs" />
     <Compile Include="Enums\ProductHistoryColumns.cs" />
     <Compile Include="Enums\RoleSections.cs" />
     <Compile Include="Enums\SortType.cs" />

@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
+using Containers.Enums;
+using ResultCodes = CashInTerminal.CashIn.ResultCodes;
 
 namespace CashInTerminal
 {
@@ -233,7 +235,7 @@ namespace CashInTerminal
                     DateTime now = DateTime.Now;
                     var request = new GetClientInfoRequest
                     {
-                        ClientInfoType = FormMain.ClientInfo.GetClientInfoType,
+                        PaymentOperationType = (int)FormMain.ClientInfo.PaymentOperationType,
                         CreditAccount = FormMain.ClientInfo.AccountNumber,
                         PasportNumber = FormMain.ClientInfo.Passport,
                         SystemTime = now,
@@ -262,7 +264,14 @@ namespace CashInTerminal
                         break;
                     }
 
-                    ChangeView(typeof(FormCreditClientInfo));
+                    if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode)
+                    {
+                        ChangeView(typeof(FormCreditSelectAccount));
+                    }
+                    else
+                    {
+                        ChangeView(typeof(FormDebitSelectAccount));
+                    }
                 }
                 catch (Exception exp)
                 {

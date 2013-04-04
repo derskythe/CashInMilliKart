@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Windows.Forms;
-using CashInTerminal.Enums;
-using Org.BouncyCastle.Security;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -16,54 +14,59 @@ namespace CashInTerminal
 
         private void BtnBackClick(object sender, EventArgs e)
         {
-            if (FormMain.ClientInfo.DebitPayType == DebitPayType.ByCardFull)
+            switch (FormMain.ClientInfo.PaymentOperationType)
             {
-                ChangeView(typeof(FormDebitCardFull));
-            }
-            else
-            {
-                ChangeView(typeof(FormClientCode));
-            }
+                case PaymentOperationType.DebitPaymentByClientCode:
+                    ChangeView(typeof(FormCreditByClientCode));
+                    break;
+
+                case PaymentOperationType.DebitPaymentByPassportAndAccount:
+                    ChangeView(typeof(FormCreditByPassport1));
+                    break;
+
+                default:
+                    ChangeView(typeof(FormProducts));
+                    break;
+            }                        
         }
 
         private void BtnNextClick(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
             {
-                FormMain.ClientInfo.CreditAccountNumber = row.Cells[0].Value.ToString();
-                FormMain.ClientInfo.CurrentCurrency = row.Cells[3].Value.ToString();
-                break;
+                foreach (var info in FormMain.Clients)
+                {
+                    if (info.ClientAccount == row.Cells[0].Value.ToString())
+                    {
+                        FormMain.ClientInfo.Client = info;
+                        FormMain.ClientInfo.CurrentCurrency = info.Currency;
+                        ChangeView(typeof(FormCreditClientInfo));
+                        return;
+                    }
+                }
             }
 
-            ChangeView(typeof(FormDebitClientInfo));
+            Log.Error("Couldn't find selected value!!!");
+            ChangeView(typeof(FormOutOfOrder));
         }
 
         private void FormDebitSelectAccountLoad(object sender, EventArgs e)
         {
-            //base.OnLoad(e);
-
             var buffer = new object[4];
             var rows = new List<DataGridViewRow>();
-            Random rnd = new SecureRandom();
 
-            for (int i = 0; i <= 10; i++)
+            foreach (var info in FormMain.Clients)
             {
-                buffer[0] = rnd.Next().ToString(CultureInfo.InvariantCulture);
-                buffer[1] = "Карточный";
-                buffer[2] = DateTime.Now.AddMonths(-3).ToShortDateString();
-                buffer[3] = "AZN";
-
+                buffer[0] = info.ClientAccount;
+                buffer[1] = info.CreditName;
+                buffer[2] = info.BeginDate.ToString("dd MMMM yyyy");
+                buffer[3] = info.Currency;
                 rows.Add(new DataGridViewRow());
                 rows[rows.Count - 1].CreateCells(dataGridSelect, buffer);
             }
 
             dataGridSelect.Rows.AddRange(rows.ToArray());
             ResizeDataGrid(dataGridSelect);
-        }
-
-        private void DataGridSelectCellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
+        }        
     }
 }

@@ -9742,6 +9742,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnCREDIT_NAME;
             
+            private global::System.Data.DataColumn columnCREDIT_TYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_CASHIN_GET_ACCOUNT_INFODataTable() {
@@ -9881,6 +9883,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CREDIT_TYPEColumn {
+                get {
+                    return this.columnCREDIT_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -9916,7 +9926,7 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_CASHIN_GET_ACCOUNT_INFORow AddV_CASHIN_GET_ACCOUNT_INFORow(string CRD_NUMBER, string FULL_NAME, string PASSPORTNUMBER, string CREDIT_ACCOUNT, string CLIENT_ACCOUNT, double AMOUNT_LEFT, double AMOUNT_LATE, string CURRENCY, System.DateTime BEGIN_DATE, double CURRENCY_RATE, string CLNCODE, double CREDIT_AMOUNT, string CREDIT_NAME) {
+            public V_CASHIN_GET_ACCOUNT_INFORow AddV_CASHIN_GET_ACCOUNT_INFORow(string CRD_NUMBER, string FULL_NAME, string PASSPORTNUMBER, string CREDIT_ACCOUNT, string CLIENT_ACCOUNT, double AMOUNT_LEFT, double AMOUNT_LATE, string CURRENCY, System.DateTime BEGIN_DATE, double CURRENCY_RATE, string CLNCODE, double CREDIT_AMOUNT, string CREDIT_NAME, long CREDIT_TYPE) {
                 V_CASHIN_GET_ACCOUNT_INFORow rowV_CASHIN_GET_ACCOUNT_INFORow = ((V_CASHIN_GET_ACCOUNT_INFORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CRD_NUMBER,
@@ -9931,7 +9941,8 @@ namespace Db {
                         CURRENCY_RATE,
                         CLNCODE,
                         CREDIT_AMOUNT,
-                        CREDIT_NAME};
+                        CREDIT_NAME,
+                        CREDIT_TYPE};
                 rowV_CASHIN_GET_ACCOUNT_INFORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_CASHIN_GET_ACCOUNT_INFORow);
                 return rowV_CASHIN_GET_ACCOUNT_INFORow;
@@ -9967,6 +9978,7 @@ namespace Db {
                 this.columnCLNCODE = base.Columns["CLNCODE"];
                 this.columnCREDIT_AMOUNT = base.Columns["CREDIT_AMOUNT"];
                 this.columnCREDIT_NAME = base.Columns["CREDIT_NAME"];
+                this.columnCREDIT_TYPE = base.Columns["CREDIT_TYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9998,6 +10010,8 @@ namespace Db {
                 base.Columns.Add(this.columnCREDIT_AMOUNT);
                 this.columnCREDIT_NAME = new global::System.Data.DataColumn("CREDIT_NAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCREDIT_NAME);
+                this.columnCREDIT_TYPE = new global::System.Data.DataColumn("CREDIT_TYPE", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCREDIT_TYPE);
                 this.columnCRD_NUMBER.AllowDBNull = false;
                 this.columnCRD_NUMBER.MaxLength = 60;
                 this.columnFULL_NAME.MaxLength = 200;
@@ -16711,6 +16725,23 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long CREDIT_TYPE {
+                get {
+                    try {
+                        return ((long)(this[this.tableV_CASHIN_GET_ACCOUNT_INFO.CREDIT_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CREDIT_TYPE\' in table \'V_CASHIN_GET_ACCOUNT_INFO\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableV_CASHIN_GET_ACCOUNT_INFO.CREDIT_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFULL_NAMENull() {
                 return this.IsNull(this.tableV_CASHIN_GET_ACCOUNT_INFO.FULL_NAMEColumn);
             }
@@ -16851,6 +16882,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCREDIT_NAMENull() {
                 this[this.tableV_CASHIN_GET_ACCOUNT_INFO.CREDIT_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCREDIT_TYPENull() {
+                return this.IsNull(this.tableV_CASHIN_GET_ACCOUNT_INFO.CREDIT_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCREDIT_TYPENull() {
+                this[this.tableV_CASHIN_GET_ACCOUNT_INFO.CREDIT_TYPEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -23178,6 +23221,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("CLNCODE", "CLNCODE");
             tableMapping.ColumnMappings.Add("CREDIT_AMOUNT", "CREDIT_AMOUNT");
             tableMapping.ColumnMappings.Add("CREDIT_NAME", "CREDIT_NAME");
+            tableMapping.ColumnMappings.Add("CREDIT_TYPE", "CREDIT_TYPE");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -23191,16 +23235,16 @@ namespace Db.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[4];
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[7];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMO" +
                 "UNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOU" +
-                "NT, CREDIT_NAME FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO";
+                "NT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE CLIENT_ACCOUNT = :clientAccount AND AMOUNT_LEFT > 0";
+            this._commandCollection[1].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount  OR CREDIT_ACCOUNT = :clientAccount) AND (PASSPORTNUMBER = :passportNumber) AND (AMOUNT_LEFT > 0)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":clientAccount";
@@ -23209,35 +23253,75 @@ namespace Db.dsTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "CLIENT_ACCOUNT";
             this._commandCollection[1].Parameters.Add(param);
-            this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE CLNCODE = :clientCode AND AMOUNT_LEFT > 0";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            param = new global::Oracle.DataAccess.Client.OracleParameter();
-            param.ParameterName = ":clientCode";
-            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
-            param.Size = 50;
-            param.IsNullable = true;
-            param.SourceColumn = "CLNCODE";
-            this._commandCollection[2].Parameters.Add(param);
-            this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE CLIENT_ACCOUNT = :clientAccount AND PASSPORTNUMBER = :passportNumber AND AMOUNT_LEFT > 0";
-            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            param = new global::Oracle.DataAccess.Client.OracleParameter();
-            param.ParameterName = ":clientAccount";
-            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.NVarchar2;
-            param.Size = 32;
-            param.IsNullable = true;
-            param.SourceColumn = "CLIENT_ACCOUNT";
-            this._commandCollection[3].Parameters.Add(param);
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":passportNumber";
             param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.NVarchar2;
             param.Size = 50;
             param.IsNullable = true;
             param.SourceColumn = "PASSPORTNUMBER";
+            this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount OR CREDIT_ACCOUNT = :clientAccount) AND (AMOUNT_LEFT > 0)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":clientAccount";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.NVarchar2;
+            param.Size = 32;
+            param.IsNullable = true;
+            param.SourceColumn = "CLIENT_ACCOUNT";
+            this._commandCollection[2].Parameters.Add(param);
+            this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLNCODE = :clientCode) AND (AMOUNT_LEFT > 0)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":clientCode";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
+            param.Size = 50;
+            param.IsNullable = true;
+            param.SourceColumn = "CLNCODE";
             this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount  OR CREDIT_ACCOUNT = :clientAccount) AND (PASSPORTNUMBER = :passportNumber) AND (CREDIT_TYPE = 0)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":clientAccount";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.NVarchar2;
+            param.Size = 32;
+            param.IsNullable = true;
+            param.SourceColumn = "CLIENT_ACCOUNT";
+            this._commandCollection[4].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":passportNumber";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.NVarchar2;
+            param.Size = 50;
+            param.IsNullable = true;
+            param.SourceColumn = "PASSPORTNUMBER";
+            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount OR CREDIT_ACCOUNT = :clientAccount) AND CREDIT_TYPE = 0";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":clientAccount";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.NVarchar2;
+            param.Size = 32;
+            param.IsNullable = true;
+            param.SourceColumn = "CLIENT_ACCOUNT";
+            this._commandCollection[5].Parameters.Add(param);
+            this._commandCollection[6] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLNCODE = :clientCode) AND (CREDIT_TYPE = 0)";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":clientCode";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
+            param.Size = 50;
+            param.IsNullable = true;
+            param.SourceColumn = "CLNCODE";
+            this._commandCollection[6].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23268,80 +23352,8 @@ namespace Db.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByClientAccount(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientAccount) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((clientAccount == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByClientAccount(string clientAccount) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((clientAccount == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
-            }
-            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByClientCode(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientCode) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((clientCode == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientCode));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByClientCode(string clientCode) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((clientCode == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientCode));
-            }
-            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByCreditAccountAndPassport(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientAccount, string passportNumber) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((clientAccount == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -23366,7 +23378,7 @@ namespace Db.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByCreditAccountAndPassport(string clientAccount, string passportNumber) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((clientAccount == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -23378,6 +23390,198 @@ namespace Db.dsTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(passportNumber));
+            }
+            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByCreditClientAccount(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientAccount) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((clientAccount == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByCreditClientAccount(string clientAccount) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((clientAccount == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
+            }
+            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByCreditClientCode(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientCode) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((clientCode == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientCode));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByCreditClientCode(string clientCode) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((clientCode == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientCode));
+            }
+            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByDebitAccountAndPassport(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientAccount, string passportNumber) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((clientAccount == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
+            }
+            if ((passportNumber == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(passportNumber));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByDebitAccountAndPassport(string clientAccount, string passportNumber) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((clientAccount == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
+            }
+            if ((passportNumber == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(passportNumber));
+            }
+            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByDebitClientAccount(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientAccount) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            if ((clientAccount == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByDebitClientAccount(string clientAccount) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            if ((clientAccount == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientAccount));
+            }
+            ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByDebitClientCode(ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable, string clientCode) {
+            this.Adapter.SelectCommand = this.CommandCollection[6];
+            if ((clientCode == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientCode));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_CASHIN_GET_ACCOUNT_INFODataTable GetDataByDebitClientCode(string clientCode) {
+            this.Adapter.SelectCommand = this.CommandCollection[6];
+            if ((clientCode == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(clientCode));
             }
             ds.V_CASHIN_GET_ACCOUNT_INFODataTable dataTable = new ds.V_CASHIN_GET_ACCOUNT_INFODataTable();
             this.Adapter.Fill(dataTable);

@@ -365,18 +365,26 @@ namespace CashInCore
                 Terminal terminalInfo;
                 result = (GetClientInfoResult)AuthTerminal(result, request, out terminalInfo);
 
-                switch (request.ClientInfoType)
+                switch ((PaymentOperationType)request.PaymentOperationType)
                 {
-                    case GetClientInfoType.ByClientCode:
-                        result.Infos = OracleDb.Instance.ListClients(request.ClientCode);
+                    case PaymentOperationType.CreditPaymentByClientCode:
+                        result.Infos = OracleDb.Instance.ListCreditClients(request.ClientCode);
                         break;
 
-                    case GetClientInfoType.ByPasportAndCreditNumber:
-                        result.Infos = OracleDb.Instance.ListClients(request.CreditAccount, request.PasportNumber);
+                    case PaymentOperationType.CreditPaymentByPassportAndAccount:
+                        result.Infos = OracleDb.Instance.ListCreditClients(request.CreditAccount, request.PasportNumber);
                         break;
 
-                    case GetClientInfoType.Bolcard:
+                    case PaymentOperationType.CreditPaymentBolcard:
                         result.Infos = OracleDb.Instance.ListClientsBolcard(request.Bolcard8Digits);
+                        break;
+
+                    case PaymentOperationType.DebitPaymentByClientCode:
+                        result.Infos = OracleDb.Instance.ListDebitClients(request.ClientCode);
+                        break;
+
+                    case PaymentOperationType.DebitPaymentByPassportAndAccount:
+                        result.Infos = OracleDb.Instance.ListDebitClients(request.CreditAccount, request.PasportNumber);
                         break;
                 }
 

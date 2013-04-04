@@ -13,7 +13,7 @@ namespace Containers
         private String _PasportNumber;
         private String _ClientCode;
         private String _Bolcard8Digits;
-        private GetClientInfoType _ClientInfoType;
+        private int _PaymentOperationType;
 
         public GetClientInfoRequest(int terminalId) : base(terminalId)
         {
@@ -43,12 +43,12 @@ namespace Containers
             set { _ClientCode = value; }
         }
 
-        [XmlElement(ElementName = "ClientInfoType")]
-        [DataMember(Name = "ClientInfoType")]
-        public GetClientInfoType ClientInfoType
+        [XmlElement(ElementName = "PaymentOperationType")]
+        [DataMember(Name = "PaymentOperationType")]
+        public int PaymentOperationType
         {
-            get { return _ClientInfoType; }
-            set { _ClientInfoType = value; }
+            get { return _PaymentOperationType; }
+            set { _PaymentOperationType = value; }
         }
 
         [XmlElement(ElementName = "Bolcard8Digits")]
@@ -67,8 +67,8 @@ namespace Containers
         {
             return
                 string.Format(
-                    "{0}, CreditAccount: {1}, PasportNumber: {2}, ClientCode: {3}, Bolcard8Digits: {4}, ClientInfoType: {5}",
-                    base.ToString(), _CreditAccount, _PasportNumber, _ClientCode, _Bolcard8Digits, _ClientInfoType);
+                    "{0}, CreditAccount: {1}, PasportNumber: {2}, ClientCode: {3}, Bolcard8Digits: {4}, PaymentOperationType: {5}",
+                    base.ToString(), _CreditAccount, _PasportNumber, _ClientCode, _Bolcard8Digits, ((PaymentOperationType)_PaymentOperationType).ToString());
         }
     }
 }

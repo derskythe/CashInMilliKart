@@ -1,5 +1,5 @@
 ﻿using System;
-using CashInTerminal.CashIn;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -12,19 +12,19 @@ namespace CashInTerminal
 
         private void BtnClientNumberClick(object sender, EventArgs e)
         {
-            FormMain.ClientInfo.GetClientInfoType = GetClientInfoType.ByClientCode;
+            FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.CreditPaymentByClientCode;
             ChangeView(typeof(FormCreditByClientCode));
         }
 
         private void BtnCreditNumberAndPasportClick(object sender, EventArgs e)
         {
-            FormMain.ClientInfo.GetClientInfoType = GetClientInfoType.ByPasportAndCreditNumber;
+            FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.CreditPaymentByPassportAndAccount;
             ChangeView(typeof(FormCreditByPassport1));
         }
 
         private void BtnBolCardClick(object sender, EventArgs e)
         {
-            FormMain.ClientInfo.GetClientInfoType = GetClientInfoType.Bolcard;
+            FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.CreditPaymentBolcard;
             ChangeView(typeof(FormCreditByBolcard));
         }
 

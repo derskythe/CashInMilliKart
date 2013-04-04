@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -89,7 +84,9 @@ namespace CashInTerminal
 
         private void BtnClientCodeBackClick(object sender, EventArgs e)
         {
-            ChangeView(typeof(FormCreditTypeSelect));
+            ChangeView(FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.DebitPaymentByClientCode
+                           ? typeof (FormDebitPayType)
+                           : typeof (FormCreditTypeSelect));
         }
 
         private void BtnClientCodeNextClick(object sender, EventArgs e)

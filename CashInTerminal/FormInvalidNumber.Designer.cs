@@ -36,11 +36,11 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(154, 262);
+            this.label10.Location = new System.Drawing.Point(39, 158);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(713, 75);
+            this.label10.Size = new System.Drawing.Size(935, 351);
             this.label10.TabIndex = 10;
             this.label10.Text = "Не правильный номер. ";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -1,6 +1,7 @@
 ﻿using System;
 using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
+using Containers.Enums;
 
 namespace CashInTerminal
 {
@@ -13,38 +14,30 @@ namespace CashInTerminal
 
         private void BtbBackClick(object sender, EventArgs e)
         {
-            switch (FormMain.ClientInfo.ProductCode)
+            switch (FormMain.ClientInfo.PaymentOperationType)
             {
-                case 1:
-                    switch (FormMain.ClientInfo.GetClientInfoType)
-                    {
-                        case GetClientInfoType.ByClientCode:
-                            ChangeView(typeof(FormCreditByClientCode));
-                            break;
-
-                        case GetClientInfoType.ByPasportAndCreditNumber:
-                            ChangeView(typeof(FormCreditByPassport1));
-                            break;
-
-                        case GetClientInfoType.Bolcard:
-                            ChangeView(typeof(FormCreditByBolcard));
-                            break;
-
-                        default:
-                            ChangeView(typeof(FormCreditTypeSelect));
-                            break;
-                    }
+                case PaymentOperationType.CreditPaymentByClientCode:
+                    ChangeView(typeof(FormCreditByClientCode));
                     break;
 
-                case 2:
-                    if (FormMain.ClientInfo.DebitPayType != DebitPayType.ByCardFull)
-                    {
-                        ChangeView(typeof(FormClientCode));
-                    }
-                    else
-                    {
-                        ChangeView(typeof(FormDebitCardFull));
-                    }
+                case PaymentOperationType.CreditPaymentByPassportAndAccount:
+                    ChangeView(typeof(FormCreditByPassport1));
+                    break;
+
+                case PaymentOperationType.CreditPaymentBolcard:
+                    ChangeView(typeof(FormCreditByBolcard));
+                    break;
+
+                case PaymentOperationType.DebitPaymentByClientCode:
+                    ChangeView(typeof(FormCreditByClientCode));
+                    break;
+
+                case PaymentOperationType.DebitPaymentByPassportAndAccount:
+                    ChangeView(typeof(FormCreditByPassport1));
+                    break;
+
+                default:
+                    ChangeView(typeof(FormProducts));
                     break;
             }
         }
