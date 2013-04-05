@@ -45,6 +45,7 @@ namespace CashInTerminal
         private CashIn.ClientInfo[] _Clients;
         private Dictionary<int, List<ds.TemplateFieldRow>> _CheckTemplates = new Dictionary<int, List<ds.TemplateFieldRow>>();
         private String _SelectedLanguage = InterfaceLanguages.Az;
+        private GetClientInfoRequest _InfoRequest;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
@@ -150,6 +151,12 @@ namespace CashInTerminal
         {
             get { return _Clients; }
             set { _Clients = value; }
+        }
+
+        public GetClientInfoRequest InfoRequest
+        {
+            get { return _InfoRequest; }
+            set { _InfoRequest = value; }
         }
 
         private CashInServer _Server;

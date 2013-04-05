@@ -37,35 +37,39 @@ namespace CashInTerminal
                         Sign = Utilities.Sign(Settings.Default.TerminalCode, now, FormMain.ServerPublicKey)
                     };
 
-                    var response = FormMain.Server.GetClientInfo(request);
-                    if (response.ResultCodes != ResultCodes.Ok)
-                    {
-                        throw new Exception(response.Description);
-                    }
+                    FormMain.InfoRequest = request;
 
-                    if (response.Infos == null || response.Infos.Length == 0)
-                    {
-                        ChangeView(typeof(FormInvalidNumber));
-                        return;
-                    }
+                    ChangeView(typeof(FormProgress));
 
-                    FormMain.Clients = response.Infos;
+                    //var response = FormMain.Server.GetClientInfo(request);
+                    //if (response.ResultCodes != ResultCodes.Ok)
+                    //{
+                    //    throw new Exception(response.Description);
+                    //}
 
-                    foreach (var clientInfo in response.Infos)
-                    {
-                        FormMain.ClientInfo.Client = clientInfo;
-                        FormMain.ClientInfo.CurrentCurrency = clientInfo.Currency;
-                        break;
-                    }
+                    //if (response.Infos == null || response.Infos.Length == 0)
+                    //{
+                    //    ChangeView(typeof(FormInvalidNumber));
+                    //    return;
+                    //}
 
-                    if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode)
-                    {
-                        ChangeView(typeof(FormCreditSelectAccount));
-                    }
-                    else
-                    {
-                        ChangeView(typeof(FormDebitSelectAccount));
-                    }
+                    //FormMain.Clients = response.Infos;
+
+                    //foreach (var clientInfo in response.Infos)
+                    //{
+                    //    FormMain.ClientInfo.Client = clientInfo;
+                    //    FormMain.ClientInfo.CurrentCurrency = clientInfo.Currency;
+                    //    break;
+                    //}
+
+                    //if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode)
+                    //{
+                    //    ChangeView(typeof(FormCreditSelectAccount));
+                    //}
+                    //else
+                    //{
+                    //    ChangeView(typeof(FormDebitSelectAccount));
+                    //}
                 }
                 catch (Exception exp)
                 {

@@ -40,27 +40,31 @@ namespace CashInTerminal
                             Sign = Utilities.Sign(Settings.Default.TerminalCode, now, FormMain.ServerPublicKey)
                         };
 
-                    var response = FormMain.Server.GetClientInfo(request);
-                    if (response.ResultCodes != ResultCodes.Ok)
-                    {
-                        throw new Exception(response.Description);
-                    }
+                    FormMain.InfoRequest = request;
 
-                    if (response.Infos == null || response.Infos.Length == 0)
-                    {
-                        ChangeView(typeof(FormInvalidNumber));
-                        return;
-                    }
+                    ChangeView(typeof(FormProgress));
 
-                    FormMain.Clients = response.Infos;
-                    if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode)
-                    {
-                        ChangeView(typeof(FormCreditSelectAccount));
-                    }
-                    else
-                    {
-                        ChangeView(typeof(FormDebitSelectAccount));
-                    }
+                    //var response = FormMain.Server.GetClientInfo(request);
+                    //if (response.ResultCodes != ResultCodes.Ok)
+                    //{
+                    //    throw new Exception(response.Description);
+                    //}
+
+                    //if (response.Infos == null || response.Infos.Length == 0)
+                    //{
+                    //    ChangeView(typeof(FormInvalidNumber));
+                    //    return;
+                    //}
+
+                    //FormMain.Clients = response.Infos;
+                    //if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode)
+                    //{
+                    //    ChangeView(typeof(FormCreditSelectAccount));
+                    //}
+                    //else
+                    //{
+                    //    ChangeView(typeof(FormDebitSelectAccount));
+                    //}
                 }
                 catch (Exception exp)
                 {

@@ -39,27 +39,32 @@ namespace CashInTerminal
                         };
 
                     var response = FormMain.Server.GetClientInfo(request);
-                    if (response.ResultCodes != ResultCodes.Ok)
-                    {
-                        throw new Exception(response.Description);
-                    }
 
-                    if (response.Infos == null || response.Infos.Length == 0)
-                    {
-                        ChangeView(typeof(FormInvalidNumber));
-                        return;
-                    }
+                    FormMain.InfoRequest = request;
 
-                    FormMain.Clients = response.Infos;
+                    ChangeView(typeof(FormProgress));
 
-                    foreach (var clientInfo in response.Infos)
-                    {
-                        FormMain.ClientInfo.Client = clientInfo;
-                        FormMain.ClientInfo.CurrentCurrency = clientInfo.Currency;
-                        break;
-                    }
+                    //if (response.ResultCodes != ResultCodes.Ok)
+                    //{
+                    //    throw new Exception(response.Description);
+                    //}
 
-                    ChangeView(typeof(FormCreditClientInfo));
+                    //if (response.Infos == null || response.Infos.Length == 0)
+                    //{
+                    //    ChangeView(typeof(FormInvalidNumber));
+                    //    return;
+                    //}
+
+                    //FormMain.Clients = response.Infos;
+
+                    //foreach (var clientInfo in response.Infos)
+                    //{
+                    //    FormMain.ClientInfo.Client = clientInfo;
+                    //    FormMain.ClientInfo.CurrentCurrency = clientInfo.Currency;
+                    //    break;
+                    //}
+
+                    //ChangeView(typeof(FormCreditClientInfo));
                 }
                 catch (Exception exp)
                 {
