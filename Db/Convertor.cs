@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Containers;
 using Containers.Admin;
 
@@ -386,6 +385,13 @@ namespace Db
 
         public static ProductHistory ToProductHistory(ds.V_PRODUCTS_HISTORYRow row, List<ProductHistoryValue> values, List<Banknote> banknotes)
         {
+            var desc = new MultiLanguageString(
+                row.IsPAYMENT_TYPE_ENNull() ? String.Empty : row.PAYMENT_TYPE_EN,
+                row.IsPAYMENT_TYPE_RUNull() ? String.Empty : row.PAYMENT_TYPE_RU,
+                row.IsPAYMENT_TYPE_AZNull() ? String.Empty : row.PAYMENT_TYPE_AZ
+                );
+            desc.ReInit();            
+
             var result = new ProductHistory
                 {
                     Address = row.IsADDRESSNull() ? String.Empty : row.ADDRESS,
@@ -405,7 +411,10 @@ namespace Db
                     ProductName = row.IsPRODUCT_NAMENull() ? String.Empty : row.PRODUCT_NAME,
                     Rate = row.IsRATENull() ? 1 : row.RATE,
                     TransactionId = row.IsTRANSACTION_IDNull() ? String.Empty : row.TRANSACTION_ID,
-                    Banknotes = banknotes
+                    Banknotes = banknotes,
+                    CreditNumber = row.IsCREDIT_NUMBERNull() ? String.Empty : row.CREDIT_NUMBER,
+                    PaymentType = row.IsPAYMENT_TYPENull() ? 0 : Convert.ToInt32(row.PAYMENT_TYPE),
+                    PaymentTypeName = desc
                 };
 
             return result;

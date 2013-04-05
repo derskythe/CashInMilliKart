@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using Containers.Admin;
 
 namespace Containers
 {
@@ -25,6 +26,9 @@ namespace Containers
         private string _NameAz;
         private string _NameRu;
         private string _NameEn;
+        private string _CreditNumber;
+        private int _PaymentType;
+        private MultiLanguageString _PaymentTypeName;
         private List<ProductHistoryValue> _Values;
         private List<Banknote> _Banknotes;
 
@@ -156,6 +160,30 @@ namespace Containers
             set { _NameEn = value; }
         }
 
+        [XmlElement(ElementName = "CreditNumber")]
+        [DataMember(Name = "CreditNumber")]
+        public string CreditNumber
+        {
+            get { return _CreditNumber; }
+            set { _CreditNumber = value; }
+        }
+
+        [XmlElement(ElementName = "PaymentType")]
+        [DataMember(Name = "PaymentType")]
+        public int PaymentType
+        {
+            get { return _PaymentType; }
+            set { _PaymentType = value; }
+        }
+
+        [XmlElement(ElementName = "PaymentTypeName")]
+        [DataMember(Name = "PaymentTypeName")]
+        public MultiLanguageString PaymentTypeName
+        {
+            get { return _PaymentTypeName; }
+            set { _PaymentTypeName = value; }
+        }
+
         [XmlArray("Values")]
         [DataMember(Name = "Values")]
         public List<ProductHistoryValue> Values
@@ -176,7 +204,7 @@ namespace Containers
         {
         }
 
-        public ProductHistory(decimal id, string transactionId, decimal terminalId, string name, string address, string identityName, decimal productId, string currencyId, decimal rate, DateTime insertDate, decimal amount, DateTime terminalDate, string productName, string nameAz, string nameRu, string nameEn)
+        public ProductHistory(decimal id, string transactionId, decimal terminalId, string name, string address, string identityName, decimal productId, string currencyId, decimal rate, DateTime insertDate, decimal amount, DateTime terminalDate, string productName, string nameAz, string nameRu, string nameEn, string creditNumber, int paymentType, MultiLanguageString paymentTypeName, List<ProductHistoryValue> values, List<Banknote> banknotes)
         {
             _Id = id;
             _TransactionId = transactionId;
@@ -194,16 +222,21 @@ namespace Containers
             _NameAz = nameAz;
             _NameRu = nameRu;
             _NameEn = nameEn;
+            _CreditNumber = creditNumber;
+            _PaymentType = paymentType;
+            _PaymentTypeName = paymentTypeName;
+            _Values = values;
+            _Banknotes = banknotes;
         }
 
         public override string ToString()
         {
             return
                 string.Format(
-                    "Id: {0}, TransactionId: {1}, TerminalId: {2}, Name: {3}, Address: {4}, IdentityName: {5}, ProductId: {6}, CurrencyId: {7}, Rate: {8}, InsertDate: {9}, Amount: {10}, TerminalDate: {11}, ProductName: {12}, NameAz: {13}, NameRu: {14}, NameEn: {15}, Values: {16}, Banknotes: {17}",
-                    _Id, _TransactionId, _TerminalId, _Name, _Address, _IdentityName, _ProductId, _CurrencyId, _Rate,
-                    _InsertDate, _Amount, _TerminalDate, _ProductName, _NameAz, _NameRu, _NameEn,
-                    EnumEx.GetStringFromArray(_Values), EnumEx.GetStringFromArray(_Banknotes));
+                    "Id: {0}, TransactionId: {1}, TerminalId: {2}, Name: {3}, Address: {4}, ProductId: {5}, IdentityName: {6}, CurrencyId: {7}, Rate: {8}, InsertDate: {9}, Amount: {10}, TerminalDate: {11}, ProductName: {12}, NameAz: {13}, NameRu: {14}, NameEn: {15}, CreditNumber: {16}, PaymentType: {17}, PaymentTypeName: {18}, Values: {19}, Banknotes: {20}",
+                    _Id, _TransactionId, _TerminalId, _Name, _Address, _ProductId, _IdentityName, _CurrencyId, _Rate,
+                    _InsertDate, _Amount, _TerminalDate, _ProductName, _NameAz, _NameRu, _NameEn, _CreditNumber,
+                    _PaymentType, _PaymentTypeName, EnumEx.GetStringFromArray(_Values), EnumEx.GetStringFromArray(_Banknotes));
         }
     }
 }

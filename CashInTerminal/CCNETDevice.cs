@@ -636,6 +636,7 @@ namespace CashInTerminal
                     break;
 
                 case CCNETCommand.StackerFull:
+                    Log.Warn(CCNETCommand.StackerFull.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.StackerFull;
                     _DeviceState.FatalError = true;
                     Reset();
@@ -658,31 +659,37 @@ namespace CashInTerminal
                     break;
 
                 case CCNETCommand.PowerUp:
+                    Log.Warn(CCNETCommand.PowerUp.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.PowerUp;
                     //Reset();
                     break;
 
                 case CCNETCommand.BillJam:
+                    Log.Error(CCNETCommand.BillJam.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.BillJam;
                     _DeviceState.FatalError = true;
                     break;
 
                 case CCNETCommand.FatalError:
+                    Log.Warn(CCNETCommand.FatalError.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.FatalError;
                     _DeviceState.FatalError = true;
                     break;
 
                 case CCNETCommand.Cheated:
+                    Log.Warn(CCNETCommand.Cheated.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.Cheated;
                     _DeviceState.FatalError = true;
                     break;
 
                 case CCNETCommand.CasseteBillJam:
+                    Log.Warn(CCNETCommand.CasseteBillJam.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.CasseteBillJam;
                     _DeviceState.FatalError = true;
                     break;
 
                 case CCNETCommand.Error:
+                    Log.Warn(CCNETCommand.Error.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.Error;
                     _DeviceState.FatalError = true;
                     break;
@@ -901,6 +908,7 @@ namespace CashInTerminal
                     break;
 
                 case CCNETCommand.BillReturned:
+                    Log.Warn(CCNETCommand.BillReturned.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.BillReturned;
                     break;
             }

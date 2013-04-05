@@ -140,6 +140,8 @@ namespace Db
             var currencyRateId = new OracleParameter();
             var amount = new OracleParameter();
             var terminalDate = new OracleParameter();
+            var creditNumber = new OracleParameter();
+            var type = new OracleParameter();
             var banknotes = new OracleParameter();
             var values = new OracleParameter();
 
@@ -149,6 +151,8 @@ namespace Db
             currencyId.OracleDbType = OracleDbType.Varchar2;
             currencyRateId.OracleDbType = OracleDbType.Decimal;
             amount.OracleDbType = OracleDbType.Int32;
+            creditNumber.OracleDbType = OracleDbType.Varchar2;
+            type.OracleDbType = OracleDbType.Int32;
             terminalDate.OracleDbType = OracleDbType.TimeStamp;
             banknotes.OracleDbType = OracleDbType.Int32;
             values.OracleDbType = OracleDbType.Varchar2;
@@ -165,6 +169,8 @@ namespace Db
             terminalDate.Value = info.TerminalDate;
             banknotes.Value = info.Banknotes;
             values.Value = info.Values;
+            creditNumber.Value = info.CreditNumber;
+            type.Value = info.OperationType;
 
             banknotes.Size = info.Banknotes.Length;
             values.Size = info.Values.Length;
@@ -176,6 +182,8 @@ namespace Db
             cmd.Parameters.Add(currencyRateId);
             cmd.Parameters.Add(amount);
             cmd.Parameters.Add(terminalDate);
+            cmd.Parameters.Add(creditNumber);
+            cmd.Parameters.Add(type);
             cmd.Parameters.Add(banknotes);
             cmd.Parameters.Add(values);
 

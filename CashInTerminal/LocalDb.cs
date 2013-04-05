@@ -193,10 +193,10 @@ namespace CashInTerminal
         }
 
         public long InsertTransaction(long productId, string currency, decimal currencyRate, int amount, int terminalId,
-                                      bool confirmed)
+            string creditNumber, int operationType, bool confirmed)
         {
             var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0);
+            adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0, operationType, creditNumber);
 
             var insertId = adapter.GetInsertId();
 

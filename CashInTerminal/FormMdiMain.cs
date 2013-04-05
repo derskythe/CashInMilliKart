@@ -1312,9 +1312,9 @@ namespace CashInTerminal
                                     Currency = row.Currency,
                                     CurrencyRate = (float)row.CurrencyRate,
                                     Amount = (int)row.Amount,
-                                    CreditNumber = _ClientInfo.Client.CreditNumber,
+                                    CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
                                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                                    OperationType = (int)_ClientInfo.PaymentOperationType                                    
+                                    OperationType = Convert.ToInt32(row.OperationType)                                    
                                 };
 
                             var valuesList = new List<String>();
@@ -1473,7 +1473,6 @@ namespace CashInTerminal
         }
 
         #endregion
-
 
         #region Paint 
 

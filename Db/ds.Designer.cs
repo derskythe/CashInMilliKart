@@ -7324,6 +7324,16 @@ namespace Db {
             
             private global::System.Data.DataColumn columnNAME_EN;
             
+            private global::System.Data.DataColumn columnCREDIT_NUMBER;
+            
+            private global::System.Data.DataColumn columnPAYMENT_TYPE;
+            
+            private global::System.Data.DataColumn columnPAYMENT_TYPE_AZ;
+            
+            private global::System.Data.DataColumn columnPAYMENT_TYPE_RU;
+            
+            private global::System.Data.DataColumn columnPAYMENT_TYPE_EN;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_PRODUCTS_HISTORYDataTable() {
@@ -7487,6 +7497,46 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CREDIT_NUMBERColumn {
+                get {
+                    return this.columnCREDIT_NUMBER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PAYMENT_TYPEColumn {
+                get {
+                    return this.columnPAYMENT_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PAYMENT_TYPE_AZColumn {
+                get {
+                    return this.columnPAYMENT_TYPE_AZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PAYMENT_TYPE_RUColumn {
+                get {
+                    return this.columnPAYMENT_TYPE_RU;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PAYMENT_TYPE_ENColumn {
+                get {
+                    return this.columnPAYMENT_TYPE_EN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7538,7 +7588,12 @@ namespace Db {
                         string PRODUCT_NAME, 
                         string NAME_AZ, 
                         string NAME_RU, 
-                        string NAME_EN) {
+                        string NAME_EN, 
+                        string CREDIT_NUMBER, 
+                        decimal PAYMENT_TYPE, 
+                        string PAYMENT_TYPE_AZ, 
+                        string PAYMENT_TYPE_RU, 
+                        string PAYMENT_TYPE_EN) {
                 V_PRODUCTS_HISTORYRow rowV_PRODUCTS_HISTORYRow = ((V_PRODUCTS_HISTORYRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -7556,7 +7611,12 @@ namespace Db {
                         PRODUCT_NAME,
                         NAME_AZ,
                         NAME_RU,
-                        NAME_EN};
+                        NAME_EN,
+                        CREDIT_NUMBER,
+                        PAYMENT_TYPE,
+                        PAYMENT_TYPE_AZ,
+                        PAYMENT_TYPE_RU,
+                        PAYMENT_TYPE_EN};
                 rowV_PRODUCTS_HISTORYRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_PRODUCTS_HISTORYRow);
                 return rowV_PRODUCTS_HISTORYRow;
@@ -7595,6 +7655,11 @@ namespace Db {
                 this.columnNAME_AZ = base.Columns["NAME_AZ"];
                 this.columnNAME_RU = base.Columns["NAME_RU"];
                 this.columnNAME_EN = base.Columns["NAME_EN"];
+                this.columnCREDIT_NUMBER = base.Columns["CREDIT_NUMBER"];
+                this.columnPAYMENT_TYPE = base.Columns["PAYMENT_TYPE"];
+                this.columnPAYMENT_TYPE_AZ = base.Columns["PAYMENT_TYPE_AZ"];
+                this.columnPAYMENT_TYPE_RU = base.Columns["PAYMENT_TYPE_RU"];
+                this.columnPAYMENT_TYPE_EN = base.Columns["PAYMENT_TYPE_EN"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7632,6 +7697,16 @@ namespace Db {
                 base.Columns.Add(this.columnNAME_RU);
                 this.columnNAME_EN = new global::System.Data.DataColumn("NAME_EN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNAME_EN);
+                this.columnCREDIT_NUMBER = new global::System.Data.DataColumn("CREDIT_NUMBER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCREDIT_NUMBER);
+                this.columnPAYMENT_TYPE = new global::System.Data.DataColumn("PAYMENT_TYPE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPAYMENT_TYPE);
+                this.columnPAYMENT_TYPE_AZ = new global::System.Data.DataColumn("PAYMENT_TYPE_AZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPAYMENT_TYPE_AZ);
+                this.columnPAYMENT_TYPE_RU = new global::System.Data.DataColumn("PAYMENT_TYPE_RU", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPAYMENT_TYPE_RU);
+                this.columnPAYMENT_TYPE_EN = new global::System.Data.DataColumn("PAYMENT_TYPE_EN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPAYMENT_TYPE_EN);
                 this.columnID.AllowDBNull = false;
                 this.columnTRANSACTION_ID.MaxLength = 50;
                 this.columnTERMINAL_ID.AllowDBNull = false;
@@ -7646,6 +7721,10 @@ namespace Db {
                 this.columnNAME_AZ.MaxLength = 4000;
                 this.columnNAME_RU.MaxLength = 4000;
                 this.columnNAME_EN.MaxLength = 4000;
+                this.columnCREDIT_NUMBER.MaxLength = 100;
+                this.columnPAYMENT_TYPE_AZ.MaxLength = 4000;
+                this.columnPAYMENT_TYPE_RU.MaxLength = 4000;
+                this.columnPAYMENT_TYPE_EN.MaxLength = 4000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15591,6 +15670,86 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CREDIT_NUMBER {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_PRODUCTS_HISTORY.CREDIT_NUMBERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CREDIT_NUMBER\' in table \'V_PRODUCTS_HISTORY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_HISTORY.CREDIT_NUMBERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal PAYMENT_TYPE {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PAYMENT_TYPE\' in table \'V_PRODUCTS_HISTORY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PAYMENT_TYPE_AZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_AZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PAYMENT_TYPE_AZ\' in table \'V_PRODUCTS_HISTORY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_AZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PAYMENT_TYPE_RU {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_RUColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PAYMENT_TYPE_RU\' in table \'V_PRODUCTS_HISTORY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_RUColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PAYMENT_TYPE_EN {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_ENColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PAYMENT_TYPE_EN\' in table \'V_PRODUCTS_HISTORY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_ENColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTRANSACTION_IDNull() {
                 return this.IsNull(this.tableV_PRODUCTS_HISTORY.TRANSACTION_IDColumn);
             }
@@ -15719,6 +15878,66 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNAME_ENNull() {
                 this[this.tableV_PRODUCTS_HISTORY.NAME_ENColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCREDIT_NUMBERNull() {
+                return this.IsNull(this.tableV_PRODUCTS_HISTORY.CREDIT_NUMBERColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCREDIT_NUMBERNull() {
+                this[this.tableV_PRODUCTS_HISTORY.CREDIT_NUMBERColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPAYMENT_TYPENull() {
+                return this.IsNull(this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPAYMENT_TYPENull() {
+                this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPAYMENT_TYPE_AZNull() {
+                return this.IsNull(this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_AZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPAYMENT_TYPE_AZNull() {
+                this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_AZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPAYMENT_TYPE_RUNull() {
+                return this.IsNull(this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_RUColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPAYMENT_TYPE_RUNull() {
+                this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_RUColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPAYMENT_TYPE_ENNull() {
+                return this.IsNull(this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_ENColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPAYMENT_TYPE_ENNull() {
+                this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_ENColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -21482,6 +21701,11 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("NAME_AZ", "NAME_AZ");
             tableMapping.ColumnMappings.Add("NAME_RU", "NAME_RU");
             tableMapping.ColumnMappings.Add("NAME_EN", "NAME_EN");
+            tableMapping.ColumnMappings.Add("CREDIT_NUMBER", "CREDIT_NUMBER");
+            tableMapping.ColumnMappings.Add("PAYMENT_TYPE", "PAYMENT_TYPE");
+            tableMapping.ColumnMappings.Add("PAYMENT_TYPE_AZ", "PAYMENT_TYPE_AZ");
+            tableMapping.ColumnMappings.Add("PAYMENT_TYPE_RU", "PAYMENT_TYPE_RU");
+            tableMapping.ColumnMappings.Add("PAYMENT_TYPE_EN", "PAYMENT_TYPE_EN");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -21498,9 +21722,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[5];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, TRANSACTION_ID, TERMINAL_ID, \"NAME\", ADDRESS, IDENTITY_NAME, PRODUCT_I" +
-                "D, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ," +
-                " NAME_RU, NAME_EN FROM cashin_new.V_PRODUCTS_HISTORY";
+            this._commandCollection[0].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -21527,7 +21749,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT ADDRESS, AMOUNT, CURRENCY_ID, ID, IDENTITY_NAME, INSERT_DATE, ""NAME"", NAME_AZ, NAME_EN, NAME_RU, PRODUCT_ID, PRODUCT_NAME, RATE, TERMINAL_DATE, TERMINAL_ID, TRANSACTION_ID FROM cashin_new.V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)";
+            this._commandCollection[3].CommandText = @"SELECT ADDRESS, AMOUNT, CURRENCY_ID, ID, IDENTITY_NAME, INSERT_DATE, ""NAME"", NAME_AZ, NAME_EN, NAME_RU, PRODUCT_ID, PRODUCT_NAME, RATE, TERMINAL_DATE, TERMINAL_ID, TRANSACTION_ID, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":dateFrom";
@@ -21545,10 +21767,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT ID, TRANSACTION_ID, TERMINAL_ID, \"NAME\", ADDRESS, IDENTITY_NAME, PRODUCT_I" +
-                "D, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ," +
-                " NAME_RU, NAME_EN FROM cashin_new.V_PRODUCTS_HISTORY WHERE TRANSACTION_ID = :tra" +
-                "nsactionId";
+            this._commandCollection[4].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":transactionId";
