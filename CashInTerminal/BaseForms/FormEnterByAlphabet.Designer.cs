@@ -670,7 +670,7 @@
             this.btnPlus.UseVisualStyleBackColor = false;
             this.btnPlus.Click += new System.EventHandler(this.BtnPlusClick);
             // 
-            // FormCreditByPassport
+            // FormEnterByAlphabet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -719,9 +719,9 @@
             this.Controls.Add(this.btnClientCodeBack);
             this.Controls.Add(this.btnClientCodeNext);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "FormCreditByPassport";
+            this.Name = "FormEnterByAlphabet";
             this.Text = "FormCreditByPassport";
-            this.Load += new System.EventHandler(this.FormCreditByPassport1Load);
+            this.Load += new System.EventHandler(this.FormEnterByAlphabetLoad);
             this.Controls.SetChildIndex(this.btnClientCodeNext, 0);
             this.Controls.SetChildIndex(this.btnClientCodeBack, 0);
             this.Controls.SetChildIndex(this.txtClientCodeClient, 0);

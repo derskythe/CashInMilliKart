@@ -1,7 +1,5 @@
 ﻿using System;
 using CashInTerminal.BaseForms;
-using CashInTerminal.CashIn;
-using CashInTerminal.Enums;
 using Containers.Enums;
 
 namespace CashInTerminal
@@ -18,11 +16,11 @@ namespace CashInTerminal
             switch (FormMain.ClientInfo.PaymentOperationType)
             {
                 case PaymentOperationType.CreditPaymentByClientCode:
-                    ChangeView(typeof(BaseForms.FormEnterClientCode));
+                    ChangeView(typeof(FormCreditByClientCode));
                     break;
 
                 case PaymentOperationType.CreditPaymentByPassportAndAccount:
-                    ChangeView(typeof(BaseForms.FormEnterByAlphabet));
+                    ChangeView(typeof(FormCreditByPassport1));
                     break;
 
                 case PaymentOperationType.CreditPaymentBolcard:
@@ -30,11 +28,11 @@ namespace CashInTerminal
                     break;
 
                 case PaymentOperationType.DebitPaymentByClientCode:
-                    ChangeView(typeof(BaseForms.FormEnterClientCode));
+                    ChangeView(typeof(FormCreditByClientCode));
                     break;
 
                 case PaymentOperationType.DebitPaymentByPassportAndAccount:
-                    ChangeView(typeof(BaseForms.FormEnterByAlphabet));
+                    ChangeView(typeof(FormCreditByPassport1));
                     break;
 
                 default:

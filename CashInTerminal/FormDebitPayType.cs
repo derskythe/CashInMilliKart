@@ -14,13 +14,13 @@ namespace CashInTerminal
         private void BtnByCardFullClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.DebitPaymentByClientCode;
-            ChangeView(typeof(BaseForms.FormEnterClientCode));
+            ChangeView(typeof(FormCreditByClientCode));
         }
 
         private void BtnByCardAccountNumberClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.DebitPaymentByPassportAndAccount;
-            ChangeView(typeof(BaseForms.FormEnterByAlphabet));
+            ChangeView(typeof(FormCreditByPassport1));
         }
 
         //private void BtnCurrentClick(object sender, EventArgs e)

@@ -163,4 +163,16 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="PasportInfo" xml:space="preserve">
+    <value>Серия и номер паспорта</value>
+  </data>
+  <data name="AccountNumberRetype" xml:space="preserve">
+    <value>Повторите номер счета</value>
+  </data>
+  <data name="BolLastFour" xml:space="preserve">
+    <value>Последние 8 цифр карточки</value>
+  </data>
+  <data name="BolLastFourRetype" xml:space="preserve">
+    <value>Повторите последние 8 цифр</value>
+  </data>
 </root>

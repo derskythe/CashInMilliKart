@@ -69,6 +69,15 @@ namespace CashInTerminal.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Повторите номер счета.
+        /// </summary>
+        internal static string AccountNumberRetype {
+            get {
+                return ResourceManager.GetString("AccountNumberRetype", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap backspace {
             get {
                 object obj = ResourceManager.GetObject("backspace", resourceCulture);
@@ -80,6 +89,24 @@ namespace CashInTerminal.Properties {
             get {
                 object obj = ResourceManager.GetObject("backspace32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Последние 8 цифр карточки.
+        /// </summary>
+        internal static string BolLastFour {
+            get {
+                return ResourceManager.GetString("BolLastFour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повторите последние 8 цифр.
+        /// </summary>
+        internal static string BolLastFourRetype {
+            get {
+                return ResourceManager.GetString("BolLastFourRetype", resourceCulture);
             }
         }
         
@@ -159,6 +186,15 @@ namespace CashInTerminal.Properties {
             get {
                 object obj = ResourceManager.GetObject("OutOfOrder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Серия и номер паспорта.
+        /// </summary>
+        internal static string PasportInfo {
+            get {
+                return ResourceManager.GetString("PasportInfo", resourceCulture);
             }
         }
         

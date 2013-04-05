@@ -27,7 +27,7 @@ namespace CashInTerminal.BaseForms
             }
         }
 
-        public FormMdiChild()
+        protected FormMdiChild()
         {
             InitializeComponent();
         }

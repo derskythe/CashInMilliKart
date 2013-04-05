@@ -175,8 +175,8 @@ namespace CashInTerminal
         private const int CHECK_CHECK_TEMPLATE_TIMER = 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
-        private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 1000;
-        private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Seconds!
+        private const int CHECK_APPLICATION_UPDATE_TIMER = 10 * 1000;
+        private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Value in seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
 

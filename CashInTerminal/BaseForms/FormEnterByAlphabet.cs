@@ -13,7 +13,7 @@ namespace CashInTerminal.BaseForms
             set { _SelectedBox = value; }
         }
 
-        public FormEnterByAlphabet()
+        protected FormEnterByAlphabet()
         {
             InitializeComponent();
         }
@@ -225,23 +225,48 @@ namespace CashInTerminal.BaseForms
                 Log.Error("Sender is null");
                 return;
             }
-            var t = (TextBox)sender;
+            var t = (Button)sender;
             SelectedBox.Text += t.Text;
         }
 
         #endregion
-       
-        protected virtual void BtnClientCodeBackClick(object sender, EventArgs e)
+
+        protected virtual void BtnBack()
+        {            
+        }
+
+        protected virtual void BtnNext()
         {
         }
 
-        protected virtual void BtnClientCodeNextClick(object sender, EventArgs e)
-        {            
+        private void BtnClientCodeBackClick(object sender, EventArgs e)
+        {
+            BtnBack();
+        }
+
+        private void BtnClientCodeNextClick(object sender, EventArgs e)
+        {
+            BtnNext();
         }
 
         private void TxtClientCodeClientClick(object sender, EventArgs e)
         {
             SelectedBox = txtClientCodeClient;
-        }        
+        }
+
+        protected String Label
+        {
+            set { lblClientCode.Text = value; }
+            get { return lblClientCode.Text; }
+        }
+
+        protected String InputValue
+        {
+            get { return txtClientCodeClient.Text; }
+        }
+
+        private void FormEnterByAlphabetLoad(object sender, EventArgs e)
+        {            
+        }
     }
 }

@@ -18,11 +18,11 @@ namespace CashInTerminal
             switch (FormMain.ClientInfo.PaymentOperationType)
             {
                 case PaymentOperationType.DebitPaymentByClientCode:
-                    ChangeView(typeof(BaseForms.FormEnterClientCode));
+                    ChangeView(typeof(FormCreditByClientCode));
                     break;
 
                 case PaymentOperationType.DebitPaymentByPassportAndAccount:
-                    ChangeView(typeof(BaseForms.FormEnterByAlphabet));
+                    ChangeView(typeof(FormCreditByPassport1));
                     break;
 
                 default:
