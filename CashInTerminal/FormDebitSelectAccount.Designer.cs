@@ -131,6 +131,7 @@
             this.dataGridSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridSelect.Size = new System.Drawing.Size(1003, 437);
             this.dataGridSelect.TabIndex = 0;
+            this.dataGridSelect.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridSelectCellDoubleClick);
             // 
             // tdAccountNumber
             // 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CashInTerminal.BaseForms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
 using Containers.Enums;
@@ -34,7 +35,7 @@ namespace CashInTerminal
 
         private void BtnClientCode0Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"0";
+            AddText(sender);
         }
 
         private void BtnClientCodeClearClick(object sender, EventArgs e)
@@ -44,177 +45,193 @@ namespace CashInTerminal
 
         private void BtnClientCode1Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"1";
+            AddText(sender);
         }
 
         private void BtnClientCode2Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"2";
+            AddText(sender);
         }
 
         private void BtnClientCode3Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"3";
+            AddText(sender);
         }
 
         private void BtnClientCode4Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"4";
+            AddText(sender);
         }
 
         private void BtnClientCode5Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"5";
+            AddText(sender);
         }
 
         private void BtnClientCode6Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"6";
+            AddText(sender);
         }
 
         private void BtnClientCode7Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"7";
+            AddText(sender);
         }
 
         private void BtnClientCode8Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"8";
+            AddText(sender);
         }
 
         private void BtnClientCode9Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"9";
+            AddText(sender);
         }
 
         private void BtnAClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"A";
+            AddText(sender);
         }
 
         private void BtnBClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"B";
+            AddText(sender);
         }
 
         private void BtnCClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"C";
+            AddText(sender);
         }
 
         private void BtnDClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"D";
+            AddText(sender);
         }
 
         private void BtnEClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"E";
+            AddText(sender);
         }
 
         private void BtnFClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"F";
+            AddText(sender);
         }
 
         private void BtnGClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"G";
+            AddText(sender);
         }
 
         private void BtnHClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"H";
+            AddText(sender);
         }
 
         private void BtnIClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"I";
+            AddText(sender);
         }
 
         private void BtnJClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"J";
+            AddText(sender);
         }
 
         private void BtnKClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"K";
+            AddText(sender);
         }
 
         private void BtnLClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"L";
+            AddText(sender);
         }
 
         private void BtnMClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"M";
+            AddText(sender);
         }
 
         private void BtnNClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"N";
+            AddText(sender);
         }
 
         private void BtnOClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"O";
+            AddText(sender);
         }
 
         private void BtnPClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"P";
+            AddText(sender);
         }
 
         private void BtnQClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"Q";
+            AddText(sender);
         }
 
         private void BtnRClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"R";
+            AddText(sender);
         }
 
         private void BtnSClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"S";
+            AddText(sender);
         }
 
         private void BtnTClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"T";
+            AddText(sender);
         }
 
         private void BtnUClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"U";
+            AddText(sender);
         }
 
         private void BtnVClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"V";
+            AddText(sender);
         }
 
         private void BtnWClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"W";
+            AddText(sender);
         }
 
         private void BtnXClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"X";
+            AddText(sender);
         }
 
         private void BtnYClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"Y";
+            AddText(sender);
         }
 
         private void BtnZClick(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"Z";
+            AddText(sender);
+        }
+
+        private void BtnPlusClick(object sender, EventArgs e)
+        {
+            AddText(sender);
+        }
+
+        private void AddText(object sender)
+        {
+            if (sender == null)
+            {
+                Log.Error("Sender is null");
+                return;
+            }
+            var t = (TextBox)sender;
+            SelectedBox.Text += t.Text;
         }
 
         #endregion
@@ -285,5 +302,7 @@ namespace CashInTerminal
         {
             SelectedBox = txtClientCodeClient;
         }
+
+        
     }
 }

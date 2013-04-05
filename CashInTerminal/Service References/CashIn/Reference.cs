@@ -2263,9 +2263,13 @@ namespace CashInTerminal.CashIn {
         
         private System.DateTime terminalDateField;
         
+        private string creditNumberField;
+        
         private string[] valuesField;
         
         private int[] banknotesField;
+        
+        private int operationTypeField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -2340,7 +2344,19 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string CreditNumber {
+            get {
+                return this.creditNumberField;
+            }
+            set {
+                this.creditNumberField = value;
+                this.RaisePropertyChanged("CreditNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=7)]
         public string[] Values {
             get {
                 return this.valuesField;
@@ -2352,7 +2368,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=7)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=8)]
         public int[] Banknotes {
             get {
                 return this.banknotesField;
@@ -2360,6 +2376,18 @@ namespace CashInTerminal.CashIn {
             set {
                 this.banknotesField = value;
                 this.RaisePropertyChanged("Banknotes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public int OperationType {
+            get {
+                return this.operationTypeField;
+            }
+            set {
+                this.operationTypeField = value;
+                this.RaisePropertyChanged("OperationType");
             }
         }
     }

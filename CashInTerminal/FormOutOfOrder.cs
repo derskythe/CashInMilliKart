@@ -1,4 +1,6 @@
-﻿namespace CashInTerminal
+﻿using CashInTerminal.BaseForms;
+
+namespace CashInTerminal
 {
     public partial class FormOutOfOrder : FormMdiChild
     {

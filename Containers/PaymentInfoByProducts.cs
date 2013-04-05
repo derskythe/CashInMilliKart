@@ -13,9 +13,42 @@ namespace Containers
         private String _Currency;
         private float _CurrencyRate;
         private int _Amount;
+        private int _OperationType;
         private DateTime _TerminalDate;
         private String[] _Values;
         private int[] _Banknotes;
+        private String _CreditNumber;
+
+        public PaymentInfoByProducts(int terminalId, string transactionId, int productId, string currency, float currencyRate, int amount, DateTime terminalDate, string[] values, int[] banknotes, string creditNumber) : base(terminalId)
+        {
+            _TransactionId = transactionId;
+            _ProductId = productId;
+            _Currency = currency;
+            _CurrencyRate = currencyRate;
+            _Amount = amount;
+            _TerminalDate = terminalDate;
+            _Values = values;
+            _Banknotes = banknotes;
+            _CreditNumber = creditNumber;
+        }
+
+        public PaymentInfoByProducts(int terminalId, string transactionId, int productId, string currency, float currencyRate, int amount, int operationType, DateTime terminalDate, string[] values, int[] banknotes, string creditNumber) : base(terminalId)
+        {
+            _TransactionId = transactionId;
+            _ProductId = productId;
+            _Currency = currency;
+            _CurrencyRate = currencyRate;
+            _Amount = amount;
+            _OperationType = operationType;
+            _TerminalDate = terminalDate;
+            _Values = values;
+            _Banknotes = banknotes;
+            _CreditNumber = creditNumber;
+        }
+
+        public PaymentInfoByProducts(int terminalId) : base(terminalId)
+        {
+        }
 
         [XmlElement(ElementName = "TransactionId")]
         [DataMember(Name = "TransactionId")]
@@ -65,6 +98,14 @@ namespace Containers
             set { _TerminalDate = value; }
         }
 
+        [XmlElement(ElementName = "CreditNumber")]
+        [DataMember(Name = "CreditNumber")]
+        public string CreditNumber
+        {
+            get { return _CreditNumber; }
+            set { _CreditNumber = value; }
+        }
+
         [XmlArray("Values")]
         [DataMember(Name = "Values")]
         public string[] Values
@@ -81,30 +122,37 @@ namespace Containers
             set { _Banknotes = value; }
         }
 
+        public int OperationType
+        {
+            get { return _OperationType; }
+            set { _OperationType = value; }
+        }
+
         public PaymentInfoByProducts()
         {
         }
 
-        public PaymentInfoByProducts(string transactionId, int terminalId, int productId, string currency, float currencyRate, int amount, DateTime terminalDate, string[] values, int[] banknotes)
+        public PaymentInfoByProducts(string transactionId, int productId, string currency, float currencyRate, int amount, int operationType, DateTime terminalDate, string[] values, int[] banknotes, string creditNumber)
         {
             _TransactionId = transactionId;
-            _TerminalId = terminalId;
             _ProductId = productId;
             _Currency = currency;
             _CurrencyRate = currencyRate;
             _Amount = amount;
+            _OperationType = operationType;
             _TerminalDate = terminalDate;
             _Values = values;
             _Banknotes = banknotes;
+            _CreditNumber = creditNumber;
         }
 
         public override string ToString()
         {
             return
                 string.Format(
-                    "{0}, TransactionId: {1}, ProductId: {2}, Currency: {3}, CurrencyRate: {4}, Amount: {5}, TerminalDate: {6}, Values: {7}, Banknotes: {8}",
-                    base.ToString(), _TransactionId, _ProductId, _Currency, _CurrencyRate, _Amount, _TerminalDate,
-                    EnumEx.ToStringArray(_Values), EnumEx.ToStringArray(_Banknotes));
+                    "{0}, TransactionId: {1}, ProductId: {2}, Currency: {3}, CurrencyRate: {4}, Amount: {5}, OperationType: {6}, TerminalDate: {7}, Values: {8}, Banknotes: {9}, CreditNumber: {10}",
+                    base.ToString(), _TransactionId, _ProductId, _Currency, _CurrencyRate, _Amount, _OperationType,
+                    _TerminalDate, EnumEx.GetStringFromArray(_Values), EnumEx.GetStringFromArray(_Banknotes), _CreditNumber);
         }
     }
 }

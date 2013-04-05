@@ -1,6 +1,6 @@
-﻿namespace CashInTerminal
+﻿namespace CashInTerminal.BaseForms
 {
-    partial class FormCreditByClientCode
+    partial class FormEnterClientCode
     {
         /// <summary>
         /// Required designer variable.
@@ -265,7 +265,7 @@
             this.btnClientCodeNext.UseVisualStyleBackColor = false;
             this.btnClientCodeNext.Click += new System.EventHandler(this.BtnClientCodeNextClick);
             // 
-            // FormCreditByClientCode
+            // FormEnterClientCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -287,9 +287,9 @@
             this.Controls.Add(this.btnClientCodeBack);
             this.Controls.Add(this.btnClientCodeNext);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "FormCreditByClientCode";
+            this.Name = "FormEnterClientCode";
             this.Text = "FormCreditByClientCode";
-            this.Load += new System.EventHandler(this.FormCreditByClientCode_Load);
+            this.Load += new System.EventHandler(this.FormEnterClientCodeLoad);
             this.Controls.SetChildIndex(this.btnClientCodeNext, 0);
             this.Controls.SetChildIndex(this.btnClientCodeBack, 0);
             this.Controls.SetChildIndex(this.txtClientCodeClient, 0);

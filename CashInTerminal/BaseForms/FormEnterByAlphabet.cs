@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using CashInTerminal.BaseForms;
-using Containers.Enums;
 
-namespace CashInTerminal
+namespace CashInTerminal.BaseForms
 {
-    public partial class FormCreditByPassport1 : FormMdiChild
+    public partial class FormEnterByAlphabet : FormMdiChild
     {
         private TextBox _SelectedBox;
 
@@ -15,7 +13,7 @@ namespace CashInTerminal
             set { _SelectedBox = value; }
         }
 
-        public FormCreditByPassport1()
+        public FormEnterByAlphabet()
         {
             InitializeComponent();
         }
@@ -232,28 +230,13 @@ namespace CashInTerminal
         }
 
         #endregion
-
-        private void FormCreditByPassport1Load(object sender, EventArgs e)
+       
+        protected virtual void BtnClientCodeBackClick(object sender, EventArgs e)
         {
-
         }
 
-        protected void BtnClientCodeBackClick(object sender, EventArgs e)
-        {
-            //ChangeView(typeof(FormCreditTypeSelect));
-
-            ChangeView(FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.DebitPaymentByPassportAndAccount
-                           ? typeof(FormDebitPayType)
-                           : typeof(FormCreditTypeSelect));
-        }
-
-        protected void BtnClientCodeNextClick(object sender, EventArgs e)
-        {
-            if (SelectedBox.Text.Length > 4)
-            {
-                FormMain.ClientInfo.AccountNumber = SelectedBox.Text;
-                ChangeView(typeof(FormCreditByPassport2));
-            }
+        protected virtual void BtnClientCodeNextClick(object sender, EventArgs e)
+        {            
         }
 
         private void TxtClientCodeClientClick(object sender, EventArgs e)

@@ -1312,7 +1312,9 @@ namespace CashInTerminal
                                     Currency = row.Currency,
                                     CurrencyRate = (float)row.CurrencyRate,
                                     Amount = (int)row.Amount,
-                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                                    CreditNumber = _ClientInfo.Client.CreditNumber,
+                                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                                    OperationType = (int)_ClientInfo.PaymentOperationType                                    
                                 };
 
                             var valuesList = new List<String>();
@@ -1472,6 +1474,9 @@ namespace CashInTerminal
 
         #endregion
 
+
+        #region Paint 
+
         private readonly Color _Color1 = Color.FromArgb(215, 232, 248);
         private readonly Color _Color2 = Color.FromArgb(207, 226, 246);
         private readonly Color _Color3 = Color.FromArgb(196, 219, 244);
@@ -1514,5 +1519,7 @@ namespace CashInTerminal
                 e.Graphics.FillRectangle(br, ClientRectangle);
             }
         }
+
+        #endregion
     }
 }

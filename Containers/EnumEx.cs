@@ -25,6 +25,20 @@ namespace Containers
             return fields.ToString();
         }
 
+        public static string GetStringFromArray(IEnumerable<int> list)
+        {
+            var fields = new StringBuilder();
+            if (list != null)
+            {
+                foreach (var o in list)
+                {
+                    fields.Append(o).Append("\n");
+                }
+            }
+
+            return fields.ToString();
+        }
+
         public static string GetDescription(Enum value)
         {
             FieldInfo field = value.GetType().GetField(value.ToString());
@@ -68,7 +82,7 @@ namespace Containers
 
             foreach (var value in values)
             {
-               result.Add(value); 
+                result.Add(value);
             }
 
             return result.ToArray();

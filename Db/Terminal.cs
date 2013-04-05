@@ -456,6 +456,24 @@ namespace Db
             return result;
         }
 
+        public void CommitPayment(string cardNumber, float amount, string billSet, int terminalId, int operationType, DateTime timeStamp, String currency)
+        {
+            CheckConnection();
+
+            const string cmdText = "begin backend.new_credit_payment(v_crd_number => :v_crd_number, v_total_amount => :v_total_amount, v_bill_set => :v_bill_set, v_terminal_id => :v_terminal_id, v_operation_type => :v_operation_type, v_client_timestamp => :v_client_timestamp, v_currency => :v_currency); end;";
+
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("v_crd_number", OracleDbType.Varchar2, ParameterDirection.Input).Value = cardNumber;
+            cmd.Parameters.Add("v_total_amount", OracleDbType.Double, ParameterDirection.Input).Value = amount;
+            cmd.Parameters.Add("v_bill_set", OracleDbType.Varchar2, ParameterDirection.Input).Value = billSet;
+            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+            cmd.Parameters.Add("v_operation_type", OracleDbType.Int32, ParameterDirection.Input).Value = operationType;
+            cmd.Parameters.Add("v_client_timestamp", OracleDbType.TimeStamp, ParameterDirection.Input).Value = timeStamp;
+            cmd.Parameters.Add("v_currency", OracleDbType.Varchar2, ParameterDirection.Input).Value = currency;
+            
+            cmd.ExecuteNonQuery();
+        }
+
         //public List<ClientInfo> ListDebitByClientAccount(String creditAccount)
         //{
         //    CheckConnection();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CashInTerminal.BaseForms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
 
@@ -30,7 +31,7 @@ namespace CashInTerminal
 
         private void BtnClientCode0Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"0";
+            AddText(sender);
         }
 
         private void BtnClientCodeClearClick(object sender, EventArgs e)
@@ -40,47 +41,58 @@ namespace CashInTerminal
 
         private void BtnClientCode1Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"1";
+            AddText(sender);
         }
 
         private void BtnClientCode2Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"2";
+            AddText(sender);
         }
 
         private void BtnClientCode3Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"3";
+            AddText(sender);
         }
 
         private void BtnClientCode4Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"4";
+            AddText(sender);
         }
 
         private void BtnClientCode5Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"5";
+            AddText(sender);
         }
 
         private void BtnClientCode6Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"6";
+            AddText(sender);
         }
 
         private void BtnClientCode7Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"7";
+            AddText(sender);
         }
 
         private void BtnClientCode8Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"8";
+            AddText(sender);
         }
 
         private void BtnClientCode9Click(object sender, EventArgs e)
         {
-            SelectedBox.Text += @"9";
+            AddText(sender);
+        }
+
+        private void AddText(object sender)
+        {
+            if (sender == null)
+            {
+                Log.Error("Sender is null");
+                return;
+            }
+            var t = (TextBox)sender;
+            SelectedBox.Text += t.Text;
         }
 
         private void BtnClientCodeBackClick(object sender, EventArgs e)

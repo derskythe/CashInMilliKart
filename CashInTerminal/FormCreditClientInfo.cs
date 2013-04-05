@@ -1,4 +1,5 @@
 ﻿using System;
+using CashInTerminal.BaseForms;
 using CashInTerminal.Properties;
 using Containers.Enums;
 

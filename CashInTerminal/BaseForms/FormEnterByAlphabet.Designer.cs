@@ -1,6 +1,6 @@
-﻿namespace CashInTerminal
+﻿namespace CashInTerminal.BaseForms
 {
-    partial class FormCreditByPassport2
+    partial class FormEnterByAlphabet
     {
         /// <summary>
         /// Required designer variable.
@@ -250,9 +250,9 @@
             this.lblClientCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblClientCode.Location = new System.Drawing.Point(5, 150);
             this.lblClientCode.Name = "lblClientCode";
-            this.lblClientCode.Size = new System.Drawing.Size(473, 42);
+            this.lblClientCode.Size = new System.Drawing.Size(253, 42);
             this.lblClientCode.TabIndex = 46;
-            this.lblClientCode.Text = "Серия и номер паспорта";
+            this.lblClientCode.Text = "Номер счета";
             // 
             // txtClientCodeClient
             // 
@@ -662,15 +662,15 @@
             this.btnPlus.BackColor = System.Drawing.Color.Transparent;
             this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPlus.Location = new System.Drawing.Point(769, 495);
+            this.btnPlus.Location = new System.Drawing.Point(771, 495);
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(78, 69);
-            this.btnPlus.TabIndex = 86;
+            this.btnPlus.TabIndex = 85;
             this.btnPlus.Text = "+";
             this.btnPlus.UseVisualStyleBackColor = false;
             this.btnPlus.Click += new System.EventHandler(this.BtnPlusClick);
             // 
-            // FormCreditByPassport2
+            // FormCreditByPassport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -719,8 +719,9 @@
             this.Controls.Add(this.btnClientCodeBack);
             this.Controls.Add(this.btnClientCodeNext);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "FormCreditByPassport2";
+            this.Name = "FormCreditByPassport";
             this.Text = "FormCreditByPassport";
+            this.Load += new System.EventHandler(this.FormCreditByPassport1Load);
             this.Controls.SetChildIndex(this.btnClientCodeNext, 0);
             this.Controls.SetChildIndex(this.btnClientCodeBack, 0);
             this.Controls.SetChildIndex(this.txtClientCodeClient, 0);

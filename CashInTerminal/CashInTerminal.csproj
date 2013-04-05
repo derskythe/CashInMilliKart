@@ -29,7 +29,7 @@
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>140</ApplicationRevision>
+    <ApplicationRevision>141</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -104,6 +104,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForms\FormEnterByAlphabet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\FormEnterByAlphabet.Designer.cs">
+      <DependentUpon>FormEnterByAlphabet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\FormEnterClientCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\FormEnterClientCode.Designer.cs">
+      <DependentUpon>FormEnterClientCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="CcnetBillTypes.cs" />
     <Compile Include="CCNETDevice.cs" />
     <Compile Include="CCNETDeviceState1.cs" />
@@ -241,10 +253,10 @@
     <Compile Include="FormLanguage.Designer.cs">
       <DependentUpon>FormLanguage.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMdiChild.cs">
+    <Compile Include="BaseForms\FormMdiChild.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMdiChild.Designer.cs">
+    <Compile Include="BaseForms\FormMdiChild.Designer.cs">
       <DependentUpon>FormMdiChild.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMdiMain.cs">
@@ -299,6 +311,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="BaseForms\FormEnterByAlphabet.resx">
+      <DependentUpon>FormEnterByAlphabet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\FormEnterClientCode.resx">
+      <DependentUpon>FormEnterClientCode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreditByBolcardRetype.resx">
       <DependentUpon>FormCreditByBolcardRetype.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,7 +371,7 @@
     <EmbeddedResource Include="FormLanguage.resx">
       <DependentUpon>FormLanguage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMdiChild.resx">
+    <EmbeddedResource Include="BaseForms\FormMdiChild.resx">
       <DependentUpon>FormMdiChild.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMdiMain.resx">

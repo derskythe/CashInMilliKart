@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using CashInTerminal.BaseForms;
 using Containers.Enums;
 
 namespace CashInTerminal
@@ -17,11 +18,11 @@ namespace CashInTerminal
             switch (FormMain.ClientInfo.PaymentOperationType)
             {
                 case PaymentOperationType.DebitPaymentByClientCode:
-                    ChangeView(typeof(FormCreditByClientCode));
+                    ChangeView(typeof(BaseForms.FormEnterClientCode));
                     break;
 
                 case PaymentOperationType.DebitPaymentByPassportAndAccount:
-                    ChangeView(typeof(FormCreditByPassport1));
+                    ChangeView(typeof(BaseForms.FormEnterByAlphabet));
                     break;
 
                 default:
@@ -32,22 +33,11 @@ namespace CashInTerminal
 
         private void BtnNextClick(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
+            if (!GetSelectedRow())
             {
-                foreach (var info in FormMain.Clients)
-                {
-                    if (info.ClientAccount == row.Cells[0].Value.ToString())
-                    {
-                        FormMain.ClientInfo.Client = info;
-                        FormMain.ClientInfo.CurrentCurrency = info.Currency;
-                        ChangeView(typeof(FormCreditClientInfo));
-                        return;
-                    }
-                }
+                Log.Error("Couldn't find selected value!!!");
+                ChangeView(typeof (FormOutOfOrder));
             }
-
-            Log.Error("Couldn't find selected value!!!");
-            ChangeView(typeof(FormOutOfOrder));
         }
 
         private void FormDebitSelectAccountLoad(object sender, EventArgs e)
@@ -67,6 +57,30 @@ namespace CashInTerminal
 
             dataGridSelect.Rows.AddRange(rows.ToArray());
             ResizeDataGrid(dataGridSelect);
-        }        
+        }
+
+        private void DataGridSelectCellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            GetSelectedRow();
+        }
+
+        private bool GetSelectedRow()
+        {
+            foreach (DataGridViewRow row in dataGridSelect.SelectedRows)
+            {
+                foreach (var info in FormMain.Clients)
+                {
+                    if (info.ClientAccount == row.Cells[0].Value.ToString())
+                    {
+                        FormMain.ClientInfo.Client = info;
+                        FormMain.ClientInfo.CurrentCurrency = info.Currency;
+                        ChangeView(typeof (FormCreditClientInfo));
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }

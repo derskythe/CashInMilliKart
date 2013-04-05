@@ -1,4 +1,4 @@
-﻿namespace CashInTerminal
+﻿namespace CashInTerminal.BaseForms
 {
     partial class FormMdiChild
     {

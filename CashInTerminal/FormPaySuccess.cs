@@ -5,6 +5,7 @@ using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using CashInTerminal.BaseForms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
 using CashInTerminal.Properties;

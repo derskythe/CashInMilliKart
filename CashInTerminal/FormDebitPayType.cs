@@ -1,4 +1,5 @@
 ﻿using System;
+using CashInTerminal.BaseForms;
 using Containers.Enums;
 
 namespace CashInTerminal
@@ -13,13 +14,13 @@ namespace CashInTerminal
         private void BtnByCardFullClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.DebitPaymentByClientCode;
-            ChangeView(typeof(FormCreditByClientCode));
+            ChangeView(typeof(BaseForms.FormEnterClientCode));
         }
 
         private void BtnByCardAccountNumberClick(object sender, EventArgs e)
         {
             FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.DebitPaymentByPassportAndAccount;
-            ChangeView(typeof(FormCreditByPassport1));
+            ChangeView(typeof(BaseForms.FormEnterByAlphabet));
         }
 
         //private void BtnCurrentClick(object sender, EventArgs e)

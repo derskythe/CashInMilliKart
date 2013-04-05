@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using CashInTerminal.BaseForms;
-using Containers.Enums;
 
-namespace CashInTerminal
+namespace CashInTerminal.BaseForms
 {
-    public partial class FormCreditByClientCode : FormMdiChild
+    public partial class FormEnterClientCode : FormMdiChild
     {
         private TextBox _SelectedBox;
 
@@ -15,7 +13,7 @@ namespace CashInTerminal
             set { _SelectedBox = value; }
         }
 
-        public FormCreditByClientCode()
+        public FormEnterClientCode()
         {
             InitializeComponent();
         }
@@ -94,28 +92,20 @@ namespace CashInTerminal
             SelectedBox.Text += t.Text;
         }
 
-        private void BtnClientCodeBackClick(object sender, EventArgs e)
-        {
-            ChangeView(FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.DebitPaymentByClientCode
-                           ? typeof (FormDebitPayType)
-                           : typeof (FormCreditTypeSelect));
+        protected virtual void BtnClientCodeBackClick(object sender, EventArgs e)
+        {            
         }
 
-        private void BtnClientCodeNextClick(object sender, EventArgs e)
-        {
-            if (SelectedBox.Text.Length > 4)
-            {
-                FormMain.ClientInfo.AccountNumber = SelectedBox.Text;
-                ChangeView(typeof(FormCreditByClientCodeRetype));
-            }
+        protected virtual void BtnClientCodeNextClick(object sender, EventArgs e)
+        {            
         }
 
-        private void TxtClientCodeClientClick(object sender, EventArgs e)
+        protected void TxtClientCodeClientClick(object sender, EventArgs e)
         {
             SelectedBox = txtClientCodeClient;
         }
 
-        private void FormCreditByClientCode_Load(object sender, EventArgs e)
+        private void FormEnterClientCodeLoad(object sender, EventArgs e)
         {
 
         }

@@ -70,6 +70,7 @@
             this.btnX = new System.Windows.Forms.Button();
             this.btnY = new System.Windows.Forms.Button();
             this.btnZ = new System.Windows.Forms.Button();
+            this.btnPlus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClientCode9
@@ -655,11 +656,26 @@
             this.btnZ.UseVisualStyleBackColor = false;
             this.btnZ.Click += new System.EventHandler(this.BtnZClick);
             // 
-            // FormCreditByPassport1
+            // btnPlus
+            // 
+            this.btnPlus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
+            this.btnPlus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPlus.Location = new System.Drawing.Point(771, 495);
+            this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Size = new System.Drawing.Size(78, 69);
+            this.btnPlus.TabIndex = 85;
+            this.btnPlus.Text = "+";
+            this.btnPlus.UseVisualStyleBackColor = false;
+            this.btnPlus.Click += new System.EventHandler(this.BtnPlusClick);
+            // 
+            // FormCreditByPassport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 746);
+            this.Controls.Add(this.btnPlus);
             this.Controls.Add(this.btnZ);
             this.Controls.Add(this.btnY);
             this.Controls.Add(this.btnX);
@@ -748,6 +764,7 @@
             this.Controls.SetChildIndex(this.btnX, 0);
             this.Controls.SetChildIndex(this.btnY, 0);
             this.Controls.SetChildIndex(this.btnZ, 0);
+            this.Controls.SetChildIndex(this.btnPlus, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -797,5 +814,6 @@
         private System.Windows.Forms.Button btnX;
         private System.Windows.Forms.Button btnY;
         private System.Windows.Forms.Button btnZ;
+        private System.Windows.Forms.Button btnPlus;
     }
 }

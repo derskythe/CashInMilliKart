@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using CashInTerminal.BaseForms;
 using Containers;
 using Product = CashInTerminal.CashIn.Product;
 using Timer = System.Threading.Timer;

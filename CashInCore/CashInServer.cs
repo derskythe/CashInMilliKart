@@ -268,6 +268,9 @@ namespace CashInCore
                 Log.Debug("Payment: " + request);
 
                 OracleDb.Instance.SavePayment(request);
+                string bills = String.Join(";", request.Banknotes);
+                OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
+                                                request.OperationType, request.TerminalDate, request.Currency);
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
@@ -283,7 +286,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult UpdateTerminalVersion(TerminalVersionRequest request)
         {
-            Log.Info("UpdateTerminalVersion. " + request.ToString());
+            Log.Info("UpdateTerminalVersion. " + request);
             var result = new StandardResult();
 
             try

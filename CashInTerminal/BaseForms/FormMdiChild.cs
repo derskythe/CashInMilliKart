@@ -2,10 +2,9 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using NLog;
 
-namespace CashInTerminal
+namespace CashInTerminal.BaseForms
 {
     public partial class FormMdiChild : Form
     {

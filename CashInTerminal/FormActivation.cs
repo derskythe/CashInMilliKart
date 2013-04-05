@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CashInTerminal.BaseForms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Properties;
 using Containers.Enums;
