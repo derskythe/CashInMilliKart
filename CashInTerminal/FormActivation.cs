@@ -130,6 +130,7 @@ namespace CashInTerminal
                     try
                     {
                         GetTerminalInfo();
+                        FormMain.InitCashCode(Settings.Default.DevicePort);
                         FormMain.StartTimers();
                     }
                     catch (Exception exp)
