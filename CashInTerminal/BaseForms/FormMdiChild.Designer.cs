@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lblApplicationVersion = new System.Windows.Forms.Label();
+            this.btnHome = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblApplicationVersion
@@ -40,6 +41,17 @@
             this.lblApplicationVersion.Size = new System.Drawing.Size(178, 17);
             this.lblApplicationVersion.TabIndex = 7;
             // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.Color.Transparent;
+            this.btnHome.Image = global::CashInTerminal.Properties.Resources.home;
+            this.btnHome.Location = new System.Drawing.Point(936, 32);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(78, 69);
+            this.btnHome.TabIndex = 8;
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.BtnHomeClick);
+            // 
             // FormMdiChild
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -47,6 +59,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(1020, 746);
             this.ControlBox = false;
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.lblApplicationVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMdiChild";
@@ -63,5 +76,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblApplicationVersion;
+        private System.Windows.Forms.Button btnHome;
     }
 }

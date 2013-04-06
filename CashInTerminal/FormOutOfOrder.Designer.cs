@@ -48,7 +48,6 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Терминал временно не работает. Приносим извинения";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // pictureBox1
             // 
@@ -83,6 +82,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormOutOfOrder";
             this.Text = "FormOutOfOrder";
+            this.Load += new System.EventHandler(this.FormOutOfOrderLoad);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);

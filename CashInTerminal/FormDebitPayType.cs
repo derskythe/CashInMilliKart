@@ -39,5 +39,10 @@ namespace CashInTerminal
         {
             ChangeView(typeof(FormProducts));
         }
+
+        private void FormDebitPayTypeLoad(object sender, EventArgs e)
+        {
+            HomeButton = false;
+        }
     }
 }

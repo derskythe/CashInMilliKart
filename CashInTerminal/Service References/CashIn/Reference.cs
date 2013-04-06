@@ -819,6 +819,8 @@ namespace CashInTerminal.CashIn {
         
         private string assemblyField;
         
+        private int checkTypeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public decimal Id {
@@ -888,6 +890,18 @@ namespace CashInTerminal.CashIn {
             set {
                 this.assemblyField = value;
                 this.RaisePropertyChanged("Assembly");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public int CheckType {
+            get {
+                return this.checkTypeField;
+            }
+            set {
+                this.checkTypeField = value;
+                this.RaisePropertyChanged("CheckType");
             }
         }
         

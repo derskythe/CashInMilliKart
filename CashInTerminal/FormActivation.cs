@@ -186,6 +186,7 @@ namespace CashInTerminal
 
         private void FormActivationLoad(object sender, EventArgs e)
         {
+            HomeButton = false;
             try
             {
                 GetComList(cmbPorts);

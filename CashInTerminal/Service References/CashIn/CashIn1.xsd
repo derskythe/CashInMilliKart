@@ -250,6 +250,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="NameRu" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="NameEn" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Assembly" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CheckType" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ListCurrencies">

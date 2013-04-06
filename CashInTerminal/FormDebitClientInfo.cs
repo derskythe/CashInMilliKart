@@ -20,7 +20,7 @@ namespace CashInTerminal
 
         private void BtnDebitInfoNextClick(object sender, EventArgs e)
         {
-            ChangeView(typeof(FormMoneyInput));
+            ChangeView(typeof(FormCurrencySelect));
         }
 
         private void FormDebitClientInfoLoad(object sender, EventArgs e)

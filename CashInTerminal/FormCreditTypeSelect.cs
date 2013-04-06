@@ -31,16 +31,12 @@ namespace CashInTerminal
 
         private void BtnBackClick(object sender, EventArgs e)
         {
-            switch (FormMain.ClientInfo.ProductCode)
-            {
-                case 1:
-                    ChangeView(typeof(FormProducts));
-                    break;
+            ChangeView(typeof(FormProducts));
+        }
 
-                case 2:
-                    ChangeView(typeof(FormDebitPayType));
-                    break;
-            }
+        private void FormCreditTypeSelectLoad(object sender, EventArgs e)
+        {
+            HomeButton = false;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Containers
         private string _NameRu;
         private string _NameEn;
         private string _Assembly;
+        private int _CheckType;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
@@ -63,11 +64,19 @@ namespace Containers
             set { _Assembly = value; }
         }
 
+        [XmlElement(ElementName = "CheckType")]
+        [DataMember(Name = "CheckType")]
+        public int CheckType
+        {
+            get { return _CheckType; }
+            set { _CheckType = value; }
+        }
+
         public Product()
         {
         }
 
-        public Product(decimal id, string name, string nameAz, string nameRu, string nameEn, string assembly)
+        public Product(decimal id, string name, string nameAz, string nameRu, string nameEn, string assembly, int checkType)
         {
             _Id = id;
             _Name = name;
@@ -75,12 +84,15 @@ namespace Containers
             _NameRu = nameRu;
             _NameEn = nameEn;
             _Assembly = assembly;
+            _CheckType = checkType;
         }
 
         public override string ToString()
         {
-            return string.Format("Id: {0}, Name: {1}, NameAz: {2}, NameRu: {3}, NameEn: {4}, Assembly: {5}", _Id, _Name,
-                                 _NameAz, _NameRu, _NameEn, _Assembly);
+            return
+                string.Format(
+                    "Id: {0}, Name: {1}, NameAz: {2}, NameRu: {3}, Assembly: {4}, NameEn: {5}, CheckType: {6}", _Id,
+                    _Name, _NameAz, _NameRu, _Assembly, _NameEn, _CheckType);
         }
     }
 }

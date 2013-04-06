@@ -86,6 +86,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormDebitPayType";
             this.Text = "FormDebitPayType";
+            this.Load += new System.EventHandler(this.FormDebitPayTypeLoad);
             this.Controls.SetChildIndex(this.btnBack, 0);
             this.Controls.SetChildIndex(this.btnByClientCode, 0);
             this.Controls.SetChildIndex(this.btnByPassportAndAccount, 0);

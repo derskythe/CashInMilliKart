@@ -193,5 +193,10 @@ namespace CashInTerminal
 
             return value;
         }
+
+        private void FormEncashmentLoad(object sender, EventArgs e)
+        {
+            HomeButton = false;
+        }
     }
 }

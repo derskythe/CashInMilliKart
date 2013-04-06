@@ -38,6 +38,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormTestMode";
             this.Text = "FormTestMode";
+            this.Load += new System.EventHandler(this.FormTestModeLoad);
             this.ResumeLayout(false);
 
         }

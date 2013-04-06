@@ -102,6 +102,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormCreditTypeSelect";
             this.Text = "FormCreditTypeSelect";
+            this.Load += new System.EventHandler(this.FormCreditTypeSelectLoad);
             this.Controls.SetChildIndex(this.btnCreditNumberAndPasport, 0);
             this.Controls.SetChildIndex(this.btnBack, 0);
             this.Controls.SetChildIndex(this.btnBolCard, 0);

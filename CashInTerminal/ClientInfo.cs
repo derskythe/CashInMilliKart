@@ -1,11 +1,12 @@
 ﻿using System;
+using CashInTerminal.CashIn;
 using Containers.Enums;
 
 namespace CashInTerminal
 {
     public class ClientInfo
     {
-        private int _ProductCode;
+        private Product _Product;
         private String _AccountNumber;
         private String _Passport;
         private String _CreditAccountNumber;
@@ -18,10 +19,10 @@ namespace CashInTerminal
         private PaymentOperationType _PaymentOperationType;
         private CashIn.ClientInfo _Client;
 
-        public int ProductCode
+        public Product Product
         {
-            get { return _ProductCode; }
-            set { _ProductCode = value; }
+            get { return _Product; }
+            set { _Product = value; }
         }
 
         public string AccountNumber
@@ -94,9 +95,9 @@ namespace CashInTerminal
         {
         }
 
-        public ClientInfo(int productCode, string accountNumber, string passport, string creditAccountNumber, string currentCurrency, int cashCodeAmount, long paymentId, int orderNumber, string transactionId)
+        public ClientInfo(Product product, string accountNumber, string passport, string creditAccountNumber, string currentCurrency, int cashCodeAmount, long paymentId, int orderNumber, string transactionId)
         {
-            _ProductCode = productCode;
+            _Product = product;
             _AccountNumber = accountNumber;
             _Passport = passport;
             _CreditAccountNumber = creditAccountNumber;
@@ -112,8 +113,8 @@ namespace CashInTerminal
         {
             return
                 string.Format(
-                    "ProductCode: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, PaymentOperationType: {9}, Client: {10}",
-                    _ProductCode, _AccountNumber, _Passport, _CreditAccountNumber, _CurrentCurrency, _CashCodeAmount,
+                    "Product: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, PaymentOperationType: {9}, Client: {10}",
+                    _Product, _AccountNumber, _Passport, _CreditAccountNumber, _CurrentCurrency, _CashCodeAmount,
                     _PaymentId, _OrderNumber, _TransactionId, _PaymentOperationType, _Client);
         }
     }

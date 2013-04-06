@@ -147,11 +147,29 @@ namespace CashInTerminal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit is closed.
+        /// </summary>
+        internal static string CreditClosed {
+            get {
+                return ResourceManager.GetString("CreditClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата кредита.
         /// </summary>
         internal static string CreditDate {
             get {
                 return ResourceManager.GetString("CreditDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit is still opened.
+        /// </summary>
+        internal static string CreditOpen {
+            get {
+                return ResourceManager.GetString("CreditOpen", resourceCulture);
             }
         }
         
@@ -170,6 +188,13 @@ namespace CashInTerminal.Properties {
         internal static string Fullname {
             get {
                 return ResourceManager.GetString("Fullname", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap home {
+            get {
+                object obj = ResourceManager.GetObject("home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

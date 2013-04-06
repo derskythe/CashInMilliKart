@@ -16,5 +16,10 @@ namespace CashInTerminal
         {
             InitializeComponent();
         }
+
+        private void FormTestModeLoad(object sender, EventArgs e)
+        {
+            HomeButton = false;
+        }
     }
 }

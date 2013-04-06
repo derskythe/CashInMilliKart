@@ -14,7 +14,7 @@ namespace CashInTerminal
 {
     public partial class FormPaySuccess : FormMdiChild
     {
-        String _StreamToPrint = String.Empty;
+        //readonly String _StreamToPrint = String.Empty;
         private string _ProductName;
         //private const string PRINT_TEMPLATE =
         //    "    Оплата посредством терминала\n" +
@@ -65,6 +65,11 @@ namespace CashInTerminal
         private void FormPaySuccessLoad(object sender, EventArgs e)
         {
             Log.Debug("FormPaySuccessLoad");
+
+            if (FormMain.ClientInfo.CurrentCurrency != FormMain.ClientInfo.Client.Currency)
+            {
+                lblComission.Visible = true;
+            }
             //base.OnLoad(e);
             if (FormMain.ClientInfo == null)
             {
@@ -76,84 +81,34 @@ namespace CashInTerminal
             }
 
             try
-            {
-                _ProductName = GetProductName(FormMain.ClientInfo.ProductCode);
+            {                
+                _ProductName = FormMain.ClientInfo != null ? GetProductName(Convert.ToInt32(FormMain.ClientInfo.Product.Id)) : @"[NULL]";
                 _DateNow = Utilities.FormatDate(DateTime.Now);
-                
-                // TODO : Переделать
-                switch (FormMain.ClientInfo.ProductCode)
+
+                lock (FormMain.CheckTemplates)
                 {
-                    case 1:
-                        //productName = "Оплата кредита";
-
-                        Log.Debug("Update print info");
-                        //_StreamToPrint = String.Format(PRINT_TEMPLATE2,
-                        //    DateTime.Now,
-                        //    FormMain.TerminalInfo != null ? FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
-                        //    FormMain.ClientInfo != null ? FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
-                        //    FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]",
-                        //                               productName,
-                        //                               FormMain.ClientInfo.Client.ClientCode,
-                        //                               FormMain.ClientInfo.Client.ClientAccount,
-                        //                               lblSuccessTotalAmount.Text);
-
-                        lock (FormMain.CheckTemplates)
+                    _Template = new List<CheckField>();
+                    List<ds.TemplateFieldRow> rows;
+                    FormMain.CheckTemplates.TryGetValue(
+                        FormMain.GetCheckTemplateHashCode(FormMain.ClientInfo.Product.CheckType,
+                                                          FormMain.SelectedLanguage), out rows);
+                    if (rows != null)
+                    {
+                        foreach (var row in rows)
                         {
-                            _Template = new List<CheckField>();
-                            List<ds.TemplateFieldRow> rows;
-                            FormMain.CheckTemplates.TryGetValue(
-                                FormMain.GetCheckTemplateHashCode((int)CheckTemplateTypes.CreditPayment,
-                                                                  FormMain.SelectedLanguage), out rows);
-                            if (rows != null)
+                            var field = new CheckField
                             {
-                                foreach (var row in rows)
-                                {
-                                    var field = new CheckField
-                                        {
-                                            Id = (int)row.Id,
-                                            CheckId = (int)row.CheckTemplateId,
-                                            FieldType = (int)row.Type,
-                                            Image = row.IsImageNull() ? null : row.Image,
-                                            Order = row.IsOrderNumberNull() ? 0 : (int)row.OrderNumber,
-                                            Value = row.IsValueNull() ? String.Empty : ReplaceTemplateFields(row.Value)
-                                        };
+                                Id = (int)row.Id,
+                                CheckId = (int)row.CheckTemplateId,
+                                FieldType = (int)row.Type,
+                                Image = row.IsImageNull() ? null : row.Image,
+                                Order = row.IsOrderNumberNull() ? 0 : (int)row.OrderNumber,
+                                Value = row.IsValueNull() ? String.Empty : ReplaceTemplateFields(row.Value)
+                            };
 
-                                    _Template.Add(field);
-                                }
-                            }
+                            _Template.Add(field);
                         }
-
-                        Log.Info("Check \n" + _StreamToPrint);
-                        break;
-
-                    case 2:
-                        _ProductName = "Пополнение счета";
-                        lock (FormMain.CheckTemplates)
-                        {
-                            _Template = new List<CheckField>();
-                            List<ds.TemplateFieldRow> rows;
-                            FormMain.CheckTemplates.TryGetValue(
-                                FormMain.GetCheckTemplateHashCode((int)CheckTemplateTypes.CreditPayment,
-                                                                  FormMain.SelectedLanguage), out rows);
-                            if (rows != null)
-                            {
-                                foreach (var row in rows)
-                                {
-                                    var field = new CheckField
-                                    {
-                                        Id = (int)row.Id,
-                                        CheckId = (int)row.CheckTemplateId,
-                                        FieldType = (int)row.Type,
-                                        Image = row.Image,
-                                        Order = (int)row.OrderNumber,
-                                        Value = ReplaceTemplateFields(row.Value)
-                                    };
-
-                                    _Template.Add(field);
-                                }
-                            }
-                        }
-                        break;
+                    }
                 }
             }
             catch (Exception exp)
@@ -298,8 +253,7 @@ namespace CashInTerminal
                 value = value.Replace(TemplateFields.Address, FormMain.TerminalInfo.Address);
             }
             value = value.Replace(TemplateFields.TransactionId, FormMain.ClientInfo != null ? FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
-            value = value.Replace(TemplateFields.FullPaymentFlag, FormMain.ClientInfo != null && FormMain.ClientInfo.Client.AmountLate > FormMain.ClientInfo.CashCodeAmount ? Resources.No : Resources.Yes);
-
+            value = value.Replace(TemplateFields.FullPaymentFlag, FormMain.ClientInfo != null && FormMain.ClientInfo.Client.AmountLeft > FormMain.ClientInfo.CashCodeAmount ? Resources.CreditOpen : Resources.CreditClosed);
 
             return value;
         }

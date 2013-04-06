@@ -9,9 +9,9 @@ namespace CashInTerminal
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, System.EventArgs e)
+        private void FormOutOfOrderLoad(object sender, System.EventArgs e)
         {
-
+            HomeButton = false;
         }
     }
 }

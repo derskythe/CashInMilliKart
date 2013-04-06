@@ -31,7 +31,8 @@ namespace Db
                     Assembly = row.ASSEMBLY,
                     NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
                     NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
-                    NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU
+                    NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                    CheckType = Convert.ToInt32(row.CHECK_TYPE)
                 };
 
             return result;
@@ -46,7 +47,8 @@ namespace Db
                 Assembly = row.ASSEMBLY,
                 NameAz = row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ,
                 NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
-                NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU
+                NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+                CheckType = Convert.ToInt32(row.CHECK_TYPE)
             };
 
             return result;

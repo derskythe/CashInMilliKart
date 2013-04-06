@@ -3761,6 +3761,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnORDER_NUM;
             
+            private global::System.Data.DataColumn columnCHECK_TYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_PRODUCTSDataTable() {
@@ -3884,6 +3886,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_TYPEColumn {
+                get {
+                    return this.columnCHECK_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3919,7 +3929,7 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_PRODUCTSRow AddV_PRODUCTSRow(decimal ID, string NAME, string NAME_AZ, string NAME_RU, string NAME_EN, string ASSEMBLY, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal USER_ID, decimal ACTIVE, decimal ORDER_NUM) {
+            public V_PRODUCTSRow AddV_PRODUCTSRow(decimal ID, string NAME, string NAME_AZ, string NAME_RU, string NAME_EN, string ASSEMBLY, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal USER_ID, decimal ACTIVE, decimal ORDER_NUM, long CHECK_TYPE) {
                 V_PRODUCTSRow rowV_PRODUCTSRow = ((V_PRODUCTSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -3932,7 +3942,8 @@ namespace Db {
                         UPDATE_DATE,
                         USER_ID,
                         ACTIVE,
-                        ORDER_NUM};
+                        ORDER_NUM,
+                        CHECK_TYPE};
                 rowV_PRODUCTSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_PRODUCTSRow);
                 return rowV_PRODUCTSRow;
@@ -3966,6 +3977,7 @@ namespace Db {
                 this.columnUSER_ID = base.Columns["USER_ID"];
                 this.columnACTIVE = base.Columns["ACTIVE"];
                 this.columnORDER_NUM = base.Columns["ORDER_NUM"];
+                this.columnCHECK_TYPE = base.Columns["CHECK_TYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3993,6 +4005,8 @@ namespace Db {
                 base.Columns.Add(this.columnACTIVE);
                 this.columnORDER_NUM = new global::System.Data.DataColumn("ORDER_NUM", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnORDER_NUM);
+                this.columnCHECK_TYPE = new global::System.Data.DataColumn("CHECK_TYPE", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_TYPE);
                 this.columnID.AllowDBNull = false;
                 this.columnNAME.AllowDBNull = false;
                 this.columnNAME.MaxLength = 150;
@@ -4163,6 +4177,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnORDER_NUM;
             
+            private global::System.Data.DataColumn columnCHECK_TYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_PRODUCTS_TO_TERMINALSDataTable() {
@@ -4294,6 +4310,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_TYPEColumn {
+                get {
+                    return this.columnCHECK_TYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4329,7 +4353,7 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_PRODUCTS_TO_TERMINALSRow AddV_PRODUCTS_TO_TERMINALSRow(decimal TERMINAL_ID, decimal ID, string NAME, string NAME_AZ, string NAME_RU, string NAME_EN, string ASSEMBLY, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal USER_ID, decimal ACTIVE, decimal ORDER_NUM) {
+            public V_PRODUCTS_TO_TERMINALSRow AddV_PRODUCTS_TO_TERMINALSRow(decimal TERMINAL_ID, decimal ID, string NAME, string NAME_AZ, string NAME_RU, string NAME_EN, string ASSEMBLY, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal USER_ID, decimal ACTIVE, decimal ORDER_NUM, long CHECK_TYPE) {
                 V_PRODUCTS_TO_TERMINALSRow rowV_PRODUCTS_TO_TERMINALSRow = ((V_PRODUCTS_TO_TERMINALSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TERMINAL_ID,
@@ -4343,7 +4367,8 @@ namespace Db {
                         UPDATE_DATE,
                         USER_ID,
                         ACTIVE,
-                        ORDER_NUM};
+                        ORDER_NUM,
+                        CHECK_TYPE};
                 rowV_PRODUCTS_TO_TERMINALSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_PRODUCTS_TO_TERMINALSRow);
                 return rowV_PRODUCTS_TO_TERMINALSRow;
@@ -4378,6 +4403,7 @@ namespace Db {
                 this.columnUSER_ID = base.Columns["USER_ID"];
                 this.columnACTIVE = base.Columns["ACTIVE"];
                 this.columnORDER_NUM = base.Columns["ORDER_NUM"];
+                this.columnCHECK_TYPE = base.Columns["CHECK_TYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4407,6 +4433,8 @@ namespace Db {
                 base.Columns.Add(this.columnACTIVE);
                 this.columnORDER_NUM = new global::System.Data.DataColumn("ORDER_NUM", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnORDER_NUM);
+                this.columnCHECK_TYPE = new global::System.Data.DataColumn("CHECK_TYPE", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_TYPE);
                 this.columnTERMINAL_ID.AllowDBNull = false;
                 this.columnID.AllowDBNull = false;
                 this.columnNAME.AllowDBNull = false;
@@ -13443,6 +13471,22 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long CHECK_TYPE {
+                get {
+                    try {
+                        return ((long)(this[this.tableV_PRODUCTS.CHECK_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_TYPE\' in table \'V_PRODUCTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS.CHECK_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNAME_AZNull() {
                 return this.IsNull(this.tableV_PRODUCTS.NAME_AZColumn);
             }
@@ -13475,6 +13519,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNAME_ENNull() {
                 this[this.tableV_PRODUCTS.NAME_ENColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_TYPENull() {
+                return this.IsNull(this.tableV_PRODUCTS.CHECK_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_TYPENull() {
+                this[this.tableV_PRODUCTS.CHECK_TYPEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13641,6 +13697,22 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long CHECK_TYPE {
+                get {
+                    try {
+                        return ((long)(this[this.tableV_PRODUCTS_TO_TERMINALS.CHECK_TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_TYPE\' in table \'V_PRODUCTS_TO_TERMINALS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_TO_TERMINALS.CHECK_TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNAME_AZNull() {
                 return this.IsNull(this.tableV_PRODUCTS_TO_TERMINALS.NAME_AZColumn);
             }
@@ -13673,6 +13745,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNAME_ENNull() {
                 this[this.tableV_PRODUCTS_TO_TERMINALS.NAME_ENColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_TYPENull() {
+                return this.IsNull(this.tableV_PRODUCTS_TO_TERMINALS.CHECK_TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_TYPENull() {
+                this[this.tableV_PRODUCTS_TO_TERMINALS.CHECK_TYPEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -19601,6 +19685,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("USER_ID", "USER_ID");
             tableMapping.ColumnMappings.Add("ACTIVE", "ACTIVE");
             tableMapping.ColumnMappings.Add("ORDER_NUM", "ORDER_NUM");
+            tableMapping.ColumnMappings.Add("CHECK_TYPE", "CHECK_TYPE");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19618,7 +19703,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, \"NAME\", NAME_AZ, NAME_RU, NAME_EN, ASSEMBLY, INSERT_DATE, UPDATE_DATE," +
-                " USER_ID, ACTIVE, ORDER_NUM FROM cashin_new.V_PRODUCTS";
+                " USER_ID, ACTIVE, ORDER_NUM, CHECK_TYPE FROM CASHIN_NEW.V_PRODUCTS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19780,6 +19865,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("USER_ID", "USER_ID");
             tableMapping.ColumnMappings.Add("ACTIVE", "ACTIVE");
             tableMapping.ColumnMappings.Add("ORDER_NUM", "ORDER_NUM");
+            tableMapping.ColumnMappings.Add("CHECK_TYPE", "CHECK_TYPE");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19797,13 +19883,14 @@ namespace Db.dsTableAdapters {
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT TERMINAL_ID, ID, \"NAME\", NAME_AZ, NAME_RU, NAME_EN, ASSEMBLY, INSERT_DATE," +
-                " UPDATE_DATE, USER_ID, ACTIVE, ORDER_NUM FROM V_PRODUCTS_TO_TERMINALS";
+                " UPDATE_DATE, USER_ID, ACTIVE, ORDER_NUM, CHECK_TYPE FROM CASHIN_NEW.V_PRODUCTS_" +
+                "TO_TERMINALS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT ID, TERMINAL_ID, ACTIVE, ASSEMBLY, INSERT_DATE, \"NAME\", NAME_AZ, NAME_EN, " +
-                "NAME_RU, ORDER_NUM, UPDATE_DATE, USER_ID FROM V_PRODUCTS_TO_TERMINALS WHERE term" +
-                "inal_id = :terminalId ORDER BY order_num";
+                "NAME_RU, ORDER_NUM, UPDATE_DATE, USER_ID, CHECK_TYPE FROM CASHIN_NEW.V_PRODUCTS_" +
+                "TO_TERMINALS WHERE (TERMINAL_ID = :terminalId) ORDER BY ORDER_NUM";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":terminalId";

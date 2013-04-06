@@ -90,6 +90,7 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormEncashment";
             this.Text = "FormEncashment";
+            this.Load += new System.EventHandler(this.FormEncashmentLoad);
             this.Controls.SetChildIndex(this.btnEncashmentPrint, 0);
             this.Controls.SetChildIndex(this.btnEncashmentFinish, 0);
             this.Controls.SetChildIndex(this.lblEncashmentTotal, 0);

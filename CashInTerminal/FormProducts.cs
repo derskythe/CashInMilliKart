@@ -12,8 +12,6 @@ namespace CashInTerminal
 {
     public partial class FormProducts : FormMdiChild
     {
-        private delegate void DeleteControlCallback();
-
         private delegate void AddControlCallBack();
 
         private Timer _CheckProductTimer;
@@ -25,18 +23,19 @@ namespace CashInTerminal
 
         //private void BtnPayCreditClick(object sender, EventArgs e)
         //{
-        //    FormMain.ClientInfo.ProductCode = 1;
+        //    FormMain.ClientInfo.Product = 1;
         //    ChangeView(typeof(FormCreditTypeSelect));
         //}
 
         //private void BtnPayDebitClick(object sender, EventArgs e)
         //{
-        //    FormMain.ClientInfo.ProductCode = 2;
+        //    FormMain.ClientInfo.Product = 2;
         //    ChangeView(typeof(FormDebitPayType));
         //}
 
         private void FormProductsLoad(object sender, EventArgs e)
         {
+            HomeButton = false;
             try
             {
                 Log.Debug(String.Format("ClientRect: {0}, ClientSize: {1}", ClientRectangle, ClientSize));
@@ -170,7 +169,7 @@ namespace CashInTerminal
                 var button = (Button)sender;
                 var product = (Product)button.Tag;
 
-                FormMain.ClientInfo.ProductCode = Convert.ToInt32(product.Id);
+                FormMain.ClientInfo.Product = product;
                 ChangeView(Type.GetType(GetType().Namespace + "." + product.Assembly));
             }
             catch (Exception exp)

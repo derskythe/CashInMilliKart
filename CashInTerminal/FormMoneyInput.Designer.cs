@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnMoneyNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.lblComission = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMoneyCurrency
@@ -102,11 +103,26 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.BtnBackClick);
             // 
+            // lblComission
+            // 
+            this.lblComission.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblComission.BackColor = System.Drawing.Color.Transparent;
+            this.lblComission.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComission.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblComission.Location = new System.Drawing.Point(12, 548);
+            this.lblComission.Name = "lblComission";
+            this.lblComission.Size = new System.Drawing.Size(996, 40);
+            this.lblComission.TabIndex = 22;
+            this.lblComission.Text = "Комиссия за операцию 0,4%";
+            this.lblComission.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblComission.Visible = false;
+            // 
             // FormMoneyInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 746);
+            this.Controls.Add(this.lblComission);
             this.Controls.Add(this.lblMoneyCurrency);
             this.Controls.Add(this.lblMoneyTotal);
             this.Controls.Add(this.label2);
@@ -122,6 +138,7 @@
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.lblMoneyTotal, 0);
             this.Controls.SetChildIndex(this.lblMoneyCurrency, 0);
+            this.Controls.SetChildIndex(this.lblComission, 0);
             this.ResumeLayout(false);
 
         }
@@ -133,6 +150,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnMoneyNext;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label lblComission;
 
     }
 }

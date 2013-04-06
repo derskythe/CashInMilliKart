@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -38,6 +39,10 @@ namespace CashInTerminal.BaseForms
             Bounds = Screen.PrimaryScreen.Bounds;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
+            if (!DesignMode)
+            {
+                Cursor.Hide();
+            }
 
             lblApplicationVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             lblApplicationVersion.Visible = true;
@@ -103,6 +108,28 @@ namespace CashInTerminal.BaseForms
                 height += dr.Height; // Row height.
             }
             dgv.Height = height;
+        }
+
+        private void BtnHomeClick(object sender, EventArgs e)
+        {
+            ChangeView(typeof(FormProducts));
+        }
+
+        protected bool HomeButton
+        {
+            get { return btnHome.Visible; }
+            set { btnHome.Visible = value; }
+        }
+
+        protected new bool DesignMode
+        {
+            get
+            {
+                if (base.DesignMode)
+                    return true;
+
+                return LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+            }
         }
     }
 }

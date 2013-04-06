@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using CashInTerminal.BaseForms;
+using CashInTerminal.Enums;
 using CashInTerminal.Properties;
 
 namespace CashInTerminal
@@ -35,7 +36,12 @@ namespace CashInTerminal
             try
             {
                 Log.Debug("Update DB");
-                FormMain.Db.UpdateAmount(FormMain.ClientInfo.PaymentId, lblMoneyCurrency.Text, 1, Convert.ToInt32(lblMoneyTotal.Text));
+                FormMain.Db.UpdateAmount(
+                    FormMain.ClientInfo.PaymentId,
+                    lblMoneyCurrency.Text,
+                    1,
+                    Convert.ToInt32(lblMoneyTotal.Text));
+
                 FormMain.Db.ConfirmTransaction(FormMain.ClientInfo.PaymentId);
                 Log.Debug("Done");
             }
@@ -54,6 +60,12 @@ namespace CashInTerminal
         private void FormMoneyInputLoad(object sender, EventArgs e)
         {
             //base.OnLoad(e);
+            HomeButton = false;
+
+            if (FormMain.ClientInfo.CurrentCurrency != FormMain.ClientInfo.Client.Currency)
+            {
+                lblComission.Visible = true;
+            }
 
             lblMoneyCurrency.Text = FormMain.ClientInfo.CurrentCurrency;
             lblMoneyTotal.Text = @"0";
@@ -86,9 +98,14 @@ namespace CashInTerminal
                     FormMain.ClientInfo.CashCodeAmount = ccnetDeviceState.Amount;
                 }
 
-                FormMain.Db.InsertBanknote(FormMain.ClientInfo.PaymentId, ccnetDeviceState.Nominal,
-                                           ccnetDeviceState.Currency, FormMain.ClientInfo.OrderNumber++);
-                FormMain.Db.InsertTransactionBanknotes(ccnetDeviceState.Nominal, ccnetDeviceState.Currency,
+                FormMain.Db.InsertBanknote(
+                                            FormMain.ClientInfo.PaymentId,
+                                            ccnetDeviceState.Nominal,
+                                            ccnetDeviceState.Currency,
+                                            FormMain.ClientInfo.OrderNumber++);
+                FormMain.Db.InsertTransactionBanknotes(
+                    ccnetDeviceState.Nominal,
+                    ccnetDeviceState.Currency,
                                                        FormMain.ClientInfo.TransactionId);
             }
             catch (Exception exp)
@@ -112,13 +129,14 @@ namespace CashInTerminal
                 SetStackedAmount("0");
 
                 FormMain.ClientInfo.OrderNumber = 0;
-                FormMain.ClientInfo.PaymentId = FormMain.Db.InsertTransaction(FormMain.ClientInfo.ProductCode,
-                                                                              FormMain.ClientInfo.CurrentCurrency, 1, 0,
+                FormMain.ClientInfo.PaymentId = FormMain.Db.InsertTransaction(Convert.ToInt64(FormMain.ClientInfo.Product.Id),
+                                                                              FormMain.ClientInfo.CurrentCurrency,
+                                                                              1,
+                                                                              0,
                                                                               Convert.ToInt32(
                                                                                   Settings.Default.TerminalCode),
                                                                               FormMain.ClientInfo.Client.CreditNumber,
-                                                                              (int)
-                                                                              FormMain.ClientInfo.PaymentOperationType,
+                                                                              (int)FormMain.ClientInfo.PaymentOperationType,
                                                                               false);
                 int termCode = Convert.ToInt32(Settings.Default.TerminalCode);
                 FormMain.ClientInfo.TransactionId = String.Format("{0}{1}{2}", termCode.ToString("000"),
@@ -134,9 +152,17 @@ namespace CashInTerminal
             {
                 Log.ErrorException(exp.Message, exp);
             }
-            FormMain.CcnetDevice.Poll();
-            FormMain.CcnetDevice.Enable(FormMain.ClientInfo.CurrentCurrency.ToLower());
-            FormMain.CcnetDevice.StartPool = true;
+
+            try
+            {
+                FormMain.CcnetDevice.Poll();
+                FormMain.CcnetDevice.Enable(FormMain.ClientInfo.CurrentCurrency.ToLower());
+                FormMain.CcnetDevice.StartPool = true;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private void StopCashcode()
@@ -199,13 +225,13 @@ namespace CashInTerminal
         {
             StopCashcode();
 
-            switch (FormMain.ClientInfo.ProductCode)
+            switch ((CheckTemplateTypes)FormMain.ClientInfo.Product.CheckType)
             {
-                case 1:
+                case CheckTemplateTypes.CreditPayment:
                     ChangeView(typeof(FormCreditClientInfo));
                     break;
 
-                case 2:
+                case CheckTemplateTypes.DebitPayment:
                     ChangeView(typeof(FormDebitClientInfo));
                     break;
             }

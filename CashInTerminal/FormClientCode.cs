@@ -94,16 +94,7 @@ namespace CashInTerminal
 
         private void BtnClientCodeBackClick(object sender, EventArgs e)
         {
-            switch (FormMain.ClientInfo.ProductCode)
-            {
-                case 1:
-                    ChangeView(typeof(FormProducts));
-                    break;
-
-                case 2:
-                    ChangeView(typeof(FormDebitPayType));
-                    break;
-            }
+            ChangeView(typeof(FormProducts));
         }
 
         private void BtnClientCodeNextClick(object sender, EventArgs e)
@@ -113,7 +104,7 @@ namespace CashInTerminal
                 FormMain.ClientInfo.Passport = txtClientCodePassport.Text;
                 FormMain.ClientInfo.AccountNumber = txtClientCodeClient.Text;
 
-                switch (FormMain.ClientInfo.ProductCode)
+                switch (Convert.ToInt32(FormMain.ClientInfo.Product.Id))
                 {
                     case 1:
                         ChangeView(typeof(FormCreditSelectAccount));

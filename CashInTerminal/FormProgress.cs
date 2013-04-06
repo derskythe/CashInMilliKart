@@ -17,6 +17,7 @@ namespace CashInTerminal
 
         private void FormProgressLoad(object sender, EventArgs e)
         {
+            HomeButton = false;
             _WorkerThread = new Thread(DoWork);
             _WorkerThread.Start(FormMain.InfoRequest);
         }
