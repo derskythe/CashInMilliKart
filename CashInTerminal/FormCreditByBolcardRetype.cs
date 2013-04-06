@@ -38,7 +38,7 @@ namespace CashInTerminal
                             Sign = Utilities.Sign(Settings.Default.TerminalCode, now, FormMain.ServerPublicKey)
                         };
 
-                    var response = FormMain.Server.GetClientInfo(request);
+                    //var response = FormMain.Server.GetClientInfo(request);
 
                     FormMain.InfoRequest = request;
 
