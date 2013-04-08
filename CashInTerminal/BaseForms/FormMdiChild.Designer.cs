@@ -28,43 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMdiChild));
             this.lblApplicationVersion = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblApplicationVersion
             // 
-            this.lblApplicationVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.lblApplicationVersion, "lblApplicationVersion");
             this.lblApplicationVersion.BackColor = System.Drawing.Color.Transparent;
-            this.lblApplicationVersion.Location = new System.Drawing.Point(12, 9);
             this.lblApplicationVersion.Name = "lblApplicationVersion";
-            this.lblApplicationVersion.Size = new System.Drawing.Size(178, 17);
-            this.lblApplicationVersion.TabIndex = 7;
             // 
             // btnHome
             // 
             this.btnHome.BackColor = System.Drawing.Color.Transparent;
             this.btnHome.Image = global::CashInTerminal.Properties.Resources.home;
-            this.btnHome.Location = new System.Drawing.Point(936, 32);
+            resources.ApplyResources(this.btnHome, "btnHome");
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(78, 69);
-            this.btnHome.TabIndex = 8;
             this.btnHome.UseVisualStyleBackColor = false;
             this.btnHome.Click += new System.EventHandler(this.BtnHomeClick);
             // 
             // FormMdiChild
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
-            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.ControlBox = false;
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.lblApplicationVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMdiChild";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormChildLoad);

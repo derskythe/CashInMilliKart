@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreditByBolcardRetype));
             this.SuspendLayout();
             // 
             // FormCreditByBolcardRetype
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 746);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormCreditByBolcardRetype";
-            this.Text = "FormCreditByClientCode";
             this.Load += new System.EventHandler(this.FormCreditByClientCodeRetypeLoad);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

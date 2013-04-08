@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -81,7 +82,7 @@ namespace CashInTerminal
             //}
 
 
-            bool mutexCreated = true;
+            bool mutexCreated;
             using (var mutex = new Mutex(true, "CashInTerminal", out mutexCreated))
             {
                 if (mutexCreated)
@@ -96,8 +97,12 @@ namespace CashInTerminal
                     if (!File.Exists(Settings.Default.DbPath))
                     {
 
-                        File.Copy(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "Terminal.s3db", Settings.Default.DbPath);
+                        File.Copy(
+                            Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar +
+                            "Terminal.s3db", Settings.Default.DbPath);
                     }
+
+                    ChangeCulture("az-Latn-AZ");
 
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
@@ -116,8 +121,21 @@ namespace CashInTerminal
                     }
                 }
             }
+        }
 
+        private static void ChangeCulture(String name)
+        {
+            try
+            {
+                var culture = new CultureInfo(name);
 
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         //private static void MakePortable(ApplicationSettingsBase settings)

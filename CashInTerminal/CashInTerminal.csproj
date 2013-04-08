@@ -29,7 +29,7 @@
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>174</ApplicationRevision>
+    <ApplicationRevision>176</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -329,6 +329,9 @@
     <EmbeddedResource Include="BaseForms\FormEnterClientCode.resx">
       <DependentUpon>FormEnterClientCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormActivation.az-Latn-AZ.resx">
+      <DependentUpon>FormActivation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreditByBolcardRetype.resx">
       <DependentUpon>FormCreditByBolcardRetype.cs</DependentUpon>
     </EmbeddedResource>
@@ -423,6 +426,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.az-Latn-AZ.resx" />
     <None Include="app.config" />
     <None Include="CashInTerminal_TemporaryKey.pfx" />
     <None Include="ds.xsc">
