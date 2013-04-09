@@ -117,4 +117,556 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnDebitClientCodeNext.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Text" xml:space="preserve">
+    <value>Дальше</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnDebitClientCode0.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnDebitClientCode0.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCode2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>771, 303</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormDebitCardFull</value>
+  </data>
+  <data name="btnDebitClientCode9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCode4.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnDebitClientCode0.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 170</value>
+  </data>
+  <data name="btnDebitClientCode4.Text" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btnDebitClientCode7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Location" type="System.Drawing.Point, System.Drawing">
+    <value>687, 658</value>
+  </data>
+  <data name="btnDebitClientCode8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.Name" xml:space="preserve">
+    <value>txtDebitClientCode</value>
+  </data>
+  <data name="btnDebitClientCode5.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="btnDebitClientCode9.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Text" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FormDebitClientCode</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.Name" xml:space="preserve">
+    <value>btnDebitClientCode8</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnDebitClientCode2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="txtDebitClientCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 228</value>
+  </data>
+  <data name="btnDebitClientCode9.Text" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btnDebitClientCode1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>687, 303</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.Name" xml:space="preserve">
+    <value>btnDebitClientCodeClear</value>
+  </data>
+  <data name="btnDebitClientCode8.Text" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnDebitClientCode9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.Name" xml:space="preserve">
+    <value>btnDebitClientCodeNext</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.Name" xml:space="preserve">
+    <value>btnDebitClientCode9</value>
+  </data>
+  <data name="btnDebitClientCode1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnDebitClientCode3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>855, 303</value>
+  </data>
+  <data name="btnDebitClientCode2.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="btnDebitClientCode0.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnDebitClientCode2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCode3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode3.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodeClear.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeNext.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnDebitClientCode5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeNext.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodePrev.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnDebitClientCode3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 658</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="btnDebitClientCode9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>855, 228</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode5.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnDebitClientCode7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCode8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.Name" xml:space="preserve">
+    <value>btnDebitClientCode2</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCodePrev.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 76</value>
+  </data>
+  <data name="txtDebitClientCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 49</value>
+  </data>
+  <data name="btnDebitClientCode4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>687, 228</value>
+  </data>
+  <data name="btnDebitClientCode0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>771, 378</value>
+  </data>
+  <data name="btnDebitClientCode4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode8.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="btnDebitClientCode2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;txtDebitClientCode.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="btnDebitClientCode3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode3.Name" xml:space="preserve">
+    <value>btnDebitClientCode3</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="btnDebitClientCodePrev.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCode8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="txtDebitClientCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 42</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.Name" xml:space="preserve">
+    <value>btnDebitClientCode0</value>
+  </data>
+  <data name="btnDebitClientCode4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Номер карты</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>687, 378</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial Narrow, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodeClear.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode1.Name" xml:space="preserve">
+    <value>btnDebitClientCode1</value>
+  </data>
+  <data name="btnDebitClientCode1.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Text" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>771, 228</value>
+  </data>
+  <data name="txtDebitClientCode.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCode5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CashInTerminal.BaseForms.FormMdiChild, CashInTerminal, Version=1.0.6.6, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode6.Name" xml:space="preserve">
+    <value>btnDebitClientCode6</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="txtDebitClientCode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 76</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.Name" xml:space="preserve">
+    <value>btnDebitClientCode5</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCode1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>855, 153</value>
+  </data>
+  <data name="btnDebitClientCode7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>687, 153</value>
+  </data>
+  <data name="btnDebitClientCode6.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeBackspace.Name" xml:space="preserve">
+    <value>btnDebitClientCodeBackspace</value>
+  </data>
+  <data name="btnDebitClientCode6.Text" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode7.Name" xml:space="preserve">
+    <value>btnDebitClientCode7</value>
+  </data>
+  <data name="btnDebitClientCode3.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="btnDebitClientCodeBackspace.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCodeClear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>855, 378</value>
+  </data>
+  <data name="btnDebitClientCode7.Text" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnDebitClientCodeNext.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnDebitClientCode7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode0.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnDebitClientCode1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1020, 746</value>
+  </data>
+  <data name="btnDebitClientCode5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCode7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="btnDebitClientCode1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode4.Name" xml:space="preserve">
+    <value>btnDebitClientCode4</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeNext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode5.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnDebitClientCode1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnDebitClientCode2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDebitClientCode6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
+  </data>
+  <data name="btnDebitClientCode9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode9.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnDebitClientCode0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodeClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode2.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCodePrev.Name" xml:space="preserve">
+    <value>btnDebitClientCodePrev</value>
+  </data>
+  <data name="btnDebitClientCode7.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDebitClientCode8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>771, 153</value>
+  </data>
+  <data name="&gt;&gt;btnDebitClientCode8.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>az-Latn-AZ</value>
+  </metadata>
 </root>

@@ -121,8 +121,8 @@
   <data name="btnActivation8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="&gt;&gt;btnActivation6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnActivationClear.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnActivation2.Size" type="System.Drawing.Size, System.Drawing">
@@ -144,8 +144,8 @@
   <data name="&gt;&gt;btnActivation6.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FormActivation</value>
   </data>
   <data name="btnActivation5.Text" xml:space="preserve">
     <value>5</value>
@@ -177,17 +177,11 @@
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormActivation</value>
-  </data>
   <data name="btnActivation5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CashInTerminal.BaseForms.FormMdiChild, CashInTerminal, Version=1.0.6.6, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnActivation0.Name" xml:space="preserve">
-    <value>btnActivation0</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnActivation3.Parent" xml:space="preserve">
     <value>$this</value>
@@ -213,8 +207,8 @@
   <data name="btnActivation3.Text" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;cmbPorts.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="btnActivation9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;btnActivation1.ZOrder" xml:space="preserve">
     <value>12</value>
@@ -228,20 +222,20 @@
   <data name="btnActivation8.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 69</value>
   </data>
-  <data name="btnActivation1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 69</value>
+  <data name="&gt;&gt;btnActivation.ZOrder" xml:space="preserve">
+    <value>16</value>
   </data>
   <data name="btnTest.Location" type="System.Drawing.Point, System.Drawing">
     <value>520, 130</value>
-  </data>
-  <data name="&gt;&gt;btnTest.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="btnActivation0.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
   </data>
   <data name="btnActivationBackspace.Text" xml:space="preserve">
     <value>C</value>
+  </data>
+  <data name="cmbPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 50</value>
   </data>
   <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -252,23 +246,20 @@
   <data name="btnActivation1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="&gt;&gt;btnActivationClear.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="btnActivation0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnActivation9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>№ терминала</value>
   </data>
+  <data name="&gt;&gt;btnActivation0.Name" xml:space="preserve">
+    <value>btnActivation0</value>
+  </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 69</value>
   </data>
   <data name="&gt;&gt;btnActivation.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -288,8 +279,8 @@
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnActivationClear.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial Narrow, 27.75pt, style=Bold</value>
+  <data name="txtActivationTerminal.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
   <data name="btnActivationBackspace.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 69</value>
@@ -303,6 +294,9 @@
   <data name="&gt;&gt;txtActivationCode.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Терминал требует активации!</value>
   </data>
@@ -314,9 +308,6 @@
   </data>
   <data name="btnActivation6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;btnActivation8.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="btnActivation4.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -360,14 +351,20 @@
   <data name="btnActivation4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;btnActivation0.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnActivation6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>713, 24</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="btnActivation1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 69</value>
   </data>
   <data name="btnActivation9.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 181</value>
   </data>
   <data name="btnActivation9.Text" xml:space="preserve">
     <value>9</value>
@@ -381,17 +378,14 @@
   <data name="&gt;&gt;btnActivation1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
   <data name="btnActivation1.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 497</value>
   </data>
   <data name="btnActivation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;btnTest.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormActivation</value>
   </data>
   <data name="txtActivationTerminal.Location" type="System.Drawing.Point, System.Drawing">
     <value>322, 208</value>
@@ -420,14 +414,8 @@
   <data name="btnActivation4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="&gt;&gt;btnActivation.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="&gt;&gt;btnActivation6.Name" xml:space="preserve">
+    <value>btnActivation6</value>
   </data>
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -438,8 +426,8 @@
   <data name="btnActivationBackspace.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="btnActivation8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  <data name="&gt;&gt;btnActivationClear.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnActivation6.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 69</value>
@@ -453,11 +441,14 @@
   <data name="btnActivation3.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 69</value>
   </data>
-  <data name="btnActivationClear.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="&gt;&gt;btnActivation.Name" xml:space="preserve">
+    <value>btnActivation</value>
   </data>
   <data name="&gt;&gt;btnActivation5.Name" xml:space="preserve">
     <value>btnActivation5</value>
+  </data>
+  <data name="btnActivation9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="txtActivationCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>322, 289</value>
@@ -465,8 +456,8 @@
   <data name="btnActivationClear.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 572</value>
   </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 69</value>
   </data>
   <data name="btnTest.Size" type="System.Drawing.Size, System.Drawing">
     <value>133, 48</value>
@@ -476,9 +467,6 @@
   </data>
   <data name="btnActivation5.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 422</value>
-  </data>
-  <data name="txtActivationTerminal.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
   </data>
   <data name="btnActivation.Location" type="System.Drawing.Point, System.Drawing">
     <value>690, 669</value>
@@ -516,8 +504,8 @@
   <data name="btnActivation4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
   </data>
-  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="&gt;&gt;btnActivation3.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="btnActivation2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -543,20 +531,17 @@
   <data name="btnActivation.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 65</value>
   </data>
+  <data name="&gt;&gt;cmbPorts.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="txtActivationCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 49</value>
-  </data>
-  <data name="&gt;&gt;btnActivation.Name" xml:space="preserve">
-    <value>btnActivation</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Код активации</value>
   </data>
   <data name="btnActivation7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;btnActivation6.Name" xml:space="preserve">
-    <value>btnActivation6</value>
   </data>
   <data name="btnActivationBackspace.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
@@ -567,8 +552,8 @@
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
-  <data name="btnActivation9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>572, 347</value>
+  <data name="&gt;&gt;btnActivation0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnActivation5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
@@ -611,9 +596,6 @@
   </data>
   <data name="btnActivation5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;btnActivationClear.ZOrder" xml:space="preserve">
-    <value>15</value>
   </data>
   <data name="btnTest.Text" xml:space="preserve">
     <value>Тест</value>
@@ -660,8 +642,8 @@
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="cmbPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 50</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CashInTerminal.BaseForms.FormMdiChild, CashInTerminal, Version=1.0.6.6, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cmbPorts.Parent" xml:space="preserve">
     <value>$this</value>
@@ -675,9 +657,6 @@
   <data name="btnActivation7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>FormActivation</value>
-  </data>
   <data name="&gt;&gt;btnActivation7.Name" xml:space="preserve">
     <value>btnActivation7</value>
   </data>
@@ -687,8 +666,11 @@
   <data name="btnActivation.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 260</value>
+  <data name="btnActivation8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnActivation3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnActivation8.Name" xml:space="preserve">
     <value>btnActivation8</value>
@@ -696,17 +678,20 @@
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
+  <data name="btnActivation9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>572, 347</value>
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>713, 24</value>
   </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 181</value>
+  <data name="&gt;&gt;btnTest.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="btnActivation9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;btnActivation8.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -723,17 +708,29 @@
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 260</value>
+  </data>
+  <data name="btnActivationClear.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial Narrow, 27.75pt, style=Bold</value>
+  </data>
   <data name="txtActivationCode.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 27.75pt, style=Bold</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>713, 24</value>
+  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;btnActivation9.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnActivation3.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>713, 24</value>
+  </data>
+  <data name="&gt;&gt;btnTest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnActivation0.Text" xml:space="preserve">
     <value>0</value>
@@ -786,6 +783,9 @@
   <data name="btnActivation7.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 69</value>
   </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>713, 24</value>
+  </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14pt, style=Bold</value>
   </data>
@@ -810,8 +810,8 @@
   <data name="&gt;&gt;txtActivationTerminal.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnActivation3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnActivationClear.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
   </data>
   <data name="btnActivation5.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 69</value>

@@ -323,14 +323,23 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="BaseForms\FormEnterByAlphabet.az-Latn-AZ.resx">
+      <DependentUpon>FormEnterByAlphabet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaseForms\FormEnterByAlphabet.resx">
       <DependentUpon>FormEnterByAlphabet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\FormEnterClientCode.az-Latn-AZ.resx">
+      <DependentUpon>FormEnterClientCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForms\FormEnterClientCode.resx">
       <DependentUpon>FormEnterClientCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormActivation.az-Latn-AZ.resx">
       <DependentUpon>FormActivation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClientCode.az-Latn-AZ.resx">
+      <DependentUpon>FormClientCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreditByBolcardRetype.resx">
       <DependentUpon>FormCreditByBolcardRetype.cs</DependentUpon>
@@ -356,35 +365,68 @@
     <EmbeddedResource Include="FormCreditByPassport1.resx">
       <DependentUpon>FormCreditByPassport1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditClientInfo.az-Latn-AZ.resx">
+      <DependentUpon>FormCreditClientInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreditClientInfo.resx">
       <DependentUpon>FormCreditClientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditSelectAccount.az-Latn-AZ.resx">
+      <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreditSelectAccount.resx">
       <DependentUpon>FormCreditSelectAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCreditTypeSelect.az-Latn-AZ.resx">
+      <DependentUpon>FormCreditTypeSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreditTypeSelect.resx">
       <DependentUpon>FormCreditTypeSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCurrencySelect.az-Latn-AZ.resx">
+      <DependentUpon>FormCurrencySelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCurrencySelect.resx">
       <DependentUpon>FormCurrencySelect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitCardFull.az-Latn-AZ.resx">
+      <DependentUpon>FormDebitCardFull.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDebitCardFull.resx">
       <DependentUpon>FormDebitCardFull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitClientInfo.az-Latn-AZ.resx">
+      <DependentUpon>FormDebitClientInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDebitClientInfo.resx">
       <DependentUpon>FormDebitClientInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitPayType.az-Latn-AZ.resx">
+      <DependentUpon>FormDebitPayType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDebitPayType.resx">
       <DependentUpon>FormDebitPayType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDebitSelectAccount.az-Latn-AZ.resx">
+      <DependentUpon>FormDebitSelectAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDebitSelectAccount.resx">
       <DependentUpon>FormDebitSelectAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEncashment.az-Latn-AZ.resx">
+      <DependentUpon>FormEncashment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEncashment.resx">
       <DependentUpon>FormEncashment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormInvalidNumber.az-Latn-AZ.resx">
+      <DependentUpon>FormInvalidNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormInvalidNumber.resx">
       <DependentUpon>FormInvalidNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLanguage.az-Latn-AZ.resx">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLanguage.resx">
       <DependentUpon>FormLanguage.cs</DependentUpon>
@@ -395,11 +437,20 @@
     <EmbeddedResource Include="FormMdiMain.resx">
       <DependentUpon>FormMdiMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMoneyInput.az-Latn-AZ.resx">
+      <DependentUpon>FormMoneyInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMoneyInput.resx">
       <DependentUpon>FormMoneyInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOutOfOrder.az-Latn-AZ.resx">
+      <DependentUpon>FormOutOfOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOutOfOrder.resx">
       <DependentUpon>FormOutOfOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaySuccess.az-Latn-AZ.resx">
+      <DependentUpon>FormPaySuccess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPaySuccess.resx">
       <DependentUpon>FormPaySuccess.cs</DependentUpon>
@@ -407,8 +458,14 @@
     <EmbeddedResource Include="FormProducts.resx">
       <DependentUpon>FormProducts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProgress.az-Latn-AZ.resx">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormServiceNotAvailable.az-Latn-AZ.resx">
+      <DependentUpon>FormServiceNotAvailable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormServiceNotAvailable.resx">
       <DependentUpon>FormServiceNotAvailable.cs</DependentUpon>

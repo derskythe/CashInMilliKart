@@ -28,47 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInvalidNumber));
             this.label10 = new System.Windows.Forms.Label();
             this.btbBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label10
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.label10, "label10");
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(39, 158);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(935, 351);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Не правильный номер. ";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btbBack
             // 
-            this.btbBack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            resources.ApplyResources(this.btbBack, "btbBack");
             this.btbBack.BackColor = System.Drawing.Color.Transparent;
-            this.btbBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btbBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btbBack.Location = new System.Drawing.Point(350, 658);
             this.btbBack.Name = "btbBack";
-            this.btbBack.Size = new System.Drawing.Size(321, 76);
-            this.btbBack.TabIndex = 9;
-            this.btbBack.Text = "Назад";
             this.btbBack.UseVisualStyleBackColor = false;
             this.btbBack.Click += new System.EventHandler(this.BtbBackClick);
             // 
             // FormInvalidNumber
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btbBack);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormInvalidNumber";
-            this.Text = "FormInvalidNumber";
             this.Controls.SetChildIndex(this.btbBack, 0);
             this.Controls.SetChildIndex(this.label10, 0);
             this.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEncashment));
             this.lblEncashmentTotal = new System.Windows.Forms.Label();
             this.btnEncashmentFinish = new System.Windows.Forms.Button();
             this.btnEncashmentPrint = new System.Windows.Forms.Button();
@@ -36,42 +37,23 @@
             // 
             // lblEncashmentTotal
             // 
-            this.lblEncashmentTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.lblEncashmentTotal, "lblEncashmentTotal");
             this.lblEncashmentTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblEncashmentTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.lblEncashmentTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblEncashmentTotal.Location = new System.Drawing.Point(154, 221);
             this.lblEncashmentTotal.Name = "lblEncashmentTotal";
-            this.lblEncashmentTotal.Size = new System.Drawing.Size(713, 50);
-            this.lblEncashmentTotal.TabIndex = 11;
-            this.lblEncashmentTotal.Text = "Режим Инкассации";
-            this.lblEncashmentTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnEncashmentFinish
             // 
-            this.btnEncashmentFinish.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            resources.ApplyResources(this.btnEncashmentFinish, "btnEncashmentFinish");
             this.btnEncashmentFinish.BackColor = System.Drawing.Color.Transparent;
-            this.btnEncashmentFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnEncashmentFinish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEncashmentFinish.Location = new System.Drawing.Point(350, 658);
             this.btnEncashmentFinish.Name = "btnEncashmentFinish";
-            this.btnEncashmentFinish.Size = new System.Drawing.Size(321, 76);
-            this.btnEncashmentFinish.TabIndex = 10;
-            this.btnEncashmentFinish.Text = "Завершить";
             this.btnEncashmentFinish.UseVisualStyleBackColor = false;
             this.btnEncashmentFinish.Click += new System.EventHandler(this.BtnEncashmentFinishClick);
             // 
             // btnEncashmentPrint
             // 
-            this.btnEncashmentPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnEncashmentPrint, "btnEncashmentPrint");
             this.btnEncashmentPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnEncashmentPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnEncashmentPrint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEncashmentPrint.Location = new System.Drawing.Point(350, 315);
             this.btnEncashmentPrint.Name = "btnEncashmentPrint";
-            this.btnEncashmentPrint.Size = new System.Drawing.Size(321, 76);
-            this.btnEncashmentPrint.TabIndex = 9;
-            this.btnEncashmentPrint.Text = "Печать чека";
             this.btnEncashmentPrint.UseVisualStyleBackColor = false;
             this.btnEncashmentPrint.Click += new System.EventHandler(this.BtnEncashmentPrintClick);
             // 
@@ -81,15 +63,12 @@
             // 
             // FormEncashment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.lblEncashmentTotal);
             this.Controls.Add(this.btnEncashmentFinish);
             this.Controls.Add(this.btnEncashmentPrint);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormEncashment";
-            this.Text = "FormEncashment";
             this.Load += new System.EventHandler(this.FormEncashmentLoad);
             this.Controls.SetChildIndex(this.btnEncashmentPrint, 0);
             this.Controls.SetChildIndex(this.btnEncashmentFinish, 0);

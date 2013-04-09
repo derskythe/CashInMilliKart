@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDebitCardFull));
             this.btnDebitClientCode9 = new System.Windows.Forms.Button();
             this.btnDebitClientCode8 = new System.Windows.Forms.Button();
             this.btnDebitClientCode7 = new System.Windows.Forms.Button();
@@ -48,229 +49,133 @@
             // 
             // btnDebitClientCode9
             // 
-            this.btnDebitClientCode9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode9, "btnDebitClientCode9");
             this.btnDebitClientCode9.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode9.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode9.Location = new System.Drawing.Point(855, 153);
             this.btnDebitClientCode9.Name = "btnDebitClientCode9";
-            this.btnDebitClientCode9.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode9.TabIndex = 17;
-            this.btnDebitClientCode9.Text = "9";
             this.btnDebitClientCode9.UseVisualStyleBackColor = false;
             this.btnDebitClientCode9.Click += new System.EventHandler(this.BtnDebitClientCode9Click);
             // 
             // btnDebitClientCode8
             // 
-            this.btnDebitClientCode8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode8, "btnDebitClientCode8");
             this.btnDebitClientCode8.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode8.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode8.Location = new System.Drawing.Point(771, 153);
             this.btnDebitClientCode8.Name = "btnDebitClientCode8";
-            this.btnDebitClientCode8.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode8.TabIndex = 21;
-            this.btnDebitClientCode8.Text = "8";
             this.btnDebitClientCode8.UseVisualStyleBackColor = false;
             this.btnDebitClientCode8.Click += new System.EventHandler(this.BtnDebitClientCode8Click);
             // 
             // btnDebitClientCode7
             // 
-            this.btnDebitClientCode7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode7, "btnDebitClientCode7");
             this.btnDebitClientCode7.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode7.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode7.Location = new System.Drawing.Point(687, 153);
             this.btnDebitClientCode7.Name = "btnDebitClientCode7";
-            this.btnDebitClientCode7.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode7.TabIndex = 22;
-            this.btnDebitClientCode7.Text = "7";
             this.btnDebitClientCode7.UseVisualStyleBackColor = false;
             this.btnDebitClientCode7.Click += new System.EventHandler(this.BtnDebitClientCode7Click);
             // 
             // btnDebitClientCode6
             // 
-            this.btnDebitClientCode6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode6, "btnDebitClientCode6");
             this.btnDebitClientCode6.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode6.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode6.Location = new System.Drawing.Point(855, 228);
             this.btnDebitClientCode6.Name = "btnDebitClientCode6";
-            this.btnDebitClientCode6.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode6.TabIndex = 19;
-            this.btnDebitClientCode6.Text = "6";
             this.btnDebitClientCode6.UseVisualStyleBackColor = false;
             this.btnDebitClientCode6.Click += new System.EventHandler(this.BtnDebitClientCode6Click);
             // 
             // btnDebitClientCode5
             // 
-            this.btnDebitClientCode5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode5, "btnDebitClientCode5");
             this.btnDebitClientCode5.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode5.Location = new System.Drawing.Point(771, 228);
             this.btnDebitClientCode5.Name = "btnDebitClientCode5";
-            this.btnDebitClientCode5.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode5.TabIndex = 20;
-            this.btnDebitClientCode5.Text = "5";
             this.btnDebitClientCode5.UseVisualStyleBackColor = false;
             this.btnDebitClientCode5.Click += new System.EventHandler(this.BtnDebitClientCode5Click);
             // 
             // btnDebitClientCode4
             // 
-            this.btnDebitClientCode4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode4, "btnDebitClientCode4");
             this.btnDebitClientCode4.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode4.Location = new System.Drawing.Point(687, 228);
             this.btnDebitClientCode4.Name = "btnDebitClientCode4";
-            this.btnDebitClientCode4.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode4.TabIndex = 25;
-            this.btnDebitClientCode4.Text = "4";
             this.btnDebitClientCode4.UseVisualStyleBackColor = false;
             this.btnDebitClientCode4.Click += new System.EventHandler(this.BtnDebitClientCode4Click);
             // 
             // btnDebitClientCode3
             // 
-            this.btnDebitClientCode3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode3, "btnDebitClientCode3");
             this.btnDebitClientCode3.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode3.Location = new System.Drawing.Point(855, 303);
             this.btnDebitClientCode3.Name = "btnDebitClientCode3";
-            this.btnDebitClientCode3.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode3.TabIndex = 26;
-            this.btnDebitClientCode3.Text = "3";
             this.btnDebitClientCode3.UseVisualStyleBackColor = false;
             this.btnDebitClientCode3.Click += new System.EventHandler(this.BtnDebitClientCode3Click);
             // 
             // btnDebitClientCode2
             // 
-            this.btnDebitClientCode2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode2, "btnDebitClientCode2");
             this.btnDebitClientCode2.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode2.Location = new System.Drawing.Point(771, 303);
             this.btnDebitClientCode2.Name = "btnDebitClientCode2";
-            this.btnDebitClientCode2.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode2.TabIndex = 23;
-            this.btnDebitClientCode2.Text = "2";
             this.btnDebitClientCode2.UseVisualStyleBackColor = false;
             this.btnDebitClientCode2.Click += new System.EventHandler(this.BtnDebitClientCode2Click);
             // 
             // btnDebitClientCode1
             // 
-            this.btnDebitClientCode1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode1, "btnDebitClientCode1");
             this.btnDebitClientCode1.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode1.Location = new System.Drawing.Point(687, 303);
             this.btnDebitClientCode1.Name = "btnDebitClientCode1";
-            this.btnDebitClientCode1.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode1.TabIndex = 24;
-            this.btnDebitClientCode1.Text = "1";
             this.btnDebitClientCode1.UseVisualStyleBackColor = false;
             this.btnDebitClientCode1.Click += new System.EventHandler(this.BtnDebitClientCode1Click);
             // 
             // btnDebitClientCodeClear
             // 
-            this.btnDebitClientCodeClear.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCodeClear, "btnDebitClientCodeClear");
             this.btnDebitClientCodeClear.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCodeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCodeClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCodeClear.Location = new System.Drawing.Point(855, 378);
             this.btnDebitClientCodeClear.Name = "btnDebitClientCodeClear";
-            this.btnDebitClientCodeClear.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCodeClear.TabIndex = 18;
-            this.btnDebitClientCodeClear.Text = "C";
             this.btnDebitClientCodeClear.UseVisualStyleBackColor = false;
             this.btnDebitClientCodeClear.Click += new System.EventHandler(this.BtnDebitClientCodeClearClick);
             // 
             // btnDebitClientCode0
             // 
-            this.btnDebitClientCode0.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCode0, "btnDebitClientCode0");
             this.btnDebitClientCode0.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCode0.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCode0.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCode0.Location = new System.Drawing.Point(771, 378);
             this.btnDebitClientCode0.Name = "btnDebitClientCode0";
-            this.btnDebitClientCode0.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCode0.TabIndex = 15;
-            this.btnDebitClientCode0.Text = "0";
             this.btnDebitClientCode0.UseVisualStyleBackColor = false;
             this.btnDebitClientCode0.Click += new System.EventHandler(this.BtnDebitClientCode0Click);
             // 
             // btnDebitClientCodeBackspace
             // 
-            this.btnDebitClientCodeBackspace.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.btnDebitClientCodeBackspace, "btnDebitClientCodeBackspace");
             this.btnDebitClientCodeBackspace.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCodeBackspace.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold);
             this.btnDebitClientCodeBackspace.Image = global::CashInTerminal.Properties.Resources.backspace32;
-            this.btnDebitClientCodeBackspace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCodeBackspace.Location = new System.Drawing.Point(687, 378);
             this.btnDebitClientCodeBackspace.Name = "btnDebitClientCodeBackspace";
-            this.btnDebitClientCodeBackspace.Size = new System.Drawing.Size(78, 69);
-            this.btnDebitClientCodeBackspace.TabIndex = 16;
             this.btnDebitClientCodeBackspace.UseVisualStyleBackColor = false;
             this.btnDebitClientCodeBackspace.Click += new System.EventHandler(this.BtnDebitClientCodeBackspaceClick);
             // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
+            resources.ApplyResources(this.label9, "label9");
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(21, 170);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(260, 42);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Номер карты";
             // 
             // txtDebitClientCode
             // 
-            this.txtDebitClientCode.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDebitClientCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.txtDebitClientCode.Location = new System.Drawing.Point(28, 228);
+            resources.ApplyResources(this.txtDebitClientCode, "txtDebitClientCode");
             this.txtDebitClientCode.Name = "txtDebitClientCode";
-            this.txtDebitClientCode.Size = new System.Drawing.Size(389, 49);
-            this.txtDebitClientCode.TabIndex = 11;
             this.txtDebitClientCode.TextChanged += new System.EventHandler(this.TxtDebitClientCodeTextChanged);
             // 
             // btnDebitClientCodePrev
             // 
-            this.btnDebitClientCodePrev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.btnDebitClientCodePrev, "btnDebitClientCodePrev");
             this.btnDebitClientCodePrev.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCodePrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCodePrev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCodePrev.Location = new System.Drawing.Point(12, 658);
             this.btnDebitClientCodePrev.Name = "btnDebitClientCodePrev";
-            this.btnDebitClientCodePrev.Size = new System.Drawing.Size(321, 76);
-            this.btnDebitClientCodePrev.TabIndex = 10;
-            this.btnDebitClientCodePrev.Text = "Назад";
             this.btnDebitClientCodePrev.UseVisualStyleBackColor = false;
             this.btnDebitClientCodePrev.Click += new System.EventHandler(this.BtnDebitClientCodePrevClick);
             // 
             // btnDebitClientCodeNext
             // 
-            this.btnDebitClientCodeNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.btnDebitClientCodeNext, "btnDebitClientCodeNext");
             this.btnDebitClientCodeNext.BackColor = System.Drawing.Color.Transparent;
-            this.btnDebitClientCodeNext.Enabled = false;
-            this.btnDebitClientCodeNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnDebitClientCodeNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDebitClientCodeNext.Location = new System.Drawing.Point(687, 658);
             this.btnDebitClientCodeNext.Name = "btnDebitClientCodeNext";
-            this.btnDebitClientCodeNext.Size = new System.Drawing.Size(321, 76);
-            this.btnDebitClientCodeNext.TabIndex = 9;
-            this.btnDebitClientCodeNext.Text = "Дальше";
             this.btnDebitClientCodeNext.UseVisualStyleBackColor = false;
             this.btnDebitClientCodeNext.Click += new System.EventHandler(this.BtnDebitClientCodeNextClick);
             // 
             // FormDebitCardFull
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.btnDebitClientCode9);
             this.Controls.Add(this.btnDebitClientCode8);
             this.Controls.Add(this.btnDebitClientCode7);
@@ -287,9 +192,7 @@
             this.Controls.Add(this.txtDebitClientCode);
             this.Controls.Add(this.btnDebitClientCodePrev);
             this.Controls.Add(this.btnDebitClientCodeNext);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormDebitCardFull";
-            this.Text = "FormDebitClientCode";
             this.Controls.SetChildIndex(this.btnDebitClientCodeNext, 0);
             this.Controls.SetChildIndex(this.btnDebitClientCodePrev, 0);
             this.Controls.SetChildIndex(this.txtDebitClientCode, 0);

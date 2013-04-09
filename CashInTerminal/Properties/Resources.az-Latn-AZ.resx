@@ -118,54 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountNumber" xml:space="preserve">
-    <value>Account number</value>
+    <value>Hesab nömrəsi</value>
   </data>
   <data name="AccountNumberRetype" xml:space="preserve">
-    <value>Повторите номер счета</value>
+    <value>Hesab nömrəsini təkrarlayın</value>
   </data>
   <data name="BolLastFour" xml:space="preserve">
-    <value>Последние 8 цифр карточки</value>
+    <value>Kartın son 8 rəqəmi</value>
   </data>
   <data name="BolLastFourRetype" xml:space="preserve">
-    <value>Повторите последние 8 цифр</value>
+    <value>Son 8 rəqəmi təkrarlayın</value>
   </data>
   <data name="Colon" xml:space="preserve">
     <value>: </value>
   </data>
   <data name="CreditAmount" xml:space="preserve">
-    <value>Сумма кредита</value>
+    <value>Kreditin məbləği</value>
   </data>
   <data name="CreditAmountLeft" xml:space="preserve">
-    <value>Остаток кредита</value>
+    <value>Kreditin balansı</value>
   </data>
   <data name="CreditAmountToPay" xml:space="preserve">
-    <value>Сумма к оплате</value>
+    <value>Ödəniləcək məbləğ</value>
   </data>
   <data name="CreditClosed" xml:space="preserve">
-    <value>Credit is closed</value>
+    <value>Kredit bağlıdır</value>
   </data>
   <data name="CreditDate" xml:space="preserve">
-    <value>Дата кредита</value>
+    <value>Kreditin tarixi</value>
   </data>
   <data name="CreditOpen" xml:space="preserve">
-    <value>Credit is still opened</value>
+    <value>Kredit hələ açıqdı</value>
   </data>
   <data name="Currency" xml:space="preserve">
-    <value>Валюта</value>
+    <value>Valyuta</value>
   </data>
   <data name="Fullname" xml:space="preserve">
-    <value>Ф.И.О.</value>
+    <value>S.A.A.</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>Xeyr</value>
   </data>
   <data name="PasportInfo" xml:space="preserve">
-    <value>Серия и номер паспорта</value>
+    <value>Pasportun seriya və nömrəsi</value>
   </data>
   <data name="PasportNumber" xml:space="preserve">
-    <value>№ паспорта</value>
+    <value>Pasport №</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Bəli</value>
   </data>
 </root>

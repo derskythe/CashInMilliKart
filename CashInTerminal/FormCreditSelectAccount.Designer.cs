@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreditSelectAccount));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -46,20 +47,15 @@
             // 
             // btnBack
             // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.btnBack, "btnBack");
             this.btnBack.BackColor = System.Drawing.Color.Transparent;
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold);
-            this.btnBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBack.Location = new System.Drawing.Point(12, 658);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(321, 76);
-            this.btnBack.TabIndex = 12;
-            this.btnBack.Text = "Назад";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.BtnBackClick);
             // 
             // dataGridSelect
             // 
+            resources.ApplyResources(this.dataGridSelect, "dataGridSelect");
             this.dataGridSelect.AllowUserToAddRows = false;
             this.dataGridSelect.AllowUserToDeleteRows = false;
             this.dataGridSelect.AllowUserToResizeColumns = false;
@@ -68,8 +64,6 @@
             dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dataGridSelect.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridSelect.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridSelect.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridSelect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
@@ -100,7 +94,6 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridSelect.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridSelect.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(183)))), ((int)(((byte)(228)))));
-            this.dataGridSelect.Location = new System.Drawing.Point(5, 516);
             this.dataGridSelect.MultiSelect = false;
             this.dataGridSelect.Name = "dataGridSelect";
             this.dataGridSelect.ReadOnly = true;
@@ -117,69 +110,54 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridSelect.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridSelect.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridSelect.Size = new System.Drawing.Size(1003, 87);
-            this.dataGridSelect.TabIndex = 0;
-            this.dataGridSelect.Visible = false;
             // 
             // tdAccountNumber
             // 
             this.tdAccountNumber.FillWeight = 140F;
-            this.tdAccountNumber.HeaderText = "Номер счета";
+            resources.ApplyResources(this.tdAccountNumber, "tdAccountNumber");
             this.tdAccountNumber.Name = "tdAccountNumber";
             this.tdAccountNumber.ReadOnly = true;
             // 
             // tdType
             // 
-            this.tdType.HeaderText = "Название";
+            resources.ApplyResources(this.tdType, "tdType");
             this.tdType.Name = "tdType";
             this.tdType.ReadOnly = true;
             // 
             // tdDate
             // 
-            this.tdDate.HeaderText = "Дата выдачи";
+            resources.ApplyResources(this.tdDate, "tdDate");
             this.tdDate.Name = "tdDate";
             this.tdDate.ReadOnly = true;
             // 
             // tdAmount
             // 
             this.tdAmount.FillWeight = 70F;
-            this.tdAmount.HeaderText = "Сумма";
+            resources.ApplyResources(this.tdAmount, "tdAmount");
             this.tdAmount.Name = "tdAmount";
             this.tdAmount.ReadOnly = true;
             // 
             // tdCurrency
             // 
             this.tdCurrency.FillWeight = 70F;
-            this.tdCurrency.HeaderText = "Валюта";
+            resources.ApplyResources(this.tdCurrency, "tdCurrency");
             this.tdCurrency.Name = "tdCurrency";
             this.tdCurrency.ReadOnly = true;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.tableLayoutPanel, "tableLayoutPanel");
             this.tableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel.ColumnCount = 1;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Location = new System.Drawing.Point(12, 115);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 1;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(996, 1);
-            this.tableLayoutPanel.TabIndex = 13;
             // 
             // FormCreditSelectAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 746);
             this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dataGridSelect);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormCreditSelectAccount";
-            this.Text = "FormCreditSelectAccount";
             this.Load += new System.EventHandler(this.FormCreditSelectAccountLoad);
             this.Controls.SetChildIndex(this.dataGridSelect, 0);
             this.Controls.SetChildIndex(this.btnBack, 0);
@@ -193,11 +171,11 @@
 
         private System.Windows.Forms.DataGridView dataGridSelect;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdAccountNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdType;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn tdCurrency;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
     }
 }
