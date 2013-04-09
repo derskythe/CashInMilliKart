@@ -38,6 +38,34 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public void SaveUserToBranches(int userId, int[] branches)
+        {
+            CheckConnection();
+
+            var cmd = _OraCon.CreateCommand();
+            cmd.CommandText = "main.save_users_to_branches";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            var pUserId = new OracleParameter();
+            var pBranches = new OracleParameter();
+            
+
+            pUserId.OracleDbType = OracleDbType.Int32;
+            pBranches.OracleDbType = OracleDbType.Int32;
+
+            pBranches.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+
+            pUserId.Value = userId;
+            pBranches.Value = branches;
+
+            pBranches.Size = branches.Length;
+
+            cmd.Parameters.Add(pUserId);
+            cmd.Parameters.Add(pBranches);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public void SaveUser(int? userId, string userName, string password, string salt)
         {
             CheckConnection();
@@ -348,6 +376,44 @@ namespace Db
 
             var cmdText = String.Format("select * from V_LIST_USERS t ORDER BY {0} {1}", column, sortType.ToString());
             var cmd = new OracleCommand(cmdText, _OraCon);
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_LIST_USERSDataTable();
+            adapter.Fill(table);
+
+            var result = new List<User>();
+            foreach (ds.V_LIST_USERSRow row in table.Rows)
+            {
+                var roles = ListRolesToUsersUserId(row.ID);
+                var user = Convertor.ToUser(row, roles);
+                result.Add(user);
+            }
+
+            return result.ToArray();
+        }
+
+        public User[] ListUsers(String username, UsersColumns sortColumn, SortType sortType)
+        {
+            CheckConnection();
+
+            var column = String.Empty;
+            switch (sortColumn)
+            {
+                case UsersColumns.Username:
+                    column = "t.username";
+                    break;
+
+                case UsersColumns.InsertDate:
+                    column = "t.INSERT_DATE";
+                    break;
+
+                case UsersColumns.UpdateDate:
+                    column = "t.UPDATE_DATE";
+                    break;
+            }
+
+            var cmdText = String.Format("select * from V_LIST_USERS t WHERE t.username LIKE :username ORDER BY {0} {1}", column, sortType.ToString());
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("username", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
             var adapter = new OracleDataAdapter(cmd);
             var table = new ds.V_LIST_USERSDataTable();
             adapter.Fill(table);

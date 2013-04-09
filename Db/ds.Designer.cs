@@ -20799,7 +20799,7 @@ namespace Db.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[4];
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[5];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
@@ -20840,7 +20840,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
-                "OM cashin_new.V_LIST_USERS WHERE (USERNAME = :username)";
+                "OM cashin_new.V_LIST_USERS WHERE USERNAME LIKE :username";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":username";
@@ -20849,6 +20849,18 @@ namespace Db.dsTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "USERNAME";
             this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT ID, USERNAME, PASSWORD, INSERT_DATE, UPDATE_DATE, ACTIVE, DELETED, SALT FR" +
+                "OM cashin_new.V_LIST_USERS WHERE (USERNAME = :username)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":username";
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
+            param.Size = 100;
+            param.IsNullable = true;
+            param.SourceColumn = "USERNAME";
+            this._commandCollection[4].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20953,7 +20965,7 @@ namespace Db.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByUsername(ds.V_LIST_USERSDataTable dataTable, string username) {
+        public virtual int FillByLikeUsername(ds.V_LIST_USERSDataTable dataTable, string username) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((username == null)) {
                 throw new global::System.ArgumentNullException("username");
@@ -20972,8 +20984,44 @@ namespace Db.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ds.V_LIST_USERSDataTable GetDataByUsername(string username) {
+        public virtual ds.V_LIST_USERSDataTable GetDataByLikeUsername(string username) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((username == null)) {
+                throw new global::System.ArgumentNullException("username");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(username));
+            }
+            ds.V_LIST_USERSDataTable dataTable = new ds.V_LIST_USERSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByUsername(ds.V_LIST_USERSDataTable dataTable, string username) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((username == null)) {
+                throw new global::System.ArgumentNullException("username");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(username));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_LIST_USERSDataTable GetDataByUsername(string username) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((username == null)) {
                 throw new global::System.ArgumentNullException("username");
             }

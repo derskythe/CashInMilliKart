@@ -49,7 +49,7 @@ namespace CashInTerminal
                     break;
                 }
 
-                if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode)
+                if (FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode || FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByPassportAndAccount ||FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentBolcard)
                 {
                     ChangeView(typeof(FormCreditSelectAccount));
                 }
