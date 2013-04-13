@@ -36,7 +36,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "FormCreditByBolcard";
-            this.Load += new System.EventHandler(this.FormCreditByBolcard_Load);
+            this.Load += new System.EventHandler(this.FormCreditByBolcardLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

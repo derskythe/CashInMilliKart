@@ -25,9 +25,10 @@ namespace CashInTerminal
             }
         }
 
-        private void FormCreditByBolcard_Load(object sender, EventArgs e)
+        private void FormCreditByBolcardLoad(object sender, EventArgs e)
         {
             Label = Resources.BolLastFour;
+            MaxLength = 8;
         }
     }
 }

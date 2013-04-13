@@ -89,7 +89,10 @@ namespace CashInTerminal.BaseForms
                 return;
             }
             var t = (Button)sender;
-            SelectedBox.Text += t.Text;
+            if (SelectedBox.Text.Length < SelectedBox.MaxLength)
+            {
+                SelectedBox.Text += t.Text;
+            }
         }
 
         protected virtual void BtnBack()
@@ -125,6 +128,12 @@ namespace CashInTerminal.BaseForms
         {
             set { lblClientCode.Text = value; }
             get { return lblClientCode.Text; }
+        }
+
+        protected int MaxLength
+        {
+            set { txtClientCodeClient.MaxLength = value; }
+            get { return txtClientCodeClient.MaxLength; }
         }
 
         protected String InputValue

@@ -82,6 +82,7 @@ namespace CashInTerminal
         private void FormCreditByPassport2Load(object sender, EventArgs e)
         {
             Label = Resources.PasportInfo;
+            MaxLength = 30;
         }        
     }
 }

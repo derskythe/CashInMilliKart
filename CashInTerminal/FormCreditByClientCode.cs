@@ -31,6 +31,7 @@ namespace CashInTerminal
         private void FormCreditByClientCodeLoad(object sender, EventArgs e)
         {
             Label = Resources.ClientCode;
+            MaxLength = 30;
         }
     }
 }

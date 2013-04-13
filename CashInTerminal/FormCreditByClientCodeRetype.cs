@@ -77,6 +77,7 @@ namespace CashInTerminal
         private void FormCreditByClientCodeRetypeLoad(object sender, EventArgs e)
         {
             Label = Resources.ClientCodeRetype;
+            MaxLength = 30;
         }
     }
 }

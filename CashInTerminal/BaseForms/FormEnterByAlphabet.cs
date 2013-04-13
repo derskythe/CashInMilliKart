@@ -226,7 +226,10 @@ namespace CashInTerminal.BaseForms
                 return;
             }
             var t = (Button)sender;
-            SelectedBox.Text += t.Text;
+            if (SelectedBox.Text.Length < SelectedBox.MaxLength)
+            {
+                SelectedBox.Text += t.Text;
+            }
         }
 
         #endregion
@@ -267,6 +270,12 @@ namespace CashInTerminal.BaseForms
 
         private void FormEnterByAlphabetLoad(object sender, EventArgs e)
         {            
+        }
+
+        protected int MaxLength
+        {
+            set { txtClientCodeClient.MaxLength = value; }
+            get { return txtClientCodeClient.MaxLength; }
         }
     }
 }

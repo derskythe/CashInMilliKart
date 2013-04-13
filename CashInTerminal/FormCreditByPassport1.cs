@@ -15,6 +15,7 @@ namespace CashInTerminal
         {
             // Номер счета
             Label = Resources.AccountNumber;
+            MaxLength = 30;
         }
 
         protected override void BtnBack()
