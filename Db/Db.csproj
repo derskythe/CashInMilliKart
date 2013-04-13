@@ -67,7 +67,19 @@
     <Compile Include="dsTableAdapters\V_BANKNOTESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_BANKNOTES_SUMMARY_BY_TERMTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_BRANCHESTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsTableAdapters\V_BRANCHES_TO_USERSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="dsTableAdapters\V_CASHIN_BOLCARDSTableAdapter.cs">

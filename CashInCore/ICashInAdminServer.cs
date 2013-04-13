@@ -25,8 +25,8 @@ namespace CashInCore
         [OperationContract]
         StandardResult SetStatusCode(String sid, int terminalId, int statusCode);
 
-        [OperationContract]
-        StandardResult SaveUserRole(String sid, int userId, int roleId);
+        //[OperationContract]
+        //StandardResult SaveUserRole(String sid, int userId, int roleId);
 
         [OperationContract]
         StandardResult SaveCurrency(String sid, Currency currency);
@@ -157,5 +157,40 @@ namespace CashInCore
         ListEncashmentResult ListEncashmentByAllParams(string sid, int terminalId, int branchId, DateTime from,
                                                        DateTime to, EncashmentColumns sortColumn, SortType sortType,
                                                        int rowNum, int perPage);
+
+        [OperationContract]
+        ListProductHistoryResult ListProductHistoryByTerminalId(string sid, DateTime from, DateTime to, int terminalId,
+                                                                ProductHistoryColumns sortColumn, SortType sortType,
+                                                                int rowNum, int perPage);
+        
+        [OperationContract]
+        ListProductHistoryResult ListProductHistoryByEncashmentId(string sid, DateTime from, DateTime to,
+                                                                  int encashmentId, ProductHistoryColumns sortColumn,
+                                                                  SortType sortType, int rowNum, int perPage);
+                
+        [OperationContract]
+        ListProductHistoryResult ListProductHistoryByProductId(string sid, DateTime from, DateTime to, int productId,
+                                                               ProductHistoryColumns sortColumn, SortType sortType,
+                                                               int rowNum, int perPage);        
+        [OperationContract]
+        ListBanknoteSummary ListBanknoteSummaryByTerminalId(String sid, int terminalId);
+
+        [OperationContract]
+        ListBanknoteSummary ListBanknoteSummaryByHistoryId(String sid, int historyId);
+
+        [OperationContract]
+        ListBanknoteSummary ListBanknoteSummaryByEncashmentId(String sid, int encashmentId);
+
+        [OperationContract]
+        StandardResult SaveUserBranch(String sid, int userId, int[] branchId);
+
+        [OperationContract]
+        StandardResult SaveUserRole(String sid, int userId, int[] roles);
+
+        [OperationContract]
+        ListUsersResult ListUsersByUsername(String sid, String username, UsersColumns sortColumn, SortType sortType);
+
+        [OperationContract]
+        SaveTerminalResult DeleteTerminal(String sid, int terminalId);
     }
 }

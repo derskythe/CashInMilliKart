@@ -8,25 +8,27 @@ namespace CashInTerminal
 {
     public class LocalDb
     {
-        private readonly SQLiteConnection _Connection;
-
-        public LocalDb()
+        private SQLiteConnection GetConnection()
         {
-            _Connection = new SQLiteConnection("Data Source=" + Settings.Default.DbPath);
+            return new SQLiteConnection("Data Source=" + Settings.Default.DbPath);
         }
 
         public List<ds.PaymentsRow> GetTransactions()
         {
-            var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            var table = new ds.PaymentsDataTable();
-
-            adapter.FillByConfirmed(table);
-
             var rowList = new List<ds.PaymentsRow>();
-
-            foreach (ds.PaymentsRow item in table.Rows)
+            using (var connection = GetConnection())
             {
-                rowList.Add(item);
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                var table = new ds.PaymentsDataTable();
+
+                adapter.FillByConfirmed(table);
+
+                foreach (ds.PaymentsRow item in table.Rows)
+                {
+                    rowList.Add(item);
+                }
+
+                connection.Close();
             }
 
             return rowList;
@@ -34,47 +36,59 @@ namespace CashInTerminal
 
         public int GetCasseteTotal(string currency)
         {
-            var adapter = new CasseteBanknotesTableAdapter {Connection = _Connection};
-
-            var raw = adapter.Total(currency);
-
-            if (raw != null && raw != DBNull.Value)
+            using (var connection = GetConnection())
             {
-                return Convert.ToInt32(raw);
-            }
+                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
 
+                var raw = adapter.Total(currency);
+
+                if (raw != null && raw != DBNull.Value)
+                {
+                    connection.Close();
+                    return Convert.ToInt32(raw);
+                }
+            }
             return 0;
         }
 
         public List<ds.CasseteBanknotesRow> ListCasseteBanknotes()
         {
-            var adapter = new CasseteBanknotesTableAdapter {Connection = _Connection};
-            var table = new ds.CasseteBanknotesDataTable();
-
-            adapter.Fill(table);
-
             var rowList = new List<ds.CasseteBanknotesRow>();
 
-            foreach (ds.CasseteBanknotesRow row in table.Rows)
+            using (var connection = GetConnection())
             {
-                rowList.Add(row);
+                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
+                var table = new ds.CasseteBanknotesDataTable();
+
+                adapter.Fill(table);
+
+                foreach (ds.CasseteBanknotesRow row in table.Rows)
+                {
+                    rowList.Add(row);
+                }
+
+                connection.Close();
             }
 
             return rowList;
-        } 
+        }
 
         public List<ds.PaymentBanknotesRow> GetPaymentBanknotes(long id)
         {
-            var adapter = new PaymentBanknotesTableAdapter {Connection = _Connection};
-            var table = new ds.PaymentBanknotesDataTable();
-
-            adapter.FillByParentId(table, id);
-
             var rowList = new List<ds.PaymentBanknotesRow>();
 
-            foreach (ds.PaymentBanknotesRow row in table.Rows)
+            using (var connection = GetConnection())
             {
-                rowList.Add(row);
+                var adapter = new PaymentBanknotesTableAdapter { Connection = connection };
+                var table = new ds.PaymentBanknotesDataTable();
+
+                adapter.FillByParentId(table, id);
+
+                foreach (ds.PaymentBanknotesRow row in table.Rows)
+                {
+                    rowList.Add(row);
+                }
+                connection.Close();
             }
 
             return rowList;
@@ -82,16 +96,21 @@ namespace CashInTerminal
 
         public List<ds.PaymentValuesRow> GetPaymentValues(long id)
         {
-            var adapter = new PaymentValuesTableAdapter {Connection = _Connection};
-            var table = new ds.PaymentValuesDataTable();
-
-            adapter.FillByParentId(table, id);
-
             var rowList = new List<ds.PaymentValuesRow>();
 
-            foreach (ds.PaymentValuesRow row in table.Rows)
+            using (var connection = GetConnection())
             {
-                rowList.Add(row);
+                var adapter = new PaymentValuesTableAdapter { Connection = connection };
+                var table = new ds.PaymentValuesDataTable();
+
+                adapter.FillByParentId(table, id);
+
+                foreach (ds.PaymentValuesRow row in table.Rows)
+                {
+                    rowList.Add(row);
+                }
+
+                connection.Close();
             }
 
             return rowList;
@@ -99,15 +118,21 @@ namespace CashInTerminal
 
         public List<ds.CheckTemplateRow> GetCheckTemplateByType(long type, String language)
         {
-            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
-            var table = new ds.CheckTemplateDataTable();
-
-            adapter.FillByType(table, type, language);
-
             var rowList = new List<ds.CheckTemplateRow>();
-            foreach (ds.CheckTemplateRow row in table.Rows)
+
+            using (var connection = GetConnection())
             {
-                rowList.Add(row);
+                var adapter = new CheckTemplateTableAdapter { Connection = connection };
+                var table = new ds.CheckTemplateDataTable();
+
+                adapter.FillByType(table, type, language);
+
+                foreach (ds.CheckTemplateRow row in table.Rows)
+                {
+                    rowList.Add(row);
+                }
+
+                connection.Close();
             }
 
             return rowList;
@@ -115,15 +140,21 @@ namespace CashInTerminal
 
         public List<ds.TemplateFieldRow> ListTemplateFields(long checkTemplateId)
         {
-            var adapter = new TemplateFieldTableAdapter { Connection = _Connection };
-            var table = new ds.TemplateFieldDataTable();
-
-            adapter.FillByCheckTemplateId(table, checkTemplateId);
             var rowList = new List<ds.TemplateFieldRow>();
-
-            foreach (ds.TemplateFieldRow row in table.Rows)
+            using (var connection = GetConnection())
             {
-                rowList.Add(row);
+                var adapter = new TemplateFieldTableAdapter { Connection = connection };
+                var table = new ds.TemplateFieldDataTable();
+
+                adapter.FillByCheckTemplateId(table, checkTemplateId);
+
+
+                foreach (ds.TemplateFieldRow row in table.Rows)
+                {
+                    rowList.Add(row);
+                }
+
+                connection.Close();
             }
 
             return rowList;
@@ -138,37 +169,57 @@ namespace CashInTerminal
                 DeleteByCheckTemplateId(row.Id);
             }
 
-            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
-            adapter.DeleteTemplateByType(type, language);
+            using (var connection = GetConnection())
+            {
+                var adapter = new CheckTemplateTableAdapter { Connection = connection };
+                adapter.DeleteTemplateByType(type, language);
+                connection.Close();
+            }
         }
 
         public void DeleteByCheckTemplateId(long id)
         {
-            var adapter = new TemplateFieldTableAdapter { Connection = _Connection };
-            adapter.DeleteByCheckTemplateId(id);
+            using (var connection = GetConnection())
+            {
+                var adapter = new TemplateFieldTableAdapter { Connection = connection };
+                adapter.DeleteByCheckTemplateId(id);
+                connection.Close();
+            }
         }
 
         public void UpdateTemplate(long id, DateTime updateDate)
         {
-            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
-            adapter.UpdateTemplate(updateDate, id);
+            using (var connection = GetConnection())
+            {
+                var adapter = new CheckTemplateTableAdapter { Connection = connection };
+                adapter.UpdateTemplate(updateDate, id);
+                connection.Close();
+            }
         }
 
         public void InsertTemplate(long id, long type, String language, DateTime updateDate)
         {
-            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
-            adapter.InsertTemplate(id, type, language, updateDate);
+            using (var connection = GetConnection())
+            {
+                var adapter = new CheckTemplateTableAdapter { Connection = connection };
+                adapter.InsertTemplate(id, type, language, updateDate);
+                connection.Close();
+            }
         }
 
         public ds.CheckTemplateRow GetCheckTemplate(long id)
         {
-            var adapter = new CheckTemplateTableAdapter { Connection = _Connection };
-            var table = new ds.CheckTemplateDataTable();
-
-            adapter.FillById(table, id);
-            foreach (ds.CheckTemplateRow row in table.Rows)
+            using (var connection = GetConnection())
             {
-                return row;
+                var adapter = new CheckTemplateTableAdapter { Connection = connection };
+                var table = new ds.CheckTemplateDataTable();
+
+                adapter.FillById(table, id);
+                foreach (ds.CheckTemplateRow row in table.Rows)
+                {
+                    connection.Close();
+                    return row;
+                }
             }
 
             return null;
@@ -176,33 +227,47 @@ namespace CashInTerminal
 
         public void InsertCheckTemplateField(long id, long parentId, long type, String value, byte[] image, long orderNumber)
         {
-            var adapter = new TemplateFieldTableAdapter { Connection = _Connection };
-            adapter.InsertCheckTemplateField(id, parentId, type, value, image, orderNumber);
+            using (var connection = GetConnection())
+            {
+                var adapter = new TemplateFieldTableAdapter { Connection = connection };
+                adapter.InsertCheckTemplateField(id, parentId, type, value, image, orderNumber);
+                connection.Close();
+            }
         }
 
         public void DeleteTransaction(long id)
         {
-            var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.DeleteTransaction(id);
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                adapter.DeleteTransaction(id);
 
-            var banknoteAdapter = new PaymentBanknotesTableAdapter { Connection = _Connection };
-            banknoteAdapter.DeleteBanknotes(id);
+                var banknoteAdapter = new PaymentBanknotesTableAdapter { Connection = connection };
+                banknoteAdapter.DeleteBanknotes(id);
 
-            var paymentValuesAdapter = new PaymentValuesTableAdapter { Connection = _Connection };
-            paymentValuesAdapter.DeleteValuesBytTransaction(id);
+                var paymentValuesAdapter = new PaymentValuesTableAdapter { Connection = connection };
+                paymentValuesAdapter.DeleteValuesBytTransaction(id);
+
+                connection.Close();
+            }
         }
 
         public long InsertTransaction(long productId, string currency, decimal currencyRate, int amount, int terminalId,
             string creditNumber, int operationType, bool confirmed)
         {
-            var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0, operationType, creditNumber);
-
-            var insertId = adapter.GetInsertId();
-
-            if (insertId != null)
+            using (var connection = GetConnection())
             {
-                return Convert.ToInt64(insertId);
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0,
+                                          operationType, creditNumber);
+
+                var insertId = adapter.GetInsertId();
+
+                if (insertId != null)
+                {
+                    connection.Close();
+                    return Convert.ToInt64(insertId);
+                }
             }
 
             return 0;
@@ -210,54 +275,86 @@ namespace CashInTerminal
 
         public void UpdateAmount(long id, string currency, decimal currencyRate, int amount)
         {
-            var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.UpdateAmount(currency, currencyRate, amount, id);
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                adapter.UpdateAmount(currency, currencyRate, amount, id);
+                connection.Close();
+            }
         }
 
         public void UpdateTransactionId(long id, string transId)
         {
-            var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.UpdateTransactionId(transId, id);
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                adapter.UpdateTransactionId(transId, id);
+                connection.Close();
+            }
         }
 
         public void ConfirmTransaction(long id)
         {
-            var adapter = new PaymentsTableAdapter { Connection = _Connection };
-            adapter.UpdateConfirmed(1, id);
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                adapter.UpdateConfirmed(1, id);
+                connection.Close();
+            }
         }
 
         public void InsertBanknote(long parentId, int amount, string currency, int orderNumber)
         {
-            var adapter = new PaymentBanknotesTableAdapter { Connection = _Connection };
-            adapter.InsertBanknote(parentId, amount, currency, orderNumber);
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentBanknotesTableAdapter { Connection = connection };
+                adapter.InsertBanknote(parentId, amount, currency, orderNumber);
+                connection.Close();
+            }
         }
 
         public void InsertPaymentValue(long parentId, string value, int orderNumber)
         {
-            var adapter = new PaymentValuesTableAdapter {Connection = _Connection};
-            adapter.InsertPaymentValue(parentId, value, orderNumber);
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentValuesTableAdapter { Connection = connection };
+                adapter.InsertPaymentValue(parentId, value, orderNumber);
+                connection.Close();
+            }
         }
 
         public void DeleteCasseteBanknotes()
         {
-            var adapter = new CasseteBanknotesTableAdapter {Connection = _Connection};
-            adapter.DeleteAll();
+            using (var connection = GetConnection())
+            {
+                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
+                adapter.DeleteAll();
+                connection.Close();
+            }
         }
 
         public void InsertTransactionBanknotes(int amount, String currency, String transId)
         {
-            var adapter = new CasseteBanknotesTableAdapter { Connection = _Connection };
-            adapter.Insert(DateTime.Now, currency, transId, amount);
+            using (var connection = GetConnection())
+            {
+                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
+                adapter.Insert(DateTime.Now, currency, transId, amount);
+                connection.Close();
+            }
         }
 
         public int CountCasseteBanknotes()
         {
-            var adapter = new CasseteBanknotesTableAdapter { Connection = _Connection };
-            var result = adapter.Count();
-
-            if (result != null)
+            using (var connection = GetConnection())
             {
-                return Convert.ToInt32(result);
+                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
+                var result = adapter.Count();
+
+                if (result != null)
+                {
+                    connection.Close();
+                    return Convert.ToInt32(result);
+                }
             }
 
             return 0;

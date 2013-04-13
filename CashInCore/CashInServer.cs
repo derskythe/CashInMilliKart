@@ -97,6 +97,7 @@ namespace CashInCore
 
                 var terminalKey = Encoding.ASCII.GetBytes(publicKey);
                 OracleDb.Instance.SaveTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
+                OracleDb.Instance.RegisterIncassoOrder(terminalId);
 
                 result.Code = ResultCodes.Ok;
                 result.PublicKey = Settings.Default.PublicKey;
@@ -345,6 +346,8 @@ namespace CashInCore
                 OracleDb.Instance.SaveEncashment(request);
                 var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId, (int)TerminalCommands.Encash);
                 OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
+
+                OracleDb.Instance.RegisterIncassoOrder(terminalInfo.Id);
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

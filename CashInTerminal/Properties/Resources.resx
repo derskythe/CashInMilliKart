@@ -184,4 +184,10 @@
   <data name="CreditOpen" xml:space="preserve">
     <value>Credit is still opened</value>
   </data>
+  <data name="ClientCode" xml:space="preserve">
+    <value>Код клиента</value>
+  </data>
+  <data name="ClientCodeRetype" xml:space="preserve">
+    <value>Повторите код клиента</value>
+  </data>
 </root>

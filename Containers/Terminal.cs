@@ -26,6 +26,7 @@ namespace Containers
         private int _LastCashcodeSuberror;
         private int _LastPrinterErrorState;
         private int _LastPrinterExtErrorState;
+        private int _LastEncashment;
         private MultiLanguageString _TerminalStatusDesc;
         private MultiLanguageString _CashcodeDesc;
         private MultiLanguageString _PrinterStatusDesc;
@@ -171,6 +172,14 @@ namespace Containers
             set { _LastPrinterExtErrorState = value; }
         }
 
+        [XmlElement(ElementName = "LastEncashment")]
+        [DataMember(Name = "LastEncashment")]
+        public int LastEncashment
+        {
+            get { return _LastEncashment; }
+            set { _LastEncashment = value; }
+        }
+
         [XmlElement(ElementName = "TerminalStatusDesc")]
         [DataMember(Name = "TerminalStatusDesc")]
         public MultiLanguageString TerminalStatusDesc
@@ -311,7 +320,7 @@ namespace Containers
         {
         }
 
-        public Terminal(int id, string name, string address, string identityName, byte[] signKey, string ip, byte[] tmpKey, int lastStatusType, int lastCashcodeStatus, int billsCount, DateTime lastStatusUpdate, int lastPrinterStatus, int lastCashcodeError, int lastCashcodeOutStatus, int lastCashcodeSuberror, int lastPrinterErrorState, int lastPrinterExtErrorState, MultiLanguageString terminalStatusDesc, MultiLanguageString cashcodeDesc, MultiLanguageString printerStatusDesc, MultiLanguageString printerErrorStatusDesc, MultiLanguageString printerExtErrorStatusDesc, string terminalStatusName, string cashcodeStatusName, string printerStatusName, string printerErrorStatusName, string printerExtErrorStatusName, int terminalStatusType, int cashcodeStatusType, int printerStatusType, string version, int branchId, string branchName)
+        public Terminal(int id, string name, string address, string identityName, byte[] signKey, string ip, byte[] tmpKey, int lastStatusType, int lastCashcodeStatus, int billsCount, DateTime lastStatusUpdate, int lastPrinterStatus, int lastCashcodeError, int lastCashcodeOutStatus, int lastCashcodeSuberror, int lastPrinterErrorState, int lastPrinterExtErrorState, int lastEncashment, MultiLanguageString terminalStatusDesc, MultiLanguageString cashcodeDesc, MultiLanguageString printerStatusDesc, MultiLanguageString printerErrorStatusDesc, MultiLanguageString printerExtErrorStatusDesc, string terminalStatusName, string cashcodeStatusName, string printerStatusName, string printerErrorStatusName, string printerExtErrorStatusName, int terminalStatusType, int cashcodeStatusType, int printerStatusType, string version, int branchId, string branchName)
         {
             _Id = id;
             _Name = name;
@@ -330,6 +339,7 @@ namespace Containers
             _LastCashcodeSuberror = lastCashcodeSuberror;
             _LastPrinterErrorState = lastPrinterErrorState;
             _LastPrinterExtErrorState = lastPrinterExtErrorState;
+            _LastEncashment = lastEncashment;
             _TerminalStatusDesc = terminalStatusDesc;
             _CashcodeDesc = cashcodeDesc;
             _PrinterStatusDesc = printerStatusDesc;

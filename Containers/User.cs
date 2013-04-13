@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
@@ -15,7 +16,8 @@ namespace Containers
         private DateTime _InsertDate;
         private DateTime _LastUpdate;
         private Boolean _Active;
-        private AccessRole[] _RoleFields;
+        private List<AccessRole> _RoleFields;
+        private List<Branch> _Branches;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
@@ -75,17 +77,25 @@ namespace Containers
 
         [XmlArray("RoleFields")]
         [DataMember(Name = "RoleFields")]
-        public AccessRole[] RoleFields
+        public List<AccessRole> RoleFields
         {
             get { return _RoleFields; }
             set { _RoleFields = value; }
+        }
+
+        [XmlArray("Branches")]
+        [DataMember(Name = "Branches")]
+        public List<Branch> Branches
+        {
+            get { return _Branches; }
+            set { _Branches = value; }
         }
 
         public User()
         {
         }
 
-        public User(int id, string username, string password, string salt, DateTime insertDate, DateTime lastUpdate, bool active, AccessRole[] roleFields)
+        public User(int id, string username, string password, string salt, DateTime insertDate, DateTime lastUpdate, bool active, List<AccessRole> roleFields)
         {
             _Id = id;
             _Username = username;
@@ -101,8 +111,8 @@ namespace Containers
         {
             return
                 string.Format(
-                    "Id: {0}, Username: {1}, Password: {2}, Salt: {3}, InsertDate: {4}, LastUpdate: {5}, Active: {6}, RoleFields: {7}",
-                    _Id, _Username, _Password, _Salt, _InsertDate, _LastUpdate, _Active, _RoleFields);
+                    "Id: {0}, Username: {1}, Password: {2}, Salt: {3}, InsertDate: {4}, LastUpdate: {5}, Active: {6}, RoleFields: {7}, Branches: {8}",
+                    _Id, _Username, _Password, _Salt, _InsertDate, _LastUpdate, _Active, EnumEx.GetStringFromArray(_RoleFields), EnumEx.GetStringFromArray(_Branches));
         }
     }
 }

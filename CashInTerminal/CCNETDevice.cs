@@ -41,6 +41,7 @@ namespace CashInTerminal
         private readonly Object _ResponseSignal;
         //private CCNETPacket _ResponsePacket;
         private readonly EventWaitHandle _Wait = new AutoResetEvent(false);
+        private readonly Timer _BackgroundPingTimer;
         private bool _TimedOut;
         private bool _Disposing;
 
@@ -134,7 +135,7 @@ namespace CashInTerminal
             _PoolThread = new Thread(StartPooling) { IsBackground = true };
 
             _SerialDevice = new SerialStream();
-
+            _BackgroundPingTimer = new Timer(BackgroundPingTimer, null, 0, 60*1000);
         }
 
         public void Open(int port, CCNETPortSpeed speed)
@@ -199,6 +200,9 @@ namespace CashInTerminal
         public void Dispose()
         {
             _Disposing = true;
+
+            _BackgroundPingTimer.Dispose();
+
             if (_ResponseReaderThread != null && _ResponseReaderThread.IsAlive)
             {
                 _ResponseReaderThread.Join(5000);
@@ -340,6 +344,23 @@ namespace CashInTerminal
             }
         }
 
+        private void BackgroundPingTimer(object state)
+        {
+            if (_DeviceState.BillEnable || _Disposing || !_DeviceState.Init)
+            {
+                return;
+            }
+            
+            try
+            {
+                Send(CCNETCommand.Poll, null);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
+
         #endregion
 
         #region Packet Utilities
@@ -398,11 +419,9 @@ namespace CashInTerminal
 
         private void Send(CCNETCommand cmd, byte[] data)
         {
-            ushort crcvalue;
-
             var packet = new CCNETPacket(0x03, (byte)cmd, data);
 
-            byte[] crc = new byte[packet.Lng - 2];
+            var crc = new byte[packet.Lng - 2];
             crc[0] = packet.Sync;
             crc[1] = packet.Address;
             crc[2] = packet.Lng;
@@ -411,10 +430,10 @@ namespace CashInTerminal
             {
                 Array.Copy(data, 0, crc, 4, data.Length);
             }
-            crcvalue = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
+            ushort generateCrc = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
 
 
-            byte[] packetXMitBuffer = new byte[packet.Lng];
+            var packetXMitBuffer = new byte[packet.Lng];
             packetXMitBuffer[0] = packet.Sync;
             packetXMitBuffer[1] = packet.Address;
             packetXMitBuffer[2] = packet.Lng;
@@ -426,8 +445,8 @@ namespace CashInTerminal
             {
                 Array.Copy(packet.Data, 0, packetXMitBuffer, 4, packetData.Length);
             }
-            packetXMitBuffer[packet.Lng - 2] = (byte)(crcvalue >> 8);
-            packetXMitBuffer[packet.Lng - 1] = (byte)(crcvalue);
+            packetXMitBuffer[packet.Lng - 2] = (byte)(generateCrc >> 8);
+            packetXMitBuffer[packet.Lng - 1] = (byte)(generateCrc);
 
             lock (_ResponseSignal)
             {

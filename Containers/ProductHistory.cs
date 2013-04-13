@@ -10,17 +10,18 @@ namespace Containers
     [DataContract(Name = "ProductHistory", Namespace = "urn:CashIn")]
     public class ProductHistory
     {
-        private decimal _Id;
+        private long _Id;
         private string _TransactionId;
-        private decimal _TerminalId;
+        private long _TerminalId;
         private string _Name;
         private string _Address;
         private string _IdentityName;
-        private decimal _ProductId;
+        private long _ProductId;
+        private long _EncashmentId;
         private string _CurrencyId;
-        private decimal _Rate;
+        private float _Rate;
         private DateTime _InsertDate;
-        private decimal _Amount;
+        private float _Amount;
         private DateTime _TerminalDate;
         private string _ProductName;
         private string _NameAz;
@@ -30,11 +31,11 @@ namespace Containers
         private int _PaymentType;
         private MultiLanguageString _PaymentTypeName;
         private List<ProductHistoryValue> _Values;
-        private List<Banknote> _Banknotes;
+        private List<BanknoteSummary> _Banknotes;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
-        public decimal Id
+        public long Id
         {
             get { return _Id; }
             set { _Id = value; }
@@ -50,7 +51,7 @@ namespace Containers
 
         [XmlElement(ElementName = "TerminalId")]
         [DataMember(Name = "TerminalId")]
-        public decimal TerminalId
+        public long TerminalId
         {
             get { return _TerminalId; }
             set { _TerminalId = value; }
@@ -82,10 +83,18 @@ namespace Containers
 
         [XmlElement(ElementName = "ProductId")]
         [DataMember(Name = "ProductId")]
-        public decimal ProductId
+        public long ProductId
         {
             get { return _ProductId; }
             set { _ProductId = value; }
+        }
+
+        [XmlElement(ElementName = "EncashmentId")]
+        [DataMember(Name = "EncashmentId")]
+        public long EncashmentId
+        {
+            get { return _EncashmentId; }
+            set { _EncashmentId = value; }
         }
 
         [XmlElement(ElementName = "CurrencyId")]
@@ -98,7 +107,7 @@ namespace Containers
 
         [XmlElement(ElementName = "Rate")]
         [DataMember(Name = "Rate")]
-        public decimal Rate
+        public float Rate
         {
             get { return _Rate; }
             set { _Rate = value; }
@@ -114,7 +123,7 @@ namespace Containers
 
         [XmlElement(ElementName = "Amount")]
         [DataMember(Name = "Amount")]
-        public decimal Amount
+        public float Amount
         {
             get { return _Amount; }
             set { _Amount = value; }
@@ -194,7 +203,7 @@ namespace Containers
 
         [XmlArray("Banknotes")]
         [DataMember(Name = "Banknotes")]
-        public List<Banknote> Banknotes
+        public List<BanknoteSummary> Banknotes
         {
             get { return _Banknotes; }
             set { _Banknotes = value; }
@@ -204,7 +213,7 @@ namespace Containers
         {
         }
 
-        public ProductHistory(decimal id, string transactionId, decimal terminalId, string name, string address, string identityName, decimal productId, string currencyId, decimal rate, DateTime insertDate, decimal amount, DateTime terminalDate, string productName, string nameAz, string nameRu, string nameEn, string creditNumber, int paymentType, MultiLanguageString paymentTypeName, List<ProductHistoryValue> values, List<Banknote> banknotes)
+        public ProductHistory(long id, string transactionId, long terminalId, string name, string address, string identityName, long productId, long encashmentId, string currencyId, float rate, DateTime insertDate, float amount, DateTime terminalDate, string productName, string nameAz, string nameRu, string nameEn, string creditNumber, int paymentType, MultiLanguageString paymentTypeName, List<ProductHistoryValue> values, List<BanknoteSummary> banknotes)
         {
             _Id = id;
             _TransactionId = transactionId;
@@ -213,6 +222,7 @@ namespace Containers
             _Address = address;
             _IdentityName = identityName;
             _ProductId = productId;
+            _EncashmentId = encashmentId;
             _CurrencyId = currencyId;
             _Rate = rate;
             _InsertDate = insertDate;
@@ -233,10 +243,11 @@ namespace Containers
         {
             return
                 string.Format(
-                    "Id: {0}, TransactionId: {1}, TerminalId: {2}, Name: {3}, Address: {4}, ProductId: {5}, IdentityName: {6}, CurrencyId: {7}, Rate: {8}, InsertDate: {9}, Amount: {10}, TerminalDate: {11}, ProductName: {12}, NameAz: {13}, NameRu: {14}, NameEn: {15}, CreditNumber: {16}, PaymentType: {17}, PaymentTypeName: {18}, Values: {19}, Banknotes: {20}",
-                    _Id, _TransactionId, _TerminalId, _Name, _Address, _ProductId, _IdentityName, _CurrencyId, _Rate,
-                    _InsertDate, _Amount, _TerminalDate, _ProductName, _NameAz, _NameRu, _NameEn, _CreditNumber,
-                    _PaymentType, _PaymentTypeName, EnumEx.GetStringFromArray(_Values), EnumEx.GetStringFromArray(_Banknotes));
+                    "Id: {0}, TransactionId: {1}, TerminalId: {2}, Name: {3}, Address: {4}, IdentityName: {5}, ProductId: {6}, EncashmentId: {7}, CurrencyId: {8}, Rate: {9}, InsertDate: {10}, Amount: {11}, TerminalDate: {12}, ProductName: {13}, NameAz: {14}, NameRu: {15}, NameEn: {16}, CreditNumber: {17}, PaymentType: {18}, PaymentTypeName: {19}, Values: {20}, Banknotes: {21}",
+                    _Id, _TransactionId, _TerminalId, _Name, _Address, _IdentityName, _ProductId, _EncashmentId,
+                    _CurrencyId, _Rate, _InsertDate, _Amount, _TerminalDate, _ProductName, _NameAz, _NameRu, _NameEn,
+                    _CreditNumber, _PaymentType, _PaymentTypeName, EnumEx.GetStringFromArray(_Values),
+                    EnumEx.GetStringFromArray(_Banknotes));
         }
     }
 }

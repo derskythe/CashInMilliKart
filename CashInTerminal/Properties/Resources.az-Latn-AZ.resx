@@ -129,6 +129,12 @@
   <data name="BolLastFourRetype" xml:space="preserve">
     <value>Son 8 rəqəmi təkrarlayın</value>
   </data>
+  <data name="ClientCode" xml:space="preserve">
+    <value>Müştəri kodu</value>
+  </data>
+  <data name="ClientCodeRetype" xml:space="preserve">
+    <value>Müştəri kodu təkrarlayın</value>
+  </data>
   <data name="Colon" xml:space="preserve">
     <value>: </value>
   </data>

@@ -22,6 +22,20 @@ namespace Db
             return result;
         }
 
+        public static Branch ToBranch(ds.V_BRANCHES_TO_USERSRow row)
+        {            
+            var result = new Branch
+            {
+                Id = row.ID,
+                InsertDate = row.INSERT_DATE,
+                Name = row.IsNAMENull() ? String.Empty : row.NAME,
+                UpdateDate = row.UPDATE_DATE,
+                UserId = row.IsUSER_IDNull() ? 0 : Convert.ToInt32(row.USER_ID)
+            };
+
+            return result;
+        }
+
         public static Product ToProduct(ds.V_PRODUCTSRow row)
         {
             var result = new Product
@@ -95,7 +109,7 @@ namespace Db
                 {
                     Id = Convert.ToInt32(row.ID),
                     Address = row.ADDRESS,
-                    IdentityName = row.IDENTITY_NAME,
+                    IdentityName = String.Empty,
                     Ip = row.IsIPNull() ? String.Empty : row.IP,
                     LastCashcodeStatus = row.IsLAST_CASHCODE_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_STATUS),
                     LastStatusType = row.IsLAST_STATUS_TYPENull() ? -1 : Convert.ToInt32(row.LAST_STATUS_TYPE),
@@ -125,7 +139,8 @@ namespace Db
                     PrinterStatusType = row.IsPRINTER_STATUS_TYPENull() ? 0 : row.PRINTER_STATUS_TYPE,
                     Version = row.IsTERMINAL_VERSIONNull() ? String.Empty : row.TERMINAL_VERSION,
                     BranchId = row.IsBRANCH_IDNull() ? 0 : row.BRANCH_ID,
-                    BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME
+                    BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME,
+                    LastEncashment = row.IsLAST_ENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.LAST_ENCASHMENT_ID)
                 };
 
             return result;
@@ -191,7 +206,7 @@ namespace Db
             {
                 Id = Convert.ToInt32(row.TERMINAL_ID),
                 Address = row.ADDRESS,
-                IdentityName = row.IDENTITY_NAME,
+                IdentityName = row.IsIDENTITY_NAMENull() ? String.Empty : row.IDENTITY_NAME,
                 Ip = row.IsIPNull() ? String.Empty : row.IP,
                 LastCashcodeStatus = row.IsLAST_CASHCODE_STATUSNull() ? -1 : Convert.ToInt32(row.LAST_CASHCODE_STATUS),
                 LastStatusType = row.IsLAST_STATUS_TYPENull() ? -1 : Convert.ToInt32(row.LAST_STATUS_TYPE),
@@ -212,7 +227,8 @@ namespace Db
                 PrinterErrorStatusDesc = printerErrorStatusDesc,
                 PrinterExtErrorStatusDesc = printerExtErrorStatusDesc,
                 BranchId = row.IsBRANCH_IDNull() ? 0 : row.BRANCH_ID,
-                BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME
+                BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME,
+                LastEncashment = row.IsLAST_ENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.LAST_ENCASHMENT_ID)
             };
 
             return result;
@@ -288,7 +304,7 @@ namespace Db
             return result;
         }
 
-        public static User ToUser(ds.V_LIST_USERSRow row, List<AccessRole> fields)
+        public static User ToUser(ds.V_LIST_USERSRow row, List<AccessRole> fields, List<Branch> branches)
         {
             var result = new User
             {
@@ -298,14 +314,15 @@ namespace Db
                 InsertDate = row.INSERT_DATE,
                 LastUpdate = row.UPDATE_DATE,
                 Active = row.ACTIVE > 0,
-                RoleFields = fields.ToArray(),
+                RoleFields = fields,
+                Branches = branches,
                 Salt = row.SALT
             };
 
             return result;
         }
 
-        public static UserSession ToUserSession(ds.V_LIST_ACTIVE_SESSIONSRow row, List<AccessRole> fields)
+        public static UserSession ToUserSession(ds.V_LIST_ACTIVE_SESSIONSRow row, List<AccessRole> fields, List<Branch> branches)
         {
             var user = new User
                 {
@@ -316,7 +333,8 @@ namespace Db
                     Salt = String.Empty,
                     Username = row.USERNAME,
                     Id = Convert.ToInt32(row.USER_ID),
-                    RoleFields = fields.ToArray()
+                    RoleFields = fields,
+                    Branches = branches
                 };
 
             var result = new UserSession
@@ -385,7 +403,7 @@ namespace Db
             return result;
         }
 
-        public static ProductHistory ToProductHistory(ds.V_PRODUCTS_HISTORYRow row, List<ProductHistoryValue> values, List<Banknote> banknotes)
+        public static ProductHistory ToProductHistory(ds.V_PRODUCTS_HISTORYRow row, List<ProductHistoryValue> values, List<BanknoteSummary> banknotes)
         {
             var desc = new MultiLanguageString(
                 row.IsPAYMENT_TYPE_ENNull() ? String.Empty : row.PAYMENT_TYPE_EN,
@@ -397,9 +415,9 @@ namespace Db
             var result = new ProductHistory
                 {
                     Address = row.IsADDRESSNull() ? String.Empty : row.ADDRESS,
-                    Amount = row.AMOUNT,
+                    Amount = Convert.ToSingle(row.AMOUNT),
                     CurrencyId = row.CURRENCY_ID,
-                    Id = row.ID,
+                    Id = Convert.ToInt64(row.ID),
                     IdentityName = row.IsIDENTITY_NAMENull() ? String.Empty : row.IDENTITY_NAME,
                     InsertDate = row.INSERT_DATE,
                     Name = row.IsNAMENull() ? String.Empty : row.NAME,
@@ -407,11 +425,12 @@ namespace Db
                     NameRu = row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
                     NameEn = row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
                     Values = values,
-                    TerminalId = row.TERMINAL_ID,
+                    TerminalId = Convert.ToInt64(row.TERMINAL_ID),
                     TerminalDate = row.IsTERMINAL_DATENull() ? DateTime.MinValue : row.TERMINAL_DATE,
-                    ProductId = row.PRODUCT_ID,
+                    ProductId = Convert.ToInt64(row.PRODUCT_ID),
+                    EncashmentId = row.IsENCASHMENT_IDNull() ? 0 : Convert.ToInt64(row.ENCASHMENT_ID),
                     ProductName = row.IsPRODUCT_NAMENull() ? String.Empty : row.PRODUCT_NAME,
-                    Rate = row.IsRATENull() ? 1 : row.RATE,
+                    Rate = row.IsRATENull() ? 1f : Convert.ToSingle(row.RATE),
                     TransactionId = row.IsTRANSACTION_IDNull() ? String.Empty : row.TRANSACTION_ID,
                     Banknotes = banknotes,
                     CreditNumber = row.IsCREDIT_NUMBERNull() ? String.Empty : row.CREDIT_NUMBER,
@@ -568,6 +587,51 @@ namespace Db
                                         row.IsCREDIT_AMOUNTNull() ? 0f : row.CREDIT_AMOUNT,
                                         row.IsCREDIT_NAMENull() ? String.Empty : row.CREDIT_NAME);
             //row.FULL_NAME = FirstUpper(row.FULL_NAME);
+            return result;
+        }
+
+        public static BanknoteSummary ToBanknoteSummary(ds.V_BANKNOTES_SUMMARY_BY_HISTORYRow row)
+        {
+            var result = new BanknoteSummary
+                {
+                    Amount = Convert.ToSingle(row.AMOUNT),
+                    CountAll = row.IsCOUNT_ALLNull() ? 0 : Convert.ToInt32(row.COUNT_ALL),
+                    EncashmentId = row.IsENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.ENCASHMENT_ID),
+                    HistoryId = Convert.ToInt32(row.HISTORY_ID),
+                    TerminalId = Convert.ToInt32(row.TERMINAL_ID),
+                    Currency = row.CURRENCY_ID
+                };
+
+            return result;
+        }
+
+        public static BanknoteSummary ToBanknoteSummary(ds.V_BANKNOTES_SUMMARY_BY_TERMRow row)
+        {
+            var result = new BanknoteSummary
+            {
+                Amount = Convert.ToSingle(row.AMOUNT),
+                CountAll = row.IsCOUNT_ALLNull() ? 0 : Convert.ToInt32(row.COUNT_ALL),
+                EncashmentId = row.IsENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.ENCASHMENT_ID),
+                HistoryId = Convert.ToInt32(row.HISTORY_ID),
+                TerminalId = Convert.ToInt32(row.TERMINAL_ID),
+                Currency = row.CURRENCY_ID
+            };
+
+            return result;
+        }
+
+        public static BanknoteSummary ToBanknoteSummary(ds.V_BANKNOTES_SUMMARY_ENCASHMENTRow row)
+        {
+            var result = new BanknoteSummary
+            {
+                Amount = Convert.ToSingle(row.AMOUNT),
+                CountAll = row.IsCOUNT_ALLNull() ? 0 : Convert.ToInt32(row.COUNT_ALL),
+                EncashmentId = row.IsENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.ENCASHMENT_ID),
+                HistoryId = Convert.ToInt32(row.HISTORY_ID),
+                TerminalId = Convert.ToInt32(row.TERMINAL_ID),
+                Currency = row.CURRENCY_ID
+            };
+
             return result;
         }
 

@@ -86,6 +86,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="LastCashcodeSuberror" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="LastPrinterErrorState" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="LastPrinterExtErrorState" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LastEncashment" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="TerminalStatusDesc" type="tns:MultiLanguageString" />
       <xs:element minOccurs="0" maxOccurs="1" name="CashcodeDesc" type="tns:MultiLanguageString" />
       <xs:element minOccurs="0" maxOccurs="1" name="PrinterStatusDesc" type="tns:MultiLanguageString" />

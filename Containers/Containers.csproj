@@ -52,6 +52,7 @@
     <Compile Include="Admin\CurrencyResult.cs" />
     <Compile Include="Admin\EncashmentResult.cs" />
     <Compile Include="Admin\ListBanknotesResult.cs" />
+    <Compile Include="Admin\ListBanknoteSummary.cs" />
     <Compile Include="Admin\ListBranchesResult.cs" />
     <Compile Include="Admin\ListCheckTemplateResult.cs" />
     <Compile Include="Admin\ListCheckTypeResult.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Admin\SessionResult.cs" />
     <Compile Include="AuthResult.cs" />
     <Compile Include="Banknote.cs" />
+    <Compile Include="BanknoteSummary.cs" />
     <Compile Include="BaseMessage.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="CashCodeDeviceStatus.cs" />

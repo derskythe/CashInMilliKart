@@ -482,6 +482,20 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public void RegisterIncassoOrder(int terminalId)
+        {
+            CheckConnection();
+
+            const string cmdText =
+                "begin backend.register_incasso_order(v_terminal_id => :v_terminal_id, v_user_name => :v_user_name); end;";
+
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+            cmd.Parameters.Add("v_user_name", OracleDbType.Varchar2, ParameterDirection.Input).Value = String.Empty;
+
+            cmd.ExecuteNonQuery();
+        }
+
         //public List<ClientInfo> ListDebitByClientAccount(String creditAccount)
         //{
         //    CheckConnection();

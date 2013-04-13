@@ -163,7 +163,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_TERMINALS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, "NAME", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_TERMINALS</CommandText>
+                    <CommandText>SELECT ID, "NAME", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_TERMINALS</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -216,6 +216,7 @@
               <Mapping SourceColumn="TERMINAL_VERSION" DataSetColumn="TERMINAL_VERSION" />
               <Mapping SourceColumn="BRANCH_ID" DataSetColumn="BRANCH_ID" />
               <Mapping SourceColumn="BRANCH_NAME" DataSetColumn="BRANCH_NAME" />
+              <Mapping SourceColumn="LAST_ENCASHMENT_ID" DataSetColumn="LAST_ENCASHMENT_ID" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRows" Modifier="Public" Name="CountRows" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="CountRows">
@@ -229,7 +230,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_TERMINALS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CASHCODE_STATUS_NAME, CASHCODE_STATUS_TYPE, CREATE_DATE, ID, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_NAME, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_NAME, PRINTER_STATUS_RU, PRINTER_STATUS_TYPE, SIGN_KEY, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_NAME, TERMINAL_STATUS_RU, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, TMP_KEY, USER_ID, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_TERMINALS WHERE (ID = :id)</CommandText>
+                    <CommandText>SELECT ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CASHCODE_STATUS_NAME, CASHCODE_STATUS_TYPE, CREATE_DATE, ID, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_NAME, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_NAME, PRINTER_STATUS_RU, PRINTER_STATUS_TYPE, SIGN_KEY, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_NAME, TERMINAL_STATUS_RU, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, TMP_KEY, USER_ID, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_TERMINALS WHERE (ID = :id)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="ID" DataSourceName="CASHIN_NEW.V_LIST_TERMINALS" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":id" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -344,7 +345,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_ENCASHMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_ENCASHMENT</CommandText>
+                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_ENCASHMENT</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -388,6 +389,7 @@
               <Mapping SourceColumn="PRINTER_EXT_ERROR_STATUS_EN" DataSetColumn="PRINTER_EXT_ERROR_STATUS_EN" />
               <Mapping SourceColumn="BRANCH_ID" DataSetColumn="BRANCH_ID" />
               <Mapping SourceColumn="BRANCH_NAME" DataSetColumn="BRANCH_NAME" />
+              <Mapping SourceColumn="LAST_ENCASHMENT_ID" DataSetColumn="LAST_ENCASHMENT_ID" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRows" Modifier="Public" Name="CountRows" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="CountRows">
@@ -401,7 +403,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_LIST_ENCASHMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_ENCASHMENT WHERE (ID = :id)</CommandText>
+                    <CommandText>SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, "NAME", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_ENCASHMENT WHERE (ID = :id)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="ID" DataSourceName="CASHIN_NEW.V_LIST_ENCASHMENT" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":id" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -612,7 +614,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_PRODUCTS_HISTORY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, TRANSACTION_ID, TERMINAL_ID, "NAME", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY</CommandText>
+                    <CommandText>SELECT ID, TRANSACTION_ID, TERMINAL_ID, "NAME", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -640,6 +642,7 @@
               <Mapping SourceColumn="PAYMENT_TYPE_AZ" DataSetColumn="PAYMENT_TYPE_AZ" />
               <Mapping SourceColumn="PAYMENT_TYPE_RU" DataSetColumn="PAYMENT_TYPE_RU" />
               <Mapping SourceColumn="PAYMENT_TYPE_EN" DataSetColumn="PAYMENT_TYPE_EN" />
+              <Mapping SourceColumn="ENCASHMENT_ID" DataSetColumn="ENCASHMENT_ID" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRows" Modifier="Public" Name="CountRows" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="CountRows">
@@ -661,10 +664,48 @@
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRowsByEncashmentId" Modifier="Public" Name="CountRowsByEncashmentId" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="CountRowsByEncashmentId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) FROM V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo) AND 
+encashment_id = :encashmentId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="dateFrom" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateFrom" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dateTo" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateTo" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="encashmentId" ColumnName="ENCASHMENT_ID" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":encashmentId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ENCASHMENT_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRowsProductId" Modifier="Public" Name="CountRowsProductId" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="CountRowsProductId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) FROM V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo) AND product_id = :productId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="dateFrom" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateFrom" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dateTo" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateTo" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="productId" ColumnName="PRODUCT_ID" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":productId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="PRODUCT_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CountRowsTerminalID" Modifier="Public" Name="CountRowsTerminalID" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="CountRowsTerminalID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) FROM V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)
+AND terminal_id = :terminalId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="dateFrom" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateFrom" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dateTo" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateTo" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="terminalId" ColumnName="TERMINAL_ID" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":terminalId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="TERMINAL_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_PRODUCTS_HISTORY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByDate" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDate" GeneratorSourceName="FillByDate" GetMethodModifier="Public" GetMethodName="GetDataByDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDate" UserSourceName="FillByDate">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ADDRESS, AMOUNT, CURRENCY_ID, ID, IDENTITY_NAME, INSERT_DATE, "NAME", NAME_AZ, NAME_EN, NAME_RU, PRODUCT_ID, PRODUCT_NAME, RATE, TERMINAL_DATE, TERMINAL_ID, TRANSACTION_ID, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)</CommandText>
+                    <CommandText>SELECT ADDRESS, AMOUNT, CURRENCY_ID, ID, IDENTITY_NAME, INSERT_DATE, "NAME", NAME_AZ, NAME_EN, NAME_RU, PRODUCT_ID, PRODUCT_NAME, RATE, TERMINAL_DATE, TERMINAL_ID, TRANSACTION_ID, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="dateFrom" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateFrom" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="dateTo" ColumnName="INSERT_DATE" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="TIMESTAMP" DbType="DateTime" Direction="Input" ParameterName=":dateTo" Precision="0" ProviderType="TimeStamp" Scale="0" Size="0" SourceColumn="INSERT_DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -675,7 +716,7 @@
               <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_PRODUCTS_HISTORY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByTransactionId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTransactionId" GeneratorSourceName="FillByTransactionId" GetMethodModifier="Public" GetMethodName="GetDataByTransactionId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTransactionId" UserSourceName="FillByTransactionId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, TRANSACTION_ID, TERMINAL_ID, "NAME", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)</CommandText>
+                    <CommandText>SELECT ID, TRANSACTION_ID, TERMINAL_ID, "NAME", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="transactionId" ColumnName="TRANSACTION_ID" DataSourceName="CASHIN_NEW.V_PRODUCTS_HISTORY" DataTypeServer="VARCHAR2(50)" DbType="String" Direction="Input" ParameterName=":transactionId" Precision="0" ProviderType="Varchar2" Scale="0" Size="50" SourceColumn="TRANSACTION_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -1067,6 +1108,133 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter" GeneratorDataComponentClassName="V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter" Name="V_BANKNOTES_SUMMARY_BY_HISTORY" UserDataComponentName="V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FROM CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AMOUNT" DataSetColumn="AMOUNT" />
+              <Mapping SourceColumn="ENCASHMENT_ID" DataSetColumn="ENCASHMENT_ID" />
+              <Mapping SourceColumn="HISTORY_ID" DataSetColumn="HISTORY_ID" />
+              <Mapping SourceColumn="TERMINAL_ID" DataSetColumn="TERMINAL_ID" />
+              <Mapping SourceColumn="COUNT_ALL" DataSetColumn="COUNT_ALL" />
+              <Mapping SourceColumn="CURRENCY_ID" DataSetColumn="CURRENCY_ID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByHistoryId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByHistoryId" GeneratorSourceName="FillByHistoryId" GetMethodModifier="Public" GetMethodName="GetDataByHistoryId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByHistoryId" UserSourceName="FillByHistoryId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FROM CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY WHERE (HISTORY_ID = :historyId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="historyId" ColumnName="HISTORY_ID" DataSourceName="CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":historyId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="HISTORY_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BANKNOTES_SUMMARY_BY_TERMTableAdapter" GeneratorDataComponentClassName="V_BANKNOTES_SUMMARY_BY_TERMTableAdapter" Name="V_BANKNOTES_SUMMARY_BY_TERM" UserDataComponentName="V_BANKNOTES_SUMMARY_BY_TERMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FROM CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AMOUNT" DataSetColumn="AMOUNT" />
+              <Mapping SourceColumn="ENCASHMENT_ID" DataSetColumn="ENCASHMENT_ID" />
+              <Mapping SourceColumn="HISTORY_ID" DataSetColumn="HISTORY_ID" />
+              <Mapping SourceColumn="TERMINAL_ID" DataSetColumn="TERMINAL_ID" />
+              <Mapping SourceColumn="COUNT_ALL" DataSetColumn="COUNT_ALL" />
+              <Mapping SourceColumn="CURRENCY_ID" DataSetColumn="CURRENCY_ID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByTerminalId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTerminalId" GeneratorSourceName="FillByTerminalId" GetMethodModifier="Public" GetMethodName="GetDataByTerminalId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTerminalId" UserSourceName="FillByTerminalId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FROM CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM WHERE (TERMINAL_ID = :terminalId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="terminalId" ColumnName="TERMINAL_ID" DataSourceName="CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":terminalId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="TERMINAL_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter" GeneratorDataComponentClassName="V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter" Name="V_BANKNOTES_SUMMARY_ENCASHMENT" UserDataComponentName="V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FROM CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AMOUNT" DataSetColumn="AMOUNT" />
+              <Mapping SourceColumn="ENCASHMENT_ID" DataSetColumn="ENCASHMENT_ID" />
+              <Mapping SourceColumn="HISTORY_ID" DataSetColumn="HISTORY_ID" />
+              <Mapping SourceColumn="TERMINAL_ID" DataSetColumn="TERMINAL_ID" />
+              <Mapping SourceColumn="COUNT_ALL" DataSetColumn="COUNT_ALL" />
+              <Mapping SourceColumn="CURRENCY_ID" DataSetColumn="CURRENCY_ID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByEncashmentId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByEncashmentId" GeneratorSourceName="FillByEncashmentId" GetMethodModifier="Public" GetMethodName="GetDataByEncashmentId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByEncashmentId" UserSourceName="FillByEncashmentId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FROM CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT WHERE (ENCASHMENT_ID = :encashmentId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="encashmentId" ColumnName="ENCASHMENT_ID" DataSourceName="CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":encashmentId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="ENCASHMENT_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_BRANCHES_TO_USERSTableAdapter" GeneratorDataComponentClassName="V_BRANCHES_TO_USERSTableAdapter" Name="V_BRANCHES_TO_USERS" UserDataComponentName="V_BRANCHES_TO_USERSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BRANCHES_TO_USERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, "NAME", INSERT_DATE, UPDATE_DATE, USER_ID FROM CASHIN_NEW.V_BRANCHES_TO_USERS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="UPDATE_DATE" DataSetColumn="UPDATE_DATE" />
+              <Mapping SourceColumn="USER_ID" DataSetColumn="USER_ID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_BRANCHES_TO_USERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByUserId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByUserId" GeneratorSourceName="FillByUserId" GetMethodModifier="Public" GetMethodName="GetDataByUserId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByUserId" UserSourceName="FillByUserId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, "NAME", INSERT_DATE, UPDATE_DATE, USER_ID FROM CASHIN_NEW.V_BRANCHES_TO_USERS WHERE user_id = :userId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="userId" ColumnName="USER_ID" DataSourceName="CASHIN_NEW.V_BRANCHES_TO_USERS" DataTypeServer="NUMBER" DbType="Decimal" Direction="Input" ParameterName=":userId" Precision="0" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="USER_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1296,7 +1464,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IDENTITY_NAME" msprop:Generator_ColumnVarNameInTable="columnIDENTITY_NAME" msprop:Generator_ColumnPropNameInRow="IDENTITY_NAME" msprop:Generator_ColumnPropNameInTable="IDENTITY_NAMEColumn" msprop:Generator_UserColumnName="IDENTITY_NAME">
+              <xs:element name="IDENTITY_NAME" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="IDENTITY_NAME" msprop:Generator_ColumnVarNameInTable="columnIDENTITY_NAME" msprop:Generator_ColumnPropNameInTable="IDENTITY_NAMEColumn" msprop:Generator_UserColumnName="IDENTITY_NAME" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
@@ -1483,6 +1651,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="LAST_ENCASHMENT_ID" msprop:Generator_ColumnVarNameInTable="columnLAST_ENCASHMENT_ID" msprop:Generator_ColumnPropNameInRow="LAST_ENCASHMENT_ID" msprop:Generator_ColumnPropNameInTable="LAST_ENCASHMENT_IDColumn" msprop:Generator_UserColumnName="LAST_ENCASHMENT_ID" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1788,6 +1957,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="LAST_ENCASHMENT_ID" msprop:Generator_ColumnVarNameInTable="columnLAST_ENCASHMENT_ID" msprop:Generator_ColumnPropNameInRow="LAST_ENCASHMENT_ID" msprop:Generator_ColumnPropNameInTable="LAST_ENCASHMENT_IDColumn" msprop:Generator_UserColumnName="LAST_ENCASHMENT_ID" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2033,6 +2203,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="ENCASHMENT_ID" msprop:Generator_ColumnVarNameInTable="columnENCASHMENT_ID" msprop:Generator_ColumnPropNameInRow="ENCASHMENT_ID" msprop:Generator_ColumnPropNameInTable="ENCASHMENT_IDColumn" msprop:Generator_UserColumnName="ENCASHMENT_ID" type="xs:long" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2349,6 +2520,77 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="TYPE" msprop:Generator_ColumnVarNameInTable="columnTYPE" msprop:Generator_ColumnPropNameInRow="TYPE" msprop:Generator_ColumnPropNameInTable="TYPEColumn" msprop:Generator_UserColumnName="TYPE" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_BANKNOTES_SUMMARY_BY_HISTORY" msprop:Generator_TableClassName="V_BANKNOTES_SUMMARY_BY_HISTORYDataTable" msprop:Generator_TableVarName="tableV_BANKNOTES_SUMMARY_BY_HISTORY" msprop:Generator_TablePropName="V_BANKNOTES_SUMMARY_BY_HISTORY" msprop:Generator_RowDeletingName="V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleting" msprop:Generator_UserTableName="V_BANKNOTES_SUMMARY_BY_HISTORY" msprop:Generator_RowChangingName="V_BANKNOTES_SUMMARY_BY_HISTORYRowChanging" msprop:Generator_RowEvHandlerName="V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleted" msprop:Generator_RowEvArgName="V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent" msprop:Generator_RowChangedName="V_BANKNOTES_SUMMARY_BY_HISTORYRowChanged" msprop:Generator_RowClassName="V_BANKNOTES_SUMMARY_BY_HISTORYRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:decimal" />
+              <xs:element name="ENCASHMENT_ID" msprop:Generator_ColumnVarNameInTable="columnENCASHMENT_ID" msprop:Generator_ColumnPropNameInRow="ENCASHMENT_ID" msprop:Generator_ColumnPropNameInTable="ENCASHMENT_IDColumn" msprop:Generator_UserColumnName="ENCASHMENT_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HISTORY_ID" msprop:Generator_ColumnVarNameInTable="columnHISTORY_ID" msprop:Generator_ColumnPropNameInRow="HISTORY_ID" msprop:Generator_ColumnPropNameInTable="HISTORY_IDColumn" msprop:Generator_UserColumnName="HISTORY_ID" type="xs:decimal" />
+              <xs:element name="TERMINAL_ID" msprop:Generator_ColumnVarNameInTable="columnTERMINAL_ID" msprop:Generator_ColumnPropNameInRow="TERMINAL_ID" msprop:Generator_ColumnPropNameInTable="TERMINAL_IDColumn" msprop:Generator_UserColumnName="TERMINAL_ID" type="xs:decimal" />
+              <xs:element name="COUNT_ALL" msprop:Generator_ColumnVarNameInTable="columnCOUNT_ALL" msprop:Generator_ColumnPropNameInRow="COUNT_ALL" msprop:Generator_ColumnPropNameInTable="COUNT_ALLColumn" msprop:Generator_UserColumnName="COUNT_ALL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CURRENCY_ID" msprop:Generator_ColumnVarNameInTable="columnCURRENCY_ID" msprop:Generator_ColumnPropNameInRow="CURRENCY_ID" msprop:Generator_ColumnPropNameInTable="CURRENCY_IDColumn" msprop:Generator_UserColumnName="CURRENCY_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_BANKNOTES_SUMMARY_BY_TERM" msprop:Generator_TableClassName="V_BANKNOTES_SUMMARY_BY_TERMDataTable" msprop:Generator_TableVarName="tableV_BANKNOTES_SUMMARY_BY_TERM" msprop:Generator_TablePropName="V_BANKNOTES_SUMMARY_BY_TERM" msprop:Generator_RowDeletingName="V_BANKNOTES_SUMMARY_BY_TERMRowDeleting" msprop:Generator_UserTableName="V_BANKNOTES_SUMMARY_BY_TERM" msprop:Generator_RowChangingName="V_BANKNOTES_SUMMARY_BY_TERMRowChanging" msprop:Generator_RowEvHandlerName="V_BANKNOTES_SUMMARY_BY_TERMRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BANKNOTES_SUMMARY_BY_TERMRowDeleted" msprop:Generator_RowEvArgName="V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent" msprop:Generator_RowChangedName="V_BANKNOTES_SUMMARY_BY_TERMRowChanged" msprop:Generator_RowClassName="V_BANKNOTES_SUMMARY_BY_TERMRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:decimal" />
+              <xs:element name="ENCASHMENT_ID" msprop:Generator_ColumnVarNameInTable="columnENCASHMENT_ID" msprop:Generator_ColumnPropNameInRow="ENCASHMENT_ID" msprop:Generator_ColumnPropNameInTable="ENCASHMENT_IDColumn" msprop:Generator_UserColumnName="ENCASHMENT_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HISTORY_ID" msprop:Generator_ColumnVarNameInTable="columnHISTORY_ID" msprop:Generator_ColumnPropNameInRow="HISTORY_ID" msprop:Generator_ColumnPropNameInTable="HISTORY_IDColumn" msprop:Generator_UserColumnName="HISTORY_ID" type="xs:decimal" />
+              <xs:element name="TERMINAL_ID" msprop:Generator_ColumnVarNameInTable="columnTERMINAL_ID" msprop:Generator_ColumnPropNameInRow="TERMINAL_ID" msprop:Generator_ColumnPropNameInTable="TERMINAL_IDColumn" msprop:Generator_UserColumnName="TERMINAL_ID" type="xs:decimal" />
+              <xs:element name="COUNT_ALL" msprop:Generator_ColumnVarNameInTable="columnCOUNT_ALL" msprop:Generator_ColumnPropNameInRow="COUNT_ALL" msprop:Generator_ColumnPropNameInTable="COUNT_ALLColumn" msprop:Generator_UserColumnName="COUNT_ALL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CURRENCY_ID" msprop:Generator_ColumnVarNameInTable="columnCURRENCY_ID" msprop:Generator_ColumnPropNameInRow="CURRENCY_ID" msprop:Generator_ColumnPropNameInTable="CURRENCY_IDColumn" msprop:Generator_UserColumnName="CURRENCY_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_BANKNOTES_SUMMARY_ENCASHMENT" msprop:Generator_TableClassName="V_BANKNOTES_SUMMARY_ENCASHMENTDataTable" msprop:Generator_TableVarName="tableV_BANKNOTES_SUMMARY_ENCASHMENT" msprop:Generator_TablePropName="V_BANKNOTES_SUMMARY_ENCASHMENT" msprop:Generator_RowDeletingName="V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleting" msprop:Generator_UserTableName="V_BANKNOTES_SUMMARY_ENCASHMENT" msprop:Generator_RowChangingName="V_BANKNOTES_SUMMARY_ENCASHMENTRowChanging" msprop:Generator_RowEvHandlerName="V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleted" msprop:Generator_RowEvArgName="V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent" msprop:Generator_RowChangedName="V_BANKNOTES_SUMMARY_ENCASHMENTRowChanged" msprop:Generator_RowClassName="V_BANKNOTES_SUMMARY_ENCASHMENTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:decimal" />
+              <xs:element name="ENCASHMENT_ID" msprop:Generator_ColumnVarNameInTable="columnENCASHMENT_ID" msprop:Generator_ColumnPropNameInRow="ENCASHMENT_ID" msprop:Generator_ColumnPropNameInTable="ENCASHMENT_IDColumn" msprop:Generator_UserColumnName="ENCASHMENT_ID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HISTORY_ID" msprop:Generator_ColumnVarNameInTable="columnHISTORY_ID" msprop:Generator_ColumnPropNameInRow="HISTORY_ID" msprop:Generator_ColumnPropNameInTable="HISTORY_IDColumn" msprop:Generator_UserColumnName="HISTORY_ID" type="xs:decimal" />
+              <xs:element name="TERMINAL_ID" msprop:Generator_ColumnVarNameInTable="columnTERMINAL_ID" msprop:Generator_ColumnPropNameInRow="TERMINAL_ID" msprop:Generator_ColumnPropNameInTable="TERMINAL_IDColumn" msprop:Generator_UserColumnName="TERMINAL_ID" type="xs:decimal" />
+              <xs:element name="COUNT_ALL" msprop:Generator_ColumnVarNameInTable="columnCOUNT_ALL" msprop:Generator_ColumnPropNameInRow="COUNT_ALL" msprop:Generator_ColumnPropNameInTable="COUNT_ALLColumn" msprop:Generator_UserColumnName="COUNT_ALL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CURRENCY_ID" msprop:Generator_ColumnVarNameInTable="columnCURRENCY_ID" msprop:Generator_ColumnPropNameInRow="CURRENCY_ID" msprop:Generator_ColumnPropNameInTable="CURRENCY_IDColumn" msprop:Generator_UserColumnName="CURRENCY_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_BRANCHES_TO_USERS" msprop:Generator_TableClassName="V_BRANCHES_TO_USERSDataTable" msprop:Generator_TableVarName="tableV_BRANCHES_TO_USERS" msprop:Generator_TablePropName="V_BRANCHES_TO_USERS" msprop:Generator_RowDeletingName="V_BRANCHES_TO_USERSRowDeleting" msprop:Generator_UserTableName="V_BRANCHES_TO_USERS" msprop:Generator_RowChangingName="V_BRANCHES_TO_USERSRowChanging" msprop:Generator_RowEvHandlerName="V_BRANCHES_TO_USERSRowChangeEventHandler" msprop:Generator_RowDeletedName="V_BRANCHES_TO_USERSRowDeleted" msprop:Generator_RowEvArgName="V_BRANCHES_TO_USERSRowChangeEvent" msprop:Generator_RowChangedName="V_BRANCHES_TO_USERSRowChanged" msprop:Generator_RowClassName="V_BRANCHES_TO_USERSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UPDATE_DATE" msprop:Generator_ColumnVarNameInTable="columnUPDATE_DATE" msprop:Generator_ColumnPropNameInRow="UPDATE_DATE" msprop:Generator_ColumnPropNameInTable="UPDATE_DATEColumn" msprop:Generator_UserColumnName="UPDATE_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSER_ID" msprop:Generator_ColumnPropNameInRow="USER_ID" msprop:Generator_ColumnPropNameInTable="USER_IDColumn" msprop:Generator_UserColumnName="USER_ID" type="xs:long" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

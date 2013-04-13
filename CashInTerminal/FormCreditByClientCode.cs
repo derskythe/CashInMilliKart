@@ -30,7 +30,7 @@ namespace CashInTerminal
 
         private void FormCreditByClientCodeLoad(object sender, EventArgs e)
         {
-            Label = Resources.AccountNumber;
+            Label = Resources.ClientCode;
         }
     }
 }

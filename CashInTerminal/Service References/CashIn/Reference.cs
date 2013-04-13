@@ -1071,6 +1071,8 @@ namespace CashInTerminal.CashIn {
         
         private int lastPrinterExtErrorStateField;
         
+        private int lastEncashmentField;
+        
         private MultiLanguageString terminalStatusDescField;
         
         private MultiLanguageString cashcodeDescField;
@@ -1299,6 +1301,18 @@ namespace CashInTerminal.CashIn {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public int LastEncashment {
+            get {
+                return this.lastEncashmentField;
+            }
+            set {
+                this.lastEncashmentField = value;
+                this.RaisePropertyChanged("LastEncashment");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public MultiLanguageString TerminalStatusDesc {
             get {
                 return this.terminalStatusDescField;
@@ -1310,7 +1324,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public MultiLanguageString CashcodeDesc {
             get {
                 return this.cashcodeDescField;
@@ -1322,7 +1336,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public MultiLanguageString PrinterStatusDesc {
             get {
                 return this.printerStatusDescField;
@@ -1334,7 +1348,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
         public MultiLanguageString PrinterErrorStatusDesc {
             get {
                 return this.printerErrorStatusDescField;
@@ -1346,7 +1360,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
         public MultiLanguageString PrinterExtErrorStatusDesc {
             get {
                 return this.printerExtErrorStatusDescField;
@@ -1358,7 +1372,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
         public int BillsCount {
             get {
                 return this.billsCountField;
@@ -1370,7 +1384,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
         public string TerminalStatusName {
             get {
                 return this.terminalStatusNameField;
@@ -1382,7 +1396,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
         public string CashcodeStatusName {
             get {
                 return this.cashcodeStatusNameField;
@@ -1394,7 +1408,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
         public string PrinterStatusName {
             get {
                 return this.printerStatusNameField;
@@ -1406,7 +1420,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
         public string PrinterErrorStatusName {
             get {
                 return this.printerErrorStatusNameField;
@@ -1418,7 +1432,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
         public string PrinterExtErrorStatusName {
             get {
                 return this.printerExtErrorStatusNameField;
@@ -1430,7 +1444,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
         public int TerminalStatusType {
             get {
                 return this.terminalStatusTypeField;
@@ -1442,7 +1456,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
         public int CashcodeStatusType {
             get {
                 return this.cashcodeStatusTypeField;
@@ -1454,7 +1468,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
         public int PrinterStatusType {
             get {
                 return this.printerStatusTypeField;
@@ -1466,7 +1480,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
         public string Version {
             get {
                 return this.versionField;
@@ -1478,7 +1492,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
         public int BranchId {
             get {
                 return this.branchIdField;
@@ -1490,7 +1504,7 @@ namespace CashInTerminal.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
         public string BranchName {
             get {
                 return this.branchNameField;

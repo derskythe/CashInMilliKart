@@ -74,6 +74,14 @@ namespace Db {
         
         private V_TERMINAL_STATUS_CODESDataTable tableV_TERMINAL_STATUS_CODES;
         
+        private V_BANKNOTES_SUMMARY_BY_HISTORYDataTable tableV_BANKNOTES_SUMMARY_BY_HISTORY;
+        
+        private V_BANKNOTES_SUMMARY_BY_TERMDataTable tableV_BANKNOTES_SUMMARY_BY_TERM;
+        
+        private V_BANKNOTES_SUMMARY_ENCASHMENTDataTable tableV_BANKNOTES_SUMMARY_ENCASHMENT;
+        
+        private V_BRANCHES_TO_USERSDataTable tableV_BRANCHES_TO_USERS;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -176,6 +184,18 @@ namespace Db {
                 }
                 if ((ds.Tables["V_TERMINAL_STATUS_CODES"] != null)) {
                     base.Tables.Add(new V_TERMINAL_STATUS_CODESDataTable(ds.Tables["V_TERMINAL_STATUS_CODES"]));
+                }
+                if ((ds.Tables["V_BANKNOTES_SUMMARY_BY_HISTORY"] != null)) {
+                    base.Tables.Add(new V_BANKNOTES_SUMMARY_BY_HISTORYDataTable(ds.Tables["V_BANKNOTES_SUMMARY_BY_HISTORY"]));
+                }
+                if ((ds.Tables["V_BANKNOTES_SUMMARY_BY_TERM"] != null)) {
+                    base.Tables.Add(new V_BANKNOTES_SUMMARY_BY_TERMDataTable(ds.Tables["V_BANKNOTES_SUMMARY_BY_TERM"]));
+                }
+                if ((ds.Tables["V_BANKNOTES_SUMMARY_ENCASHMENT"] != null)) {
+                    base.Tables.Add(new V_BANKNOTES_SUMMARY_ENCASHMENTDataTable(ds.Tables["V_BANKNOTES_SUMMARY_ENCASHMENT"]));
+                }
+                if ((ds.Tables["V_BRANCHES_TO_USERS"] != null)) {
+                    base.Tables.Add(new V_BRANCHES_TO_USERSDataTable(ds.Tables["V_BRANCHES_TO_USERS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -447,6 +467,46 @@ namespace Db {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public V_BANKNOTES_SUMMARY_BY_HISTORYDataTable V_BANKNOTES_SUMMARY_BY_HISTORY {
+            get {
+                return this.tableV_BANKNOTES_SUMMARY_BY_HISTORY;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public V_BANKNOTES_SUMMARY_BY_TERMDataTable V_BANKNOTES_SUMMARY_BY_TERM {
+            get {
+                return this.tableV_BANKNOTES_SUMMARY_BY_TERM;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public V_BANKNOTES_SUMMARY_ENCASHMENTDataTable V_BANKNOTES_SUMMARY_ENCASHMENT {
+            get {
+                return this.tableV_BANKNOTES_SUMMARY_ENCASHMENT;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public V_BRANCHES_TO_USERSDataTable V_BRANCHES_TO_USERS {
+            get {
+                return this.tableV_BRANCHES_TO_USERS;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -586,6 +646,18 @@ namespace Db {
                 }
                 if ((ds.Tables["V_TERMINAL_STATUS_CODES"] != null)) {
                     base.Tables.Add(new V_TERMINAL_STATUS_CODESDataTable(ds.Tables["V_TERMINAL_STATUS_CODES"]));
+                }
+                if ((ds.Tables["V_BANKNOTES_SUMMARY_BY_HISTORY"] != null)) {
+                    base.Tables.Add(new V_BANKNOTES_SUMMARY_BY_HISTORYDataTable(ds.Tables["V_BANKNOTES_SUMMARY_BY_HISTORY"]));
+                }
+                if ((ds.Tables["V_BANKNOTES_SUMMARY_BY_TERM"] != null)) {
+                    base.Tables.Add(new V_BANKNOTES_SUMMARY_BY_TERMDataTable(ds.Tables["V_BANKNOTES_SUMMARY_BY_TERM"]));
+                }
+                if ((ds.Tables["V_BANKNOTES_SUMMARY_ENCASHMENT"] != null)) {
+                    base.Tables.Add(new V_BANKNOTES_SUMMARY_ENCASHMENTDataTable(ds.Tables["V_BANKNOTES_SUMMARY_ENCASHMENT"]));
+                }
+                if ((ds.Tables["V_BRANCHES_TO_USERS"] != null)) {
+                    base.Tables.Add(new V_BRANCHES_TO_USERSDataTable(ds.Tables["V_BRANCHES_TO_USERS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -770,6 +842,30 @@ namespace Db {
                     this.tableV_TERMINAL_STATUS_CODES.InitVars();
                 }
             }
+            this.tableV_BANKNOTES_SUMMARY_BY_HISTORY = ((V_BANKNOTES_SUMMARY_BY_HISTORYDataTable)(base.Tables["V_BANKNOTES_SUMMARY_BY_HISTORY"]));
+            if ((initTable == true)) {
+                if ((this.tableV_BANKNOTES_SUMMARY_BY_HISTORY != null)) {
+                    this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.InitVars();
+                }
+            }
+            this.tableV_BANKNOTES_SUMMARY_BY_TERM = ((V_BANKNOTES_SUMMARY_BY_TERMDataTable)(base.Tables["V_BANKNOTES_SUMMARY_BY_TERM"]));
+            if ((initTable == true)) {
+                if ((this.tableV_BANKNOTES_SUMMARY_BY_TERM != null)) {
+                    this.tableV_BANKNOTES_SUMMARY_BY_TERM.InitVars();
+                }
+            }
+            this.tableV_BANKNOTES_SUMMARY_ENCASHMENT = ((V_BANKNOTES_SUMMARY_ENCASHMENTDataTable)(base.Tables["V_BANKNOTES_SUMMARY_ENCASHMENT"]));
+            if ((initTable == true)) {
+                if ((this.tableV_BANKNOTES_SUMMARY_ENCASHMENT != null)) {
+                    this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.InitVars();
+                }
+            }
+            this.tableV_BRANCHES_TO_USERS = ((V_BRANCHES_TO_USERSDataTable)(base.Tables["V_BRANCHES_TO_USERS"]));
+            if ((initTable == true)) {
+                if ((this.tableV_BRANCHES_TO_USERS != null)) {
+                    this.tableV_BRANCHES_TO_USERS.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -830,6 +926,14 @@ namespace Db {
             base.Tables.Add(this.tableV_BRANCHES);
             this.tableV_TERMINAL_STATUS_CODES = new V_TERMINAL_STATUS_CODESDataTable();
             base.Tables.Add(this.tableV_TERMINAL_STATUS_CODES);
+            this.tableV_BANKNOTES_SUMMARY_BY_HISTORY = new V_BANKNOTES_SUMMARY_BY_HISTORYDataTable();
+            base.Tables.Add(this.tableV_BANKNOTES_SUMMARY_BY_HISTORY);
+            this.tableV_BANKNOTES_SUMMARY_BY_TERM = new V_BANKNOTES_SUMMARY_BY_TERMDataTable();
+            base.Tables.Add(this.tableV_BANKNOTES_SUMMARY_BY_TERM);
+            this.tableV_BANKNOTES_SUMMARY_ENCASHMENT = new V_BANKNOTES_SUMMARY_ENCASHMENTDataTable();
+            base.Tables.Add(this.tableV_BANKNOTES_SUMMARY_ENCASHMENT);
+            this.tableV_BRANCHES_TO_USERS = new V_BRANCHES_TO_USERSDataTable();
+            base.Tables.Add(this.tableV_BRANCHES_TO_USERS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -984,6 +1088,30 @@ namespace Db {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeV_BANKNOTES_SUMMARY_BY_HISTORY() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeV_BANKNOTES_SUMMARY_BY_TERM() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeV_BANKNOTES_SUMMARY_ENCASHMENT() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeV_BRANCHES_TO_USERS() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1111,6 +1239,18 @@ namespace Db {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void V_TERMINAL_STATUS_CODESRowChangeEventHandler(object sender, V_TERMINAL_STATUS_CODESRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEventHandler(object sender, V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void V_BANKNOTES_SUMMARY_BY_TERMRowChangeEventHandler(object sender, V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEventHandler(object sender, V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void V_BRANCHES_TO_USERSRowChangeEventHandler(object sender, V_BRANCHES_TO_USERSRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2875,6 +3015,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnBRANCH_NAME;
             
+            private global::System.Data.DataColumn columnLAST_ENCASHMENT_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_LIST_TERMINALSDataTable() {
@@ -3278,6 +3420,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LAST_ENCASHMENT_IDColumn {
+                get {
+                    return this.columnLAST_ENCASHMENT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3359,7 +3509,8 @@ namespace Db {
                         int PRINTER_STATUS_TYPE, 
                         string TERMINAL_VERSION, 
                         int BRANCH_ID, 
-                        string BRANCH_NAME) {
+                        string BRANCH_NAME, 
+                        decimal LAST_ENCASHMENT_ID) {
                 V_LIST_TERMINALSRow rowV_LIST_TERMINALSRow = ((V_LIST_TERMINALSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -3407,7 +3558,8 @@ namespace Db {
                         PRINTER_STATUS_TYPE,
                         TERMINAL_VERSION,
                         BRANCH_ID,
-                        BRANCH_NAME};
+                        BRANCH_NAME,
+                        LAST_ENCASHMENT_ID};
                 rowV_LIST_TERMINALSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_LIST_TERMINALSRow);
                 return rowV_LIST_TERMINALSRow;
@@ -3476,6 +3628,7 @@ namespace Db {
                 this.columnTERMINAL_VERSION = base.Columns["TERMINAL_VERSION"];
                 this.columnBRANCH_ID = base.Columns["BRANCH_ID"];
                 this.columnBRANCH_NAME = base.Columns["BRANCH_NAME"];
+                this.columnLAST_ENCASHMENT_ID = base.Columns["LAST_ENCASHMENT_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3573,12 +3726,13 @@ namespace Db {
                 base.Columns.Add(this.columnBRANCH_ID);
                 this.columnBRANCH_NAME = new global::System.Data.DataColumn("BRANCH_NAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBRANCH_NAME);
+                this.columnLAST_ENCASHMENT_ID = new global::System.Data.DataColumn("LAST_ENCASHMENT_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLAST_ENCASHMENT_ID);
                 this.columnID.AllowDBNull = false;
                 this.columnNAME.AllowDBNull = false;
                 this.columnNAME.MaxLength = 255;
                 this.columnADDRESS.AllowDBNull = false;
                 this.columnADDRESS.MaxLength = 500;
-                this.columnIDENTITY_NAME.AllowDBNull = false;
                 this.columnIDENTITY_NAME.MaxLength = 255;
                 this.columnCREATE_DATE.AllowDBNull = false;
                 this.columnLAST_UPDATE.AllowDBNull = false;
@@ -5025,6 +5179,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnBRANCH_NAME;
             
+            private global::System.Data.DataColumn columnLAST_ENCASHMENT_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_LIST_ENCASHMENTDataTable() {
@@ -5356,6 +5512,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LAST_ENCASHMENT_IDColumn {
+                get {
+                    return this.columnLAST_ENCASHMENT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5428,7 +5592,8 @@ namespace Db {
                         string PRINTER_EXT_ERROR_STATUS_RU, 
                         string PRINTER_EXT_ERROR_STATUS_EN, 
                         int BRANCH_ID, 
-                        string BRANCH_NAME) {
+                        string BRANCH_NAME, 
+                        decimal LAST_ENCASHMENT_ID) {
                 V_LIST_ENCASHMENTRow rowV_LIST_ENCASHMENTRow = ((V_LIST_ENCASHMENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -5467,7 +5632,8 @@ namespace Db {
                         PRINTER_EXT_ERROR_STATUS_RU,
                         PRINTER_EXT_ERROR_STATUS_EN,
                         BRANCH_ID,
-                        BRANCH_NAME};
+                        BRANCH_NAME,
+                        LAST_ENCASHMENT_ID};
                 rowV_LIST_ENCASHMENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_LIST_ENCASHMENTRow);
                 return rowV_LIST_ENCASHMENTRow;
@@ -5527,6 +5693,7 @@ namespace Db {
                 this.columnPRINTER_EXT_ERROR_STATUS_EN = base.Columns["PRINTER_EXT_ERROR_STATUS_EN"];
                 this.columnBRANCH_ID = base.Columns["BRANCH_ID"];
                 this.columnBRANCH_NAME = base.Columns["BRANCH_NAME"];
+                this.columnLAST_ENCASHMENT_ID = base.Columns["LAST_ENCASHMENT_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5606,6 +5773,8 @@ namespace Db {
                 base.Columns.Add(this.columnBRANCH_ID);
                 this.columnBRANCH_NAME = new global::System.Data.DataColumn("BRANCH_NAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBRANCH_NAME);
+                this.columnLAST_ENCASHMENT_ID = new global::System.Data.DataColumn("LAST_ENCASHMENT_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLAST_ENCASHMENT_ID);
                 this.columnID.AllowDBNull = false;
                 this.columnINSERT_DATE.AllowDBNull = false;
                 this.columnUSERNAME.MaxLength = 100;
@@ -7362,6 +7531,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnPAYMENT_TYPE_EN;
             
+            private global::System.Data.DataColumn columnENCASHMENT_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_PRODUCTS_HISTORYDataTable() {
@@ -7565,6 +7736,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ENCASHMENT_IDColumn {
+                get {
+                    return this.columnENCASHMENT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7621,7 +7800,8 @@ namespace Db {
                         decimal PAYMENT_TYPE, 
                         string PAYMENT_TYPE_AZ, 
                         string PAYMENT_TYPE_RU, 
-                        string PAYMENT_TYPE_EN) {
+                        string PAYMENT_TYPE_EN, 
+                        long ENCASHMENT_ID) {
                 V_PRODUCTS_HISTORYRow rowV_PRODUCTS_HISTORYRow = ((V_PRODUCTS_HISTORYRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -7644,7 +7824,8 @@ namespace Db {
                         PAYMENT_TYPE,
                         PAYMENT_TYPE_AZ,
                         PAYMENT_TYPE_RU,
-                        PAYMENT_TYPE_EN};
+                        PAYMENT_TYPE_EN,
+                        ENCASHMENT_ID};
                 rowV_PRODUCTS_HISTORYRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_PRODUCTS_HISTORYRow);
                 return rowV_PRODUCTS_HISTORYRow;
@@ -7688,6 +7869,7 @@ namespace Db {
                 this.columnPAYMENT_TYPE_AZ = base.Columns["PAYMENT_TYPE_AZ"];
                 this.columnPAYMENT_TYPE_RU = base.Columns["PAYMENT_TYPE_RU"];
                 this.columnPAYMENT_TYPE_EN = base.Columns["PAYMENT_TYPE_EN"];
+                this.columnENCASHMENT_ID = base.Columns["ENCASHMENT_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7735,6 +7917,8 @@ namespace Db {
                 base.Columns.Add(this.columnPAYMENT_TYPE_RU);
                 this.columnPAYMENT_TYPE_EN = new global::System.Data.DataColumn("PAYMENT_TYPE_EN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPAYMENT_TYPE_EN);
+                this.columnENCASHMENT_ID = new global::System.Data.DataColumn("ENCASHMENT_ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnENCASHMENT_ID);
                 this.columnID.AllowDBNull = false;
                 this.columnTRANSACTION_ID.MaxLength = 50;
                 this.columnTERMINAL_ID.AllowDBNull = false;
@@ -11165,6 +11349,1276 @@ namespace Db {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class V_BANKNOTES_SUMMARY_BY_HISTORYDataTable : global::System.Data.TypedTableBase<V_BANKNOTES_SUMMARY_BY_HISTORYRow> {
+            
+            private global::System.Data.DataColumn columnAMOUNT;
+            
+            private global::System.Data.DataColumn columnENCASHMENT_ID;
+            
+            private global::System.Data.DataColumn columnHISTORY_ID;
+            
+            private global::System.Data.DataColumn columnTERMINAL_ID;
+            
+            private global::System.Data.DataColumn columnCOUNT_ALL;
+            
+            private global::System.Data.DataColumn columnCURRENCY_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_HISTORYDataTable() {
+                this.TableName = "V_BANKNOTES_SUMMARY_BY_HISTORY";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BANKNOTES_SUMMARY_BY_HISTORYDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected V_BANKNOTES_SUMMARY_BY_HISTORYDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNTColumn {
+                get {
+                    return this.columnAMOUNT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ENCASHMENT_IDColumn {
+                get {
+                    return this.columnENCASHMENT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HISTORY_IDColumn {
+                get {
+                    return this.columnHISTORY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TERMINAL_IDColumn {
+                get {
+                    return this.columnTERMINAL_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn COUNT_ALLColumn {
+                get {
+                    return this.columnCOUNT_ALL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CURRENCY_IDColumn {
+                get {
+                    return this.columnCURRENCY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_HISTORYRow this[int index] {
+                get {
+                    return ((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_HISTORYRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_HISTORYRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddV_BANKNOTES_SUMMARY_BY_HISTORYRow(V_BANKNOTES_SUMMARY_BY_HISTORYRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_HISTORYRow AddV_BANKNOTES_SUMMARY_BY_HISTORYRow(decimal AMOUNT, decimal ENCASHMENT_ID, decimal HISTORY_ID, decimal TERMINAL_ID, decimal COUNT_ALL, string CURRENCY_ID) {
+                V_BANKNOTES_SUMMARY_BY_HISTORYRow rowV_BANKNOTES_SUMMARY_BY_HISTORYRow = ((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        AMOUNT,
+                        ENCASHMENT_ID,
+                        HISTORY_ID,
+                        TERMINAL_ID,
+                        COUNT_ALL,
+                        CURRENCY_ID};
+                rowV_BANKNOTES_SUMMARY_BY_HISTORYRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_BANKNOTES_SUMMARY_BY_HISTORYRow);
+                return rowV_BANKNOTES_SUMMARY_BY_HISTORYRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                V_BANKNOTES_SUMMARY_BY_HISTORYDataTable cln = ((V_BANKNOTES_SUMMARY_BY_HISTORYDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new V_BANKNOTES_SUMMARY_BY_HISTORYDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnAMOUNT = base.Columns["AMOUNT"];
+                this.columnENCASHMENT_ID = base.Columns["ENCASHMENT_ID"];
+                this.columnHISTORY_ID = base.Columns["HISTORY_ID"];
+                this.columnTERMINAL_ID = base.Columns["TERMINAL_ID"];
+                this.columnCOUNT_ALL = base.Columns["COUNT_ALL"];
+                this.columnCURRENCY_ID = base.Columns["CURRENCY_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnAMOUNT = new global::System.Data.DataColumn("AMOUNT", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT);
+                this.columnENCASHMENT_ID = new global::System.Data.DataColumn("ENCASHMENT_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnENCASHMENT_ID);
+                this.columnHISTORY_ID = new global::System.Data.DataColumn("HISTORY_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHISTORY_ID);
+                this.columnTERMINAL_ID = new global::System.Data.DataColumn("TERMINAL_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTERMINAL_ID);
+                this.columnCOUNT_ALL = new global::System.Data.DataColumn("COUNT_ALL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOUNT_ALL);
+                this.columnCURRENCY_ID = new global::System.Data.DataColumn("CURRENCY_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCURRENCY_ID);
+                this.columnAMOUNT.AllowDBNull = false;
+                this.columnHISTORY_ID.AllowDBNull = false;
+                this.columnTERMINAL_ID.AllowDBNull = false;
+                this.columnCURRENCY_ID.AllowDBNull = false;
+                this.columnCURRENCY_ID.MaxLength = 3;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_HISTORYRow NewV_BANKNOTES_SUMMARY_BY_HISTORYRow() {
+                return ((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new V_BANKNOTES_SUMMARY_BY_HISTORYRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(V_BANKNOTES_SUMMARY_BY_HISTORYRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_HISTORYRowChanged != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_HISTORYRowChanged(this, new V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_HISTORYRowChanging != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_HISTORYRowChanging(this, new V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleted != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleted(this, new V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleting != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_HISTORYRowDeleting(this, new V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_HISTORYRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveV_BANKNOTES_SUMMARY_BY_HISTORYRow(V_BANKNOTES_SUMMARY_BY_HISTORYRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ds ds = new ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "V_BANKNOTES_SUMMARY_BY_HISTORYDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class V_BANKNOTES_SUMMARY_BY_TERMDataTable : global::System.Data.TypedTableBase<V_BANKNOTES_SUMMARY_BY_TERMRow> {
+            
+            private global::System.Data.DataColumn columnAMOUNT;
+            
+            private global::System.Data.DataColumn columnENCASHMENT_ID;
+            
+            private global::System.Data.DataColumn columnHISTORY_ID;
+            
+            private global::System.Data.DataColumn columnTERMINAL_ID;
+            
+            private global::System.Data.DataColumn columnCOUNT_ALL;
+            
+            private global::System.Data.DataColumn columnCURRENCY_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_TERMDataTable() {
+                this.TableName = "V_BANKNOTES_SUMMARY_BY_TERM";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BANKNOTES_SUMMARY_BY_TERMDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected V_BANKNOTES_SUMMARY_BY_TERMDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNTColumn {
+                get {
+                    return this.columnAMOUNT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ENCASHMENT_IDColumn {
+                get {
+                    return this.columnENCASHMENT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HISTORY_IDColumn {
+                get {
+                    return this.columnHISTORY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TERMINAL_IDColumn {
+                get {
+                    return this.columnTERMINAL_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn COUNT_ALLColumn {
+                get {
+                    return this.columnCOUNT_ALL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CURRENCY_IDColumn {
+                get {
+                    return this.columnCURRENCY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_TERMRow this[int index] {
+                get {
+                    return ((V_BANKNOTES_SUMMARY_BY_TERMRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_TERMRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_TERMRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_TERMRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_TERMRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_TERMRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_TERMRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_BY_TERMRowChangeEventHandler V_BANKNOTES_SUMMARY_BY_TERMRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddV_BANKNOTES_SUMMARY_BY_TERMRow(V_BANKNOTES_SUMMARY_BY_TERMRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_TERMRow AddV_BANKNOTES_SUMMARY_BY_TERMRow(decimal AMOUNT, decimal ENCASHMENT_ID, decimal HISTORY_ID, decimal TERMINAL_ID, decimal COUNT_ALL, string CURRENCY_ID) {
+                V_BANKNOTES_SUMMARY_BY_TERMRow rowV_BANKNOTES_SUMMARY_BY_TERMRow = ((V_BANKNOTES_SUMMARY_BY_TERMRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        AMOUNT,
+                        ENCASHMENT_ID,
+                        HISTORY_ID,
+                        TERMINAL_ID,
+                        COUNT_ALL,
+                        CURRENCY_ID};
+                rowV_BANKNOTES_SUMMARY_BY_TERMRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_BANKNOTES_SUMMARY_BY_TERMRow);
+                return rowV_BANKNOTES_SUMMARY_BY_TERMRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                V_BANKNOTES_SUMMARY_BY_TERMDataTable cln = ((V_BANKNOTES_SUMMARY_BY_TERMDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new V_BANKNOTES_SUMMARY_BY_TERMDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnAMOUNT = base.Columns["AMOUNT"];
+                this.columnENCASHMENT_ID = base.Columns["ENCASHMENT_ID"];
+                this.columnHISTORY_ID = base.Columns["HISTORY_ID"];
+                this.columnTERMINAL_ID = base.Columns["TERMINAL_ID"];
+                this.columnCOUNT_ALL = base.Columns["COUNT_ALL"];
+                this.columnCURRENCY_ID = base.Columns["CURRENCY_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnAMOUNT = new global::System.Data.DataColumn("AMOUNT", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT);
+                this.columnENCASHMENT_ID = new global::System.Data.DataColumn("ENCASHMENT_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnENCASHMENT_ID);
+                this.columnHISTORY_ID = new global::System.Data.DataColumn("HISTORY_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHISTORY_ID);
+                this.columnTERMINAL_ID = new global::System.Data.DataColumn("TERMINAL_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTERMINAL_ID);
+                this.columnCOUNT_ALL = new global::System.Data.DataColumn("COUNT_ALL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOUNT_ALL);
+                this.columnCURRENCY_ID = new global::System.Data.DataColumn("CURRENCY_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCURRENCY_ID);
+                this.columnAMOUNT.AllowDBNull = false;
+                this.columnHISTORY_ID.AllowDBNull = false;
+                this.columnTERMINAL_ID.AllowDBNull = false;
+                this.columnCURRENCY_ID.AllowDBNull = false;
+                this.columnCURRENCY_ID.MaxLength = 3;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_TERMRow NewV_BANKNOTES_SUMMARY_BY_TERMRow() {
+                return ((V_BANKNOTES_SUMMARY_BY_TERMRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new V_BANKNOTES_SUMMARY_BY_TERMRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(V_BANKNOTES_SUMMARY_BY_TERMRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_TERMRowChanged != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_TERMRowChanged(this, new V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_TERMRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_TERMRowChanging != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_TERMRowChanging(this, new V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_TERMRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_TERMRowDeleted != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_TERMRowDeleted(this, new V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_TERMRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.V_BANKNOTES_SUMMARY_BY_TERMRowDeleting != null)) {
+                    this.V_BANKNOTES_SUMMARY_BY_TERMRowDeleting(this, new V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent(((V_BANKNOTES_SUMMARY_BY_TERMRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveV_BANKNOTES_SUMMARY_BY_TERMRow(V_BANKNOTES_SUMMARY_BY_TERMRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ds ds = new ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "V_BANKNOTES_SUMMARY_BY_TERMDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class V_BANKNOTES_SUMMARY_ENCASHMENTDataTable : global::System.Data.TypedTableBase<V_BANKNOTES_SUMMARY_ENCASHMENTRow> {
+            
+            private global::System.Data.DataColumn columnAMOUNT;
+            
+            private global::System.Data.DataColumn columnENCASHMENT_ID;
+            
+            private global::System.Data.DataColumn columnHISTORY_ID;
+            
+            private global::System.Data.DataColumn columnTERMINAL_ID;
+            
+            private global::System.Data.DataColumn columnCOUNT_ALL;
+            
+            private global::System.Data.DataColumn columnCURRENCY_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_ENCASHMENTDataTable() {
+                this.TableName = "V_BANKNOTES_SUMMARY_ENCASHMENT";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BANKNOTES_SUMMARY_ENCASHMENTDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected V_BANKNOTES_SUMMARY_ENCASHMENTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNTColumn {
+                get {
+                    return this.columnAMOUNT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ENCASHMENT_IDColumn {
+                get {
+                    return this.columnENCASHMENT_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HISTORY_IDColumn {
+                get {
+                    return this.columnHISTORY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TERMINAL_IDColumn {
+                get {
+                    return this.columnTERMINAL_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn COUNT_ALLColumn {
+                get {
+                    return this.columnCOUNT_ALL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CURRENCY_IDColumn {
+                get {
+                    return this.columnCURRENCY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_ENCASHMENTRow this[int index] {
+                get {
+                    return ((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEventHandler V_BANKNOTES_SUMMARY_ENCASHMENTRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEventHandler V_BANKNOTES_SUMMARY_ENCASHMENTRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEventHandler V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEventHandler V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddV_BANKNOTES_SUMMARY_ENCASHMENTRow(V_BANKNOTES_SUMMARY_ENCASHMENTRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_ENCASHMENTRow AddV_BANKNOTES_SUMMARY_ENCASHMENTRow(decimal AMOUNT, decimal ENCASHMENT_ID, decimal HISTORY_ID, decimal TERMINAL_ID, decimal COUNT_ALL, string CURRENCY_ID) {
+                V_BANKNOTES_SUMMARY_ENCASHMENTRow rowV_BANKNOTES_SUMMARY_ENCASHMENTRow = ((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        AMOUNT,
+                        ENCASHMENT_ID,
+                        HISTORY_ID,
+                        TERMINAL_ID,
+                        COUNT_ALL,
+                        CURRENCY_ID};
+                rowV_BANKNOTES_SUMMARY_ENCASHMENTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_BANKNOTES_SUMMARY_ENCASHMENTRow);
+                return rowV_BANKNOTES_SUMMARY_ENCASHMENTRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                V_BANKNOTES_SUMMARY_ENCASHMENTDataTable cln = ((V_BANKNOTES_SUMMARY_ENCASHMENTDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new V_BANKNOTES_SUMMARY_ENCASHMENTDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnAMOUNT = base.Columns["AMOUNT"];
+                this.columnENCASHMENT_ID = base.Columns["ENCASHMENT_ID"];
+                this.columnHISTORY_ID = base.Columns["HISTORY_ID"];
+                this.columnTERMINAL_ID = base.Columns["TERMINAL_ID"];
+                this.columnCOUNT_ALL = base.Columns["COUNT_ALL"];
+                this.columnCURRENCY_ID = base.Columns["CURRENCY_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnAMOUNT = new global::System.Data.DataColumn("AMOUNT", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT);
+                this.columnENCASHMENT_ID = new global::System.Data.DataColumn("ENCASHMENT_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnENCASHMENT_ID);
+                this.columnHISTORY_ID = new global::System.Data.DataColumn("HISTORY_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHISTORY_ID);
+                this.columnTERMINAL_ID = new global::System.Data.DataColumn("TERMINAL_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTERMINAL_ID);
+                this.columnCOUNT_ALL = new global::System.Data.DataColumn("COUNT_ALL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOUNT_ALL);
+                this.columnCURRENCY_ID = new global::System.Data.DataColumn("CURRENCY_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCURRENCY_ID);
+                this.columnAMOUNT.AllowDBNull = false;
+                this.columnHISTORY_ID.AllowDBNull = false;
+                this.columnTERMINAL_ID.AllowDBNull = false;
+                this.columnCURRENCY_ID.AllowDBNull = false;
+                this.columnCURRENCY_ID.MaxLength = 3;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_ENCASHMENTRow NewV_BANKNOTES_SUMMARY_ENCASHMENTRow() {
+                return ((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new V_BANKNOTES_SUMMARY_ENCASHMENTRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(V_BANKNOTES_SUMMARY_ENCASHMENTRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.V_BANKNOTES_SUMMARY_ENCASHMENTRowChanged != null)) {
+                    this.V_BANKNOTES_SUMMARY_ENCASHMENTRowChanged(this, new V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent(((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.V_BANKNOTES_SUMMARY_ENCASHMENTRowChanging != null)) {
+                    this.V_BANKNOTES_SUMMARY_ENCASHMENTRowChanging(this, new V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent(((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleted != null)) {
+                    this.V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleted(this, new V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent(((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleting != null)) {
+                    this.V_BANKNOTES_SUMMARY_ENCASHMENTRowDeleting(this, new V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent(((V_BANKNOTES_SUMMARY_ENCASHMENTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveV_BANKNOTES_SUMMARY_ENCASHMENTRow(V_BANKNOTES_SUMMARY_ENCASHMENTRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ds ds = new ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "V_BANKNOTES_SUMMARY_ENCASHMENTDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class V_BRANCHES_TO_USERSDataTable : global::System.Data.TypedTableBase<V_BRANCHES_TO_USERSRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnNAME;
+            
+            private global::System.Data.DataColumn columnINSERT_DATE;
+            
+            private global::System.Data.DataColumn columnUPDATE_DATE;
+            
+            private global::System.Data.DataColumn columnUSER_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BRANCHES_TO_USERSDataTable() {
+                this.TableName = "V_BRANCHES_TO_USERS";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BRANCHES_TO_USERSDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected V_BRANCHES_TO_USERSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NAMEColumn {
+                get {
+                    return this.columnNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn INSERT_DATEColumn {
+                get {
+                    return this.columnINSERT_DATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UPDATE_DATEColumn {
+                get {
+                    return this.columnUPDATE_DATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn USER_IDColumn {
+                get {
+                    return this.columnUSER_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BRANCHES_TO_USERSRow this[int index] {
+                get {
+                    return ((V_BRANCHES_TO_USERSRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BRANCHES_TO_USERSRowChangeEventHandler V_BRANCHES_TO_USERSRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BRANCHES_TO_USERSRowChangeEventHandler V_BRANCHES_TO_USERSRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BRANCHES_TO_USERSRowChangeEventHandler V_BRANCHES_TO_USERSRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_BRANCHES_TO_USERSRowChangeEventHandler V_BRANCHES_TO_USERSRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddV_BRANCHES_TO_USERSRow(V_BRANCHES_TO_USERSRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BRANCHES_TO_USERSRow AddV_BRANCHES_TO_USERSRow(int ID, string NAME, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, long USER_ID) {
+                V_BRANCHES_TO_USERSRow rowV_BRANCHES_TO_USERSRow = ((V_BRANCHES_TO_USERSRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        NAME,
+                        INSERT_DATE,
+                        UPDATE_DATE,
+                        USER_ID};
+                rowV_BRANCHES_TO_USERSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_BRANCHES_TO_USERSRow);
+                return rowV_BRANCHES_TO_USERSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                V_BRANCHES_TO_USERSDataTable cln = ((V_BRANCHES_TO_USERSDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new V_BRANCHES_TO_USERSDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnNAME = base.Columns["NAME"];
+                this.columnINSERT_DATE = base.Columns["INSERT_DATE"];
+                this.columnUPDATE_DATE = base.Columns["UPDATE_DATE"];
+                this.columnUSER_ID = base.Columns["USER_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNAME);
+                this.columnINSERT_DATE = new global::System.Data.DataColumn("INSERT_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnINSERT_DATE);
+                this.columnUPDATE_DATE = new global::System.Data.DataColumn("UPDATE_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUPDATE_DATE);
+                this.columnUSER_ID = new global::System.Data.DataColumn("USER_ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUSER_ID);
+                this.columnNAME.MaxLength = 150;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BRANCHES_TO_USERSRow NewV_BRANCHES_TO_USERSRow() {
+                return ((V_BRANCHES_TO_USERSRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new V_BRANCHES_TO_USERSRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(V_BRANCHES_TO_USERSRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.V_BRANCHES_TO_USERSRowChanged != null)) {
+                    this.V_BRANCHES_TO_USERSRowChanged(this, new V_BRANCHES_TO_USERSRowChangeEvent(((V_BRANCHES_TO_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.V_BRANCHES_TO_USERSRowChanging != null)) {
+                    this.V_BRANCHES_TO_USERSRowChanging(this, new V_BRANCHES_TO_USERSRowChangeEvent(((V_BRANCHES_TO_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.V_BRANCHES_TO_USERSRowDeleted != null)) {
+                    this.V_BRANCHES_TO_USERSRowDeleted(this, new V_BRANCHES_TO_USERSRowChangeEvent(((V_BRANCHES_TO_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.V_BRANCHES_TO_USERSRowDeleting != null)) {
+                    this.V_BRANCHES_TO_USERSRowDeleting(this, new V_BRANCHES_TO_USERSRowChangeEvent(((V_BRANCHES_TO_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveV_BRANCHES_TO_USERSRow(V_BRANCHES_TO_USERSRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ds ds = new ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "V_BRANCHES_TO_USERSDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class V_LIST_CURRENCIESRow : global::System.Data.DataRow {
@@ -12165,7 +13619,12 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string IDENTITY_NAME {
                 get {
-                    return ((string)(this[this.tableV_LIST_TERMINALS.IDENTITY_NAMEColumn]));
+                    if (this.IsIDENTITY_NAMENull()) {
+                        return string.Empty;
+                    }
+                    else {
+                        return ((string)(this[this.tableV_LIST_TERMINALS.IDENTITY_NAMEColumn]));
+                    }
                 }
                 set {
                     this[this.tableV_LIST_TERMINALS.IDENTITY_NAMEColumn] = value;
@@ -12852,6 +14311,34 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal LAST_ENCASHMENT_ID {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_LIST_TERMINALS.LAST_ENCASHMENT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LAST_ENCASHMENT_ID\' in table \'V_LIST_TERMINALS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_TERMINALS.LAST_ENCASHMENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDENTITY_NAMENull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.IDENTITY_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDENTITY_NAMENull() {
+                this[this.tableV_LIST_TERMINALS.IDENTITY_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSIGN_KEYNull() {
                 return this.IsNull(this.tableV_LIST_TERMINALS.SIGN_KEYColumn);
             }
@@ -13316,6 +14803,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBRANCH_NAMENull() {
                 this[this.tableV_LIST_TERMINALS.BRANCH_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLAST_ENCASHMENT_IDNull() {
+                return this.IsNull(this.tableV_LIST_TERMINALS.LAST_ENCASHMENT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLAST_ENCASHMENT_IDNull() {
+                this[this.tableV_LIST_TERMINALS.LAST_ENCASHMENT_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14540,6 +16039,23 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal LAST_ENCASHMENT_ID {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_LIST_ENCASHMENT.LAST_ENCASHMENT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LAST_ENCASHMENT_ID\' in table \'V_LIST_ENCASHMENT\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableV_LIST_ENCASHMENT.LAST_ENCASHMENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTERMINAL_IDNull() {
                 return this.IsNull(this.tableV_LIST_ENCASHMENT.TERMINAL_IDColumn);
             }
@@ -14956,6 +16472,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBRANCH_NAMENull() {
                 this[this.tableV_LIST_ENCASHMENT.BRANCH_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLAST_ENCASHMENT_IDNull() {
+                return this.IsNull(this.tableV_LIST_ENCASHMENT.LAST_ENCASHMENT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLAST_ENCASHMENT_IDNull() {
+                this[this.tableV_LIST_ENCASHMENT.LAST_ENCASHMENT_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15834,6 +17362,22 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long ENCASHMENT_ID {
+                get {
+                    try {
+                        return ((long)(this[this.tableV_PRODUCTS_HISTORY.ENCASHMENT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ENCASHMENT_ID\' in table \'V_PRODUCTS_HISTORY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_PRODUCTS_HISTORY.ENCASHMENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTRANSACTION_IDNull() {
                 return this.IsNull(this.tableV_PRODUCTS_HISTORY.TRANSACTION_IDColumn);
             }
@@ -16022,6 +17566,18 @@ namespace Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPAYMENT_TYPE_ENNull() {
                 this[this.tableV_PRODUCTS_HISTORY.PAYMENT_TYPE_ENColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsENCASHMENT_IDNull() {
+                return this.IsNull(this.tableV_PRODUCTS_HISTORY.ENCASHMENT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetENCASHMENT_IDNull() {
+                this[this.tableV_PRODUCTS_HISTORY.ENCASHMENT_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -17522,6 +19078,512 @@ namespace Db {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class V_BANKNOTES_SUMMARY_BY_HISTORYRow : global::System.Data.DataRow {
+            
+            private V_BANKNOTES_SUMMARY_BY_HISTORYDataTable tableV_BANKNOTES_SUMMARY_BY_HISTORY;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BANKNOTES_SUMMARY_BY_HISTORYRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableV_BANKNOTES_SUMMARY_BY_HISTORY = ((V_BANKNOTES_SUMMARY_BY_HISTORYDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal AMOUNT {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.AMOUNTColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.AMOUNTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ENCASHMENT_ID {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.ENCASHMENT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ENCASHMENT_ID\' in table \'V_BANKNOTES_SUMMARY_BY_HISTORY\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.ENCASHMENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal HISTORY_ID {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.HISTORY_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.HISTORY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TERMINAL_ID {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.TERMINAL_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.TERMINAL_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal COUNT_ALL {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.COUNT_ALLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'COUNT_ALL\' in table \'V_BANKNOTES_SUMMARY_BY_HISTORY\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.COUNT_ALLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CURRENCY_ID {
+                get {
+                    return ((string)(this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.CURRENCY_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.CURRENCY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsENCASHMENT_IDNull() {
+                return this.IsNull(this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.ENCASHMENT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetENCASHMENT_IDNull() {
+                this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.ENCASHMENT_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCOUNT_ALLNull() {
+                return this.IsNull(this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.COUNT_ALLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCOUNT_ALLNull() {
+                this[this.tableV_BANKNOTES_SUMMARY_BY_HISTORY.COUNT_ALLColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class V_BANKNOTES_SUMMARY_BY_TERMRow : global::System.Data.DataRow {
+            
+            private V_BANKNOTES_SUMMARY_BY_TERMDataTable tableV_BANKNOTES_SUMMARY_BY_TERM;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BANKNOTES_SUMMARY_BY_TERMRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableV_BANKNOTES_SUMMARY_BY_TERM = ((V_BANKNOTES_SUMMARY_BY_TERMDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal AMOUNT {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.AMOUNTColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.AMOUNTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ENCASHMENT_ID {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.ENCASHMENT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ENCASHMENT_ID\' in table \'V_BANKNOTES_SUMMARY_BY_TERM\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.ENCASHMENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal HISTORY_ID {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.HISTORY_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.HISTORY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TERMINAL_ID {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.TERMINAL_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.TERMINAL_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal COUNT_ALL {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.COUNT_ALLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'COUNT_ALL\' in table \'V_BANKNOTES_SUMMARY_BY_TERM\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.COUNT_ALLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CURRENCY_ID {
+                get {
+                    return ((string)(this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.CURRENCY_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.CURRENCY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsENCASHMENT_IDNull() {
+                return this.IsNull(this.tableV_BANKNOTES_SUMMARY_BY_TERM.ENCASHMENT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetENCASHMENT_IDNull() {
+                this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.ENCASHMENT_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCOUNT_ALLNull() {
+                return this.IsNull(this.tableV_BANKNOTES_SUMMARY_BY_TERM.COUNT_ALLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCOUNT_ALLNull() {
+                this[this.tableV_BANKNOTES_SUMMARY_BY_TERM.COUNT_ALLColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class V_BANKNOTES_SUMMARY_ENCASHMENTRow : global::System.Data.DataRow {
+            
+            private V_BANKNOTES_SUMMARY_ENCASHMENTDataTable tableV_BANKNOTES_SUMMARY_ENCASHMENT;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BANKNOTES_SUMMARY_ENCASHMENTRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableV_BANKNOTES_SUMMARY_ENCASHMENT = ((V_BANKNOTES_SUMMARY_ENCASHMENTDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal AMOUNT {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.AMOUNTColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.AMOUNTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ENCASHMENT_ID {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.ENCASHMENT_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ENCASHMENT_ID\' in table \'V_BANKNOTES_SUMMARY_ENCASHMENT\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.ENCASHMENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal HISTORY_ID {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.HISTORY_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.HISTORY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TERMINAL_ID {
+                get {
+                    return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.TERMINAL_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.TERMINAL_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal COUNT_ALL {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.COUNT_ALLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'COUNT_ALL\' in table \'V_BANKNOTES_SUMMARY_ENCASHMENT\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.COUNT_ALLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CURRENCY_ID {
+                get {
+                    return ((string)(this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.CURRENCY_IDColumn]));
+                }
+                set {
+                    this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.CURRENCY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsENCASHMENT_IDNull() {
+                return this.IsNull(this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.ENCASHMENT_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetENCASHMENT_IDNull() {
+                this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.ENCASHMENT_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCOUNT_ALLNull() {
+                return this.IsNull(this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.COUNT_ALLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCOUNT_ALLNull() {
+                this[this.tableV_BANKNOTES_SUMMARY_ENCASHMENT.COUNT_ALLColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class V_BRANCHES_TO_USERSRow : global::System.Data.DataRow {
+            
+            private V_BRANCHES_TO_USERSDataTable tableV_BRANCHES_TO_USERS;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_BRANCHES_TO_USERSRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableV_BRANCHES_TO_USERS = ((V_BRANCHES_TO_USERSDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    try {
+                        return ((int)(this[this.tableV_BRANCHES_TO_USERS.IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ID\' in table \'V_BRANCHES_TO_USERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BRANCHES_TO_USERS.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_BRANCHES_TO_USERS.NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NAME\' in table \'V_BRANCHES_TO_USERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BRANCHES_TO_USERS.NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime INSERT_DATE {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableV_BRANCHES_TO_USERS.INSERT_DATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'INSERT_DATE\' in table \'V_BRANCHES_TO_USERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BRANCHES_TO_USERS.INSERT_DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime UPDATE_DATE {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableV_BRANCHES_TO_USERS.UPDATE_DATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UPDATE_DATE\' in table \'V_BRANCHES_TO_USERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BRANCHES_TO_USERS.UPDATE_DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long USER_ID {
+                get {
+                    try {
+                        return ((long)(this[this.tableV_BRANCHES_TO_USERS.USER_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'USER_ID\' in table \'V_BRANCHES_TO_USERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_BRANCHES_TO_USERS.USER_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDNull() {
+                return this.IsNull(this.tableV_BRANCHES_TO_USERS.IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDNull() {
+                this[this.tableV_BRANCHES_TO_USERS.IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNAMENull() {
+                return this.IsNull(this.tableV_BRANCHES_TO_USERS.NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNAMENull() {
+                this[this.tableV_BRANCHES_TO_USERS.NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsINSERT_DATENull() {
+                return this.IsNull(this.tableV_BRANCHES_TO_USERS.INSERT_DATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetINSERT_DATENull() {
+                this[this.tableV_BRANCHES_TO_USERS.INSERT_DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUPDATE_DATENull() {
+                return this.IsNull(this.tableV_BRANCHES_TO_USERS.UPDATE_DATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUPDATE_DATENull() {
+                this[this.tableV_BRANCHES_TO_USERS.UPDATE_DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUSER_IDNull() {
+                return this.IsNull(this.tableV_BRANCHES_TO_USERS.USER_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUSER_IDNull() {
+                this[this.tableV_BRANCHES_TO_USERS.USER_IDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -18357,6 +20419,142 @@ namespace Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_TERMINAL_STATUS_CODESRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent : global::System.EventArgs {
+            
+            private V_BANKNOTES_SUMMARY_BY_HISTORYRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_HISTORYRowChangeEvent(V_BANKNOTES_SUMMARY_BY_HISTORYRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_HISTORYRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent : global::System.EventArgs {
+            
+            private V_BANKNOTES_SUMMARY_BY_TERMRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_TERMRowChangeEvent(V_BANKNOTES_SUMMARY_BY_TERMRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_BY_TERMRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent : global::System.EventArgs {
+            
+            private V_BANKNOTES_SUMMARY_ENCASHMENTRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_ENCASHMENTRowChangeEvent(V_BANKNOTES_SUMMARY_ENCASHMENTRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BANKNOTES_SUMMARY_ENCASHMENTRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class V_BRANCHES_TO_USERSRowChangeEvent : global::System.EventArgs {
+            
+            private V_BRANCHES_TO_USERSRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BRANCHES_TO_USERSRowChangeEvent(V_BRANCHES_TO_USERSRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_BRANCHES_TO_USERSRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -19439,6 +21637,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("TERMINAL_VERSION", "TERMINAL_VERSION");
             tableMapping.ColumnMappings.Add("BRANCH_ID", "BRANCH_ID");
             tableMapping.ColumnMappings.Add("BRANCH_NAME", "BRANCH_NAME");
+            tableMapping.ColumnMappings.Add("LAST_ENCASHMENT_ID", "LAST_ENCASHMENT_ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19455,7 +21654,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[3];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, ""NAME"", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_TERMINALS";
+            this._commandCollection[0].CommandText = @"SELECT ID, ""NAME"", ADDRESS, IDENTITY_NAME, CREATE_DATE, LAST_UPDATE, SIGN_KEY, IP, TMP_KEY, USER_ID, LAST_STATUS_TYPE, LAST_CASHCODE_STATUS, LAST_STATUS_UPDATE, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, BILLS_COUNT, CASHCODE_STATUS_NAME, PRINTER_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_STATUS_NAME, TERMINAL_STATUS_NAME, CASHCODE_STATUS_TYPE, PRINTER_STATUS_TYPE, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_TERMINALS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -19463,7 +21662,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CASHCODE_STATUS_NAME, CASHCODE_STATUS_TYPE, CREATE_DATE, ID, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, ""NAME"", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_NAME, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_NAME, PRINTER_STATUS_RU, PRINTER_STATUS_TYPE, SIGN_KEY, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_NAME, TERMINAL_STATUS_RU, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, TMP_KEY, USER_ID, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_TERMINALS WHERE (ID = :id)";
+            this._commandCollection[2].CommandText = @"SELECT ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CASHCODE_STATUS_NAME, CASHCODE_STATUS_TYPE, CREATE_DATE, ID, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, ""NAME"", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_NAME, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_NAME, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_NAME, PRINTER_STATUS_RU, PRINTER_STATUS_TYPE, SIGN_KEY, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_NAME, TERMINAL_STATUS_RU, TERMINAL_STATUS_TYPE, TERMINAL_VERSION, TMP_KEY, USER_ID, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_TERMINALS WHERE (ID = :id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":id";
@@ -20334,6 +22533,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("PRINTER_EXT_ERROR_STATUS_EN", "PRINTER_EXT_ERROR_STATUS_EN");
             tableMapping.ColumnMappings.Add("BRANCH_ID", "BRANCH_ID");
             tableMapping.ColumnMappings.Add("BRANCH_NAME", "BRANCH_NAME");
+            tableMapping.ColumnMappings.Add("LAST_ENCASHMENT_ID", "LAST_ENCASHMENT_ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -20350,7 +22550,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[3];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, ""NAME"", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_ENCASHMENT";
+            this._commandCollection[0].CommandText = @"SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, ""NAME"", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_ENCASHMENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -20358,7 +22558,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, ""NAME"", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME FROM CASHIN_NEW.V_LIST_ENCASHMENT WHERE (ID = :id)";
+            this._commandCollection[2].CommandText = @"SELECT ID, INSERT_DATE, TERMINAL_ID, ADDRESS, BILLS_COUNT, CASHCODE_AZ, CASHCODE_EN, CASHCODE_RU, CREATE_DATE, IDENTITY_NAME, IP, LAST_CASHCODE_ERROR, LAST_CASHCODE_OUT_STATUS, LAST_CASHCODE_STATUS, LAST_CASHCODE_SUBERROR, LAST_PRINTER_ERROR_STATE, LAST_PRINTER_EXT_ERROR_STATE, LAST_PRINTER_STATUS, LAST_STATUS_TYPE, LAST_STATUS_UPDATE, LAST_UPDATE, ""NAME"", PRINTER_ERROR_STATUS_AZ, PRINTER_ERROR_STATUS_EN, PRINTER_ERROR_STATUS_RU, PRINTER_EXT_ERROR_STATUS_AZ, PRINTER_EXT_ERROR_STATUS_EN, PRINTER_EXT_ERROR_STATUS_RU, PRINTER_STATUS_AZ, PRINTER_STATUS_EN, PRINTER_STATUS_RU, TERMINAL_STATUS_AZ, TERMINAL_STATUS_EN, TERMINAL_STATUS_RU, USERNAME, BRANCH_ID, BRANCH_NAME, LAST_ENCASHMENT_ID FROM CASHIN_NEW.V_LIST_ENCASHMENT WHERE (ID = :id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":id";
@@ -21841,6 +24041,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("PAYMENT_TYPE_AZ", "PAYMENT_TYPE_AZ");
             tableMapping.ColumnMappings.Add("PAYMENT_TYPE_RU", "PAYMENT_TYPE_RU");
             tableMapping.ColumnMappings.Add("PAYMENT_TYPE_EN", "PAYMENT_TYPE_EN");
+            tableMapping.ColumnMappings.Add("ENCASHMENT_ID", "ENCASHMENT_ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -21854,10 +24055,10 @@ namespace Db.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[5];
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[8];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY";
+            this._commandCollection[0].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -21884,7 +24085,8 @@ namespace Db.dsTableAdapters {
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT ADDRESS, AMOUNT, CURRENCY_ID, ID, IDENTITY_NAME, INSERT_DATE, ""NAME"", NAME_AZ, NAME_EN, NAME_RU, PRODUCT_ID, PRODUCT_NAME, RATE, TERMINAL_DATE, TERMINAL_ID, TRANSACTION_ID, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)";
+            this._commandCollection[3].CommandText = "SELECT COUNT(*) FROM V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND " +
+                ":dateTo) AND \r\nencashment_id = :encashmentId";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":dateFrom";
@@ -21900,17 +24102,94 @@ namespace Db.dsTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "INSERT_DATE";
             this._commandCollection[3].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":encashmentId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "ENCASHMENT_ID";
+            this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)";
+            this._commandCollection[4].CommandText = "SELECT COUNT(*) FROM V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND " +
+                ":dateTo) AND product_id = :productId";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":dateFrom";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.TimeStamp;
+            param.IsNullable = true;
+            param.SourceColumn = "INSERT_DATE";
+            this._commandCollection[4].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":dateTo";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.TimeStamp;
+            param.IsNullable = true;
+            param.SourceColumn = "INSERT_DATE";
+            this._commandCollection[4].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":productId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "PRODUCT_ID";
+            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT COUNT(*) FROM V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND " +
+                ":dateTo)\r\nAND terminal_id = :terminalId";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":dateFrom";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.TimeStamp;
+            param.IsNullable = true;
+            param.SourceColumn = "INSERT_DATE";
+            this._commandCollection[5].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":dateTo";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.TimeStamp;
+            param.IsNullable = true;
+            param.SourceColumn = "INSERT_DATE";
+            this._commandCollection[5].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":terminalId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TERMINAL_ID";
+            this._commandCollection[5].Parameters.Add(param);
+            this._commandCollection[6] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = @"SELECT ADDRESS, AMOUNT, CURRENCY_ID, ID, IDENTITY_NAME, INSERT_DATE, ""NAME"", NAME_AZ, NAME_EN, NAME_RU, PRODUCT_ID, PRODUCT_NAME, RATE, TERMINAL_DATE, TERMINAL_ID, TRANSACTION_ID, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (INSERT_DATE BETWEEN :dateFrom AND :dateTo)";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":dateFrom";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.TimeStamp;
+            param.IsNullable = true;
+            param.SourceColumn = "INSERT_DATE";
+            this._commandCollection[6].Parameters.Add(param);
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":dateTo";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.TimeStamp;
+            param.IsNullable = true;
+            param.SourceColumn = "INSERT_DATE";
+            this._commandCollection[6].Parameters.Add(param);
+            this._commandCollection[7] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[7].Connection = this.Connection;
+            this._commandCollection[7].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)";
+            this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":transactionId";
             param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
             param.Size = 50;
             param.IsNullable = true;
             param.SourceColumn = "TRANSACTION_ID";
-            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[7].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21942,7 +24221,7 @@ namespace Db.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByDate(ds.V_PRODUCTS_HISTORYDataTable dataTable, global::System.Nullable<global::System.DateTime> dateFrom, global::System.Nullable<global::System.DateTime> dateTo) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((dateFrom.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(dateFrom.Value));
             }
@@ -21967,7 +24246,7 @@ namespace Db.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ds.V_PRODUCTS_HISTORYDataTable GetDataByDate(global::System.Nullable<global::System.DateTime> dateFrom, global::System.Nullable<global::System.DateTime> dateTo) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((dateFrom.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(dateFrom.Value));
             }
@@ -21990,7 +24269,7 @@ namespace Db.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByTransactionId(ds.V_PRODUCTS_HISTORYDataTable dataTable, string transactionId) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[7];
             if ((transactionId == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -22009,7 +24288,7 @@ namespace Db.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ds.V_PRODUCTS_HISTORYDataTable GetDataByTransactionId(string transactionId) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[7];
             if ((transactionId == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -22066,6 +24345,134 @@ namespace Db.dsTableAdapters {
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
             }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<decimal>();
+            }
+            else {
+                return new global::System.Nullable<decimal>(((decimal)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<decimal> CountRowsByEncashmentId(global::System.Nullable<global::System.DateTime> dateFrom, global::System.Nullable<global::System.DateTime> dateTo, global::System.Nullable<decimal> encashmentId) {
+            global::Oracle.DataAccess.Client.OracleCommand command = this.CommandCollection[3];
+            if ((dateFrom.HasValue == true)) {
+                command.Parameters[0].Value = ((System.DateTime)(dateFrom.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((dateTo.HasValue == true)) {
+                command.Parameters[1].Value = ((System.DateTime)(dateTo.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((encashmentId.HasValue == true)) {
+                command.Parameters[2].Value = ((decimal)(encashmentId.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<decimal>();
+            }
+            else {
+                return new global::System.Nullable<decimal>(((decimal)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<decimal> CountRowsProductId(global::System.Nullable<global::System.DateTime> dateFrom, global::System.Nullable<global::System.DateTime> dateTo, decimal productId) {
+            global::Oracle.DataAccess.Client.OracleCommand command = this.CommandCollection[4];
+            if ((dateFrom.HasValue == true)) {
+                command.Parameters[0].Value = ((System.DateTime)(dateFrom.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((dateTo.HasValue == true)) {
+                command.Parameters[1].Value = ((System.DateTime)(dateTo.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[2].Value = ((decimal)(productId));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<decimal>();
+            }
+            else {
+                return new global::System.Nullable<decimal>(((decimal)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<decimal> CountRowsTerminalID(global::System.Nullable<global::System.DateTime> dateFrom, global::System.Nullable<global::System.DateTime> dateTo, decimal terminalId) {
+            global::Oracle.DataAccess.Client.OracleCommand command = this.CommandCollection[5];
+            if ((dateFrom.HasValue == true)) {
+                command.Parameters[0].Value = ((System.DateTime)(dateFrom.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((dateTo.HasValue == true)) {
+                command.Parameters[1].Value = ((System.DateTime)(dateTo.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[2].Value = ((decimal)(terminalId));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -24538,6 +26945,870 @@ namespace Db.dsTableAdapters {
         public virtual ds.V_TERMINAL_STATUS_CODESDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             ds.V_TERMINAL_STATUS_CODESDataTable dataTable = new ds.V_TERMINAL_STATUS_CODESDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
+        
+        private global::Oracle.DataAccess.Client.OracleConnection _connection;
+        
+        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
+        
+        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "V_BANKNOTES_SUMMARY_BY_HISTORY";
+            tableMapping.ColumnMappings.Add("AMOUNT", "AMOUNT");
+            tableMapping.ColumnMappings.Add("ENCASHMENT_ID", "ENCASHMENT_ID");
+            tableMapping.ColumnMappings.Add("HISTORY_ID", "HISTORY_ID");
+            tableMapping.ColumnMappings.Add("TERMINAL_ID", "TERMINAL_ID");
+            tableMapping.ColumnMappings.Add("COUNT_ALL", "COUNT_ALL");
+            tableMapping.ColumnMappings.Add("CURRENCY_ID", "CURRENCY_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
+            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FRO" +
+                "M CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FRO" +
+                "M CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_HISTORY WHERE (HISTORY_ID = :historyId)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":historyId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "HISTORY_ID";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable dataTable = new ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByHistoryId(ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable dataTable, decimal historyId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(historyId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable GetDataByHistoryId(decimal historyId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(historyId));
+            ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable dataTable = new ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class V_BANKNOTES_SUMMARY_BY_TERMTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
+        
+        private global::Oracle.DataAccess.Client.OracleConnection _connection;
+        
+        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
+        
+        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public V_BANKNOTES_SUMMARY_BY_TERMTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "V_BANKNOTES_SUMMARY_BY_TERM";
+            tableMapping.ColumnMappings.Add("AMOUNT", "AMOUNT");
+            tableMapping.ColumnMappings.Add("ENCASHMENT_ID", "ENCASHMENT_ID");
+            tableMapping.ColumnMappings.Add("HISTORY_ID", "HISTORY_ID");
+            tableMapping.ColumnMappings.Add("TERMINAL_ID", "TERMINAL_ID");
+            tableMapping.ColumnMappings.Add("COUNT_ALL", "COUNT_ALL");
+            tableMapping.ColumnMappings.Add("CURRENCY_ID", "CURRENCY_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
+            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FRO" +
+                "M CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FRO" +
+                "M CASHIN_NEW.V_BANKNOTES_SUMMARY_BY_TERM WHERE (TERMINAL_ID = :terminalId)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":terminalId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TERMINAL_ID";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable dataTable = new ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByTerminalId(ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable dataTable, decimal terminalId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable GetDataByTerminalId(decimal terminalId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(terminalId));
+            ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable dataTable = new ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
+        
+        private global::Oracle.DataAccess.Client.OracleConnection _connection;
+        
+        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
+        
+        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "V_BANKNOTES_SUMMARY_ENCASHMENT";
+            tableMapping.ColumnMappings.Add("AMOUNT", "AMOUNT");
+            tableMapping.ColumnMappings.Add("ENCASHMENT_ID", "ENCASHMENT_ID");
+            tableMapping.ColumnMappings.Add("HISTORY_ID", "HISTORY_ID");
+            tableMapping.ColumnMappings.Add("TERMINAL_ID", "TERMINAL_ID");
+            tableMapping.ColumnMappings.Add("COUNT_ALL", "COUNT_ALL");
+            tableMapping.ColumnMappings.Add("CURRENCY_ID", "CURRENCY_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
+            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FRO" +
+                "M CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT AMOUNT, ENCASHMENT_ID, HISTORY_ID, TERMINAL_ID, COUNT_ALL, CURRENCY_ID FRO" +
+                "M CASHIN_NEW.V_BANKNOTES_SUMMARY_ENCASHMENT WHERE (ENCASHMENT_ID = :encashmentId" +
+                ")";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":encashmentId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "ENCASHMENT_ID";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable dataTable = new ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByEncashmentId(ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable dataTable, global::System.Nullable<decimal> encashmentId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((encashmentId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(encashmentId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable GetDataByEncashmentId(global::System.Nullable<decimal> encashmentId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((encashmentId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(encashmentId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable dataTable = new ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class V_BRANCHES_TO_USERSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
+        
+        private global::Oracle.DataAccess.Client.OracleConnection _connection;
+        
+        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
+        
+        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public V_BRANCHES_TO_USERSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "V_BRANCHES_TO_USERS";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("NAME", "NAME");
+            tableMapping.ColumnMappings.Add("INSERT_DATE", "INSERT_DATE");
+            tableMapping.ColumnMappings.Add("UPDATE_DATE", "UPDATE_DATE");
+            tableMapping.ColumnMappings.Add("USER_ID", "USER_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
+            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, \"NAME\", INSERT_DATE, UPDATE_DATE, USER_ID FROM CASHIN_NEW.V_BRANCHES_T" +
+                "O_USERS";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT ID, \"NAME\", INSERT_DATE, UPDATE_DATE, USER_ID FROM CASHIN_NEW.V_BRANCHES_T" +
+                "O_USERS WHERE user_id = :userId";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":userId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "USER_ID";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ds.V_BRANCHES_TO_USERSDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ds.V_BRANCHES_TO_USERSDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.V_BRANCHES_TO_USERSDataTable dataTable = new ds.V_BRANCHES_TO_USERSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByUserId(ds.V_BRANCHES_TO_USERSDataTable dataTable, global::System.Nullable<decimal> userId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((userId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(userId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_BRANCHES_TO_USERSDataTable GetDataByUserId(global::System.Nullable<decimal> userId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((userId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(userId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            ds.V_BRANCHES_TO_USERSDataTable dataTable = new ds.V_BRANCHES_TO_USERSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

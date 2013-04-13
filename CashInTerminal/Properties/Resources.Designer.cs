@@ -111,6 +111,24 @@ namespace CashInTerminal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Код клиента.
+        /// </summary>
+        internal static string ClientCode {
+            get {
+                return ResourceManager.GetString("ClientCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повторите код клиента.
+        /// </summary>
+        internal static string ClientCodeRetype {
+            get {
+                return ResourceManager.GetString("ClientCodeRetype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to : .
         /// </summary>
         internal static string Colon {

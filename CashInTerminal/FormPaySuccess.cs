@@ -6,9 +6,10 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using CashInTerminal.BaseForms;
-using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
 using CashInTerminal.Properties;
+using Containers;
+using CheckField = CashInTerminal.CashIn.CheckField;
 
 namespace CashInTerminal
 {
@@ -92,21 +93,37 @@ namespace CashInTerminal
                     FormMain.CheckTemplates.TryGetValue(
                         FormMain.GetCheckTemplateHashCode(FormMain.ClientInfo.Product.CheckType,
                                                           FormMain.SelectedLanguage), out rows);
+
+                    
                     if (rows != null)
                     {
+                        Log.Debug(EnumEx.GetStringFromArray(rows));
+
                         foreach (var row in rows)
                         {
                             var field = new CheckField
-                            {
-                                Id = (int)row.Id,
-                                CheckId = (int)row.CheckTemplateId,
-                                FieldType = (int)row.Type,
-                                Image = row.IsImageNull() ? null : row.Image,
-                                Order = row.IsOrderNumberNull() ? 0 : (int)row.OrderNumber,
-                                Value = row.IsValueNull() ? String.Empty : ReplaceTemplateFields(row.Value)
-                            };
+                                {
+                                    Id = (int) row.Id,
+                                    CheckId = (int) row.CheckTemplateId,
+                                    FieldType = (int) row.Type,
+                                    Image = row.IsImageNull() ? null : row.Image,
+                                    Order = row.IsOrderNumberNull() ? 0 : (int) row.OrderNumber,
+                                    Value = row.IsValueNull() ? String.Empty : ReplaceTemplateFields(row.Value)
+                                };
 
                             _Template.Add(field);
+                        }
+                    }
+                    else
+                    {
+                        Log.Warn("Rows is null " + FormMain.ClientInfo.Product.CheckType);
+
+                        Log.Warn(FormMain.GetCheckTemplateHashCode(FormMain.ClientInfo.Product.CheckType,
+                                                          FormMain.SelectedLanguage));
+
+                        foreach (KeyValuePair<int, List<ds.TemplateFieldRow>> pair in FormMain.CheckTemplates)
+                        {
+                            Log.Debug(String.Format("Key: {0}, Values: {1}", pair.Key, EnumEx.GetStringFromArray(pair.Value)));
                         }
                     }
                 }

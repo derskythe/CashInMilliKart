@@ -66,6 +66,34 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public void SaveUserToRoles(int userId, int[] roles)
+        {
+            CheckConnection();
+
+            var cmd = _OraCon.CreateCommand();
+            cmd.CommandText = "main.save_users_to_roles";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            var pUserId = new OracleParameter();
+            var pRoles = new OracleParameter();
+
+
+            pUserId.OracleDbType = OracleDbType.Int32;
+            pRoles.OracleDbType = OracleDbType.Int32;
+
+            pRoles.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+
+            pUserId.Value = userId;
+            pRoles.Value = roles;
+
+            pRoles.Size = roles.Length;
+
+            cmd.Parameters.Add(pUserId);
+            cmd.Parameters.Add(pRoles);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public void SaveUser(int? userId, string userName, string password, string salt)
         {
             CheckConnection();
@@ -154,6 +182,19 @@ namespace Db
             return result == null ? 0 : ((OracleDecimal)(result)).ToInt32();
         }
 
+        public void DeleteTerminal(int terminal)
+        {
+            CheckConnection();
+
+            const string cmdText =
+                "begin main.delete_terminal(v_id => :v_id); end;";
+
+            var cmd = new OracleCommand(cmdText, _OraCon);
+
+            cmd.Parameters.Add("v_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminal;
+            cmd.ExecuteNonQuery();
+        }
+
         public void SaveCurrency(string id, string isoName, string name, bool defaultCurrency, int userId)
         {
             CheckConnection();
@@ -234,7 +275,8 @@ namespace Db
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
-                var user = Convertor.ToUser(row, roles);
+                var branches = ListBranchesByUser(row.ID);
+                var user = Convertor.ToUser(row, roles, branches);
                 return user;
             }
 
@@ -252,7 +294,8 @@ namespace Db
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
-                return Convertor.ToUser(row, roles);
+                var branches = ListBranchesByUser(row.ID);
+                return Convertor.ToUser(row, roles, branches);
             }
 
             return null;
@@ -269,7 +312,8 @@ namespace Db
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
-                return Convertor.ToUser(row, roles);
+                var branches = ListBranchesByUser(row.ID);
+                return Convertor.ToUser(row, roles, branches);
             }
 
             return null;
@@ -286,7 +330,8 @@ namespace Db
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
-                return Convertor.ToUser(row, roles);
+                var branches = ListBranchesByUser(row.ID);
+                return Convertor.ToUser(row, roles, branches);
             }
 
             return null;
@@ -384,7 +429,8 @@ namespace Db
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
-                var user = Convertor.ToUser(row, roles);
+                var branches = ListBranchesByUser(row.ID);
+                var user = Convertor.ToUser(row, roles, branches);
                 result.Add(user);
             }
 
@@ -422,7 +468,8 @@ namespace Db
             foreach (ds.V_LIST_USERSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.ID);
-                var user = Convertor.ToUser(row, roles);
+                var branches = ListBranchesByUser(row.ID);
+                var user = Convertor.ToUser(row, roles, branches);
                 result.Add(user);
             }
 
@@ -457,7 +504,8 @@ namespace Db
             foreach (ds.V_LIST_ACTIVE_SESSIONSRow row in table.Rows)
             {
                 var roles = ListRolesToUsersUserId(row.USER_ID);
-                return Convertor.ToUserSession(row, roles);
+                var branches = ListBranchesByUser(row.USER_ID);
+                return Convertor.ToUserSession(row, roles, branches);
             }
 
             return null;
@@ -830,9 +878,7 @@ namespace Db
                 Connection = _OraCon
             };
 
-            var cmd = new OracleCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = _OraCon;
+            var cmd = new OracleCommand {CommandType = CommandType.Text, Connection = _OraCon};
 
             const string sql = "SELECT COUNT(*) FROM v_list_encashment t";
             var whereSql = String.Empty;
@@ -840,9 +886,9 @@ namespace Db
             // Bind by name not exists!
             if (terminalId > 0)
             {
-                whereSql = " WHERE t.terminal_id = :terminalId ";
-                command.Parameters.Add("terminalId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
-                cmd.Parameters.Add("terminalId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+                whereSql = " WHERE t.terminal_id = :encashmentId ";
+                command.Parameters.Add("encashmentId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+                cmd.Parameters.Add("encashmentId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
             }
             if (branchId > 0)
             {
@@ -1058,7 +1104,7 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
             {
                 var values = ListProductHistoryValues(row.ID);
-                var banknotes = ListBanknotesByHistoryId(row.ID);
+                var banknotes = ListSummaryBanknotesHistoryId(row.ID);
                 result.Add(Convertor.ToProductHistory(row, values, banknotes));
             }
 
@@ -1112,6 +1158,10 @@ namespace Db
 
                 case ProductHistoryColumns.TransactionId:
                     column = "t.TRANSACTION_ID";
+                    break;
+
+                case ProductHistoryColumns.Encashment:
+                    column = "t.ENCASHMENT_ID";
                     break;
             }
             return column;
@@ -1178,7 +1228,7 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
             {
                 var values = ListProductHistoryValues(row.ID);
-                var banknotes = ListBanknotesByHistoryId(row.ID);
+                var banknotes = ListSummaryBanknotesHistoryId(row.ID);
 
                 result.Add(Convertor.ToProductHistory(row, values, banknotes));
             }
@@ -1208,7 +1258,164 @@ namespace Db
             foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
             {
                 var values = ListProductHistoryValues(row.ID);
-                var banknotes = ListBanknotesByHistoryId(row.ID);
+                var banknotes = ListSummaryBanknotesHistoryId(row.ID);
+                result.Add(Convertor.ToProductHistory(row, values, banknotes));
+            }
+
+            return result;
+        }
+
+        public List<ProductHistory> ListProductHistory(DateTime from, DateTime to, int terminalId, ProductHistoryColumns sortColumn,
+                                                       SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
+            var rawCount = adapter1.CountRowsTerminalID(from, to, terminalId);
+            if (rawCount != null)
+            {
+                count = Convert.ToInt32(rawCount);
+            }
+            else
+            {
+                count = 0;
+                return new List<ProductHistory>();
+            }
+
+            string column = GetProductHistoryColumn(sortColumn);
+
+            string cmdtxt =
+                String.Format(
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND TERMINAL_ID = :terminalId AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    column, sortType.ToString(), rowNum, rowNum + perPage);
+
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+            cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+            cmd.Parameters.Add("terminalId", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+            adapter.Fill(table);
+
+            var result = new List<ProductHistory>();
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                var values = ListProductHistoryValues(row.ID);
+                var banknotes = ListSummaryBanknotesHistoryId(row.ID);
+
+                result.Add(Convertor.ToProductHistory(row, values, banknotes));
+            }
+
+            return result;
+        }
+
+        public List<ProductHistory> ListProductHistoryByProduct(DateTime from, DateTime to, int prodId, ProductHistoryColumns sortColumn,
+                                                       SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
+            var rawCount = adapter1.CountRowsProductId(from, to, prodId);
+            if (rawCount != null)
+            {
+                count = Convert.ToInt32(rawCount);
+            }
+            else
+            {
+                count = 0;
+                return new List<ProductHistory>();
+            }
+
+            string column = GetProductHistoryColumn(sortColumn);
+
+            string cmdtxt =
+                String.Format(
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND PRODUCT_ID = :productId AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    column, sortType.ToString(), rowNum, rowNum + perPage);
+
+            var cmd = new OracleCommand(cmdtxt, _OraCon);
+            cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+            cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+            cmd.Parameters.Add("productId", OracleDbType.Int32, ParameterDirection.Input).Value = prodId;
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+            adapter.Fill(table);
+
+            var result = new List<ProductHistory>();
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                var values = ListProductHistoryValues(row.ID);
+                var banknotes = ListSummaryBanknotesHistoryId(row.ID);
+
+                result.Add(Convertor.ToProductHistory(row, values, banknotes));
+            }
+
+            return result;
+        }
+
+        public List<ProductHistory> ListProductHistoryByEncashmentId(DateTime from, DateTime to, int encashmentId, ProductHistoryColumns sortColumn,
+                                                       SortType sortType, int rowNum, int perPage, out int count)
+        {
+            CheckConnection();
+
+            var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
+            var rawCount = adapter1.CountRowsByEncashmentId(from, to, encashmentId);
+            if (rawCount != null)
+            {
+                count = Convert.ToInt32(rawCount);
+            }
+            else
+            {
+                count = 0;
+                return new List<ProductHistory>();
+            }
+
+            string column = GetProductHistoryColumn(sortColumn);
+
+            string cmdtxt;
+
+            var cmd = new OracleCommand {Connection = _OraCon};
+
+
+            if (encashmentId > 0)
+            {
+                cmdtxt = String.Format(
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND ENCASHMENT_ID = :encashmentId AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    column, sortType.ToString(), rowNum, rowNum + perPage);
+
+
+                cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+                cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+                cmd.Parameters.Add("encashmentId", OracleDbType.Int32, ParameterDirection.Input).Value = encashmentId;
+            }
+            else
+            {
+                cmdtxt = String.Format(
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND ENCASHMENT_ID IS NULL AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    column, sortType.ToString(), rowNum, rowNum + perPage);
+
+
+                cmd.Parameters.Add("dateFrom", OracleDbType.Date, ParameterDirection.Input).Value = from;
+                cmd.Parameters.Add("dateTo", OracleDbType.Date, ParameterDirection.Input).Value = to;
+            }
+            cmd.CommandText = cmdtxt;
+
+
+            var adapter = new OracleDataAdapter(cmd);
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+            adapter.Fill(table);
+
+            var result = new List<ProductHistory>();
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                var values = ListProductHistoryValues(row.ID);
+                var banknotes = ListSummaryBanknotesHistoryId(row.ID);
+
                 result.Add(Convertor.ToProductHistory(row, values, banknotes));
             }
 
@@ -1629,6 +1836,120 @@ namespace Db
             foreach (ds.V_TERMINAL_STATUS_CODESRow row in table.Rows)
             {
                 result.Add(Convertor.ToTerminalStatusCode(row));
+            }
+
+            return result;
+        }
+
+        public List<Branch> ListBranchesByUser(int userId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BRANCHES_TO_USERSTableAdapter {Connection = _OraCon, BindByName = true};
+            var table = new ds.V_BRANCHES_TO_USERSDataTable();
+
+            adapter.FillByUserId(table, userId);
+
+            var result = new List<Branch>();
+
+            foreach (ds.V_BRANCHES_TO_USERSRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBranch(row));
+            }
+
+            return result;
+        }
+
+        public List<Branch> ListBranchesByUser(decimal userId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BRANCHES_TO_USERSTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BRANCHES_TO_USERSDataTable();
+
+            adapter.FillByUserId(table, userId);
+
+            var result = new List<Branch>();
+
+            foreach (ds.V_BRANCHES_TO_USERSRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBranch(row));
+            }
+
+            return result;
+        }
+
+        public List<BanknoteSummary> ListSummaryBanknotes(int terminalId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTES_SUMMARY_BY_TERMTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable();
+
+            adapter.FillByTerminalId(table, terminalId);
+
+            var result = new List<BanknoteSummary>();
+
+            foreach (ds.V_BANKNOTES_SUMMARY_BY_TERMRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknoteSummary(row));
+            }
+
+            return result;
+        }
+
+        public List<BanknoteSummary> ListSummaryBanknotesHistoryId(int historyId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable();
+
+            adapter.FillByHistoryId(table, historyId);
+
+            var result = new List<BanknoteSummary>();
+
+            foreach (ds.V_BANKNOTES_SUMMARY_BY_HISTORYRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknoteSummary(row));
+            }
+
+            return result;
+        }
+
+        public List<BanknoteSummary> ListSummaryBanknotesHistoryId(decimal historyId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTES_SUMMARY_BY_HISTORYTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTES_SUMMARY_BY_HISTORYDataTable();
+
+            adapter.FillByHistoryId(table, historyId);
+
+            var result = new List<BanknoteSummary>();
+
+            foreach (ds.V_BANKNOTES_SUMMARY_BY_HISTORYRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknoteSummary(row));
+            }
+
+            return result;
+        }
+
+        public List<BanknoteSummary> ListSummaryBanknotesEncashmentId(int encashmentId)
+        {
+            CheckConnection();
+
+            var adapter = new V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_BANKNOTES_SUMMARY_ENCASHMENTDataTable();
+
+            adapter.FillByEncashmentId(table, encashmentId);
+
+            var result = new List<BanknoteSummary>();
+
+            foreach (ds.V_BANKNOTES_SUMMARY_ENCASHMENTRow row in table.Rows)
+            {
+                result.Add(Convertor.ToBanknoteSummary(row));
             }
 
             return result;

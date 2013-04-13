@@ -76,7 +76,7 @@ namespace CashInTerminal
 
         private void FormCreditByClientCodeRetypeLoad(object sender, EventArgs e)
         {
-            Label = Resources.AccountNumberRetype;
+            Label = Resources.ClientCodeRetype;
         }
     }
 }

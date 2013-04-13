@@ -47,7 +47,7 @@ namespace CashInTerminal
             }
             catch (Exception exp)
             {
-                Log.ErrorException(exp.Message, exp);
+                Log.FatalException(exp.Message, exp);
             }
 
             //lblSuccessTotalAmount.Text = lblMoneyTotal.Text + @" " + lblMoneyCurrency.Text;
@@ -110,7 +110,7 @@ namespace CashInTerminal
             }
             catch (Exception exp)
             {
-                Log.ErrorException(exp.Message, exp);
+                Log.FatalException(exp.Message, exp);
             }
         }
 

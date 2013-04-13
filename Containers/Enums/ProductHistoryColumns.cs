@@ -28,6 +28,8 @@ namespace Containers.Enums
         [EnumMember]
         Amount = 9,
         [EnumMember]
-        ProductName = 10
+        ProductName = 10,
+        [EnumMember]
+        Encashment = 11
     }
 }

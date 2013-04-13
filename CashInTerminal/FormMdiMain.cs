@@ -203,7 +203,7 @@ namespace CashInTerminal
         private void FormMdiMainLoad(object sender, EventArgs e)
         {
             OpenForm(typeof(FormOutOfOrder));
-            ProductUpdate += delegate { };            
+            ProductUpdate += delegate { };
 
             foreach (Control control in Controls)
             {
@@ -743,6 +743,10 @@ namespace CashInTerminal
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditPayment, InterfaceLanguages.En);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditPayment, InterfaceLanguages.Ru);
 
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.DebitPayment, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.DebitPayment, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.DebitPayment, InterfaceLanguages.Ru);
+
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.Az);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.En);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.Ru);
@@ -914,7 +918,7 @@ namespace CashInTerminal
                         }
 
                         UpdatePrinterStatus();
-
+                        UpdateTerminalStatusByDevices();
 
                         var now = DateTime.Now;
                         //var terminalStatus = (int) TerminalCodes.Ok;
@@ -1039,7 +1043,7 @@ namespace CashInTerminal
                                             OpenForm(typeof(FormLanguage));
                                         } else  */
                                         if ((_CurrentForm.Name == FormEnum.OutOfOrder ||
-                                             _CurrentForm.Name == FormEnum.TestMode))
+                                             _CurrentForm.Name == FormEnum.TestMode) && _TerminalStatus != TerminalCodes.SystemError)
                                         {
                                             _TerminalStatus = TerminalCodes.Ok;
                                             Log.Warn("Received command " +
@@ -1112,6 +1116,32 @@ namespace CashInTerminal
                     Log.ErrorException(exp.Message, exp);
                 }
             }
+        }
+
+        private void UpdateTerminalStatusByDevices()
+        {
+            if (_CcnetDevice.DeviceState.FatalError)
+            {
+                Log.Warn(_CcnetDevice.DeviceState);
+            }
+            //if (/*_PrinterStatus.ErrorState > 0 || */_CcnetDevice.DeviceState.FatalError)
+            //{
+            //    Log.Warn(_CcnetDevice.DeviceState);
+            //    _TerminalStatus = TerminalCodes.SystemError;
+
+            //    if (_CurrentForm.Name != FormEnum.MoneyInput &&
+            //    _CurrentForm.Name != FormEnum.PaySuccess &&
+            //    _CurrentForm.Name != FormEnum.Encashment &&
+            //    _CurrentForm.Name != FormEnum.Activation
+            //    )
+            //    {
+            //        if (_CurrentForm.Name != FormEnum.OutOfOrder)
+            //        {
+            //            _Init = false;
+            //            OpenForm(typeof(FormOutOfOrder));
+            //        }
+            //    }
+            //}
         }
 
         #endregion
@@ -1321,7 +1351,7 @@ namespace CashInTerminal
                                     Amount = (int)row.Amount,
                                     CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
                                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                                    OperationType = Convert.ToInt32(row.OperationType)                                    
+                                    OperationType = Convert.ToInt32(row.OperationType)
                                 };
 
                             var valuesList = new List<String>();
@@ -1481,7 +1511,7 @@ namespace CashInTerminal
 
         #endregion
 
-        #region Paint 
+        #region Paint
 
         private readonly Color _Color1 = Color.FromArgb(215, 232, 248);
         private readonly Color _Color2 = Color.FromArgb(207, 226, 246);
