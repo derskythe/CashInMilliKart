@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using CashInTerminal.BaseForms;
 using CashInTerminal.Enums;
 using CashInTerminal.Properties;
+using Containers.CashCode;
 
 namespace CashInTerminal
 {
@@ -21,7 +22,16 @@ namespace CashInTerminal
 
         private void BtnMoneyNextClick(object sender, EventArgs e)
         {
+            Thread.Sleep(250);
+            
+            if (FormMain.CcnetDevice.DeviceState.StateCode == CCNETCommand.Stacking)
+            {
+                return;
+            }
+
             btnMoneyNext.Enabled = false;
+
+            Thread.Sleep(250);
             try
             {
                 Log.Debug("Stopping cashcode");
@@ -36,13 +46,18 @@ namespace CashInTerminal
             try
             {
                 Log.Debug("Update DB");
-                FormMain.Db.UpdateAmount(
-                    FormMain.ClientInfo.PaymentId,
-                    lblMoneyCurrency.Text,
-                    1,
-                    Convert.ToInt32(lblMoneyTotal.Text));
 
-                FormMain.Db.ConfirmTransaction(FormMain.ClientInfo.PaymentId);
+                lock (FormMain.ClientInfo)
+                {
+                    FormMain.Db.UpdateAmount(
+                        FormMain.ClientInfo.PaymentId,
+                        lblMoneyCurrency.Text,
+                        1,
+                        Convert.ToInt32(FormMain.ClientInfo.CashCodeAmount));
+
+                    FormMain.Db.ConfirmTransaction(FormMain.ClientInfo.PaymentId);
+                }
+                
                 Log.Debug("Done");
             }
             catch (Exception exp)

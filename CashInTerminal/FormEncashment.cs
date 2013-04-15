@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CashInTerminal.BaseForms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
+using CashInTerminal.Properties;
 using Containers.Enums;
 
 namespace CashInTerminal
@@ -113,64 +114,82 @@ namespace CashInTerminal
 
         private void PrintDocumentPrintPage(object sender, PrintPageEventArgs e)
         {
-            using (var font = new Font("Arial", 10, FontStyle.Bold))
+            try
             {
-                const float x = 0;
-                float y = 0;
-
-                // Determine the height of a line (based on the font used).
-                float lineHeight = font.GetHeight(e.Graphics);
-                y += lineHeight * 2;
-
-                foreach (var line in _Template)
+                using (var font = new Font("Arial", 10, FontStyle.Bold))
                 {
-                    switch ((TemplateFieldType)line.FieldType)
+                    const float x = 0;
+                    float y = 0;
+
+                    // Determine the height of a line (based on the font used).
+                    float lineHeight = font.GetHeight(e.Graphics);
+                    y += lineHeight*2;
+
+                    foreach (var line in _Template)
                     {
-                        case TemplateFieldType.Image:
-                            try
-                            {
-                                using (var stream = new MemoryStream(line.Image))
+                        switch ((TemplateFieldType) line.FieldType)
+                        {
+                            case TemplateFieldType.Image:
+                                try
                                 {
-                                    Image img = new Bitmap(stream);
-                                    var convertedImage = Utilities.ScaleImage(img, e.PageBounds.Width - 15, e.PageBounds.Height);
-                                    e.Graphics.DrawImage(
-                                        convertedImage,
-                                        x, y);
-                                    y += convertedImage.Height + lineHeight;
-                                    img.Dispose();
-                                    stream.Close();
+                                    using (var stream = new MemoryStream(line.Image))
+                                    {
+                                        Image img = new Bitmap(stream);
+                                        var convertedImage = Utilities.ScaleImage(img, e.PageBounds.Width - 15,
+                                                                                  e.PageBounds.Height);
+                                        e.Graphics.DrawImage(
+                                            convertedImage,
+                                            x, y);
+                                        y += convertedImage.Height + lineHeight;
+                                        img.Dispose();
+                                        stream.Close();
+                                    }
                                 }
-                            }
-                            catch (Exception exp)
-                            {
-                                Log.ErrorException(exp.Message, exp);
-                            }
-                            break;
+                                catch (Exception exp)
+                                {
+                                    Log.ErrorException(exp.Message, exp);
+                                }
+                                break;
 
-                        case TemplateFieldType.Line:
-                            using (var blackPen = new Pen(Color.Black, 3))
-                            {
-                                y += lineHeight;
-                                e.Graphics.DrawLine(blackPen, 0, y, e.PageBounds.Width, y);
-                                y += lineHeight;
-                                blackPen.Dispose();
-                            }
-                            break;
+                            case TemplateFieldType.Line:
+                                using (var blackPen = new Pen(Color.Black, 3))
+                                {
+                                    y += lineHeight;
+                                    e.Graphics.DrawLine(blackPen, 0, y, e.PageBounds.Width, y);
+                                    y += lineHeight;
+                                    blackPen.Dispose();
+                                }
+                                break;
 
-                        case TemplateFieldType.Text:
-                            e.Graphics.DrawString(line.Value, font, Brushes.Black, x, y);
-                            y += lineHeight;
-                            break;
+                            case TemplateFieldType.Text:
+                                e.Graphics.DrawString(line.Value, font, Brushes.Black, x, y);
+                                y += lineHeight;
+                                break;
+                        }
                     }
+
+                    e.Graphics.DrawString("\n", font, Brushes.Black, x, y);
+                    y += lineHeight;
+                    e.Graphics.DrawString("\n", font, Brushes.Black, x, y);
+                    y += lineHeight;
+                    e.Graphics.DrawString("\n", font, Brushes.Black, x, y);
+
+                    font.Dispose();
                 }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
 
-                e.Graphics.DrawString("\n", font, Brushes.Black, x, y);
-                y += lineHeight;
-                e.Graphics.DrawString("\n", font, Brushes.Black, x, y);
-                y += lineHeight;
-                e.Graphics.DrawString("\n", font, Brushes.Black, x, y);
-
-                font.Dispose();
+            try
+            {
+                Settings.Default.CheckCounter++;
+                Settings.Default.Save();
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
 

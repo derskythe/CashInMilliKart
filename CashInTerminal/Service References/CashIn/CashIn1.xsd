@@ -160,6 +160,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="CashCodeStatus" type="tns:CashCodeDeviceStatus" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrinterStatus" type="tns:PrinterStatus" />
           <xs:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CheckCount" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

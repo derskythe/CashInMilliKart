@@ -2436,6 +2436,8 @@ namespace CashInTerminal.CashIn {
         
         private string errorDescriptionField;
         
+        private int checkCountField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int TerminalStatus {
@@ -2481,6 +2483,18 @@ namespace CashInTerminal.CashIn {
             set {
                 this.errorDescriptionField = value;
                 this.RaisePropertyChanged("ErrorDescription");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public int CheckCount {
+            get {
+                return this.checkCountField;
+            }
+            set {
+                this.checkCountField = value;
+                this.RaisePropertyChanged("CheckCount");
             }
         }
     }

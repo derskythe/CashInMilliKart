@@ -19,6 +19,8 @@ namespace Containers.Enums
         NetworkError = 3,
         [Description("Start normal mode")]
         NormalMode = 32,
+        [Description("Reset check counter")]
+        ResetCheckCounter = 64,
         [Description("Stop working")]
         Stop = 128,
         [Description("Show out of service screen")]

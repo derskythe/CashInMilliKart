@@ -12,6 +12,7 @@ namespace Containers
         private CashCodeDeviceStatus _CashCodeStatus;
         private PrinterStatus _PrinterStatus;
         private String _ErrorDescription;
+        private int _CheckCount;
 
         [XmlElement(ElementName = "TerminalStatus")]
         [DataMember(Name = "TerminalStatus")]
@@ -45,6 +46,14 @@ namespace Containers
             set { _ErrorDescription = value; }
         }
 
+        [XmlElement(ElementName = "CheckCount")]
+        [DataMember(Name = "CheckCount")]
+        public int CheckCount
+        {
+            get { return _CheckCount; }
+            set { _CheckCount = value; }
+        }
+
         public PingRequest()
         {
         }
@@ -70,8 +79,8 @@ namespace Containers
         {
             return
                 string.Format(
-                    "{0}, TerminalStatus: {1}, CashCodeStatus: {2}, PrinterStatus: {3}, ErrorDescription: {4}",
-                    base.ToString(), _TerminalStatus, _CashCodeStatus, _PrinterStatus, _ErrorDescription);
+                    "{0}, TerminalStatus: {1}, CashCodeStatus: {2}, PrinterStatus: {3}, ErrorDescription: {4}, CheckCount: {5}",
+                    base.ToString(), _TerminalStatus, _CashCodeStatus, _PrinterStatus, _ErrorDescription, _CheckCount);
         }
     }
 }

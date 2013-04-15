@@ -27,6 +27,12 @@ namespace Containers.Enums
         [Description("Network error")]
         NetworkError = 5,
 
+        [Description("Low paper")]
+        LowPaper = 6,
+
+        [Description("No paper")]
+        NoPaper = 7,
+
         [Description("Test mode")]
         TestMode = 32,
 

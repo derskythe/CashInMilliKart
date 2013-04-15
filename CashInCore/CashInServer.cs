@@ -93,7 +93,7 @@ namespace CashInCore
                     throw new Exception(String.Format("Codes not equal. TerminalKey: {0}, Db key: {1}", Encoding.ASCII.GetString(terminal.TmpKey), authKey));
                 }
 
-                OracleDb.Instance.SaveTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0, 0, 0, 0, 0, 0, 0);
+                OracleDb.Instance.SaveTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0, 0, 0, 0, 0, 0, 0, 0);
 
                 var terminalKey = Encoding.ASCII.GetBytes(publicKey);
                 OracleDb.Instance.SaveTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
@@ -134,7 +134,8 @@ namespace CashInCore
                     request.CashCodeStatus.StateCodeOut,
                     request.CashCodeStatus.SubErrorCode,
                     request.PrinterStatus.ErrorState,
-                    request.PrinterStatus.ExtendedErrorState);
+                    request.PrinterStatus.ExtendedErrorState,
+                    request.CheckCount);
                 result.Command = OracleDb.Instance.GetTerminalStatus(request.TerminalId);
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

@@ -219,7 +219,8 @@ namespace Db
         /// <param name="cashcodeSuberror"></param>
         /// <param name="printerErrorState"></param>
         /// <param name="printerExtendedErrorState"></param>
-        public void SaveTerminalStatus(int terminalId, int terminalStatus, int cashCodeStatus, int printerStatus, int cashcodeError, int cashcodeOutStatus, int cashcodeSuberror, int printerErrorState, int printerExtendedErrorState)
+        /// <param name="checkCount"></param>
+        public void SaveTerminalStatus(int terminalId, int terminalStatus, int cashCodeStatus, int printerStatus, int cashcodeError, int cashcodeOutStatus, int cashcodeSuberror, int printerErrorState, int printerExtendedErrorState, int checkCount)
         {
             CheckConnection();
 
@@ -232,7 +233,8 @@ namespace Db
                                    "v_cashcode_out_status => :v_cashcode_out_status, " +
                                    "v_cashcode_suberror => :v_cashcode_suberror, " +
                                    "v_printer_error_state => :v_printer_error_state, " +
-                                   "v_printer_extended_error_state => :v_printer_extended_error_state); " +
+                                   "v_printer_extended_error_state => :v_printer_extended_error_state," +
+                                   "v_check_count => :v_check_count); " +
                                    "end; ";
             var cmd = new OracleCommand(cmdText, _OraCon);
             cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, ParameterDirection.Input).Value = terminalId;
@@ -244,6 +246,7 @@ namespace Db
             cmd.Parameters.Add("v_cashcode_suberror", OracleDbType.Int32, ParameterDirection.Input).Value = cashcodeSuberror;
             cmd.Parameters.Add("v_printer_error_state", OracleDbType.Int32, ParameterDirection.Input).Value = printerErrorState;
             cmd.Parameters.Add("v_printer_extended_error_state", OracleDbType.Int32, ParameterDirection.Input).Value = printerExtendedErrorState;
+            cmd.Parameters.Add("v_check_count", OracleDbType.Int32, ParameterDirection.Input).Value = checkCount;
 
             cmd.ExecuteNonQuery();
         }

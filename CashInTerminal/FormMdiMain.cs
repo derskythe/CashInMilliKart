@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using CashInTerminal.CashIn;
 using CashInTerminal.Enums;
 using CashInTerminal.Properties;
+using Containers.Enums;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using crypto;
@@ -46,6 +47,8 @@ namespace CashInTerminal
         private Dictionary<int, List<ds.TemplateFieldRow>> _CheckTemplates = new Dictionary<int, List<ds.TemplateFieldRow>>();
         private String _SelectedLanguage = InterfaceLanguages.Az;
         private GetClientInfoRequest _InfoRequest;
+        private const int TOTAL_CHECK_COUNT = 2727;
+        private const int LOW_LEVEL_CHECK_COUNT = 2454;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
@@ -199,6 +202,8 @@ namespace CashInTerminal
             InitializeComponent();
             Log.Info("Started");
         }
+
+        #region Load
 
         private void FormMdiMainLoad(object sender, EventArgs e)
         {
@@ -357,6 +362,8 @@ namespace CashInTerminal
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
 
         }
+
+        #endregion
 
         #region Application Update
 
@@ -572,12 +579,17 @@ namespace CashInTerminal
             if (t.GetFrames() != null)
             {
                 var stack = new StringBuilder();
-                foreach (StackFrame frame in t.GetFrames())
+
+                var stackFrames = t.GetFrames();
+                if (stackFrames != null)
                 {
-                    stack.Append("Method: ")
-                         .Append(frame.GetMethod())
-                         .Append(" \tLine: ")
-                         .Append(frame.GetFileLineNumber()).Append(" ");
+                    foreach (StackFrame frame in stackFrames)
+                    {
+                        stack.Append("Method: ")
+                             .Append(frame.GetMethod())
+                             .Append(" \tLine: ")
+                             .Append(frame.GetFileLineNumber()).Append(" ");
+                    }
                 }
 
                 Log.Debug(stack.ToString());
@@ -934,7 +946,8 @@ namespace CashInTerminal
                                 SystemTime = now,
                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                 TerminalStatus = (int)_TerminalStatus,
-                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                                CheckCount = Settings.Default.CheckCounter
                             };
                         var result = _Server.Ping(request);
 
@@ -969,11 +982,11 @@ namespace CashInTerminal
                                     Log.ErrorException(exp.Message, exp);
                                 }
 
-                                switch ((Containers.Enums.TerminalCommands)result.Command)
+                                switch ((TerminalCommands)result.Command)
                                 {
-                                    case Containers.Enums.TerminalCommands.Restart:
+                                    case TerminalCommands.Restart:
                                         Log.Warn("Received command " +
-                                                 Containers.Enums.TerminalCommands.Restart.ToString());
+                                                 TerminalCommands.Restart.ToString());
                                         if (_CurrentForm.Name != FormEnum.MoneyInput &&
                                             _CurrentForm.Name != FormEnum.PaySuccess)
                                         {
@@ -993,10 +1006,10 @@ namespace CashInTerminal
                                         }
                                         break;
 
-                                    case Containers.Enums.TerminalCommands.OutOfService:
-                                    case Containers.Enums.TerminalCommands.Stop:
+                                    case TerminalCommands.OutOfService:
+                                    case TerminalCommands.Stop:
                                         Log.Warn("Received command " +
-                                                 Containers.Enums.TerminalCommands.OutOfService.ToString());
+                                                 TerminalCommands.OutOfService.ToString());
                                         _TerminalStatus = TerminalCodes.OutOfOrder;
                                         if (_CurrentForm.Name != FormEnum.MoneyInput &&
                                             _CurrentForm.Name != FormEnum.PaySuccess)
@@ -1006,9 +1019,9 @@ namespace CashInTerminal
                                         }
                                         break;
 
-                                    case Containers.Enums.TerminalCommands.TestMode:
+                                    case TerminalCommands.TestMode:
                                         Log.Warn("Received command " +
-                                                 Containers.Enums.TerminalCommands.TestMode.ToString());
+                                                 TerminalCommands.TestMode.ToString());
                                         _TerminalStatus = TerminalCodes.TestMode;
                                         if (_CurrentForm.Name != FormEnum.MoneyInput &&
                                             _CurrentForm.Name != FormEnum.PaySuccess)
@@ -1018,9 +1031,9 @@ namespace CashInTerminal
                                         }
                                         break;
 
-                                    case Containers.Enums.TerminalCommands.Encash:
+                                    case TerminalCommands.Encash:
                                         Log.Warn("Received command " +
-                                                 Containers.Enums.TerminalCommands.Encash.ToString());
+                                                 TerminalCommands.Encash.ToString());
                                         _TerminalStatus = TerminalCodes.Encashment;
 
                                         if (_CurrentForm.Name != FormEnum.MoneyInput &&
@@ -1030,8 +1043,25 @@ namespace CashInTerminal
                                         }
                                         break;
 
-                                    case Containers.Enums.TerminalCommands.NormalMode:
-                                    case Containers.Enums.TerminalCommands.Idle:
+                                    case TerminalCommands.ResetCheckCounter:
+                                        Settings.Default.CheckCounter = 0;
+                                        if ((_CurrentForm.Name == FormEnum.OutOfOrder ||
+                                             _CurrentForm.Name == FormEnum.TestMode) && _TerminalStatus != TerminalCodes.SystemError)
+                                        {
+                                            _TerminalStatus = TerminalCodes.Ok;
+                                            Log.Warn("Received command " +
+                                                     ((TerminalCommands)result.Command).ToString());
+                                            GetPublicKey();
+                                            GetTerminalInfo();
+                                            //OpenForm(typeof(FormLanguage));
+                                            OpenForm(typeof(FormProducts));
+                                        }
+
+                                        CommandReceived();
+                                        break;
+
+                                    case TerminalCommands.NormalMode:
+                                    case TerminalCommands.Idle:
                                         /* if (_TerminalStatus == TerminalCodes.NetworkError)
                                         {
                                             _TerminalStatus = TerminalCodes.Ok;
@@ -1047,7 +1077,7 @@ namespace CashInTerminal
                                         {
                                             _TerminalStatus = TerminalCodes.Ok;
                                             Log.Warn("Received command " +
-                                                     ((Containers.Enums.TerminalCommands)result.Command).ToString());
+                                                     ((TerminalCommands)result.Command).ToString());
                                             GetPublicKey();
                                             GetTerminalInfo();
                                             //OpenForm(typeof(FormLanguage));
@@ -1123,6 +1153,29 @@ namespace CashInTerminal
             if (_CcnetDevice.DeviceState.FatalError)
             {
                 Log.Warn(_CcnetDevice.DeviceState);
+            }
+
+            if (Settings.Default.CheckCounter >= TOTAL_CHECK_COUNT)
+            {
+                _TerminalStatus = TerminalCodes.NoPaper;
+                Log.Error("No paper");
+                if (_CurrentForm.Name != FormEnum.MoneyInput &&
+                _CurrentForm.Name != FormEnum.PaySuccess &&
+                _CurrentForm.Name != FormEnum.Encashment &&
+                _CurrentForm.Name != FormEnum.Activation
+                )
+                {
+                    if (_CurrentForm.Name != FormEnum.OutOfOrder)
+                    {
+                        _Init = false;
+                        OpenForm(typeof(FormOutOfOrder));
+                    }
+                }
+            }
+            else if (Settings.Default.CheckCounter >= LOW_LEVEL_CHECK_COUNT)
+            {
+                _TerminalStatus = TerminalCodes.LowPaper;
+                Log.Warn("Low paper");
             }
             //if (/*_PrinterStatus.ErrorState > 0 || */_CcnetDevice.DeviceState.FatalError)
             //{
