@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b02236ed-3010-459f-8fda-229bf7e9f01f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cashin.terminal.server:4443/CashIn" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CashIn.wsdl" MetadataType="Wsdl" ID="08d53991-c325-4219-9fdf-b3ac7e614fd6" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?wsdl=wsdl0" />
+    <MetadataFile FileName="CashInServer.wsdl" MetadataType="Wsdl" ID="607e227e-b514-4189-a8cf-9ce21636d4a0" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?wsdl" />
+    <MetadataFile FileName="CashIn.disco" MetadataType="Disco" ID="4a7e7a13-3563-4444-abaa-569e8ba97760" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?disco" />
+    <MetadataFile FileName="CashIn.xsd" MetadataType="Schema" ID="d654d1bd-8372-46b6-94ab-c15e8f7ec1e8" SourceId="1" SourceUrl="http://cashin.terminal.server:4443/CashIn?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

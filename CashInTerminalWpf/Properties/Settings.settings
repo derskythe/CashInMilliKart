@@ -1,0 +1,38 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CashInTerminalWpf.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TerminalConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;data source="C:\Users\PVParpura\Documents\Visual Studio 2010\Projects\CashIn\CashInTerminalWpf\Terminal.s3db";synchronous=Full&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SQLite&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">data source="C:\Users\PVParpura\Documents\Visual Studio 2010\Projects\CashIn\CashInTerminalWpf\Terminal.s3db";synchronous=Full</Value>
+    </Setting>
+    <Setting Name="DevicePort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PrivateKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PublicKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ServerPublicKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TerminalCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ApplicationPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\CashIn</Value>
+    </Setting>
+    <Setting Name="DbPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\CashIn\Terminal.s3db</Value>
+    </Setting>
+    <Setting Name="CheckCounter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
