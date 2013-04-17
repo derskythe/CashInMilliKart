@@ -1,14 +1,29 @@
-﻿namespace CashInTerminal.Enums
+﻿namespace CashInTerminalWpf.Enums
 {
     class FormEnum
     {
-        public const string MoneyInput = "FormMoneyInput";
+        public const string MoneyInput = "PageMoneyInput.xaml";
         public const string Language = "FormLanguage";
-        public const string TestMode = "FormTestMode";
-        public const string Encashment = "FormEncashment";
-        public const string PaySuccess = "FormPaySuccess";
-        public const string OutOfOrder = "FormOutOfOrder";
-        public const string Activation = "FormActivation";
-        public const string Products = "FormProducts";
+        public const string TestMode = "PageTestMode.xaml";
+        public const string Encashment = "PageEncashment.xaml";
+        public const string PaySuccess = "PagePaySuccess.xaml";
+        public const string OutOfOrder = "PageOutOfOrder.xaml";
+        public const string Activation = "PageActivation.xaml";
+        public const string Products = "PageProducts.xaml";
+        public const string ClientCode = "PageClientCode.xaml";
+        public const string ClientCodeRetype = "PageClientCodeRetype.xaml";
+        public const string CreditClientInfo = "PageCreditClientInfo.xaml";
+        public const string CreditPaymentTypeSelect = "PageCreditPaymentTypeSelect.xaml";
+        public const string CreditSelectAccount = "PageCreditSelectAccount.xaml";
+        public const string CurrencySelect = "PageCurrencySelect.xaml";
+        public const string DebitClientInfo = "PageDebitClientInfo.xaml";
+        public const string DebitPaymentTypeSelect = "PageDebitPaymentTypeSelect.xaml";
+        public const string InvalidNumber = "PageInvalidNumber.xaml";
+        public const string Progress = "PageProgress.xaml";
+        public const string BolCard = "PageBolcard.xaml";
+        public const string BolCardRetype = "PageBolcardRetype.xaml";
+        public const string ClientByPassport = "PageClientByPassport.xaml";
+        public const string ClientByPassportRetype = "PageClientByPassportRetype.xaml";
+        public const string DebitSelectAccount = "PageDebitSelectAccount.xaml";
     }
 }

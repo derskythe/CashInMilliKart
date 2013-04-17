@@ -10,7 +10,7 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">data source="C:\Users\PVParpura\Documents\Visual Studio 2010\Projects\CashIn\CashInTerminalWpf\Terminal.s3db";synchronous=Full</Value>
     </Setting>
-    <Setting Name="DevicePort" Type="System.String" Scope="User">
+    <Setting Name="DevicePort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PrivateKey" Type="System.String" Scope="User">
@@ -31,7 +31,7 @@
     <Setting Name="DbPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\CashIn\Terminal.s3db</Value>
     </Setting>
-    <Setting Name="CheckCounter" Type="System.String" Scope="User">
+    <Setting Name="CheckCounter" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

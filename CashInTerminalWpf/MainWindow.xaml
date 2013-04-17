@@ -1,8 +1,8 @@
-﻿<Window x:Class="CashInTerminalWpf.MainWindow"
+﻿<NavigationWindow x:Class="CashInTerminalWpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
-</Window>
+        Title="CashIn Terminal" Height="350" Width="525" WindowStyle="None" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+                  Source="PageOutOfOrder.xaml" Loaded="NavigationWindowLoaded" Closing="NavigationWindowClosing">
+    
+</NavigationWindow>

@@ -1,0 +1,26 @@
+﻿<Page x:Class="CashInTerminalWpf.PageOutOfOrder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="746" d:DesignWidth="1020"
+	Title="PageOutOfOrder" Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" xmlns:my="clr-namespace:CashInTerminalWpf"
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Visibility="Hidden" />
+
+        <Image Grid.Row="1" Grid.Column="0" Source="Resources\1363119153_LAN_Unavailable2.png" Height="256" Width="256"></Image>
+        <Label Margin="5,2.5" Name="LabelOutOfOrder" Style="{StaticResource BigLabelStyle}" Grid.Row="2" Grid.Column="0" MaxWidth="900" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock Text="{x:Static res:Resources.LabelOutOfOrder}" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+        </Label>
+        
+    </Grid>
+</Page>

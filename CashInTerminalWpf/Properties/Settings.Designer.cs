@@ -37,9 +37,9 @@ namespace CashInTerminalWpf.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string DevicePort {
+        public int DevicePort {
             get {
-                return ((string)(this["DevicePort"]));
+                return ((int)(this["DevicePort"]));
             }
             set {
                 this["DevicePort"] = value;
@@ -121,9 +121,9 @@ namespace CashInTerminalWpf.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string CheckCounter {
+        public int CheckCounter {
             get {
-                return ((string)(this["CheckCounter"]));
+                return ((int)(this["CheckCounter"]));
             }
             set {
                 this["CheckCounter"] = value;

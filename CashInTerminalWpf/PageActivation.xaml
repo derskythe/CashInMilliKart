@@ -1,0 +1,42 @@
+﻿<Page x:Class="CashInTerminalWpf.PageActivation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="746" d:DesignWidth="1020"
+	Title="PageActivation"
+      Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" xmlns:my="clr-namespace:CashInTerminalWpf"
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded" Unloaded="PageUnloaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="4" Name="LabelCaption1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="Auto" Content="{x:Static res:Resources.LabelActivation1}" Style="{StaticResource MainLabelStyle}" />
+        <Label Grid.Row="1" Grid.ColumnSpan="4" Name="LabelCaption2" VerticalAlignment="Top" HorizontalAlignment="Center" Width="Auto" Content="{x:Static res:Resources.LabelCom}" Style="{StaticResource MainLabelStyle}" />
+        <ComboBox Grid.Row="2" Grid.Column="1" Name="CmbPorts" Width="200" HorizontalAlignment="Right" Margin="0,0,5,0" Style="{StaticResource MainComboBoxStyle}" />
+        <Button Grid.Row="2" Grid.Column="2" Name="ButtonTest" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Left" Content="{x:Static res:Resources.ButtonTest}" Width="160" Margin="5,0,0,0" Click="ButtonTestClick"></Button>
+        <Label Grid.Row="3" Grid.ColumnSpan="4" Name="LabelCaption3" VerticalAlignment="Top" HorizontalAlignment="Center" Width="Auto" Content="{x:Static res:Resources.LabelTerminal}" Style="{StaticResource MainLabelStyle}" />
+        <TextBox Name="TxtTerminal" Grid.Row="4" Grid.ColumnSpan="4" Style="{StaticResource MainTextStyle}" HorizontalAlignment="Center" GotFocus="TxtTerminalGotFocus"></TextBox>
+        <Label Grid.Row="5" Grid.ColumnSpan="4" Name="LabelCaption4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="Auto" Content="{x:Static res:Resources.LabelActivation}" Style="{StaticResource MainLabelStyle}" />
+        <TextBox Name="TxtActivationCode" Grid.Row="6" Grid.ColumnSpan="4" Style="{StaticResource MainTextStyle}" HorizontalAlignment="Center" GotFocus="TxtActivationCodeGotFocus"></TextBox>
+        <my:NumPadControl Grid.ColumnSpan="4" Grid.Row="7" HorizontalAlignment="Center" x:Name="ControlNumPad" VerticalAlignment="Top" MinWidth="272" MinHeight="362"/>
+        <Button Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Name="ButtonNext" MinWidth="93" HorizontalAlignment="Right" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.ButtonActivation}" Margin="10,40,10,10" Click="ButtonNextClick" />
+
+    </Grid>
+</Page>

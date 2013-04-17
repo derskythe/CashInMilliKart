@@ -17,7 +17,7 @@ namespace CashInTerminalWpf
         private String _TransactionId;
         //private DebitPayType _DebitPayType;
         private PaymentOperationType _PaymentOperationType;
-        private ClientInfo _Client;
+        private CashIn.ClientInfo _Client;
 
         public Product Product
         {
@@ -85,7 +85,7 @@ namespace CashInTerminalWpf
             set { _PaymentOperationType = value; }
         }
 
-        public ClientInfo Client
+        public CashIn.ClientInfo Client
         {
             get { return _Client; }
             set { _Client = value; }

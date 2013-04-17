@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Controls;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
@@ -35,20 +35,21 @@ namespace CashInTerminalWpf
             return value.ToString("HH:mm:ss dd.MM.yyyy");
         }
 
-        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxWidth, int maxHeight)
         {
-            //var ratioX = (double)maxWidth / image.Width;
-            //var ratioY = (double)maxHeight / image.Height;
-            //var ratio = Math.Min(ratioX, ratioY);
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
 
-            //var newWidth = (int)(image.Width * ratio);
-            //var percent = (newWidth / 100) * 5;
-            //newWidth -= percent;
-            //var newHeight = (int)(image.Height * ratio);
+            var newWidth = (int)(image.Width * ratio);
+            var percent = (newWidth / 100) * 5;
+            newWidth -= percent;
+            var newHeight = (int)(image.Height * ratio);
 
-            //var newImage = new Bitmap(newWidth, newHeight);
-            //Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
-            return null;
+            var newImage = new Bitmap(newWidth, newHeight);
+            Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
+
+            return newImage;
         }
 
         public static string Sign(String terminalId, DateTime now, AsymmetricKeyParameter keys)
