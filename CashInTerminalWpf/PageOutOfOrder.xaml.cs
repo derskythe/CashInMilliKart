@@ -1,27 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using NLog;
 
 namespace CashInTerminalWpf
 {
     /// <summary>
     /// Interaction logic for PageOutOfOrder.xaml
     /// </summary>
-    public partial class PageOutOfOrder : Page
+    public partial class PageOutOfOrder
     {
+        private readonly MainWindow _FormMain;
+
+        // ReSharper disable FieldCanBeMadeReadOnly.Local
+        // ReSharper disable InconsistentNaming
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        // ReSharper restore InconsistentNaming
+        // ReSharper restore FieldCanBeMadeReadOnly.Local
+
         public PageOutOfOrder()
         {
             InitializeComponent();
+            _FormMain = (MainWindow)Window.GetWindow(this);
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            Log.Info(Name);
         }
     }
 }

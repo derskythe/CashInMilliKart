@@ -7,9 +7,9 @@
       d:DesignHeight="746" d:DesignWidth="1020"
 	Title="PageInvalidNumber" 
       Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" xmlns:my="clr-namespace:CashInTerminalWpf"
-      xmlns:res="clr-namespace:CashInTerminalWpf.Properties">
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded">
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -20,6 +20,6 @@
 
         <Label Name="LabelInvalidNumber" Style="{StaticResource BigLabelStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static res:Resources.LabelInvalidNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <Button Grid.Row="2" Grid.Column="0" Name="ButtonBack" HorizontalAlignment="Center" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}"  />        
+        <Button Grid.Row="2" Grid.Column="0" Name="ButtonBack" HorizontalAlignment="Center" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />        
     </Grid>
 </Page>

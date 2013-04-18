@@ -1,27 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CashInTerminalWpf.CashIn;
+using CashInTerminalWpf.Enums;
+using Containers.Enums;
+using NLog;
 
 namespace CashInTerminalWpf
 {
     /// <summary>
     /// Interaction logic for PageProgress.xaml
     /// </summary>
-    public partial class PageProgress : Page
+    public partial class PageProgress
     {
+        private readonly MainWindow _FormMain;
+        private readonly Thread _WorkerThread;
+
+        // ReSharper disable FieldCanBeMadeReadOnly.Local
+        // ReSharper disable InconsistentNaming
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        // ReSharper restore InconsistentNaming
+        // ReSharper restore FieldCanBeMadeReadOnly.Local
+
         public PageProgress()
         {
             InitializeComponent();
+            _FormMain = (MainWindow)Window.GetWindow(this);
+            _WorkerThread = new Thread(DoWork);
+            _WorkerThread.Start(_FormMain != null ? _FormMain.InfoRequest : null);
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            Log.Info(Name);
+        }
+
+        private void DoWork(object value)
+        {
+            try
+            {
+                var request = (GetClientInfoRequest)value;
+
+                var response = _FormMain.Server.GetClientInfo(request);
+                if (response.ResultCodes != CashIn.ResultCodes.Ok)
+                {
+                    throw new Exception(response.Description);
+                }
+
+                if (response.Infos == null || response.Infos.Length == 0)
+                {
+                    _FormMain.OpenForm(FormEnum.InvalidNumber);
+                    return;
+                }
+
+                _FormMain.Clients = response.Infos;
+
+                foreach (var clientInfo in response.Infos)
+                {
+                    _FormMain.ClientInfo.Client = clientInfo;
+                    _FormMain.ClientInfo.CurrentCurrency = clientInfo.Currency;
+                    break;
+                }
+
+                if (_FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode || _FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByPassportAndAccount || _FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentBolcard)
+                {
+                    _FormMain.OpenForm(FormEnum.CreditSelectAccount);
+                }
+                else
+                {
+                    _FormMain.OpenForm(FormEnum.DebitSelectAccount);
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+
+                _FormMain.OpenForm(FormEnum.OutOfOrder);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="746" d:DesignWidth="1020"
 	Title="PagePaySuccess"  Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" 
-      xmlns:res="clr-namespace:CashInTerminalWpf.Properties">
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,6 +24,6 @@
         <Label Style="{StaticResource BigLabelStyle}" Grid.Row="3" Grid.Column="0" Content="{x:Static res:Resources.LabelSuccessWelcome}" HorizontalAlignment="Center" VerticalAlignment="Top" />
         
         <Label Name="LabelCommission" Style="{StaticResource MainLabelStyle}" Grid.Row="4" Grid.ColumnSpan="2" Content="{x:Static res:Resources.LabelComission}" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden" />
-        <Button Name="ButtonSuccess" HorizontalAlignment="Center" Grid.Row="5" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.ButtonSuccessNext}" />
+        <Button Name="ButtonSuccess" HorizontalAlignment="Center" Grid.Row="5" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.ButtonSuccessNext}" Click="ButtonSuccessClick" />
     </Grid>
 </Page>

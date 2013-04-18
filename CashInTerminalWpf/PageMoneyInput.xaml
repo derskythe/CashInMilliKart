@@ -6,7 +6,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="746" d:DesignWidth="1020"
 	Title="PageMoneyInput"  Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" 
-      xmlns:res="clr-namespace:CashInTerminalWpf.Properties">
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded" Unloaded="PageUnloaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -29,8 +29,8 @@
         <Label Name="LabelCommission" Style="{StaticResource MainLabelStyle}" Grid.Row="3" Grid.ColumnSpan="2" Content="{x:Static res:Resources.LabelComission}" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden" />
 
         <DockPanel Margin="8" Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom">
-            <Button Name="ButtonBack" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" />
-            <Button Name="ButtonNext" Margin="10,0,0,0" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.ButtonMoneyNext}" IsEnabled="False" />
+            <Button Name="ButtonBack" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />
+            <Button Name="ButtonNext" Margin="10,0,0,0" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.ButtonMoneyNext}" IsEnabled="False" Click="ButtonNextClick" />
         </DockPanel>
     </Grid>
 </Page>

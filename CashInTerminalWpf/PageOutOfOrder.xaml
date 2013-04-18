@@ -6,7 +6,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="746" d:DesignWidth="1020"
 	Title="PageOutOfOrder" Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" xmlns:my="clr-namespace:CashInTerminalWpf"
-      xmlns:res="clr-namespace:CashInTerminalWpf.Properties">
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded">
 
     <Grid>
         <Grid.RowDefinitions>

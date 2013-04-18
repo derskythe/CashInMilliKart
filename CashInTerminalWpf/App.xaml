@@ -72,7 +72,7 @@
 
         <Style x:Key="BigLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontSize" Value="50" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         </Style>

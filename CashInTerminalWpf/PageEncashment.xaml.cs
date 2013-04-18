@@ -120,7 +120,6 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
-
         }
 
         private void ButtonEncashmentPrintClick(object sender, RoutedEventArgs e)
