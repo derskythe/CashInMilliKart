@@ -504,7 +504,7 @@ namespace CashInTerminalWpf
 
         }
 
-        private void CcnetDeviceOnBillStacked(CCNETDeviceState2 ccnetDeviceState)
+        private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
         {
             Log.Debug(ccnetDeviceState.ToString());
         }        

@@ -3,7 +3,7 @@ using Containers.CashCode;
 
 namespace CashInTerminalWpf
 {
-    public class CCNETDeviceState2
+    public class CCNETDeviceState
     {
         private CCNETCommand _StateCode; // внутр. состояние
         private byte _SubStateCode; // подкод состояния
