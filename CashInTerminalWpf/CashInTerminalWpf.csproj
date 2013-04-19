@@ -110,7 +110,7 @@
     </ApplicationDefinition>
     <Compile Include="CcnetBillTypes.cs" />
     <Compile Include="CCNETDevice.cs" />
-    <Compile Include="CCNETDeviceState1.cs" />
+    <Compile Include="CCNETDeviceState.cs" />
     <Compile Include="ClientInfo.cs" />
     <Compile Include="CustomControls\AlphabetControl.xaml.cs">
       <DependentUpon>AlphabetControl.xaml</DependentUpon>
