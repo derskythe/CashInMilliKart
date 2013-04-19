@@ -11,7 +11,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageCreditPaymentTypeSelect
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -21,8 +21,7 @@ namespace CashInTerminalWpf
 
         public PageCreditPaymentTypeSelect()
         {
-            InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void ButtonClientNumberClick(object sender, RoutedEventArgs e)
@@ -51,6 +50,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
         }
     }
 }

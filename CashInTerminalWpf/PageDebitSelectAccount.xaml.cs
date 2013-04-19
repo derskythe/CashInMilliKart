@@ -13,7 +13,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageDebitSelectAccount
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -24,11 +24,10 @@ namespace CashInTerminalWpf
         public PageDebitSelectAccount()
         {
             InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
-        {          
+        {
             switch (_FormMain.ClientInfo.PaymentOperationType)
             {
                 case PaymentOperationType.DebitPaymentByClientCode:
@@ -41,7 +40,7 @@ namespace CashInTerminalWpf
 
                 default:
                     _FormMain.OpenForm(FormEnum.Products);
-                    break;                
+                    break;
             }
         }
 
@@ -53,6 +52,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
 
             try
             {
@@ -85,7 +85,7 @@ namespace CashInTerminalWpf
                         var button = new Button
                         {
                             Style = FindResource("MenuButtonStyle") as Style,
-                            Name = tag.ClientAccount.ToString(CultureInfo.InvariantCulture) + tag.CreditAmount,
+                            Name = "Button" + tag.ClientAccount + tag.CreditAmount,
                             Tag = tag,
                             Content = text
                         };

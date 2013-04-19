@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 using CashInTerminalWpf.Enums;
 using CashInTerminalWpf.Properties;
 using Containers.CashCode;
@@ -13,7 +15,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageMoneyInput
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -23,13 +25,13 @@ namespace CashInTerminalWpf
 
         public PageMoneyInput()
         {
-            InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();           
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
 
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
             {
@@ -72,7 +74,7 @@ namespace CashInTerminalWpf
                 return;
             }
 
-            ButtonNext.IsEnabled = false;
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), false);
 
             Thread.Sleep(250);
             try
@@ -108,7 +110,7 @@ namespace CashInTerminalWpf
                 Log.FatalException(exp.Message, exp);
             }
 
-            ButtonNext.IsEnabled = true;
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), true);
             _FormMain.OpenForm(FormEnum.PaySuccess);
         }
 
@@ -123,10 +125,12 @@ namespace CashInTerminalWpf
 
             try
             {
-                ButtonBack.IsEnabled = false;
-                ButtonNext.IsEnabled = true;
-
-                LabelTotal.Content = ccnetDeviceState.Amount;
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetBackButton), false);
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), true);
+                Dispatcher.Invoke(
+                    DispatcherPriority.Normal, 
+                    new Action<String>(SetStackedAmount), 
+                    ccnetDeviceState.Amount.ToString(CultureInfo.InvariantCulture));
 
                 lock (_FormMain.ClientInfo)
                 {
@@ -157,11 +161,14 @@ namespace CashInTerminalWpf
 
         private void StartCashcode()
         {
-            ButtonNext.IsEnabled = false;
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), false);
 
             try
             {
-                LabelTotal.Content = "0";
+                Dispatcher.Invoke(
+                    DispatcherPriority.Normal,
+                    new Action<String>(SetStackedAmount),
+                    "0");
 
                 _FormMain.ClientInfo.OrderNumber = 0;
                 _FormMain.ClientInfo.PaymentId = _FormMain.Db.InsertTransaction(Convert.ToInt64(_FormMain.ClientInfo.Product.Id),
@@ -204,6 +211,42 @@ namespace CashInTerminalWpf
         {
             _FormMain.CcnetDevice.StartPool = false;
             _FormMain.CcnetDevice.Disable();
+        }
+
+        private void SetStackedAmount(String amount)
+        {
+            try
+            {
+                LabelTotal.Content = amount;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }            
+        }
+
+        private void SetNextButton(bool status)
+        {
+            try
+            {
+                ButtonNext.IsEnabled = status;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
+
+        private void SetBackButton(bool status)
+        {
+            try
+            {
+                ButtonBack.IsEnabled = status;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
     }
 }

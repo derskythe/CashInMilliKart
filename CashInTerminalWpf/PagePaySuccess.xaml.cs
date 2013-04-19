@@ -20,7 +20,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PagePaySuccess
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
         private readonly PrintDocument _PrintDocument = new PrintDocument();
         private String _DateNow;
         private string _ProductName;
@@ -35,11 +35,7 @@ namespace CashInTerminalWpf
 
         public PagePaySuccess()
         {
-            InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
-
-            _PrintDocument.PrintPage += PrintDocumentOnPrintPage;
-            _PrintDocument.EndPrint += PrintDocumentOnEndPrint;
+            InitializeComponent();            
         }
 
         private void PrintDocumentOnPrintPage(object sender, PrintPageEventArgs e)
@@ -134,7 +130,21 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
-            Log.Info(_FormMain.ClientInfo);
+
+            _FormMain = (MainWindow)Window.GetWindow(this);
+
+            _PrintDocument.PrintPage += PrintDocumentOnPrintPage;
+            _PrintDocument.EndPrint += PrintDocumentOnEndPrint;
+
+            try
+            {
+                Log.Info(_FormMain.ClientInfo);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
 
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
             {

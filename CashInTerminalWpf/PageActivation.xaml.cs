@@ -20,7 +20,7 @@ namespace CashInTerminalWpf
     public partial class PageActivation
     {
         private TextBox _Selected;
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -30,8 +30,7 @@ namespace CashInTerminalWpf
 
         public PageActivation()
         {
-            InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void ButtonTestClick(object sender, RoutedEventArgs e)
@@ -122,6 +121,8 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
+
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));
             ControlNumPad.AddHandler(NumPadControl.ClearAllEvent, new NumPadControl.ClearAllEventHandler(ControlNumPadOnClearAll));

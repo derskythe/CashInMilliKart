@@ -12,7 +12,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageClientByPassport
     {
-        private readonly MainWindow FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -22,13 +22,12 @@ namespace CashInTerminalWpf
 
         public PageClientByPassport()
         {
-            InitializeComponent();
-            FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.DebitPaymentByPassportAndAccount
+            _FormMain.OpenForm(_FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.DebitPaymentByPassportAndAccount
                            ? FormEnum.DebitPaymentTypeSelect
                            : FormEnum.CreditPaymentTypeSelect);
         }
@@ -37,14 +36,15 @@ namespace CashInTerminalWpf
         {
             if (!String.IsNullOrEmpty(ClientNumber.Text) && ClientNumber.Text.Length > 4)
             {
-                FormMain.ClientInfo.AccountNumber = ClientNumber.Text;
-                FormMain.OpenForm(FormEnum.ClientByPassportRetype);
+                _FormMain.ClientInfo.AccountNumber = ClientNumber.Text;
+                _FormMain.OpenForm(FormEnum.ClientByPassportRetype);
             }
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));
             ControlNumPad.AddHandler(NumPadControl.ClearAllEvent, new NumPadControl.ClearAllEventHandler(ControlNumPadOnClearAll));
@@ -53,7 +53,7 @@ namespace CashInTerminalWpf
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.Products);
+            _FormMain.OpenForm(FormEnum.Products);
         }
 
         private void PageUnloaded(object sender, RoutedEventArgs e)

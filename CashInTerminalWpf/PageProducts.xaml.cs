@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
-using CashInTerminal.Enums;
+using System.Windows.Threading;
 using CashInTerminalWpf.CashIn;
 using CashInTerminalWpf.Enums;
 using NLog;
@@ -15,8 +15,8 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageProducts
     {
-        private Timer _CheckProductTimer;
-        private readonly MainWindow _FormMain;
+        private DispatcherTimer _CheckProductTimer;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -27,8 +27,6 @@ namespace CashInTerminalWpf
         public PageProducts()
         {
             InitializeComponent();
-
-            _FormMain = (MainWindow)Window.GetWindow(this);
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
@@ -36,6 +34,7 @@ namespace CashInTerminalWpf
             try
             {
                 Log.Info(Name);
+                _FormMain = (MainWindow)Window.GetWindow(this);
 
                 _FormMain.ProductUpdate += FormMainOnProductUpdate;
 
@@ -46,10 +45,14 @@ namespace CashInTerminalWpf
 
                 if (_FormMain.Products != null && _FormMain.Products.Count > 0)
                 {
-                    AddButtons();
+                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action(AddButtons));
                 }
 
-                _CheckProductTimer = new Timer(CheckProductTimer, null, 250, 2000);
+                _CheckProductTimer = new DispatcherTimer();
+                _CheckProductTimer.Tick += CheckProductTimer;
+                _CheckProductTimer.Interval = new TimeSpan(0, 0, 60);
+                _CheckProductTimer.Start();
+                //_CheckProductTimer = new Timer(CheckProductTimer, null, 250, 2000);
             }
             catch (Exception exp)
             {
@@ -57,7 +60,7 @@ namespace CashInTerminalWpf
             }
         }
 
-        private void CheckProductTimer(object param)
+        private void CheckProductTimer(object sender, EventArgs e)
         {
             try
             {
@@ -70,13 +73,13 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
-        }
+        }        
 
         private void FormMainOnProductUpdate()
         {
             try
             {
-                AddButtons();
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action(AddButtons));
                 if (Grid.Children.Count == 0)
                 {
                     _FormMain.OpenForm(FormEnum.OutOfOrder);
@@ -92,10 +95,10 @@ namespace CashInTerminalWpf
         {
             lock (_FormMain.Products)
             {
-                Grid.Children.Clear();
-
                 try
                 {
+                    Grid.Children.Clear();
+
                     foreach (var product in _FormMain.Products)
                     {
                         string text;
@@ -117,13 +120,13 @@ namespace CashInTerminalWpf
                         var button = new Button
                         {
                             Style = FindResource("MenuButtonStyle") as Style,
-                            Name = product.Id.ToString(CultureInfo.InvariantCulture) + product.Name,
+                            Name = product.Name + product.Id.ToString(CultureInfo.InvariantCulture),
                             Tag = product,
                             Content = text
                         };
                         button.Click += ButtonOnClick;
 
-                        Grid.Children.Add(button);                        
+                        Grid.Children.Add(button);
                     }
                 }
                 catch (Exception exp)
@@ -136,26 +139,39 @@ namespace CashInTerminalWpf
         private void ButtonOnClick(object sender, EventArgs eventArgs)
         {
             try
-            {                
+            {
                 var button = (Button)sender;
                 Log.Info(String.Format("Selected: {0}", button.Name));
                 var product = (Product)button.Tag;
 
                 _FormMain.ClientInfo.Product = product;
-                _FormMain.OpenForm(product.Assembly);
+                String url;
+                switch (product.Assembly)
+                {
+                    case "FormCreditTypeSelect":
+                        url = FormEnum.CreditPaymentTypeSelect;
+                        break;
+
+                    case "FormDebitPayType":
+                        url = FormEnum.DebitPaymentTypeSelect;
+                        break;
+
+                    default:
+                        url = product.Assembly;
+                        break;
+                }
+                _FormMain.OpenForm(url);
             }
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);
             }
-        }        
-        
+        }
+
         private void PageUnloaded(object sender, RoutedEventArgs e)
         {
-            if (_CheckProductTimer != null)
-            {
-                _CheckProductTimer.Dispose();
-            }
+            _CheckProductTimer.Stop();
+            _CheckProductTimer.IsEnabled = false;
         }
     }
 }

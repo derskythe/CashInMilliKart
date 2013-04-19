@@ -10,7 +10,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageDebitClientInfo
     {
-        private readonly MainWindow FormMain;
+        private MainWindow FormMain;
         private const string DATE_FORMAT = "dd MMMM yyyy";
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
@@ -21,8 +21,7 @@ namespace CashInTerminalWpf
 
         public PageDebitClientInfo()
         {
-            InitializeComponent();
-            FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
@@ -43,6 +42,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            FormMain = (MainWindow)Window.GetWindow(this);
 
             try
             {

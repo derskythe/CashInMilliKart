@@ -22,7 +22,7 @@ namespace CashInTerminalWpf
     public partial class PageEncashment
     {
         private readonly PrintDocument _PrintDocument = new PrintDocument();
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -36,9 +36,7 @@ namespace CashInTerminalWpf
 
         public PageEncashment()
         {
-            InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
-            _PrintDocument.PrintPage += PrintDocumentOnPrintPage;
+            InitializeComponent();            
         }
 
         private void PrintDocumentOnPrintPage(object sender, PrintPageEventArgs e)
@@ -178,6 +176,8 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
+            _PrintDocument.PrintPage += PrintDocumentOnPrintPage;
         }
 
         private void ButtonEncashmentFinishClick(object sender, RoutedEventArgs e)

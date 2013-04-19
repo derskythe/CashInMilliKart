@@ -13,7 +13,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageCreditSelectAccount
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -24,7 +24,6 @@ namespace CashInTerminalWpf
         public PageCreditSelectAccount()
         {
             InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
@@ -57,6 +56,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
 
             try
             {
@@ -89,7 +89,7 @@ namespace CashInTerminalWpf
                         var button = new Button
                         {
                             Style = FindResource("MenuButtonStyle") as Style,
-                            Name = tag.ClientAccount.ToString(CultureInfo.InvariantCulture) +tag.CreditAmount,
+                            Name = "Button" + tag.ClientAccount + tag.CreditAmount,
                             Tag = tag,
                             Content = text
                         };

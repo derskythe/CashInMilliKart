@@ -12,7 +12,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageClientCodeRetype
     {
-        private readonly MainWindow FormMain;
+        private MainWindow FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -22,8 +22,7 @@ namespace CashInTerminalWpf
 
         public PageClientCodeRetype()
         {
-            InitializeComponent();
-            FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
@@ -67,6 +66,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            FormMain = (MainWindow)Window.GetWindow(this);
 
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));

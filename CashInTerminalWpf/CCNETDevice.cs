@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using CashInTerminal;
 using CashInTerminalWpf.Enums;
 using Containers;
 using Containers.CashCode;
@@ -25,25 +25,28 @@ namespace CashInTerminalWpf
         static private bool _ParseRead;
 
         private const int POLLING_INTERVAL = 1000;
+/*
         private const int MAX_RESPONSE_TIME = 250;
-        /*
-                private const int MAX_PACKET_LENGTH = 255;
-        */
+*/
+/*
+        private const int MAX_PACKET_LENGTH = 255;
+*/
 
         private readonly Thread _ResponseReaderThread;
         private readonly Thread _PoolThread;
-        //private readonly Thread _SendThread;
+        private readonly Thread _SendThread;
         //private Thread _EventThread;
         private readonly CCNETDeviceState _DeviceState;
         private String _CurrentCurrency;
         private int _Port;
         private CCNETPortSpeed _PortSpeed;
-        private readonly Object _ResponseSignal;
+        private readonly Queue<byte[]> _ResponseSignal = new Queue<byte[]>();
         //private CCNETPacket _ResponsePacket;
         private readonly EventWaitHandle _Wait = new AutoResetEvent(false);
         private readonly Timer _BackgroundPingTimer;
         private bool _TimedOut;
-        private bool _Disposing;
+        private bool _Disposing = false;
+        private bool _StartSend;
 
         public delegate void ReadCommandHandler(CCNETDeviceState e);
         public delegate void BillStackedHandler(CCNETDeviceState e);
@@ -126,13 +129,15 @@ namespace CashInTerminalWpf
             //    _Currency = currency;
             //}
             //_Currency = "azn";
-            _ResponseSignal = new Object();
+            _ResponseSignal = new Queue<byte[]>();
 
             // Create the Thread used to read responses
             _ResponseReaderThread = new Thread(ReadResponseThread) { IsBackground = true };
 
             // Create the Thread used to send POOL command
             _PoolThread = new Thread(StartPooling) { IsBackground = true };
+
+            _SendThread = new Thread(SendThread);
 
             _SerialDevice = new SerialStream();
             _BackgroundPingTimer = new Timer(BackgroundPingTimer, null, 0, 60*1000);
@@ -176,16 +181,13 @@ namespace CashInTerminalWpf
             {
                 _PoolThread.Start();
             }
+
+            _SendThread.Start();
             _ParseRead = true;
         }
 
         public void Close()
         {
-            if (!_SerialDevice.Closed)
-            {
-                _SerialDevice.Close();
-            }
-
             if (_ResponseReaderThread.ThreadState == ThreadState.Running)
             {
                 _ParseRead = false;
@@ -194,6 +196,11 @@ namespace CashInTerminalWpf
             if (_PoolThread.ThreadState == ThreadState.Running)
             {
                 _StartPool = false;
+            }
+
+            if (!_SerialDevice.Closed)
+            {
+                _SerialDevice.Close();
             }
         }
 
@@ -213,10 +220,10 @@ namespace CashInTerminalWpf
                 _PoolThread.Join(5000);
             }
 
-            //if (_SendThread != null && _SendThread.IsAlive)
-            //{
-            //    _SendThread.Join(5000);
-            //}
+            if (_SendThread != null && _SendThread.IsAlive)
+            {
+                _SendThread.Join(5000);
+            }
 
             _Wait.Close();
             _SerialDevice.Close();
@@ -266,7 +273,7 @@ namespace CashInTerminalWpf
                 {
                     Send(CCNETCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
-                    _DeviceState.StateCode = CCNETCommand.FatalError;
+                    _DeviceState.StateCode = CCNETCommand.Rejecting;
                     ProccessStateCode();
                 }
             }
@@ -283,8 +290,8 @@ namespace CashInTerminalWpf
             {
                 byte[] receiveBuffer = Enumerable.Repeat((byte)0x0, 128).ToArray();
                 int bytesRead = 0;
-                //int bufferIndex = 0;
-                //int startPacketIndex = 0;
+                int bufferIndex = 0;
+                int startPacketIndex = 0;
 
                 while (!_Disposing)
                 {
@@ -367,7 +374,7 @@ namespace CashInTerminalWpf
 
         private CCNETPacket CreatePacket(byte[] buffer, int startIndex)
         {
-            //byte sync = buffer[startIndex];
+            byte sync = buffer[startIndex];
             byte addr = buffer[(startIndex + 1) % buffer.Length];
             byte dataLength = buffer[(startIndex + 2) % buffer.Length];
             byte cmd = buffer[(startIndex + 3) % buffer.Length];
@@ -400,28 +407,37 @@ namespace CashInTerminalWpf
 
             CCNETPacket packet = CreatePacket(buffer, startIndex);
 
-            if (packet.Cmd != (byte)CCNETCommand.Ok || packet.Cmd != (byte)CCNETCommand.NotMount)
+            if (packet.Cmd != (byte) CCNETCommand.Ok || packet.Cmd != (byte) CCNETCommand.NotMount)
             {
                 SendAck();
                 ParseCommand(packet);
             }
 
-            AddResponsePacket();
+            //AddResponsePacket();
         }
+        //private void AddResponsePacket()
+        //{
+        //    lock (_ResponseSignal)
+        //    {
+        //        Monitor.Pulse(_ResponseSignal);
+        //    }
+        //}
 
-        private void AddResponsePacket()
-        {
-            lock (_ResponseSignal)
-            {
-                Monitor.Pulse(_ResponseSignal);
-            }
-        }
+        //private void AddResponsePacket()
+        //{
+        //    lock (_ResponseSignal)
+        //    {
+        //        Monitor.Pulse(_ResponseSignal);
+        //    }
+        //}
 
         private void Send(CCNETCommand cmd, byte[] data)
         {
-            var packet = new CCNETPacket(0x03, (byte)cmd, data);
+            ushort crcvalue;
 
-            var crc = new byte[packet.Lng - 2];
+            CCNETPacket packet = new CCNETPacket(0x03, (byte)cmd, data);
+
+            byte[] crc = new byte[packet.Lng - 2];
             crc[0] = packet.Sync;
             crc[1] = packet.Address;
             crc[2] = packet.Lng;
@@ -430,10 +446,10 @@ namespace CashInTerminalWpf
             {
                 Array.Copy(data, 0, crc, 4, data.Length);
             }
-            ushort generateCrc = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
+            crcvalue = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
 
 
-            var packetXMitBuffer = new byte[packet.Lng];
+            byte[] packetXMitBuffer = new byte[packet.Lng];
             packetXMitBuffer[0] = packet.Sync;
             packetXMitBuffer[1] = packet.Address;
             packetXMitBuffer[2] = packet.Lng;
@@ -445,30 +461,46 @@ namespace CashInTerminalWpf
             {
                 Array.Copy(packet.Data, 0, packetXMitBuffer, 4, packetData.Length);
             }
-            packetXMitBuffer[packet.Lng - 2] = (byte)(generateCrc >> 8);
-            packetXMitBuffer[packet.Lng - 1] = (byte)(generateCrc);
+            packetXMitBuffer[packet.Lng - 2] = (byte)(crcvalue >> 8);
+            packetXMitBuffer[packet.Lng - 1] = (byte)(crcvalue);
 
-            lock (_ResponseSignal)
+            //lock (_ResponseSignal)
+            //{
+            _ResponseSignal.Enqueue(packetXMitBuffer);
+            //_ResponsePacket = null;
+            // comPort
+
+
+
+            //Monitor.Wait(_ResponseSignal, MAX_RESPONSE_TIME);
+            //Thread.Sleep(0);
+            //}
+
+            //return;
+        }
+
+        private void SendThread()
+        {
+            while (!_SerialDevice.Closed)
             {
-                //_ResponsePacket = null;
-                // comPort
-
-                try
+                if (_DeviceState.Init && _ResponseSignal.Count > 0)
                 {
-                    if (_SerialDevice.CanWrite && !_SerialDevice.Closed)
+                    try
                     {
-                        _SerialDevice.Write(packetXMitBuffer);
-                        _SerialDevice.PurgeAll();
+                        if (_SerialDevice.CanWrite && !_SerialDevice.Closed)
+                        {
+                            _SerialDevice.Write(_ResponseSignal.Dequeue());
+                            _SerialDevice.PurgeAll();
+                        }
+                    }
+                    catch (Exception exp)
+                    {
+
+                        //throw new Exception(exp.Message.ToString());
                     }
                 }
-                catch (Exception exp)
-                {
-                    Log.ErrorException(exp.Message, exp);
-                    //throw new Exception(exp.Message.ToString());
-                }
 
-                Monitor.Wait(_ResponseSignal, MAX_RESPONSE_TIME);
-                Thread.Sleep(0);
+                Thread.Sleep(1);
             }
         }
 
@@ -593,15 +625,15 @@ namespace CashInTerminalWpf
             Send(CCNETCommand.Poll, null);
         }
 
-        //private void Hold()
-        //{
-        //    Send(CCNETCommand.Hold, null);
-        //}
+        private void Hold()
+        {
+            Send(CCNETCommand.Holding, null);
+        }
 
-        //private void SendNAK()
-        //{
-        //    Send(CCNETCommand.NotMount, null);
-        //}
+        private void SendNAK()
+        {
+            Send(CCNETCommand.NotMount, null);
+        }
 
         private void SendAck()
         {
@@ -689,9 +721,9 @@ namespace CashInTerminalWpf
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.FatalError:
-                    Log.Warn(CCNETCommand.FatalError.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.FatalError;
+                case CCNETCommand.Rejecting:
+                    Log.Warn(CCNETCommand.Rejecting.ToString());
+                    _DeviceState.StateCodeOut = CCNETCommand.Rejecting;
                     _DeviceState.FatalError = true;
                     break;
 
@@ -930,6 +962,9 @@ namespace CashInTerminalWpf
                     Log.Warn(CCNETCommand.BillReturned.ToString());
                     _DeviceState.StateCodeOut = CCNETCommand.BillReturned;
                     break;
+
+                default:
+                    break;
             }
 
             ProccessStateCode();
@@ -1111,7 +1146,7 @@ namespace CashInTerminalWpf
             public static byte[] GenerateCrc(byte[] dataBuf, ushort bufLen, bool returnArray)
             {
                 ushort i;
-                byte[] result = new byte[2];
+                var result = new byte[2];
                 _ByteCrcH = _ByteCrcL = 0;
                 for (i = 0; i < bufLen; i++)
                 {
@@ -1130,19 +1165,18 @@ namespace CashInTerminalWpf
             static private void CalcCrc(byte mbyte)
             {
                 ushort i, c;
-                ushort temp_crc;
                 _ByteCrcH ^= mbyte;
-                temp_crc = _ByteCrcL;
-                temp_crc <<= 8;
-                temp_crc |= _ByteCrcH;
+                ushort tempCrc = _ByteCrcL;
+                tempCrc <<= 8;
+                tempCrc |= _ByteCrcH;
                 for (i = 0; i < 8; i++)
                 {
-                    c = (ushort)(temp_crc & 0x01);
-                    temp_crc >>= 1;
-                    if (c != 0) temp_crc ^= POLYNOMINAL;
+                    c = (ushort)(tempCrc & 0x01);
+                    tempCrc >>= 1;
+                    if (c != 0) tempCrc ^= POLYNOMINAL;
                 }
-                _ByteCrcL = Convert.ToUInt16(temp_crc >> 8);
-                _ByteCrcH = Convert.ToUInt16(temp_crc);
+                _ByteCrcL = Convert.ToUInt16(tempCrc >> 8);
+                _ByteCrcH = Convert.ToUInt16(tempCrc);
             }
         }
 

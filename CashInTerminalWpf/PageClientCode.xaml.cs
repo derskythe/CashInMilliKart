@@ -10,7 +10,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageBase
     {
-        private readonly MainWindow FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -20,13 +20,13 @@ namespace CashInTerminalWpf
 
         public PageBase()
         {
-            InitializeComponent();
-            FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
 
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));
@@ -53,21 +53,21 @@ namespace CashInTerminalWpf
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.CreditPaymentTypeSelect);
+            _FormMain.OpenForm(FormEnum.CreditPaymentTypeSelect);
         }
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
             if (ClientNumber.Text.Length > 4)
             {
-                FormMain.ClientInfo.AccountNumber = ClientNumber.Text;
-                FormMain.OpenForm(FormEnum.ClientCodeRetype);
+                _FormMain.ClientInfo.AccountNumber = ClientNumber.Text;
+                _FormMain.OpenForm(FormEnum.ClientCodeRetype);
             }
         }
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.Products);
+            _FormMain.OpenForm(FormEnum.Products);
         }
 
         private void PageUnloaded(object sender, RoutedEventArgs e)

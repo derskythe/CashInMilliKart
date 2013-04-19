@@ -8,7 +8,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageOutOfOrder
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -18,13 +18,13 @@ namespace CashInTerminalWpf
 
         public PageOutOfOrder()
         {
-            InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);
         }
     }
 }

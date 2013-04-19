@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using CashInTerminal.Enums;
 using CashInTerminalWpf.CashIn;
 using CashInTerminalWpf.Enums;
@@ -171,7 +172,7 @@ namespace CashInTerminalWpf
         private Timer _CheckCurrencyTimer;
         private Timer _CheckProductsTimer;
         private Timer _CheckCheckTemplateTimer;
-        private Timer _CheckInactivityTimer;
+        private DispatcherTimer _CheckInactivityTimer;
         private Timer _CheckApplicationUpdateTimer;
         private const int PING_TIMEOUT = 30 * 1000;
         private const int SEND_PAYMENT_TIMEOUT = 10 * 1000;
@@ -179,7 +180,7 @@ namespace CashInTerminalWpf
         private const int CHECK_CHECK_TEMPLATE_TIMER = 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
-        private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 1000;
+        private const int CHECK_APPLICATION_UPDATE_TIMER = 10 * 1000;
         private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Value in seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
@@ -342,7 +343,11 @@ namespace CashInTerminalWpf
 
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
-            _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, CHECK_INACTIVITY, CHECK_INACTIVITY);
+            _CheckInactivityTimer = new DispatcherTimer();
+            _CheckInactivityTimer.Tick += CheckInactivityTimer;
+            _CheckInactivityTimer.Interval = new TimeSpan(0, 0, 0, 10);
+            _CheckInactivityTimer.IsEnabled = true;
+            _CheckInactivityTimer.Start();
             _CheckCheckTemplateTimer = new Timer(CheckTemplateTimer, null, 0, CHECK_CHECK_TEMPLATE_TIMER);
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
 
@@ -435,6 +440,10 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private void RestartApplication()
@@ -461,7 +470,10 @@ namespace CashInTerminalWpf
             Log.Debug("Thread.Sleep(150)");
             Thread.Sleep(150);
             Log.Debug("Application.Restart");
-            System.Windows.Forms.Application.Restart();
+            //System.Windows.Forms.Application.Restart();
+
+            System.Windows.Forms.Application.Restart();            
+            App.Current.Shutdown();
         }
 
         #endregion
@@ -500,8 +512,16 @@ namespace CashInTerminalWpf
         public void OpenForm(String f)
         {
             Log.Debug(String.Format("Current From: {0}, New form: {1}", _CurrentForm,  f));
-            Navigate(new Uri(f, UriKind.RelativeOrAbsolute));           
-        }        
+            _CurrentForm = f;
+            Dispatcher.Invoke(DispatcherPriority.Normal,
+                    new Action<string>(Navigate),
+                    f);
+        }
+
+        private void Navigate(string f)
+        {
+            Navigate(new Uri(f, UriKind.RelativeOrAbsolute));
+        }
 
         #region Check Template Stuff
 
@@ -643,7 +663,7 @@ namespace CashInTerminalWpf
 
         #endregion
 
-        private void CheckInactivityTimer(object param)
+        private void CheckInactivityTimer(object sender, EventArgs e)
         {
             try
             {
@@ -1386,7 +1406,7 @@ namespace CashInTerminalWpf
 
             _CheckCurrencyTimer.Dispose();
             _CheckProductsTimer.Dispose();
-            _CheckInactivityTimer.Dispose();
+            _CheckInactivityTimer.Stop();
             _CheckApplicationUpdateTimer.Dispose();
             _CheckCheckTemplateTimer.Dispose();
 

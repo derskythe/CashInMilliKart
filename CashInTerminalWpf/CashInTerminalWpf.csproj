@@ -17,7 +17,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>Q:\CashInTerminal\</PublishUrl>
+    <PublishUrl>Q:\CashInTerminalWpf\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,9 +31,11 @@
     <ProductName>CashIn Terminal WPF</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -68,6 +70,15 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1426A777498C99ECF12FB0482B005A2EAC07241D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>CashInTerminalWpf_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -99,7 +110,6 @@
     </ApplicationDefinition>
     <Compile Include="CcnetBillTypes.cs" />
     <Compile Include="CCNETDevice.cs" />
-    <Compile Include="CcnetDeviceState.cs" />
     <Compile Include="CCNETDeviceState1.cs" />
     <Compile Include="ClientInfo.cs" />
     <Compile Include="CustomControls\AlphabetControl.xaml.cs">
@@ -335,6 +345,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="CashInTerminalWpf_TemporaryKey.pfx" />
     <None Include="ds.xsc">
       <DependentUpon>ds.xsd</DependentUpon>
     </None>
@@ -346,7 +357,9 @@
     <None Include="ds.xss">
       <DependentUpon>ds.xsd</DependentUpon>
     </None>
-    <None Include="NLog.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -394,6 +407,7 @@
     <Resource Include="Resources\home.png" />
     <Resource Include="Resources\1365266245_home.png" />
     <Resource Include="Resources\backspace32.png" />
+    <Resource Include="favicon.ico" />
     <Content Include="Terminal.s3db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -415,6 +429,46 @@
     <WCFMetadataStorage Include="Service References\CashIn\" />
   </ItemGroup>
   <ItemGroup>
+    <PublishFile Include="CashInTerminalWpf.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Containers.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="crypto.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="NLog.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
     <PublishFile Include="System.Data.SQLite">
       <Visible>False</Visible>
       <Group>
@@ -424,6 +478,16 @@
       <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Data.SQLite.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
   <ItemGroup>

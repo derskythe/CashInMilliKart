@@ -10,7 +10,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageDebitPaymentTypeSelect
     {
-        private readonly MainWindow FormMain;
+        private MainWindow FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -20,8 +20,7 @@ namespace CashInTerminalWpf
 
         public PageDebitPaymentTypeSelect()
         {
-            InitializeComponent();
-            FormMain = (MainWindow)Window.GetWindow(this);
+            InitializeComponent();            
         }
 
         private void ButtonClientNumberClick(object sender, RoutedEventArgs e)
@@ -44,6 +43,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            FormMain = (MainWindow)Window.GetWindow(this);
         }
     }
 }

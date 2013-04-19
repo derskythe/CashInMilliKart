@@ -13,7 +13,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageProgress
     {
-        private readonly MainWindow _FormMain;
+        private MainWindow _FormMain;
         private readonly Thread _WorkerThread;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
@@ -25,14 +25,14 @@ namespace CashInTerminalWpf
         public PageProgress()
         {
             InitializeComponent();
-            _FormMain = (MainWindow)Window.GetWindow(this);
             _WorkerThread = new Thread(DoWork);
-            _WorkerThread.Start(_FormMain != null ? _FormMain.InfoRequest : null);
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Name);
+            _FormMain = (MainWindow)Window.GetWindow(this);            
+            _WorkerThread.Start(_FormMain != null ? _FormMain.InfoRequest : null);
         }
 
         private void DoWork(object value)
