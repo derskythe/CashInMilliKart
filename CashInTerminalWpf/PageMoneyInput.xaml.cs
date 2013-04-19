@@ -114,12 +114,12 @@ namespace CashInTerminalWpf
             _FormMain.OpenForm(FormEnum.PaySuccess);
         }
 
-        private void CcnetDeviceOnReadCommand(CCNETDeviceState ccnetDeviceState)
+        private void CcnetDeviceOnReadCommand(CCNETDeviceState2 ccnetDeviceState)
         {
             //Log.Debug(ccnetDeviceState.ToString());
         }
 
-        private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
+        private void CcnetDeviceOnBillStacked(CCNETDeviceState2 ccnetDeviceState)
         {
             Log.Info(String.Format("Stacked {0} {1}", ccnetDeviceState.Nominal, ccnetDeviceState.Currency));
 

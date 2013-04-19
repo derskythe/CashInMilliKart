@@ -36,7 +36,7 @@ namespace CashInTerminalWpf
         private readonly Thread _PoolThread;
         private readonly Thread _SendThread;
         //private Thread _EventThread;
-        private readonly CCNETDeviceState _DeviceState;
+        private readonly CCNETDeviceState2 _DeviceState;
         private String _CurrentCurrency;
         private int _Port;
         private CCNETPortSpeed _PortSpeed;
@@ -48,8 +48,8 @@ namespace CashInTerminalWpf
         private bool _Disposing = false;
         private bool _StartSend;
 
-        public delegate void ReadCommandHandler(CCNETDeviceState e);
-        public delegate void BillStackedHandler(CCNETDeviceState e);
+        public delegate void ReadCommandHandler(CCNETDeviceState2 e);
+        public delegate void BillStackedHandler(CCNETDeviceState2 e);
         public event ReadCommandHandler ReadCommand = delegate { };
         public event BillStackedHandler BillStacked = delegate { };
 
@@ -74,7 +74,7 @@ namespace CashInTerminalWpf
             }
         }
 
-        public CCNETDeviceState DeviceState
+        public CCNETDeviceState2 DeviceState
         {
             get
             {
@@ -119,7 +119,7 @@ namespace CashInTerminalWpf
         public CCNETDevice()
         {
             _StartPool = false;
-            _DeviceState = new CCNETDeviceState();
+            _DeviceState = new CCNETDeviceState2();
             //if (currency.Length == 0)
             //{
             //    _Currency = "azn";
