@@ -42,7 +42,9 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
+            LabelTestVersion.Visibility = App.TestVersion ? Visibility.Visible : Visibility.Collapsed;
+
             FormMain = (MainWindow)Window.GetWindow(this);
         }
     }

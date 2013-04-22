@@ -20,7 +20,7 @@
 
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" />
         <Label Style="{StaticResource BigLabelStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static res:Resources.LabelTotal}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-        <Label Name="LabelAmount" Style="{StaticResource BigLabelStyle}" Grid.Row="2" Grid.Column="0" Content="AZN" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Label Name="LabelAmount" Style="{StaticResource BlindLabelStyle}" Grid.Row="2" Grid.Column="0" Content="AZN" HorizontalAlignment="Center" VerticalAlignment="Top" />
         <Label Style="{StaticResource BigLabelStyle}" Grid.Row="3" Grid.Column="0" Content="{x:Static res:Resources.LabelSuccessWelcome}" HorizontalAlignment="Center" VerticalAlignment="Top" />
         
         <Label Name="LabelCommission" Style="{StaticResource MainLabelStyle}" Grid.Row="4" Grid.ColumnSpan="2" Content="{x:Static res:Resources.LabelComission}" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden" />

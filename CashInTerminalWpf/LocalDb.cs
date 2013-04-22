@@ -187,6 +187,16 @@ namespace CashInTerminalWpf
             }
         }
 
+        public void UpdateNonConfirmed(DateTime beforeDate)
+        {
+            using (var connection = GetConnection())
+            {
+                var adapter = new PaymentsTableAdapter { Connection = connection };
+                adapter.UpdateNonConfirmed(beforeDate);
+                connection.Close();
+            }            
+        }
+
         public void UpdateTemplate(long id, DateTime updateDate)
         {
             using (var connection = GetConnection())
@@ -223,6 +233,27 @@ namespace CashInTerminalWpf
             }
 
             return null;
+        }
+
+        public List<ds.CountBanknotesRow> CountAllBanknotes()
+        {
+            var result = new List<ds.CountBanknotesRow>();
+
+            using (var connection = GetConnection())
+            {
+                var adapter = new CountBanknotesTableAdapter { Connection = connection };
+                var table = new ds.CountBanknotesDataTable();
+
+                adapter.Fill(table);
+                foreach (ds.CountBanknotesRow row in table.Rows)
+                {                    
+                    result.Add(row);
+                }
+
+                connection.Close();
+            }
+
+            return result;
         }
 
         public void InsertCheckTemplateField(long id, long parentId, long type, String value, byte[] image, long orderNumber)

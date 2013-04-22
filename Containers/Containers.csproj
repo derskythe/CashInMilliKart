@@ -74,9 +74,14 @@
     <Compile Include="Banknote.cs" />
     <Compile Include="BanknoteSummary.cs" />
     <Compile Include="BaseMessage.cs" />
+    <Compile Include="BonusRequest.cs" />
+    <Compile Include="BonusResponse.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="CashCodeDeviceStatus.cs" />
-    <Compile Include="CashCode\CcnetCommand.cs" />
+    <Compile Include="CashCode\CCNETErrorCodes.cs" />
+    <Compile Include="CashCode\CCNETResponseStatus.cs" />
+    <Compile Include="CashCode\CCNETControllerCommand.cs" />
+    <Compile Include="CashCode\CCNETRejectReason.cs" />
     <Compile Include="CheckField.cs" />
     <Compile Include="CheckFieldType.cs" />
     <Compile Include="CheckTemplate.cs" />
@@ -99,6 +104,7 @@
     <Compile Include="Enums\TerminalColumns.cs" />
     <Compile Include="Enums\TerminalCommands.cs" />
     <Compile Include="Enums\UsersColumns.cs" />
+    <Compile Include="GetBonusAmountRequest.cs" />
     <Compile Include="GetClientInfoRequest.cs" />
     <Compile Include="GetClientInfoResult.cs" />
     <Compile Include="PaymentInfoByProducts.cs" />

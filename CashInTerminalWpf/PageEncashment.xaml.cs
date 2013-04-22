@@ -33,10 +33,11 @@ namespace CashInTerminalWpf
         private List<CheckField> _Template;
         private String _DateNow;
         private String _Amount;
+        private String _BillsCount;
 
         public PageEncashment()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void PrintDocumentOnPrintPage(object sender, PrintPageEventArgs e)
@@ -62,12 +63,27 @@ namespace CashInTerminalWpf
                                     using (var stream = new MemoryStream(line.Image))
                                     {
                                         Image img = new Bitmap(stream);
-                                        var convertedImage = Utilities.ScaleImage(img, e.PageBounds.Width - 15,
-                                                                                  e.PageBounds.Height);
-                                        e.Graphics.DrawImage(
-                                            convertedImage,
-                                            x, y);
-                                        y += convertedImage.Height + lineHeight;
+
+                                        int width = img.Width;
+                                        if (width > e.PageBounds.Width - 15)
+                                        {
+                                            width = e.PageBounds.Width - 15;
+                                        }
+
+                                        int height = img.Height;
+                                        if (height > e.PageBounds.Height)
+                                        {
+                                            height = e.PageBounds.Height;
+                                        }
+
+                                        var convertedImage = Utilities.ScaleImage(img, width, height);
+
+                                        var sz = new SizeF(100 * convertedImage.Width / convertedImage.HorizontalResolution,
+                                                           100 * convertedImage.Height / convertedImage.VerticalResolution);
+                                        var p = new PointF((e.PageBounds.Width - sz.Width) / 2, y);
+
+                                        e.Graphics.DrawImage(convertedImage, p);
+                                        y += sz.Height + lineHeight;
                                         img.Dispose();
                                         stream.Close();
                                     }
@@ -89,8 +105,12 @@ namespace CashInTerminalWpf
                                 break;
 
                             case TemplateFieldType.Text:
-                                e.Graphics.DrawString(line.Value, font, Brushes.Black, x, y);
-                                y += lineHeight;
+                                var subLines = line.Value.Split('\n');
+                                foreach (var subLine in subLines)
+                                {
+                                    e.Graphics.DrawString(subLine, font, Brushes.Black, x, y);
+                                    y += lineHeight;
+                                }
                                 break;
                         }
                     }
@@ -134,6 +154,28 @@ namespace CashInTerminalWpf
 
                 _Amount = msg.ToString();
 
+                msg = new StringBuilder();
+
+                try
+                {
+                    var listBills = _FormMain.Db.CountAllBanknotes();
+                    foreach (var row in listBills)
+                    {
+                        msg.Append(row.CountAll)
+                           .Append("\tX\t")
+                           .Append(row.Amount)
+                           .Append(" ")
+                           .Append(row.Currency)
+                           .Append("\n");
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Log.ErrorException(exp.Message, exp);
+                }
+
+                _BillsCount = msg.ToString();
+
                 //_StreamToPrint = String.Format(PRINT_TEMPLATE, DateTime.Now, FormMain.TerminalInfo.Id, msg);
 
                 //Log.Info(msg.ToString());
@@ -143,7 +185,7 @@ namespace CashInTerminalWpf
                     _Template = new List<CheckField>();
                     List<ds.TemplateFieldRow> rows;
                     _FormMain.CheckTemplates.TryGetValue(
-                        _FormMain.GetCheckTemplateHashCode((int)CheckTemplateTypes.Encashment,
+                        _FormMain.GetCheckTemplateHashCode((int)CheckTemplateTypes.EncashmentFull,
                                                           _FormMain.SelectedLanguage), out rows);
                     if (rows != null)
                     {
@@ -171,11 +213,11 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
-        }        
+        }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
             _PrintDocument.PrintPage += PrintDocumentOnPrintPage;
         }
@@ -199,6 +241,7 @@ namespace CashInTerminalWpf
         private string ReplaceTemplateFields(String value)
         {
             value = value.Replace(TemplateFields.Amount, _Amount);
+            value = value.Replace(TemplateFields.BillsCount, _BillsCount);
             value = value.Replace(TemplateFields.ClientAccount, String.Empty);
             value = value.Replace(TemplateFields.ClientCode, String.Empty);
             value = value.Replace(TemplateFields.Currency, String.Empty);

@@ -25,7 +25,7 @@ namespace TestConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("orcl")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cash")]
         public string OracleDb {
             get {
                 return ((string)(this["OracleDb"]));
@@ -37,7 +37,7 @@ namespace TestConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("cashin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cashin_new")]
         public string OracleUser {
             get {
                 return ((string)(this["OracleUser"]));
@@ -49,7 +49,7 @@ namespace TestConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("cashin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cashin_new")]
         public string OraclePassword {
             get {
                 return ((string)(this["OraclePassword"]));

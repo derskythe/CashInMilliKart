@@ -12,7 +12,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageClientCodeRetype
     {
-        private MainWindow FormMain;
+        private MainWindow _FormMain;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -27,16 +27,17 @@ namespace CashInTerminalWpf
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.CreditPaymentTypeSelect);
+            _FormMain.OpenForm(FormEnum.CreditPaymentTypeSelect);
         }
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
             if (ClientNumber.Text.Length > 4)
             {
-                if (ClientNumber.Text != FormMain.ClientInfo.AccountNumber)
+                Log.Info("Input value: " + ClientNumber.Text);
+                if (ClientNumber.Text != _FormMain.ClientInfo.AccountNumber)
                 {
-                    FormMain.OpenForm(FormEnum.InvalidNumber);
+                    _FormMain.OpenForm(FormEnum.InvalidNumber);
                     return;
                 }
 
@@ -45,28 +46,29 @@ namespace CashInTerminalWpf
                     DateTime now = DateTime.Now;
                     var request = new GetClientInfoRequest
                     {
-                        PaymentOperationType = (int)FormMain.ClientInfo.PaymentOperationType,
-                        ClientCode = FormMain.ClientInfo.AccountNumber,
+                        PaymentOperationType = (int)_FormMain.ClientInfo.PaymentOperationType,
+                        ClientCode = _FormMain.ClientInfo.AccountNumber,
                         SystemTime = now,
                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, FormMain.ServerPublicKey)
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
                     };
 
-                    FormMain.InfoRequest = request;
-                    FormMain.OpenForm(FormEnum.Progress);
+                    _FormMain.LongRequestType = LongRequestType.InfoRequest;
+                    _FormMain.InfoRequest = request;
+                    _FormMain.OpenForm(FormEnum.Progress);
                 }
                 catch (Exception exp)
                 {
                     Log.ErrorException(exp.Message, exp);
-                    FormMain.OpenForm(FormEnum.OutOfOrder);
+                    _FormMain.OpenForm(FormEnum.OutOfOrder);
                 }
             }
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
-            FormMain = (MainWindow)Window.GetWindow(this);
+            Log.Info(Title);
+            _FormMain = (MainWindow)Window.GetWindow(this);
 
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));
@@ -93,7 +95,7 @@ namespace CashInTerminalWpf
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.Products);
+            _FormMain.OpenForm(FormEnum.Products);
         }
     }
 }

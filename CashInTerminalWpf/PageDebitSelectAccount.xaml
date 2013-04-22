@@ -13,15 +13,17 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
 
         <UniformGrid Grid.Row="1" x:Name="Grid" Columns="1" VerticalAlignment="Top">
-            <Button Style="{StaticResource MenuButtonStyle}" />
+            <Button Style="{StaticResource SmallMenuButtonStyle}" />
         </UniformGrid>
 
-        <DockPanel Margin="8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
+        <Label Name="LabelTestVersion"  Grid.Row="2" Content="Тестовая версия!" Foreground="DarkRed" HorizontalAlignment="Center" Style="{StaticResource BigLabelStyle}" />
+        <DockPanel Margin="8" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom">
             <Button Name="ButtonBack" MinWidth="93" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />
         </DockPanel>
     </Grid>

@@ -61,12 +61,27 @@ namespace CashInTerminalWpf
                                     using (var stream = new MemoryStream(line.Image))
                                     {
                                         Image img = new Bitmap(stream);
-                                        var convertedImage = Utilities.ScaleImage(img, e.PageBounds.Width - 15,
-                                                                                  e.PageBounds.Height);
-                                        e.Graphics.DrawImage(
-                                            convertedImage,
-                                            x, y);
-                                        y += convertedImage.Height + lineHeight;
+                                        
+                                        int width = img.Width;
+                                        if (width > e.PageBounds.Width - 15)
+                                        {
+                                            width = e.PageBounds.Width - 15;
+                                        }
+
+                                        int height = img.Height;
+                                        if (height > e.PageBounds.Height)
+                                        {
+                                            height = e.PageBounds.Height;
+                                        }
+
+                                        var convertedImage = Utilities.ScaleImage(img, width, height);
+
+                                        var sz = new SizeF(100 * convertedImage.Width / convertedImage.HorizontalResolution,
+                                                           100 * convertedImage.Height / convertedImage.VerticalResolution);
+                                        var p = new PointF((e.PageBounds.Width - sz.Width) / 2, y);
+
+                                        e.Graphics.DrawImage(convertedImage, p);
+                                        y += sz.Height + lineHeight;
                                         img.Dispose();
                                         stream.Close();
                                     }
@@ -127,9 +142,10 @@ namespace CashInTerminalWpf
             _FormMain.OpenForm(FormEnum.Products);
         }
 
+        // ReSharper disable PossibleNullReferenceException
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
 
             _FormMain = (MainWindow)Window.GetWindow(this);
 
@@ -167,17 +183,26 @@ namespace CashInTerminalWpf
 
                 lock (_FormMain.CheckTemplates)
                 {
+                    int checkType;
+                    if (_FormMain.ClientInfo.Product.CheckType == (int) CheckTemplateTypes.CreditPayment &&
+                        _FormMain.Bonus != null && _FormMain.Bonus.Bonus > 0)
+                    {
+                        checkType = (int) CheckTemplateTypes.CreditWithBonus;
+                    }
+                    else
+                    {
+                        checkType = _FormMain.ClientInfo.Product.CheckType;
+                    }
+
                     _Template = new List<CheckField>();
                     List<ds.TemplateFieldRow> rows;
                     _FormMain.CheckTemplates.TryGetValue(
-                        _FormMain.GetCheckTemplateHashCode(_FormMain.ClientInfo.Product.CheckType,
+                        _FormMain.GetCheckTemplateHashCode(checkType,
                                                           _FormMain.SelectedLanguage), out rows);
-
 
                     if (rows != null)
                     {
-                        Log.Debug(EnumEx.GetStringFromArray(rows));
-
+                        Log.Info("Check type: " + ((CheckTemplateTypes)checkType).ToString());
                         foreach (var row in rows)
                         {
                             var field = new CheckField
@@ -195,10 +220,8 @@ namespace CashInTerminalWpf
                     }
                     else
                     {
-                        Log.Warn("Rows is null " + _FormMain.ClientInfo.Product.CheckType);
-
-                        Log.Warn(_FormMain.GetCheckTemplateHashCode(_FormMain.ClientInfo.Product.CheckType,
-                                                          _FormMain.SelectedLanguage));
+                        Log.Warn("Rows is null " + ((CheckTemplateTypes)checkType).ToString());
+                        Log.Warn(_FormMain.GetCheckTemplateHashCode(checkType, _FormMain.SelectedLanguage));
 
                         foreach (KeyValuePair<int, List<ds.TemplateFieldRow>> pair in _FormMain.CheckTemplates)
                         {
@@ -221,8 +244,11 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
+
             Log.Debug("End");
         }
+
+        // ReSharper restore PossibleNullReferenceException
 
         private String GetProductName(int id)
         {
@@ -282,6 +308,10 @@ namespace CashInTerminalWpf
             }
             value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
             value = value.Replace(TemplateFields.FullPaymentFlag, _FormMain.ClientInfo != null && _FormMain.ClientInfo.Client.AmountLeft > _FormMain.ClientInfo.CashCodeAmount ? Properties.Resources.CreditOpen : Properties.Resources.CreditClosed);
+            if (_FormMain.Bonus != null && _FormMain.Bonus.Bonus > 0)
+            {
+                value = value.Replace(TemplateFields.Bonus, _FormMain.Bonus.Bonus.ToString("0.00") + " AZN");
+            }
 
             return value;
         }

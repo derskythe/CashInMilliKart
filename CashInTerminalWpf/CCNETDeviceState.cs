@@ -5,9 +5,11 @@ namespace CashInTerminalWpf
 {
     public class CCNETDeviceState
     {
-        private CCNETCommand _StateCode; // внутр. состояние
+        private CCNETResponseStatus _StateCode; // внутр. состояние
+        private CCNETRejectReason _RejectReason;
         private byte _SubStateCode; // подкод состояния
-        private CCNETCommand _StateCodeOut; // внеш. состояние
+        private CCNETResponseStatus _StateCodeOut; // внеш. состояние
+        private CCNETErrorCodes _ErrorCode;
         private bool _BillEnable; // мы включены и нормально работаем
         private bool _AcceptEnable; // Мы ждем денег
         private bool _FatalError;  // фатальная ошибка. устройство не может работать
@@ -23,7 +25,7 @@ namespace CashInTerminalWpf
         /// <summary>
         /// Внутр. состояние
         /// </summary>
-        public CCNETCommand StateCode
+        public CCNETResponseStatus StateCode
         {
             get
             {
@@ -53,7 +55,7 @@ namespace CashInTerminalWpf
         /// <summary>
         /// внеш. состояние
         /// </summary>
-        public CCNETCommand StateCodeOut
+        public CCNETResponseStatus StateCodeOut
         {
             get
             {
@@ -227,6 +229,18 @@ namespace CashInTerminalWpf
             set { _Currency = value; }
         }
 
+        public CCNETRejectReason RejectReason
+        {
+            get { return _RejectReason; }
+            set { _RejectReason = value; }
+        }
+
+        public CCNETErrorCodes ErrorCode
+        {
+            get { return _ErrorCode; }
+            set { _ErrorCode = value; }
+        }
+
         public CashCodeDeviceStatus ToCashCodeDeviceStatus()
         {
             var result = new CashCodeDeviceStatus
@@ -247,10 +261,10 @@ namespace CashInTerminalWpf
         {
             return
                 string.Format(
-                    "StateCode: {0}, SubStateCode: {1}, StateCodeOut: {2}, BillEnable: {3}, AcceptEnable: {4}, FatalError: {5}, Amount: {6}, WasAmount: {7}, Nominal: {8}, DeviceStateDescription: {9}, SubDeviceStateDescription: {10}, Init: {11}, Currency: {12}, Stacking: {13}",
-                    _StateCode, _SubStateCode, _StateCodeOut, _BillEnable, _AcceptEnable, _FatalError, _Amount,
-                    _WasAmount, _Nominal, _DeviceStateDescription, _SubDeviceStateDescription, _Init, _Currency,
-                    _Stacking);
+                    "StateCode: {0}, RejectReason: {1}, SubStateCode: {2}, StateCodeOut: {3}, ErrorCode: {4}, BillEnable: {5}, AcceptEnable: {6}, FatalError: {7}, Amount: {8}, WasAmount: {9}, Nominal: {10}, DeviceStateDescription: {11}, SubDeviceStateDescription: {12}, Init: {13}, Currency: {14}, Stacking: {15}",
+                    _StateCode, _RejectReason, _SubStateCode, _StateCodeOut, _ErrorCode, _BillEnable, _AcceptEnable,
+                    _FatalError, _Amount, _WasAmount, _Nominal, _DeviceStateDescription, _SubDeviceStateDescription,
+                    _Init, _Currency, _Stacking);
         }
     }
 }

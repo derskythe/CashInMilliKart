@@ -242,31 +242,31 @@ namespace CashInTerminal
         {
             try
             {
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
                 Reset();
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.GetStatus, null);
+                Send(CCNETControllerCommand.GetStatus, null);
                 Thread.Sleep(POLLING_INTERVAL);
                 byte[] sec = { 0x00, 0x00, 0x00 };
-                Send(CCNETCommand.SetSecurity, sec);
+                Send(CCNETControllerCommand.SetSecurity, sec);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Identification, null);
+                Send(CCNETControllerCommand.Identification, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
 
-                if (_DeviceState.StateCode != CCNETCommand.UnitDisabled)
+                if (_DeviceState.StateCode != CCNETResponseStatus.UnitDisabled)
                 {
-                    Send(CCNETCommand.Poll, null);
+                    Send(CCNETControllerCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
-                    _DeviceState.StateCode = CCNETCommand.FatalError;
+                    _DeviceState.StateCode = CCNETResponseStatus.Rejecting;
                     ProccessStateCode();
                 }
             }
@@ -333,7 +333,7 @@ namespace CashInTerminal
             {
                 if (_DeviceState.BillEnable)
                 {
-                    Send(CCNETCommand.Poll, null);
+                    Send(CCNETControllerCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
                 }
 
@@ -353,7 +353,7 @@ namespace CashInTerminal
             
             try
             {
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
             }
             catch (Exception exp)
             {
@@ -400,7 +400,7 @@ namespace CashInTerminal
 
             CCNETPacket packet = CreatePacket(buffer, startIndex);
 
-            if (packet.Cmd != (byte)CCNETCommand.Ok || packet.Cmd != (byte)CCNETCommand.NotMount)
+            if (packet.Cmd != (byte)CCNETResponseStatus.Ok || packet.Cmd != (byte)CCNETResponseStatus.NotMount)
             {
                 SendAck();
                 ParseCommand(packet);
@@ -417,7 +417,7 @@ namespace CashInTerminal
             }
         }
 
-        private void Send(CCNETCommand cmd, byte[] data)
+        private void Send(CCNETControllerCommand cmd, byte[] data)
         {
             var packet = new CCNETPacket(0x03, (byte)cmd, data);
 
@@ -514,7 +514,7 @@ namespace CashInTerminal
             //    billmask[i] = 0x00;
             //}
 
-            Send(CCNETCommand.EnableDisable, billmask);
+            Send(CCNETControllerCommand.EnableDisable, billmask);
 
             _DeviceState.BillEnable = true;
         }
@@ -562,7 +562,7 @@ namespace CashInTerminal
             //    billmask[i] = 0x00;
             //}
 
-            Send(CCNETCommand.EnableDisable, billmask);
+            Send(CCNETControllerCommand.EnableDisable, billmask);
 
             _DeviceState.BillEnable = true;
         }
@@ -570,7 +570,7 @@ namespace CashInTerminal
         public void Disable()
         {
             byte[] disable = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-            Send(CCNETCommand.EnableDisable, disable);
+            Send(CCNETControllerCommand.EnableDisable, disable);
             _DeviceState.BillEnable = false;
             _DeviceState.Nominal = 0;
             _DeviceState.Amount = 0;
@@ -580,7 +580,7 @@ namespace CashInTerminal
 
         public void Reset()
         {
-            Send(CCNETCommand.Reset, null);
+            Send(CCNETControllerCommand.Reset, null);
         }
 
         private void Return()
@@ -590,22 +590,22 @@ namespace CashInTerminal
 
         public void Poll()
         {
-            Send(CCNETCommand.Poll, null);
+            Send(CCNETControllerCommand.Poll, null);
         }
 
         //private void Hold()
         //{
-        //    Send(CCNETCommand.Hold, null);
+        //    Send(CCNETResponseStatus.Hold, null);
         //}
 
         //private void SendNAK()
         //{
-        //    Send(CCNETCommand.NotMount, null);
+        //    Send(CCNETResponseStatus.NotMount, null);
         //}
 
         private void SendAck()
         {
-            Send(CCNETCommand.Ok, null);
+            Send(CCNETControllerCommand.Ok, null);
         }
 
         #endregion
@@ -624,7 +624,7 @@ namespace CashInTerminal
             
             if (packet.Cmd != 0)
             {
-                _DeviceState.StateCode = (CCNETCommand)packet.Cmd;
+                _DeviceState.StateCode = (CCNETResponseStatus)packet.Cmd;
             }
             
             if (packet.Data != null && packet.Data.Length > 0)
@@ -634,93 +634,93 @@ namespace CashInTerminal
 
             switch (_DeviceState.StateCode)
             {
-                case CCNETCommand.Wait:
-                    _DeviceState.StateCodeOut = CCNETCommand.Ok;
+                case CCNETResponseStatus.Wait:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Ok;
                     break;
 
-                case CCNETCommand.UnitDisabled:
-                    _DeviceState.StateCodeOut = CCNETCommand.UnitDisabled;
+                case CCNETResponseStatus.UnitDisabled:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.UnitDisabled;
                     if (_DeviceState.BillEnable)
                     {
                         EnableAll();
                     }
                     break;
 
-                case CCNETCommand.Accepting:
-                    _DeviceState.StateCodeOut = CCNETCommand.Accepting;
+                case CCNETResponseStatus.Accepting:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Accepting;
                     break;
 
-                case CCNETCommand.Initialize:
-                    _DeviceState.StateCodeOut = CCNETCommand.Initialize;
+                case CCNETResponseStatus.Initialize:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Initialize;
                     break;
 
-                case CCNETCommand.StackerFull:
-                    Log.Warn(CCNETCommand.StackerFull.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.StackerFull;
+                case CCNETResponseStatus.CassetteFull:
+                    Log.Warn(CCNETResponseStatus.CassetteFull.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.CassetteFull;
                     _DeviceState.FatalError = true;
                     Reset();
                     break;
 
-                case CCNETCommand.StackerOpened:
-                    _DeviceState.StateCodeOut = CCNETCommand.StackerOpened;
+                case CCNETResponseStatus.CassetteRemoved:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.CassetteRemoved;
                     _DeviceState.WasAmount = _DeviceState.Amount;
                     _DeviceState.Amount = 0;
                     break;
 
-                case CCNETCommand.PowerUpWithBillInAcceptor:
-                    _DeviceState.StateCodeOut = CCNETCommand.PowerUpWithBillInAcceptor;
+                case CCNETResponseStatus.PowerUpWithBillInAcceptor:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.PowerUpWithBillInAcceptor;
                     Reset();
                     break;
 
-                case CCNETCommand.PowerUpWithBillInStacker:
-                    _DeviceState.StateCodeOut = CCNETCommand.PowerUpWithBillInStacker;
+                case CCNETResponseStatus.PowerUpWithBillInStacker:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.PowerUpWithBillInStacker;
                     Reset();
                     break;
 
-                case CCNETCommand.PowerUp:
-                    Log.Warn(CCNETCommand.PowerUp.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.PowerUp;
+                case CCNETResponseStatus.PowerUp:
+                    Log.Warn(CCNETResponseStatus.PowerUp.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.PowerUp;
                     //Reset();
                     break;
 
-                case CCNETCommand.BillJam:
-                    Log.Error(CCNETCommand.BillJam.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.BillJam;
+                case CCNETResponseStatus.JamInAcceptor:
+                    Log.Error(CCNETResponseStatus.JamInAcceptor.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.JamInAcceptor;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.FatalError:
-                    Log.Warn(CCNETCommand.FatalError.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.FatalError;
+                case CCNETResponseStatus.Rejecting:
+                    Log.Warn(CCNETResponseStatus.Rejecting.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Rejecting;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.Cheated:
-                    Log.Warn(CCNETCommand.Cheated.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.Cheated;
+                case CCNETResponseStatus.Cheated:
+                    Log.Warn(CCNETResponseStatus.Cheated.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Cheated;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.CasseteBillJam:
-                    Log.Warn(CCNETCommand.CasseteBillJam.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.CasseteBillJam;
+                case CCNETResponseStatus.JamInStacker:
+                    Log.Warn(CCNETResponseStatus.JamInStacker.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.JamInStacker;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.Error:
-                    Log.Warn(CCNETCommand.Error.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.Error;
+                case CCNETResponseStatus.Error:
+                    Log.Warn(CCNETResponseStatus.Error.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Error;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.Stacking:
-                    _DeviceState.StateCodeOut = CCNETCommand.Stacking;
+                case CCNETResponseStatus.Stacking:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Stacking;
                     break;
 
-                case CCNETCommand.Stacked:
-                case CCNETCommand.BillAccepting:
+                case CCNETResponseStatus.BillStacked:
+                case CCNETResponseStatus.BillAccepting:
                     _DeviceState.Nominal = 0;
-                    _DeviceState.StateCodeOut = CCNETCommand.BillAccepting;
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
                     _DeviceState.Stacking = true;
 
                     _DeviceState.Currency = CurrentCurrency;
@@ -926,9 +926,9 @@ namespace CashInTerminal
                     BillStacked(_DeviceState);
                     break;
 
-                case CCNETCommand.BillReturned:
-                    Log.Warn(CCNETCommand.BillReturned.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.BillReturned;
+                case CCNETResponseStatus.BillReturned:
+                    Log.Warn(CCNETResponseStatus.BillReturned.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.BillReturned;
                     break;
             }
 
@@ -945,26 +945,26 @@ namespace CashInTerminal
             //switch (_DeviceState.StateCode)
             //{
 
-            //    case CCNETCommand.Inactive:
+            //    case CCNETResponseStatus.Inactive:
             //        _DeviceState.DeviceStateDescription = "Не активен";
             //        break;
 
-            //    case CCNETCommand.ReadyForTransaction:
+            //    case CCNETResponseStatus.ReadyForTransaction:
             //        _DeviceState.DeviceStateDescription = "Готов к транзакциям";
             //        break;
 
-            //    case CCNETCommand.Ok:
+            //    case CCNETResponseStatus.Ok:
             //        _DeviceState.DeviceStateDescription = "ACK";
             //        break;
 
-            //    case CCNETCommand.NotMount:
+            //    case CCNETResponseStatus.NotMount:
             //        _DeviceState.DeviceStateDescription = "NAK";
             //        break;
 
-            //    case CCNETCommand.PowerUp:
-            //    case CCNETCommand.PowerUpWithBillInAcceptor:
-            //    case CCNETCommand.PowerUpWithBillInStacker:
-            //        _DeviceState.DeviceStateDescription = EnumEx.GetDescription(CCNETCommand.PowerUp);
+            //    case CCNETResponseStatus.PowerUp:
+            //    case CCNETResponseStatus.PowerUpWithBillInAcceptor:
+            //    case CCNETResponseStatus.PowerUpWithBillInStacker:
+            //        _DeviceState.DeviceStateDescription = EnumEx.GetDescription(CCNETResponseStatus.PowerUp);
             //        break;
 
             //    default:

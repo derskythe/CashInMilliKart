@@ -83,9 +83,15 @@ namespace CashInTerminalWpf.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminalWpf.CashIn.ListCheckTemplateResult ListCheckTemplateDigest(CashInTerminalWpf.CashIn.StandardRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/GetBonusAmount", ReplyAction="http://cashin/CashInService/CashInServer/GetBonusAmountResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.BonusResponse GetBonusAmount(CashInTerminalWpf.CashIn.BonusRequest request);
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
@@ -129,6 +135,7 @@ namespace CashInTerminalWpf.CashIn {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListCheckTemplateResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CurrenciesResult))]
@@ -137,6 +144,7 @@ namespace CashInTerminalWpf.CashIn {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Encashment))]
@@ -1790,6 +1798,7 @@ namespace CashInTerminalWpf.CashIn {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListCheckTemplateResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CurrenciesResult))]
@@ -1885,6 +1894,29 @@ namespace CashInTerminalWpf.CashIn {
         
         /// <remarks/>
         SystemError,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class BonusResponse : StandardResult {
+        
+        private float bonusField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public float Bonus {
+            get {
+                return this.bonusField;
+            }
+            set {
+                this.bonusField = value;
+                this.RaisePropertyChanged("Bonus");
+            }
+        }
     }
     
     /// <remarks/>
@@ -2044,6 +2076,57 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.terminalField = value;
                 this.RaisePropertyChanged("Terminal");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class BonusRequest : StandardRequest {
+        
+        private string creditNumberField;
+        
+        private float amountField;
+        
+        private string currencyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string CreditNumber {
+            get {
+                return this.creditNumberField;
+            }
+            set {
+                this.creditNumberField = value;
+                this.RaisePropertyChanged("CreditNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public float Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+                this.RaisePropertyChanged("Amount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Currency {
+            get {
+                return this.currencyField;
+            }
+            set {
+                this.currencyField = value;
+                this.RaisePropertyChanged("Currency");
             }
         }
     }
@@ -2580,6 +2663,10 @@ namespace CashInTerminalWpf.CashIn {
         
         public CashInTerminalWpf.CashIn.ListCheckTemplateResult ListCheckTemplateDigest(CashInTerminalWpf.CashIn.StandardRequest request) {
             return base.Channel.ListCheckTemplateDigest(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.BonusResponse GetBonusAmount(CashInTerminalWpf.CashIn.BonusRequest request) {
+            return base.Channel.GetBonusAmount(request);
         }
     }
 }

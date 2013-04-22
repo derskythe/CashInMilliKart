@@ -30,35 +30,37 @@ namespace TestConsole
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 
-            var terminal = OracleDb.Instance.GetTerminal(3);
+            OracleDb.Instance.GetBonusAmount("LS000293/13", 50, "AZN");
 
-            var list1 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
-            var list2 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
+            //var terminal = OracleDb.Instance.GetTerminal(3);
 
-            GetValueFromDescription<ExtendedPrinterStatus>(String.Empty);
+            //var list1 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
+            //var list2 = OracleDb.Instance.ListUsers(UsersColumns.Username, SortType.Asc);
 
-            var salt = Wrapper.GenerateSalt();
-            var encPassword = Wrapper.ComputeHash("this is realy, realy, realy, realy, realy big password!", salt);
+            //GetValueFromDescription<ExtendedPrinterStatus>(String.Empty);
 
-
-            var keys = Wrapper.SaveToString(Wrapper.GenerateKeys(1024));
-            var PrivateKey1 = keys[0];
-            var PublicKey1 = keys[1];
-
-            var KeyPair1 = Wrapper.GetKeys(PrivateKey1, PublicKey1);
-
-            keys = Wrapper.SaveToString(Wrapper.GenerateKeys(1024));
-            var PrivateKey2 = keys[0];
-            var PublicKey2 = keys[1];
-
-            var KeyPair2 = Wrapper.GetKeys(PrivateKey2, PublicKey2);
+            //var salt = Wrapper.GenerateSalt();
+            //var encPassword = Wrapper.ComputeHash("this is realy, realy, realy, realy, realy big password!", salt);
 
 
-            DateTime now = DateTime.Now;
+            //var keys = Wrapper.SaveToString(Wrapper.GenerateKeys(1024));
+            //var PrivateKey1 = keys[0];
+            //var PublicKey1 = keys[1];
 
-            var encrypted = Sign("1", now, KeyPair2);
+            //var KeyPair1 = Wrapper.GetKeys(PrivateKey1, PublicKey1);
 
-            CheckSignature("1", now, encrypted, KeyPair2);
+            //keys = Wrapper.SaveToString(Wrapper.GenerateKeys(1024));
+            //var PrivateKey2 = keys[0];
+            //var PublicKey2 = keys[1];
+
+            //var KeyPair2 = Wrapper.GetKeys(PrivateKey2, PublicKey2);
+
+
+            //DateTime now = DateTime.Now;
+
+            //var encrypted = Sign("1", now, KeyPair2);
+
+            //CheckSignature("1", now, encrypted, KeyPair2);
 
             Console.WriteLine("Press ENTER to exit");
             Console.ReadLine();

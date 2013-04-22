@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.ServiceModel;
 using System.Text;
 using CashInCore.Properties;
@@ -56,7 +57,12 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public AuthResult InitTerminal(int terminalId, string authKey, string publicKey)
         {
-            Log.Info("InitTerminal. terminalId: {0}, authKey: {1}, publicKey: {2}");
+            Log.Info(
+                String.Format("InitTerminal. terminalId: {0}, authKey: {1}, publicKey: {2}",
+                terminalId,
+                authKey,
+                publicKey
+                ));
             var result = new AuthResult();
 
             try
@@ -90,7 +96,8 @@ namespace CashInCore
                 if (Encoding.ASCII.GetString(terminal.TmpKey) != authKey)
                 {
                     result.Code = ResultCodes.InvalidTerminal;
-                    throw new Exception(String.Format("Codes not equal. TerminalKey: {0}, Db key: {1}", Encoding.ASCII.GetString(terminal.TmpKey), authKey));
+                    throw new Exception(String.Format("Codes not equal. TerminalKey: {0}, Db key: {1}",
+                                                      Encoding.ASCII.GetString(terminal.TmpKey), authKey));
                 }
 
                 OracleDb.Instance.SaveTerminalStatus(terminalId, (int)TerminalCodes.Ok, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -259,7 +266,7 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult Payment(PaymentInfoByProducts request)
         {
-            Log.Info("Payment");
+            Log.Info("Payment. Data: " + request);
             var result = new StandardResult();
 
             try
@@ -267,7 +274,17 @@ namespace CashInCore
                 Terminal terminalInfo;
                 result = AuthTerminal(result, request, out terminalInfo);
 
-                Log.Debug("Payment: " + request);
+                if (OracleDb.Instance.HasTransaction(request.TransactionId))
+                {
+                    result.Code = ResultCodes.Ok;
+                    throw new InvalidDataException("Transaction already exists. TransactionId: " + request.TransactionId);
+                }
+
+                if (request.Amount <= 0)
+                {
+                    result.Code = ResultCodes.Ok;
+                    throw new InvalidDataException("Invalid amount");
+                }
 
                 OracleDb.Instance.SavePayment(request);
                 string bills = String.Join(";", request.Banknotes);
@@ -318,7 +335,8 @@ namespace CashInCore
                 Terminal terminalInfo;
                 result = AuthTerminal(result, request, out terminalInfo);
 
-                var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId, (int)TerminalCommands.Restart);
+                var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId,
+                                                                            (int)TerminalCommands.Restart);
                 OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
 
                 result.Code = ResultCodes.Ok;
@@ -345,7 +363,8 @@ namespace CashInCore
                 result = AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.SaveEncashment(request);
-                var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId, (int)TerminalCommands.Encash);
+                var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId,
+                                                                            (int)TerminalCommands.Encash);
                 OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
 
                 OracleDb.Instance.RegisterIncassoOrder(terminalInfo.Id);
@@ -442,6 +461,34 @@ namespace CashInCore
                 result = (ListCheckTemplateResult)AuthTerminal(result, request, out terminalInfo);
 
                 result.Templates = OracleDb.Instance.ListCheckTemplate();
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public BonusResponse GetBonusAmount(BonusRequest request)
+        {
+            Log.Debug("GetBonusAmount. Request: " + request);
+
+            var result = new BonusResponse();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (BonusResponse)AuthTerminal(result, request, out terminalInfo);
+
+                result.Bonus = OracleDb.Instance.GetBonusAmount(
+                    request.CreditNumber,
+                    request.Amount,
+                    request.Currency);
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);

@@ -25,7 +25,7 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
@@ -60,6 +60,7 @@ namespace CashInTerminalWpf
         {
             if (ClientNumber.Text.Length > 4)
             {
+                Log.Info("Input value: " + ClientNumber.Text);
                 _FormMain.ClientInfo.AccountNumber = ClientNumber.Text;
                 _FormMain.OpenForm(FormEnum.ClientCodeRetype);
             }

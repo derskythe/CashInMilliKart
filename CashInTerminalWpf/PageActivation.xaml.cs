@@ -120,7 +120,7 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));

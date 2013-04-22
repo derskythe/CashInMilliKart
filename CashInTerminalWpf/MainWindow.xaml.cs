@@ -45,9 +45,11 @@ namespace CashInTerminalWpf
         private LocalDb _Db;
         private bool _Running = true;
         private CashIn.ClientInfo[] _Clients;
+        private CashIn.BonusResponse _Bonus;
         private Dictionary<int, List<ds.TemplateFieldRow>> _CheckTemplates = new Dictionary<int, List<ds.TemplateFieldRow>>();
         private String _SelectedLanguage = InterfaceLanguages.Az;
-        private GetClientInfoRequest _InfoRequest;
+        private StandardRequest _InfoRequest;
+        private LongRequestType _LongRequestType;
         private const int TOTAL_CHECK_COUNT = 2727;
         private const int LOW_LEVEL_CHECK_COUNT = 2454;
         private String _CurrentForm = FormEnum.OutOfOrder;
@@ -78,6 +80,12 @@ namespace CashInTerminalWpf
         {
             get { return _CcnetDevice; }
             set { _CcnetDevice = value; }
+        }
+
+        public LongRequestType LongRequestType
+        {
+            get { return _LongRequestType; }
+            set { _LongRequestType = value; }
         }
 
         public Dictionary<int, List<ds.TemplateFieldRow>> CheckTemplates
@@ -156,13 +164,19 @@ namespace CashInTerminalWpf
             set { _Clients = value; }
         }
 
-        public GetClientInfoRequest InfoRequest
+        public StandardRequest InfoRequest
         {
             get { return _InfoRequest; }
             set { _InfoRequest = value; }
         }
 
-        private CashInServer _Server;        
+        public BonusResponse Bonus
+        {
+            get { return _Bonus; }
+            set { _Bonus = value; }
+        }
+
+        private CashInServer _Server;
 
         #region Threads
 
@@ -472,7 +486,7 @@ namespace CashInTerminalWpf
             Log.Debug("Application.Restart");
             //System.Windows.Forms.Application.Restart();
 
-            System.Windows.Forms.Application.Restart();            
+            System.Windows.Forms.Application.Restart();
             App.Current.Shutdown();
         }
 
@@ -507,11 +521,11 @@ namespace CashInTerminalWpf
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
         {
             Log.Debug(ccnetDeviceState.ToString());
-        }        
+        }
 
         public void OpenForm(String f)
         {
-            Log.Debug(String.Format("Current From: {0}, New form: {1}", _CurrentForm,  f));
+            Log.Debug(String.Format("Current From: {0}, New form: {1}", _CurrentForm, f));
             _CurrentForm = f;
             Dispatcher.Invoke(DispatcherPriority.Normal,
                     new Action<string>(Navigate),
@@ -632,9 +646,13 @@ namespace CashInTerminalWpf
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.DebitPayment, InterfaceLanguages.En);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.DebitPayment, InterfaceLanguages.Ru);
 
-                UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.Az);
-                UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.En);
-                UpdateCheckTemplateKey((int)CheckTemplateTypes.Encashment, InterfaceLanguages.Ru);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.EncashmentFull, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.EncashmentFull, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.EncashmentFull, InterfaceLanguages.Ru);
+
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditWithBonus, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditWithBonus, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditWithBonus, InterfaceLanguages.Ru);
             }
         }
 
@@ -1026,6 +1044,19 @@ namespace CashInTerminalWpf
             if (_CcnetDevice.DeviceState.FatalError)
             {
                 Log.Warn(_CcnetDevice.DeviceState);
+                _TerminalStatus = TerminalCodes.SystemError;
+                if (_CurrentForm != FormEnum.MoneyInput &&
+                _CurrentForm != FormEnum.PaySuccess &&
+                _CurrentForm != FormEnum.Encashment &&
+                _CurrentForm != FormEnum.Activation
+                )
+                {
+                    if (_CurrentForm != FormEnum.OutOfOrder)
+                    {
+                        _Init = false;
+                        OpenForm(FormEnum.OutOfOrder);
+                    }
+                }
             }
 
             if (Settings.Default.CheckCounter >= TOTAL_CHECK_COUNT)
@@ -1205,14 +1236,17 @@ namespace CashInTerminalWpf
                 var request = new Encashment();
 
                 var currList = new List<EncashmentCurrency>();
-                foreach (var currency in _Currencies)
+                if (!App.TestVersion)
                 {
-                    var total = _Db.GetCasseteTotal(currency.Name);
+                    foreach (var currency in _Currencies)
+                    {
+                        var total = _Db.GetCasseteTotal(currency.Name);
 
-                    var item = new EncashmentCurrency { Amount = total, Currency = currency.Id };
-                    Log.Info(String.Format("Encashment. {0} {1}", total, currency.Id));
-                    currList.Add(item);
-                }
+                        var item = new EncashmentCurrency {Amount = total, Currency = currency.Id};
+                        Log.Info(String.Format("Encashment. {0} {1}", total, currency.Id));
+                        currList.Add(item);
+                    }
+                }                
 
                 var now = DateTime.Now;
                 request.SystemTime = now;
@@ -1257,60 +1291,72 @@ namespace CashInTerminalWpf
                 {
                     try
                     {
+                        _Db.UpdateNonConfirmed(DateTime.Now.AddMinutes(-5));
+
                         var list = _Db.GetTransactions();
 
                         foreach (var row in list)
                         {
-                            var values = _Db.GetPaymentValues(row.Id);
-                            var banknotes = _Db.GetPaymentBanknotes(row.Id);
+                            Log.Info(String.Format("Trying to send. TransactionId: {0}, Amount: {1} {2}, InsertDate: {3}", row.TransactionId, row.Amount, row.Currency, row.InsertDate));
 
-                            var now = DateTime.Now;
-                            var request = new PaymentInfoByProducts
+                            if (!App.TestVersion)
                             {
-                                TerminalDate = now,
-                                SystemTime = now,
-                                TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                                TransactionId = row.TransactionId,
-                                ProductId = (int)row.ProductId,
-                                Currency = row.Currency,
-                                CurrencyRate = (float)row.CurrencyRate,
-                                Amount = (int)row.Amount,
-                                CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
-                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                                OperationType = Convert.ToInt32(row.OperationType)
-                            };
+                                var values = _Db.GetPaymentValues(row.Id);
+                                var banknotes = _Db.GetPaymentBanknotes(row.Id);
 
-                            var valuesList = new List<String>();
-                            var banknotesList = new List<int>();
+                                var now = DateTime.Now;
+                                var request = new PaymentInfoByProducts
+                                    {
+                                        TerminalDate = now,
+                                        SystemTime = now,
+                                        TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                        TransactionId = row.TransactionId,
+                                        ProductId = (int)row.ProductId,
+                                        Currency = row.Currency,
+                                        CurrencyRate = (float)row.CurrencyRate,
+                                        Amount = (int)row.Amount,
+                                        CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
+                                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                                        OperationType = Convert.ToInt32(row.OperationType)
+                                    };
 
-                            foreach (var value in values)
-                            {
-                                valuesList.Add(value.Value);
-                            }
+                                var valuesList = new List<String>();
+                                var banknotesList = new List<int>();
 
-                            foreach (var banknote in banknotes)
-                            {
-                                banknotesList.Add((int)banknote.Amount);
-                            }
+                                foreach (var value in values)
+                                {
+                                    valuesList.Add(value.Value);
+                                }
 
-                            request.Banknotes = banknotesList.ToArray();
-                            request.Values = valuesList.ToArray();
+                                foreach (var banknote in banknotes)
+                                {
+                                    banknotesList.Add((int)banknote.Amount);
+                                }
 
-                            var response = _Server.Payment(request);
+                                request.Banknotes = banknotesList.ToArray();
+                                request.Values = valuesList.ToArray();
 
-                            if (response != null && response.ResultCodes == ResultCodes.Ok)
-                            {
-                                Log.Info("Send to server is okay");
-                                listToDelete.Enqueue(row.Id);
-                            }
-                            else if (response != null)
-                            {
-                                Log.Warn(String.Format("Server answer: {0}, {1}", response.ResultCodes,
-                                                       response.Description));
+                                var response = _Server.Payment(request);
+
+                                if (response != null && response.ResultCodes == ResultCodes.Ok)
+                                {
+                                    Log.Info("Send to server is okay");
+                                    listToDelete.Enqueue(row.Id);
+                                }
+                                else if (response != null)
+                                {
+                                    Log.Warn(String.Format("Server answer: {0}, {1}", response.ResultCodes,
+                                                           response.Description));
+                                }
+                                else
+                                {
+                                    Log.Warn("Response is null");
+                                }
                             }
                             else
                             {
-                                Log.Warn("Response is null");
+                                Log.Info("Test version. No sending to server");
+                                listToDelete.Enqueue(row.Id);
                             }
                         }
                     }
@@ -1396,7 +1442,7 @@ namespace CashInTerminalWpf
 
             var checkProductsTimerCaller = new CheckProductsTimerCaller(CheckProductsTimer);
             checkProductsTimerCaller.Invoke(null);
-        }        
+        }
 
         #region DoClose
 
@@ -1435,6 +1481,6 @@ namespace CashInTerminalWpf
             DoClose();
         }
 
-        #endregion        
+        #endregion
     }
 }

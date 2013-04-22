@@ -41,7 +41,7 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             FormMain = (MainWindow)Window.GetWindow(this);
 
             try

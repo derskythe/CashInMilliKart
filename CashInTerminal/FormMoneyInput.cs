@@ -12,7 +12,6 @@ namespace CashInTerminal
     {
         private delegate void SetStackedAmountDelegate(object item);
         private delegate void EnableMoneyNextButtonDelegate(object item);
-
         private delegate void DisableBackButtonDelegate();
 
         public FormMoneyInput()
@@ -23,8 +22,8 @@ namespace CashInTerminal
         private void BtnMoneyNextClick(object sender, EventArgs e)
         {
             Thread.Sleep(250);
-            
-            if (FormMain.CcnetDevice.DeviceState.StateCode == CCNETCommand.Stacking)
+
+            if (FormMain.CcnetDevice.DeviceState.StateCode == CCNETResponseStatus.Stacking)
             {
                 return;
             }
@@ -57,7 +56,7 @@ namespace CashInTerminal
 
                     FormMain.Db.ConfirmTransaction(FormMain.ClientInfo.PaymentId);
                 }
-                
+
                 Log.Debug("Done");
             }
             catch (Exception exp)
@@ -95,7 +94,16 @@ namespace CashInTerminal
 
         private void CcnetDeviceOnReadCommand(CCNETDeviceState ccnetDeviceState)
         {
-            //Log.Debug(ccnetDeviceState.ToString());
+            Log.Debug(ccnetDeviceState.StateCode.ToString());
+
+            if (ccnetDeviceState.StateCode != CCNETResponseStatus.Idling && ccnetDeviceState.StateCode != CCNETResponseStatus.Wait)
+            {
+                EnableMoneyNextButton(false);
+            }
+            else if ((ccnetDeviceState.StateCode == CCNETResponseStatus.Idling || ccnetDeviceState.StateCode == CCNETResponseStatus.Wait) && FormMain.ClientInfo.CashCodeAmount > 0)
+            {
+                EnableMoneyNextButton(true);
+            }
         }
 
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
@@ -105,7 +113,7 @@ namespace CashInTerminal
             try
             {
                 DisableBackButton();
-                EnableMoneyNextButton(null);
+                //EnableMoneyNextButton(true);
 
                 SetStackedAmount(ccnetDeviceState.Amount);
                 lock (FormMain.ClientInfo)
@@ -208,7 +216,7 @@ namespace CashInTerminal
                 }
                 else
                 {
-                    btnMoneyNext.Enabled = true;
+                    btnMoneyNext.Enabled = (bool)param;
                 }
             }
             catch (Exception exp)

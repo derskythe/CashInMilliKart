@@ -77,6 +77,13 @@
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         </Style>
 
+        <Style x:Key="BlindLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="100" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
         <Style x:Key="ProgressBarStyle" TargetType="ProgressBar">
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="Height" Value="23"></Setter>
@@ -87,7 +94,14 @@
         <Style x:Key="MenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
             <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
             <Setter Property="MaxHeight" Value="105"></Setter>
+            <Setter Property="MinHeight" Value="105"></Setter>            
+        </Style>
+
+        <Style x:Key="SmallMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="MaxHeight" Value="105"></Setter>
             <Setter Property="MinHeight" Value="105"></Setter>
+            <Setter Property="FontSize" Value="35" />
         </Style>
 
         <Style x:Key="NumpadButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">

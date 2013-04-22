@@ -5,9 +5,9 @@ namespace CashInTerminal
 {
     public class CCNETDeviceState
     {
-        private CCNETCommand _StateCode; // внутр. состояние
+        private CCNETResponseStatus _StateCode; // внутр. состояние
         private byte _SubStateCode; // подкод состояния
-        private CCNETCommand _StateCodeOut; // внеш. состояние
+        private CCNETResponseStatus _StateCodeOut; // внеш. состояние
         private bool _BillEnable; // мы включены и нормально работаем
         private bool _AcceptEnable; // Мы ждем денег
         private bool _FatalError;  // фатальная ошибка. устройство не может работать
@@ -23,7 +23,7 @@ namespace CashInTerminal
         /// <summary>
         /// Внутр. состояние
         /// </summary>
-        public CCNETCommand StateCode
+        public CCNETResponseStatus StateCode
         {
             get
             {
@@ -53,7 +53,7 @@ namespace CashInTerminal
         /// <summary>
         /// внеш. состояние
         /// </summary>
-        public CCNETCommand StateCodeOut
+        public CCNETResponseStatus StateCodeOut
         {
             get
             {

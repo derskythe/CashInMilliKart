@@ -4,6 +4,8 @@
     {
         CreditPayment = 1,
         Encashment = 2,
-        DebitPayment = 3
+        DebitPayment = 3,
+        CreditWithBonus = 4,
+        EncashmentFull = 5
     }
 }

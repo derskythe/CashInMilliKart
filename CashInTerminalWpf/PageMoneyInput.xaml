@@ -15,6 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -23,8 +24,8 @@
 
         <Button Grid.ColumnSpan="2" Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Visibility="Hidden" />
         <Label Grid.ColumnSpan="2" Name="LabelInput" Style="{StaticResource BigLabelStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static res:Resources.LabelInput}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-        <Label Name="LabelTotal" Style="{StaticResource BigLabelStyle}" Grid.Row="2" Grid.Column="0" Content="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" />
-        <Label Name="LabelCurrency" Style="{StaticResource BigLabelStyle}" Grid.Row="2" Grid.Column="1" Content="AZN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" />
+        <Label Name="LabelTotal" Style="{StaticResource BlindLabelStyle}" Grid.Row="2" Grid.Column="0" Content="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" />
+        <Label Name="LabelCurrency" Style="{StaticResource BlindLabelStyle}" Grid.Row="2" Grid.Column="1" Content="AZN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" />        
 
         <Label Name="LabelCommission" Style="{StaticResource MainLabelStyle}" Grid.Row="3" Grid.ColumnSpan="2" Content="{x:Static res:Resources.LabelComission}" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden" />
 

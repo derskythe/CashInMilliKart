@@ -25,12 +25,12 @@ namespace CashInTerminalWpf
         static private bool _ParseRead;
 
         private const int POLLING_INTERVAL = 1000;
-/*
-        private const int MAX_RESPONSE_TIME = 250;
-*/
-/*
-        private const int MAX_PACKET_LENGTH = 255;
-*/
+        /*
+                private const int MAX_RESPONSE_TIME = 250;
+        */
+        /*
+                private const int MAX_PACKET_LENGTH = 255;
+        */
 
         private readonly Thread _ResponseReaderThread;
         private readonly Thread _PoolThread;
@@ -45,13 +45,18 @@ namespace CashInTerminalWpf
         private readonly EventWaitHandle _Wait = new AutoResetEvent(false);
         private readonly Timer _BackgroundPingTimer;
         private bool _TimedOut;
-        private bool _Disposing = false;
-        private bool _StartSend;
+        private bool _Disposing;
+        /*
+                private bool _StartSend;
+        */
 
         public delegate void ReadCommandHandler(CCNETDeviceState e);
         public delegate void BillStackedHandler(CCNETDeviceState e);
+
+        public delegate void BillRejectHandler(CCNETDeviceState e);
         public event ReadCommandHandler ReadCommand = delegate { };
         public event BillStackedHandler BillStacked = delegate { };
+        public event BillRejectHandler BillRejected = delegate { };
 
         #endregion
 
@@ -140,7 +145,7 @@ namespace CashInTerminalWpf
             _SendThread = new Thread(SendThread);
 
             _SerialDevice = new SerialStream();
-            _BackgroundPingTimer = new Timer(BackgroundPingTimer, null, 0, 60*1000);
+            _BackgroundPingTimer = new Timer(BackgroundPingTimer, null, 0, 60 * 1000);
         }
 
         public void Open(int port, CCNETPortSpeed speed)
@@ -249,31 +254,31 @@ namespace CashInTerminalWpf
         {
             try
             {
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
                 Reset();
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.GetStatus, null);
+                Send(CCNETControllerCommand.GetStatus, null);
                 Thread.Sleep(POLLING_INTERVAL);
                 byte[] sec = { 0x00, 0x00, 0x00 };
-                Send(CCNETCommand.SetSecurity, sec);
+                Send(CCNETControllerCommand.SetSecurity, sec);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Identification, null);
+                Send(CCNETControllerCommand.Identification, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
 
-                if (_DeviceState.StateCode != CCNETCommand.UnitDisabled)
+                if (_DeviceState.StateCode != CCNETResponseStatus.UnitDisabled)
                 {
-                    Send(CCNETCommand.Poll, null);
+                    Send(CCNETControllerCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
-                    _DeviceState.StateCode = CCNETCommand.Rejecting;
+                    _DeviceState.StateCode = CCNETResponseStatus.Error;
                     ProccessStateCode();
                 }
             }
@@ -290,8 +295,8 @@ namespace CashInTerminalWpf
             {
                 byte[] receiveBuffer = Enumerable.Repeat((byte)0x0, 128).ToArray();
                 int bytesRead = 0;
-                int bufferIndex = 0;
-                int startPacketIndex = 0;
+                //int bufferIndex = 0;
+                //int startPacketIndex = 0;
 
                 while (!_Disposing)
                 {
@@ -340,7 +345,7 @@ namespace CashInTerminalWpf
             {
                 if (_DeviceState.BillEnable)
                 {
-                    Send(CCNETCommand.Poll, null);
+                    Send(CCNETControllerCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
                 }
 
@@ -357,10 +362,10 @@ namespace CashInTerminalWpf
             {
                 return;
             }
-            
+
             try
             {
-                Send(CCNETCommand.Poll, null);
+                Send(CCNETControllerCommand.Poll, null);
             }
             catch (Exception exp)
             {
@@ -374,7 +379,7 @@ namespace CashInTerminalWpf
 
         private CCNETPacket CreatePacket(byte[] buffer, int startIndex)
         {
-            byte sync = buffer[startIndex];
+            //byte sync = buffer[startIndex];
             byte addr = buffer[(startIndex + 1) % buffer.Length];
             byte dataLength = buffer[(startIndex + 2) % buffer.Length];
             byte cmd = buffer[(startIndex + 3) % buffer.Length];
@@ -407,7 +412,7 @@ namespace CashInTerminalWpf
 
             CCNETPacket packet = CreatePacket(buffer, startIndex);
 
-            if (packet.Cmd != (byte) CCNETCommand.Ok || packet.Cmd != (byte) CCNETCommand.NotMount)
+            if (packet.Cmd != (byte)CCNETResponseStatus.Ok || packet.Cmd != (byte)CCNETResponseStatus.NotMount)
             {
                 SendAck();
                 ParseCommand(packet);
@@ -431,13 +436,11 @@ namespace CashInTerminalWpf
         //    }
         //}
 
-        private void Send(CCNETCommand cmd, byte[] data)
+        private void Send(CCNETControllerCommand cmd, byte[] data)
         {
-            ushort crcvalue;
+            var packet = new CCNETPacket(0x03, (byte)cmd, data);
 
-            CCNETPacket packet = new CCNETPacket(0x03, (byte)cmd, data);
-
-            byte[] crc = new byte[packet.Lng - 2];
+            var crc = new byte[packet.Lng - 2];
             crc[0] = packet.Sync;
             crc[1] = packet.Address;
             crc[2] = packet.Lng;
@@ -446,10 +449,10 @@ namespace CashInTerminalWpf
             {
                 Array.Copy(data, 0, crc, 4, data.Length);
             }
-            crcvalue = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
+            ushort crcvalue = CCNETCRCGenerator.GenerateCrc(crc, Convert.ToUInt16(crc.Length));
 
 
-            byte[] packetXMitBuffer = new byte[packet.Lng];
+            var packetXMitBuffer = new byte[packet.Lng];
             packetXMitBuffer[0] = packet.Sync;
             packetXMitBuffer[1] = packet.Address;
             packetXMitBuffer[2] = packet.Lng;
@@ -495,7 +498,7 @@ namespace CashInTerminalWpf
                     }
                     catch (Exception exp)
                     {
-
+                        Log.ErrorException(exp.Message, exp);
                         //throw new Exception(exp.Message.ToString());
                     }
                 }
@@ -546,7 +549,7 @@ namespace CashInTerminalWpf
             //    billmask[i] = 0x00;
             //}
 
-            Send(CCNETCommand.EnableDisable, billmask);
+            Send(CCNETControllerCommand.EnableDisable, billmask);
 
             _DeviceState.BillEnable = true;
         }
@@ -594,7 +597,7 @@ namespace CashInTerminalWpf
             //    billmask[i] = 0x00;
             //}
 
-            Send(CCNETCommand.EnableDisable, billmask);
+            Send(CCNETControllerCommand.EnableDisable, billmask);
 
             _DeviceState.BillEnable = true;
         }
@@ -602,7 +605,7 @@ namespace CashInTerminalWpf
         public void Disable()
         {
             byte[] disable = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-            Send(CCNETCommand.EnableDisable, disable);
+            Send(CCNETControllerCommand.EnableDisable, disable);
             _DeviceState.BillEnable = false;
             _DeviceState.Nominal = 0;
             _DeviceState.Amount = 0;
@@ -612,7 +615,8 @@ namespace CashInTerminalWpf
 
         public void Reset()
         {
-            Send(CCNETCommand.Reset, null);
+            _DeviceState.FatalError = false;            
+            Send(CCNETControllerCommand.Reset, null);
         }
 
         private void Return()
@@ -622,22 +626,22 @@ namespace CashInTerminalWpf
 
         public void Poll()
         {
-            Send(CCNETCommand.Poll, null);
+            Send(CCNETControllerCommand.Poll, null);
         }
 
-        private void Hold()
-        {
-            Send(CCNETCommand.Holding, null);
-        }
+        //private void Hold()
+        //{
+        //    Send(CCNETControllerCommand.HoldCommand, null);
+        //}
 
-        private void SendNAK()
-        {
-            Send(CCNETCommand.NotMount, null);
-        }
+        //private void SendNak()
+        //{
+        //    Send(CCNETControllerCommand.NotMount, null);
+        //}
 
         private void SendAck()
         {
-            Send(CCNETCommand.Ok, null);
+            Send(CCNETControllerCommand.Ok, null);
         }
 
         #endregion
@@ -653,12 +657,12 @@ namespace CashInTerminalWpf
             }
             //int length;
             //int lenCommand = packet.Lng;
-            
+
             if (packet.Cmd != 0)
             {
-                _DeviceState.StateCode = (CCNETCommand)packet.Cmd;
+                _DeviceState.StateCode = (CCNETResponseStatus)packet.Cmd;
             }
-            
+
             if (packet.Data != null && packet.Data.Length > 0)
             {
                 _DeviceState.SubStateCode = packet.Data[0];
@@ -666,93 +670,95 @@ namespace CashInTerminalWpf
 
             switch (_DeviceState.StateCode)
             {
-                case CCNETCommand.Wait:
-                    _DeviceState.StateCodeOut = CCNETCommand.Ok;
+                case CCNETResponseStatus.Wait:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Ok;
                     break;
 
-                case CCNETCommand.UnitDisabled:
-                    _DeviceState.StateCodeOut = CCNETCommand.UnitDisabled;
+                case CCNETResponseStatus.UnitDisabled:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.UnitDisabled;
                     if (_DeviceState.BillEnable)
                     {
                         EnableAll();
                     }
                     break;
 
-                case CCNETCommand.Accepting:
-                    _DeviceState.StateCodeOut = CCNETCommand.Accepting;
+                case CCNETResponseStatus.Accepting:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Accepting;
                     break;
 
-                case CCNETCommand.Initialize:
-                    _DeviceState.StateCodeOut = CCNETCommand.Initialize;
+                case CCNETResponseStatus.Initialize:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Initialize;
                     break;
 
-                case CCNETCommand.StackerFull:
-                    Log.Warn(CCNETCommand.StackerFull.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.StackerFull;
+                case CCNETResponseStatus.CassetteFull:
+                    Log.Warn(CCNETResponseStatus.CassetteFull.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.CassetteFull;
                     _DeviceState.FatalError = true;
                     Reset();
                     break;
 
-                case CCNETCommand.StackerOpened:
-                    _DeviceState.StateCodeOut = CCNETCommand.StackerOpened;
+                case CCNETResponseStatus.CassetteRemoved:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.CassetteRemoved;
                     _DeviceState.WasAmount = _DeviceState.Amount;
                     _DeviceState.Amount = 0;
                     break;
 
-                case CCNETCommand.PowerUpWithBillInAcceptor:
-                    _DeviceState.StateCodeOut = CCNETCommand.PowerUpWithBillInAcceptor;
+                case CCNETResponseStatus.PowerUpWithBillInAcceptor:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.PowerUpWithBillInAcceptor;
                     Reset();
                     break;
 
-                case CCNETCommand.PowerUpWithBillInStacker:
-                    _DeviceState.StateCodeOut = CCNETCommand.PowerUpWithBillInStacker;
+                case CCNETResponseStatus.PowerUpWithBillInStacker:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.PowerUpWithBillInStacker;
                     Reset();
                     break;
 
-                case CCNETCommand.PowerUp:
-                    Log.Warn(CCNETCommand.PowerUp.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.PowerUp;
+                case CCNETResponseStatus.PowerUp:
+                    Log.Warn(CCNETResponseStatus.PowerUp.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.PowerUp;
                     //Reset();
                     break;
 
-                case CCNETCommand.BillJam:
-                    Log.Error(CCNETCommand.BillJam.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.BillJam;
+                case CCNETResponseStatus.JamInAcceptor:
+                    Log.Error(CCNETResponseStatus.JamInAcceptor.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.JamInAcceptor;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.Rejecting:
-                    Log.Warn(CCNETCommand.Rejecting.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.Rejecting;
+                case CCNETResponseStatus.Rejecting:
+                    Log.Warn(CCNETResponseStatus.Rejecting.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Rejecting;
+                    _DeviceState.RejectReason = (CCNETRejectReason)_DeviceState.SubStateCode;
+                    BillRejected(_DeviceState);
+                    break;
+
+                case CCNETResponseStatus.Cheated:
+                    Log.Warn(CCNETResponseStatus.Cheated.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Cheated;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.Cheated:
-                    Log.Warn(CCNETCommand.Cheated.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.Cheated;
+                case CCNETResponseStatus.JamInStacker:
+                    Log.Warn(CCNETResponseStatus.JamInStacker.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.JamInStacker;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.CasseteBillJam:
-                    Log.Warn(CCNETCommand.CasseteBillJam.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.CasseteBillJam;
+                case CCNETResponseStatus.Error:
+                    Log.Warn(CCNETResponseStatus.Error.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Error;
+                    _DeviceState.ErrorCode = (CCNETErrorCodes)_DeviceState.SubStateCode;
                     _DeviceState.FatalError = true;
                     break;
 
-                case CCNETCommand.Error:
-                    Log.Warn(CCNETCommand.Error.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.Error;
-                    _DeviceState.FatalError = true;
+                case CCNETResponseStatus.Stacking:
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.Stacking;
                     break;
 
-                case CCNETCommand.Stacking:
-                    _DeviceState.StateCodeOut = CCNETCommand.Stacking;
-                    break;
-
-                case CCNETCommand.Stacked:
-                case CCNETCommand.BillAccepting:
+                case CCNETResponseStatus.BillStacked:
+                case CCNETResponseStatus.BillAccepting:
                     _DeviceState.Nominal = 0;
-                    _DeviceState.StateCodeOut = CCNETCommand.BillAccepting;
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
                     _DeviceState.Stacking = true;
 
                     _DeviceState.Currency = CurrentCurrency;
@@ -840,110 +846,6 @@ namespace CashInTerminalWpf
                             break;
                     }
 
-                    //foreach (var currency in _CurrentCurrency)
-                    //{
-                    //    if (currency == Currencies.Azn)
-                    //    {
-                    //        _DeviceState.Currency = Currencies.Azn;
-                    //        switch (_DeviceState.SubStateCode)
-                    //        {
-                    //            case CcnetBillTypes.Azn1: // 1 AZN
-                    //                _DeviceState.Nominal = 1;
-
-                    //                break;
-
-                    //            case CcnetBillTypes.Azn5: // 5 AZN
-                    //                _DeviceState.Nominal = 5;
-                    //                break;
-
-                    //            case CcnetBillTypes.Azn10: // 10 AZN
-                    //                _DeviceState.Nominal = 10;
-                    //                break;
-
-                    //            case CcnetBillTypes.Azn20: // 20 AZN
-                    //                _DeviceState.Nominal = 20;
-                    //                break;
-
-                    //            case CcnetBillTypes.Azn50: // 50 AZN
-                    //                _DeviceState.Nominal = 50;
-                    //                break;
-
-                    //            case CcnetBillTypes.Azn100:
-                    //                _DeviceState.Nominal = 100;
-                    //                break;
-                    //        }
-                    //    }
-                    //    else if (currency == Currencies.Usd)
-                    //    {
-                    //        _DeviceState.Currency = Currencies.Usd;
-                    //        switch (_DeviceState.SubStateCode)
-                    //        {
-                    //            case CcnetBillTypes.Usd1:
-                    //                _DeviceState.Nominal = 1;
-                    //                break;
-
-                    //            case CcnetBillTypes.Usd2:
-                    //                _DeviceState.Nominal = 2;
-                    //                break;
-
-                    //            case CcnetBillTypes.Usd5:
-                    //                _DeviceState.Nominal = 5;
-                    //                break;
-
-                    //            case CcnetBillTypes.Usd10:
-                    //                _DeviceState.Nominal = 10;
-                    //                break;
-
-                    //            case CcnetBillTypes.Usd20:
-                    //                _DeviceState.Nominal = 20;
-                    //                break;
-
-                    //            case CcnetBillTypes.Usd50:
-                    //                _DeviceState.Nominal = 50;
-                    //                break;
-
-                    //            case CcnetBillTypes.Usd100:
-                    //                _DeviceState.Nominal = 100;
-                    //                break;
-                    //        }
-                    //    }
-                    //    else if (currency == Currencies.Eur)
-                    //    {
-                    //        _DeviceState.Currency = Currencies.Eur;
-                    //        switch (_DeviceState.SubStateCode)
-                    //        {
-                    //            case CcnetBillTypes.Eur5:
-                    //                _DeviceState.Nominal = 5;
-                    //                break;
-
-                    //            case CcnetBillTypes.Eur10:
-                    //                _DeviceState.Nominal = 10;
-                    //                break;
-
-                    //            case CcnetBillTypes.Eur20:
-                    //                _DeviceState.Nominal = 20;
-                    //                break;
-
-                    //            case CcnetBillTypes.Eur50:
-                    //                _DeviceState.Nominal = 50;
-                    //                break;
-
-                    //            case CcnetBillTypes.Eur100:
-                    //                _DeviceState.Nominal = 100;
-                    //                break;
-
-                    //            case CcnetBillTypes.Eur200:
-                    //                _DeviceState.Nominal = 200;
-                    //                break;
-
-                    //            case CcnetBillTypes.Eur500:
-                    //                _DeviceState.Nominal = 500;
-                    //                break;
-                    //        }
-                    //    }
-                    //}
-
-
                     if (_DeviceState.Nominal > 0)
                     {
                         _DeviceState.Stacking = false;
@@ -958,12 +860,9 @@ namespace CashInTerminalWpf
                     BillStacked(_DeviceState);
                     break;
 
-                case CCNETCommand.BillReturned:
-                    Log.Warn(CCNETCommand.BillReturned.ToString());
-                    _DeviceState.StateCodeOut = CCNETCommand.BillReturned;
-                    break;
-
-                default:
+                case CCNETResponseStatus.BillReturned:
+                    Log.Warn(CCNETResponseStatus.BillReturned.ToString());
+                    _DeviceState.StateCodeOut = CCNETResponseStatus.BillReturned;
                     break;
             }
 
@@ -980,26 +879,26 @@ namespace CashInTerminalWpf
             //switch (_DeviceState.StateCode)
             //{
 
-            //    case CCNETCommand.Inactive:
+            //    case CCNETResponseStatus.Inactive:
             //        _DeviceState.DeviceStateDescription = "Не активен";
             //        break;
 
-            //    case CCNETCommand.ReadyForTransaction:
+            //    case CCNETResponseStatus.ReadyForTransaction:
             //        _DeviceState.DeviceStateDescription = "Готов к транзакциям";
             //        break;
 
-            //    case CCNETCommand.Ok:
+            //    case CCNETResponseStatus.Ok:
             //        _DeviceState.DeviceStateDescription = "ACK";
             //        break;
 
-            //    case CCNETCommand.NotMount:
+            //    case CCNETResponseStatus.NotMount:
             //        _DeviceState.DeviceStateDescription = "NAK";
             //        break;
 
-            //    case CCNETCommand.PowerUp:
-            //    case CCNETCommand.PowerUpWithBillInAcceptor:
-            //    case CCNETCommand.PowerUpWithBillInStacker:
-            //        _DeviceState.DeviceStateDescription = EnumEx.GetDescription(CCNETCommand.PowerUp);
+            //    case CCNETResponseStatus.PowerUp:
+            //    case CCNETResponseStatus.PowerUpWithBillInAcceptor:
+            //    case CCNETResponseStatus.PowerUpWithBillInStacker:
+            //        _DeviceState.DeviceStateDescription = EnumEx.GetDescription(CCNETResponseStatus.PowerUp);
             //        break;
 
             //    default:
@@ -1007,7 +906,7 @@ namespace CashInTerminalWpf
             //        break;
 
             //}
-            
+
             _DeviceState.DeviceStateDescription = EnumEx.GetDescription(_DeviceState.StateCode);
         }
 
@@ -1164,14 +1063,14 @@ namespace CashInTerminalWpf
 
             static private void CalcCrc(byte mbyte)
             {
-                ushort i, c;
+                ushort i;
                 _ByteCrcH ^= mbyte;
                 ushort tempCrc = _ByteCrcL;
                 tempCrc <<= 8;
                 tempCrc |= _ByteCrcH;
                 for (i = 0; i < 8; i++)
                 {
-                    c = (ushort)(tempCrc & 0x01);
+                    var c = (ushort)(tempCrc & 0x01);
                     tempCrc >>= 1;
                     if (c != 0) tempCrc ^= POLYNOMINAL;
                 }
@@ -1181,6 +1080,5 @@ namespace CashInTerminalWpf
         }
 
         #endregion
-
     }
 }

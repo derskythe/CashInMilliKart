@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="OracleDb" Type="System.String" Scope="User">
-      <Value Profile="(Default)">orcl</Value>
+      <Value Profile="(Default)">cash</Value>
     </Setting>
     <Setting Name="OracleUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cashin</Value>
+      <Value Profile="(Default)">cashin_new</Value>
     </Setting>
     <Setting Name="OraclePassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cashin</Value>
+      <Value Profile="(Default)">cashin_new</Value>
     </Setting>
   </Settings>
 </SettingsFile>

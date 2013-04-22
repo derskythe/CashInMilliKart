@@ -32,7 +32,7 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             try
@@ -70,7 +70,6 @@ namespace CashInTerminalWpf
 
                 try
                 {
-
                     foreach (var tag in _FormMain.Currencies)
                     {
                         string text = tag.Id;

@@ -3,10 +3,14 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using CashInTerminalWpf.CashIn;
 using CashInTerminalWpf.Enums;
 using CashInTerminalWpf.Properties;
+using Containers;
 using Containers.CashCode;
+using Containers.Enums;
 using NLog;
+using GetClientInfoRequest = CashInTerminalWpf.CashIn.GetClientInfoRequest;
 
 namespace CashInTerminalWpf
 {
@@ -22,15 +26,18 @@ namespace CashInTerminalWpf
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        private readonly TimeSpan _MaxTransactionTime = new TimeSpan(0, 0, 0, 30);
+        private CCNETResponseStatus _LastResponse = CCNETResponseStatus.NotMount;
+        private DateTime _LastInput = DateTime.Now;
 
         public PageMoneyInput()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
@@ -40,13 +47,19 @@ namespace CashInTerminalWpf
 
             LabelCurrency.Content = _FormMain.ClientInfo.CurrentCurrency;
             LabelTotal.Content = @"0";
-            _FormMain.ClientInfo.CashCodeAmount = 0;
+            _FormMain.ClientInfo.CashCodeAmount = 0;            
 
             _FormMain.CcnetDevice.BillStacked += CcnetDeviceOnBillStacked;
             _FormMain.CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
+            _FormMain.CcnetDevice.BillRejected += CcnetDeviceOnBillRejected;
 
             var startCashCodeThread = new Thread(StartCashcode);
             startCashCodeThread.Start();
+        }
+
+        private void CcnetDeviceOnBillRejected(CCNETDeviceState ccnetDeviceState)
+        {
+            Log.Info("Bill reject reason: " + ccnetDeviceState.RejectReason + " " + EnumEx.GetDescription(ccnetDeviceState.RejectReason));
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
@@ -67,16 +80,14 @@ namespace CashInTerminalWpf
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
-            Thread.Sleep(250);
+            ButtonNext.IsEnabled = false;
+            EndTransaction();
+        }
 
-            if (_FormMain.CcnetDevice.DeviceState.StateCode == CCNETCommand.Stacking)
-            {
-                return;
-            }
-
+        private void EndTransaction()
+        {
             Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), false);
 
-            Thread.Sleep(250);
             try
             {
                 Log.Debug("Stopping cashcode");
@@ -111,12 +122,78 @@ namespace CashInTerminalWpf
             }
 
             Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), true);
-            _FormMain.OpenForm(FormEnum.PaySuccess);
+
+            if (_FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentByClientCode ||
+                _FormMain.ClientInfo.PaymentOperationType ==
+                PaymentOperationType.CreditPaymentByPassportAndAccount ||
+                _FormMain.ClientInfo.PaymentOperationType == PaymentOperationType.CreditPaymentBolcard)
+            {
+                var now = DateTime.Now;
+                var request = new CashIn.BonusRequest
+                {
+                    CreditNumber = _FormMain.ClientInfo.Client.CreditNumber,
+                    Amount = _FormMain.ClientInfo.CashCodeAmount,
+                    Currency = _FormMain.ClientInfo.CurrentCurrency,
+                    SystemTime = now,
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
+                };
+
+                _FormMain.Bonus = null;
+                _FormMain.LongRequestType = LongRequestType.BonusRequest;
+                _FormMain.InfoRequest = request;
+
+                _FormMain.OpenForm(FormEnum.Progress);
+            }
+            else
+            {
+                _FormMain.OpenForm(FormEnum.PaySuccess);
+            }
         }
 
         private void CcnetDeviceOnReadCommand(CCNETDeviceState ccnetDeviceState)
         {
-            //Log.Debug(ccnetDeviceState.ToString());
+            Log.Debug(String.Format("State: {0}, SubState: {1}, ErrorCode: {2}", ccnetDeviceState.StateCodeOut, ccnetDeviceState.SubStateCode, ccnetDeviceState.ErrorCode));
+
+            if (ccnetDeviceState.StateCode != CCNETResponseStatus.Idling && ccnetDeviceState.StateCode != CCNETResponseStatus.Wait)
+            {
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), false);
+
+                if (ccnetDeviceState.StateCode == CCNETResponseStatus.Accepting ||
+                    ccnetDeviceState.StateCode == CCNETResponseStatus.BillAccepting ||
+                    ccnetDeviceState.StateCode == CCNETResponseStatus.BillReceiving ||
+                    ccnetDeviceState.StateCode == CCNETResponseStatus.BillStacked ||
+                    ccnetDeviceState.StateCode == CCNETResponseStatus.Stacking
+                    )
+                {
+                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetBackButton), false);
+                }
+            }
+            else if ((ccnetDeviceState.StateCode == CCNETResponseStatus.Idling || ccnetDeviceState.StateCode == CCNETResponseStatus.Wait) && _FormMain.ClientInfo.CashCodeAmount > 0)
+            {
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), true);
+            }
+
+            if (_LastResponse != ccnetDeviceState.StateCodeOut)
+            {
+                _LastResponse = ccnetDeviceState.StateCodeOut;
+                _LastInput = DateTime.Now;
+            }
+            else if (DateTime.Now - _LastInput > _MaxTransactionTime)
+            {
+                Log.Warn("Autocommit transaction");
+                if (_FormMain.ClientInfo.CashCodeAmount > 0)
+                {
+                    Log.Info("Transaction commit");
+                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action(EndTransaction));
+                }
+                else
+                {
+                    Log.Info("Transaction rollback");
+                    StopCashcode();
+                    _FormMain.OpenForm(FormEnum.Products);
+                }
+            }
         }
 
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
@@ -125,11 +202,11 @@ namespace CashInTerminalWpf
 
             try
             {
-                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetBackButton), false);
-                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), true);
+                //Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetBackButton), false);
+                //Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), true);
                 Dispatcher.Invoke(
-                    DispatcherPriority.Normal, 
-                    new Action<String>(SetStackedAmount), 
+                    DispatcherPriority.Normal,
+                    new Action<String>(SetStackedAmount),
                     ccnetDeviceState.Amount.ToString(CultureInfo.InvariantCulture));
 
                 lock (_FormMain.ClientInfo)
@@ -145,7 +222,7 @@ namespace CashInTerminalWpf
                 _FormMain.Db.InsertTransactionBanknotes(
                     ccnetDeviceState.Nominal,
                     ccnetDeviceState.Currency,
-                                                       _FormMain.ClientInfo.TransactionId);
+                   _FormMain.ClientInfo.TransactionId);
             }
             catch (Exception exp)
             {
@@ -222,7 +299,7 @@ namespace CashInTerminalWpf
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);
-            }            
+            }
         }
 
         private void SetNextButton(bool status)

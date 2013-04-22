@@ -4,6 +4,7 @@ using System.Data;
 using Containers;
 using Db.dsTableAdapters;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace Db
 {
@@ -69,7 +70,7 @@ namespace Db
             }
 
             return result;
-        }        
+        }
 
         public Terminal GetTerminal(int id)
         {
@@ -339,15 +340,20 @@ namespace Db
                 amount.Add(currency.Amount);
                 currencyList.Add(currency.Currency);
             }
-            currencies.Value = currencyList.ToArray();
-            amounts.Value = amount.ToArray();
 
-            currencies.Size = currencyList.Count;
-            amounts.Size = amount.Count;
+            if (currencyList.Count > 0 && amount.Count > 0)
+            {
+                currencies.Value = currencyList.ToArray();
+                amounts.Value = amount.ToArray();
 
-            cmd.Parameters.Add(terminalId);
-            cmd.Parameters.Add(currencies);
-            cmd.Parameters.Add(amounts);
+                currencies.Size = currencyList.Count;
+                amounts.Size = amount.Count;
+
+                cmd.Parameters.Add(currencies);
+                cmd.Parameters.Add(amounts);
+            }
+
+            cmd.Parameters.Add(terminalId);            
 
             cmd.ExecuteNonQuery();
         }
@@ -481,7 +487,7 @@ namespace Db
             cmd.Parameters.Add("v_operation_type", OracleDbType.Int32, ParameterDirection.Input).Value = operationType;
             cmd.Parameters.Add("v_client_timestamp", OracleDbType.TimeStamp, ParameterDirection.Input).Value = timeStamp;
             cmd.Parameters.Add("v_currency", OracleDbType.Varchar2, ParameterDirection.Input).Value = currency;
-            
+
             cmd.ExecuteNonQuery();
         }
 
@@ -517,5 +523,60 @@ namespace Db
 
         //    return result;
         //}
+        public float GetBonusAmount(String creditNumber, float amount, String currency)
+        {
+            CheckConnection();
+
+            var cmd = _OraCon.CreateCommand();
+            cmd.CommandText = "backend.get_bonus_amount";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            var returnValue = new OracleParameter();
+            var paramCreditNumber = new OracleParameter();
+            var paramCurrency = new OracleParameter();
+            var paramAmount = new OracleParameter();
+
+            paramCreditNumber.OracleDbType = OracleDbType.NVarchar2;
+            paramCurrency.OracleDbType = OracleDbType.NVarchar2;
+            paramAmount.OracleDbType = OracleDbType.Double;
+            returnValue.OracleDbType = OracleDbType.Double;
+            
+            paramCreditNumber.Direction = ParameterDirection.Input;
+            paramCurrency.Direction = ParameterDirection.Input;
+            paramAmount.Direction = ParameterDirection.Input;
+            returnValue.Direction = ParameterDirection.Output;
+
+            paramCreditNumber.Value = creditNumber;
+            paramCurrency.Value = currency;
+            paramAmount.Value = amount;
+            
+            cmd.Parameters.Add(paramCreditNumber);
+            cmd.Parameters.Add(paramCurrency);
+            cmd.Parameters.Add(paramAmount);
+            cmd.Parameters.Add(returnValue);
+
+            cmd.ExecuteNonQuery();
+
+            var result = cmd.Parameters[3].Value;
+
+            return result == null ? 0f : ((Oracle.DataAccess.Types.OracleDecimal)(result)).ToSingle();
+        }
+
+        public bool HasTransaction(String transactionId)
+        {
+            CheckConnection();
+
+            var adapter = new V_PRODUCTS_HISTORYTableAdapter { Connection = _OraCon, BindByName = true };
+            var table = new ds.V_PRODUCTS_HISTORYDataTable();
+
+            adapter.FillByTransactionId(table, transactionId);
+
+            foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

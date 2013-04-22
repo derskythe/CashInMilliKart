@@ -95,7 +95,7 @@ namespace Containers
         {
         }
 
-        public CashCodeDeviceStatus(CCNETCommand stateCode, CCNETCommand stateCodeOut, bool billEnable, bool fatalError, string deviceStateDescription, string subDeviceStateDescription, bool init)
+        public CashCodeDeviceStatus(CCNETResponseStatus stateCode, CCNETResponseStatus stateCodeOut, bool billEnable, bool fatalError, string deviceStateDescription, string subDeviceStateDescription, bool init)
         {
             _StateCode = (int)stateCode;
             _StateCodeOut = (int)stateCodeOut;

@@ -31,7 +31,7 @@
     <ProductName>CashIn Terminal WPF</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>43</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -124,6 +124,7 @@
     <Compile Include="Enums\ExtendedPrinterStatus.cs" />
     <Compile Include="Enums\FormEnum.cs" />
     <Compile Include="Enums\InterfaceLanguages.cs" />
+    <Compile Include="Enums\LongRequestType.cs" />
     <Compile Include="Enums\PrinterStatus.cs" />
     <Compile Include="Enums\TemplateFields.cs" />
     <Compile Include="Enums\TemplateFieldType.cs" />
@@ -373,6 +374,9 @@
     <None Include="Service References\CashIn\CashInServer.wsdl" />
     <None Include="Service References\CashIn\CashIn.disco" />
     <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.AuthResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.BonusResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.CurrenciesResult.datasource">

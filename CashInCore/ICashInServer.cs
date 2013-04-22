@@ -49,5 +49,8 @@ namespace CashInCore
 
         [OperationContract]
         ListCheckTemplateResult ListCheckTemplateDigest(StandardRequest request);
+
+        [OperationContract]
+        BonusResponse GetBonusAmount(BonusRequest request);
     }
 }

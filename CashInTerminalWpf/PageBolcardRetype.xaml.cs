@@ -34,6 +34,7 @@ namespace CashInTerminalWpf
         {
             if (ClientNumber.Text.Length > 4)
             {
+                Log.Info("Input value: " + ClientNumber.Text);
                 if (ClientNumber.Text != _FormMain.ClientInfo.AccountNumber)
                 {
                     _FormMain.OpenForm(FormEnum.InvalidNumber);
@@ -51,6 +52,7 @@ namespace CashInTerminalWpf
                         Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
                     };
 
+                    _FormMain.LongRequestType = LongRequestType.InfoRequest;
                     _FormMain.InfoRequest = request;
                     _FormMain.OpenForm(FormEnum.Progress);
                 }
@@ -64,7 +66,7 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));

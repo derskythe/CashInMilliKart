@@ -35,7 +35,7 @@ namespace CashInTerminalWpf
             return value.ToString("HH:mm:ss dd.MM.yyyy");
         }
 
-        public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxWidth, int maxHeight)
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
             var ratioX = (double)maxWidth / image.Width;
             var ratioY = (double)maxHeight / image.Height;

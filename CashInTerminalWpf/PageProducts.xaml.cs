@@ -33,7 +33,7 @@ namespace CashInTerminalWpf
         {
             try
             {
-                Log.Info(Name);
+                Log.Info(Title);
                 _FormMain = (MainWindow)Window.GetWindow(this);
 
                 _FormMain.ProductUpdate += FormMainOnProductUpdate;
@@ -80,7 +80,7 @@ namespace CashInTerminalWpf
             try
             {
                 Dispatcher.Invoke(DispatcherPriority.Normal, new Action(AddButtons));
-                if (Grid.Children.Count == 0)
+                if (_FormMain.Products.Count == 0)
                 {
                     _FormMain.OpenForm(FormEnum.OutOfOrder);
                 }

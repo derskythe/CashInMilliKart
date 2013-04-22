@@ -560,4 +560,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetBonusAmount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:BonusRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="BonusRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CreditNumber" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:float" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetBonusAmountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetBonusAmountResult" type="tns:BonusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="BonusResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardResult">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Bonus" type="xs:float" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
 </xs:schema>

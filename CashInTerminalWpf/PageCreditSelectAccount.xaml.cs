@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using CashInTerminalWpf.Enums;
@@ -55,7 +54,8 @@ namespace CashInTerminalWpf
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            Log.Info(Name);
+            Log.Info(Title);
+            LabelTestVersion.Visibility = App.TestVersion ? Visibility.Visible : Visibility.Collapsed;
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             try
@@ -88,7 +88,7 @@ namespace CashInTerminalWpf
 
                         var button = new Button
                         {
-                            Style = FindResource("MenuButtonStyle") as Style,
+                            Style = FindResource("SmallMenuButtonStyle") as Style,
                             Name = "Button" + tag.ClientAccount + tag.CreditAmount,
                             Tag = tag,
                             Content = text

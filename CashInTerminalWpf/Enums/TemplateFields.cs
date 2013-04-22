@@ -1,4 +1,4 @@
-﻿namespace CashInTerminal.Enums
+﻿namespace CashInTerminalWpf.Enums
 {
     public class TemplateFields
     {
@@ -14,5 +14,7 @@
         public const string Branch = "[Branch]";
         public const string Address = "[Address]";
         public const string FullPaymentFlag = "[FullPayment]";
+        public const string BillsCount = "[BillsCount]";
+        public const string Bonus = "[Bonus]";
     }
 }

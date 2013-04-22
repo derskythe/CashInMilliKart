@@ -19,6 +19,14 @@ namespace CashInTerminalWpf
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        // ReSharper disable ConvertToConstant.Local
+        private static readonly bool _TestVersion = true;
+        // ReSharper restore ConvertToConstant.Local
+
+        public static bool TestVersion
+        {
+            get { return _TestVersion; }
+        }
 
         private void ApplicationLoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {

@@ -6,7 +6,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="746" d:DesignWidth="1020"
 	Title="PageProgress"  Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" 
-      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded">
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded" Unloaded="PageUnloaded">
 
     <Grid>
         <Grid.RowDefinitions>
