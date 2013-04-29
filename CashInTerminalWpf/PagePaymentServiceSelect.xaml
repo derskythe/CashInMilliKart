@@ -1,0 +1,70 @@
+﻿<Page x:Class="CashInTerminalWpf.PagePaymentServiceSelect"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="746" d:DesignWidth="1020"
+	Title="PagePaymentServiceSelect"  Height="Auto" 
+      Width="Auto"  Background="{StaticResource FormBlueBarGradientBrush}" 
+      xmlns:res="clr-namespace:CashInTerminalWpf.Properties" Loaded="PageLoaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
+
+        <UniformGrid Grid.Row="1" x:Name="Grid" Columns="4" VerticalAlignment="Top" Rows="3">
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>                
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button button" Style="{StaticResource MainTextBlockStyle}" />
+            </Button>
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+                <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>
+            </Button>
+        </UniformGrid>
+
+        <DockPanel Name="ServiceNav" Margin="8,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Visibility="Visible">
+            <Button Name="ButtonPrev" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource ServiceNavButtonStyleBack}" Click="ButtonPrevClick" />
+            <Button Name="ButtonNext" HorizontalAlignment="Right" DockPanel.Dock="Left" Style="{StaticResource ServiceNavButtonStyleNext}" Click="ButtonNextClick" />
+        </DockPanel>
+
+        <DockPanel Margin="8" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom">
+            <Button Name="ButtonBack" MinWidth="93" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />
+        </DockPanel>
+    </Grid>
+</Page>

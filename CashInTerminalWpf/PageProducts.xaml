@@ -4,7 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" Title="PageProducts"
-      Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" d:DesignWidth="696" Loaded="PageLoaded" Unloaded="PageUnloaded">
+	  d:DesignHeight="746" d:DesignWidth="1020"
+      Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" 
+      Loaded="PageLoaded" Unloaded="PageUnloaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -12,7 +14,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <UniformGrid x:Name="Grid" Columns="1" VerticalAlignment="Top" Grid.Row="0">
-            <Button Style="{StaticResource MenuButtonStyle}" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Sample button" />
         </UniformGrid>
         <Label Name="LabelTestVersion"  Grid.Row="2" Content="Тестовая версия!" Foreground="DarkRed" HorizontalAlignment="Center" Style="{StaticResource BigLabelStyle}" />
     </Grid>

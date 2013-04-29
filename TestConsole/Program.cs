@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Net.Mime;
 using System.Text;
+using System.Text.RegularExpressions;
 using CashInTerminal.Enums;
 using Containers.Enums;
 using Db;
@@ -20,9 +21,27 @@ namespace TestConsole
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        static Regex _Regex = new Regex(@"^(0|\+994)(.+?)$");
+        private static String _Pattern = "$2";
 
         static void Main(string[] args)
         {
+            var sample = new[] {"+994503312380", "0503312380"};
+
+            foreach (var s in sample)
+            {
+                var m = _Regex.Replace(s, _Pattern);
+                Console.WriteLine(m);
+            }
+
+            var reg = new Regex("^[a-z0-9]+$", RegexOptions.IgnoreCase);
+            var m2 = reg.Match("SKIF1CH");
+
+            if (m2.Success)
+            {
+                
+            }
+            
 
             Console.WriteLine(FirstUpper("HƏSƏNOVA ZüLFIYYƏ XUDU QIZI"));
             //Console.WriteLine(MediaTypeNames.Application.ExecutablePath);

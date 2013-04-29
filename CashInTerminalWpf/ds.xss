@@ -8,11 +8,11 @@
   <Shapes>
     <Shape ID="DesignTable:CasseteBanknotes" ZOrder="3" X="418" Y="35" Height="305" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:PaymentBanknotes" ZOrder="7" X="85" Y="39" Height="210" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
-    <Shape ID="DesignTable:Payments" ZOrder="2" X="738" Y="38" Height="467" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="216" />
+    <Shape ID="DesignTable:Payments" ZOrder="1" X="738" Y="38" Height="457" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="235" />
     <Shape ID="DesignTable:PaymentValues" ZOrder="6" X="88" Y="275" Height="191" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
     <Shape ID="DesignTable:CheckTemplate" ZOrder="5" X="1064" Y="39" Height="224" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="92" />
-    <Shape ID="DesignTable:TemplateField" ZOrder="4" X="1068" Y="279" Height="224" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="126" />
-    <Shape ID="DesignTable:CountBanknotes" ZOrder="1" X="1438" Y="35" Height="134" Width="240" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:TemplateField" ZOrder="4" X="1068" Y="279" Height="310" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="185" />
+    <Shape ID="DesignTable:CountBanknotes" ZOrder="2" X="1438" Y="35" Height="134" Width="240" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

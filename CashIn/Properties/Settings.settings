@@ -19,5 +19,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">DATA SOURCE=CASH;PERSIST SECURITY INFO=True;USER ID=CASHIN_NEW</Value>
     </Setting>
+    <Setting Name="MultiPaymentUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cashin</Value>
+    </Setting>
+    <Setting Name="MultiPaymentPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">qynZsjHcD2rV9LVzyjsl</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

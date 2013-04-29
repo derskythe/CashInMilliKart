@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.ServiceModel;
 using System.Text;
+using CashInCore.PaymentService;
 using CashInCore.Properties;
 using Containers;
 using Containers.Admin;
 using Containers.Enums;
+using Containers.MultiPayment;
 using Db;
 using NLog;
 using crypto;
+using CategoriesResult = Containers.MultiPayment.CategoriesResult;
 
 namespace CashInCore
 {
@@ -24,6 +28,8 @@ namespace CashInCore
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        private static String _MultiPaymentUsername;
+        private static String _MultiPaymentPassword;
 
         static CashInServer()
         {
@@ -46,6 +52,12 @@ namespace CashInCore
             {
                 Log.ErrorException(e.Message, e);
             }
+        }
+
+        public static void InitMultiPaymentService(String username, String password)
+        {
+            _MultiPaymentUsername = username;
+            _MultiPaymentPassword = password;
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
@@ -264,6 +276,7 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        [Obsolete]
         public StandardResult Payment(PaymentInfoByProducts request)
         {
             Log.Info("Payment. Data: " + request);
@@ -291,8 +304,128 @@ namespace CashInCore
                 OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
                                                 request.OperationType, request.TerminalDate, request.Currency);
 
+                var paymentOperationType = (PaymentOperationType)request.OperationType;
+                if (paymentOperationType == PaymentOperationType.GoldenPay ||
+                    paymentOperationType == PaymentOperationType.Komtek)
+                {
+                    //var client = new PaymentServiceClient();
+
+                    //var fields = new List<HistoryField>();
+                    //foreach (var field in request.Info.Fields)
+                    //{
+                    //    var history = new HistoryField { name = field.Name, value = field.Value };
+
+                    //    fields.Add(history);
+                    //}
+
+                    //var info = new PureInfo
+                    //{
+                    //    service_id = request.Info.ServiceId,
+                    //    service_name = request.Info.ServiceName,
+                    //    fields = fields.ToArray()
+                    //};
+
+                    //var serviceResult = client.GetInfoPure(_MultiPaymentUsername, _MultiPaymentPassword, info);
+                }
+
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception e)
+            {
+                Log.ErrorException(e.Message, e);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult Pay(TerminalPaymentInfo request)
+        {
+            Log.Info("Pay. Data: " + request);
+            var result = new StandardResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = AuthTerminal(result, request, out terminalInfo);
+
+                if (OracleDb.Instance.HasTransaction(request.TransactionId))
+                {
+                    result.Code = ResultCodes.Ok;
+                    throw new InvalidDataException("Transaction already exists. TransactionId: " + request.TransactionId);
+                }
+
+                if (request.Amount <= 0)
+                {
+                    result.Code = ResultCodes.Ok;
+                    throw new InvalidDataException("Invalid amount");
+                }
+
+                //OracleDb.Instance.SavePayment(request);
+                string bills = String.Join(";", request.Banknotes);
+                //OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
+                //                                request.OperationType, request.TerminalDate, request.Currency);
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+
+                var paymentOperationType = (PaymentOperationType)request.OperationType;
+                if (paymentOperationType == PaymentOperationType.GoldenPay ||
+                    paymentOperationType == PaymentOperationType.Komtek)
+                {
+                    if (String.IsNullOrEmpty(_MultiPaymentUsername) || String.IsNullOrEmpty(_MultiPaymentPassword))
+                    {
+                        throw new Exception("MultiPaymentService not initiated!");
+                    }
+
+                    var client = new PaymentServiceClient();
+                    var servicesResult = client.GetService(_MultiPaymentUsername, _MultiPaymentPassword,
+                                                    request.PaymentServiceId);
+
+                    if (servicesResult.code != ErrorCodes.Ok)
+                    {
+                        throw new Exception(servicesResult.description);
+                    }
+
+                    if (servicesResult.services == null || servicesResult.services.Length == 0)
+                    {
+                        throw new Exception("Service is null");
+                    }
+                    var service = servicesResult.services[0];
+                    var fields = new List<HistoryField>();
+                    int i = 0;
+                    foreach (var field in service.service_fields)
+                    {
+                        var history = new HistoryField
+                            {
+                                name = field.name,
+                                value = !String.IsNullOrEmpty(field.default_value) ? field.default_value : request.Values[i]
+                            };
+
+                        fields.Add(history);
+                        i++;
+                    }
+
+
+                    var info = new PurePaymentInfo
+                        {
+                            amount = request.Amount * 100,
+                            currency = "AZN",
+                            payment_id = request.TransactionId,
+                            service_id = service.id,
+                            service_name = service.name,
+                            fields = fields.ToArray()
+                        };
+
+                    Log.Debug(info);
+
+                    var serviceResult = client.InsertPaymentPure(_MultiPaymentUsername, _MultiPaymentPassword, "CashIn", info);
+                    if (serviceResult.code != ErrorCodes.Ok)
+                    {
+                        throw new Exception(serviceResult.description);
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -490,6 +623,182 @@ namespace CashInCore
                     request.Amount,
                     request.Currency);
 
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public PaymentServiceInfoResponse GetPaymentServiceInfo(PaymentServiceInfoRequest request)
+        {
+            Log.Debug("GetPaymentServiceInfo. Request: " + request);
+
+            var result = new PaymentServiceInfoResponse();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (PaymentServiceInfoResponse)AuthTerminal(result, request, out terminalInfo);
+
+                var client = new PaymentServiceClient();
+
+
+                var fields = new List<HistoryField>();
+                foreach (var field in request.Info.Fields)
+                {
+                    var history = new HistoryField { name = field.Name, value = field.Value };
+
+                    fields.Add(history);
+                }
+
+                var info = new PureInfo
+                    {
+                        service_id = request.Info.ServiceId,
+                        service_name = request.Info.ServiceName,
+                        fields = fields.ToArray()
+                    };
+
+                var serviceResult = client.GetInfoPure(_MultiPaymentUsername, _MultiPaymentPassword, info);
+                Log.Debug(serviceResult.code);
+                if (serviceResult.code != ErrorCodes.Ok && serviceResult.code != ErrorCodes.InvalidParameters)
+                {
+                    throw new Exception(serviceResult.description);
+                }
+
+                if (serviceResult.service_info != null)
+                {
+                    result.Person = serviceResult.service_info.person;
+                    result.Debt = serviceResult.service_info.debt;
+                }
+                result.Code = serviceResult.code == ErrorCodes.InvalidParameters ? ResultCodes.InvalidNumber : ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public CategoriesResult ListPaymentCategories(StandardRequest request)
+        {
+            Log.Debug("ListPaymentCategories. Request: " + request);
+
+            var result = new CategoriesResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (CategoriesResult)AuthTerminal(result, request, out terminalInfo);
+
+                if (String.IsNullOrEmpty(_MultiPaymentUsername) || String.IsNullOrEmpty(_MultiPaymentPassword))
+                {
+                    throw new Exception("MultiPaymentService not initiated!");
+                }
+
+                var client = new PaymentServiceClient();
+                var categories = client.ListCategories(_MultiPaymentUsername, _MultiPaymentPassword);
+
+                if (categories.code != ErrorCodes.Ok)
+                {
+                    throw new Exception(categories.description);
+                }
+
+
+                var resultList = new List<Containers.MultiPayment.PaymentCategory>();
+                foreach (var category in categories.Categories)
+                {
+                    var serviceList = new List<Containers.MultiPayment.PaymentService>();
+                    if (category.services != null)
+                    {
+                        foreach (var service in category.services)
+                        {
+                            var serviceFieldList = new List<PaymentServiceField>();
+                            if (service.service_fields != null)
+                            {
+                                foreach (var serviceField in service.service_fields)
+                                {
+                                    var amountFieldList = new List<PaymentServiceEnum>();
+                                    if (serviceField.field_values != null)
+                                    {
+                                        foreach (var fieldValue in serviceField.field_values)
+                                        {
+                                            amountFieldList.Add(new PaymentServiceEnum(fieldValue.field_id,
+                                                                                       fieldValue.name,
+                                                                                       new MultiLanguageString(
+                                                                                           fieldValue.name_en,
+                                                                                           fieldValue.name_ru,
+                                                                                           fieldValue.name_az),
+                                                                                       fieldValue.value));
+                                        }
+                                    }
+
+                                    serviceFieldList.Add(new PaymentServiceField(serviceField.id,
+                                                                                 serviceField.service_id,
+                                                                                 new MultiLanguageString(
+                                                                                     serviceField.name_en,
+                                                                                     serviceField.name_ru,
+                                                                                     serviceField.name_az),
+                                                                                 serviceField.name,
+                                                                                 serviceField.service_name,
+                                                                                 serviceField.type, serviceField.regexp,
+                                                                                 serviceField.default_value,
+                                                                                 serviceField.order_num,
+                                                                                 amountFieldList,
+                                                                                 serviceField.normalize_regexp,
+                                                                                 serviceField.normalize_pattern));
+                                }
+                            }
+
+                            var fixedAmountFieldList = new List<PaymentFixedAmount>();
+                            if (service.amounts_list != null)
+                            {
+                                foreach (var amountField in service.amounts_list)
+                                {
+                                    fixedAmountFieldList.Add(new PaymentFixedAmount(amountField.service_id,
+                                                                                    amountField.amount,
+                                                                                    new MultiLanguageString(
+                                                                                        amountField.name_en,
+                                                                                        amountField.name_ru,
+                                                                                        amountField.name_az)));
+                                }
+                            }
+
+                            serviceList.Add(new Containers.MultiPayment.PaymentService(service.id, service.name,
+                                                                                       new MultiLanguageString(
+                                                                                           service.name_en,
+                                                                                           service.name_ru,
+                                                                                           service.name_az),
+                                                                                       service.sub_name,
+                                                                                       service.paypoint_payment_type,
+                                                                                       service.type,
+                                                                                       service.fixed_amount,
+                                                                                       service.category_id,
+                                                                                       service.min_amount,
+                                                                                       service.max_amount,
+                                                                                       service.assembly_id,
+                                                                                       fixedAmountFieldList,
+                                                                                       serviceFieldList));
+                        }
+                    }
+
+                    resultList.Add(new Containers.MultiPayment.PaymentCategory(category.id, category.name,
+                                                                               new MultiLanguageString(
+                                                                                   category.name_en, category.name_ru,
+                                                                                   category.name_az), serviceList));
+                }
+
+                //Log.Debug(EnumEx.GetStringFromArray(resultList));
+
+                result.Categories = resultList;
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
             }

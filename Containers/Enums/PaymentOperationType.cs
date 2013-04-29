@@ -9,6 +9,7 @@
         DebitPaymentByClientCode = 21,
         DebitPaymentByPassportAndAccount = 22,
         GoldenPay = 33,
+        Komtek = 34,
         AvirTel = 32,
         Aztelekom = 31,
         Bes = 41

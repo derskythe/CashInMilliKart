@@ -283,14 +283,14 @@ namespace CashInTerminalWpf
             }
         }
 
-        public long InsertTransaction(long productId, string currency, decimal currencyRate, int amount, int terminalId,
+        public long InsertTransaction(long productId, long serviceId, string currency, decimal currencyRate, int amount, int terminalId,
             string creditNumber, int operationType, bool confirmed)
         {
             using (var connection = GetConnection())
             {
                 var adapter = new PaymentsTableAdapter { Connection = connection };
                 adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0,
-                                          operationType, creditNumber);
+                                          operationType, creditNumber, serviceId);
 
                 var insertId = adapter.GetInsertId();
 

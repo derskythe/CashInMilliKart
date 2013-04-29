@@ -16,5 +16,6 @@
         public const string FullPaymentFlag = "[FullPayment]";
         public const string BillsCount = "[BillsCount]";
         public const string Bonus = "[Bonus]";
+        public const string ProductSubname = "[ProductSubname]";
     }
 }

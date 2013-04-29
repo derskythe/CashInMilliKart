@@ -68,5 +68,29 @@ namespace CashIn.Properties {
                 return ((string)(this["cs"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cashin")]
+        public string MultiPaymentUsername {
+            get {
+                return ((string)(this["MultiPaymentUsername"]));
+            }
+            set {
+                this["MultiPaymentUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("qynZsjHcD2rV9LVzyjsl")]
+        public string MultiPaymentPassword {
+            get {
+                return ((string)(this["MultiPaymentPassword"]));
+            }
+            set {
+                this["MultiPaymentPassword"] = value;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.ServiceModel;
 using Containers;
 using Containers.Admin;
+using Containers.MultiPayment;
 
 namespace CashInCore
 {
@@ -52,5 +53,14 @@ namespace CashInCore
 
         [OperationContract]
         BonusResponse GetBonusAmount(BonusRequest request);
+
+        [OperationContract]
+        CategoriesResult ListPaymentCategories(StandardRequest request);
+
+        [OperationContract]
+        PaymentServiceInfoResponse GetPaymentServiceInfo(PaymentServiceInfoRequest request);
+
+        [OperationContract]
+        StandardResult Pay(TerminalPaymentInfo request);
     }
 }

@@ -45,7 +45,7 @@ namespace CashInTerminalWpf
         private LocalDb _Db;
         private bool _Running = true;
         private CashIn.ClientInfo[] _Clients;
-        private CashIn.BonusResponse _Bonus;
+        private StandardResult _InfoResponse;
         private Dictionary<int, List<ds.TemplateFieldRow>> _CheckTemplates = new Dictionary<int, List<ds.TemplateFieldRow>>();
         private String _SelectedLanguage = InterfaceLanguages.Az;
         private StandardRequest _InfoRequest;
@@ -170,10 +170,15 @@ namespace CashInTerminalWpf
             set { _InfoRequest = value; }
         }
 
-        public BonusResponse Bonus
+        public StandardResult InfoResponse
         {
-            get { return _Bonus; }
-            set { _Bonus = value; }
+            get { return _InfoResponse; }
+            set { _InfoResponse = value; }
+        }
+
+        public List<PaymentCategory> PaymentCategories
+        {
+            get { return _PaymentCategories; }
         }
 
         private CashInServer _Server;
@@ -186,7 +191,8 @@ namespace CashInTerminalWpf
         private Timer _CheckCurrencyTimer;
         private Timer _CheckProductsTimer;
         private Timer _CheckCheckTemplateTimer;
-        private DispatcherTimer _CheckInactivityTimer;
+        private Timer _CheckPaymentCategoriesTimer;
+        private Timer _CheckInactivityTimer;
         private Timer _CheckApplicationUpdateTimer;
         private const int PING_TIMEOUT = 30 * 1000;
         private const int SEND_PAYMENT_TIMEOUT = 10 * 1000;
@@ -194,10 +200,12 @@ namespace CashInTerminalWpf
         private const int CHECK_CHECK_TEMPLATE_TIMER = 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
+
         private const int CHECK_APPLICATION_UPDATE_TIMER = 10 * 1000;
         private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Value in seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
+        private readonly List<PaymentCategory> _PaymentCategories = new List<PaymentCategory>(5);
 
         private uint _LastActivity;
 
@@ -357,11 +365,8 @@ namespace CashInTerminalWpf
 
             _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
-            _CheckInactivityTimer = new DispatcherTimer();
-            _CheckInactivityTimer.Tick += CheckInactivityTimer;
-            _CheckInactivityTimer.Interval = new TimeSpan(0, 0, 0, 10);
-            _CheckInactivityTimer.IsEnabled = true;
-            _CheckInactivityTimer.Start();
+            _CheckPaymentCategoriesTimer = new Timer(CheckPaymentCategoriesTimer, null, 0, CHECK_CURRENCY_TIMER);
+            _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, CHECK_INACTIVITY, CHECK_INACTIVITY);
             _CheckCheckTemplateTimer = new Timer(CheckTemplateTimer, null, 0, CHECK_CHECK_TEMPLATE_TIMER);
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
 
@@ -487,7 +492,7 @@ namespace CashInTerminalWpf
             //System.Windows.Forms.Application.Restart();
 
             System.Windows.Forms.Application.Restart();
-            App.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         #endregion
@@ -653,6 +658,10 @@ namespace CashInTerminalWpf
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditWithBonus, InterfaceLanguages.Az);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditWithBonus, InterfaceLanguages.En);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.CreditWithBonus, InterfaceLanguages.Ru);
+
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.Ru);
             }
         }
 
@@ -681,7 +690,9 @@ namespace CashInTerminalWpf
 
         #endregion
 
-        private void CheckInactivityTimer(object sender, EventArgs e)
+        #region Timers
+
+        private void CheckInactivityTimer(object sender)
         {
             try
             {
@@ -693,6 +704,7 @@ namespace CashInTerminalWpf
                         _CurrentForm != FormEnum.Language)
                     {
                         _LastActivity = Utilities.GetLastInputTime();
+                        Log.Debug(_LastActivity);
                         if (_LastActivity > MAX_INACTIVITY_PERIOD)
                         {
                             OpenForm(FormEnum.Products);
@@ -700,6 +712,7 @@ namespace CashInTerminalWpf
                     }
                     else
                     {
+                        Log.Debug(_LastActivity);
                         _LastActivity = 0;
                     }
                 }
@@ -776,6 +789,20 @@ namespace CashInTerminalWpf
                         {
                             _Products.Add(item);
                         }
+
+                        // TODO: Удалить потом
+                        var virtualProduct = new Product
+                            {
+                                Assembly = "PageOtherPaymentsCategories.xaml",
+                                CheckType = (int)CheckTemplateTypes.OtherPayments,
+                                Id = 65535,
+                                NameAz = "Other payments",
+                                NameRu = "Other payments",
+                                NameEn = "Other payments",
+                                Name = "OtherPayments"
+                            };
+
+                        _Products.Add(virtualProduct);
                     }
                     ProductUpdate();
                 }
@@ -790,6 +817,44 @@ namespace CashInTerminalWpf
             }
         }
 
+        private void CheckPaymentCategoriesTimer(object param)
+        {
+            if (_Running && _Init && _AuthTerminal)
+            {
+                try
+                {
+                    var now = DateTime.Now;
+                    var request = new StandardRequest
+                    {
+                        SystemTime = now,
+                        TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                    };
+
+                    var response = _Server.ListPaymentCategories(request);
+
+                    CheckSignature(response);
+
+                    if (response.ResultCodes == ResultCodes.Ok)
+                    {
+                        lock (_PaymentCategories)
+                        {
+                            _PaymentCategories.Clear();
+
+                            foreach (var item in response.Categories)
+                            {
+                                _PaymentCategories.Add(item);
+                            }
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Log.ErrorException(exp.Message, exp);
+                }
+            }
+        }
+
         private void CheckProductsTimer(object param)
         {
             if (_Running && _Init && _AuthTerminal)
@@ -797,6 +862,8 @@ namespace CashInTerminalWpf
                 ForceCheckProducts();
             }
         }
+
+        #endregion
 
         #region PingThread
 
@@ -1242,11 +1309,11 @@ namespace CashInTerminalWpf
                     {
                         var total = _Db.GetCasseteTotal(currency.Name);
 
-                        var item = new EncashmentCurrency {Amount = total, Currency = currency.Id};
+                        var item = new EncashmentCurrency { Amount = total, Currency = currency.Id };
                         Log.Info(String.Format("Encashment. {0} {1}", total, currency.Id));
                         currList.Add(item);
                     }
-                }                
+                }
 
                 var now = DateTime.Now;
                 request.SystemTime = now;
@@ -1297,18 +1364,19 @@ namespace CashInTerminalWpf
 
                         foreach (var row in list)
                         {
-                            Log.Info(String.Format("Trying to send. TransactionId: {0}, Amount: {1} {2}, InsertDate: {3}", row.TransactionId, row.Amount, row.Currency, row.InsertDate));
+                            Log.Info(
+                                String.Format("Trying to send. TransactionId: {0}, Amount: {1} {2}, InsertDate: {3}",
+                                              row.TransactionId, row.Amount, row.Currency, row.InsertDate));
 
                             if (!App.TestVersion)
                             {
                                 var values = _Db.GetPaymentValues(row.Id);
                                 var banknotes = _Db.GetPaymentBanknotes(row.Id);
 
-                                var now = DateTime.Now;
-                                var request = new PaymentInfoByProducts
+                                var request = new TerminalPaymentInfo
                                     {
-                                        TerminalDate = now,
-                                        SystemTime = now,
+                                        TerminalDate = row.InsertDate,
+                                        SystemTime = row.InsertDate,
                                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                         TransactionId = row.TransactionId,
                                         ProductId = (int)row.ProductId,
@@ -1316,8 +1384,9 @@ namespace CashInTerminalWpf
                                         CurrencyRate = (float)row.CurrencyRate,
                                         Amount = (int)row.Amount,
                                         CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
-                                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                                        OperationType = Convert.ToInt32(row.OperationType)
+                                        Sign = Utilities.Sign(Settings.Default.TerminalCode, row.InsertDate, _ServerPublicKey),
+                                        OperationType = Convert.ToInt32(row.OperationType),
+                                        PaymentServiceId = Convert.ToInt32(row.IsServiceIdNull() ? 0 : row.ServiceId)
                                     };
 
                                 var valuesList = new List<String>();
@@ -1336,7 +1405,7 @@ namespace CashInTerminalWpf
                                 request.Banknotes = banknotesList.ToArray();
                                 request.Values = valuesList.ToArray();
 
-                                var response = _Server.Payment(request);
+                                var response = _Server.Pay(request);
 
                                 if (response != null && response.ResultCodes == ResultCodes.Ok)
                                 {
@@ -1437,11 +1506,9 @@ namespace CashInTerminalWpf
 
         public void StartTimers()
         {
-            var checkCurrencyTimerCaller = new CheckCurrencyTimerCaller(CheckCurrencyTimer);
-            checkCurrencyTimerCaller.Invoke(null);
-
-            var checkProductsTimerCaller = new CheckProductsTimerCaller(CheckProductsTimer);
-            checkProductsTimerCaller.Invoke(null);
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckCurrencyTimer), null);
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckProductsTimer), null);
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckPaymentCategoriesTimer), null);
         }
 
         #region DoClose
@@ -1452,27 +1519,43 @@ namespace CashInTerminalWpf
 
             _CheckCurrencyTimer.Dispose();
             _CheckProductsTimer.Dispose();
-            _CheckInactivityTimer.Stop();
+            _CheckPaymentCategoriesTimer.Dispose();
+            _CheckInactivityTimer.Dispose();
             _CheckApplicationUpdateTimer.Dispose();
             _CheckCheckTemplateTimer.Dispose();
 
             _CcnetDevice.Close();
             _CcnetDevice.Dispose();
 
-            if (_PingThread != null)
+            try
             {
-                _PingThread.Join(1000);
-                _PingThread.Abort();
-                Log.Debug("Aborting");
+                if (_PingThread != null)
+                {
+                    _PingThread.Join(1000);
+                    _PingThread.Abort();
+                    Log.Debug("Aborting");
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.Error(exp.Message);
             }
 
             Log.Debug("SendPaymentThread");
-            if (_SendPaymentThread != null)
+
+            try
             {
-                Log.Debug("Join");
-                _SendPaymentThread.Join(1000);
-                Log.Debug("Abort");
-                _SendPaymentThread.Abort();
+                if (_SendPaymentThread != null)
+                {
+                    Log.Debug("Join");
+                    _SendPaymentThread.Join(1000);
+                    Log.Debug("Abort");
+                    _SendPaymentThread.Abort();
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.Error(exp.Message);
             }
         }
 

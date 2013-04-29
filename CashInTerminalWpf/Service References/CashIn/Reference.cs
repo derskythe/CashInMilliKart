@@ -88,9 +88,26 @@ namespace CashInTerminalWpf.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminalWpf.CashIn.BonusResponse GetBonusAmount(CashInTerminalWpf.CashIn.BonusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/ListPaymentCategories", ReplyAction="http://cashin/CashInService/CashInServer/ListPaymentCategoriesResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.CategoriesResult ListPaymentCategories(CashInTerminalWpf.CashIn.StandardRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/GetPaymentServiceInfo", ReplyAction="http://cashin/CashInService/CashInServer/GetPaymentServiceInfoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.PaymentServiceInfoResponse GetPaymentServiceInfo(CashInTerminalWpf.CashIn.PaymentServiceInfoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/Pay", ReplyAction="http://cashin/CashInService/CashInServer/PayResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.StandardResult Pay(CashInTerminalWpf.CashIn.TerminalPaymentInfo request);
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalPaymentInfo))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentServiceInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionRequest))]
@@ -135,6 +152,8 @@ namespace CashInTerminalWpf.CashIn {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardResult))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentServiceInfoResponse))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CategoriesResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListCheckTemplateResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoResult))]
@@ -144,6 +163,8 @@ namespace CashInTerminalWpf.CashIn {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalPaymentInfo))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentServiceInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionRequest))]
@@ -182,6 +203,660 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.signField = value;
                 this.RaisePropertyChanged("Sign");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentServiceEnum : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int fieldIdField;
+        
+        private string nameField;
+        
+        private MultiLanguageString localizedNameField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int FieldId {
+            get {
+                return this.fieldIdField;
+            }
+            set {
+                this.fieldIdField = value;
+                this.RaisePropertyChanged("FieldId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public MultiLanguageString LocalizedName {
+            get {
+                return this.localizedNameField;
+            }
+            set {
+                this.localizedNameField = value;
+                this.RaisePropertyChanged("LocalizedName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+                this.RaisePropertyChanged("Value");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class MultiLanguageString : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string valueEnField;
+        
+        private string valueRuField;
+        
+        private string valueAzField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ValueEn {
+            get {
+                return this.valueEnField;
+            }
+            set {
+                this.valueEnField = value;
+                this.RaisePropertyChanged("ValueEn");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string ValueRu {
+            get {
+                return this.valueRuField;
+            }
+            set {
+                this.valueRuField = value;
+                this.RaisePropertyChanged("ValueRu");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string ValueAz {
+            get {
+                return this.valueAzField;
+            }
+            set {
+                this.valueAzField = value;
+                this.RaisePropertyChanged("ValueAz");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentServiceField : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int idField;
+        
+        private int serviceIdField;
+        
+        private MultiLanguageString localizedNameField;
+        
+        private string nameField;
+        
+        private string serviceNameField;
+        
+        private string typeField;
+        
+        private string regexpField;
+        
+        private string defaultValueField;
+        
+        private int orderNumField;
+        
+        private string normalizeRegexpField;
+        
+        private string normalizePatternField;
+        
+        private PaymentServiceEnum[] fieldValuesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int ServiceId {
+            get {
+                return this.serviceIdField;
+            }
+            set {
+                this.serviceIdField = value;
+                this.RaisePropertyChanged("ServiceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public MultiLanguageString LocalizedName {
+            get {
+                return this.localizedNameField;
+            }
+            set {
+                this.localizedNameField = value;
+                this.RaisePropertyChanged("LocalizedName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string ServiceName {
+            get {
+                return this.serviceNameField;
+            }
+            set {
+                this.serviceNameField = value;
+                this.RaisePropertyChanged("ServiceName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+                this.RaisePropertyChanged("Type");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string Regexp {
+            get {
+                return this.regexpField;
+            }
+            set {
+                this.regexpField = value;
+                this.RaisePropertyChanged("Regexp");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string DefaultValue {
+            get {
+                return this.defaultValueField;
+            }
+            set {
+                this.defaultValueField = value;
+                this.RaisePropertyChanged("DefaultValue");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public int OrderNum {
+            get {
+                return this.orderNumField;
+            }
+            set {
+                this.orderNumField = value;
+                this.RaisePropertyChanged("OrderNum");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string NormalizeRegexp {
+            get {
+                return this.normalizeRegexpField;
+            }
+            set {
+                this.normalizeRegexpField = value;
+                this.RaisePropertyChanged("NormalizeRegexp");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string NormalizePattern {
+            get {
+                return this.normalizePatternField;
+            }
+            set {
+                this.normalizePatternField = value;
+                this.RaisePropertyChanged("NormalizePattern");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=11)]
+        public PaymentServiceEnum[] FieldValues {
+            get {
+                return this.fieldValuesField;
+            }
+            set {
+                this.fieldValuesField = value;
+                this.RaisePropertyChanged("FieldValues");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentFixedAmount : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int serviceIdField;
+        
+        private int amountField;
+        
+        private MultiLanguageString nameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int ServiceId {
+            get {
+                return this.serviceIdField;
+            }
+            set {
+                this.serviceIdField = value;
+                this.RaisePropertyChanged("ServiceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+                this.RaisePropertyChanged("Amount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public MultiLanguageString Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentService : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int idField;
+        
+        private string nameField;
+        
+        private MultiLanguageString localizedNameField;
+        
+        private string subNameField;
+        
+        private string paypointPaymentTypeField;
+        
+        private int typeField;
+        
+        private bool fixedAmountField;
+        
+        private int categoryIdField;
+        
+        private int minAmountField;
+        
+        private int maxAmountField;
+        
+        private string assemblyIdField;
+        
+        private PaymentFixedAmount[] amountsListField;
+        
+        private PaymentServiceField[] fieldsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public MultiLanguageString LocalizedName {
+            get {
+                return this.localizedNameField;
+            }
+            set {
+                this.localizedNameField = value;
+                this.RaisePropertyChanged("LocalizedName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string SubName {
+            get {
+                return this.subNameField;
+            }
+            set {
+                this.subNameField = value;
+                this.RaisePropertyChanged("SubName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string PaypointPaymentType {
+            get {
+                return this.paypointPaymentTypeField;
+            }
+            set {
+                this.paypointPaymentTypeField = value;
+                this.RaisePropertyChanged("PaypointPaymentType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public int Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+                this.RaisePropertyChanged("Type");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public bool FixedAmount {
+            get {
+                return this.fixedAmountField;
+            }
+            set {
+                this.fixedAmountField = value;
+                this.RaisePropertyChanged("FixedAmount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public int CategoryId {
+            get {
+                return this.categoryIdField;
+            }
+            set {
+                this.categoryIdField = value;
+                this.RaisePropertyChanged("CategoryId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public int MinAmount {
+            get {
+                return this.minAmountField;
+            }
+            set {
+                this.minAmountField = value;
+                this.RaisePropertyChanged("MinAmount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public int MaxAmount {
+            get {
+                return this.maxAmountField;
+            }
+            set {
+                this.maxAmountField = value;
+                this.RaisePropertyChanged("MaxAmount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string AssemblyId {
+            get {
+                return this.assemblyIdField;
+            }
+            set {
+                this.assemblyIdField = value;
+                this.RaisePropertyChanged("AssemblyId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=11)]
+        public PaymentFixedAmount[] AmountsList {
+            get {
+                return this.amountsListField;
+            }
+            set {
+                this.amountsListField = value;
+                this.RaisePropertyChanged("AmountsList");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=12)]
+        public PaymentServiceField[] Fields {
+            get {
+                return this.fieldsField;
+            }
+            set {
+                this.fieldsField = value;
+                this.RaisePropertyChanged("Fields");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentCategory : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int idField;
+        
+        private string nameField;
+        
+        private MultiLanguageString localizedNameField;
+        
+        private PaymentService[] servicesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public MultiLanguageString LocalizedName {
+            get {
+                return this.localizedNameField;
+            }
+            set {
+                this.localizedNameField = value;
+                this.RaisePropertyChanged("LocalizedName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=3)]
+        public PaymentService[] Services {
+            get {
+                return this.servicesField;
+            }
+            set {
+                this.servicesField = value;
+                this.RaisePropertyChanged("Services");
             }
         }
         
@@ -330,66 +1005,6 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.nameField = value;
                 this.RaisePropertyChanged("Name");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
-    public partial class MultiLanguageString : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string valueEnField;
-        
-        private string valueRuField;
-        
-        private string valueAzField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string ValueEn {
-            get {
-                return this.valueEnField;
-            }
-            set {
-                this.valueEnField = value;
-                this.RaisePropertyChanged("ValueEn");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string ValueRu {
-            get {
-                return this.valueRuField;
-            }
-            set {
-                this.valueRuField = value;
-                this.RaisePropertyChanged("ValueRu");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string ValueAz {
-            get {
-                return this.valueAzField;
-            }
-            set {
-                this.valueAzField = value;
-                this.RaisePropertyChanged("ValueAz");
             }
         }
         
@@ -910,6 +1525,112 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.checkTypeField = value;
                 this.RaisePropertyChanged("CheckType");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentServiceUserInputField : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string nameField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+                this.RaisePropertyChanged("Value");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentServiceInfo : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int serviceIdField;
+        
+        private string serviceNameField;
+        
+        private PaymentServiceUserInputField[] fieldsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int ServiceId {
+            get {
+                return this.serviceIdField;
+            }
+            set {
+                this.serviceIdField = value;
+                this.RaisePropertyChanged("ServiceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string ServiceName {
+            get {
+                return this.serviceNameField;
+            }
+            set {
+                this.serviceNameField = value;
+                this.RaisePropertyChanged("ServiceName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=2)]
+        public PaymentServiceUserInputField[] Fields {
+            get {
+                return this.fieldsField;
+            }
+            set {
+                this.fieldsField = value;
+                this.RaisePropertyChanged("Fields");
             }
         }
         
@@ -1798,6 +2519,8 @@ namespace CashInTerminalWpf.CashIn {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentServiceInfoResponse))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CategoriesResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListCheckTemplateResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetClientInfoResult))]
@@ -1894,6 +2617,66 @@ namespace CashInTerminalWpf.CashIn {
         
         /// <remarks/>
         SystemError,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentServiceInfoResponse : StandardResult {
+        
+        private string personField;
+        
+        private float debtField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Person {
+            get {
+                return this.personField;
+            }
+            set {
+                this.personField = value;
+                this.RaisePropertyChanged("Person");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public float Debt {
+            get {
+                return this.debtField;
+            }
+            set {
+                this.debtField = value;
+                this.RaisePropertyChanged("Debt");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class CategoriesResult : StandardResult {
+        
+        private PaymentCategory[] categoriesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        public PaymentCategory[] Categories {
+            get {
+                return this.categoriesField;
+            }
+            set {
+                this.categoriesField = value;
+                this.RaisePropertyChanged("Categories");
+            }
+        }
     }
     
     /// <remarks/>
@@ -2076,6 +2859,192 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.terminalField = value;
                 this.RaisePropertyChanged("Terminal");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class TerminalPaymentInfo : StandardRequest {
+        
+        private string transactionIdField;
+        
+        private int productIdField;
+        
+        private string currencyField;
+        
+        private float currencyRateField;
+        
+        private int amountField;
+        
+        private int operationTypeField;
+        
+        private System.DateTime terminalDateField;
+        
+        private string[] valuesField;
+        
+        private int[] banknotesField;
+        
+        private string creditNumberField;
+        
+        private int paymentServiceIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string TransactionId {
+            get {
+                return this.transactionIdField;
+            }
+            set {
+                this.transactionIdField = value;
+                this.RaisePropertyChanged("TransactionId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int ProductId {
+            get {
+                return this.productIdField;
+            }
+            set {
+                this.productIdField = value;
+                this.RaisePropertyChanged("ProductId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Currency {
+            get {
+                return this.currencyField;
+            }
+            set {
+                this.currencyField = value;
+                this.RaisePropertyChanged("Currency");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public float CurrencyRate {
+            get {
+                return this.currencyRateField;
+            }
+            set {
+                this.currencyRateField = value;
+                this.RaisePropertyChanged("CurrencyRate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public int Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+                this.RaisePropertyChanged("Amount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public int OperationType {
+            get {
+                return this.operationTypeField;
+            }
+            set {
+                this.operationTypeField = value;
+                this.RaisePropertyChanged("OperationType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public System.DateTime TerminalDate {
+            get {
+                return this.terminalDateField;
+            }
+            set {
+                this.terminalDateField = value;
+                this.RaisePropertyChanged("TerminalDate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=7)]
+        public string[] Values {
+            get {
+                return this.valuesField;
+            }
+            set {
+                this.valuesField = value;
+                this.RaisePropertyChanged("Values");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=8)]
+        public int[] Banknotes {
+            get {
+                return this.banknotesField;
+            }
+            set {
+                this.banknotesField = value;
+                this.RaisePropertyChanged("Banknotes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string CreditNumber {
+            get {
+                return this.creditNumberField;
+            }
+            set {
+                this.creditNumberField = value;
+                this.RaisePropertyChanged("CreditNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public int PaymentServiceId {
+            get {
+                return this.paymentServiceIdField;
+            }
+            set {
+                this.paymentServiceIdField = value;
+                this.RaisePropertyChanged("PaymentServiceId");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentServiceInfoRequest : StandardRequest {
+        
+        private PaymentServiceInfo infoField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public PaymentServiceInfo Info {
+            get {
+                return this.infoField;
+            }
+            set {
+                this.infoField = value;
+                this.RaisePropertyChanged("Info");
             }
         }
     }
@@ -2667,6 +3636,18 @@ namespace CashInTerminalWpf.CashIn {
         
         public CashInTerminalWpf.CashIn.BonusResponse GetBonusAmount(CashInTerminalWpf.CashIn.BonusRequest request) {
             return base.Channel.GetBonusAmount(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.CategoriesResult ListPaymentCategories(CashInTerminalWpf.CashIn.StandardRequest request) {
+            return base.Channel.ListPaymentCategories(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.PaymentServiceInfoResponse GetPaymentServiceInfo(CashInTerminalWpf.CashIn.PaymentServiceInfoRequest request) {
+            return base.Channel.GetPaymentServiceInfo(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.StandardResult Pay(CashInTerminalWpf.CashIn.TerminalPaymentInfo request) {
+            return base.Channel.Pay(request);
         }
     }
 }

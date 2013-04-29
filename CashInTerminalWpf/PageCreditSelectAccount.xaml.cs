@@ -19,6 +19,9 @@ namespace CashInTerminalWpf
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        private int _Page;
+        private int _TotalPages;
+        private const int MAX_ELEMENTS = 4;
 
         public PageCreditSelectAccount()
         {
@@ -55,13 +58,19 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Title);
-            LabelTestVersion.Visibility = App.TestVersion ? Visibility.Visible : Visibility.Collapsed;
+            //LabelTestVersion.Visibility = App.TestVersion ? Visibility.Visible : Visibility.Collapsed;
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             try
             {
+                Grid.Children.Clear();
+
                 if (_FormMain.Clients != null && _FormMain.Clients.Length > 0)
                 {
+                    _TotalPages =
+                    Convert.ToInt32(
+                        Math.Round(Math.Ceiling(_FormMain.Clients.Length / (double)MAX_ELEMENTS)));
+                    CheckPageButtons();
                     AddButtons();
                 }
             }
@@ -79,8 +88,20 @@ namespace CashInTerminalWpf
 
                 try
                 {
+                    int i = 0;
+                    int numToSkip = (_Page * MAX_ELEMENTS);
                     foreach (var tag in _FormMain.Clients)
                     {
+                        if (i < numToSkip)
+                        {
+                            i++;
+                            continue;
+                        }
+                        if (i > (numToSkip + MAX_ELEMENTS - 1))
+                        {
+                            break;
+                        }
+
                         string text = tag.ClientAccount + @" " + tag.CreditName + " " +
                                       tag.BeginDate.ToString("MM.yyyy") + " " + tag.CreditAmount + " " +
                                       tag.Currency;
@@ -96,6 +117,8 @@ namespace CashInTerminalWpf
                         button.Click += ButtonOnClick;
 
                         Grid.Children.Add(button);
+
+                        i++;
                     }
                 }
                 catch (Exception exp)
@@ -118,6 +141,33 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
+        }
+
+        private void ButtonPrevClick(object sender, RoutedEventArgs e)
+        {
+            _Page--;
+            CheckPageButtons();
+            AddButtons();
+        }
+
+        private void ButtonNextClick(object sender, RoutedEventArgs e)
+        {
+            _Page++;
+            CheckPageButtons();
+            AddButtons();
+        }
+
+        private void CheckPageButtons()
+        {
+            if (_TotalPages == 1)
+            {
+                ButtonNext.Visibility = Visibility.Collapsed;
+                ButtonPrev.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            ButtonNext.Visibility = (_Page + 1) >= _TotalPages ? Visibility.Collapsed : Visibility.Visible;
+            ButtonPrev.Visibility = _Page == 0 ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace CashInTerminalWpf
 
             LabelCurrency.Content = _FormMain.ClientInfo.CurrentCurrency;
             LabelTotal.Content = @"0";
-            _FormMain.ClientInfo.CashCodeAmount = 0;            
+            _FormMain.ClientInfo.CashCodeAmount = 0;
 
             _FormMain.CcnetDevice.BillStacked += CcnetDeviceOnBillStacked;
             _FormMain.CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
@@ -66,14 +66,26 @@ namespace CashInTerminalWpf
         {
             StopCashcode();
 
-            switch ((CheckTemplateTypes)_FormMain.ClientInfo.Product.CheckType)
+            switch (_FormMain.ClientInfo.PaymentOperationType)
             {
-                case CheckTemplateTypes.CreditPayment:
+                case PaymentOperationType.CreditPaymentByClientCode:
+                case PaymentOperationType.CreditPaymentByPassportAndAccount:
+                case PaymentOperationType.CreditPaymentBolcard:
                     _FormMain.OpenForm(FormEnum.CreditClientInfo);
                     break;
 
-                case CheckTemplateTypes.DebitPayment:
+                case PaymentOperationType.DebitPaymentByClientCode:
+                case PaymentOperationType.DebitPaymentByPassportAndAccount:
                     _FormMain.OpenForm(FormEnum.DebitClientInfo);
+                    break;
+
+                case PaymentOperationType.Komtek:
+                case PaymentOperationType.GoldenPay:
+                    _FormMain.OpenForm(FormEnum.OtherPaymentUserInfo);
+                    break;
+
+                default:
+                    _FormMain.OpenForm(FormEnum.Products);
                     break;
             }
         }
@@ -139,8 +151,8 @@ namespace CashInTerminalWpf
                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
                 };
 
-                _FormMain.Bonus = null;
-                _FormMain.LongRequestType = LongRequestType.BonusRequest;
+                _FormMain.InfoResponse = null;
+                _FormMain.LongRequestType = LongRequestType.Bonus;
                 _FormMain.InfoRequest = request;
 
                 _FormMain.OpenForm(FormEnum.Progress);
@@ -248,7 +260,14 @@ namespace CashInTerminalWpf
                     "0");
 
                 _FormMain.ClientInfo.OrderNumber = 0;
+                int serviceId = 0;
+
+                if (_FormMain.ClientInfo.PaymentService != null)
+                {
+                    serviceId = _FormMain.ClientInfo.PaymentService.Id;
+                }
                 _FormMain.ClientInfo.PaymentId = _FormMain.Db.InsertTransaction(Convert.ToInt64(_FormMain.ClientInfo.Product.Id),
+                    serviceId,
                                                                               _FormMain.ClientInfo.CurrentCurrency,
                                                                               1,
                                                                               0,
@@ -263,7 +282,10 @@ namespace CashInTerminalWpf
 
                 _FormMain.Db.UpdateTransactionId(_FormMain.ClientInfo.PaymentId, _FormMain.ClientInfo.TransactionId);
                 _FormMain.Db.InsertPaymentValue(_FormMain.ClientInfo.PaymentId, _FormMain.ClientInfo.Client.ClientAccount, 0);
-                _FormMain.Db.InsertPaymentValue(_FormMain.ClientInfo.PaymentId, _FormMain.ClientInfo.Client.PassportNumber, 1);
+                if (!String.IsNullOrEmpty(_FormMain.ClientInfo.Client.PassportNumber))
+                {
+                    _FormMain.Db.InsertPaymentValue(_FormMain.ClientInfo.PaymentId, _FormMain.ClientInfo.Client.PassportNumber, 1);
+                }
 
                 Log.Info("Starting transId: {0}, PaymentId: {1}", _FormMain.ClientInfo.TransactionId, _FormMain.ClientInfo.PaymentId);
             }

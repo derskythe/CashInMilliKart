@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.bankofbaku.com/PaymentService" elementFormDefault="qualified" targetNamespace="http://www.bankofbaku.com/PaymentService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GetInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="info" type="tns:PaymentInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="PaymentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="service_id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="service_name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="service_sub_name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="paypoint_payment_type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="fields" type="tns:ArrayOfHistoryField" />
+      <xs:element minOccurs="0" maxOccurs="1" name="currency" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="amount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="payment_id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfHistoryField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HistoryField" nillable="true" type="tns:HistoryField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HistoryField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetInfoResult" type="tns:ServiceInfoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ServiceInfoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="service_info" type="tns:ServicesInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseResult" abstract="true">
+    <xs:attribute name="code" type="tns:ErrorCodes" use="required" />
+    <xs:attribute name="description" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="ErrorCodes">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Ok" />
+          <xs:enumeration value="InvalidNumber" />
+          <xs:enumeration value="InvalidParameters" />
+          <xs:enumeration value="DublicatePaymentId" />
+          <xs:enumeration value="InvalidCurrency" />
+          <xs:enumeration value="UnknownError" />
+          <xs:enumeration value="SystemError" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="ServicesInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="person" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="values" type="tns:ArrayOfServiceInfoItem" />
+      <xs:element minOccurs="1" maxOccurs="1" name="is_available" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfServiceInfoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="service_info_item" nillable="true" type="tns:ServiceInfoItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceInfoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="id" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="title" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="debt_type" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="amount" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="can_pay" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="credit" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="can_deposit" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="is_amount_changable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="tariff" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="code" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="max_amount" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="min_amount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="fixed_amounts" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InsertPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="signature" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="info" type="tns:PaymentInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="InsertPaymentResult" type="tns:InfoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="InfoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="extended_description" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListServicesResult" type="tns:GetServicesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetServicesResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="services" type="tns:ArrayOfService" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="service" nillable="true" type="tns:Service" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Service">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_az" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_en" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_ru" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="sub_name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="paypoint_payment_type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="assembly_id" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="type" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="fixed_amount" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="category_id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="min_amount" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="max_amount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="amounts_list" type="tns:ArrayOfFixedAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="service_fields" type="tns:ArrayOfServiceField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFixedAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FixedAmount" nillable="true" type="tns:FixedAmount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FixedAmount">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="service_id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="amount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_az" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_en" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_ru" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfServiceField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="service_field" nillable="true" type="tns:ServiceField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceField">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="service_id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_az" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_en" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_ru" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="service_name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="regexp" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="default_value" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="order_num" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="field_values" type="tns:ArrayOfServiceEnum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfServiceEnum">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceEnum" nillable="true" type="tns:ServiceEnum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceEnum">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="field_id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_az" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_en" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_ru" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListCategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListCategoriesResult" type="tns:CategoriesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CategoriesResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfPaymentCategory" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPaymentCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentCategory" nillable="true" type="tns:PaymentCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentCategory">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_en" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_ru" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name_az" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="services" type="tns:ArrayOfService1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfService1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Service" nillable="true" type="tns:Service" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

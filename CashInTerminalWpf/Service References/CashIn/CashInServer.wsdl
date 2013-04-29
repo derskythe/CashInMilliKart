@@ -139,6 +139,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListPaymentCategories">
+      <soap:operation soapAction="http://cashin/CashInService/CashInServer/ListPaymentCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentServiceInfo">
+      <soap:operation soapAction="http://cashin/CashInService/CashInServer/GetPaymentServiceInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pay">
+      <soap:operation soapAction="http://cashin/CashInService/CashInServer/Pay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CashInServer">
     <wsdl:port name="SOAP" binding="tns:SOAP">

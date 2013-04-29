@@ -18,7 +18,7 @@
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
 
         <UniformGrid Grid.Row="1" x:Name="Grid" Columns="1" VerticalAlignment="Top">
-            <Button Style="{StaticResource MenuButtonStyle}" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Sample button" />
         </UniformGrid>
 
         <DockPanel Margin="8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">

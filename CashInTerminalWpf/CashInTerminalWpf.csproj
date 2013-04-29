@@ -17,6 +17,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
     <PublishUrl>Q:\CashInTerminalWpf\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -31,7 +33,7 @@
     <ProductName>CashIn Terminal WPF</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>43</ApplicationRevision>
+    <ApplicationRevision>86</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -125,6 +127,7 @@
     <Compile Include="Enums\FormEnum.cs" />
     <Compile Include="Enums\InterfaceLanguages.cs" />
     <Compile Include="Enums\LongRequestType.cs" />
+    <Compile Include="Enums\PaymentServiceType.cs" />
     <Compile Include="Enums\PrinterStatus.cs" />
     <Compile Include="Enums\TemplateFields.cs" />
     <Compile Include="Enums\TemplateFieldType.cs" />
@@ -184,8 +187,17 @@
     <Compile Include="PageMoneyInput.xaml.cs">
       <DependentUpon>PageMoneyInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageOtherPaymentUserInfo.xaml.cs">
+      <DependentUpon>PageOtherPaymentUserInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageOtherPaymentsCategories.xaml.cs">
+      <DependentUpon>PageOtherPaymentsCategories.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageOutOfOrder.xaml.cs">
       <DependentUpon>PageOutOfOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagePaymentServiceInputData.xaml.cs">
+      <DependentUpon>PagePaymentServiceInputData.xaml</DependentUpon>
     </Compile>
     <Compile Include="PagePaySuccess.xaml.cs">
       <DependentUpon>PagePaySuccess.xaml</DependentUpon>
@@ -196,11 +208,17 @@
     <Compile Include="PageProgress.xaml.cs">
       <DependentUpon>PageProgress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageServiceNotAvailable.xaml.cs">
+      <DependentUpon>PageServiceNotAvailable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageTest.xaml.cs">
       <DependentUpon>PageTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageTestMode.xaml.cs">
       <DependentUpon>PageTestMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagePaymentServiceSelect.xaml.cs">
+      <DependentUpon>PagePaymentServiceSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="SerialStream.cs" />
     <Compile Include="Service References\CashIn\Reference.cs">
@@ -302,7 +320,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageOtherPaymentUserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageOtherPaymentsCategories.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PageOutOfOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagePaymentServiceInputData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,11 +348,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageServiceNotAvailable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageTestMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagePaymentServiceSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -379,6 +417,9 @@
     <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.BonusResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.CategoriesResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.CurrenciesResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -386,6 +427,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.ListCheckTemplateResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.PaymentServiceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CashIn\CashInTerminalWpf.CashIn.PingResult.datasource">
@@ -412,6 +456,8 @@
     <Resource Include="Resources\1365266245_home.png" />
     <Resource Include="Resources\backspace32.png" />
     <Resource Include="favicon.ico" />
+    <Resource Include="Resources\next.png" />
+    <Resource Include="Resources\back.png" />
     <Content Include="Terminal.s3db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

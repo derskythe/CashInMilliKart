@@ -38,6 +38,8 @@ namespace CashIn
             encPass = Wrapper.ComputeHash("dfl90nhl", salt);
             
             OracleDb.Instance.SaveUser(user.Id, user.Username, encPass, salt);
+            CashInServer.InitMultiPaymentService(Settings.Default.MultiPaymentUsername,
+                                                            Settings.Default.MultiPaymentPassword);
 
             _CashInTerminalService = new ServiceHost(typeof(CashInServer));
             _CashInTerminalService.Open();

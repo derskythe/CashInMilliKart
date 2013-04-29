@@ -52,7 +52,7 @@ namespace CashInTerminalWpf
                         Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
                     };
 
-                    _FormMain.LongRequestType = LongRequestType.InfoRequest;
+                    _FormMain.LongRequestType = LongRequestType.CreditDebitInfo;
                     _FormMain.InfoRequest = request;
                     _FormMain.OpenForm(FormEnum.Progress);
                 }

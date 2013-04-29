@@ -871,6 +871,7 @@ namespace Db
         public List<Encashment> ListEncashment(int terminalId, int branchId, DateTime from, DateTime to, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
         {
             CheckConnection();
+            to = to.AddDays(1);
 
             var command = new OracleCommand
             {
@@ -989,6 +990,7 @@ namespace Db
         public List<Encashment> ListEncashment(DateTime from, DateTime to, EncashmentColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
         {
             CheckConnection();
+            to = to.AddDays(1);
 
             var command = new OracleCommand("SELECT COUNT(*) FROM v_list_encashment t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo")
                 {
@@ -1007,7 +1009,7 @@ namespace Db
 
             var column = GetEncashmentSortColumn(sortColumn);
 
-            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM WHERE insert_date BETWEEN :dateFrom AND :dateTo) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
+            string cmdtxt = String.Format("SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_list_encashment t WHERE insert_date BETWEEN :dateFrom AND :dateTo) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                 column, sortType.ToString(), rowNum, rowNum + perPage);
 
             //string cmdtxt = String.Format("SELECT * FROM v_list_encashment t ORDER BY {0} {1}", column,
@@ -1190,6 +1192,7 @@ namespace Db
                                                        SortType sortType, int rowNum, int perPage, out int count)
         {
             CheckConnection();
+            to = to.AddDays(1);
 
             var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
             var rawCount = adapter1.CountRowsByDate(from, to);
@@ -1207,8 +1210,9 @@ namespace Db
 
             string cmdtxt =
                 String.Format(
-                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                     column, sortType.ToString(), rowNum, rowNum + perPage);
+            Log.Debug(cmdtxt);
             //string cmdtxt =
             //   String.Format(
             //       "SELECT * FROM v_products_history t WHERE insert_date BETWEEN :dateFrom AND :dateTo ORDER BY {0} {1}",
@@ -1269,6 +1273,7 @@ namespace Db
                                                        SortType sortType, int rowNum, int perPage, out int count)
         {
             CheckConnection();
+            to = to.AddDays(1);
 
             var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
             var rawCount = adapter1.CountRowsTerminalID(from, to, terminalId);
@@ -1286,7 +1291,7 @@ namespace Db
 
             string cmdtxt =
                 String.Format(
-                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND TERMINAL_ID = :terminalId AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo AND t.TERMINAL_ID = :terminalId) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                     column, sortType.ToString(), rowNum, rowNum + perPage);
 
             var cmd = new OracleCommand(cmdtxt, _OraCon);
@@ -1315,6 +1320,7 @@ namespace Db
                                                        SortType sortType, int rowNum, int perPage, out int count)
         {
             CheckConnection();
+            to = to.AddDays(1);
 
             var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
             var rawCount = adapter1.CountRowsProductId(from, to, prodId);
@@ -1332,7 +1338,7 @@ namespace Db
 
             string cmdtxt =
                 String.Format(
-                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND PRODUCT_ID = :productId AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo AND t.PRODUCT_ID = :productId) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                     column, sortType.ToString(), rowNum, rowNum + perPage);
 
             var cmd = new OracleCommand(cmdtxt, _OraCon);
@@ -1361,6 +1367,7 @@ namespace Db
                                                        SortType sortType, int rowNum, int perPage, out int count)
         {
             CheckConnection();
+            to = to.AddDays(1);
 
             var adapter1 = new V_PRODUCTS_HISTORYTableAdapter { BindByName = true, Connection = _OraCon };
             var rawCount = adapter1.CountRowsByEncashmentId(from, to, encashmentId);
@@ -1384,7 +1391,7 @@ namespace Db
             if (encashmentId > 0)
             {
                 cmdtxt = String.Format(
-                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND ENCASHMENT_ID = :encashmentId AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo AND t.ENCASHMENT_ID = :encashmentId) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                     column, sortType.ToString(), rowNum, rowNum + perPage);
 
 
@@ -1395,7 +1402,7 @@ namespace Db
             else
             {
                 cmdtxt = String.Format(
-                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t) WHERE insert_date BETWEEN :dateFrom AND :dateTo AND ENCASHMENT_ID IS NULL AND rn BETWEEN {2} and {3} ORDER BY rn",
+                    "SELECT * FROM ( SELECT t.*, ROW_NUMBER() OVER (ORDER BY {0} {1}) rn FROM v_products_history t WHERE t.insert_date BETWEEN :dateFrom AND :dateTo AND t.ENCASHMENT_ID IS NULL) WHERE rn BETWEEN {2} and {3} ORDER BY rn",
                     column, sortType.ToString(), rowNum, rowNum + perPage);
 
 

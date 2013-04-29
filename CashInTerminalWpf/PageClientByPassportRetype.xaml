@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="30,0,0,0" Name="LabelCaption" VerticalAlignment="Top" Width="Auto" Content="{x:Static res:Resources.PasportNumber}" Style="{StaticResource MainLabelStyle}" />
+            <Label Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Margin="30,0,0,0" Name="LabelCaption" VerticalAlignment="Top" Width="Auto" Content="{x:Static res:Resources.PasportNumber}" Style="{StaticResource MainLabelStyle}" />
             <TextBox Grid.Row="1" Grid.Column="0"  Margin="30,0,0,0" HorizontalAlignment="Left" Name="ClientNumber" VerticalAlignment="Top" Style="{StaticResource MainTextStyle}" IsUndoEnabled="False" IsTabStop="False" IsReadOnly="False" />
             <my:NumPadControl Grid.Column="0" Grid.Row="3" Margin="30,0,0,0" HorizontalAlignment="Left" x:Name="ControlNumPad" VerticalAlignment="Top" MinWidth="272" MinHeight="362"/>
             <my1:AlphabetControl Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" x:Name="ControlAlphabet" VerticalAlignment="Top" />

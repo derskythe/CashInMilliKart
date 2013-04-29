@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="30,0,0,0" Name="LabelCaption" VerticalAlignment="Top" Width="Auto" Content="{x:Static res:Resources.BolLastFourRetype}" Style="{StaticResource MainLabelStyle}" />
+            <Label Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Margin="30,0,0,0" Name="LabelCaption" VerticalAlignment="Top" Width="Auto" Content="{x:Static res:Resources.BolLastFourRetype}" Style="{StaticResource MainLabelStyle}" />
             <TextBox Grid.Row="1" Grid.Column="0"  Margin="30,0,0,0" HorizontalAlignment="Left" Name="ClientNumber" VerticalAlignment="Top" Style="{StaticResource MainTextStyle}" IsUndoEnabled="False" IsTabStop="False" IsReadOnly="False" MaxLength="8" />
             <my:NumPadControl Grid.Column="1" Grid.Row="1" Margin="0,0,60,0" HorizontalAlignment="Right" x:Name="ControlNumPad" VerticalAlignment="Top" MinWidth="272" MinHeight="362"/>
         </Grid>

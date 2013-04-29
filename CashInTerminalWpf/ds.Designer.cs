@@ -1090,6 +1090,8 @@ namespace CashInTerminalWpf {
             
             private global::System.Data.DataColumn columnOperationType;
             
+            private global::System.Data.DataColumn columnServiceId;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PaymentsDataTable() {
@@ -1205,6 +1207,14 @@ namespace CashInTerminalWpf {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ServiceIdColumn {
+                get {
+                    return this.columnServiceId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1240,7 +1250,7 @@ namespace CashInTerminalWpf {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PaymentsRow AddPaymentsRow(long ProductId, string Currency, double CurrencyRate, long Amount, System.DateTime InsertDate, string TransactionId, long Confirmed, string CreditNumber, long OperationType) {
+            public PaymentsRow AddPaymentsRow(long ProductId, string Currency, double CurrencyRate, long Amount, System.DateTime InsertDate, string TransactionId, long Confirmed, string CreditNumber, long OperationType, decimal ServiceId) {
                 PaymentsRow rowPaymentsRow = ((PaymentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1252,7 +1262,8 @@ namespace CashInTerminalWpf {
                         TransactionId,
                         Confirmed,
                         CreditNumber,
-                        OperationType};
+                        OperationType,
+                        ServiceId};
                 rowPaymentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPaymentsRow);
                 return rowPaymentsRow;
@@ -1292,6 +1303,7 @@ namespace CashInTerminalWpf {
                 this.columnConfirmed = base.Columns["Confirmed"];
                 this.columnCreditNumber = base.Columns["CreditNumber"];
                 this.columnOperationType = base.Columns["OperationType"];
+                this.columnServiceId = base.Columns["ServiceId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1317,6 +1329,8 @@ namespace CashInTerminalWpf {
                 base.Columns.Add(this.columnCreditNumber);
                 this.columnOperationType = new global::System.Data.DataColumn("OperationType", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOperationType);
+                this.columnServiceId = new global::System.Data.DataColumn("ServiceId", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnServiceId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -1324,9 +1338,7 @@ namespace CashInTerminalWpf {
                 this.columnId.AutoIncrementStep = -1;
                 this.columnId.AllowDBNull = false;
                 this.columnId.Unique = true;
-                this.columnProductId.AllowDBNull = false;
                 this.columnCurrency.MaxLength = 3;
-                this.columnAmount.AllowDBNull = false;
                 this.columnTransactionId.MaxLength = 50;
                 this.columnCreditNumber.MaxLength = 150;
                 this.columnOperationType.AllowDBNull = false;
@@ -2923,7 +2935,12 @@ namespace CashInTerminalWpf {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public long ProductId {
                 get {
-                    return ((long)(this[this.tablePayments.ProductIdColumn]));
+                    try {
+                        return ((long)(this[this.tablePayments.ProductIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductId\' in table \'Payments\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePayments.ProductIdColumn] = value;
@@ -2966,7 +2983,12 @@ namespace CashInTerminalWpf {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public long Amount {
                 get {
-                    return ((long)(this[this.tablePayments.AmountColumn]));
+                    try {
+                        return ((long)(this[this.tablePayments.AmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'Payments\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePayments.AmountColumn] = value;
@@ -3050,6 +3072,34 @@ namespace CashInTerminalWpf {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ServiceId {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePayments.ServiceIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ServiceId\' in table \'Payments\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayments.ServiceIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProductIdNull() {
+                return this.IsNull(this.tablePayments.ProductIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProductIdNull() {
+                this[this.tablePayments.ProductIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCurrencyNull() {
                 return this.IsNull(this.tablePayments.CurrencyColumn);
             }
@@ -3070,6 +3120,18 @@ namespace CashInTerminalWpf {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCurrencyRateNull() {
                 this[this.tablePayments.CurrencyRateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAmountNull() {
+                return this.IsNull(this.tablePayments.AmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAmountNull() {
+                this[this.tablePayments.AmountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3118,6 +3180,18 @@ namespace CashInTerminalWpf {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCreditNumberNull() {
                 this[this.tablePayments.CreditNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsServiceIdNull() {
+                return this.IsNull(this.tablePayments.ServiceIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetServiceIdNull() {
+                this[this.tablePayments.ServiceIdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4867,10 +4941,11 @@ namespace CashInTerminalWpf.dsTableAdapters {
             tableMapping.ColumnMappings.Add("Confirmed", "Confirmed");
             tableMapping.ColumnMappings.Add("CreditNumber", "CreditNumber");
             tableMapping.ColumnMappings.Add("OperationType", "OperationType");
+            tableMapping.ColumnMappings.Add("ServiceId", "ServiceId");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [main].[sqlite_default_schema].[Payments] WHERE (([Id] = @Original_Id) AND ([ProductId] = @Original_ProductId) AND ((@IsNull_Currency = 1 AND [Currency] IS NULL) OR ([Currency] = @Original_Currency)) AND ((@IsNull_CurrencyRate = 1 AND [CurrencyRate] IS NULL) OR ([CurrencyRate] = @Original_CurrencyRate)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_InsertDate = 1 AND [InsertDate] IS NULL) OR ([InsertDate] = @Original_InsertDate)) AND ((@IsNull_TransactionId = 1 AND [TransactionId] IS NULL) OR ([TransactionId] = @Original_TransactionId)) AND ((@IsNull_Confirmed = 1 AND [Confirmed] IS NULL) OR ([Confirmed] = @Original_Confirmed)) AND ((@IsNull_CreditNumber = 1 AND [CreditNumber] IS NULL) OR ([CreditNumber] = @Original_CreditNumber)) AND ([OperationType] = @Original_OperationType))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [main].[sqlite_default_schema].[Payments] WHERE (([Id] = @Original_Id) AND ((@IsNull_ProductId = 1 AND [ProductId] IS NULL) OR ([ProductId] = @Original_ProductId)) AND ((@IsNull_Currency = 1 AND [Currency] IS NULL) OR ([Currency] = @Original_Currency)) AND ((@IsNull_CurrencyRate = 1 AND [CurrencyRate] IS NULL) OR ([CurrencyRate] = @Original_CurrencyRate)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_InsertDate = 1 AND [InsertDate] IS NULL) OR ([InsertDate] = @Original_InsertDate)) AND ((@IsNull_TransactionId = 1 AND [TransactionId] IS NULL) OR ([TransactionId] = @Original_TransactionId)) AND ((@IsNull_Confirmed = 1 AND [Confirmed] IS NULL) OR ([Confirmed] = @Original_Confirmed)) AND ((@IsNull_CreditNumber = 1 AND [CreditNumber] IS NULL) OR ([CreditNumber] = @Original_CreditNumber)) AND ([OperationType] = @Original_OperationType) AND ((@IsNull_ServiceId = 1 AND [ServiceId] IS NULL) OR ([ServiceId] = @Original_ServiceId)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_Id";
@@ -4878,6 +4953,14 @@ namespace CashInTerminalWpf.dsTableAdapters {
             param.DbType = global::System.Data.DbType.Int64;
             param.SourceColumn = "Id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_ProductId";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "ProductId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_ProductId";
@@ -4995,9 +5078,24 @@ namespace CashInTerminalWpf.dsTableAdapters {
             param.SourceColumn = "OperationType";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_ServiceId";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "ServiceId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_ServiceId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SourceColumn = "ServiceId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [main].[sqlite_default_schema].[Payments] ([ProductId], [Currency], [CurrencyRate], [Amount], [InsertDate], [TransactionId], [Confirmed], [CreditNumber], [OperationType]) VALUES (@ProductId, @Currency, @CurrencyRate, @Amount, @InsertDate, @TransactionId, @Confirmed, @CreditNumber, @OperationType)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [main].[sqlite_default_schema].[Payments] ([ProductId], [Currency], [CurrencyRate], [Amount], [InsertDate], [TransactionId], [Confirmed], [CreditNumber], [OperationType], [ServiceId]) VALUES (@ProductId, @Currency, @CurrencyRate, @Amount, @InsertDate, @TransactionId, @Confirmed, @CreditNumber, @OperationType, @ServiceId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@ProductId";
@@ -5050,9 +5148,15 @@ namespace CashInTerminalWpf.dsTableAdapters {
             param.DbType = global::System.Data.DbType.Int64;
             param.SourceColumn = "OperationType";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@ServiceId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SourceColumn = "ServiceId";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [main].[sqlite_default_schema].[Payments] SET [ProductId] = @ProductId, [Currency] = @Currency, [CurrencyRate] = @CurrencyRate, [Amount] = @Amount, [InsertDate] = @InsertDate, [TransactionId] = @TransactionId, [Confirmed] = @Confirmed, [CreditNumber] = @CreditNumber, [OperationType] = @OperationType WHERE (([Id] = @Original_Id) AND ([ProductId] = @Original_ProductId) AND ((@IsNull_Currency = 1 AND [Currency] IS NULL) OR ([Currency] = @Original_Currency)) AND ((@IsNull_CurrencyRate = 1 AND [CurrencyRate] IS NULL) OR ([CurrencyRate] = @Original_CurrencyRate)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_InsertDate = 1 AND [InsertDate] IS NULL) OR ([InsertDate] = @Original_InsertDate)) AND ((@IsNull_TransactionId = 1 AND [TransactionId] IS NULL) OR ([TransactionId] = @Original_TransactionId)) AND ((@IsNull_Confirmed = 1 AND [Confirmed] IS NULL) OR ([Confirmed] = @Original_Confirmed)) AND ((@IsNull_CreditNumber = 1 AND [CreditNumber] IS NULL) OR ([CreditNumber] = @Original_CreditNumber)) AND ([OperationType] = @Original_OperationType))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [main].[sqlite_default_schema].[Payments] SET [ProductId] = @ProductId, [Currency] = @Currency, [CurrencyRate] = @CurrencyRate, [Amount] = @Amount, [InsertDate] = @InsertDate, [TransactionId] = @TransactionId, [Confirmed] = @Confirmed, [CreditNumber] = @CreditNumber, [OperationType] = @OperationType, [ServiceId] = @ServiceId WHERE (([Id] = @Original_Id) AND ((@IsNull_ProductId = 1 AND [ProductId] IS NULL) OR ([ProductId] = @Original_ProductId)) AND ((@IsNull_Currency = 1 AND [Currency] IS NULL) OR ([Currency] = @Original_Currency)) AND ((@IsNull_CurrencyRate = 1 AND [CurrencyRate] IS NULL) OR ([CurrencyRate] = @Original_CurrencyRate)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_InsertDate = 1 AND [InsertDate] IS NULL) OR ([InsertDate] = @Original_InsertDate)) AND ((@IsNull_TransactionId = 1 AND [TransactionId] IS NULL) OR ([TransactionId] = @Original_TransactionId)) AND ((@IsNull_Confirmed = 1 AND [Confirmed] IS NULL) OR ([Confirmed] = @Original_Confirmed)) AND ((@IsNull_CreditNumber = 1 AND [CreditNumber] IS NULL) OR ([CreditNumber] = @Original_CreditNumber)) AND ([OperationType] = @Original_OperationType) AND ((@IsNull_ServiceId = 1 AND [ServiceId] IS NULL) OR ([ServiceId] = @Original_ServiceId)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@ProductId";
@@ -5106,11 +5210,25 @@ namespace CashInTerminalWpf.dsTableAdapters {
             param.SourceColumn = "OperationType";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@ServiceId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SourceColumn = "ServiceId";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_Id";
             param.DbType = global::System.Data.DbType.Int64;
             param.DbType = global::System.Data.DbType.Int64;
             param.SourceColumn = "Id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_ProductId";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "ProductId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_ProductId";
@@ -5228,6 +5346,21 @@ namespace CashInTerminalWpf.dsTableAdapters {
             param.SourceColumn = "OperationType";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_ServiceId";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "ServiceId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_ServiceId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SourceColumn = "ServiceId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5244,7 +5377,7 @@ namespace CashInTerminalWpf.dsTableAdapters {
             this._commandCollection[0] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, ProductId, Currency, CurrencyRate, Amount, InsertDate, TransactionId, " +
-                "Confirmed, CreditNumber, OperationType FROM Payments";
+                "Confirmed, CreditNumber, OperationType, ServiceId FROM Payments";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -5260,8 +5393,9 @@ namespace CashInTerminalWpf.dsTableAdapters {
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Id, ProductId, Currency, CurrencyRate, Amount, InsertDate, TransactionId, " +
-                "Confirmed, CreditNumber, OperationType FROM Payments WHERE (Confirmed = 1)";
+            this._commandCollection[2].CommandText = "SELECT Amount, Confirmed, CreditNumber, Currency, CurrencyRate, Id, InsertDate, O" +
+                "perationType, ProductId, ServiceId, TransactionId FROM Payments WHERE (Confirmed" +
+                " = 1)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[3].Connection = this.Connection;
@@ -5270,8 +5404,8 @@ namespace CashInTerminalWpf.dsTableAdapters {
             this._commandCollection[4] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"INSERT INTO Payments
-                         (ProductId, Currency, CurrencyRate, Amount, TransactionId, Confirmed, OperationType, CreditNumber)
-VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @Confirmed, @OperationType, @CreditNumber)";
+                         (ProductId, Currency, CurrencyRate, Amount, TransactionId, Confirmed, OperationType, CreditNumber, ServiceId)
+VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @Confirmed, @OperationType, @CreditNumber, @ServiceId)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@ProductId";
@@ -5325,6 +5459,13 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
             param.DbType = global::System.Data.DbType.String;
             param.Size = 150;
             param.SourceColumn = "CreditNumber";
+            this._commandCollection[4].Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@ServiceId";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.Size = 8;
+            param.SourceColumn = "ServiceId";
             this._commandCollection[4].Parameters.Add(param);
             this._commandCollection[5] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[5].Connection = this.Connection;
@@ -5492,66 +5633,81 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_Id, long Original_ProductId, string Original_Currency, global::System.Nullable<double> Original_CurrencyRate, global::System.Nullable<long> Original_Amount, global::System.Nullable<global::System.DateTime> Original_InsertDate, string Original_TransactionId, global::System.Nullable<long> Original_Confirmed, string Original_CreditNumber, long Original_OperationType) {
+        public virtual int Delete(long Original_Id, global::System.Nullable<long> Original_ProductId, string Original_Currency, global::System.Nullable<double> Original_CurrencyRate, global::System.Nullable<long> Original_Amount, global::System.Nullable<global::System.DateTime> Original_InsertDate, string Original_TransactionId, global::System.Nullable<long> Original_Confirmed, string Original_CreditNumber, long Original_OperationType, global::System.Nullable<decimal> Original_ServiceId) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_Id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((long)(Original_ProductId));
-            if ((Original_Currency == null)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            if ((Original_ProductId.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((long)(Original_ProductId.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Currency));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Currency == null)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Currency));
             }
             if ((Original_CurrencyRate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((double)(Original_CurrencyRate.Value));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_CurrencyRate.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Original_Amount.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((long)(Original_Amount.Value));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((long)(Original_Amount.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             if ((Original_InsertDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_InsertDate.Value));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((System.DateTime)(Original_InsertDate.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_TransactionId == null)) {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_TransactionId));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_TransactionId));
             }
             if ((Original_Confirmed.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((long)(Original_Confirmed.Value));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((long)(Original_Confirmed.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             if ((Original_CreditNumber == null)) {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_CreditNumber));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_CreditNumber));
             }
-            this.Adapter.DeleteCommand.Parameters[16].Value = ((long)(Original_OperationType));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((long)(Original_OperationType));
+            if ((Original_ServiceId.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((decimal)(Original_ServiceId.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5572,8 +5728,13 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(long ProductId, string Currency, global::System.Nullable<double> CurrencyRate, global::System.Nullable<long> Amount, global::System.Nullable<global::System.DateTime> InsertDate, string TransactionId, global::System.Nullable<long> Confirmed, string CreditNumber, long OperationType) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((long)(ProductId));
+        public virtual int Insert(global::System.Nullable<long> ProductId, string Currency, global::System.Nullable<double> CurrencyRate, global::System.Nullable<long> Amount, global::System.Nullable<global::System.DateTime> InsertDate, string TransactionId, global::System.Nullable<long> Confirmed, string CreditNumber, long OperationType, global::System.Nullable<decimal> ServiceId) {
+            if ((ProductId.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((long)(ProductId.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((Currency == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
@@ -5617,6 +5778,12 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(CreditNumber));
             }
             this.Adapter.InsertCommand.Parameters[8].Value = ((long)(OperationType));
+            if ((ServiceId.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(ServiceId.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5638,7 +5805,7 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    long ProductId, 
+                    global::System.Nullable<long> ProductId, 
                     string Currency, 
                     global::System.Nullable<double> CurrencyRate, 
                     global::System.Nullable<long> Amount, 
@@ -5647,8 +5814,9 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
                     global::System.Nullable<long> Confirmed, 
                     string CreditNumber, 
                     long OperationType, 
+                    global::System.Nullable<decimal> ServiceId, 
                     long Original_Id, 
-                    long Original_ProductId, 
+                    global::System.Nullable<long> Original_ProductId, 
                     string Original_Currency, 
                     global::System.Nullable<double> Original_CurrencyRate, 
                     global::System.Nullable<long> Original_Amount, 
@@ -5656,8 +5824,14 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
                     string Original_TransactionId, 
                     global::System.Nullable<long> Original_Confirmed, 
                     string Original_CreditNumber, 
-                    long Original_OperationType) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(ProductId));
+                    long Original_OperationType, 
+                    global::System.Nullable<decimal> Original_ServiceId) {
+            if ((ProductId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(ProductId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((Currency == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
@@ -5701,65 +5875,86 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(CreditNumber));
             }
             this.Adapter.UpdateCommand.Parameters[8].Value = ((long)(OperationType));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((long)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(Original_ProductId));
-            if ((Original_Currency == null)) {
+            if ((ServiceId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(ServiceId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(Original_Id));
+            if ((Original_ProductId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((long)(Original_ProductId.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Currency));
-            }
-            if ((Original_CurrencyRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((double)(Original_CurrencyRate.Value));
-            }
-            else {
+            if ((Original_Currency == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Original_Amount.HasValue == true)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Currency));
+            }
+            if ((Original_CurrencyRate.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((long)(Original_Amount.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((double)(Original_CurrencyRate.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((Original_InsertDate.HasValue == true)) {
+            if ((Original_Amount.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_InsertDate.Value));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((long)(Original_Amount.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((Original_TransactionId == null)) {
+            if ((Original_InsertDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_InsertDate.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_TransactionId));
-            }
-            if ((Original_Confirmed.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((long)(Original_Confirmed.Value));
-            }
-            else {
+            if ((Original_TransactionId == null)) {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
-            if ((Original_CreditNumber == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_TransactionId));
+            }
+            if ((Original_Confirmed.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((long)(Original_Confirmed.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_CreditNumber));
+            if ((Original_CreditNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((long)(Original_OperationType));
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_CreditNumber));
+            }
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((long)(Original_OperationType));
+            if ((Original_ServiceId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((decimal)(Original_ServiceId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5831,7 +6026,7 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object InsertTransaction(global::System.Nullable<long> ProductId, string Currency, global::System.Nullable<decimal> CurrencyRate, global::System.Nullable<long> Amount, string TransactionId, global::System.Nullable<long> Confirmed, long OperationType, string CreditNumber) {
+        public virtual object InsertTransaction(global::System.Nullable<long> ProductId, string Currency, global::System.Nullable<decimal> CurrencyRate, global::System.Nullable<long> Amount, string TransactionId, global::System.Nullable<long> Confirmed, long OperationType, string CreditNumber, global::System.Nullable<decimal> ServiceId) {
             global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[4];
             if ((ProductId.HasValue == true)) {
                 command.Parameters[0].Value = ((long)(ProductId.Value));
@@ -5876,6 +6071,12 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
             else {
                 command.Parameters[7].Value = ((string)(CreditNumber));
             }
+            if ((ServiceId.HasValue == true)) {
+                command.Parameters[8].Value = ((decimal)(ServiceId.Value));
+            }
+            else {
+                command.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5903,7 +6104,7 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateAmount(string Currency, global::System.Nullable<decimal> CurrencyRate, long Amount, long Original_Id) {
+        public virtual int UpdateAmount(string Currency, global::System.Nullable<decimal> CurrencyRate, global::System.Nullable<long> Amount, long Original_Id) {
             global::System.Data.SQLite.SQLiteCommand command = this.CommandCollection[5];
             if ((Currency == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -5917,7 +6118,12 @@ VALUES        (@ProductId, @Currency, @CurrencyRate, @Amount, @TransactionId, @C
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
             }
-            command.Parameters[2].Value = ((long)(Amount));
+            if ((Amount.HasValue == true)) {
+                command.Parameters[2].Value = ((long)(Amount.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
             command.Parameters[3].Value = ((long)(Original_Id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

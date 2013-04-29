@@ -63,6 +63,17 @@
             <Setter Property="Width" Value="350" />
         </Style>
 
+        <Style x:Key="MainTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style>
+
         <Style x:Key="MainLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="30" />
@@ -97,10 +108,17 @@
             <Setter Property="MinHeight" Value="105"></Setter>            
         </Style>
 
-        <Style x:Key="SmallMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+        <Style x:Key="PaymentServiceButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
             <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
-            <Setter Property="MaxHeight" Value="105"></Setter>
-            <Setter Property="MinHeight" Value="105"></Setter>
+            <Setter Property="MaxHeight" Value="120"></Setter>
+            <Setter Property="MinHeight" Value="120"></Setter>
+            <Setter Property="Width" Value="200"></Setter>            
+        </Style>
+
+        <Style x:Key="SmallMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10,5"></Setter>
+            <Setter Property="MaxHeight" Value="95"></Setter>
+            <Setter Property="MinHeight" Value="95"></Setter>
             <Setter Property="FontSize" Value="35" />
         </Style>
 
@@ -138,8 +156,32 @@
             <Setter Property="MinHeight" Value="78"></Setter>
             <Setter Property="Width" Value="320"></Setter>
         </Style>
-        
-        
+
+        <Style x:Key="ServiceNavButtonStyleBack" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="78"></Setter>
+            <Setter Property="Width" Value="78"></Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Source="Resources/back.png" Width="40" Height="39" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ServiceNavButtonStyleNext" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="78"></Setter>
+            <Setter Property="Width" Value="78"></Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Source="Resources/next.png" Width="40" Height="39" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="HomeButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
             <!--<Setter Property="Background">

@@ -19,10 +19,17 @@
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
 
         <UniformGrid Grid.Row="1" x:Name="Grid" Columns="1" VerticalAlignment="Top">
-            <Button Style="{StaticResource SmallMenuButtonStyle}" />
+            <Button Style="{StaticResource SmallMenuButtonStyle}" Content="Sample button" />
+            <Button Style="{StaticResource SmallMenuButtonStyle}" Content="Sample button" />
+            <Button Style="{StaticResource SmallMenuButtonStyle}" Content="Sample button" />
+            <Button Style="{StaticResource SmallMenuButtonStyle}" Content="Sample button" />
         </UniformGrid>
 
-        <Label Name="LabelTestVersion"  Grid.Row="2" Content="Тестовая версия!" Foreground="DarkRed" HorizontalAlignment="Center" Style="{StaticResource BigLabelStyle}" />
+        <DockPanel Name="ServiceNav" Margin="8,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Visibility="Visible">
+            <Button Name="ButtonPrev" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource ServiceNavButtonStyleBack}" Click="ButtonPrevClick" Visibility="Hidden" />
+            <Button Name="ButtonNext" HorizontalAlignment="Right" DockPanel.Dock="Left" Style="{StaticResource ServiceNavButtonStyleNext}" Click="ButtonNextClick" Visibility="Hidden" />
+        </DockPanel>
+        
         <DockPanel Margin="8" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom">
             <Button Name="ButtonBack" MinWidth="93" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />
         </DockPanel>

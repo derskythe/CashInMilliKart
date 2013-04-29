@@ -40,6 +40,11 @@ namespace CashInTerminalWpf
                         _FormMain.OpenForm(FormEnum.ClientByPassport);
                         break;                   
 
+                    case PaymentOperationType.GoldenPay:
+                    case PaymentOperationType.Komtek:
+                        _FormMain.OpenForm(FormEnum.PaymentServiceInputData);
+                        break;
+
                     default:
                         _FormMain.OpenForm(FormEnum.Products);
                         break;

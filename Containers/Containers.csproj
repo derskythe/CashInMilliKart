@@ -82,6 +82,7 @@
     <Compile Include="CashCode\CCNETResponseStatus.cs" />
     <Compile Include="CashCode\CCNETControllerCommand.cs" />
     <Compile Include="CashCode\CCNETRejectReason.cs" />
+    <Compile Include="MultiPayment\CategoriesResult.cs" />
     <Compile Include="CheckField.cs" />
     <Compile Include="CheckFieldType.cs" />
     <Compile Include="CheckTemplate.cs" />
@@ -107,7 +108,18 @@
     <Compile Include="GetBonusAmountRequest.cs" />
     <Compile Include="GetClientInfoRequest.cs" />
     <Compile Include="GetClientInfoResult.cs" />
+    <Compile Include="MultiPayment\PaymentCategory.cs" />
+    <Compile Include="MultiPayment\PaymentFixedAmount.cs" />
+    <Compile Include="MultiPayment\PaymentServiceInfo.cs" />
+    <Compile Include="MultiPayment\PaymentServiceInfoRequest.cs" />
+    <Compile Include="MultiPayment\PaymentServiceInfoResponse.cs" />
+    <Compile Include="MultiPayment\PaymentServicePay.cs" />
+    <Compile Include="MultiPayment\PaymentServiceUserInputField.cs" />
+    <Compile Include="TerminalPaymentInfo.cs" />
     <Compile Include="PaymentInfoByProducts.cs" />
+    <Compile Include="MultiPayment\PaymentService.cs" />
+    <Compile Include="MultiPayment\PaymentServiceEnum.cs" />
+    <Compile Include="MultiPayment\PaymentServiceField.cs" />
     <Compile Include="PingRequest.cs" />
     <Compile Include="PingResult.cs" />
     <Compile Include="PrinterStatus.cs" />

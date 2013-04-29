@@ -25,5 +25,10 @@
         public const string ClientByPassport = "PageClientByPassport.xaml";
         public const string ClientByPassportRetype = "PageClientByPassportRetype.xaml";
         public const string DebitSelectAccount = "PageDebitSelectAccount.xaml";
+        public const string PaymentServiceSelect = "PagePaymentServiceSelect.xaml";
+        public const string OtherPaymentsCategories = "PageOtherPaymentsCategories.xaml";
+        public const string PaymentServiceInputData = "PagePaymentServiceInputData.xaml";
+        public const string ServiceNotAvailable = "PageServiceNotAvailable.xaml";
+        public const string OtherPaymentUserInfo = "PageOtherPaymentUserInfo.xaml";
     }
 }

@@ -126,7 +126,73 @@ namespace Db
             return 0;
         }
 
+        [Obsolete]
         public void SavePayment(PaymentInfoByProducts info)
+        {
+            CheckConnection();
+
+            var cmd = _OraCon.CreateCommand();
+            cmd.CommandText = "main.save_payment";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            var transId = new OracleParameter();
+            var terminalId = new OracleParameter();
+            var productId = new OracleParameter();
+            var currencyId = new OracleParameter();
+            var currencyRateId = new OracleParameter();
+            var amount = new OracleParameter();
+            var terminalDate = new OracleParameter();
+            var creditNumber = new OracleParameter();
+            var type = new OracleParameter();
+            var banknotes = new OracleParameter();
+            var values = new OracleParameter();
+
+            transId.OracleDbType = OracleDbType.Int32;
+            terminalId.OracleDbType = OracleDbType.Int32;
+            productId.OracleDbType = OracleDbType.Int32;
+            currencyId.OracleDbType = OracleDbType.Varchar2;
+            currencyRateId.OracleDbType = OracleDbType.Decimal;
+            amount.OracleDbType = OracleDbType.Int32;
+            creditNumber.OracleDbType = OracleDbType.Varchar2;
+            type.OracleDbType = OracleDbType.Int32;
+            terminalDate.OracleDbType = OracleDbType.TimeStamp;
+            banknotes.OracleDbType = OracleDbType.Int32;
+            values.OracleDbType = OracleDbType.Varchar2;
+
+            banknotes.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+            values.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+
+            transId.Value = info.TransactionId;
+            terminalId.Value = info.TerminalId;
+            productId.Value = info.ProductId;
+            currencyId.Value = info.Currency;
+            currencyRateId.Value = info.CurrencyRate;
+            amount.Value = info.Amount;
+            terminalDate.Value = info.TerminalDate;
+            banknotes.Value = info.Banknotes;
+            values.Value = info.Values;
+            creditNumber.Value = info.CreditNumber;
+            type.Value = info.OperationType;
+
+            banknotes.Size = info.Banknotes.Length;
+            values.Size = info.Values.Length;
+
+            cmd.Parameters.Add(transId);
+            cmd.Parameters.Add(terminalId);
+            cmd.Parameters.Add(productId);
+            cmd.Parameters.Add(currencyId);
+            cmd.Parameters.Add(currencyRateId);
+            cmd.Parameters.Add(amount);
+            cmd.Parameters.Add(terminalDate);
+            cmd.Parameters.Add(creditNumber);
+            cmd.Parameters.Add(type);
+            cmd.Parameters.Add(banknotes);
+            cmd.Parameters.Add(values);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void SavePayment(TerminalPaymentInfo info)
         {
             CheckConnection();
 
@@ -339,7 +405,9 @@ namespace Db
             {
                 amount.Add(currency.Amount);
                 currencyList.Add(currency.Currency);
-            }
+            }            
+
+            cmd.Parameters.Add(terminalId);
 
             if (currencyList.Count > 0 && amount.Count > 0)
             {
@@ -352,8 +420,6 @@ namespace Db
                 cmd.Parameters.Add(currencies);
                 cmd.Parameters.Add(amounts);
             }
-
-            cmd.Parameters.Add(terminalId);            
 
             cmd.ExecuteNonQuery();
         }

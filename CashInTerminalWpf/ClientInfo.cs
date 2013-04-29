@@ -7,9 +7,11 @@ namespace CashInTerminalWpf
     public class ClientInfo
     {
         private Product _Product;
+        private PaymentCategory _PaymentCategory;
+        private PaymentService _PaymentService;
         private String _AccountNumber;
         private String _Passport;
-        private String _CreditAccountNumber;
+        //private String _CreditAccountNumber;
         private String _CurrentCurrency;
         private int _CashCodeAmount;
         private long _PaymentId;
@@ -37,11 +39,11 @@ namespace CashInTerminalWpf
             set { _Passport = value; }
         }
 
-        public string CreditAccountNumber
-        {
-            get { return _CreditAccountNumber; }
-            set { _CreditAccountNumber = value; }
-        }
+        //public string CreditAccountNumber
+        //{
+        //    get { return _CreditAccountNumber; }
+        //    set { _CreditAccountNumber = value; }
+        //}
 
         public string CurrentCurrency
         {
@@ -91,16 +93,28 @@ namespace CashInTerminalWpf
             set { _Client = value; }
         }
 
+        public PaymentCategory PaymentCategory
+        {
+            get { return _PaymentCategory; }
+            set { _PaymentCategory = value; }
+        }
+
+        public PaymentService PaymentService
+        {
+            get { return _PaymentService; }
+            set { _PaymentService = value; }
+        }
+
         public ClientInfo()
         {
         }
 
-        public ClientInfo(Product product, string accountNumber, string passport, string creditAccountNumber, string currentCurrency, int cashCodeAmount, long paymentId, int orderNumber, string transactionId)
+        public ClientInfo(Product product, string accountNumber, string passport, string currentCurrency, int cashCodeAmount, long paymentId, int orderNumber, string transactionId)
         {
             _Product = product;
             _AccountNumber = accountNumber;
             _Passport = passport;
-            _CreditAccountNumber = creditAccountNumber;
+            //_CreditAccountNumber = creditAccountNumber;
             _CurrentCurrency = currentCurrency;
             _CashCodeAmount = cashCodeAmount;
             _PaymentId = paymentId;
@@ -113,9 +127,9 @@ namespace CashInTerminalWpf
         {
             return
                 string.Format(
-                    "Product: {0}, AccountNumber: {1}, Passport: {2}, CreditAccountNumber: {3}, CurrentCurrency: {4}, CashCodeAmount: {5}, PaymentId: {6}, OrderNumber: {7}, TransactionId: {8}, PaymentOperationType: {9}, Client: {10}",
-                    _Product, _AccountNumber, _Passport, _CreditAccountNumber, _CurrentCurrency, _CashCodeAmount,
-                    _PaymentId, _OrderNumber, _TransactionId, _PaymentOperationType, _Client);
+                    "Product: {0}, AccountNumber: {1}, Passport: {2}, CurrentCurrency: {3}, CashCodeAmount: {4}, PaymentId: {5}, TransactionId: {6}, PaymentOperationType: {7}, Client: {8}, OrderNumber: {9}",
+                    _Product, _AccountNumber, _Passport, _CurrentCurrency, _CashCodeAmount, _PaymentId, _TransactionId,
+                    _PaymentOperationType, _Client, _OrderNumber);
         }
     }
 }

@@ -11,6 +11,7 @@ using CashInTerminalWpf.Enums;
 using CashInTerminalWpf.Properties;
 using Containers;
 using NLog;
+using BonusResponse = CashInTerminalWpf.CashIn.BonusResponse;
 using CheckField = CashInTerminalWpf.CashIn.CheckField;
 
 namespace CashInTerminalWpf
@@ -25,6 +26,7 @@ namespace CashInTerminalWpf
         private String _DateNow;
         private string _ProductName;
         private List<CheckField> _Template;
+        private BonusResponse _Response;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -35,8 +37,10 @@ namespace CashInTerminalWpf
 
         public PagePaySuccess()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
+
+        #region PrintDocument
 
         private void PrintDocumentOnPrintPage(object sender, PrintPageEventArgs e)
         {
@@ -61,7 +65,7 @@ namespace CashInTerminalWpf
                                     using (var stream = new MemoryStream(line.Image))
                                     {
                                         Image img = new Bitmap(stream);
-                                        
+
                                         int width = img.Width;
                                         if (width > e.PageBounds.Width - 15)
                                         {
@@ -132,6 +136,8 @@ namespace CashInTerminalWpf
             }
         }
 
+        #endregion
+
         private void PrintDocumentOnEndPrint(object sender, PrintEventArgs printEventArgs)
         {
             Log.Info(String.Format("Printed. {0}", printEventArgs.PrintAction));
@@ -176,6 +182,8 @@ namespace CashInTerminalWpf
                 LabelAmount.Content = _FormMain.ClientInfo.CashCodeAmount + @" " + _FormMain.ClientInfo.CurrentCurrency;
             }
 
+            _Response = _FormMain.InfoResponse as BonusResponse;
+
             try
             {
                 _ProductName = _FormMain.ClientInfo != null ? GetProductName(Convert.ToInt32(_FormMain.ClientInfo.Product.Id)) : @"[NULL]";
@@ -184,10 +192,10 @@ namespace CashInTerminalWpf
                 lock (_FormMain.CheckTemplates)
                 {
                     int checkType;
-                    if (_FormMain.ClientInfo.Product.CheckType == (int) CheckTemplateTypes.CreditPayment &&
-                        _FormMain.Bonus != null && _FormMain.Bonus.Bonus > 0)
+                    if (_FormMain.ClientInfo.Product.CheckType == (int)CheckTemplateTypes.CreditPayment &&
+                       _Response != null && _Response.Bonus > 0)
                     {
-                        checkType = (int) CheckTemplateTypes.CreditWithBonus;
+                        checkType = (int)CheckTemplateTypes.CreditWithBonus;
                     }
                     else
                     {
@@ -308,9 +316,27 @@ namespace CashInTerminalWpf
             }
             value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
             value = value.Replace(TemplateFields.FullPaymentFlag, _FormMain.ClientInfo != null && _FormMain.ClientInfo.Client.AmountLeft > _FormMain.ClientInfo.CashCodeAmount ? Properties.Resources.CreditOpen : Properties.Resources.CreditClosed);
-            if (_FormMain.Bonus != null && _FormMain.Bonus.Bonus > 0)
+            if (_Response != null && _Response.Bonus > 0)
             {
-                value = value.Replace(TemplateFields.Bonus, _FormMain.Bonus.Bonus.ToString("0.00") + " AZN");
+                value = value.Replace(TemplateFields.Bonus, _Response.Bonus.ToString("0.00") + " AZN");
+            }
+
+            if (_FormMain.ClientInfo.PaymentService != null)
+            {
+                string text;
+                if (!String.IsNullOrEmpty(_FormMain.ClientInfo.PaymentService.LocalizedName.ValueAz))
+                {
+                    text = _FormMain.ClientInfo.PaymentService.LocalizedName.ValueAz;
+                }
+                else if (!String.IsNullOrEmpty(_FormMain.ClientInfo.PaymentService.LocalizedName.ValueEn))
+                {
+                    text = _FormMain.ClientInfo.PaymentService.LocalizedName.ValueEn;
+                }
+                else
+                {
+                    text = _FormMain.ClientInfo.PaymentService.LocalizedName.ValueRu;
+                }
+                value = value.Replace(TemplateFields.ProductSubname, text);
             }
 
             return value;

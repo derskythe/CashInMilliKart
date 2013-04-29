@@ -29,7 +29,7 @@
             </StackPanel>
         </Border>
 
-        <StackPanel Grid.Row="2" Margin="425,20,20,20">
+        <StackPanel Grid.Row="2" Margin="550,20,20,20">
             <Label Name="Label7" VerticalAlignment="Top" Width="Auto" Content="{x:Static res:Resources.AccountNumber}" Style="{StaticResource MainLabelStyle}" />
             <Label Name="Label8" VerticalAlignment="Top" Width="Auto" Content="{x:Static res:Resources.AccountNumber}" Style="{StaticResource MainLabelStyle}" />
         </StackPanel>

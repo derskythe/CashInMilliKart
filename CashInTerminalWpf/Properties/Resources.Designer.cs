@@ -68,6 +68,33 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abonent code.
+        /// </summary>
+        public static string AbonentCode {
+            get {
+                return ResourceManager.GetString("AbonentCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debt.
+        /// </summary>
+        public static string AbonentDebt {
+            get {
+                return ResourceManager.GetString("AbonentDebt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string AbonentName {
+            get {
+                return ResourceManager.GetString("AbonentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hesab nömrəsi.
         /// </summary>
         public static string AccountNumber {
@@ -82,6 +109,13 @@ namespace CashInTerminalWpf.Properties {
         public static string AccountNumberRetype {
             get {
                 return ResourceManager.GetString("AccountNumberRetype", resourceCulture);
+            }
+        }
+        
+        public static System.Drawing.Bitmap back {
+            get {
+                object obj = ResourceManager.GetObject("back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -425,6 +459,13 @@ namespace CashInTerminalWpf.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap next {
+            get {
+                object obj = ResourceManager.GetObject("next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Xeyr.
         /// </summary>
@@ -452,10 +493,37 @@ namespace CashInTerminalWpf.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to təkrarlayın.
+        /// </summary>
+        public static string Repeat {
+            get {
+                return ResourceManager.GetString("Repeat", resourceCulture);
+            }
+        }
+        
         public static System.Drawing.Bitmap Service_unavailable {
             get {
                 object obj = ResourceManager.GetObject("Service_unavailable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service.
+        /// </summary>
+        public static string ServiceName {
+            get {
+                return ResourceManager.GetString("ServiceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xidmət müvəqqəti olaraq işləmir. Buna görə sizdən üzr istəyirik.
+        /// </summary>
+        public static string ServiceNotAvailable {
+            get {
+                return ResourceManager.GetString("ServiceNotAvailable", resourceCulture);
             }
         }
         
