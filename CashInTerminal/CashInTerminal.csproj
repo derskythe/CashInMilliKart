@@ -18,18 +18,18 @@
     <PublishUrl>Q:\CashInTerminal\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\10.46.2.100\CashIn\CashInTerminal\</InstallUrl>
+    <InstallUrl>\\192.168.0.201\CashIn\CashInTerminal\</InstallUrl>
     <ProductName>CashIn Terminal</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>199</ApplicationRevision>
+    <ApplicationRevision>200</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

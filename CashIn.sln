@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashInTerminalWpf", "CashInTerminalWpf\CashInTerminalWpf.csproj", "{88E96C29-2F4C-41CF-A0AF-198CD3B89EC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashInService", "CashInService\CashInService.csproj", "{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -111,6 +113,16 @@ Global
 		{88E96C29-2F4C-41CF-A0AF-198CD3B89EC2}.Release|Mixed Platforms.Build.0 = Release|x86
 		{88E96C29-2F4C-41CF-A0AF-198CD3B89EC2}.Release|x86.ActiveCfg = Release|x86
 		{88E96C29-2F4C-41CF-A0AF-198CD3B89EC2}.Release|x86.Build.0 = Release|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Debug|x86.ActiveCfg = Debug|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Debug|x86.Build.0 = Debug|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Release|Any CPU.ActiveCfg = Release|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Release|x86.ActiveCfg = Release|x86
+		{F8A596F0-BB18-4A93-8CBE-2CD629B79B62}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

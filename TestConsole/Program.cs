@@ -26,6 +26,8 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
+            float val = 124354.0f;
+            Console.WriteLine(val.ToString("0.00"));
             var sample = new[] {"+994503312380", "0503312380"};
 
             foreach (var s in sample)

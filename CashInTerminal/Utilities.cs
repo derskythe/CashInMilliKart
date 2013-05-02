@@ -155,13 +155,19 @@ namespace CashInTerminal
             if (String.IsNullOrEmpty(value))
             {
                 return String.Empty;
-            }            
+            }
 
-            var values = value.Split(' ');
+            Log.Debug(value);
+
+            var values = value.Trim().Split(' ');
             var buffer = new StringBuilder();
             foreach (var s in values)
             {
-                buffer.Append(s.Substring(0, 1).ToUpper(_Info) + s.Substring(1).ToLower(_Info)).Append(" ");
+                var tmpVal = s.Trim();
+                if (!String.IsNullOrEmpty(tmpVal))
+                {
+                    buffer.Append(tmpVal.Substring(0, 1).ToUpper(_Info) + tmpVal.Substring(1).ToLower(_Info)).Append(" ");
+                }
             }
 
             return buffer.ToString().Trim();

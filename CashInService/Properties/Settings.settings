@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CashInService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="OracleDb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cash</Value>
+    </Setting>
+    <Setting Name="OracleUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cashin_new</Value>
+    </Setting>
+    <Setting Name="OraclePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cashin_new</Value>
+    </Setting>
+    <Setting Name="MultiPaymentUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cashin</Value>
+    </Setting>
+    <Setting Name="MultiPaymentPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">qynZsjHcD2rV9LVzyjsl</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

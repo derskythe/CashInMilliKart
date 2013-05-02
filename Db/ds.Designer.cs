@@ -1275,6 +1275,8 @@ namespace Db {
             
             private global::System.Data.DataColumn columnRATE;
             
+            private global::System.Data.DataColumn columnDISABLED;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_LIST_CURRENCIESDataTable() {
@@ -1374,6 +1376,14 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DISABLEDColumn {
+                get {
+                    return this.columnDISABLED;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1409,7 +1419,7 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public V_LIST_CURRENCIESRow AddV_LIST_CURRENCIESRow(string ID, string ISO_NAME, string NAME, decimal DEFAULT_CURRENCY, decimal USER_ID, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal RATE) {
+            public V_LIST_CURRENCIESRow AddV_LIST_CURRENCIESRow(string ID, string ISO_NAME, string NAME, decimal DEFAULT_CURRENCY, decimal USER_ID, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, decimal RATE, int DISABLED) {
                 V_LIST_CURRENCIESRow rowV_LIST_CURRENCIESRow = ((V_LIST_CURRENCIESRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -1419,7 +1429,8 @@ namespace Db {
                         USER_ID,
                         INSERT_DATE,
                         UPDATE_DATE,
-                        RATE};
+                        RATE,
+                        DISABLED};
                 rowV_LIST_CURRENCIESRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_LIST_CURRENCIESRow);
                 return rowV_LIST_CURRENCIESRow;
@@ -1450,6 +1461,7 @@ namespace Db {
                 this.columnINSERT_DATE = base.Columns["INSERT_DATE"];
                 this.columnUPDATE_DATE = base.Columns["UPDATE_DATE"];
                 this.columnRATE = base.Columns["RATE"];
+                this.columnDISABLED = base.Columns["DISABLED"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1471,6 +1483,8 @@ namespace Db {
                 base.Columns.Add(this.columnUPDATE_DATE);
                 this.columnRATE = new global::System.Data.DataColumn("RATE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRATE);
+                this.columnDISABLED = new global::System.Data.DataColumn("DISABLED", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDISABLED);
                 this.columnID.AllowDBNull = false;
                 this.columnID.MaxLength = 3;
                 this.columnISO_NAME.AllowDBNull = false;
@@ -1481,6 +1495,7 @@ namespace Db {
                 this.columnUSER_ID.AllowDBNull = false;
                 this.columnINSERT_DATE.AllowDBNull = false;
                 this.columnUPDATE_DATE.AllowDBNull = false;
+                this.columnDISABLED.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12727,6 +12742,17 @@ namespace Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int DISABLED {
+                get {
+                    return ((int)(this[this.tableV_LIST_CURRENCIES.DISABLEDColumn]));
+                }
+                set {
+                    this[this.tableV_LIST_CURRENCIES.DISABLEDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsRATENull() {
                 return this.IsNull(this.tableV_LIST_CURRENCIES.RATEColumn);
             }
@@ -20702,6 +20728,7 @@ namespace Db.dsTableAdapters {
             tableMapping.ColumnMappings.Add("INSERT_DATE", "INSERT_DATE");
             tableMapping.ColumnMappings.Add("UPDATE_DATE", "UPDATE_DATE");
             tableMapping.ColumnMappings.Add("RATE", "RATE");
+            tableMapping.ColumnMappings.Add("DISABLED", "DISABLED");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -20719,12 +20746,12 @@ namespace Db.dsTableAdapters {
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, ISO_NAME, \"NAME\", DEFAULT_CURRENCY, USER_ID, INSERT_DATE, UPDATE_DATE," +
-                " RATE FROM cashin_new.V_LIST_CURRENCIES";
+                " RATE, DISABLED FROM CASHIN_NEW.V_LIST_CURRENCIES";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT ID, ISO_NAME, \"NAME\", DEFAULT_CURRENCY, USER_ID, INSERT_DATE, UPDATE_DATE," +
-                " RATE FROM cashin_new.V_LIST_CURRENCIES WHERE id = :id";
+                " RATE, DISABLED FROM CASHIN_NEW.V_LIST_CURRENCIES WHERE (ID = :id)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":id";

@@ -22,18 +22,18 @@
     <PublishUrl>Q:\CashInTerminalWpf\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\10.46.2.100\CashIn\CashInTerminal\</InstallUrl>
+    <InstallUrl>\\192.168.0.201\CashInInstall\CashInTerminalWpf\</InstallUrl>
     <ProductName>CashIn Terminal WPF</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>86</ApplicationRevision>
+    <ApplicationRevision>89</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -383,7 +383,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CashInTerminalWpf_TemporaryKey.pfx" />
     <None Include="ds.xsc">
       <DependentUpon>ds.xsd</DependentUpon>
