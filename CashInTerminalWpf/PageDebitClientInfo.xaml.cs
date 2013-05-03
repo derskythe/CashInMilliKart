@@ -10,7 +10,7 @@ namespace CashInTerminalWpf
     /// </summary>
     public partial class PageDebitClientInfo
     {
-        private MainWindow FormMain;
+        private MainWindow _FormMain;
         private const string DATE_FORMAT = "dd MMMM yyyy";
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
@@ -26,31 +26,31 @@ namespace CashInTerminalWpf
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.Products);
+            _FormMain.OpenForm(FormEnum.Products);
         }
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.CurrencySelect);
+            _FormMain.OpenForm(FormEnum.CurrencySelect);
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
         {
-            FormMain.OpenForm(FormEnum.DebitSelectAccount);
+            _FormMain.OpenForm(FormEnum.DebitSelectAccount);
         }
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Title);
-            FormMain = (MainWindow)Window.GetWindow(this);
+            _FormMain = (MainWindow)Window.GetWindow(this);
 
             try
             {
-                Label1.Content = Properties.Resources.Fullname + Properties.Resources.Colon + Utilities.FirstUpper(FormMain.ClientInfo.Client.FullName);
-                Label2.Content = Properties.Resources.PasportNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
-                Label3.Content = Properties.Resources.AccountNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
-                Label4.Content = Properties.Resources.CreditDate + Properties.Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
-                Label5.Content = Properties.Resources.Currency + Properties.Resources.Colon + FormMain.ClientInfo.Client.Currency;
+                Label1.Content = Properties.Resources.Fullname + Properties.Resources.Colon + Utilities.FirstUpper(_FormMain.ClientInfo.Client.FullName);
+                Label2.Content = Properties.Resources.PasportNumber + Properties.Resources.Colon + _FormMain.ClientInfo.Client.PassportNumber;
+                Label3.Content = Properties.Resources.AccountNumber + Properties.Resources.Colon + _FormMain.ClientInfo.Client.ClientAccount;
+                Label4.Content = Properties.Resources.CreditDate + Properties.Resources.Colon + _FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
+                Label5.Content = Properties.Resources.Currency + Properties.Resources.Colon + _FormMain.ClientInfo.Client.Currency;
             }
             catch (Exception exp)
             {

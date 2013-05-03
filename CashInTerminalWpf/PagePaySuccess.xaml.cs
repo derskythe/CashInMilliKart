@@ -179,13 +179,13 @@ namespace CashInTerminalWpf
             }
             else
             {
-                LabelAmount.Content = _FormMain.ClientInfo.CashCodeAmount + @" " + _FormMain.ClientInfo.CurrentCurrency;
+                LabelAmount.Content = _FormMain.ClientInfo.CashCodeAmount.ToString("N0") + @" " + _FormMain.ClientInfo.CurrentCurrency;
             }
 
-            _Response = _FormMain.InfoResponse as BonusResponse;
-
+            
             try
             {
+                _Response = _FormMain.InfoResponse as BonusResponse;
                 _ProductName = _FormMain.ClientInfo != null ? GetProductName(Convert.ToInt32(_FormMain.ClientInfo.Product.Id)) : @"[NULL]";
                 _DateNow = Utilities.FormatDate(DateTime.Now);
 

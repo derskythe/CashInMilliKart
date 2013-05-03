@@ -54,10 +54,10 @@ namespace CashInTerminalWpf
                         Label2.Content = Properties.Resources.PasportNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
                         Label3.Content = Properties.Resources.AccountNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
                         Label4.Content = Properties.Resources.CreditDate + Properties.Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
-                        Label5.Content = Properties.Resources.CreditAmount + Properties.Resources.Colon + FormMain.ClientInfo.Client.CreditAmount + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label5.Content = Properties.Resources.CreditAmount + Properties.Resources.Colon + FormMain.ClientInfo.Client.CreditAmount.ToString("N0") + @" " + FormMain.ClientInfo.Client.Currency;
                         Label6.Content = Properties.Resources.Currency + Properties.Resources.Colon + FormMain.ClientInfo.Client.Currency;
-                        Label7.Content = Properties.Resources.CreditAmountLeft + Properties.Resources.Colon + FormMain.ClientInfo.Client.AmountLeft + @" " + FormMain.ClientInfo.Client.Currency;
-                        Label8.Content = Properties.Resources.CreditAmountToPay + Properties.Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label7.Content = Properties.Resources.CreditAmountLeft + Properties.Resources.Colon + String.Format("{0:N0}", FormMain.ClientInfo.Client.AmountLeft) + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label8.Content = Properties.Resources.CreditAmountToPay + Properties.Resources.Colon + String.Format("{0:N0}", FormMain.ClientInfo.Client.AmountLate) + @" " + FormMain.ClientInfo.Client.Currency;
                         break;
 
                     case PaymentOperationType.CreditPaymentByPassportAndAccount:
@@ -65,10 +65,10 @@ namespace CashInTerminalWpf
                         Label2.Content = Properties.Resources.PasportNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
                         Label3.Content = Properties.Resources.AccountNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
                         Label4.Content = Properties.Resources.CreditDate + Properties.Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
-                        Label5.Content = Properties.Resources.CreditAmount + Properties.Resources.Colon + FormMain.ClientInfo.Client.CreditAmount + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label5.Content = Properties.Resources.CreditAmount + Properties.Resources.Colon + FormMain.ClientInfo.Client.CreditAmount.ToString("N0") + @" " + FormMain.ClientInfo.Client.Currency;
                         Label6.Content = Properties.Resources.Currency + Properties.Resources.Colon + FormMain.ClientInfo.Client.Currency;
-                        Label7.Content = Properties.Resources.CreditAmountLeft + Properties.Resources.Colon + FormMain.ClientInfo.Client.AmountLeft + @" " + FormMain.ClientInfo.Client.Currency;
-                        Label8.Content = Properties.Resources.CreditAmountToPay + Properties.Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label7.Content = Properties.Resources.CreditAmountLeft + Properties.Resources.Colon + String.Format("{0:N0}", FormMain.ClientInfo.Client.AmountLeft) + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label8.Content = Properties.Resources.CreditAmountToPay + Properties.Resources.Colon + String.Format("{0:N0}", FormMain.ClientInfo.Client.AmountLate) + @" " + FormMain.ClientInfo.Client.Currency;
                         break;
 
                     case PaymentOperationType.CreditPaymentBolcard:
@@ -76,10 +76,10 @@ namespace CashInTerminalWpf
                         Label2.Content = Properties.Resources.PasportNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.PassportNumber;
                         Label3.Content = Properties.Resources.AccountNumber + Properties.Resources.Colon + FormMain.ClientInfo.Client.ClientAccount;
                         Label4.Content = Properties.Resources.CreditDate + Properties.Resources.Colon + FormMain.ClientInfo.Client.BeginDate.ToString(DATE_FORMAT);
-                        Label5.Content = Properties.Resources.CreditAmount + Properties.Resources.Colon + FormMain.ClientInfo.Client.CreditAmount + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label5.Content = Properties.Resources.CreditAmount + Properties.Resources.Colon + FormMain.ClientInfo.Client.CreditAmount.ToString("N0") + @" " + FormMain.ClientInfo.Client.Currency;
                         Label6.Content = Properties.Resources.Currency + Properties.Resources.Colon + FormMain.ClientInfo.Client.Currency;
-                        Label7.Content = Properties.Resources.CreditAmountLeft + Properties.Resources.Colon + FormMain.ClientInfo.Client.AmountLeft + @" " + FormMain.ClientInfo.Client.Currency;
-                        Label8.Content = Properties.Resources.CreditAmountToPay + Properties.Resources.Colon + FormMain.ClientInfo.Client.AmountLate + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label7.Content = Properties.Resources.CreditAmountLeft + Properties.Resources.Colon + String.Format("{0:N0}", FormMain.ClientInfo.Client.AmountLeft) + @" " + FormMain.ClientInfo.Client.Currency;
+                        Label8.Content = Properties.Resources.CreditAmountToPay + Properties.Resources.Colon + String.Format("{0:N0}", FormMain.ClientInfo.Client.AmountLate) + @" " + FormMain.ClientInfo.Client.Currency;
                         break;
                 }
             }
