@@ -498,6 +498,7 @@ namespace CashInCore
                 OracleDb.Instance.SaveEncashment(request);
                 var userId = OracleDb.Instance.GetLastTerminalCommandUserId(request.TerminalId,
                                                                             (int)TerminalCommands.Encash);
+                Log.Debug("Encashment userID: " + userId);
                 OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
 
                 OracleDb.Instance.RegisterIncassoOrder(terminalInfo.Id);
