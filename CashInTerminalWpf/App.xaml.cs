@@ -12,7 +12,7 @@ namespace CashInTerminalWpf
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -20,7 +20,7 @@ namespace CashInTerminalWpf
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
         // ReSharper disable ConvertToConstant.Local
-        private static readonly bool _TestVersion = true;
+        private static readonly bool _TestVersion = false;
         // ReSharper restore ConvertToConstant.Local
 
         public static bool TestVersion

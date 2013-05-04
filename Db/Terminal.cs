@@ -147,7 +147,7 @@ namespace Db
             var banknotes = new OracleParameter();
             var values = new OracleParameter();
 
-            transId.OracleDbType = OracleDbType.Int32;
+            transId.OracleDbType = OracleDbType.Varchar2;
             terminalId.OracleDbType = OracleDbType.Int32;
             productId.OracleDbType = OracleDbType.Int32;
             currencyId.OracleDbType = OracleDbType.Varchar2;
@@ -212,7 +212,7 @@ namespace Db
             var banknotes = new OracleParameter();
             var values = new OracleParameter();
 
-            transId.OracleDbType = OracleDbType.Int32;
+            transId.OracleDbType = OracleDbType.Varchar2;
             terminalId.OracleDbType = OracleDbType.Int32;
             productId.OracleDbType = OracleDbType.Int32;
             currencyId.OracleDbType = OracleDbType.Varchar2;

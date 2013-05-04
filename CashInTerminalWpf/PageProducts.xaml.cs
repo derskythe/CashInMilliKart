@@ -36,6 +36,8 @@ namespace CashInTerminalWpf
                 Log.Info(Title);
                 _FormMain = (MainWindow)Window.GetWindow(this);
 
+                LabelTestVersion.Visibility = App.TestVersion ? Visibility.Visible : Visibility.Collapsed;
+
                 _FormMain.ProductUpdate += FormMainOnProductUpdate;
 
                 if (_FormMain.Products == null || _FormMain.Products.Count == 0)
