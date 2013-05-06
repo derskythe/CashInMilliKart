@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Net.Mime;
 using System.Text;
 using System.Text.RegularExpressions;
-using CashInTerminal.Enums;
-using Containers.Enums;
+using Containers;
 using Db;
 using NLog;
 using Org.BouncyCastle.Crypto;
@@ -26,32 +25,63 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
-            float val = 124354.0f;
-            Console.WriteLine(val.ToString("0.00"));
-            var sample = new[] {"+994503312380", "0503312380"};
+            //float val = 124354.0f;
+            //Console.WriteLine(val.ToString("0.00"));
+            //var sample = new[] {"+994503312380", "0503312380"};
 
-            foreach (var s in sample)
-            {
-                var m = _Regex.Replace(s, _Pattern);
-                Console.WriteLine(m);
-            }
+            //foreach (var s in sample)
+            //{
+            //    var m = _Regex.Replace(s, _Pattern);
+            //    Console.WriteLine(m);
+            //}
 
-            var reg = new Regex("^[a-z0-9]+$", RegexOptions.IgnoreCase);
-            var m2 = reg.Match("SKIF1CH");
+            //var reg = new Regex("^[a-z0-9]+$", RegexOptions.IgnoreCase);
+            //var m2 = reg.Match("SKIF1CH");
 
-            if (m2.Success)
-            {
-                
-            }
-            
+            //if (m2.Success)
+            //{
 
-            Console.WriteLine(FirstUpper("HƏSƏNOVA ZüLFIYYƏ XUDU QIZI"));
-            //Console.WriteLine(MediaTypeNames.Application.ExecutablePath);
+            //}
+
+
+            //Console.WriteLine(FirstUpper("HƏSƏNOVA ZüLFIYYƏ XUDU QIZI"));
+            ////Console.WriteLine(MediaTypeNames.Application.ExecutablePath);
+
+
 
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 
-            OracleDb.Instance.GetBonusAmount("LS000293/13", 50, "AZN");
+            var list = new List<TerminalPaymentInfo>();
+            {
+                var info = new TerminalPaymentInfo();
+                info.TerminalId = 502;
+                info.TransactionId = "5021261049";
+                info.ProductId = 1;
+                info.Currency = "AZN";
+                info.CurrencyRate = 1;
+                info.Amount = 140;
+                info.OperationType = 11;
+                info.Values = new[] { "3801000DK04012", "AZE06698731" };
+                info.CreditNumber = "DK04012/12";
+                info.PaymentServiceId = 0;
+                info.Banknotes = new[] { 50, 50, 20, 20 };
+                info.TerminalDate = DateTime.Now;
+                info.SystemTime = DateTime.Now;
+
+                list.Add(info);
+            }
+
+
+            foreach (var request in list)
+            {
+                OracleDb.Instance.SavePayment(request);
+                string bills = String.Join(";", request.Banknotes);
+                OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
+                                                request.OperationType, request.TerminalDate, request.Currency);
+            }
+
+            //OracleDb.Instance.GetBonusAmount("LS000293/13", 50, "AZN");
 
             //var terminal = OracleDb.Instance.GetTerminal(3);
 
@@ -96,7 +126,7 @@ namespace TestConsole
             foreach (var field in type.GetFields())
             {
                 try
-                {                    
+                {
                     //str.Append(field.Name + "=" + field.GetRawConstantValue()).Append("\r\n");
                     Console.WriteLine(field.Name + "=" + field.GetRawConstantValue());
 
@@ -116,11 +146,11 @@ namespace TestConsole
                 }
                 catch
                 {
-                }                
+                }
             }
 
             Console.WriteLine(str.ToString());
-        }        
+        }
 
         public static string Sign(String terminalId, DateTime now, AsymmetricCipherKeyPair keys)
         {

@@ -133,9 +133,27 @@ namespace CashInTerminalWpf
                 Log.Info(String.Format("Selected: {0}", button.Name));
                 var tag = (PaymentService)button.Tag;
 
-                _FormMain.ClientInfo.PaymentOperationType = tag.AssemblyId == "PayPoint"
-                                                                ? PaymentOperationType.Komtek
-                                                                : PaymentOperationType.GoldenPay;
+                switch (tag.AssemblyId)
+                {
+                    case "PayPoint":
+                        _FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.Komtek;
+                        break;
+
+                    case "GoldenPay":
+                        _FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.GoldenPay;
+                        break;
+
+                    case "MoneyMovers":
+                        _FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.MoneyMovers;
+                        break;
+
+                    default:
+                        _FormMain.ClientInfo.PaymentOperationType = PaymentOperationType.Unknown;
+                        break;
+                }
+                //_FormMain.ClientInfo.PaymentOperationType = tag.AssemblyId == "PayPoint"
+                //                                                ? PaymentOperationType.Komtek
+                //                                                : PaymentOperationType.GoldenPay;
 
                 _FormMain.ClientInfo.PaymentService = tag;
                 _FormMain.OpenForm(FormEnum.PaymentServiceInputData);

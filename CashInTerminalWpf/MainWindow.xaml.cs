@@ -201,7 +201,7 @@ namespace CashInTerminalWpf
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
 
-        private const int CHECK_APPLICATION_UPDATE_TIMER = 10 * 1000;
+        private const int CHECK_APPLICATION_UPDATE_TIMER = 60 * 1000;
         private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Value in seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
@@ -256,6 +256,7 @@ namespace CashInTerminalWpf
 
         private void DoStartUp()
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
             _Init = true;
             // Init keys
             Log.Info("Init keys");
@@ -381,8 +382,8 @@ namespace CashInTerminalWpf
                 if (_CurrentForm != null)
                 {
                     if (_CurrentForm != FormEnum.MoneyInput &&
-                        _CurrentForm != FormEnum.TestMode && _CurrentForm != FormEnum.Encashment &&
-                        _CurrentForm != FormEnum.OutOfOrder && _CurrentForm != FormEnum.PaySuccess)
+                        _CurrentForm != FormEnum.TestMode && _CurrentForm != FormEnum.Encashment
+                        && _CurrentForm != FormEnum.PaySuccess)
                     {
                         UpdateCheckInfo info;
 
@@ -484,15 +485,41 @@ namespace CashInTerminalWpf
 
         private void TerminationThread()
         {
-            Thread.Sleep(5);
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+
+            Thread.Sleep(100);
             DoClose();
             Log.Debug("Thread.Sleep(150)");
             Thread.Sleep(150);
             Log.Debug("Application.Restart");
             //System.Windows.Forms.Application.Restart();
 
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown();
+            Thread.Sleep(2500);
+            try
+            {
+                System.Windows.Forms.Application.Restart();
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(ShutdownInvoke));
+        }
+
+        private void ShutdownInvoke()
+        {
+            try
+            {
+                if (Application.Current != null)
+                {
+                    Application.Current.Shutdown();
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         #endregion
@@ -704,7 +731,7 @@ namespace CashInTerminalWpf
                         _CurrentForm != FormEnum.Language)
                     {
                         _LastActivity = Utilities.GetLastInputTime();
-                        Log.Debug(_LastActivity);
+                        //Log.Debug(_LastActivity);
                         if (_LastActivity > MAX_INACTIVITY_PERIOD)
                         {
                             OpenForm(FormEnum.Products);
@@ -712,7 +739,7 @@ namespace CashInTerminalWpf
                     }
                     else
                     {
-                        Log.Debug(_LastActivity);
+                        //Log.Debug(_LastActivity);
                         _LastActivity = 0;
                     }
                 }
@@ -725,6 +752,8 @@ namespace CashInTerminalWpf
 
         private void CheckCurrencyTimer(object param)
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+
             if (_Running && _Init && _AuthTerminal)
             {
                 try
@@ -790,19 +819,19 @@ namespace CashInTerminalWpf
                             _Products.Add(item);
                         }
 
-                        // TODO: Удалить потом
-                        var virtualProduct = new Product
-                            {
-                                Assembly = "PageOtherPaymentsCategories.xaml",
-                                CheckType = (int)CheckTemplateTypes.OtherPayments,
-                                Id = 65535,
-                                NameAz = "Other payments",
-                                NameRu = "Other payments",
-                                NameEn = "Other payments",
-                                Name = "OtherPayments"
-                            };
+                        //// TODO: Удалить потом
+                        //var virtualProduct = new Product
+                        //    {
+                        //        Assembly = "PageOtherPaymentsCategories.xaml",
+                        //        CheckType = (int)CheckTemplateTypes.OtherPayments,
+                        //        Id = 65535,
+                        //        NameAz = "Other payments",
+                        //        NameRu = "Other payments",
+                        //        NameEn = "Other payments",
+                        //        Name = "OtherPayments"
+                        //    };
 
-                        _Products.Add(virtualProduct);
+                        //_Products.Add(virtualProduct);
                     }
                     ProductUpdate();
                 }
@@ -819,6 +848,8 @@ namespace CashInTerminalWpf
 
         private void CheckPaymentCategoriesTimer(object param)
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+
             if (_Running && _Init && _AuthTerminal)
             {
                 try
@@ -857,6 +888,8 @@ namespace CashInTerminalWpf
 
         private void CheckProductsTimer(object param)
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+
             if (_Running && _Init && _AuthTerminal)
             {
                 ForceCheckProducts();
@@ -869,6 +902,7 @@ namespace CashInTerminalWpf
 
         private void PingThread()
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
             while (_Running && _Init && _AuthTerminal)
             {
                 try
@@ -1293,6 +1327,8 @@ namespace CashInTerminalWpf
 
         private void DoEncashment()
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+
             try
             {
                 OpenForm(FormEnum.Encashment);
@@ -1350,6 +1386,7 @@ namespace CashInTerminalWpf
 
         private void SendPaymentThread()
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
             var listToDelete = new Queue<long>();
 
             try
@@ -1373,10 +1410,20 @@ namespace CashInTerminalWpf
                                 var values = _Db.GetPaymentValues(row.Id);
                                 var banknotes = _Db.GetPaymentBanknotes(row.Id);
 
+                                var dateTime = DateTime.Now;
+                                try
+                                {
+                                    dateTime = (DateTime)row.InsertDate;
+                                }
+                                catch (Exception exp)
+                                {
+                                    Log.ErrorException(exp.Message, exp);
+                                }
+
                                 var request = new TerminalPaymentInfo
                                     {
-                                        TerminalDate = row.InsertDate,
-                                        SystemTime = row.InsertDate,
+                                        TerminalDate = dateTime,
+                                        SystemTime = dateTime,
                                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                                         TransactionId = row.TransactionId,
                                         ProductId = (int)row.ProductId,
@@ -1384,7 +1431,7 @@ namespace CashInTerminalWpf
                                         CurrencyRate = (float)row.CurrencyRate,
                                         Amount = (int)row.Amount,
                                         CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
-                                        Sign = Utilities.Sign(Settings.Default.TerminalCode, row.InsertDate, _ServerPublicKey),
+                                        Sign = Utilities.Sign(Settings.Default.TerminalCode, dateTime, _ServerPublicKey),
                                         OperationType = Convert.ToInt32(row.OperationType),
                                         PaymentServiceId = Convert.ToInt32(row.IsServiceIdNull() ? 0 : row.ServiceId)
                                     };
@@ -1515,17 +1562,52 @@ namespace CashInTerminalWpf
 
         private void DoClose()
         {
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+
             _Running = false;
 
-            _CheckCurrencyTimer.Dispose();
-            _CheckProductsTimer.Dispose();
-            _CheckPaymentCategoriesTimer.Dispose();
-            _CheckInactivityTimer.Dispose();
-            _CheckApplicationUpdateTimer.Dispose();
-            _CheckCheckTemplateTimer.Dispose();
+            try
+            {
+                if (_CheckCurrencyTimer != null)
+                {
+                    _CheckCurrencyTimer.Dispose();
+                }
+                if (_CheckProductsTimer != null)
+                {
+                    _CheckProductsTimer.Dispose();
+                }
+                if (_CheckPaymentCategoriesTimer != null)
+                {
+                    _CheckPaymentCategoriesTimer.Dispose();
+                }
+                if (_CheckInactivityTimer != null)
+                {
+                    _CheckInactivityTimer.Dispose();
+                }
+                if (_CheckApplicationUpdateTimer != null)
+                {
+                    _CheckApplicationUpdateTimer.Dispose();
+                }
+                if (_CheckCheckTemplateTimer != null)
+                {
+                    _CheckCheckTemplateTimer.Dispose();
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
 
-            _CcnetDevice.Close();
-            _CcnetDevice.Dispose();
+
+            try
+            {
+                _CcnetDevice.Close();
+                _CcnetDevice.Dispose();
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
 
             try
             {
@@ -1538,7 +1620,7 @@ namespace CashInTerminalWpf
             }
             catch (Exception exp)
             {
-                Log.Error(exp.Message);
+                Log.ErrorException(exp.Message, exp);
             }
 
             Log.Debug("SendPaymentThread");
@@ -1555,7 +1637,7 @@ namespace CashInTerminalWpf
             }
             catch (Exception exp)
             {
-                Log.Error(exp.Message);
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -1564,6 +1646,6 @@ namespace CashInTerminalWpf
             DoClose();
         }
 
-        #endregion
+        #endregion        
     }
 }

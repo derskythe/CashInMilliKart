@@ -362,10 +362,10 @@ namespace CashInCore
                     throw new InvalidDataException("Invalid amount");
                 }
 
-                //OracleDb.Instance.SavePayment(request);
+                OracleDb.Instance.SavePayment(request);
                 string bills = String.Join(";", request.Banknotes);
-                //OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
-                //                                request.OperationType, request.TerminalDate, request.Currency);
+                OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
+                                                request.OperationType, request.TerminalDate, request.Currency);
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
