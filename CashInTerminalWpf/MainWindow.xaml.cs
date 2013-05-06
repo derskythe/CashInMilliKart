@@ -1413,7 +1413,7 @@ namespace CashInTerminalWpf
                                 var dateTime = DateTime.Now;
                                 try
                                 {
-                                    dateTime = (DateTime)row.InsertDate;
+                                    dateTime = DateTime.Parse(row.InsertDate as String);                                    
                                 }
                                 catch (Exception exp)
                                 {
@@ -1646,6 +1646,6 @@ namespace CashInTerminalWpf
             DoClose();
         }
 
-        #endregion        
+        #endregion
     }
 }
