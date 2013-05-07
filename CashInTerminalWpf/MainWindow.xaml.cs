@@ -421,11 +421,11 @@ namespace CashInTerminalWpf
                             Log.Info("A required update is available, which will be installed now");
                             UpdateApplication();
                         }
-                        else
+                        else 
                         {
                             Log.Info("An update is available");
                             UpdateApplication();
-                        }
+                        }                        
 
                         return;
                     }
@@ -447,11 +447,18 @@ namespace CashInTerminalWpf
         {
             try
             {
-                ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
-                updateCheck.Update();
-                Log.Info("The application has been upgraded, and will now restart.");
+                if (CanChangeViewOnCommand)
+                {
+                    ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
+                    updateCheck.Update();
+                    Log.Info("The application has been upgraded, and will now restart.");
 
-                RestartApplication();
+                    RestartApplication();
+                }
+                else
+                {
+                    Log.Info("CanChangeViewOnCommand return false! Can't reboot this time");
+                }
             }
             catch (DeploymentDownloadException exp)
             {
