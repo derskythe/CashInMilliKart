@@ -234,6 +234,16 @@ namespace CashInTerminalWpf
             }
 
             Thread.Sleep(1000);
+
+            try
+            {
+                _FormMain.CcnetDevice.Reset();
+            }
+            catch (Exception exp) 
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
             _FormMain.TerminalStatus = TerminalCodes.Ok;
             _FormMain.OpenForm(FormEnum.Products);
         }

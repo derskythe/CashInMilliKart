@@ -38,12 +38,12 @@ namespace CashInTerminalWpf
         private AsymmetricKeyParameter _ServerPublicKey;
         private CCNETDevice _CcnetDevice;
         private readonly PrinterStatus _PrinterStatus = new PrinterStatus();
-        private bool _Init;
-        private bool _AuthTerminal;
+        private volatile bool _Init;
+        private volatile bool _AuthTerminal;
         private TerminalCodes _TerminalStatus;
         private Terminal _TerminalInfo = new Terminal();
         private LocalDb _Db;
-        private bool _Running = true;
+        private volatile bool _Running = true;
         private CashIn.ClientInfo[] _Clients;
         private StandardResult _InfoResponse;
         private Dictionary<int, List<ds.TemplateFieldRow>> _CheckTemplates = new Dictionary<int, List<ds.TemplateFieldRow>>();
@@ -379,65 +379,62 @@ namespace CashInTerminalWpf
         {
             try
             {
-                if (_CurrentForm != null)
+                Log.Debug(_CurrentForm);
+                if (CanChangeViewOnCommand)
                 {
-                    if (_CurrentForm != FormEnum.MoneyInput &&
-                        _CurrentForm != FormEnum.TestMode && _CurrentForm != FormEnum.Encashment
-                        && _CurrentForm != FormEnum.PaySuccess)
+                    Log.Debug("Check update");
+                    UpdateCheckInfo info;
+
+                    // Check if the application was deployed via ClickOnce.
+                    if (!ApplicationDeployment.IsNetworkDeployed)
                     {
-                        UpdateCheckInfo info;
-
-                        // Check if the application was deployed via ClickOnce.
-                        if (!ApplicationDeployment.IsNetworkDeployed)
-                        {
-                            Log.Warn("Is this NOT deployed via ClickOnce");
-                            return;
-                        }
-
-                        ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
-
-                        try
-                        {
-                            info = updateCheck.CheckForDetailedUpdate();
-                        }
-                        catch (DeploymentDownloadException)
-                        {
-                            Log.Error("Couldn't retrieve info on this app");
-                            return;
-                        }
-                        catch (InvalidDeploymentException)
-                        {
-                            Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
-                            return;
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
-                            return;
-                        }
-
-                        if (info.UpdateAvailable)
-                        {
-                            if (info.IsUpdateRequired)
-                            {
-                                Log.Info("A required update is available, which will be installed now");
-                                UpdateApplication();
-                            }
-                            else
-                            {
-                                Log.Info("An update is available");
-                                UpdateApplication();
-                            }
-
-                            return;
-                        }
-
-                        Log.Info("There's no update");
+                        Log.Warn("Is this NOT deployed via ClickOnce");
+                        return;
                     }
-                    else
+
+                    ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
+
+                    try
                     {
-                        Log.Info("Can't check update this time");
+                        info = updateCheck.CheckForDetailedUpdate();
                     }
+                    catch (DeploymentDownloadException)
+                    {
+                        Log.Error("Couldn't retrieve info on this app");
+                        return;
+                    }
+                    catch (InvalidDeploymentException)
+                    {
+                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                        return;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                        return;
+                    }
+
+                    if (info.UpdateAvailable)
+                    {
+                        if (info.IsUpdateRequired)
+                        {
+                            Log.Info("A required update is available, which will be installed now");
+                            UpdateApplication();
+                        }
+                        else
+                        {
+                            Log.Info("An update is available");
+                            UpdateApplication();
+                        }
+
+                        return;
+                    }
+
+                    Log.Info("There's no update");
+                }
+                else
+                {
+                    Log.Info("Can't check update this time");
                 }
             }
             catch (Exception exp)
@@ -557,8 +554,11 @@ namespace CashInTerminalWpf
 
         public void OpenForm(String f)
         {
-            Log.Debug(String.Format("Current From: {0}, New form: {1}", _CurrentForm, f));
-            _CurrentForm = f;
+            lock (_CurrentForm)
+            {
+                Log.Debug(String.Format("Current From: {0}, New form: {1}", _CurrentForm, f));
+                _CurrentForm = f;
+            }
             Dispatcher.Invoke(DispatcherPriority.Normal,
                     new Action<string>(Navigate),
                     f);
@@ -723,25 +723,19 @@ namespace CashInTerminalWpf
         {
             try
             {
-                if (_CurrentForm != null)
+                if (CanChangeViewOnIdle)
                 {
-                    if (_CurrentForm != FormEnum.MoneyInput && _CurrentForm != FormEnum.Products &&
-                        _CurrentForm != FormEnum.TestMode && _CurrentForm != FormEnum.Encashment &&
-                        _CurrentForm != FormEnum.OutOfOrder && _CurrentForm != FormEnum.Activation &&
-                        _CurrentForm != FormEnum.Language)
+                    _LastActivity = Utilities.GetLastInputTime();
+                    //Log.Debug(_LastActivity);
+                    if (_LastActivity > MAX_INACTIVITY_PERIOD)
                     {
-                        _LastActivity = Utilities.GetLastInputTime();
-                        //Log.Debug(_LastActivity);
-                        if (_LastActivity > MAX_INACTIVITY_PERIOD)
-                        {
-                            OpenForm(FormEnum.Products);
-                        }
+                        OpenForm(FormEnum.Products);
                     }
-                    else
-                    {
-                        //Log.Debug(_LastActivity);
-                        _LastActivity = 0;
-                    }
+                }
+                else
+                {
+                    //Log.Debug(_LastActivity);
+                    _LastActivity = 0;
                 }
             }
             catch (Exception exp)
@@ -951,8 +945,7 @@ namespace CashInTerminalWpf
                             {
                                 Log.Warn(String.Format("Server return: {0}, {1}", result.ResultCodes, result.Description));
 
-                                if (_CurrentForm != FormEnum.MoneyInput && _CurrentForm != FormEnum.PaySuccess &&
-                                    _CurrentForm != FormEnum.Encashment)
+                                if (CanChangeViewOnCommand)
                                 {
                                     _TerminalStatus = TerminalCodes.NetworkError;
                                     Log.Warn("Out of order");
@@ -979,8 +972,7 @@ namespace CashInTerminalWpf
                                     case TerminalCommands.Restart:
                                         Log.Warn("Received command " +
                                                  TerminalCommands.Restart.ToString());
-                                        if (_CurrentForm != FormEnum.MoneyInput &&
-                                            _CurrentForm != FormEnum.PaySuccess)
+                                        if (CanChangeViewOnCommand)
                                         {
                                             CommandReceived();
                                             var stdRequest = new StandardRequest
@@ -1003,8 +995,7 @@ namespace CashInTerminalWpf
                                         Log.Warn("Received command " +
                                                  TerminalCommands.OutOfService.ToString());
                                         _TerminalStatus = TerminalCodes.OutOfOrder;
-                                        if (_CurrentForm != FormEnum.MoneyInput &&
-                                            _CurrentForm != FormEnum.PaySuccess)
+                                        if (CanChangeViewOnCommand)
                                         {
                                             OpenForm(FormEnum.OutOfOrder);
                                             CommandReceived();
@@ -1015,8 +1006,7 @@ namespace CashInTerminalWpf
                                         Log.Warn("Received command " +
                                                  TerminalCommands.TestMode.ToString());
                                         _TerminalStatus = TerminalCodes.TestMode;
-                                        if (_CurrentForm != FormEnum.MoneyInput &&
-                                            _CurrentForm != FormEnum.PaySuccess)
+                                        if (CanChangeViewOnCommand)
                                         {
                                             OpenForm(FormEnum.TestMode);
                                             CommandReceived();
@@ -1028,30 +1018,30 @@ namespace CashInTerminalWpf
                                                  TerminalCommands.Encash.ToString());
                                         _TerminalStatus = TerminalCodes.Encashment;
 
-                                        if (_CurrentForm != FormEnum.MoneyInput &&
-                                            _CurrentForm != FormEnum.PaySuccess)
+                                        if (CanChangeViewOnCommand)
                                         {
                                             DoEncashment();
                                         }
                                         break;
 
+                                    //case TerminalCommands.ResetCheckCounter:
+                                    //    Settings.Default.CheckCounter = 0;
+                                    //    if ((_CurrentForm == FormEnum.OutOfOrder ||
+                                    //         _CurrentForm == FormEnum.TestMode) && _TerminalStatus != TerminalCodes.SystemError)
+                                    //    {
+                                    //        _TerminalStatus = TerminalCodes.Ok;
+                                    //        Log.Warn("Received command " +
+                                    //                 ((TerminalCommands)result.Command).ToString());
+                                    //        GetPublicKey();
+                                    //        GetTerminalInfo();
+                                    //        //OpenForm(typeof(FormLanguage));
+                                    //        OpenForm(FormEnum.Products);
+                                    //    }
+
+                                    //    CommandReceived();
+                                    //    break;
+
                                     case TerminalCommands.ResetCheckCounter:
-                                        Settings.Default.CheckCounter = 0;
-                                        if ((_CurrentForm == FormEnum.OutOfOrder ||
-                                             _CurrentForm == FormEnum.TestMode) && _TerminalStatus != TerminalCodes.SystemError)
-                                        {
-                                            _TerminalStatus = TerminalCodes.Ok;
-                                            Log.Warn("Received command " +
-                                                     ((TerminalCommands)result.Command).ToString());
-                                            GetPublicKey();
-                                            GetTerminalInfo();
-                                            //OpenForm(typeof(FormLanguage));
-                                            OpenForm(FormEnum.Products);
-                                        }
-
-                                        CommandReceived();
-                                        break;
-
                                     case TerminalCommands.NormalMode:
                                     case TerminalCommands.Idle:
                                         /* if (_TerminalStatus == TerminalCodes.NetworkError)
@@ -1086,8 +1076,7 @@ namespace CashInTerminalWpf
                         {
                             Log.Error("Result is null");
 
-                            if (_CurrentForm != FormEnum.MoneyInput && _CurrentForm != FormEnum.PaySuccess &&
-                                _CurrentForm != FormEnum.Encashment)
+                            if (CanChangeViewOnCommand)
                             {
                                 _TerminalStatus = TerminalCodes.NetworkError;
                                 Log.Warn("Out of order");
@@ -1098,9 +1087,7 @@ namespace CashInTerminalWpf
                     catch (System.ServiceModel.EndpointNotFoundException exp)
                     {
                         // Out of order, if exception
-                        if (_CurrentForm != FormEnum.MoneyInput
-                            && _CurrentForm != FormEnum.PaySuccess
-                            && _CurrentForm != FormEnum.Encashment)
+                        if (CanChangeViewOnCommand)
                         {
                             _TerminalStatus = TerminalCodes.NetworkError;
                             Log.Warn("Network error. Out of order");
@@ -1115,7 +1102,7 @@ namespace CashInTerminalWpf
                     catch (Exception exp)
                     {
                         // Out of order, if exception
-                        if (_CurrentForm != FormEnum.MoneyInput && _CurrentForm != FormEnum.PaySuccess && _CurrentForm != FormEnum.Encashment)
+                        if (CanChangeViewOnCommand)
                         {
                             _TerminalStatus = TerminalCodes.OutOfOrder;
                             Log.Warn("Out of order");
@@ -1142,39 +1129,30 @@ namespace CashInTerminalWpf
 
         private void UpdateTerminalStatusByDevices()
         {
+            Log.Debug(_CcnetDevice.DeviceState);
             if (_CcnetDevice.DeviceState.FatalError)
             {
+                Log.Error(_CcnetDevice.DeviceState.DeviceStateDescription);
+
                 Log.Warn(_CcnetDevice.DeviceState);
                 _TerminalStatus = TerminalCodes.SystemError;
-                if (_CurrentForm != FormEnum.MoneyInput &&
-                _CurrentForm != FormEnum.PaySuccess &&
-                _CurrentForm != FormEnum.Encashment &&
-                _CurrentForm != FormEnum.Activation
-                )
+
+                if (CanChangeViewOnError)
                 {
-                    if (_CurrentForm != FormEnum.OutOfOrder)
-                    {
-                        _Init = false;
-                        OpenForm(FormEnum.OutOfOrder);
-                    }
+                    //_Init = false;
+                    OpenForm(FormEnum.OutOfOrder);
                 }
             }
 
             if (Settings.Default.CheckCounter >= TOTAL_CHECK_COUNT)
             {
                 _TerminalStatus = TerminalCodes.NoPaper;
+
                 Log.Error("No paper");
-                if (_CurrentForm != FormEnum.MoneyInput &&
-                _CurrentForm != FormEnum.PaySuccess &&
-                _CurrentForm != FormEnum.Encashment &&
-                _CurrentForm != FormEnum.Activation
-                )
+                if (CanChangeViewOnError)
                 {
-                    if (_CurrentForm != FormEnum.OutOfOrder)
-                    {
-                        _Init = false;
-                        OpenForm(FormEnum.OutOfOrder);
-                    }
+                    //_Init = false;
+                    OpenForm(FormEnum.OutOfOrder);
                 }
             }
             else if (Settings.Default.CheckCounter >= LOW_LEVEL_CHECK_COUNT)
@@ -1413,7 +1391,7 @@ namespace CashInTerminalWpf
                                 var dateTime = DateTime.Now;
                                 try
                                 {
-                                    dateTime = DateTime.Parse(row.InsertDate as String);                                    
+                                    dateTime = DateTime.Parse(row.InsertDate as String);
                                 }
                                 catch (Exception exp)
                                 {
@@ -1644,6 +1622,70 @@ namespace CashInTerminalWpf
         private void NavigationWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DoClose();
+        }
+
+        #endregion
+
+        #region Can do that
+
+        private bool CanChangeViewOnError
+        {
+            get
+            {
+                lock (_CurrentForm)
+                {
+                    if (_CurrentForm != FormEnum.MoneyInput &&
+                        _CurrentForm != FormEnum.PaySuccess &&
+                        _CurrentForm != FormEnum.Encashment &&
+                        _CurrentForm != FormEnum.Activation &&
+                        _CurrentForm != FormEnum.OutOfOrder
+                        )
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        private bool CanChangeViewOnCommand
+        {
+            get
+            {
+                lock (_CurrentForm)
+                {
+                    if (_CurrentForm != FormEnum.MoneyInput
+                        && _CurrentForm != FormEnum.PaySuccess
+                        && _CurrentForm != FormEnum.Encashment)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        private bool CanChangeViewOnIdle
+        {
+            get
+            {
+                lock (_CurrentForm)
+                {
+                    if (_CurrentForm != FormEnum.MoneyInput &&
+                        _CurrentForm != FormEnum.Products &&
+                        _CurrentForm != FormEnum.TestMode &&
+                        _CurrentForm != FormEnum.Encashment &&
+                        _CurrentForm != FormEnum.OutOfOrder &&
+                        _CurrentForm != FormEnum.Activation &&
+                        _CurrentForm != FormEnum.Language)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         }
 
         #endregion

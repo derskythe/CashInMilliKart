@@ -694,7 +694,8 @@ namespace CashInTerminalWpf
                     Log.Warn(CCNETResponseStatus.CassetteFull.ToString());
                     _DeviceState.StateCodeOut = CCNETResponseStatus.CassetteFull;
                     _DeviceState.FatalError = true;
-                    Reset();
+                    _DeviceState.ErrorCode = CCNETErrorCodes.InitialCassetteStatusFailure;
+                    //Reset();
                     break;
 
                 case CCNETResponseStatus.CassetteRemoved:

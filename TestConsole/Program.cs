@@ -26,7 +26,7 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
-            Console.WriteLine(DateTime.Parse("2013-05-06 19:54:30"));
+            //Console.WriteLine(DateTime.Parse("2013-05-06 19:54:30"));
             //float val = 124354.0f;
             //Console.WriteLine(val.ToString("0.00"));
             //var sample = new[] {"+994503312380", "0503312380"};
@@ -54,34 +54,34 @@ namespace TestConsole
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
 
-            //var list = new List<TerminalPaymentInfo>();
-            //{
-            //    var info = new TerminalPaymentInfo();
-            //    info.TerminalId = 502;
-            //    info.TransactionId = "5021261049";
-            //    info.ProductId = 1;
-            //    info.Currency = "AZN";
-            //    info.CurrencyRate = 1;
-            //    info.Amount = 140;
-            //    info.OperationType = 11;
-            //    info.Values = new[] { "3801000DK04012", "AZE06698731" };
-            //    info.CreditNumber = "DK04012/12";
-            //    info.PaymentServiceId = 0;
-            //    info.Banknotes = new[] { 50, 50, 20, 20 };
-            //    info.TerminalDate = DateTime.Now;
-            //    info.SystemTime = DateTime.Now;
+            var list = new List<TerminalPaymentInfo>();
+            {
+                var info = new TerminalPaymentInfo();
+                info.TerminalId = 502;
+                info.TransactionId = "5021261038";
+                info.ProductId = 1;
+                info.Currency = "AZN";
+                info.CurrencyRate = 1;
+                info.Amount = 10;
+                info.OperationType = 11;
+                info.Values = new[] { "3801000DZ00012Q", "AZE08522745" };
+                info.CreditNumber = "DZ00012Q/12";
+                info.PaymentServiceId = 153;
+                info.Banknotes = new[] { 10 };
+                info.TerminalDate = DateTime.Now;
+                info.SystemTime = DateTime.Now;
 
-            //    list.Add(info);
-            //}
+                list.Add(info);
+            }
 
 
-            //foreach (var request in list)
-            //{
-            //    OracleDb.Instance.SavePayment(request);
-            //    string bills = String.Join(";", request.Banknotes);
-            //    OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
-            //                                    request.OperationType, request.TerminalDate, request.Currency);
-            //}
+            foreach (var request in list)
+            {
+                OracleDb.Instance.SavePayment(request);
+                string bills = String.Join(";", request.Banknotes);
+                OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
+                                                request.OperationType, request.TerminalDate, request.Currency);
+            }
 
             //OracleDb.Instance.GetBonusAmount("LS000293/13", 50, "AZN");
 
