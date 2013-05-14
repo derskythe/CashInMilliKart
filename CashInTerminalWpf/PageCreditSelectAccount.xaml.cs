@@ -110,7 +110,7 @@ namespace CashInTerminalWpf
                         var button = new Button
                         {
                             Style = FindResource("SmallMenuButtonStyle") as Style,
-                            Name = "Button" + tag.ClientAccount + tag.CreditAmount,
+                            Name = "Button" + "_" + tag.ClientAccount + "_" + tag.CreditAmount,
                             Tag = tag,
                             Content = text
                         };

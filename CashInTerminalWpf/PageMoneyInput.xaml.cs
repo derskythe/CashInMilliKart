@@ -249,11 +249,11 @@ namespace CashInTerminalWpf
         }
 
         private void StartCashcode()
-        {
-            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), false);
-
+        {           
             try
             {
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(SetNextButton), false);
+
                 Dispatcher.Invoke(
                     DispatcherPriority.Normal,
                     new Action<String>(SetStackedAmount),
@@ -288,14 +288,7 @@ namespace CashInTerminalWpf
                 }
 
                 Log.Info("Starting transId: {0}, PaymentId: {1}", _FormMain.ClientInfo.TransactionId, _FormMain.ClientInfo.PaymentId);
-            }
-            catch (Exception exp)
-            {
-                Log.ErrorException(exp.Message, exp);
-            }
 
-            try
-            {
                 _FormMain.CcnetDevice.Poll();
                 _FormMain.CcnetDevice.Enable(_FormMain.ClientInfo.CurrentCurrency.ToLower());
                 _FormMain.CcnetDevice.StartPool = true;
@@ -303,7 +296,7 @@ namespace CashInTerminalWpf
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);
-            }
+            }            
         }
 
         private void StopCashcode()

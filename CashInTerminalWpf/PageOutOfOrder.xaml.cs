@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CashInTerminalWpf.Properties;
 using NLog;
 
 namespace CashInTerminalWpf
@@ -25,6 +26,7 @@ namespace CashInTerminalWpf
         {
             Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
+            LabelTerminal.Content = Settings.Default.TerminalCode;
         }
     }
 }

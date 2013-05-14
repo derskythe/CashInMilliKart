@@ -1229,11 +1229,11 @@ namespace CashInCore
                     throw new Exception("Invalid session");
                 }
 
-                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewCurrency))
-                {
-                    result.Code = ResultCodes.NoPriv;
-                    throw new Exception("No priv");
-                }
+                //if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewCurrency))
+                //{
+                //    result.Code = ResultCodes.NoPriv;
+                //    throw new Exception("No priv");
+                //}
 
                 result.Currencies = OracleDb.Instance.ListCurrencies(sortColumn, sortType);
                 result.Code = ResultCodes.Ok;
@@ -1451,7 +1451,7 @@ namespace CashInCore
                     throw new Exception("Invalid session");
                 }
 
-                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor) && !HasPriv(session.Session.User.RoleFields, RoleSections.ViewEncashment))
                 {
                     result.Code = ResultCodes.NoPriv;
                     throw new Exception("No priv");
@@ -1482,10 +1482,10 @@ namespace CashInCore
                     throw new Exception("Invalid session");
                 }
 
-                if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
-                {
-                    throw new Exception("No priv");
-                }
+                //if (!HasPriv(session.Session.User.RoleFields, RoleSections.EditCheckConstructor))
+                //{
+                //    throw new Exception("No priv");
+                //}
 
                 result = OracleDb.Instance.GetCheckField(id);
             }

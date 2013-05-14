@@ -447,8 +447,9 @@ namespace CashInTerminalWpf
         {
             try
             {
-                if (CanChangeViewOnCommand)
+                if (CanChangeViewOnCommand && !_CcnetDevice.DeviceState.BillEnable)
                 {
+                    OpenForm(FormEnum.OutOfOrder);
                     ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
                     updateCheck.Update();
                     Log.Info("The application has been upgraded, and will now restart.");
@@ -697,18 +698,27 @@ namespace CashInTerminalWpf
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.En);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.Ru);
             }
+
+            Log.Info("Finish update CheckTemplates");
         }
 
         private void UpdateCheckTemplateKey(int productId, String language)
         {
-            var templateList = _Db.GetCheckTemplateByType(productId, language);
-
-            foreach (var row in templateList)
+            try
             {
-                var key = GetCheckTemplateHashCode((int)row.Type, row.Language);
-                var fields = _Db.ListTemplateFields(row.Id);
+                var templateList = _Db.GetCheckTemplateByType(productId, language);
 
-                _CheckTemplates.Add(key, fields);
+                foreach (var row in templateList)
+                {
+                    var key = GetCheckTemplateHashCode((int) row.Type, row.Language);
+                    var fields = _Db.ListTemplateFields(row.Id);
+
+                    _CheckTemplates.Add(key, fields);
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
 

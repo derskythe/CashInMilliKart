@@ -257,6 +257,76 @@ namespace Db
             cmd.ExecuteNonQuery();
         }
 
+        public void SavePaymentWithBackend(TerminalPaymentInfo info)
+        {
+            CheckConnection();
+
+            var cmd = _OraCon.CreateCommand();
+            cmd.CommandText = "main.save_payment_with_backend";
+            cmd.CommandType = CommandType.StoredProcedure;
+            string bills = String.Join(";", info.Banknotes);
+
+            var transId = new OracleParameter();
+            var terminalId = new OracleParameter();
+            var productId = new OracleParameter();
+            var currencyId = new OracleParameter();
+            var currencyRateId = new OracleParameter();
+            var amount = new OracleParameter();
+            var terminalDate = new OracleParameter();
+            var creditNumber = new OracleParameter();
+            var type = new OracleParameter();
+            var banknotes = new OracleParameter();
+            var paramBills = new OracleParameter();
+            var values = new OracleParameter();
+
+            transId.OracleDbType = OracleDbType.Varchar2;
+            terminalId.OracleDbType = OracleDbType.Int32;
+            productId.OracleDbType = OracleDbType.Int32;
+            currencyId.OracleDbType = OracleDbType.Varchar2;
+            currencyRateId.OracleDbType = OracleDbType.Decimal;
+            amount.OracleDbType = OracleDbType.Int32;
+            creditNumber.OracleDbType = OracleDbType.Varchar2;
+            type.OracleDbType = OracleDbType.Int32;
+            terminalDate.OracleDbType = OracleDbType.TimeStamp;
+            paramBills.OracleDbType = OracleDbType.Varchar2;
+            banknotes.OracleDbType = OracleDbType.Int32;
+            values.OracleDbType = OracleDbType.Varchar2;
+
+            banknotes.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+            values.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+
+            transId.Value = info.TransactionId;
+            terminalId.Value = info.TerminalId;
+            productId.Value = info.ProductId;
+            currencyId.Value = info.Currency;
+            currencyRateId.Value = info.CurrencyRate;
+            amount.Value = info.Amount;
+            terminalDate.Value = info.TerminalDate;
+            banknotes.Value = info.Banknotes;
+            values.Value = info.Values;
+            creditNumber.Value = info.CreditNumber;
+            type.Value = info.OperationType;
+            paramBills.Value = bills;
+
+            banknotes.Size = info.Banknotes.Length;
+            values.Size = info.Values.Length;
+
+            cmd.Parameters.Add(transId);
+            cmd.Parameters.Add(terminalId);
+            cmd.Parameters.Add(productId);
+            cmd.Parameters.Add(currencyId);
+            cmd.Parameters.Add(currencyRateId);
+            cmd.Parameters.Add(amount);
+            cmd.Parameters.Add(terminalDate);
+            cmd.Parameters.Add(creditNumber);
+            cmd.Parameters.Add(type);
+            cmd.Parameters.Add(paramBills);
+            cmd.Parameters.Add(banknotes);
+            cmd.Parameters.Add(values);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public int GetLastTerminalCommandUserId(int terminalId, int statusCode)
         {
             CheckConnection();
@@ -553,6 +623,25 @@ namespace Db
             cmd.Parameters.Add("v_operation_type", OracleDbType.Int32, ParameterDirection.Input).Value = operationType;
             cmd.Parameters.Add("v_client_timestamp", OracleDbType.TimeStamp, ParameterDirection.Input).Value = timeStamp;
             cmd.Parameters.Add("v_currency", OracleDbType.Varchar2, ParameterDirection.Input).Value = currency;
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void CommitPaymentManual(string cardNumber, float amount, string billSet, int terminalId, int operationType, DateTime timeStamp, String currency, int billGroup)
+        {
+            CheckConnection();
+
+            const string cmdText = "begin new_credit_payment_manual(v_crd_number => :v_crd_number, v_total_amount => :v_total_amount, v_bill_set => :v_bill_set, v_terminal_id => :v_terminal_id, v_operation_type => :v_operation_type, v_client_timestamp => :v_client_timestamp, v_currency => :v_currency, v_billgrp_id => :v_billgrp_id); end;";
+
+            var cmd = new OracleCommand(cmdText, _OraCon);
+            cmd.Parameters.Add("v_crd_number", OracleDbType.Varchar2, ParameterDirection.Input).Value = cardNumber;
+            cmd.Parameters.Add("v_total_amount", OracleDbType.Double, ParameterDirection.Input).Value = amount;
+            cmd.Parameters.Add("v_bill_set", OracleDbType.Varchar2, ParameterDirection.Input).Value = billSet;
+            cmd.Parameters.Add("v_terminal_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+            cmd.Parameters.Add("v_operation_type", OracleDbType.Int32, ParameterDirection.Input).Value = operationType;
+            cmd.Parameters.Add("v_client_timestamp", OracleDbType.TimeStamp, ParameterDirection.Input).Value = timeStamp;
+            cmd.Parameters.Add("v_currency", OracleDbType.Varchar2, ParameterDirection.Input).Value = currency;
+            cmd.Parameters.Add("v_billgrp_id", OracleDbType.Int32, ParameterDirection.Input).Value = billGroup;
 
             cmd.ExecuteNonQuery();
         }

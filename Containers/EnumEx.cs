@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
+using NLog;
 
 namespace Containers
 {
     public class EnumEx
     {
+        // ReSharper disable FieldCanBeMadeReadOnly.Local
+        // ReSharper disable InconsistentNaming
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        // ReSharper restore InconsistentNaming
+        // ReSharper restore FieldCanBeMadeReadOnly.Local
+
         public static string GetStringFromArray(IEnumerable<Object> list)
         {
             var fields = new StringBuilder();
@@ -41,12 +48,21 @@ namespace Containers
 
         public static string GetDescription(Enum value)
         {
-            FieldInfo field = value.GetType().GetField(value.ToString());
+            try
+            {
+                FieldInfo field = value.GetType().GetField(value.ToString());
 
-            var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute))
-                        as DescriptionAttribute;
+                var attribute = Attribute.GetCustomAttribute(field, typeof (DescriptionAttribute))
+                                as DescriptionAttribute;
 
-            return attribute == null ? value.ToString() : attribute.Description;
+                return attribute == null ? value.ToString() : attribute.Description;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return String.Empty;
         }
 
         public static T GetValueFromDescription<T>(string description)

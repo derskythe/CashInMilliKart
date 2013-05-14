@@ -78,6 +78,7 @@ namespace CashInTerminalWpf
                                             height = e.PageBounds.Height;
                                         }
 
+                                        Log.Debug(String.Format("Old width: {0}, old height: {1}", width, height));
                                         var convertedImage = Utilities.ScaleImage(img, width, height);
 
                                         var sz = new SizeF(100 * convertedImage.Width / convertedImage.HorizontalResolution,

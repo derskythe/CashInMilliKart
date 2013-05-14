@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Threading;
 using CashInTerminalWpf.CashIn;
 using CashInTerminalWpf.Enums;
+using CashInTerminalWpf.Properties;
 using NLog;
 using Button = System.Windows.Controls.Button;
 using Timer = System.Threading.Timer;
@@ -37,6 +38,7 @@ namespace CashInTerminalWpf
                 _FormMain = (MainWindow)Window.GetWindow(this);
 
                 LabelTestVersion.Visibility = App.TestVersion ? Visibility.Visible : Visibility.Collapsed;
+                LabelTerminal.Content = Settings.Default.TerminalCode;
 
                 _FormMain.ProductUpdate += FormMainOnProductUpdate;
 

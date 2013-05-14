@@ -81,6 +81,13 @@
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         </Style>
 
+        <Style x:Key="SmallLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
         <Style x:Key="BigLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="50" />

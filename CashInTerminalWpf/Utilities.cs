@@ -46,6 +46,7 @@ namespace CashInTerminalWpf
             newWidth -= percent;
             var newHeight = (int)(image.Height * ratio);
 
+            Log.Debug(String.Format("NewWidth: {0}, NewHeight: {1}", newWidth, newHeight));
             var newImage = new Bitmap(newWidth, newHeight);
             Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
 

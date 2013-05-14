@@ -736,7 +736,7 @@ namespace CashInTerminalWpf
                 case CCNETResponseStatus.Cheated:
                     Log.Warn(CCNETResponseStatus.Cheated.ToString());
                     _DeviceState.StateCodeOut = CCNETResponseStatus.Cheated;
-                    _DeviceState.FatalError = true;
+                    //_DeviceState.FatalError = true;
                     break;
 
                 case CCNETResponseStatus.JamInStacker:
@@ -749,7 +749,7 @@ namespace CashInTerminalWpf
                     Log.Warn(CCNETResponseStatus.Error.ToString());
                     _DeviceState.StateCodeOut = CCNETResponseStatus.Error;
                     _DeviceState.ErrorCode = (CCNETErrorCodes)_DeviceState.SubStateCode;
-                    _DeviceState.FatalError = true;
+                    //_DeviceState.FatalError = true;
                     break;
 
                 case CCNETResponseStatus.Stacking:
@@ -907,6 +907,7 @@ namespace CashInTerminalWpf
             //        break;
 
             //}
+
 
             _DeviceState.DeviceStateDescription = EnumEx.GetDescription(_DeviceState.StateCode);
         }
