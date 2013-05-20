@@ -33,7 +33,7 @@
     <ProductName>CashIn Terminal WPF</ProductName>
     <PublisherName>Bank Of Baku</PublisherName>
     <SuiteName>CashIn</SuiteName>
-    <ApplicationRevision>123</ApplicationRevision>
+    <ApplicationRevision>124</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -117,6 +117,7 @@
     <Compile Include="CustomControls\AlphabetControl.xaml.cs">
       <DependentUpon>AlphabetControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enums\CCNETCommandType.cs" />
     <Compile Include="Enums\Currencies.cs" />
     <Compile Include="Enums\CCNETPortSpeed.cs" />
     <Compile Include="Enums\CheckTemplateTypes.cs" />

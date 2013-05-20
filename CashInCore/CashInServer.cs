@@ -135,13 +135,13 @@ namespace CashInCore
         [OperationBehavior(AutoDisposeParameters = true)]
         public PingResult Ping(PingRequest request)
         {
-            Log.Debug("Ping");
+            //Log.Debug("Ping");
             var result = new PingResult();
 
             try
             {
                 Terminal terminalInfo;
-                Log.Debug(request);
+                //Log.Debug(request);
                 result = (PingResult)AuthTerminal(result, request, out terminalInfo);
 
                 OracleDb.Instance.SaveTerminalStatus(
@@ -439,6 +439,28 @@ namespace CashInCore
         public StandardResult UpdateTerminalVersion(TerminalVersionRequest request)
         {
             Log.Info("UpdateTerminalVersion. " + request);
+            var result = new StandardResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = AuthTerminal(result, request, out terminalInfo);
+
+                OracleDb.Instance.SaveTerminalVersion(request.TerminalId, request.Version);
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult UpdateTerminalVersionExt(TerminalVersionExtRequest request)
+        {
+            Log.Info("UpdateTerminalVersionExt. " + request);
             var result = new StandardResult();
 
             try

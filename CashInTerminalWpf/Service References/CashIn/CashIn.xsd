@@ -102,8 +102,12 @@
       <xs:element minOccurs="1" maxOccurs="1" name="CashcodeStatusType" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="PrinterStatusType" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CashCodeVersion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BillTable" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="BranchId" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="BranchName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TerminalTypeDesc" type="tns:MultiLanguageString" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MultiLanguageString">
@@ -779,6 +783,31 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="1" name="PayResult" type="tns:StandardResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTerminalVersionExt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:TerminalVersionExtRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TerminalVersionExtRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AvailableCurrencies" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CashcodeVersion" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateTerminalVersionExtResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="UpdateTerminalVersionExtResult" type="tns:StandardResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

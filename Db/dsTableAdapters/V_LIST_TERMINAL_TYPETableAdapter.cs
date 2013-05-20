@@ -2,7 +2,7 @@
 
 namespace Db.dsTableAdapters
 {
-    public partial class V_BANKNOTES_SUMMARY_ENCASHMENTTableAdapter
+    public partial class V_LIST_TERMINAL_TYPETableAdapter
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Browsable(true)]

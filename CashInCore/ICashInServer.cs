@@ -62,5 +62,8 @@ namespace CashInCore
 
         [OperationContract]
         StandardResult Pay(TerminalPaymentInfo request);
+
+        [OperationContract]
+        StandardResult UpdateTerminalVersionExt(TerminalVersionExtRequest request);
     }
 }

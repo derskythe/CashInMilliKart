@@ -103,9 +103,15 @@ namespace CashInTerminalWpf.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminalWpf.CashIn.StandardResult Pay(CashInTerminalWpf.CashIn.TerminalPaymentInfo request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionExt", ReplyAction="http://cashin/CashInService/CashInServer/UpdateTerminalVersionExtResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.StandardResult UpdateTerminalVersionExt(CashInTerminalWpf.CashIn.TerminalVersionExtRequest request);
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionExtRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalPaymentInfo))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentServiceInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusRequest))]
@@ -163,6 +169,7 @@ namespace CashInTerminalWpf.CashIn {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionExtRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalPaymentInfo))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentServiceInfoRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BonusRequest))]
@@ -1832,9 +1839,17 @@ namespace CashInTerminalWpf.CashIn {
         
         private string versionField;
         
+        private string cashCodeVersionField;
+        
+        private string billTableField;
+        
         private int branchIdField;
         
         private string branchNameField;
+        
+        private int typeField;
+        
+        private MultiLanguageString terminalTypeDescField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -2222,6 +2237,30 @@ namespace CashInTerminalWpf.CashIn {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        public string CashCodeVersion {
+            get {
+                return this.cashCodeVersionField;
+            }
+            set {
+                this.cashCodeVersionField = value;
+                this.RaisePropertyChanged("CashCodeVersion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        public string BillTable {
+            get {
+                return this.billTableField;
+            }
+            set {
+                this.billTableField = value;
+                this.RaisePropertyChanged("BillTable");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
         public int BranchId {
             get {
                 return this.branchIdField;
@@ -2233,7 +2272,7 @@ namespace CashInTerminalWpf.CashIn {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
         public string BranchName {
             get {
                 return this.branchNameField;
@@ -2241,6 +2280,30 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.branchNameField = value;
                 this.RaisePropertyChanged("BranchName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
+        public int Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+                this.RaisePropertyChanged("Type");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
+        public MultiLanguageString TerminalTypeDesc {
+            get {
+                return this.terminalTypeDescField;
+            }
+            set {
+                this.terminalTypeDescField = value;
+                this.RaisePropertyChanged("TerminalTypeDesc");
             }
         }
         
@@ -2859,6 +2922,57 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.terminalField = value;
                 this.RaisePropertyChanged("Terminal");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class TerminalVersionExtRequest : StandardRequest {
+        
+        private string versionField;
+        
+        private string[] availableCurrenciesField;
+        
+        private string cashcodeVersionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Version {
+            get {
+                return this.versionField;
+            }
+            set {
+                this.versionField = value;
+                this.RaisePropertyChanged("Version");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AvailableCurrencies", Order=1)]
+        public string[] AvailableCurrencies {
+            get {
+                return this.availableCurrenciesField;
+            }
+            set {
+                this.availableCurrenciesField = value;
+                this.RaisePropertyChanged("AvailableCurrencies");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string CashcodeVersion {
+            get {
+                return this.cashcodeVersionField;
+            }
+            set {
+                this.cashcodeVersionField = value;
+                this.RaisePropertyChanged("CashcodeVersion");
             }
         }
     }
@@ -3648,6 +3762,10 @@ namespace CashInTerminalWpf.CashIn {
         
         public CashInTerminalWpf.CashIn.StandardResult Pay(CashInTerminalWpf.CashIn.TerminalPaymentInfo request) {
             return base.Channel.Pay(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.StandardResult UpdateTerminalVersionExt(CashInTerminalWpf.CashIn.TerminalVersionExtRequest request) {
+            return base.Channel.UpdateTerminalVersionExt(request);
         }
     }
 }

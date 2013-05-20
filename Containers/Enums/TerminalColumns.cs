@@ -40,6 +40,8 @@ namespace Containers.Enums
         [EnumMember]
         PrinterExtErrorState = 15,
         [EnumMember]
-        Branch = 16
+        Branch = 16,
+        [EnumMember]
+        TerminalType = 17
     }
 }

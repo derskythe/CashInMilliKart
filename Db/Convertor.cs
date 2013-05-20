@@ -7,6 +7,24 @@ namespace Db
 {
     class Convertor
     {
+        public static TerminalType ToTerminalType(ds.V_LIST_TERMINAL_TYPERow row)
+        {
+            var terminalTypeDesc = new MultiLanguageString(
+               row.IsNAME_ENNull() ? String.Empty : row.NAME_EN,
+               row.IsNAME_RUNull() ? String.Empty : row.NAME_RU,
+               row.IsNAME_AZNull() ? String.Empty : row.NAME_AZ
+               );
+            terminalTypeDesc.ReInit();
+
+            var result = new TerminalType
+                {
+                    Id = Convert.ToInt32(row.ID),
+                    Name = terminalTypeDesc
+                };
+
+            return result;
+        }
+
         public static Branch ToBranch(ds.V_BRANCHESRow row)
         {
             var result = new Branch
@@ -23,7 +41,7 @@ namespace Db
         }
 
         public static Branch ToBranch(ds.V_BRANCHES_TO_USERSRow row)
-        {            
+        {
             var result = new Branch
             {
                 Id = row.ID,
@@ -105,6 +123,13 @@ namespace Db
                 );
             printerExtErrorStatusDesc.ReInit();
 
+            var terminalTypeDesc = new MultiLanguageString(
+                row.IsTERMINAL_TYPE_ENNull() ? String.Empty : row.TERMINAL_TYPE_EN,
+                row.IsTERMINAL_TYPE_RUNull() ? String.Empty : row.TERMINAL_TYPE_RU,
+                row.IsTERMINAL_TYPE_AZNull() ? String.Empty : row.TERMINAL_TYPE_AZ
+                );
+            terminalTypeDesc.ReInit();
+
             var result = new Terminal
                 {
                     Id = Convert.ToInt32(row.ID),
@@ -140,7 +165,9 @@ namespace Db
                     Version = row.IsTERMINAL_VERSIONNull() ? String.Empty : row.TERMINAL_VERSION,
                     BranchId = row.IsBRANCH_IDNull() ? 0 : row.BRANCH_ID,
                     BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME,
-                    LastEncashment = row.IsLAST_ENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.LAST_ENCASHMENT_ID)
+                    LastEncashment = row.IsLAST_ENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.LAST_ENCASHMENT_ID),
+                    TerminalTypeDesc = terminalTypeDesc,
+                    Type = (int)row.TYPE
                 };
 
             return result;
@@ -410,7 +437,7 @@ namespace Db
                 row.IsPAYMENT_TYPE_RUNull() ? String.Empty : row.PAYMENT_TYPE_RU,
                 row.IsPAYMENT_TYPE_AZNull() ? String.Empty : row.PAYMENT_TYPE_AZ
                 );
-            desc.ReInit();            
+            desc.ReInit();
 
             var result = new ProductHistory
                 {
@@ -504,6 +531,20 @@ namespace Db
             return result;
         }
 
+        public static CheckField ToCheckFieldDigest(ds.V_CHECK_FIELDSRow row)
+        {
+            var result = new CheckField(
+                row.ID,
+                row.CHECK_ID,
+                null,
+                String.Empty,
+                row.FIELD_TYPE,
+                row.ORDER_NUMBER
+                );
+
+            return result;
+        }
+
         public static CheckTemplate ToCheckTemplate(ds.V_CHECKSRow row, CheckType type, List<CheckField> fields)
         {
             var result = new CheckTemplate(
@@ -564,7 +605,7 @@ namespace Db
                 row.LANGUAGE,
                 row.ACTIVE > 0,
                 row.IsINSERT_DATENull() ? DateTime.MinValue : row.INSERT_DATE,
-                row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE                
+                row.IsUPDATE_DATENull() ? DateTime.MinValue : row.UPDATE_DATE
             );
 
             return result;

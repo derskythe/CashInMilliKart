@@ -1,6 +1,8 @@
-using System;
+ï»¿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using CashInTerminalWpf.Enums;
 using Containers;
@@ -46,17 +48,27 @@ namespace CashInTerminalWpf
         private readonly Timer _BackgroundPingTimer;
         private bool _TimedOut;
         private bool _Disposing;
+        private CCNETControllerCommand _CurrentCommand;
+        private readonly Dictionary<int, KeyValuePair<int, String>> _BillTable = new Dictionary<int, KeyValuePair<int, String>>(10);
         /*
                 private bool _StartSend;
         */
 
         public delegate void ReadCommandHandler(CCNETDeviceState e);
+
         public delegate void BillStackedHandler(CCNETDeviceState e);
 
         public delegate void BillRejectHandler(CCNETDeviceState e);
+
+        public delegate void StartCompletedHandler(CCNETDeviceState e);
+
+        public delegate void GetBillsHandler(CCNETDeviceState e);
+
         public event ReadCommandHandler ReadCommand = delegate { };
         public event BillStackedHandler BillStacked = delegate { };
         public event BillRejectHandler BillRejected = delegate { };
+        public event StartCompletedHandler StartCompleted = delegate { };
+        public event GetBillsHandler GetBills = delegate { };
 
         #endregion
 
@@ -281,12 +293,22 @@ namespace CashInTerminalWpf
                     _DeviceState.StateCode = CCNETResponseStatus.Error;
                     ProccessStateCode();
                 }
+                else
+                {
+                    Send(CCNETControllerCommand.GetBillTable, null);
+                    Thread.Sleep(POLLING_INTERVAL);
+                    Send(CCNETControllerCommand.Poll, null);
+                    Thread.Sleep(POLLING_INTERVAL);
+                    Thread.Sleep(POLLING_INTERVAL);
+                }
             }
             catch (ThreadAbortException exp)
             {
                 Log.Error(exp.Message);
                 //Thread.CurrentThread.Abort();
             }
+
+            StartCompleted(_DeviceState);
         }
 
         private void ReadResponseThread()
@@ -380,9 +402,35 @@ namespace CashInTerminalWpf
         private CCNETPacket CreatePacket(byte[] buffer, int startIndex)
         {
             //byte sync = buffer[startIndex];
+            if (buffer == null)
+            {
+                return null;
+                //Log.Debug(Encoding.ASCII.GetString(buffer));
+            }
             byte addr = buffer[(startIndex + 1) % buffer.Length];
             byte dataLength = buffer[(startIndex + 2) % buffer.Length];
-            byte cmd = buffer[(startIndex + 3) % buffer.Length];
+
+            byte cmd;
+            int offset;
+
+            switch (_CurrentCommand)
+            {
+                case CCNETControllerCommand.Identification:
+                    cmd = (byte)CCNETResponseStatus.Identification;
+                    offset = 3;
+                    break;
+
+                case CCNETControllerCommand.GetBillTable:
+                    cmd = (byte)CCNETResponseStatus.BillTable;
+                    offset = 3;
+                    break;
+
+                default:
+                    cmd = buffer[(startIndex + 3) % buffer.Length];
+                    offset = 4;
+                    break;
+
+            }
 
             ushort crc = 0;
             byte[] data = null;
@@ -393,13 +441,14 @@ namespace CashInTerminalWpf
                 data = new byte[dataLength - 6];
                 for (int i = 0; i < (dataLength - 6); i++)
                 {
-                    data[i] = buffer[(startIndex + 4 + i) % buffer.Length];
+                    data[i] = buffer[(startIndex + offset + i) % buffer.Length];
                 }
                 dataSection = data.Length;
             }
 
-            crc |= buffer[(startIndex + 4 + dataSection) % buffer.Length];
-            crc |= (ushort)(buffer[(startIndex + 4 + dataSection + 1) % buffer.Length] << 8);
+            crc |= buffer[(startIndex + offset + dataSection) % buffer.Length];
+            crc |= (ushort)(buffer[(startIndex + offset + dataSection + 1) % buffer.Length] << 8);
+
             return new CCNETPacket(addr, cmd, data, crc);
         }
 
@@ -469,6 +518,8 @@ namespace CashInTerminalWpf
 
             //lock (_ResponseSignal)
             //{
+
+            _CurrentCommand = cmd;
             _ResponseSignal.Enqueue(packetXMitBuffer);
             //_ResponsePacket = null;
             // comPort
@@ -516,42 +567,56 @@ namespace CashInTerminalWpf
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
 
-            //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
-            var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-
-            //if (_CurrentCurrency != null)
-            //{
-            //    foreach (var item in _CurrentCurrency)
-            //    {
-            switch (_CurrentCurrency)
+            var billmask = new BitArray(48);
+            
+            if (_BillTable.Count > 0)
             {
-                case Currencies.Azn:
-                    billmask[0] = 0x7D;
-                    break;
-
-                case Currencies.Eur:
-                    billmask[1] = 0x7F;
-                    break;
-
-                case Currencies.Usd:
-                    billmask[2] = 0x7F;
-                    break;
+                for (int i = 0; i < _BillTable.Count; i++)
+                {
+                    if (_BillTable[i].Key > 0 && _CurrentCurrency == _BillTable[i].Value)
+                    {
+                        billmask[(23 - i)] = true;
+                    }
+                }
             }
-            //    }
-            //}
-            //for( int i = 0; i <= 2; i++ )
-            //{
-            //    billmask[i] = 0xff;
-            //}
+            else
+            {
+                Log.Warn("Bill table is empty!");
+            }
 
-            //for (int i = 3; i <= 5; i++)
-            //{
-            //    billmask[i] = 0x00;
-            //}
-
-            Send(CCNETControllerCommand.EnableDisable, billmask);
+            var bytes = ToByteArray(billmask);
+            Send(CCNETControllerCommand.EnableDisable, bytes);
 
             _DeviceState.BillEnable = true;
+        }
+
+        public static byte[] ToByteArray(BitArray bits)
+        {
+            int numBytes = bits.Count / 8;
+            if (bits.Count % 8 != 0)
+            {
+                numBytes++;
+            }
+
+            var bytes = new byte[numBytes];
+            int byteIndex = 0, bitIndex = 0;
+
+            for (int i = 0; i < bits.Count; i++)
+            {
+                if (bits[i])
+                {
+                    bytes[byteIndex] |= (byte)(1 << (7 - bitIndex));
+                }
+
+                bitIndex++;
+                if (bitIndex == 8)
+                {
+                    bitIndex = 0;
+                    byteIndex++;
+                }
+            }
+
+            return bytes;
         }
 
         public void Enable(string currency)
@@ -560,44 +625,24 @@ namespace CashInTerminalWpf
             _DeviceState.Nominal = 0;
 
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
-            var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+            //var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
             CurrentCurrency = currency;
-            //if (_CurrentCurrency == null)
-            //{
-            //    _CurrentCurrency = new List<string>();
-            //}
-            //else
-            //{
-            //    _CurrentCurrency.Clear();
-            //}
-            //_CurrentCurrency.Add(curr);
+            var billmask = new BitArray(48);
 
-            switch (CurrentCurrency)
+            if (_BillTable.Count > 0)
             {
-                case Currencies.Azn:
-                    billmask[0] = 0x7D;
-                    break;
-
-                case Currencies.Eur:
-                    billmask[1] = 0x7F;
-                    break;
-
-                case Currencies.Usd:
-                    billmask[2] = 0x7F;
-                    break;
+                for (int i = 0; i < _BillTable.Count; i++)
+                {
+                    if (_BillTable[i].Key > 0 && CurrentCurrency == _BillTable[i].Value)
+                    {
+                        billmask[(23 - i)] = true;
+                    }
+                }
             }
-            //for( int i = 0; i <= 2; i++ )
-            //{
-            //    billmask[i] = 0xff;
-            //}
 
-            //for (int i = 3; i <= 5; i++)
-            //{
-            //    billmask[i] = 0x00;
-            //}
-
-            Send(CCNETControllerCommand.EnableDisable, billmask);
+            var bytes = ToByteArray(billmask);
+            Send(CCNETControllerCommand.EnableDisable, bytes);
 
             _DeviceState.BillEnable = true;
         }
@@ -615,18 +660,23 @@ namespace CashInTerminalWpf
 
         public void Reset()
         {
-            _DeviceState.FatalError = false;            
+            _DeviceState.FatalError = false;
             Send(CCNETControllerCommand.Reset, null);
         }
 
         private void Return()
         {
-            // íå ðåàëèçîâàíî
+            // Ã­Ã¥ Ã°Ã¥Ã Ã«Ã¨Ã§Ã®Ã¢Ã Ã­Ã®
         }
 
         public void Poll()
         {
             Send(CCNETControllerCommand.Poll, null);
+        }
+
+        public void GetBillTable()
+        {
+            Send(CCNETControllerCommand.GetBillTable, null);
         }
 
         //private void Hold()
@@ -668,6 +718,7 @@ namespace CashInTerminalWpf
                 _DeviceState.SubStateCode = packet.Data[0];
             }
 
+            //Log.Debug(_DeviceState.StateCode.ToString());
             switch (_DeviceState.StateCode)
             {
                 case CCNETResponseStatus.Wait:
@@ -763,93 +814,14 @@ namespace CashInTerminalWpf
                     _DeviceState.Stacking = true;
 
                     _DeviceState.Currency = CurrentCurrency;
-                    switch (_DeviceState.SubStateCode)
-                    {
-                        case CcnetBillTypes.Azn1: // 1 AZN
-                            _DeviceState.Nominal = 1;
 
-                            break;
+                    KeyValuePair<int, String> value;
+                    _BillTable.TryGetValue(_DeviceState.SubStateCode, out value);
 
-                        case CcnetBillTypes.Azn5: // 5 AZN
-                            _DeviceState.Nominal = 5;
-                            break;
-
-                        case CcnetBillTypes.Azn10: // 10 AZN
-                            _DeviceState.Nominal = 10;
-                            break;
-
-                        case CcnetBillTypes.Azn20: // 20 AZN
-                            _DeviceState.Nominal = 20;
-                            break;
-
-                        case CcnetBillTypes.Azn50: // 50 AZN
-                            _DeviceState.Nominal = 50;
-                            break;
-
-                        case CcnetBillTypes.Azn100:
-                            _DeviceState.Nominal = 100;
-                            break;
-
-                        case CcnetBillTypes.Usd1:
-                            _DeviceState.Nominal = 1;
-                            break;
-
-                        case CcnetBillTypes.Usd2:
-                            _DeviceState.Nominal = 2;
-                            break;
-
-                        case CcnetBillTypes.Usd5:
-                            _DeviceState.Nominal = 5;
-                            break;
-
-                        case CcnetBillTypes.Usd10:
-                            _DeviceState.Nominal = 10;
-                            break;
-
-                        case CcnetBillTypes.Usd20:
-                            _DeviceState.Nominal = 20;
-                            break;
-
-                        case CcnetBillTypes.Usd50:
-                            _DeviceState.Nominal = 50;
-                            break;
-
-                        case CcnetBillTypes.Usd100:
-                            _DeviceState.Nominal = 100;
-                            break;
-
-                        case CcnetBillTypes.Eur5:
-                            _DeviceState.Nominal = 5;
-                            break;
-
-                        case CcnetBillTypes.Eur10:
-                            _DeviceState.Nominal = 10;
-                            break;
-
-                        case CcnetBillTypes.Eur20:
-                            _DeviceState.Nominal = 20;
-                            break;
-
-                        case CcnetBillTypes.Eur50:
-                            _DeviceState.Nominal = 50;
-                            break;
-
-                        case CcnetBillTypes.Eur100:
-                            _DeviceState.Nominal = 100;
-                            break;
-
-                        case CcnetBillTypes.Eur200:
-                            _DeviceState.Nominal = 200;
-                            break;
-
-                        case CcnetBillTypes.Eur500:
-                            _DeviceState.Nominal = 500;
-                            break;
-                    }
-
-                    if (_DeviceState.Nominal > 0)
+                    if (value.Key > 0)
                     {
                         _DeviceState.Stacking = false;
+                        _DeviceState.Nominal = value.Key;
                         _DeviceState.WasAmount = _DeviceState.Amount;
                         _DeviceState.Amount += _DeviceState.Nominal;
                     }
@@ -864,6 +836,84 @@ namespace CashInTerminalWpf
                 case CCNETResponseStatus.BillReturned:
                     Log.Warn(CCNETResponseStatus.BillReturned.ToString());
                     _DeviceState.StateCodeOut = CCNETResponseStatus.BillReturned;
+                    break;
+
+                case CCNETResponseStatus.Identification:
+                    try
+                    {
+                        if (packet.Data != null && packet.Data.Length > 30)
+                        {
+                            var buff = new byte[27];
+                            Array.Copy(packet.Data, buff, 27);
+                            _DeviceState.Identification = Encoding.ASCII.GetString(buff);
+                        }
+
+                        Log.Info(_DeviceState.Identification);
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                    }
+                    break;
+
+                case CCNETResponseStatus.BillTable:
+                    try
+                    {
+                        Log.Debug("CCNETResponseStatus.BillTable");
+                        if (packet.Data != null)
+                        {
+                            Log.Debug(Encoding.ASCII.GetString(packet.Data));
+                            _BillTable.Clear();
+                            _DeviceState.AvailableCurrencies.Clear();
+                            var j = 0;
+                            for (int i = 0; (i + 4) < packet.Data.Length; i += 5)
+                            {
+                                byte first = packet.Data[i];
+                                byte second = packet.Data[i + 4];
+
+                                int nominal;
+                                if (second > 0)
+                                {
+                                    nominal = Convert.ToInt32(Math.Round(Math.Pow(10, second), 0));
+                                    nominal = nominal * first;
+                                }
+                                else
+                                {
+                                    nominal = first;
+                                }
+
+                                if (nominal == 0)
+                                {
+                                    _BillTable.Add(j, new KeyValuePair<int, string>(0, String.Empty));
+                                    j++;
+                                    continue;
+                                }
+
+                                var currency =
+                                    Encoding.ASCII.GetString(new[]
+                                        {
+                                            packet.Data[i + 1], packet.Data[i + 2], packet.Data[i + 3]
+                                        });
+                                // TODO : Ð£Ð±Ñ€Ð°Ñ‚ÑŒ
+                                //Log.Debug(currency);
+                                currency = GetCurrencyCode(currency);
+                                //Log.Debug(currency);
+                                if (_DeviceState.AvailableCurrencies.IndexOf(currency) < 0)
+                                {
+                                    _DeviceState.AvailableCurrencies.Add(currency);
+                                }
+                                //Log.Debug(String.Format("Nominal: {0}, Currency: {1}", nominal, currency));
+                                _BillTable.Add(j, new KeyValuePair<int, string>(nominal, currency));
+                                j++;
+                            }
+
+                            GetBills(_DeviceState);
+                        }
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                    }
                     break;
             }
 
@@ -881,11 +931,11 @@ namespace CashInTerminalWpf
             //{
 
             //    case CCNETResponseStatus.Inactive:
-            //        _DeviceState.DeviceStateDescription = "Íå àêòèâåí";
+            //        _DeviceState.DeviceStateDescription = "ÃÃ¥ Ã ÃªÃ²Ã¨Ã¢Ã¥Ã­";
             //        break;
 
             //    case CCNETResponseStatus.ReadyForTransaction:
-            //        _DeviceState.DeviceStateDescription = "Ãîòîâ ê òðàíçàêöèÿì";
+            //        _DeviceState.DeviceStateDescription = "ÃƒÃ®Ã²Ã®Ã¢ Ãª Ã²Ã°Ã Ã­Ã§Ã ÃªÃ¶Ã¨Ã¿Ã¬";
             //        break;
 
             //    case CCNETResponseStatus.Ok:
@@ -910,6 +960,27 @@ namespace CashInTerminalWpf
 
 
             _DeviceState.DeviceStateDescription = EnumEx.GetDescription(_DeviceState.StateCode);
+        }
+
+        #endregion
+
+        #region GetCurrencyCode
+
+        private String GetCurrencyCode(String currency)
+        {
+            switch (currency)
+            {
+                case "USA":
+                    return Currencies.Usd;
+
+                case "EUR":
+                    return Currencies.Eur;
+
+                case "AZE":
+                    return Currencies.Azn;
+            }
+
+            return String.Empty;
         }
 
         #endregion
@@ -957,7 +1028,7 @@ namespace CashInTerminalWpf
                     if (dataLength > 250)
                     {
                         return;
-                        // ïîêà íå ðåàëèçîâàíî
+                        // Ã¯Ã®ÃªÃ  Ã­Ã¥ Ã°Ã¥Ã Ã«Ã¨Ã§Ã®Ã¢Ã Ã­Ã®
                     }
                 }
 

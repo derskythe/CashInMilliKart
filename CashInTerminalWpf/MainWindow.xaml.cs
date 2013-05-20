@@ -4,6 +4,7 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.Management;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -548,11 +549,39 @@ namespace CashInTerminalWpf
 
             _CcnetDevice = new CCNETDevice();
             _CcnetDevice.BillStacked += CcnetDeviceOnBillStacked;
+            _CcnetDevice.GetBills += CcnetDeviceOnGetBills;
             //_CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
             _CcnetDevice.Open(port, CCNETPortSpeed.S9600);
             _CcnetDevice.Init();
 
 
+        }
+
+        private void CcnetDeviceOnGetBills(CCNETDeviceState ccnetDeviceState)
+        {
+            try
+            {               
+                var now = DateTime.Now;
+                var versionRequest = new TerminalVersionExtRequest
+                {
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    SystemTime = DateTime.Now,
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                    Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                    AvailableCurrencies = ccnetDeviceState.AvailableCurrencies.ToArray(),
+                    CashcodeVersion = ccnetDeviceState.Identification
+                };
+
+                var versionResponse = _Server.UpdateTerminalVersionExt(versionRequest);
+                if (versionResponse == null || versionResponse.ResultCodes != ResultCodes.Ok)
+                {
+                    Log.Error("Can't update version");
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private void CcnetDeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
@@ -593,7 +622,7 @@ namespace CashInTerminalWpf
                         Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                     };
 
-                    var response = _Server.ListCheckTemplateDigest(request);
+                    var response = _Server.ListCheckTemplate(request);
 
                     CheckSignature(response);
 
@@ -604,8 +633,15 @@ namespace CashInTerminalWpf
                         {
                             var dbValue = _Db.GetCheckTemplate(template.Id);
 
-                            if (dbValue == null || dbValue.UpdateDate < template.UpdateDate)
+                            if (dbValue == null )
                             {
+                                oldData = true;
+                                break;
+                            }
+
+                            var fields = _Db.ListTemplateFields(dbValue.Id);
+                            if (dbValue.UpdateDate < template.UpdateDate || fields == null || fields.Count != template.Fields.Length)
+                            {                                
                                 oldData = true;
                                 break;
                             }
@@ -950,7 +986,7 @@ namespace CashInTerminalWpf
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                             TerminalStatus = (int)_TerminalStatus,
                             Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                            CheckCount = Settings.Default.CheckCounter
+                            CheckCount = 0 //Settings.Default.CheckCounter
                         };
                         var result = _Server.Ping(request);
 
@@ -1161,22 +1197,24 @@ namespace CashInTerminalWpf
                 }
             }
 
-            if (Settings.Default.CheckCounter >= TOTAL_CHECK_COUNT)
-            {
-                _TerminalStatus = TerminalCodes.NoPaper;
+            //if (Settings.Default.CheckCounter >= TOTAL_CHECK_COUNT)
+            //{
+            //    _TerminalStatus = TerminalCodes.NoPaper;
 
-                Log.Error("No paper");
-                if (CanChangeViewOnError)
-                {
-                    //_Init = false;
-                    OpenForm(FormEnum.OutOfOrder);
-                }
-            }
-            else if (Settings.Default.CheckCounter >= LOW_LEVEL_CHECK_COUNT)
-            {
-                _TerminalStatus = TerminalCodes.LowPaper;
-                Log.Warn("Low paper");
-            }
+            //    Log.Error("No paper");
+            //    if (CanChangeViewOnError)
+            //    {
+            //        //_Init = false;
+            //        OpenForm(FormEnum.OutOfOrder);
+            //    }
+            //}
+            //else if (Settings.Default.CheckCounter >= LOW_LEVEL_CHECK_COUNT)
+            //{
+            //    _TerminalStatus = TerminalCodes.LowPaper;
+            //    Log.Warn("Low paper");
+            //}
+            // 
+            
             //if (/*_PrinterStatus.ErrorState > 0 || */_CcnetDevice.DeviceState.FatalError)
             //{
             //    Log.Warn(_CcnetDevice.DeviceState);
@@ -1287,21 +1325,7 @@ namespace CashInTerminalWpf
             else
             {
                 Log.Error("Terminal info is null");
-            }
-
-            var versionRequest = new TerminalVersionRequest
-            {
-                TerminalId = cmd.TerminalId,
-                SystemTime = now,
-                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
-            };
-
-            var versionResponse = _Server.UpdateTerminalVersion(versionRequest);
-            if (versionResponse == null || versionResponse.ResultCodes != ResultCodes.Ok)
-            {
-                Log.Error("Can't update version");
-            }
+            }            
         }
 
         private StandardResult CommandReceived()

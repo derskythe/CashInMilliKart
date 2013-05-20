@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Containers
@@ -37,7 +34,7 @@ namespace Containers
 
         public override string ToString()
         {
-            return string.Format("Sign: {0}, SystemTime: {1}", _Sign, _SystemTime);
+            return String.Empty;
         }
     }
 }

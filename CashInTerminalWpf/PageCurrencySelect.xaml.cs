@@ -72,18 +72,21 @@ namespace CashInTerminalWpf
                 {
                     foreach (var tag in _FormMain.Currencies)
                     {
-                        string text = tag.Id;
-                        Log.Debug(text);
-
-                        var button = new Button
+                        if (HasCurrency(tag.Id))
                         {
-                            Style = FindResource("MenuButtonStyle") as Style,
-                            Name = tag.Id.ToString(CultureInfo.InvariantCulture) + tag.Name,
-                            Tag = tag.Id,
-                            Content = text
-                        };
-                        button.Click += ButtonOnClick;
-                        Grid.Children.Add(button);
+                            string text = tag.Id;
+                            Log.Debug(text);
+
+                            var button = new Button
+                                {
+                                    Style = FindResource("MenuButtonStyle") as Style,
+                                    Name = tag.Id.ToString(CultureInfo.InvariantCulture) + tag.Name,
+                                    Tag = tag.Id,
+                                    Content = text
+                                };
+                            button.Click += ButtonOnClick;
+                            Grid.Children.Add(button);
+                        }
                     }
                 }
                 catch (Exception exp)
@@ -91,6 +94,26 @@ namespace CashInTerminalWpf
                     Log.ErrorException(exp.Message, exp);
                 }
             }
+        }
+
+        private bool HasCurrency(String currency)
+        {
+            try
+            {
+                foreach (var availableCurrency in _FormMain.CcnetDevice.DeviceState.AvailableCurrencies)
+                {
+                    if (currency == availableCurrency)
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return false;
         }
 
         private void ButtonOnClick(object sender, RoutedEventArgs eventArgs)

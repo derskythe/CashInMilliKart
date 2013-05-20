@@ -126,15 +126,15 @@ namespace CashInTerminalWpf
                 Log.ErrorException(exp.Message, exp);
             }
 
-            try
-            {
-                Settings.Default.CheckCounter++;
-                Settings.Default.Save();
-            }
-            catch (Exception exp)
-            {
-                Log.ErrorException(exp.Message, exp);
-            }
+            //try
+            //{
+            //    Settings.Default.CheckCounter++;
+            //    Settings.Default.Save();
+            //}
+            //catch (Exception exp)
+            //{
+            //    Log.ErrorException(exp.Message, exp);
+            //}
         }
 
         #endregion

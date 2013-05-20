@@ -16,7 +16,7 @@ namespace Containers
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
         public static string GetStringFromArray(IEnumerable<Object> list)
-        {
+        {           
             var fields = new StringBuilder();
             if (list != null)
             {
@@ -50,8 +50,17 @@ namespace Containers
         {
             try
             {
+                if (value == null)
+                {
+                    return string.Empty;
+                }
+
                 FieldInfo field = value.GetType().GetField(value.ToString());
 
+                if (field == null)
+                {
+                    return string.Empty;
+                }
                 var attribute = Attribute.GetCustomAttribute(field, typeof (DescriptionAttribute))
                                 as DescriptionAttribute;
 

@@ -25,8 +25,12 @@ namespace CashInCore
         [OperationContract]
         StandardResult SetStatusCode(String sid, int terminalId, int statusCode);
 
-        //[OperationContract]
-        //StandardResult SaveUserRole(String sid, int userId, int roleId);
+        [OperationContract]
+        ListTerminalTypeResult ListTerminalTypes(String sid);
+
+        [OperationContract]
+        ListTerminalsResult ListTerminalsByType(string sid, int type, TerminalColumns sortColumn, SortType sortType,
+                                                int rowNum, int perPage);
 
         [OperationContract]
         StandardResult SaveCurrency(String sid, Currency currency);

@@ -637,6 +637,40 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public ListTerminalsResult ListTerminalsByType(string sid, int type, TerminalColumns sortColumn, SortType sortType, int rowNum, int perPage)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+            var result = new ListTerminalsResult();
+
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewTerminal))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                int count;
+                result.Terminals = OracleDb.Instance.ListTerminalsByType(type, sortColumn, sortType, rowNum, perPage, out count);
+                result.Count = count;
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public SaveTerminalResult SaveTerminal(String sid, Terminal terminal)
         {
             Log.Info(String.Format("SID: {0}, Terminal: {1}", sid, terminal));
@@ -1801,6 +1835,38 @@ namespace CashInCore
                 }
 
                 result.Statuses = OracleDb.Instance.ListTerminalStatusCode();
+                result.Code = ResultCodes.Ok;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public ListTerminalTypeResult ListTerminalTypes(String sid)
+        {
+            Log.Info(String.Format("SID: {0}", sid));
+
+            var result = new ListTerminalTypeResult();
+            try
+            {
+                var session = CheckSession(sid);
+                if (session.Code != ResultCodes.Ok)
+                {
+                    result.Code = session.Code;
+                    throw new Exception("Invalid session");
+                }
+
+                if (!HasPriv(session.Session.User.RoleFields, RoleSections.ViewBranches))
+                {
+                    result.Code = ResultCodes.NoPriv;
+                    throw new Exception("No priv");
+                }
+
+                result.TerminalTypes = OracleDb.Instance.ListTerminalType();
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)

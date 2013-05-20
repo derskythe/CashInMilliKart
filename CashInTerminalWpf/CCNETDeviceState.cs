@@ -1,4 +1,5 @@
-﻿using CashInTerminalWpf.CashIn;
+﻿using System.Collections.Generic;
+using CashInTerminalWpf.CashIn;
 using Containers.CashCode;
 
 namespace CashInTerminalWpf
@@ -21,6 +22,8 @@ namespace CashInTerminalWpf
         private bool _Init; // Мы загружены
         private string _Currency;
         private bool _Stacking; // В режиме приема купюры.
+        private string _Identification;
+        private List<string> _AvailableCurrencies = new List<string>();
 
         /// <summary>
         /// Внутр. состояние
@@ -223,6 +226,12 @@ namespace CashInTerminalWpf
             }
         }
 
+        public string Identification
+        {
+            get { return _Identification; }
+            set { _Identification = value; }
+        }
+
         public string Currency
         {
             get { return _Currency; }
@@ -239,6 +248,12 @@ namespace CashInTerminalWpf
         {
             get { return _ErrorCode; }
             set { _ErrorCode = value; }
+        }
+
+        public List<string> AvailableCurrencies
+        {
+            get { return _AvailableCurrencies; }
+            set { _AvailableCurrencies = value; }
         }
 
         public CashCodeDeviceStatus ToCashCodeDeviceStatus()
@@ -261,10 +276,10 @@ namespace CashInTerminalWpf
         {
             return
                 string.Format(
-                    "StateCode: {0}, RejectReason: {1}, SubStateCode: {2}, StateCodeOut: {3}, ErrorCode: {4}, BillEnable: {5}, AcceptEnable: {6}, FatalError: {7}, Amount: {8}, WasAmount: {9}, Nominal: {10}, DeviceStateDescription: {11}, SubDeviceStateDescription: {12}, Init: {13}, Currency: {14}, Stacking: {15}",
+                    "StateCode: {0}, RejectReason: {1}, SubStateCode: {2}, StateCodeOut: {3}, ErrorCode: {4}, BillEnable: {5}, AcceptEnable: {6}, FatalError: {7}, Amount: {8}, WasAmount: {9}, Nominal: {10}, DeviceStateDescription: {11}, SubDeviceStateDescription: {12}, Init: {13}, Currency: {14}, Stacking: {15}, Identification: {16}",
                     _StateCode, _RejectReason, _SubStateCode, _StateCodeOut, _ErrorCode, _BillEnable, _AcceptEnable,
                     _FatalError, _Amount, _WasAmount, _Nominal, _DeviceStateDescription, _SubDeviceStateDescription,
-                    _Init, _Currency, _Stacking);
+                    _Init, _Currency, _Stacking, _Identification);
         }
     }
 }

@@ -113,6 +113,12 @@
   <wsdl:message name="CashInServer_Pay_OutputMessage">
     <wsdl:part name="parameters" element="tns:PayResponse" />
   </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersionExt_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersionExt" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersionExt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersionExtResponse" />
+  </wsdl:message>
   <wsdl:portType name="CashInServer">
     <wsdl:operation name="GetPublicKey">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
@@ -185,6 +191,10 @@
     <wsdl:operation name="Pay">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/Pay" message="tns:CashInServer_Pay_InputMessage" />
       <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/PayResponse" message="tns:CashInServer_Pay_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalVersionExt">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionExt" message="tns:CashInServer_UpdateTerminalVersionExt_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionExtResponse" message="tns:CashInServer_UpdateTerminalVersionExt_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

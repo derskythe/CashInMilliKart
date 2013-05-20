@@ -126,6 +126,9 @@
     <Compile Include="dsTableAdapters\V_LIST_TERMINAL_STATUSESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_LIST_TERMINAL_TYPETableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_LIST_USERSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>

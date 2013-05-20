@@ -31,8 +31,5 @@
     <Setting Name="DbPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\CashIn\Terminal.s3db</Value>
     </Setting>
-    <Setting Name="CheckCounter" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

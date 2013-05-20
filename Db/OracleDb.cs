@@ -7,7 +7,7 @@ namespace Db
     public partial class OracleDb : MarshalByRefObject
     {
         private static string _ConnectionString;
-        private OracleConnection _OraCon;
+        //private OracleConnection _OraCon;
         private static string _DbName = String.Empty;
         private static volatile OracleDb _Instance;
         private static readonly object _SyncRoot = new object();
@@ -17,29 +17,31 @@ namespace Db
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
-        private bool IsAlive()
-        {
-            try
-            {
-                OracleCommand cmd = _OraCon.CreateCommand();
-                cmd.CommandText = "SELECT 1 FROM dual";
-                object o = cmd.ExecuteScalar();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Log.ErrorException(e.Message, e);
-            }
+        //private bool IsAlive()
+        //{
+        //    try
+        //    {
+        //        using (OracleCommand cmd = _OraCon.CreateCommand())
+        //        {
+        //            cmd.CommandText = "SELECT 1 FROM dual";
+        //            object o = cmd.ExecuteScalar();
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Log.ErrorException(e.Message, e);
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         public static void Init(string user, string pass, string dbase)
         {
             if (_ConnectionString == null)
             {
                 _DbName = dbase;
-                _ConnectionString = "User ID=" + user + ";Data Source=" + dbase + ";Password=" + pass + ";Min Pool Size=5;Max Pool Size=100;Pooling=True;Validate Connection=true";
+                _ConnectionString = "User ID=" + user + ";Data Source=" + dbase + ";Password=" + pass + ";Min Pool Size=5;Max Pool Size=500;Pooling=True;Validate Connection=true";
             }
         }
 
@@ -50,15 +52,15 @@ namespace Db
 
         private OracleDb()
         {
-            try
-            {
-                _OraCon = new OracleConnection(_ConnectionString);
-                _OraCon.Open();
-            }
-            catch (OracleException e)
-            {
-                throw new Exception(e.Message);
-            }
+            //try
+            //{
+            //    //_OraCon = new OracleConnection(_ConnectionString);
+            //    //_OraCon.Open();
+            //}
+            //catch (OracleException e)
+            //{
+            //    throw new Exception(e.Message);
+            //}
         }
 
         public static OracleDb Instance
@@ -82,15 +84,15 @@ namespace Db
 
         public bool CheckConnection()
         {
+            OracleConnection connection = null;
             try
             {
-                if (_OraCon.State != System.Data.ConnectionState.Open || !IsAlive())
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+                using (OracleCommand cmd = connection.CreateCommand())
                 {
-                    lock (_OraCon)
-                    {
-                        _OraCon = new OracleConnection(_ConnectionString);
-                        _OraCon.Open();
-                    }
+                    cmd.CommandText = "SELECT 1 FROM dual";
+                    object o = cmd.ExecuteScalar();
                 }
 
                 return true;
@@ -99,6 +101,15 @@ namespace Db
             {
                 Log.ErrorException(e.Message, e);
             }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+           
             return false;
         }
 
@@ -106,10 +117,10 @@ namespace Db
 
         public void Dispose()
         {
-            if (_OraCon != null && _OraCon.State == System.Data.ConnectionState.Open)
-            {
-                _OraCon.Close();
-            }
+            //if (_OraCon != null && _OraCon.State == System.Data.ConnectionState.Open)
+            //{
+            //    _OraCon.Close();
+            //}
         }
 
         #endregion

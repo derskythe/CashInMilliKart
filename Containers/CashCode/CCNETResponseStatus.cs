@@ -35,7 +35,7 @@ namespace Containers.CashCode
         [Description("Idling")]
         [EnumMember]
         Idling = 0x06,                        // Ожидание наличности
-        
+
 
         /// <summary>
         /// Ready for transaction. Indicates the Card Reader is available for vending activity
@@ -43,14 +43,14 @@ namespace Containers.CashCode
         [Description("Ready for transaction. Indicates the Card Reader is available for vending activity")]
         [EnumMember]
         ReadyForTransaction = 0x07,         // готов к транзакциям
-        
+
         /// <summary>
         /// Wait. Ready accept bills
         /// </summary>
         [Description("Wait. Ready accept bills")]
         [EnumMember]
         Wait = 0x14,                        // Ожидание
-                       
+
         /// <summary>
         /// UnitDisabled
         /// </summary>
@@ -78,7 +78,7 @@ namespace Containers.CashCode
         [Description("Включили электричество with BILL")]
         [EnumMember]
         PowerUpWithBillInAcceptor = 0x11,   // Включили электричество with BILL
-        
+
         /// <summary>
         /// Включили электричество with BILL
         /// </summary>
@@ -92,7 +92,7 @@ namespace Containers.CashCode
         [Description("PowerUp. The state of a B2B after a power up")]
         [EnumMember]
         PowerUp = 0x10,                     // Включили электричество
-        
+
 
         /// <summary>
         /// Fatal error
@@ -225,7 +225,7 @@ namespace Containers.CashCode
         [Description("Cassette removed. The B2B unit has detected the drop cassette to be open or removed")]
         [EnumMember]
         CassetteRemoved = 0x42,              // Кассета снята
-        
+
         /// <summary>
         /// Jam in acceptor. A bill has jammed in the bill path
         /// </summary>
@@ -272,6 +272,16 @@ namespace Containers.CashCode
         /// </summary>
         [Description("Returned")]
         [EnumMember]
-        BillReturned = 0x82,                // Купюра Возвращена                                    
+        BillReturned = 0x82,                // Купюра Возвращена
+
+
+        // Virtual commands!
+        [Description("Identification")]
+        [EnumMember]
+        Identification = 0xFA,
+
+        [Description("BillTable")]
+        [EnumMember]
+        BillTable = 0xFB
     }
 }

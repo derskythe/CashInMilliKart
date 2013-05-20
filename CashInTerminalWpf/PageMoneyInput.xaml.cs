@@ -29,6 +29,7 @@ namespace CashInTerminalWpf
         private readonly TimeSpan _MaxTransactionTime = new TimeSpan(0, 0, 0, 30);
         private CCNETResponseStatus _LastResponse = CCNETResponseStatus.NotMount;
         private DateTime _LastInput = DateTime.Now;
+        private int _Amount;
 
         public PageMoneyInput()
         {
@@ -38,6 +39,7 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Title);
+            _Amount = 0;
             _FormMain = (MainWindow)Window.GetWindow(this);
 
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
@@ -221,9 +223,10 @@ namespace CashInTerminalWpf
                     new Action<String>(SetStackedAmount),
                     ccnetDeviceState.Amount.ToString(CultureInfo.InvariantCulture));
 
+                _Amount += ccnetDeviceState.Nominal;
                 lock (_FormMain.ClientInfo)
                 {
-                    _FormMain.ClientInfo.CashCodeAmount = ccnetDeviceState.Amount;
+                    _FormMain.ClientInfo.CashCodeAmount = _Amount;
                 }
 
                 _FormMain.Db.InsertBanknote(

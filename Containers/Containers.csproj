@@ -66,6 +66,7 @@
     <Compile Include="Admin\ListTerminalCodesResult.cs" />
     <Compile Include="Admin\ListTerminalsResult.cs" />
     <Compile Include="Admin\ListTerminalStatusResult.cs" />
+    <Compile Include="Admin\ListTerminalTypeResult.cs" />
     <Compile Include="Admin\ListUsersResult.cs" />
     <Compile Include="Admin\LoginResult.cs" />
     <Compile Include="Admin\MultiLanguageString.cs" />
@@ -137,6 +138,8 @@
     <Compile Include="Enums\TerminalCodes.cs" />
     <Compile Include="TerminalInfoResult.cs" />
     <Compile Include="TerminalStatusCode.cs" />
+    <Compile Include="TerminalType.cs" />
+    <Compile Include="TerminalVersionExtRequest.cs" />
     <Compile Include="TerminalVersionRequest.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserSession.cs" />
