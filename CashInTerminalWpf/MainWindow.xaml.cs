@@ -190,6 +190,7 @@ namespace CashInTerminalWpf
         private Thread _SendPaymentThread;
         private Thread _TerminationThread;
         private Timer _CheckCurrencyTimer;
+        private Timer _CheckBillTableTimer;
         private Timer _CheckProductsTimer;
         private Timer _CheckCheckTemplateTimer;
         private Timer _CheckPaymentCategoriesTimer;
@@ -198,6 +199,8 @@ namespace CashInTerminalWpf
         private const int PING_TIMEOUT = 30 * 1000;
         private const int SEND_PAYMENT_TIMEOUT = 10 * 1000;
         private const int CHECK_CURRENCY_TIMER = 30 * 60 * 1000;
+        private const int CHECK_BILL_TABLE_TIMER = 10 * 60 * 1000;
+        private const int CHECK_BILL_TABLE_TIMER_FIRST_TIME = 45 * 1000;
         private const int CHECK_CHECK_TEMPLATE_TIMER = 60 * 1000;
         private const int CHECK_PRODUCTS_TIMER = 60 * 60 * 1000;
         private const int CHECK_INACTIVITY = 10 * 1000;
@@ -365,13 +368,13 @@ namespace CashInTerminalWpf
             _SendPaymentThread = new Thread(SendPaymentThread);
             _SendPaymentThread.Start();
 
-            _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
+            _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);            
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckPaymentCategoriesTimer = new Timer(CheckPaymentCategoriesTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, CHECK_INACTIVITY, CHECK_INACTIVITY);
             _CheckCheckTemplateTimer = new Timer(CheckTemplateTimer, null, 0, CHECK_CHECK_TEMPLATE_TIMER);
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
-
+            _CheckBillTableTimer = new Timer(CheckBillTableTimer, null, CHECK_BILL_TABLE_TIMER_FIRST_TIME, CHECK_BILL_TABLE_TIMER);
         }
 
         #region Application Update
@@ -422,11 +425,11 @@ namespace CashInTerminalWpf
                             Log.Info("A required update is available, which will be installed now");
                             UpdateApplication();
                         }
-                        else 
+                        else
                         {
                             Log.Info("An update is available");
                             UpdateApplication();
-                        }                        
+                        }
 
                         return;
                     }
@@ -553,14 +556,22 @@ namespace CashInTerminalWpf
             //_CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
             _CcnetDevice.Open(port, CCNETPortSpeed.S9600);
             _CcnetDevice.Init();
-
-
         }
 
         private void CcnetDeviceOnGetBills(CCNETDeviceState ccnetDeviceState)
         {
             try
-            {               
+            {
+                if (ccnetDeviceState.AvailableCurrencies != null && ccnetDeviceState.AvailableCurrencies.Count > 0)
+                {
+                    Log.Info(String.Join(";", ccnetDeviceState.AvailableCurrencies));
+                }
+                else
+                {
+                    ccnetDeviceState.AvailableCurrencies = new List<string>();
+                    Log.Warn("Currency is null");
+                }
+
                 var now = DateTime.Now;
                 var versionRequest = new TerminalVersionExtRequest
                 {
@@ -622,7 +633,7 @@ namespace CashInTerminalWpf
                         Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
                     };
 
-                    var response = _Server.ListCheckTemplate(request);
+                    var response = _Server.ListCheckTemplateDigest(request);
 
                     CheckSignature(response);
 
@@ -633,7 +644,7 @@ namespace CashInTerminalWpf
                         {
                             var dbValue = _Db.GetCheckTemplate(template.Id);
 
-                            if (dbValue == null )
+                            if (dbValue == null)
                             {
                                 oldData = true;
                                 break;
@@ -641,7 +652,7 @@ namespace CashInTerminalWpf
 
                             var fields = _Db.ListTemplateFields(dbValue.Id);
                             if (dbValue.UpdateDate < template.UpdateDate || fields == null || fields.Count != template.Fields.Length)
-                            {                                
+                            {
                                 oldData = true;
                                 break;
                             }
@@ -746,7 +757,7 @@ namespace CashInTerminalWpf
 
                 foreach (var row in templateList)
                 {
-                    var key = GetCheckTemplateHashCode((int) row.Type, row.Language);
+                    var key = GetCheckTemplateHashCode((int)row.Type, row.Language);
                     var fields = _Db.ListTemplateFields(row.Id);
 
                     _CheckTemplates.Add(key, fields);
@@ -771,6 +782,23 @@ namespace CashInTerminalWpf
         #endregion
 
         #region Timers
+
+        private void CheckBillTableTimer(object sender)
+        {
+            try
+            {
+                if (_CcnetDevice.DeviceState.AvailableCurrencies == null ||
+                    _CcnetDevice.DeviceState.AvailableCurrencies.Count == 0)
+                {
+                    Log.Warn("Bill Table is null. Checkout");
+                    _CcnetDevice.GetBillTable();
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+        }
 
         private void CheckInactivityTimer(object sender)
         {
@@ -1214,7 +1242,7 @@ namespace CashInTerminalWpf
             //    Log.Warn("Low paper");
             //}
             // 
-            
+
             //if (/*_PrinterStatus.ErrorState > 0 || */_CcnetDevice.DeviceState.FatalError)
             //{
             //    Log.Warn(_CcnetDevice.DeviceState);
@@ -1307,6 +1335,8 @@ namespace CashInTerminalWpf
 
         #endregion
 
+        #region GetTerminalInfo
+
         public void GetTerminalInfo()
         {
             var now = DateTime.Now;
@@ -1325,7 +1355,40 @@ namespace CashInTerminalWpf
             else
             {
                 Log.Error("Terminal info is null");
-            }            
+            }
+
+            try
+            {
+                if (_CcnetDevice.DeviceState.AvailableCurrencies != null && _CcnetDevice.DeviceState.AvailableCurrencies.Count > 0)
+                {
+                    Log.Info(String.Join(";", _CcnetDevice.DeviceState.AvailableCurrencies));
+                }
+                else
+                {
+                    _CcnetDevice.DeviceState.AvailableCurrencies = new List<string>();
+                    Log.Warn("Currency is null");
+                }
+                
+                var versionRequest = new TerminalVersionExtRequest
+                {
+                    TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                    SystemTime = DateTime.Now,
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                    Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                    AvailableCurrencies = _CcnetDevice.DeviceState.AvailableCurrencies.ToArray(),
+                    CashcodeVersion = _CcnetDevice.DeviceState.Identification
+                };
+
+                var versionResponse = _Server.UpdateTerminalVersionExt(versionRequest);
+                if (versionResponse == null || versionResponse.ResultCodes != ResultCodes.Ok)
+                {
+                    Log.Error("Can't update version");
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private StandardResult CommandReceived()
@@ -1341,6 +1404,8 @@ namespace CashInTerminalWpf
             };
             return _Server.CommandReceived(cmd);
         }
+
+        #endregion
 
         #region DoEncashment
 
@@ -1540,6 +1605,8 @@ namespace CashInTerminalWpf
 
         #endregion
 
+        #region CheckSignature
+
         private bool CheckSignature(StandardResult request)
         {
             try
@@ -1570,11 +1637,21 @@ namespace CashInTerminalWpf
             return false;
         }
 
+        #endregion
+
         public void StartTimers()
         {
-            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckCurrencyTimer), null);
-            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckProductsTimer), null);
-            Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckPaymentCategoriesTimer), null);
+            try
+            {
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckCurrencyTimer), null);
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckBillTableTimer), null);
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckProductsTimer), null);
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action<object>(CheckPaymentCategoriesTimer), null);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         #region DoClose
@@ -1610,6 +1687,10 @@ namespace CashInTerminalWpf
                 if (_CheckCheckTemplateTimer != null)
                 {
                     _CheckCheckTemplateTimer.Dispose();
+                }
+                if (_CheckBillTableTimer != null)
+                {
+                    _CheckBillTableTimer.Dispose();
                 }
             }
             catch (Exception exp)

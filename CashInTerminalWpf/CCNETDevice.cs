@@ -293,14 +293,14 @@ namespace CashInTerminalWpf
                     _DeviceState.StateCode = CCNETResponseStatus.Error;
                     ProccessStateCode();
                 }
-                else
-                {
-                    Send(CCNETControllerCommand.GetBillTable, null);
-                    Thread.Sleep(POLLING_INTERVAL);
-                    Send(CCNETControllerCommand.Poll, null);
-                    Thread.Sleep(POLLING_INTERVAL);
-                    Thread.Sleep(POLLING_INTERVAL);
-                }
+
+                Thread.Sleep(POLLING_INTERVAL);
+                Thread.Sleep(POLLING_INTERVAL);
+                Send(CCNETControllerCommand.GetBillTable, null);
+                Thread.Sleep(POLLING_INTERVAL);
+                Send(CCNETControllerCommand.Poll, null);
+                Thread.Sleep(POLLING_INTERVAL);
+                Thread.Sleep(POLLING_INTERVAL);
             }
             catch (ThreadAbortException exp)
             {
@@ -568,7 +568,7 @@ namespace CashInTerminalWpf
             _DeviceState.Nominal = 0;
 
             var billmask = new BitArray(48);
-            
+
             if (_BillTable.Count > 0)
             {
                 for (int i = 0; i < _BillTable.Count; i++)
@@ -908,6 +908,10 @@ namespace CashInTerminalWpf
                             }
 
                             GetBills(_DeviceState);
+                        }
+                        else
+                        {
+                            Log.Warn("Data is null");
                         }
                     }
                     catch (Exception exp)

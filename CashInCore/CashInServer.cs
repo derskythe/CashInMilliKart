@@ -468,7 +468,14 @@ namespace CashInCore
                 Terminal terminalInfo;
                 result = AuthTerminal(result, request, out terminalInfo);
 
-                OracleDb.Instance.SaveTerminalVersion(request.TerminalId, request.Version);
+                var str = String.Empty;
+
+                if (request.AvailableCurrencies != null)
+                {
+                    str = String.Join(";", request.AvailableCurrencies);
+                }
+
+                OracleDb.Instance.SaveTerminalVersionExt(request.TerminalId, request.Version, request.CashcodeVersion, str);
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)
