@@ -10,7 +10,6 @@ using System.Windows;
 using CashInTerminal.Enums;
 using CashInTerminalWpf.CashIn;
 using CashInTerminalWpf.Enums;
-using CashInTerminalWpf.Properties;
 using Containers.Enums;
 using NLog;
 
@@ -44,6 +43,7 @@ namespace CashInTerminalWpf
         {
             try
             {
+                Log.Info("Printing check!");
                 using (var font = new Font("Arial", 10, System.Drawing.FontStyle.Bold))
                 {
                     const float x = 0;
@@ -92,6 +92,7 @@ namespace CashInTerminalWpf
                                 {
                                     Log.ErrorException(exp.Message, exp);
                                 }
+                                Log.Info("IMAGE");
                                 break;
 
                             case TemplateFieldType.Line:
@@ -102,15 +103,17 @@ namespace CashInTerminalWpf
                                     y += lineHeight;
                                     blackPen.Dispose();
                                 }
+                                Log.Info("-------------------------");
                                 break;
 
                             case TemplateFieldType.Text:
                                 var subLines = line.Value.Split('\n');
                                 foreach (var subLine in subLines)
                                 {
+                                    Log.Info(subLine);
                                     e.Graphics.DrawString(subLine, font, Brushes.Black, x, y);
                                     y += lineHeight;
-                                }
+                                }                                
                                 break;
                         }
                     }

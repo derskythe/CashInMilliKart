@@ -46,6 +46,7 @@ namespace CashInTerminalWpf
         {
             try
             {
+                Log.Info("Printing check!");
                 using (var font = new Font("Arial", 10, System.Drawing.FontStyle.Bold))
                 {
                     const float x = 0;
@@ -95,6 +96,7 @@ namespace CashInTerminalWpf
                                 {
                                     Log.ErrorException(exp.Message, exp);
                                 }
+                                Log.Info("IMAGE");
                                 break;
 
                             case TemplateFieldType.Line:
@@ -105,11 +107,13 @@ namespace CashInTerminalWpf
                                     y += lineHeight;
                                     blackPen.Dispose();
                                 }
+                                Log.Info("-------------------------");
                                 break;
 
                             case TemplateFieldType.Text:
                                 e.Graphics.DrawString(line.Value, font, Brushes.Black, x, y);
                                 y += lineHeight;
+                                Log.Info(line.Value);
                                 break;
                         }
                     }
