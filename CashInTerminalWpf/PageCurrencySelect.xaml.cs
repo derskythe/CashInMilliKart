@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using CashInTerminalWpf.Enums;
 using NLog;
+using CashInTerminalWpf.CashIn;
 
 namespace CashInTerminalWpf
 {
@@ -22,7 +23,7 @@ namespace CashInTerminalWpf
 
         public PageCurrencySelect()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
@@ -66,27 +67,49 @@ namespace CashInTerminalWpf
         {
             lock (_FormMain.Currencies)
             {
+                Currency defaultCurrency = null;
+                foreach (var currency in _FormMain.Currencies)
+                {
+                    if (currency.DefaultCurrency)
+                    {
+                        defaultCurrency = currency;
+                        break;
+                    }
+                }
+
                 Grid.Children.Clear();
+
+                if (defaultCurrency == null)
+                {
+                    Log.Error("No default currency!");
+                    return;
+                }
 
                 try
                 {
                     foreach (var tag in _FormMain.Currencies)
                     {
-                        if (HasCurrency(tag.Id))
+                        if ((!tag.DefaultCurrency && defaultCurrency.Id != _FormMain.ClientInfo.Client.Currency && tag.Id != _FormMain.ClientInfo.Client.Currency) || !HasCurrency(tag.Id))
                         {
-                            string text = tag.Id;
-                            Log.Debug(text);
-
-                            var button = new Button
-                                {
-                                    Style = FindResource("MenuButtonStyle") as Style,
-                                    Name = tag.Id.ToString(CultureInfo.InvariantCulture) + tag.Name,
-                                    Tag = tag.Id,
-                                    Content = text
-                                };
-                            button.Click += ButtonOnClick;
-                            Grid.Children.Add(button);
+                            // If default system currency not equal currency of credit
+                            // and currency of credit not equal this item currency
+                            // or in cashcode we doesn's support this item currency
+                            Log.Warn("Can't display currency: " + tag.Id);
+                            continue;
                         }
+
+                        string text = tag.Id;
+                        Log.Debug(text);
+
+                        var button = new Button
+                            {
+                                Style = FindResource("MenuButtonStyle") as Style,
+                                Name = tag.Id.ToString(CultureInfo.InvariantCulture) + tag.Name,
+                                Tag = tag.Id,
+                                Content = text
+                            };
+                        button.Click += ButtonOnClick;
+                        Grid.Children.Add(button);
                     }
                 }
                 catch (Exception exp)

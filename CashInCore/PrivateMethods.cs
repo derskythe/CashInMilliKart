@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using CashInCore.Properties;
 using Containers;
 using Containers.Enums;
@@ -22,6 +23,16 @@ namespace CashInCore
         {
             //return true;
             return CheckSignature(terminalId.ToString(CultureInfo.InvariantCulture), terminalDate, signature);
+        }
+
+        private String NormalizeString(String value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                return String.Empty;
+            }
+            var pRegex = new Regex(@"[^0-9a-z\;\,\.\-\+\s]+", RegexOptions.IgnoreCase);
+            return pRegex.Replace(value, "").Trim();
         }
 
         private bool CheckSignature(String terminalId, DateTime terminalDate, String signature)

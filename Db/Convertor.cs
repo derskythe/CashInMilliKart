@@ -167,7 +167,9 @@ namespace Db
                     BranchName = row.IsBRANCH_NAMENull() ? String.Empty : row.BRANCH_NAME,
                     LastEncashment = row.IsLAST_ENCASHMENT_IDNull() ? 0 : Convert.ToInt32(row.LAST_ENCASHMENT_ID),
                     TerminalTypeDesc = terminalTypeDesc,
-                    Type = (int)row.TYPE
+                    Type = (int)row.TYPE,
+                    CashCodeVersion = row.IsCASHCODE_VERSIONNull() ? String.Empty : row.CASHCODE_VERSION,
+                    BillTable = row.IsBILL_TABLENull() ? String.Empty : row.BILL_TABLE
                 };
 
             return result;

@@ -475,7 +475,7 @@ namespace CashInCore
                     str = String.Join(";", request.AvailableCurrencies);
                 }
 
-                OracleDb.Instance.SaveTerminalVersionExt(request.TerminalId, request.Version, request.CashcodeVersion, str);
+                OracleDb.Instance.SaveTerminalVersionExt(request.TerminalId, request.Version, NormalizeString(request.CashcodeVersion), NormalizeString(str));
                 result.Code = ResultCodes.Ok;
             }
             catch (Exception exp)

@@ -368,7 +368,7 @@ namespace CashInTerminalWpf
             _SendPaymentThread = new Thread(SendPaymentThread);
             _SendPaymentThread.Start();
 
-            _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);            
+            _CheckCurrencyTimer = new Timer(CheckCurrencyTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckProductsTimer = new Timer(CheckProductsTimer, null, 0, CHECK_PRODUCTS_TIMER);
             _CheckPaymentCategoriesTimer = new Timer(CheckPaymentCategoriesTimer, null, 0, CHECK_CURRENCY_TIMER);
             _CheckInactivityTimer = new Timer(CheckInactivityTimer, null, CHECK_INACTIVITY, CHECK_INACTIVITY);
@@ -402,19 +402,19 @@ namespace CashInTerminalWpf
                     {
                         info = updateCheck.CheckForDetailedUpdate();
                     }
-                    catch (DeploymentDownloadException)
+                    catch (DeploymentDownloadException exp)
                     {
-                        Log.Error("Couldn't retrieve info on this app");
+                        Log.Error("Couldn't retrieve info on this app. " + exp.Message);
                         return;
                     }
-                    catch (InvalidDeploymentException)
+                    catch (InvalidDeploymentException exp)
                     {
-                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt! " + exp.Message);
                         return;
                     }
-                    catch (InvalidOperationException)
+                    catch (InvalidOperationException exp)
                     {
-                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!");
+                        Log.Error("Cannot check for a new version. ClickOnce deployment is corrupt!" + exp.Message);
                         return;
                     }
 
@@ -1368,7 +1368,7 @@ namespace CashInTerminalWpf
                     _CcnetDevice.DeviceState.AvailableCurrencies = new List<string>();
                     Log.Warn("Currency is null");
                 }
-                
+
                 var versionRequest = new TerminalVersionExtRequest
                 {
                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),

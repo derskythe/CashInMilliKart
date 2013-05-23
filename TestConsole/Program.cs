@@ -7,9 +7,12 @@ using System.Text.RegularExpressions;
 using CashInTerminalWpf;
 using CashInTerminalWpf.Enums;
 using Containers;
+using Containers.Enums;
+using Db;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
+using TestConsole.Properties;
 using crypto;
 
 namespace TestConsole
@@ -28,6 +31,16 @@ namespace TestConsole
         static void Main(string[] args)
         {
             var billmask = new BitArray(48);
+
+            Regex pRegex = new Regex("[^0-9a-z]+", RegexOptions.IgnoreCase);
+            String val = "Пе56656565ккееTEST";
+
+            val = pRegex.Replace(val, "");
+
+            //OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
+            //OracleDb.Instance.CheckConnection();
+            //int count = 0;
+            //OracleDb.Instance.ListTerminals(TerminalColumns.Id, SortType.Asc, 0, 1000, out count);
 
             //var currencies = new List<int>();
             //for (int i = 0; i < 30; i++)
