@@ -298,7 +298,7 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kredit hələ açıqdı.
+        ///   Looks up a localized string similar to Kredit hələ açıqdır.
         /// </summary>
         public static string CreditOpen {
             get {

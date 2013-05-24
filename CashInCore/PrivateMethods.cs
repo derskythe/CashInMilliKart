@@ -31,8 +31,8 @@ namespace CashInCore
             {
                 return String.Empty;
             }
-            var pRegex = new Regex(@"[^0-9a-z\;\,\.\-\+\s]+", RegexOptions.IgnoreCase);
-            return pRegex.Replace(value, "").Trim();
+            var pRegex = new Regex(@"[^0-9a-z\;\,\.\-\+\s]", RegexOptions.IgnoreCase);
+            return pRegex.Replace(value, String.Empty).Trim();
         }
 
         private bool CheckSignature(String terminalId, DateTime terminalDate, String signature)

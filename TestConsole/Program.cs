@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using CashInTerminalWpf;
@@ -32,8 +33,11 @@ namespace TestConsole
         {
             var billmask = new BitArray(48);
 
-            Regex pRegex = new Regex("[^0-9a-z]+", RegexOptions.IgnoreCase);
-            String val = "Пе56656565ккееTEST";
+            Regex pRegex = new Regex("[^0-9a-z]", RegexOptions.IgnoreCase);
+            String val = "Пе56656565кк$$#$#&@$@!*#/!$!)%@*($!(~~~)@~!ееTEST";
+
+            var t =
+                string.Concat(val.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries)).Trim();
 
             val = pRegex.Replace(val, "");
 
