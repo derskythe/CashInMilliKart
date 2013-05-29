@@ -27,6 +27,7 @@ namespace CashInTerminalWpf
         private string _ProductName;
         private List<CheckField> _Template;
         private BonusResponse _Response;
+        private bool _OpenCredit;
 
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable InconsistentNaming
@@ -172,11 +173,19 @@ namespace CashInTerminalWpf
                 Log.ErrorException(exp.Message, exp);
             }
 
-
+            double leftAmount;
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
             {
                 LabelCommission.Visibility = Visibility.Visible;
+                leftAmount = _FormMain.ClientInfo.Client.AmountLeft * _FormMain.ClientInfo.Client.CurrencyRate;
             }
+            else
+            {
+                leftAmount = _FormMain.ClientInfo.Client.AmountLeft - _FormMain.ClientInfo.CashCodeAmount;
+            }
+
+            _OpenCredit = leftAmount > 0;
+
             //base.OnLoad(e);
             if (_FormMain.ClientInfo == null)
             {
@@ -323,7 +332,7 @@ namespace CashInTerminalWpf
                 value = value.Replace(TemplateFields.Address, _FormMain.TerminalInfo.Address);
             }
             //value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId : @"[NULL]");
-            value = value.Replace(TemplateFields.FullPaymentFlag, _FormMain.ClientInfo != null && _FormMain.ClientInfo.Client.AmountLeft > _FormMain.ClientInfo.CashCodeAmount ? Properties.Resources.CreditOpen : Properties.Resources.CreditClosed);
+            value = value.Replace(TemplateFields.FullPaymentFlag, _OpenCredit ? Properties.Resources.CreditOpen : Properties.Resources.CreditClosed);
             if (_Response != null && _Response.Bonus > 0)
             {
                 value = value.Replace(TemplateFields.Bonus, _Response.Bonus.ToString("0.00") + " AZN");
