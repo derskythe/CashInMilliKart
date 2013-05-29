@@ -22,6 +22,7 @@
         <Label Margin="5,2.5" Name="LabelOutOfOrder" Style="{StaticResource BigLabelStyle}" Grid.Row="2" Grid.Column="0" MaxWidth="900" HorizontalAlignment="Center" VerticalAlignment="Top">
             <TextBlock Text="{x:Static res:Resources.LabelOutOfOrder}" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
         </Label>
+
         <Label Name="LabelTerminal"  Grid.Row="3" Content="" HorizontalAlignment="Right" Style="{StaticResource SmallLabelStyle}" />
     </Grid>
 </Page>

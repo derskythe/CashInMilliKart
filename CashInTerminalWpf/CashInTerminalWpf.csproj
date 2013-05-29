@@ -35,7 +35,7 @@
     <SuiteName>CashIn</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>142</ApplicationRevision>
+    <ApplicationRevision>157</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -401,6 +401,9 @@
     <None Include="ds.xss">
       <DependentUpon>ds.xsd</DependentUpon>
     </None>
+    <Resource Include="biznes_baner.png" />
+    <Resource Include="b_fon.png" />
+    <Resource Include="fon.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -463,6 +466,15 @@
     <Resource Include="favicon.ico" />
     <Resource Include="Resources\next.png" />
     <Resource Include="Resources\back.png" />
+    <Resource Include="pvb.png" />
+    <Resource Include="Resources\f1.png" />
+    <Resource Include="Resources\f2.png" />
+    <Resource Include="Resources\fb1.png" />
+    <Resource Include="Resources\fb2.png" />
+    <Resource Include="Resources\fk1.png" />
+    <Resource Include="Resources\fk2.png" />
+    <Resource Include="Resources\next.fw.png" />
+    <Resource Include="Resources\pvb.png" />
     <Content Include="Terminal.s3db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

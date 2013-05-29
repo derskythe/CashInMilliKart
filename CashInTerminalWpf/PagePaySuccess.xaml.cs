@@ -187,7 +187,10 @@ namespace CashInTerminalWpf
                 LabelAmount.Content = _FormMain.ClientInfo.CashCodeAmount.ToString("N0") + @" " + _FormMain.ClientInfo.CurrentCurrency;
             }
 
-            
+            LabelTransaction.Content = Properties.Resources.TransactionID + @": " + (_FormMain.ClientInfo != null
+                                           ? _FormMain.ClientInfo.TransactionId
+                                           : @"[NULL]");
+
             try
             {
                 _Response = _FormMain.InfoResponse as BonusResponse;
@@ -312,14 +315,14 @@ namespace CashInTerminalWpf
             value = value.Replace(TemplateFields.DateTime, _DateNow);
             value = value.Replace(TemplateFields.OperationCode, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.PaymentId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
             value = value.Replace(TemplateFields.ProductName, _ProductName);
-            value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+            value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId : @"[NULL]");
             if (_FormMain.TerminalInfo != null)
             {
                 value = value.Replace(TemplateFields.Branch, _FormMain.TerminalInfo.BranchName);
                 value = value.Replace(TemplateFields.TerminalId, _FormMain.TerminalInfo.Id.ToString(CultureInfo.InvariantCulture));
                 value = value.Replace(TemplateFields.Address, _FormMain.TerminalInfo.Address);
             }
-            value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId.ToString(CultureInfo.InvariantCulture) : @"[NULL]");
+            //value = value.Replace(TemplateFields.TransactionId, _FormMain.ClientInfo != null ? _FormMain.ClientInfo.TransactionId : @"[NULL]");
             value = value.Replace(TemplateFields.FullPaymentFlag, _FormMain.ClientInfo != null && _FormMain.ClientInfo.Client.AmountLeft > _FormMain.ClientInfo.CashCodeAmount ? Properties.Resources.CreditOpen : Properties.Resources.CreditClosed);
             if (_Response != null && _Response.Bonus > 0)
             {

@@ -283,4 +283,7 @@
   <data name="ServiceName" xml:space="preserve">
     <value>Service</value>
   </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>Əməliyyat ID</value>
+  </data>
 </root>

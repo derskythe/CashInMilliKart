@@ -16,8 +16,11 @@
         </Grid.RowDefinitions>
         <UniformGrid x:Name="Grid" Columns="1" VerticalAlignment="Top" Grid.Row="0">
             <Button Style="{StaticResource MenuButtonStyle}" Content="Sample button" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Sample button" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Sample button" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Sample button" />
         </UniformGrid>
-        <Label Name="LabelTestVersion"  Grid.Row="2" Content="Тестовая версия!" Foreground="DarkRed" HorizontalAlignment="Center" Style="{StaticResource BigLabelStyle}" />
+        <Label Name="LabelTestVersion"  Grid.Row="2" Content="Тестовая версия!" Foreground="DarkRed" HorizontalAlignment="Center" Style="{StaticResource BigLabelStyle}" Margin="0,5,0,0" />
         <Label Name="LabelTerminal"  Grid.Row="3" Content="" HorizontalAlignment="Right" Style="{StaticResource SmallLabelStyle}" />
     </Grid>
 </Page>

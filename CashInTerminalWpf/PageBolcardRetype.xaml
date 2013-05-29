@@ -36,7 +36,7 @@
 
         <DockPanel  Margin="8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
             <Button Name="ButtonBack" MinWidth="93" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />
-            <Button Name="ButtonNext" MinWidth="93" Margin="10,0,0,0" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelNext}" Click="ButtonNextClick" />
+            <Button Name="ButtonNext" MinWidth="93" Margin="10,0,0,0" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelNext}" Click="ButtonNextClick" />            
         </DockPanel>
     </Grid>
 </Page>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignInstance="App.xaml"
+             mc:Ignorable="d" d:DesignInstance="App.xaml" 
              d:DesignHeight="362" d:DesignWidth="584" MinWidth="584" MinHeight="362">
     <Grid Height="362" Width="584" Background="Transparent">
         <Grid.RowDefinitions>
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnA" Grid.Column="0" Grid.Row="0" Click="BtnClick">A</Button>
+        <Button Style="{DynamicResource NumpadButtonStyle2}" Name="BtnA" Grid.Column="0" Grid.Row="0" Click="BtnClick">A</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnB" Grid.Column="1" Grid.Row="0" Click="BtnClick">B</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnC" Grid.Column="2" Grid.Row="0" Click="BtnClick">C</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnD" Grid.Column="3" Grid.Row="0" Click="BtnClick">D</Button>
@@ -31,7 +31,7 @@
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnG" Grid.Column="6" Grid.Row="0" Click="BtnClick">G</Button>
 
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnH" Grid.Column="0" Grid.Row="1" Click="BtnClick">H</Button>
-        <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnI" Grid.Column="1" Grid.Row="1" Click="BtnClick">I</Button>
+        <Button Style="{DynamicResource NumpadButtonStyle2}" Name="BtnI" Grid.Column="1" Grid.Row="1" Click="BtnClick">I</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnJ" Grid.Column="2" Grid.Row="1" Click="BtnClick">J</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnK" Grid.Column="3" Grid.Row="1" Click="BtnClick">K</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnL" Grid.Column="4" Grid.Row="1" Click="BtnClick">L</Button>

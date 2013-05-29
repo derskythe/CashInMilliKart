@@ -812,24 +812,24 @@ namespace CashInTerminalWpf
                     _DeviceState.Nominal = 0;
                     _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
                     _DeviceState.Stacking = true;
-
                     _DeviceState.Currency = CurrentCurrency;
 
                     KeyValuePair<int, String> value;
                     _BillTable.TryGetValue(_DeviceState.SubStateCode, out value);
 
                     if (value.Key > 0)
-                    {
-                        _DeviceState.Stacking = false;
+                    {                        
                         _DeviceState.Nominal = value.Key;
                         _DeviceState.WasAmount = _DeviceState.Amount;
-                        _DeviceState.Amount += _DeviceState.Nominal;
+                        _DeviceState.Amount += _DeviceState.Nominal;                        
                     }
                     else
                     {
-                        _DeviceState.Stacking = false;
-                        Return();
+                        Log.Error("Invalid value in table: " + _DeviceState.SubStateCode);                        
                     }
+
+                    _DeviceState.Stacking = false;
+
                     BillStacked(_DeviceState);
                     break;
 

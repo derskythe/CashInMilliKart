@@ -30,7 +30,7 @@
         <Button Style="{StaticResource NumpadButtonStyle}" Name="Btn2" Grid.Column="1" Grid.Row="2" Click="Btn2Click">2</Button>
         <Button Style="{StaticResource NumpadButtonStyle}" Name="Btn3" Grid.Column="2" Grid.Row="2" Click="Btn3Click">3</Button>        
         
-        <Button Style="{DynamicResource NumpadBackSpaceButtonStyle}" Name="BtnBackSpace" Grid.Column="0" Grid.Row="3" Click="BtnBackSpaceClick" />
+        <Button Style="{StaticResource NumpadBackSpaceButtonStyle}" Name="BtnBackSpace" Grid.Column="0" Grid.Row="3" Click="BtnBackSpaceClick" />
         <Button Style="{StaticResource NumpadButtonStyle}" Name="Btn0" Grid.Column="1" Grid.Row="3" Click="Btn0Click">0</Button>
         <Button Style="{StaticResource NumpadButtonStyle}" Name="BtnClear" Grid.Column="2" Grid.Row="3" Click="BtnClearClick">C</Button>
     </Grid>

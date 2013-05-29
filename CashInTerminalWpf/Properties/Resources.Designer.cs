@@ -527,6 +527,15 @@ namespace CashInTerminalWpf.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Əməliyyat ID.
+        /// </summary>
+        public static string TransactionID {
+            get {
+                return ResourceManager.GetString("TransactionID", resourceCulture);
+            }
+        }
+        
         public static System.Drawing.Bitmap Unavailable {
             get {
                 object obj = ResourceManager.GetObject("Unavailable", resourceCulture);
