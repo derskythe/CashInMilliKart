@@ -41,6 +41,11 @@ namespace TestConsole
 
             val = pRegex.Replace(val, "");
 
+            TimeSpan _MaxTime = new TimeSpan(700 * 10000);
+            TimeSpan _MaxTime2 = new TimeSpan(0, 0, 0, 1);
+
+            Console.WriteLine(_MaxTime.TotalMilliseconds);
+
             //OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             //OracleDb.Instance.CheckConnection();
             //int count = 0;

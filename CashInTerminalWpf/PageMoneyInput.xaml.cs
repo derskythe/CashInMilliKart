@@ -122,7 +122,7 @@ namespace CashInTerminalWpf
                         _FormMain.ClientInfo.CurrentCurrency,
                         1,
                         Convert.ToInt32(_FormMain.ClientInfo.CashCodeAmount));
-
+                    // TODO : REMOVE THIS!!!!!!!!!!!!!!!!!!
                     _FormMain.Db.ConfirmTransaction(_FormMain.ClientInfo.PaymentId);
                 }
 

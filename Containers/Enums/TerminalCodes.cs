@@ -33,6 +33,9 @@ namespace Containers.Enums
         [Description("No paper")]
         NoPaper = 7,
 
+        [Description("No paper")]
+        Updating = 8,
+
         [Description("Test mode")]
         TestMode = 32,
 

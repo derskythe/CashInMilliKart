@@ -16,36 +16,116 @@ namespace CashInTerminalWpf
         public List<ds.PaymentsRow> GetTransactions()
         {
             var rowList = new List<ds.PaymentsRow>();
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                var table = new ds.PaymentsDataTable();
-
-                adapter.FillByConfirmed(table);
-
-                foreach (ds.PaymentsRow item in table.Rows)
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
                 {
-                    rowList.Add(item);
-                }
+                    using (var table = new ds.PaymentsDataTable())
+                    {
+                        adapter.FillByConfirmed(table);
 
-                connection.Close();
+                        foreach (ds.PaymentsRow item in table.Rows)
+                        {
+                            rowList.Add(item);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return rowList;
         }
 
-        public int GetCasseteTotal(string currency)
+        public void UpdateOrphanedTransactions()
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
+            {                
+                using (var adapter = new PaymentsTableAdapter {Connection = connection})
+                {
+                    using (var table = new ds.PaymentsDataTable())
+                    {
+                        adapter.FillByNonConfirmed(table);
+
+                        foreach (ds.PaymentsRow item in table.Rows)
+                        {
+                            var amount = CountTransactionAmount(item.Id);
+
+                            if (amount > 0)
+                            {
+                                UpdateAmount(item.Id, item.Currency, 1, amount);
+                                ConfirmTransaction(item.Id);
+                            }
+                        }
+                    }
+                }
+            }
+            finally
             {
-                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
-
-                var raw = adapter.Total(currency);
-
-                if (raw != null && raw != DBNull.Value)
+                if (connection != null)
                 {
                     connection.Close();
-                    return Convert.ToInt32(raw);
+                    connection.Dispose();
+                }
+            }
+        }
+
+        public int CountTransactionAmount(long parentId)
+        {
+            var connection = GetConnection();
+            try
+            {
+                using (var adapter = new PaymentBanknotesTableAdapter() { Connection = connection })
+                {
+                    var result = adapter.CountAmount(parentId);
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+            return 0;
+        }
+
+        public int GetCasseteTotal(string currency)
+        {
+            var connection = GetConnection();
+            try
+            {
+                using (var adapter = new CasseteBanknotesTableAdapter { Connection = connection })
+                {
+                    var raw = adapter.Total(currency);
+
+                    if (raw != null && raw != DBNull.Value)
+                    {
+                        return Convert.ToInt32(raw);
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
                 }
             }
             return 0;
@@ -55,19 +135,30 @@ namespace CashInTerminalWpf
         {
             var rowList = new List<ds.CasseteBanknotesRow>();
 
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
-                var table = new ds.CasseteBanknotesDataTable();
-
-                adapter.Fill(table);
-
-                foreach (ds.CasseteBanknotesRow row in table.Rows)
+                using (var adapter = new CasseteBanknotesTableAdapter { Connection = connection })
                 {
-                    rowList.Add(row);
-                }
+                    using (var table = new ds.CasseteBanknotesDataTable())
+                    {
 
-                connection.Close();
+                        adapter.Fill(table);
+
+                        foreach (ds.CasseteBanknotesRow row in table.Rows)
+                        {
+                            rowList.Add(row);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return rowList;
@@ -77,18 +168,29 @@ namespace CashInTerminalWpf
         {
             var rowList = new List<ds.PaymentBanknotesRow>();
 
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentBanknotesTableAdapter { Connection = connection };
-                var table = new ds.PaymentBanknotesDataTable();
-
-                adapter.FillByParentId(table, id);
-
-                foreach (ds.PaymentBanknotesRow row in table.Rows)
+                using (var adapter = new PaymentBanknotesTableAdapter { Connection = connection })
                 {
-                    rowList.Add(row);
+                    using (var table = new ds.PaymentBanknotesDataTable())
+                    {
+                        adapter.FillByParentId(table, id);
+
+                        foreach (ds.PaymentBanknotesRow row in table.Rows)
+                        {
+                            rowList.Add(row);
+                        }
+                    }
                 }
-                connection.Close();
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return rowList;
@@ -98,19 +200,29 @@ namespace CashInTerminalWpf
         {
             var rowList = new List<ds.PaymentValuesRow>();
 
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentValuesTableAdapter { Connection = connection };
-                var table = new ds.PaymentValuesDataTable();
-
-                adapter.FillByParentId(table, id);
-
-                foreach (ds.PaymentValuesRow row in table.Rows)
+                using (var adapter = new PaymentValuesTableAdapter { Connection = connection })
                 {
-                    rowList.Add(row);
-                }
+                    using (var table = new ds.PaymentValuesDataTable())
+                    {
+                        adapter.FillByParentId(table, id);
 
-                connection.Close();
+                        foreach (ds.PaymentValuesRow row in table.Rows)
+                        {
+                            rowList.Add(row);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return rowList;
@@ -120,19 +232,29 @@ namespace CashInTerminalWpf
         {
             var rowList = new List<ds.CheckTemplateRow>();
 
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CheckTemplateTableAdapter { Connection = connection };
-                var table = new ds.CheckTemplateDataTable();
-
-                adapter.FillByType(table, type, language);
-
-                foreach (ds.CheckTemplateRow row in table.Rows)
+                using (var adapter = new CheckTemplateTableAdapter { Connection = connection })
                 {
-                    rowList.Add(row);
-                }
+                    using (var table = new ds.CheckTemplateDataTable())
+                    {
+                        adapter.FillByType(table, type, language);
 
-                connection.Close();
+                        foreach (ds.CheckTemplateRow row in table.Rows)
+                        {
+                            rowList.Add(row);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return rowList;
@@ -141,20 +263,29 @@ namespace CashInTerminalWpf
         public List<ds.TemplateFieldRow> ListTemplateFields(long checkTemplateId)
         {
             var rowList = new List<ds.TemplateFieldRow>();
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new TemplateFieldTableAdapter { Connection = connection };
-                var table = new ds.TemplateFieldDataTable();
-
-                adapter.FillByCheckTemplateId(table, checkTemplateId);
-
-
-                foreach (ds.TemplateFieldRow row in table.Rows)
+                using (var adapter = new TemplateFieldTableAdapter { Connection = connection })
                 {
-                    rowList.Add(row);
-                }
+                    using (var table = new ds.TemplateFieldDataTable())
+                    {
 
-                connection.Close();
+                        adapter.FillByCheckTemplateId(table, checkTemplateId);
+                        foreach (ds.TemplateFieldRow row in table.Rows)
+                        {
+                            rowList.Add(row);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return rowList;
@@ -169,66 +300,127 @@ namespace CashInTerminalWpf
                 DeleteByCheckTemplateId(row.Id);
             }
 
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CheckTemplateTableAdapter { Connection = connection };
-                adapter.DeleteTemplateByType(type, language);
-                connection.Close();
+                using (var adapter = new CheckTemplateTableAdapter { Connection = connection })
+                {
+                    adapter.DeleteTemplateByType(type, language);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void DeleteByCheckTemplateId(long id)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new TemplateFieldTableAdapter { Connection = connection };
-                adapter.DeleteByCheckTemplateId(id);
-                connection.Close();
+                using (var adapter = new TemplateFieldTableAdapter { Connection = connection })
+                {
+                    adapter.DeleteByCheckTemplateId(id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void UpdateNonConfirmed(DateTime beforeDate)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                adapter.UpdateNonConfirmed(beforeDate);
-                connection.Close();
-            }            
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
+                {
+                    adapter.UpdateNonConfirmed(beforeDate);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
         }
 
         public void UpdateTemplate(long id, DateTime updateDate)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CheckTemplateTableAdapter { Connection = connection };
-                adapter.UpdateTemplate(updateDate, id);
-                connection.Close();
+                using (var adapter = new CheckTemplateTableAdapter { Connection = connection })
+                {
+                    adapter.UpdateTemplate(updateDate, id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void InsertTemplate(long id, long type, String language, DateTime updateDate)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CheckTemplateTableAdapter { Connection = connection };
-                adapter.InsertTemplate(id, type, language, updateDate);
-                connection.Close();
+                using (var adapter = new CheckTemplateTableAdapter { Connection = connection })
+                {
+                    adapter.InsertTemplate(id, type, language, updateDate);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public ds.CheckTemplateRow GetCheckTemplate(long id)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CheckTemplateTableAdapter { Connection = connection };
-                var table = new ds.CheckTemplateDataTable();
-
-                adapter.FillById(table, id);
-                foreach (ds.CheckTemplateRow row in table.Rows)
+                using (var adapter = new CheckTemplateTableAdapter { Connection = connection })
+                {
+                    using (var table = new ds.CheckTemplateDataTable())
+                    {
+                        adapter.FillById(table, id);
+                        foreach (ds.CheckTemplateRow row in table.Rows)
+                        {
+                            return row;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
                 {
                     connection.Close();
-                    return row;
+                    connection.Dispose();
                 }
             }
 
@@ -239,18 +431,28 @@ namespace CashInTerminalWpf
         {
             var result = new List<ds.CountBanknotesRow>();
 
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CountBanknotesTableAdapter { Connection = connection };
-                var table = new ds.CountBanknotesDataTable();
-
-                adapter.Fill(table);
-                foreach (ds.CountBanknotesRow row in table.Rows)
-                {                    
-                    result.Add(row);
+                using (var adapter = new CountBanknotesTableAdapter { Connection = connection })
+                {
+                    using (var table = new ds.CountBanknotesDataTable())
+                    {
+                        adapter.Fill(table);
+                        foreach (ds.CountBanknotesRow row in table.Rows)
+                        {
+                            result.Add(row);
+                        }
+                    }
                 }
-
-                connection.Close();
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
 
             return result;
@@ -258,46 +460,79 @@ namespace CashInTerminalWpf
 
         public void InsertCheckTemplateField(long id, long parentId, long type, String value, byte[] image, long orderNumber)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new TemplateFieldTableAdapter { Connection = connection };
-                adapter.InsertCheckTemplateField(id, parentId, type, value, image, orderNumber);
-                connection.Close();
+                using (var adapter = new TemplateFieldTableAdapter { Connection = connection })
+                {
+                    adapter.InsertCheckTemplateField(id, parentId, type, value, image, orderNumber);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void DeleteTransaction(long id)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                adapter.DeleteTransaction(id);
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
+                {
+                    adapter.DeleteTransaction(id);
+                }
 
-                var banknoteAdapter = new PaymentBanknotesTableAdapter { Connection = connection };
-                banknoteAdapter.DeleteBanknotes(id);
+                using (var banknoteAdapter = new PaymentBanknotesTableAdapter { Connection = connection })
+                {
+                    banknoteAdapter.DeleteBanknotes(id);
+                }
 
-                var paymentValuesAdapter = new PaymentValuesTableAdapter { Connection = connection };
-                paymentValuesAdapter.DeleteValuesBytTransaction(id);
-
-                connection.Close();
+                using (var paymentValuesAdapter = new PaymentValuesTableAdapter { Connection = connection })
+                {
+                    paymentValuesAdapter.DeleteValuesBytTransaction(id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public long InsertTransaction(long productId, long serviceId, string currency, decimal currencyRate, int amount, int terminalId,
             string creditNumber, int operationType, bool confirmed)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0,
-                                          operationType, creditNumber, serviceId);
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
+                {
+                    adapter.InsertTransaction(productId, currency, currencyRate, amount, null, confirmed ? 1 : 0,
+                                              operationType, creditNumber, serviceId);
 
-                var insertId = adapter.GetInsertId();
+                    var insertId = adapter.GetInsertId();
 
-                if (insertId != null)
+                    if (insertId != null)
+                    {
+                        return Convert.ToInt64(insertId);
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
                 {
                     connection.Close();
-                    return Convert.ToInt64(insertId);
+                    connection.Dispose();
                 }
             }
 
@@ -306,85 +541,165 @@ namespace CashInTerminalWpf
 
         public void UpdateAmount(long id, string currency, decimal currencyRate, int amount)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                adapter.UpdateAmount(currency, currencyRate, amount, id);
-                connection.Close();
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
+                {
+                    adapter.UpdateAmount(currency, currencyRate, amount, id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void UpdateTransactionId(long id, string transId)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                adapter.UpdateTransactionId(transId, id);
-                connection.Close();
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
+                {
+                    adapter.UpdateTransactionId(transId, id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void ConfirmTransaction(long id)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentsTableAdapter { Connection = connection };
-                adapter.UpdateConfirmed(1, id);
-                connection.Close();
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
+                {
+                    adapter.UpdateConfirmed(1, id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void InsertBanknote(long parentId, int amount, string currency, int orderNumber)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentBanknotesTableAdapter { Connection = connection };
-                adapter.InsertBanknote(parentId, amount, currency, orderNumber);
-                connection.Close();
+                using (var adapter = new PaymentBanknotesTableAdapter { Connection = connection })
+                {
+                    adapter.InsertBanknote(parentId, amount, currency, orderNumber);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void InsertPaymentValue(long parentId, string value, int orderNumber)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new PaymentValuesTableAdapter { Connection = connection };
-                adapter.InsertPaymentValue(parentId, value, orderNumber);
-                connection.Close();
+                using (var adapter = new PaymentValuesTableAdapter { Connection = connection })
+                {
+                    adapter.InsertPaymentValue(parentId, value, orderNumber);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void DeleteCasseteBanknotes()
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
-                adapter.DeleteAll();
-                connection.Close();
+                using (var adapter = new CasseteBanknotesTableAdapter { Connection = connection })
+                {
+                    adapter.DeleteAll();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public void InsertTransactionBanknotes(int amount, String currency, String transId)
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
-                adapter.Insert(DateTime.Now, currency, transId, amount);
-                connection.Close();
+                using (var adapter = new CasseteBanknotesTableAdapter { Connection = connection })
+                {
+                    adapter.Insert(DateTime.Now, currency, transId, amount);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
         }
 
         public int CountCasseteBanknotes()
         {
-            using (var connection = GetConnection())
+            var connection = GetConnection();
+            try
             {
-                var adapter = new CasseteBanknotesTableAdapter { Connection = connection };
-                var result = adapter.Count();
+                using (var adapter = new CasseteBanknotesTableAdapter { Connection = connection })
+                {
+                    var result = adapter.Count();
 
-                if (result != null)
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
                 {
                     connection.Close();
-                    return Convert.ToInt32(result);
+                    connection.Dispose();
                 }
             }
 

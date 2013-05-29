@@ -315,6 +315,7 @@ namespace CashInTerminalWpf
                 _Db = new LocalDb();
                 _Db.CountCasseteBanknotes();
                 LoadCheckTemplates();
+                UpdateOrphanedTransactions();
             }
             catch (Exception exp)
             {
@@ -375,6 +376,18 @@ namespace CashInTerminalWpf
             _CheckCheckTemplateTimer = new Timer(CheckTemplateTimer, null, 0, CHECK_CHECK_TEMPLATE_TIMER);
             _CheckApplicationUpdateTimer = new Timer(ApplicationUpdateTimer, null, 0, CHECK_APPLICATION_UPDATE_TIMER);
             _CheckBillTableTimer = new Timer(CheckBillTableTimer, null, CHECK_BILL_TABLE_TIMER_FIRST_TIME, CHECK_BILL_TABLE_TIMER);
+        }
+
+        private void UpdateOrphanedTransactions()
+        {
+            try
+            {
+                _Db.UpdateOrphanedTransactions();
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         #region Application Update
@@ -454,6 +467,7 @@ namespace CashInTerminalWpf
                 if (CanChangeViewOnCommand && !_CcnetDevice.DeviceState.BillEnable)
                 {
                     OpenForm(FormEnum.OutOfOrder);
+                    _TerminalStatus = TerminalCodes.Updating;
                     ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
                     updateCheck.Update();
                     Log.Info("The application has been upgraded, and will now restart.");
@@ -1778,7 +1792,8 @@ namespace CashInTerminalWpf
                 {
                     if (_CurrentForm != FormEnum.MoneyInput
                         && _CurrentForm != FormEnum.PaySuccess
-                        && _CurrentForm != FormEnum.Encashment)
+                        && _CurrentForm != FormEnum.Encashment
+                        && _TerminalStatus != TerminalCodes.Updating)
                     {
                         return true;
                     }
