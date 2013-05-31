@@ -48,8 +48,7 @@ namespace CashInTerminalWpf
         private readonly Timer _BackgroundPingTimer;
         private bool _TimedOut;
         private bool _Disposing;
-        private DateTime _LastReceived;
-        private readonly object _LastReceivedLock = new object();
+        private readonly LastBillInsertTime _LastReceived = new LastBillInsertTime();
         readonly TimeSpan _MaxTime = new TimeSpan(900 * 10000);
         private CCNETControllerCommand _CurrentCommand;
         private readonly Dictionary<int, KeyValuePair<int, String>> _BillTable = new Dictionary<int, KeyValuePair<int, String>>(10);
@@ -569,9 +568,9 @@ namespace CashInTerminalWpf
         {
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
-            lock (_LastReceivedLock)
+            lock (_LastReceived)
             {
-                _LastReceived = DateTime.Now;
+                _LastReceived.LastBillInsert = DateTime.Now;
             }
 
             var billmask = new BitArray(48);
@@ -630,9 +629,9 @@ namespace CashInTerminalWpf
         {
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
-            lock (_LastReceivedLock)
+            lock (_LastReceived)
             {
-                _LastReceived = DateTime.Now;
+                _LastReceived.LastBillInsert = DateTime.Now;
             }
 
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
@@ -819,11 +818,11 @@ namespace CashInTerminalWpf
 
                 case CCNETResponseStatus.BillStacked:
                 case CCNETResponseStatus.BillAccepting:
-                    lock (_LastReceivedLock)
+                    lock (_LastReceived)
                     {
-                        if (DateTime.Now - _LastReceived > _MaxTime)
+                        if (DateTime.Now - _LastReceived.LastBillInsert > _MaxTime)
                         {
-                            _LastReceived = DateTime.Now;
+                            _LastReceived.LastBillInsert = DateTime.Now;
                             _DeviceState.Nominal = 0;
                             _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
                             _DeviceState.Stacking = true;
@@ -848,7 +847,7 @@ namespace CashInTerminalWpf
                         }
                         else
                         {
-                            Log.Warn(String.Format("Max time : {0}, {1}", (_LastReceived - DateTime.Now), _MaxTime));
+                            Log.Warn(String.Format("Max time : {0}, {1}", (_LastReceived.LastBillInsert - DateTime.Now), _MaxTime));
                         }
                     }
                     break;
@@ -1173,6 +1172,26 @@ namespace CashInTerminalWpf
                 }
                 _ByteCrcL = Convert.ToUInt16(tempCrc >> 8);
                 _ByteCrcH = Convert.ToUInt16(tempCrc);
+            }
+        }
+
+        #endregion
+
+        #region LastBillInsertTime
+
+        internal class LastBillInsertTime
+        {
+            private DateTime _LastBillInsert;
+
+            public DateTime LastBillInsert
+            {
+                get { return _LastBillInsert; }
+                set { _LastBillInsert = value; }
+            }
+
+            public LastBillInsertTime()
+            {
+                _LastBillInsert = DateTime.MinValue;
             }
         }
 

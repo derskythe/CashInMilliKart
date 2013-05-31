@@ -62,7 +62,7 @@ namespace LogAnalizer
                 var totalTrans = new Dictionary<String, int>();
                 var sql = new StringBuilder();
                 sql.Append("SELECT * FROM products_history t WHERE ");
-                List<String> transactionList = new List<string>();
+                var transactionList = new List<string>();
                 String prevTransaction = String.Empty;
 
                 foreach (var line in splited)
