@@ -49,7 +49,8 @@ namespace CashInTerminalWpf
         private bool _TimedOut;
         private bool _Disposing;
         private DateTime _LastReceived;
-        readonly TimeSpan _MaxTime = new TimeSpan(700 * 10000);
+        private readonly object _LastReceivedLock = new object();
+        readonly TimeSpan _MaxTime = new TimeSpan(900 * 10000);
         private CCNETControllerCommand _CurrentCommand;
         private readonly Dictionary<int, KeyValuePair<int, String>> _BillTable = new Dictionary<int, KeyValuePair<int, String>>(10);
         /*
@@ -129,7 +130,7 @@ namespace CashInTerminalWpf
         {
             get { return _TimedOut; }
             set { _TimedOut = value; }
-        }
+        }       
 
         #endregion
 
@@ -568,7 +569,10 @@ namespace CashInTerminalWpf
         {
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
-            _LastReceived = DateTime.Now;
+            lock (_LastReceivedLock)
+            {
+                _LastReceived = DateTime.Now;
+            }
 
             var billmask = new BitArray(48);
 
@@ -626,7 +630,10 @@ namespace CashInTerminalWpf
         {
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
-            _LastReceived = DateTime.Now;
+            lock (_LastReceivedLock)
+            {
+                _LastReceived = DateTime.Now;
+            }
 
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
             //var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -811,37 +818,39 @@ namespace CashInTerminalWpf
                     break;
 
                 case CCNETResponseStatus.BillStacked:
-                case CCNETResponseStatus.BillAccepting:                    
-                    if (DateTime.Now - _LastReceived  > _MaxTime)
+                case CCNETResponseStatus.BillAccepting:
+                    lock (_LastReceivedLock)
                     {
-                        _LastReceived = DateTime.Now;
-                        _DeviceState.Nominal = 0;
-                        _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
-                        _DeviceState.Stacking = true;
-                        _DeviceState.Currency = CurrentCurrency;
-
-                        KeyValuePair<int, String> value;
-                        _BillTable.TryGetValue(_DeviceState.SubStateCode, out value);
-
-                        if (value.Key > 0)
+                        if (DateTime.Now - _LastReceived > _MaxTime)
                         {
-                            _DeviceState.Nominal = value.Key;
-                            _DeviceState.WasAmount = _DeviceState.Amount;
-                            _DeviceState.Amount += _DeviceState.Nominal;
+                            _LastReceived = DateTime.Now;
+                            _DeviceState.Nominal = 0;
+                            _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
+                            _DeviceState.Stacking = true;
+                            _DeviceState.Currency = CurrentCurrency;
+
+                            KeyValuePair<int, String> value;
+                            _BillTable.TryGetValue(_DeviceState.SubStateCode, out value);
+
+                            if (value.Key > 0)
+                            {
+                                _DeviceState.Nominal = value.Key;
+                                _DeviceState.WasAmount = _DeviceState.Amount;
+                                _DeviceState.Amount += _DeviceState.Nominal;
+                            }
+                            else
+                            {
+                                Log.Error("Invalid value in table: " + _DeviceState.SubStateCode);
+                            }
+
+                            _DeviceState.Stacking = false;
+                            BillStacked(_DeviceState);
                         }
                         else
                         {
-                            Log.Error("Invalid value in table: " + _DeviceState.SubStateCode);
+                            Log.Warn(String.Format("Max time : {0}, {1}", (_LastReceived - DateTime.Now), _MaxTime));
                         }
-
-                        _DeviceState.Stacking = false;
-                        BillStacked(_DeviceState);
                     }
-                    else
-                    {
-                        Log.Warn(String.Format("Max time : {0}, {1}", (_LastReceived - DateTime.Now), _MaxTime));
-                    }
-                    
                     break;
 
                 case CCNETResponseStatus.BillReturned:

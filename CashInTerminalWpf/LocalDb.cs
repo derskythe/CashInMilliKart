@@ -83,7 +83,7 @@ namespace CashInTerminalWpf
             var connection = GetConnection();
             try
             {
-                using (var adapter = new PaymentBanknotesTableAdapter() { Connection = connection })
+                using (var adapter = new PaymentBanknotesTableAdapter { Connection = connection })
                 {
                     var result = adapter.CountAmount(parentId);
 
