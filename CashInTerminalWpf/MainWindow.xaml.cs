@@ -1150,7 +1150,9 @@ namespace CashInTerminalWpf
                                             OpenForm(typeof(FormLanguage));
                                         } else  */
                                         if ((_CurrentForm == FormEnum.OutOfOrder ||
-                                             _CurrentForm == FormEnum.TestMode) && _TerminalStatus != TerminalCodes.SystemError)
+                                             _CurrentForm == FormEnum.TestMode) 
+                                             && _TerminalStatus != TerminalCodes.SystemError 
+                                             && _TerminalStatus != TerminalCodes.Updating)
                                         {
                                             _TerminalStatus = TerminalCodes.Ok;
                                             Log.Warn("Received command " +
@@ -1774,7 +1776,8 @@ namespace CashInTerminalWpf
                         _CurrentForm != FormEnum.PaySuccess &&
                         _CurrentForm != FormEnum.Encashment &&
                         _CurrentForm != FormEnum.Activation &&
-                        _CurrentForm != FormEnum.OutOfOrder
+                        _CurrentForm != FormEnum.OutOfOrder &&
+                        _CurrentForm != FormEnum.Progress
                         )
                     {
                         return true;
@@ -1793,6 +1796,7 @@ namespace CashInTerminalWpf
                     if (_CurrentForm != FormEnum.MoneyInput
                         && _CurrentForm != FormEnum.PaySuccess
                         && _CurrentForm != FormEnum.Encashment
+                        && _CurrentForm != FormEnum.Progress
                         && _TerminalStatus != TerminalCodes.Updating)
                     {
                         return true;
@@ -1815,6 +1819,7 @@ namespace CashInTerminalWpf
                         _CurrentForm != FormEnum.Encashment &&
                         _CurrentForm != FormEnum.OutOfOrder &&
                         _CurrentForm != FormEnum.Activation &&
+                         _CurrentForm != FormEnum.Progress &&
                         _CurrentForm != FormEnum.Language)
                     {
                         return true;
