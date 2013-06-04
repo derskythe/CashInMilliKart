@@ -49,7 +49,7 @@ namespace CashInTerminalWpf
         private bool _TimedOut;
         private bool _Disposing;
         private long _LastReceived = 0;
-        readonly TimeSpan _MaxTime = new TimeSpan(900 * 10000);
+        readonly TimeSpan _MaxTime = new TimeSpan(700 * 10000);
         private CCNETControllerCommand _CurrentCommand;
         private readonly Dictionary<int, KeyValuePair<int, String>> _BillTable = new Dictionary<int, KeyValuePair<int, String>>(10);
         /*
@@ -840,7 +840,7 @@ namespace CashInTerminalWpf
                     }                    
                     else
                     {
-                        Log.Warn(String.Format("Max time : {0}, {1}", new TimeSpan(_LastReceived), _MaxTime));
+                        Log.Warn(String.Format("Max time : {0}, {1}", new TimeSpan(timeShift), _MaxTime));
                     }
 
                     break;

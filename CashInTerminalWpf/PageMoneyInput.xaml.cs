@@ -51,16 +51,16 @@ namespace CashInTerminalWpf
 
             _FormMain.CcnetDevice.BillStacked += CcnetDeviceOnBillStacked;
             _FormMain.CcnetDevice.ReadCommand += CcnetDeviceOnReadCommand;
-            _FormMain.CcnetDevice.BillRejected += CcnetDeviceOnBillRejected;
+            //_FormMain.CcnetDevice.BillRejected += CcnetDeviceOnBillRejected;
 
             var startCashCodeThread = new Thread(StartCashcode);
             startCashCodeThread.Start();
         }
 
-        private void CcnetDeviceOnBillRejected(CCNETDeviceState ccnetDeviceState)
-        {
-            Log.Info("Bill reject reason: " + ccnetDeviceState.RejectReason + " " + EnumEx.GetDescription(ccnetDeviceState.RejectReason));
-        }
+        //private void CcnetDeviceOnBillRejected(CCNETDeviceState ccnetDeviceState)
+        //{
+        //    Log.Info("Bill reject reason: " + ccnetDeviceState.RejectReason + " " + EnumEx.GetDescription(ccnetDeviceState.RejectReason));
+        //}
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
         {
