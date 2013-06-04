@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Threading;
 using CashInTerminalWpf.Enums;
 using CashInTerminalWpf.Properties;
-using Containers;
 using Containers.CashCode;
 using Containers.Enums;
 using NLog;

@@ -286,14 +286,17 @@ namespace CashInTerminalWpf
                 Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
                 Send(CCNETControllerCommand.Poll, null);
-                Thread.Sleep(POLLING_INTERVAL);
+                Thread.Sleep(POLLING_INTERVAL);                
 
                 if (_DeviceState.StateCode != CCNETResponseStatus.UnitDisabled)
                 {
                     Send(CCNETControllerCommand.Poll, null);
                     Thread.Sleep(POLLING_INTERVAL);
-                    _DeviceState.StateCode = CCNETResponseStatus.Error;
-                    ProccessStateCode();
+                    if (_DeviceState.StateCode != CCNETResponseStatus.UnitDisabled)
+                    {
+                        _DeviceState.StateCode = CCNETResponseStatus.Error;
+                        ProccessStateCode();
+                    }
                 }
 
                 Thread.Sleep(POLLING_INTERVAL);
@@ -309,6 +312,8 @@ namespace CashInTerminalWpf
                 Log.Error(exp.Message);
                 //Thread.CurrentThread.Abort();
             }
+
+
 
             StartCompleted(_DeviceState);
         }
