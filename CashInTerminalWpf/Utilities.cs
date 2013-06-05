@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
@@ -19,6 +20,8 @@ namespace CashInTerminalWpf
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
+        private static Regex _AlphaNumber = new Regex(@"^[a-zA-Z0-9\s\;\.\-]+$");
+
         [DllImport("user32.dll")]
         static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
@@ -33,6 +36,16 @@ namespace CashInTerminalWpf
         public static String FormatDate(DateTime value)
         {
             return value.ToString("HH:mm:ss dd.MM.yyyy");
+        }
+
+        public static bool AlphaNumber(String value)
+        {
+            if (!String.IsNullOrEmpty(value) && _AlphaNumber.IsMatch(value))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)

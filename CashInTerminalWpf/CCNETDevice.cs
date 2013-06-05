@@ -313,8 +313,6 @@ namespace CashInTerminalWpf
                 //Thread.CurrentThread.Abort();
             }
 
-
-
             StartCompleted(_DeviceState);
         }
 
@@ -684,7 +682,18 @@ namespace CashInTerminalWpf
 
         public void GetBillTable()
         {
-            Send(CCNETControllerCommand.GetBillTable, null);
+            if (!_DeviceState.BillEnable)
+            {
+                Send(CCNETControllerCommand.GetBillTable, null);
+            }
+        }
+
+        public void Identification()
+        {
+            if (!_DeviceState.BillEnable)
+            {
+                Send(CCNETControllerCommand.Identification, null);
+            }
         }
 
         //private void Hold()

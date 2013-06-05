@@ -801,11 +801,26 @@ namespace CashInTerminalWpf
         {
             try
             {
-                if (_CcnetDevice.DeviceState.AvailableCurrencies == null ||
+                if (!Utilities.AlphaNumber(_CcnetDevice.DeviceState.Identification) ||
+                    _CcnetDevice.DeviceState.AvailableCurrencies == null ||
                     _CcnetDevice.DeviceState.AvailableCurrencies.Count == 0)
                 {
+                    Log.Debug(String.Format("ID: {0}, AvailableCurrencies: {1}, IsAlphaNumber: {2}",
+                                            _CcnetDevice.DeviceState.Identification,
+                                            _CcnetDevice.DeviceState.AvailableCurrencies != null
+                                                ? _CcnetDevice.DeviceState.AvailableCurrencies.Count
+                                                : 0, Utilities.AlphaNumber(_CcnetDevice.DeviceState.Identification)));
+                    _CcnetDevice.Identification();
+                    Thread.Sleep(1000);
                     Log.Warn("Bill Table is null. Checkout");
                     _CcnetDevice.GetBillTable();
+                }
+                else
+                {
+                    Log.Debug(String.Format("ID: {0}, AvailableCurrencies: {1}, IsAlphaNumber: {2}", _CcnetDevice.DeviceState.Identification,
+                                  _CcnetDevice.DeviceState.AvailableCurrencies != null
+                                      ? _CcnetDevice.DeviceState.AvailableCurrencies.Count
+                                      : 0, Utilities.AlphaNumber(_CcnetDevice.DeviceState.Identification)));
                 }
             }
             catch (Exception exp)
