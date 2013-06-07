@@ -325,6 +325,7 @@
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="BaseForms\FormEnterByAlphabet.az-Latn-AZ.resx">
       <DependentUpon>FormEnterByAlphabet.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForms\FormEnterByAlphabet.resx">
       <DependentUpon>FormEnterByAlphabet.cs</DependentUpon>
@@ -436,6 +437,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMdiMain.resx">
       <DependentUpon>FormMdiMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMoneyInput.az-Latn-AZ.resx">
       <DependentUpon>FormMoneyInput.cs</DependentUpon>

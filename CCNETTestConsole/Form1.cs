@@ -10,6 +10,7 @@ namespace CCNETTestConsole
     {
         readonly CCNETDevice _Device = new CCNETDevice();
         private delegate void WriteLogDelegate(object item);
+        private delegate void WriteLogDelegate2(object item);
 
         public Form1()
         {
@@ -109,7 +110,7 @@ namespace CCNETTestConsole
 
         private void DeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)
         {
-            WriteLog(ccnetDeviceState.Nominal + " " + ccnetDeviceState.Currency);
+            WriteLog2(ccnetDeviceState.Nominal + " " + ccnetDeviceState.Currency);
         }
 
         private void DeviceOnStartCompleted(CCNETDeviceState ccnetDeviceState)
@@ -137,6 +138,18 @@ namespace CCNETTestConsole
             else
             {
                 richTextBox1.Text += (String) value + "\n";
+            }
+        }
+
+        private void WriteLog2(Object value)
+        {
+            if (richTextBox2.InvokeRequired)
+            {
+                richTextBox2.Invoke(new WriteLogDelegate2(WriteLog2), value);
+            }
+            else
+            {
+                richTextBox2.Text += (String)value + "\n";
             }
         }
 

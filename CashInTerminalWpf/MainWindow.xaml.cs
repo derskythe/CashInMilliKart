@@ -1241,18 +1241,21 @@ namespace CashInTerminalWpf
 
         private void UpdateTerminalStatusByDevices()
         {
-            Log.Debug(_CcnetDevice.DeviceState);
-            if (_CcnetDevice.DeviceState.FatalError)
+            if (_CurrentForm != FormEnum.MoneyInput)
             {
-                Log.Error(_CcnetDevice.DeviceState.DeviceStateDescription);
-
-                Log.Warn(_CcnetDevice.DeviceState);
-                _TerminalStatus = TerminalCodes.SystemError;
-
-                if (CanChangeViewOnError)
+                Log.Debug(_CcnetDevice.DeviceState);
+                if (_CcnetDevice.DeviceState.FatalError)
                 {
-                    //_Init = false;
-                    OpenForm(FormEnum.OutOfOrder);
+                    Log.Error(_CcnetDevice.DeviceState.DeviceStateDescription);
+
+                    Log.Warn(_CcnetDevice.DeviceState);
+                    _TerminalStatus = TerminalCodes.SystemError;
+
+                    if (CanChangeViewOnError)
+                    {
+                        //_Init = false;
+                        OpenForm(FormEnum.OutOfOrder);
+                    }
                 }
             }
 

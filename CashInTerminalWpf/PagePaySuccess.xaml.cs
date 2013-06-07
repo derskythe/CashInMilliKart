@@ -13,6 +13,7 @@ using Containers;
 using NLog;
 using BonusResponse = CashInTerminalWpf.CashIn.BonusResponse;
 using CheckField = CashInTerminalWpf.CashIn.CheckField;
+using Currency = CashInTerminalWpf.CashIn.Currency;
 
 namespace CashInTerminalWpf
 {
@@ -174,10 +175,11 @@ namespace CashInTerminalWpf
             }
 
             double leftAmount;
+
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
             {
                 LabelCommission.Visibility = Visibility.Visible;
-                leftAmount = _FormMain.ClientInfo.Client.AmountLeft * _FormMain.ClientInfo.Client.CurrencyRate;
+                leftAmount = _FormMain.ClientInfo.Client.AmountLeft - (_FormMain.ClientInfo.CashCodeAmount * _FormMain.ClientInfo.Client.CurrencyRate);
             }
             else
             {

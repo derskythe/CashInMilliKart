@@ -49,7 +49,8 @@ namespace CashInTerminalWpf
         private bool _TimedOut;
         private bool _Disposing;
         private long _LastReceived = 0;
-        readonly TimeSpan _MaxTime = new TimeSpan(700 * 10000);
+        private int _BillAcceptSequence = (int)CCNETResponseStatus.Ok;
+        readonly TimeSpan _MaxTime = new TimeSpan(1000 * 10000);
         private CCNETControllerCommand _CurrentCommand;
         private readonly Dictionary<int, KeyValuePair<int, String>> _BillTable = new Dictionary<int, KeyValuePair<int, String>>(10);
         /*
@@ -286,7 +287,7 @@ namespace CashInTerminalWpf
                 Send(CCNETControllerCommand.Poll, null);
                 Thread.Sleep(POLLING_INTERVAL);
                 Send(CCNETControllerCommand.Poll, null);
-                Thread.Sleep(POLLING_INTERVAL);                
+                Thread.Sleep(POLLING_INTERVAL);
 
                 if (_DeviceState.StateCode != CCNETResponseStatus.UnitDisabled)
                 {
@@ -739,6 +740,7 @@ namespace CashInTerminalWpf
             switch (_DeviceState.StateCode)
             {
                 case CCNETResponseStatus.Wait:
+                    Interlocked.Exchange(ref _BillAcceptSequence, (int)CCNETResponseStatus.Ok);
                     _DeviceState.StateCodeOut = CCNETResponseStatus.Ok;
                     break;
 
@@ -751,6 +753,7 @@ namespace CashInTerminalWpf
                     break;
 
                 case CCNETResponseStatus.Accepting:
+                    Interlocked.Exchange(ref _BillAcceptSequence, (int)CCNETResponseStatus.Accepting);
                     _DeviceState.StateCodeOut = CCNETResponseStatus.Accepting;
                     break;
 
@@ -821,18 +824,25 @@ namespace CashInTerminalWpf
                     break;
 
                 case CCNETResponseStatus.Stacking:
+                    Interlocked.Exchange(ref _BillAcceptSequence, (int)CCNETResponseStatus.Stacking);
                     _DeviceState.StateCodeOut = CCNETResponseStatus.Stacking;
                     break;
 
                 case CCNETResponseStatus.BillStacked:
                 case CCNETResponseStatus.BillAccepting:
-                    var timeShift = DateTime.Now.Ticks - _LastReceived;
+                    var timeShift = Math.Abs(DateTime.Now.Ticks - _LastReceived);
                     if (timeShift > _MaxTime.Ticks)
                     {
+                        var prevState = Interlocked.Exchange(ref _BillAcceptSequence, (int)CCNETResponseStatus.BillStacked);
+
+                        if (prevState != (int)CCNETResponseStatus.Accepting &&
+                            prevState != (int)CCNETResponseStatus.Stacking)
+                        {
+                            Log.Warn(String.Format("Prev state doesn't accepted. {0}", prevState));
+                        }
                         Interlocked.Exchange(ref _LastReceived, DateTime.Now.Ticks);
                         _DeviceState.Nominal = 0;
                         _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
-                        _DeviceState.Stacking = true;
                         _DeviceState.Currency = CurrentCurrency;
 
                         KeyValuePair<int, String> value;
@@ -849,9 +859,8 @@ namespace CashInTerminalWpf
                             Log.Error("Invalid value in table: " + _DeviceState.SubStateCode);
                         }
 
-                        _DeviceState.Stacking = false;
                         BillStacked(_DeviceState);
-                    }                    
+                    }
                     else
                     {
                         Log.Warn(String.Format("Max time : {0}, {1}", new TimeSpan(timeShift), _MaxTime));

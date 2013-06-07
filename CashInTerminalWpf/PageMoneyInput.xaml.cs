@@ -220,10 +220,11 @@ namespace CashInTerminalWpf
                     new Action<String>(SetStackedAmount),
                     ccnetDeviceState.Amount.ToString(CultureInfo.InvariantCulture));
 
-                _Amount += ccnetDeviceState.Nominal;
+                int newAmount = Interlocked.Add(ref _Amount, ccnetDeviceState.Nominal);
+                
                 lock (_FormMain.ClientInfo)
                 {
-                    _FormMain.ClientInfo.CashCodeAmount = _Amount;
+                    _FormMain.ClientInfo.CashCodeAmount = newAmount;
                 }
 
                 _FormMain.Db.InsertBanknote(
