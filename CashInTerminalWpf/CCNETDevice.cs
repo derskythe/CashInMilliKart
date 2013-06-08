@@ -830,7 +830,7 @@ namespace CashInTerminalWpf
 
                 case CCNETResponseStatus.BillStacked:
                 case CCNETResponseStatus.BillAccepting:
-                    var timeShift = Math.Abs(DateTime.Now.Ticks - _LastReceived);
+                    var timeShift = Math.Abs(DateTime.Now.Ticks - Interlocked.Read(ref _LastReceived));
                     if (timeShift > _MaxTime.Ticks)
                     {
                         var prevState = Interlocked.Exchange(ref _BillAcceptSequence, (int)CCNETResponseStatus.BillStacked);
