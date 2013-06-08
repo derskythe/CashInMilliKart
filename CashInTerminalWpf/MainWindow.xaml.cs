@@ -4,7 +4,6 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.Management;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -51,8 +50,8 @@ namespace CashInTerminalWpf
         private String _SelectedLanguage = InterfaceLanguages.Az;
         private StandardRequest _InfoRequest;
         private LongRequestType _LongRequestType;
-        private const int TOTAL_CHECK_COUNT = 2727;
-        private const int LOW_LEVEL_CHECK_COUNT = 2454;
+        //private const int TOTAL_CHECK_COUNT = 2727;
+        //private const int LOW_LEVEL_CHECK_COUNT = 2454;
         private String _CurrentForm = FormEnum.OutOfOrder;
 
         private ClientInfo _ClientInfo = new ClientInfo();
@@ -260,7 +259,8 @@ namespace CashInTerminalWpf
 
         private void DoStartUp()
         {
-            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);           
+
             _Init = true;
             // Init keys
             Log.Info("Init keys");
@@ -594,7 +594,8 @@ namespace CashInTerminalWpf
                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
                     Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
                     AvailableCurrencies = ccnetDeviceState.AvailableCurrencies.ToArray(),
-                    CashcodeVersion = ccnetDeviceState.Identification
+                    CashcodeVersion = ccnetDeviceState.Identification,
+                    Ticks = now.Ticks
                 };
 
                 var versionResponse = _Server.UpdateTerminalVersionExt(versionRequest);
@@ -644,7 +645,8 @@ namespace CashInTerminalWpf
                     {
                         SystemTime = now,
                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                        Ticks = now.Ticks
                     };
 
                     var response = _Server.ListCheckTemplateDigest(request);
@@ -680,7 +682,8 @@ namespace CashInTerminalWpf
                             {
                                 SystemTime = now,
                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                                Ticks = now.Ticks
                             };
 
                             response = _Server.ListCheckTemplate(request);
@@ -867,7 +870,8 @@ namespace CashInTerminalWpf
                     {
                         SystemTime = now,
                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                        Ticks = now.Ticks
                     };
 
                     var response = _Server.ListCurrencies(request);
@@ -906,7 +910,8 @@ namespace CashInTerminalWpf
                 {
                     SystemTime = now,
                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                    Ticks = now.Ticks
                 };
 
                 var response = _Server.ListProducts(request);
@@ -963,7 +968,8 @@ namespace CashInTerminalWpf
                     {
                         SystemTime = now,
                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                        Ticks = now.Ticks
                     };
 
                     var response = _Server.ListPaymentCategories(request);
@@ -1021,6 +1027,7 @@ namespace CashInTerminalWpf
 
                         if (_ServerPublicKey == null)
                         {
+                            Log.Warn("Server public key is null!");
                             Thread.Sleep(PING_TIMEOUT);
                             continue;
                         }
@@ -1035,6 +1042,7 @@ namespace CashInTerminalWpf
                         //{
                         //    terminalStatus = (int) TerminalCodes.Encashment;
                         //} else if ( _TerminalInfo.)
+                        var sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
                         var request = new PingRequest
                         {
                             CashCodeStatus = _CcnetDevice.DeviceState.ToCashCodeDeviceStatus(),
@@ -1042,8 +1050,9 @@ namespace CashInTerminalWpf
                             SystemTime = now,
                             TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                             TerminalStatus = (int)_TerminalStatus,
-                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
-                            CheckCount = 0 //Settings.Default.CheckCounter
+                            Sign = sign,
+                            CheckCount = 0, //Settings.Default.CheckCounter
+                            Ticks = now.Ticks
                         };
                         var result = _Server.Ping(request);
 
@@ -1089,6 +1098,7 @@ namespace CashInTerminalWpf
                                             {
                                                 SystemTime = now,
                                                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                                Ticks = now.Ticks,
                                                 Sign =
                                                     Utilities.Sign(Settings.Default.TerminalCode, now,
                                                                    _ServerPublicKey)
@@ -1374,11 +1384,14 @@ namespace CashInTerminalWpf
         public void GetTerminalInfo()
         {
             var now = DateTime.Now;
+            var sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
+            Log.Debug(sign);
             var cmd = new StandardRequest
             {
                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                 SystemTime = now,
-                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                Sign = sign,
+                Ticks = now.Ticks
             };
             var response = _Server.GetTerminalInfo(cmd);
 
@@ -1403,14 +1416,16 @@ namespace CashInTerminalWpf
                     Log.Warn("Currency is null");
                 }
 
+                now = DateTime.Now;
                 var versionRequest = new TerminalVersionExtRequest
                 {
                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                    SystemTime = DateTime.Now,
+                    SystemTime = now,
                     Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
                     Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
                     AvailableCurrencies = _CcnetDevice.DeviceState.AvailableCurrencies.ToArray(),
-                    CashcodeVersion = _CcnetDevice.DeviceState.Identification
+                    CashcodeVersion = _CcnetDevice.DeviceState.Identification,
+                    Ticks = now.Ticks
                 };
 
                 var versionResponse = _Server.UpdateTerminalVersionExt(versionRequest);
@@ -1434,7 +1449,8 @@ namespace CashInTerminalWpf
                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                 SystemTime = now,
                 CommandResult = ((int)_TerminalStatus),
-                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey)
+                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                Ticks = now.Ticks
             };
             return _Server.CommandReceived(cmd);
         }
@@ -1473,6 +1489,7 @@ namespace CashInTerminalWpf
                 request.SystemTime = now;
                 request.TerminalId = Convert.ToInt32(Settings.Default.TerminalCode);
                 request.Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey);
+                request.Ticks = now.Ticks;
 
                 request.Currencies = currList.ToArray();
 
@@ -1551,7 +1568,8 @@ namespace CashInTerminalWpf
                                         CreditNumber = row.IsCreditNumberNull() ? String.Empty : row.CreditNumber,
                                         Sign = Utilities.Sign(Settings.Default.TerminalCode, dateTime, _ServerPublicKey),
                                         OperationType = Convert.ToInt32(row.OperationType),
-                                        PaymentServiceId = Convert.ToInt32(row.IsServiceIdNull() ? 0 : row.ServiceId)
+                                        PaymentServiceId = Convert.ToInt32(row.IsServiceIdNull() ? 0 : row.ServiceId),
+                                        Ticks = dateTime.Ticks
                                     };
 
                                 var valuesList = new List<String>();

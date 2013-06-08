@@ -19,7 +19,7 @@ namespace CashInCore
     {
         private static AsymmetricKeyParameter _PrivateKey;
 
-        private bool CheckSignature(int terminalId, DateTime terminalDate, String signature)
+        private bool CheckSignature(int terminalId, long terminalDate, String signature)
         {
             //return true;
             return CheckSignature(terminalId.ToString(CultureInfo.InvariantCulture), terminalDate, signature);
@@ -35,7 +35,7 @@ namespace CashInCore
             return pRegex.Replace(value, String.Empty).Trim();
         }
 
-        private bool CheckSignature(String terminalId, DateTime terminalDate, String signature)
+        private bool CheckSignature(String terminalId, long terminalDate, String signature)
         {
             var correctString = terminalId + terminalDate.ToString(CultureInfo.InvariantCulture);
             //var keyPair = new AsymmetricCipherKeyPair(GetKey(publicCert), GetPrivateKey());
@@ -52,16 +52,18 @@ namespace CashInCore
                 return true;
             }
 
+            Log.Debug(String.Format("Correct string: {0}, sent string: {1}", correctString, Encoding.UTF8.GetString(raw)));
+
             return false;
         }
 
-        private string DoSign(int terminalId, DateTime serverTime, byte[] publicCert)
+        private string DoSign(int terminalId, long serverTime, byte[] publicCert)
         {
             //return String.Empty;
             return DoSign(terminalId.ToString(CultureInfo.InvariantCulture), serverTime, publicCert);
         }
 
-        private string DoSign(String terminalId, DateTime serverTime, byte[] publicCert)
+        private string DoSign(String terminalId, long serverTime, byte[] publicCert)
         {
             var correctString = terminalId + serverTime.ToString(CultureInfo.InvariantCulture);
             var raw = Wrapper.Encrypt(Encoding.UTF8.GetBytes(correctString), GetKey(publicCert));
@@ -105,7 +107,7 @@ namespace CashInCore
                 throw new ArgumentNullException("No data");
             }
 
-            if (!CheckSignature(request.TerminalId, request.SystemTime, request.Sign))
+            if (!CheckSignature(request.TerminalId, request.Ticks, request.Sign))
             {
                 response.Code = ResultCodes.InvalidSignature;
                 throw new Exception("Invalid signature. " + request);

@@ -12,6 +12,8 @@ using Containers.Enums;
 using Db;
 using NLog;
 using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Utilities.Encoders;
 using TestConsole.Properties;
 using crypto;
@@ -28,23 +30,111 @@ namespace TestConsole
         static Regex _Regex = new Regex(@"^(0|\+994)(.+?)$");
         private static String _Pattern = "$2";
 
+        private static String sign =
+            "Wk8qB1ND3U9imC1rnsJLjQA06cJAvrKYDivZmV9cYsltqA0NMy_yX-_adT-xuzOBYs8wnvRsJgIzp2XCxTlQdLDSNlTWSiMcXZ2-n6V0oLDuA2jGuOX89AlWk9cztCWPHgwrHbFk5pEaexSgJpKKiW9p9w-dAVwqI5kOvWMvZ6E.";
+
+        private static String localKey = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPSyUpRLFxicrkHhvL/fc7kBVi\nHkYLb3Q9J2H0YKdeZnZwA9om3OkuupdQ1Agb1gQTCAbVi4jJ1pHMl5WrSPX8aenC\nAJteq6HzIF6hn25E+usbsSxsLi5tDTPPDwkmmjjDkKtQ/fccxq6q3jOklYT1f0k6\nSX3oN2xGCyQdafiqLwIDAQAB\n-----END PUBLIC KEY-----";
+        private static String publicKey = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPSyUpRLFxicrkHhvL/fc7kBVi\nHkYLb3Q9J2H0YKdeZnZwA9om3OkuupdQ1Agb1gQTCAbVi4jJ1pHMl5WrSPX8aenC\nAJteq6HzIF6hn25E+usbsSxsLi5tDTPPDwkmmjjDkKtQ/fccxq6q3jOklYT1f0k6\nSX3oN2xGCyQdafiqLwIDAQAB\n-----END PUBLIC KEY-----";
+
+        private static String privateKey =
+            "-----BEGIN RSA PRIVATE KEY-----\nMIICXAIBAAKBgQCPSyUpRLFxicrkHhvL/fc7kBViHkYLb3Q9J2H0YKdeZnZwA9om\n3OkuupdQ1Agb1gQTCAbVi4jJ1pHMl5WrSPX8aenCAJteq6HzIF6hn25E+usbsSxs\nLi5tDTPPDwkmmjjDkKtQ/fccxq6q3jOklYT1f0k6SX3oN2xGCyQdafiqLwIDAQAB\nAoGAYtzVpsNeKZeIBBtB0lxGVzHxjuCUMw+Sgx7I1nJZByhqTp5ZxLZlq3fRLlMb\nxRjDdt3y2SKMHbWMojtzZ9nO3G7bOyRX9rtDMMviBv0B+WD1zxfd18yAD3x8sEiJ\nAKpq4vu7XbLY+bblWYH6wYnfFcUcR+GlGp/TKcza1BKCrgECQQDMhcpkUTihKUlI\nIwoHsnx21PLJArOEdgWbG1CzGI3diSL+ZQVddCI8yCkSDknorbMR9Vr0u9V72Uxx\n3Vs1Y0SJAkEAs1wevyXxB2z//59QCLxhl5FEjJixW3+4FoiRiLpfjposOD10ffXF\nuhkkodFE6HGfWJJN3AWsKOz24Yn4Hra69wJAVAG0Y0Y1U4Uo05eI3CaFFy5a1xPj\n9smffdlXaWjxhIh6tjF6Zat5EKxKql7yHr+SKRM1nAa3JprX2oFIoII4uQJAPnsC\nwvfGpR2VeEjZKpHlNVWHmaq/be5qBH+Coyy5iQWwDc9qu05YmOGVX0F1Tbv3FHWy\n5cicFo2l2x+i7aAeNQJBALvcvxhaJB5fXNBrvMXoVkn+ha4oB8p2nwf3jI2uCeIr\nft9z5ArKfUy/jQSSaAICy4GBv+8nCaSJ3IDq3Wazl+Q=\n-----END RSA PRIVATE KEY-----";
+        private static String correctValue = "59206/08/2013 10:28:45";
+
+        private static bool CheckSignature(int terminalId, DateTime terminalDate, String signature)
+        {
+            //return true;
+            return CheckSignature(terminalId.ToString(CultureInfo.InvariantCulture),
+                                  terminalDate.ToString(CultureInfo.InvariantCulture), signature);
+        }
+
+        private static bool CheckSignature(String terminalId, String terminalDate, String signature)
+        {
+            var correctString = terminalId + terminalDate;
+            //var keyPair = new AsymmetricCipherKeyPair(GetKey(publicCert), GetPrivateKey());
+
+            var raw = Wrapper.Decrypt(UrlBase64.Decode(signature), GetPrivateKey());
+
+            if (raw == null || raw.Length == 0)
+            {
+                return false;
+            }
+
+            Log.Debug(correctString);
+            Log.Debug(Encoding.UTF8.GetString(raw));
+            if (correctString == Encoding.ASCII.GetString(raw))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static string DoSign(int terminalId, DateTime serverTime, byte[] publicCert)
+        {
+            //return String.Empty;
+            return DoSign(terminalId.ToString(CultureInfo.InvariantCulture), serverTime, publicCert);
+        }
+
+        private static string DoSign(String terminalId, DateTime serverTime, byte[] publicCert)
+        {
+            var correctString = terminalId + serverTime.ToString(CultureInfo.InvariantCulture);
+            var raw = Wrapper.Encrypt(Encoding.UTF8.GetBytes(correctString), GetKey(publicCert));
+
+            return Encoding.ASCII.GetString(UrlBase64.Encode(raw));
+        }
+
+        private static RsaKeyParameters GetKey(byte[] key)
+        {
+            var stream = new MemoryStream(key);
+            var keyStream = new StreamReader(stream);
+            var reader = new PemReader(keyStream);
+
+            return (RsaKeyParameters)reader.ReadObject();
+        }
+
+        private static AsymmetricKeyParameter GetPrivateKey()
+        {
+            AsymmetricKeyParameter result = null;
+            using (var stream = new MemoryStream(Encoding.ASCII.GetBytes(privateKey)))
+            {
+                var privateKeyStream = new StreamReader(stream);
+                var privateKeyReader = new PemReader(privateKeyStream);
+
+                result = ((AsymmetricCipherKeyPair)privateKeyReader.ReadObject()).Private;
+            }
+            return result;
+        }
 
         static void Main(string[] args)
         {
             var billmask = new BitArray(48);
 
-            Regex pRegex = new Regex("[^0-9a-z]", RegexOptions.IgnoreCase);
-            String val = "Пе56656565кк$$#$#&@$@!*#/!$!)%@*($!(~~~)@~!ееTEST";
+            var tz = TimeZoneInfo.FindSystemTimeZoneById("Azerbaijan Standard Time");
+            var coll = TimeZoneInfo.GetSystemTimeZones();
+            foreach (TimeZoneInfo info in coll)
+            {
+                Console.WriteLine(String.Format("info: {0}, id: {1}", info, info.Id));
+            }
+            //var tz = TimeZoneInfo.FindSystemTimeZoneById("Caucasus Standard Time");
+                
+            var requestTime = new DateTimeWithZone(new DateTime(2013, 06, 08, 10, 28, 45), tz);
+            Console.WriteLine(CheckSignature(592, requestTime.LocalTime, sign));
 
-            var t =
-                string.Concat(val.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries)).Trim();
+            Console.ReadKey();
+            return;
 
-            val = pRegex.Replace(val, "");
+            //Regex pRegex = new Regex("[^0-9a-z]", RegexOptions.IgnoreCase);
+            //String val = "Пе56656565кк$$#$#&@$@!*#/!$!)%@*($!(~~~)@~!ееTEST";
 
-            TimeSpan _MaxTime = new TimeSpan(700 * 10000);
-            TimeSpan _MaxTime2 = new TimeSpan(0, 0, 0, 1);
+            //var t =
+            //    string.Concat(val.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries)).Trim();
 
-            Console.WriteLine(_MaxTime.TotalMilliseconds);
+            //val = pRegex.Replace(val, "");
+
+            //TimeSpan _MaxTime = new TimeSpan(700 * 10000);
+            //TimeSpan _MaxTime2 = new TimeSpan(0, 0, 0, 1);
+
+            //Console.WriteLine(_MaxTime.TotalMilliseconds);
 
             //OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             //OracleDb.Instance.CheckConnection();

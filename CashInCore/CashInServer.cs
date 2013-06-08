@@ -116,11 +116,11 @@ namespace CashInCore
 
                 var terminalKey = Encoding.ASCII.GetBytes(publicKey);
                 OracleDb.Instance.SaveTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
-                OracleDb.Instance.RegisterIncassoOrder(terminalId);
+                //OracleDb.Instance.RegisterIncassoOrder(terminalId);
 
                 result.Code = ResultCodes.Ok;
                 result.PublicKey = Settings.Default.PublicKey;
-                result.Sign = DoSign(terminalId, result.SystemTime, terminalKey);
+                result.Sign = DoSign(terminalId, result.SystemTime.Ticks, terminalKey);
 
                 Log.Info("Init terminal " + terminal.Id + " Terminal info:\n" + terminal);
             }
@@ -157,7 +157,7 @@ namespace CashInCore
                     request.CheckCount);
                 result.Command = OracleDb.Instance.GetTerminalStatus(request.TerminalId);
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -183,7 +183,7 @@ namespace CashInCore
                     request.TerminalId,
                     request.CommandResult);
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -207,7 +207,7 @@ namespace CashInCore
 
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
 
                 terminalInfo.SignKey = new byte[0];
                 terminalInfo.TmpKey = new byte[0];
@@ -240,7 +240,7 @@ namespace CashInCore
                 result.Products = list.ToArray();
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -265,7 +265,7 @@ namespace CashInCore
                 result.Currencies = list.ToArray();
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -329,7 +329,7 @@ namespace CashInCore
                 }
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -368,7 +368,7 @@ namespace CashInCore
                 //                                request.OperationType, request.TerminalDate, request.Currency);
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
 
                 var paymentOperationType = (PaymentOperationType)request.OperationType;
                 if (paymentOperationType == PaymentOperationType.GoldenPay ||
@@ -502,7 +502,7 @@ namespace CashInCore
                 OracleDb.Instance.SetTerminalStatusCode(userId, request.TerminalId, (int)TerminalCommands.NormalMode);
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -533,7 +533,7 @@ namespace CashInCore
                 OracleDb.Instance.RegisterIncassoOrder(terminalInfo.Id);
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception e)
             {
@@ -578,7 +578,7 @@ namespace CashInCore
                 }
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {
@@ -602,7 +602,7 @@ namespace CashInCore
                 result.Templates = OracleDb.Instance.ListCheckTemplateDigest();
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {
@@ -626,7 +626,7 @@ namespace CashInCore
                 result.Templates = OracleDb.Instance.ListCheckTemplate();
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {
@@ -654,7 +654,7 @@ namespace CashInCore
                     request.Currency);
 
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {
@@ -707,7 +707,7 @@ namespace CashInCore
                     result.Debt = serviceResult.service_info.debt;
                 }
                 result.Code = serviceResult.code == ErrorCodes.InvalidParameters ? ResultCodes.InvalidNumber : ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {
@@ -830,7 +830,7 @@ namespace CashInCore
 
                 result.Categories = resultList;
                 result.Code = ResultCodes.Ok;
-                result.Sign = DoSign(request.TerminalId, result.SystemTime, terminalInfo.SignKey);
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {

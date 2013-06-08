@@ -20,7 +20,8 @@ namespace CashInTerminalWpf
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
-        private static Regex _AlphaNumber = new Regex(@"^[a-zA-Z0-9\s\;\.\-]+$");
+        //private static TimeZoneInfo _Tz = TimeZoneInfo.FindSystemTimeZoneById("Azerbaijan Standard Time");
+        private static readonly Regex _AlphaNumber = new Regex(@"^[a-zA-Z0-9\s\;\.\-]+$");
 
         [DllImport("user32.dll")]
         static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
@@ -70,7 +71,8 @@ namespace CashInTerminalWpf
         {
             try
             {
-                var correctString = terminalId + now.ToString(CultureInfo.InvariantCulture);
+                var correctString = terminalId + now.Ticks.ToString(CultureInfo.InvariantCulture);
+                //Log.Debug(correctString);
 
                 var encrypted = Wrapper.Encrypt(Encoding.ASCII.GetBytes(correctString), keys);
                 return Encoding.ASCII.GetString(UrlBase64.Encode(encrypted));
@@ -85,7 +87,7 @@ namespace CashInTerminalWpf
 
         public static bool CheckSignature(String terminalId, DateTime terminalDate, String signature, AsymmetricCipherKeyPair keys)
         {
-            var correctString = terminalId + terminalDate.ToString(CultureInfo.InvariantCulture);
+            var correctString = terminalId + terminalDate.Ticks.ToString(CultureInfo.InvariantCulture);
             var raw = Wrapper.Decrypt(UrlBase64.Decode(signature), keys.Private);
 
             if (raw == null || raw.Length == 0)

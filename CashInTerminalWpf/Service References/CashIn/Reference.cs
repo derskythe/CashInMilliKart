@@ -187,6 +187,8 @@ namespace CashInTerminalWpf.CashIn {
         
         private System.DateTime systemTimeField;
         
+        private long ticksField;
+        
         private string signField;
         
         /// <remarks/>
@@ -203,6 +205,18 @@ namespace CashInTerminalWpf.CashIn {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public long Ticks {
+            get {
+                return this.ticksField;
+            }
+            set {
+                this.ticksField = value;
+                this.RaisePropertyChanged("Ticks");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public string Sign {
             get {
                 return this.signField;

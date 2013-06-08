@@ -147,7 +147,8 @@ namespace CashInTerminalWpf
                     Currency = _FormMain.ClientInfo.CurrentCurrency,
                     SystemTime = now,
                     TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
+                    Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey),
+                    Ticks = now.Ticks
                 };
 
                 _FormMain.InfoResponse = null;

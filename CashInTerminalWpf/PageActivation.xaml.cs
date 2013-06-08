@@ -198,7 +198,8 @@ namespace CashInTerminalWpf
             {
                 TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                 SystemTime = now,
-                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey)
+                Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey),
+                Ticks = now.Ticks
             };
             var response = _FormMain.Server.GetTerminalInfo(cmd);
 

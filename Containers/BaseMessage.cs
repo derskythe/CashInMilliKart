@@ -10,6 +10,7 @@ namespace Containers
     {
         protected String _Sign;
         protected DateTime _SystemTime;
+        protected long _Ticks;
 
         [XmlElement(ElementName = "SystemTime")]
         [DataMember(Name = "SystemTime")]
@@ -17,6 +18,14 @@ namespace Containers
         {
             get { return _SystemTime; }
             set { _SystemTime = value; }
+        }
+
+        [XmlElement(ElementName = "Ticks")]
+        [DataMember(Name = "Ticks")]
+        public long Ticks
+        {
+            get { return _Ticks; }
+            set { _Ticks = value; }
         }
 
         [XmlElement(ElementName = "Sign")]

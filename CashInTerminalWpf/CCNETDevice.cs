@@ -355,7 +355,7 @@ namespace CashInTerminalWpf
                         }
                         catch (Exception exp)
                         {
-                            Log.ErrorException(exp.Message, exp);
+                            Log.Error(exp.Message);
                         }
                     }
                 }
