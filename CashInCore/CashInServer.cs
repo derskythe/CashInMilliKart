@@ -353,12 +353,14 @@ namespace CashInCore
                 if (OracleDb.Instance.HasTransaction(request.TransactionId))
                 {
                     result.Code = ResultCodes.Ok;
+                    result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
                     throw new InvalidDataException("Transaction already exists. TransactionId: " + request.TransactionId);
                 }
 
                 if (request.Amount <= 0)
                 {
                     result.Code = ResultCodes.Ok;
+                    result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
                     throw new InvalidDataException("Invalid amount");
                 }
 
