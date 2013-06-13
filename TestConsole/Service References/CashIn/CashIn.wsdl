@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://cashin/CashInService" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://cashin/CashInService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://cashin/CashInService/Imports">
+      <xsd:import schemaLocation="http://cashin.terminal.server:4443/CashIn?xsd=xsd0" namespace="http://cashin/CashInService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CashInServer_GetPublicKey_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublicKey" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetPublicKey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublicKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetTerminalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalInfo" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetTerminalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_InitTerminal_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitTerminal" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_InitTerminal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitTerminalResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_CommandReceived_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommandReceived" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_CommandReceived_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommandReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListProducts" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCurrencies_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCurrencies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Payment_InputMessage">
+    <wsdl:part name="parameters" element="tns:Payment" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Payment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Encashment_InputMessage">
+    <wsdl:part name="parameters" element="tns:Encashment" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Encashment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EncashmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersion" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_TerminalRestarted_InputMessage">
+    <wsdl:part name="parameters" element="tns:TerminalRestarted" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_TerminalRestarted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TerminalRestartedResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetClientInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientInfo" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetClientInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplate" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplateDigest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplateDigest" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListCheckTemplateDigest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCheckTemplateDigestResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetBonusAmount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBonusAmount" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetBonusAmount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBonusAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListPaymentCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListPaymentCategories" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListPaymentCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListPaymentCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetPaymentServiceInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_GetPaymentServiceInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Pay_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pay" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_Pay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PayResponse" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersionExt_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersionExt" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_UpdateTerminalVersionExt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalVersionExtResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CashInServer">
+    <wsdl:operation name="GetPublicKey">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKeyResponse" message="tns:CashInServer_GetPublicKey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalInfo">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetTerminalInfo" message="tns:CashInServer_GetTerminalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetTerminalInfoResponse" message="tns:CashInServer_GetTerminalInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitTerminal">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/InitTerminal" message="tns:CashInServer_InitTerminal_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/InitTerminalResponse" message="tns:CashInServer_InitTerminal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/Ping" message="tns:CashInServer_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/PingResponse" message="tns:CashInServer_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommandReceived">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/CommandReceived" message="tns:CashInServer_CommandReceived_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/CommandReceivedResponse" message="tns:CashInServer_CommandReceived_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListProducts">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListProducts" message="tns:CashInServer_ListProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListProductsResponse" message="tns:CashInServer_ListProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCurrencies">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListCurrencies" message="tns:CashInServer_ListCurrencies_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListCurrenciesResponse" message="tns:CashInServer_ListCurrencies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Payment">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/Payment" message="tns:CashInServer_Payment_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/PaymentResponse" message="tns:CashInServer_Payment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Encashment">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/Encashment" message="tns:CashInServer_Encashment_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/EncashmentResponse" message="tns:CashInServer_Encashment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalVersion">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersion" message="tns:CashInServer_UpdateTerminalVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionResponse" message="tns:CashInServer_UpdateTerminalVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TerminalRestarted">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/TerminalRestarted" message="tns:CashInServer_TerminalRestarted_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/TerminalRestartedResponse" message="tns:CashInServer_TerminalRestarted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientInfo">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetClientInfo" message="tns:CashInServer_GetClientInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetClientInfoResponse" message="tns:CashInServer_GetClientInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCheckTemplate">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplate" message="tns:CashInServer_ListCheckTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplateResponse" message="tns:CashInServer_ListCheckTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCheckTemplateDigest">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplateDigest" message="tns:CashInServer_ListCheckTemplateDigest_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListCheckTemplateDigestResponse" message="tns:CashInServer_ListCheckTemplateDigest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBonusAmount">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetBonusAmount" message="tns:CashInServer_GetBonusAmount_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetBonusAmountResponse" message="tns:CashInServer_GetBonusAmount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPaymentCategories">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListPaymentCategories" message="tns:CashInServer_ListPaymentCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListPaymentCategoriesResponse" message="tns:CashInServer_ListPaymentCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentServiceInfo">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPaymentServiceInfo" message="tns:CashInServer_GetPaymentServiceInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetPaymentServiceInfoResponse" message="tns:CashInServer_GetPaymentServiceInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pay">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/Pay" message="tns:CashInServer_Pay_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/PayResponse" message="tns:CashInServer_Pay_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalVersionExt">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionExt" message="tns:CashInServer_UpdateTerminalVersionExt_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/UpdateTerminalVersionExtResponse" message="tns:CashInServer_UpdateTerminalVersionExt_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

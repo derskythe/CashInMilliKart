@@ -7,16 +7,16 @@ using System.Text;
 using System.Text.RegularExpressions;
 using CashInTerminalWpf;
 using CashInTerminalWpf.Enums;
-using Containers;
-using Containers.Enums;
 using Db;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Utilities.Encoders;
+using TestConsole.CashIn;
 using TestConsole.Properties;
 using crypto;
+using TerminalPaymentInfo = Containers.TerminalPaymentInfo;
 
 namespace TestConsole
 {
@@ -109,19 +109,32 @@ namespace TestConsole
         {
             var billmask = new BitArray(48);
 
-            var tz = TimeZoneInfo.FindSystemTimeZoneById("Azerbaijan Standard Time");
-            var coll = TimeZoneInfo.GetSystemTimeZones();
-            foreach (TimeZoneInfo info in coll)
-            {
-                Console.WriteLine(String.Format("info: {0}, id: {1}", info, info.Id));
-            }
-            //var tz = TimeZoneInfo.FindSystemTimeZoneById("Caucasus Standard Time");
-                
-            var requestTime = new DateTimeWithZone(new DateTime(2013, 06, 08, 10, 28, 45), tz);
-            Console.WriteLine(CheckSignature(592, requestTime.LocalTime, sign));
+            //CashIn.CashInServer server = new CashInServerClient();
+            //var info = new CashIn.TerminalPaymentInfo
+            //    {
+            //        Amount = 10,
+            //        Banknotes = new[] {10},
+            //        CreditNumber = "TEST",
+            //        Currency = "AZN",
+            //        CurrencyRate = 1,
+            //        OperationType = 11,
+            //        ProductId = 1,
+            //        SystemTime = DateTime.Now
+            //    };
+            //info.TerminalDate = info.SystemTime;
+            //info.TerminalId = 517;
+            //info.Ticks = info.SystemTime.Ticks;
+            //info.TransactionId = "TEST";
+            //info.Sign = "TEST";
+            //var result = server.Pay(info);
 
-            Console.ReadKey();
-            return;
+            //if (result != null && result.ResultCodes == CashIn.ResultCodes.Ok)
+            //{
+            //    Console.WriteLine("Okay");
+            //}
+
+            //Console.ReadKey();
+            //return;
 
             //Regex pRegex = new Regex("[^0-9a-z]", RegexOptions.IgnoreCase);
             //String val = "Пе56656565кк$$#$#&@$@!*#/!$!)%@*($!(~~~)@~!ееTEST";
@@ -149,7 +162,7 @@ namespace TestConsole
 
             //for (int i = (billmask.Count - 1); i >= 0; i++)
             //{
-                
+
             //}
 
             //var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -184,14 +197,14 @@ namespace TestConsole
             //val = 0x7D << 0x01;
             //val = 0x7D >> 0x01;
 
-            var device = new CCNETDevice();
-            device.BillStacked += DeviceOnBillStacked;
-            device.Open(3, CCNETPortSpeed.S9600);
+            //var device = new CCNETDevice();
+            //device.BillStacked += DeviceOnBillStacked;
+            //device.Open(3, CCNETPortSpeed.S9600);
 
-            device.Init();
+            //device.Init();
 
-            
-            
+
+
 
             //Console.WriteLine(DateTime.Parse("2013-05-06 19:54:30"));
             //float val = 124354.0f;
@@ -213,102 +226,40 @@ namespace TestConsole
             //}
 
 
-            //Console.WriteLine(FirstUpper("HƏSƏNOVA ZüLFIYYƏ XUDU QIZI"));
-            ////Console.WriteLine(MediaTypeNames.Application.ExecutablePath);
-
-
-
-            //OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
-            //OracleDb.Instance.CheckConnection();
+            OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
+            OracleDb.Instance.CheckConnection();
             //int billGroup = 36471;
 
             var list = new List<TerminalPaymentInfo>();
-            //{
-            //    {
-            //        var info = new TerminalPaymentInfo();
-            //        info.TerminalId = 512;
-            //        info.TransactionId = "512121";
-            //        info.ProductId = 1;
-            //        info.Currency = "AZN";
-            //        info.CurrencyRate = 1;
-            //        info.Amount = 200;
-            //        info.OperationType = 11;
-            //        info.Values = new[] {"3801000CC0018221U", "AZE01743332"};
-            //        info.CreditNumber = "CC0018221U/11A";
-            //        info.PaymentServiceId = 0;
-            //        info.Banknotes = new[] {50, 50, 50, 50};
-            //        info.TerminalDate = DateTime.Parse("11-05-2013 10:15:29");
-            //        info.SystemTime = DateTime.Parse("11-05-2013 10:15:29");
+            {
+                {
+                    var info = new TerminalPaymentInfo();
+                    info.TerminalId = 574;
+                    info.TransactionId = "5741593270";
+                    info.ProductId = 1;
+                    info.Currency = "AZN";
+                    info.CurrencyRate = 1;
+                    info.Amount = 35;
+                    info.OperationType = 11;
+                    info.Values = new[] { "3801000BL0129323", "AZE08797662" };
+                    info.CreditNumber = "BAL0129323/12";
+                    info.PaymentServiceId = 0;
+                    info.Banknotes = new[] { 5, 20, 10 };
+                    info.TerminalDate = DateTime.Parse("08.06.2013 12:59:28");
+                    info.SystemTime = info.TerminalDate;
 
-            //        list.Add(info);
-            //    }
-
-            //    {
-            //        var info = new TerminalPaymentInfo();
-            //        info.TerminalId = 512;
-            //        info.TransactionId = "512122";
-            //        info.ProductId = 1;
-            //        info.Currency = "AZN";
-            //        info.CurrencyRate = 1;
-            //        info.Amount = 120;
-            //        info.OperationType = 21;
-            //        info.Values = new[] { "3811001200024821", "AZE05501126" };
-            //        info.CreditNumber = "3811001200024821";
-            //        info.PaymentServiceId = 0;
-            //        info.Banknotes = new[] { 100, 20 };
-            //        info.TerminalDate = DateTime.Parse("11-05-2013 10:16:42");
-            //        info.SystemTime = DateTime.Parse("11-05-2013 10:16:42");
-
-            //        list.Add(info);
-            //    }
-
-            //    {
-            //        var info = new TerminalPaymentInfo();
-            //        info.TerminalId = 512;
-            //        info.TransactionId = "512123";
-            //        info.ProductId = 1;
-            //        info.Currency = "AZN";
-            //        info.CurrencyRate = 1;
-            //        info.Amount = 16;
-            //        info.OperationType = 11;
-            //        info.Values = new[] { "3801000BL0395415", "AZE02805150" };
-            //        info.CreditNumber = "BAL0395415/12";
-            //        info.PaymentServiceId = 0;
-            //        info.Banknotes = new[] { 10, 5, 1 };
-            //        info.TerminalDate = DateTime.Parse("11-05-2013 10:17:57");
-            //        info.SystemTime = DateTime.Parse("11-05-2013 10:17:57");
-
-            //        list.Add(info);
-            //    }
-
-            //    {
-            //        var info = new TerminalPaymentInfo();
-            //        info.TerminalId = 512;
-            //        info.TransactionId = "512124";
-            //        info.ProductId = 1;
-            //        info.Currency = "AZN";
-            //        info.CurrencyRate = 1;
-            //        info.Amount = 21;
-            //        info.OperationType = 11;
-            //        info.Values = new[] { "3801000BL058514", "AZE09980317" };
-            //        info.CreditNumber = "BAL058514/12";
-            //        info.PaymentServiceId = 0;
-            //        info.Banknotes = new[] { 10, 10, 1 };
-            //        info.TerminalDate = DateTime.Parse("11-05-2013 10:17:57");
-            //        info.SystemTime = DateTime.Parse("11-05-2013 10:17:57");
-
-            //        list.Add(info);
-            //    }
-            //}
+                    list.Add(info);
+                }               
+            }
 
 
-            //foreach (var request in list)
-            //{
-            //    OracleDb.Instance.SavePayment(request);
-            //    string bills = String.Join(";", request.Banknotes);
-            //    OracleDb.Instance.CommitPaymentManual(request.CreditNumber, request.Amount, bills, request.TerminalId,
-            //                                    request.OperationType, request.TerminalDate, request.Currency, billGroup);
-            //}
+            foreach (var request in list)
+            {
+                OracleDb.Instance.SavePaymentWithBackend(request);
+                //string bills = String.Join(";", request.Banknotes);
+                //OracleDb.Instance.CommitPaymentManual(request.CreditNumber, request.Amount, bills, request.TerminalId,
+                //                                request.OperationType, request.TerminalDate, request.Currency, billGroup);
+            }
 
             //OracleDb.Instance.GetBonusAmount("LS000293/13", 50, "AZN");
 
@@ -346,22 +297,22 @@ namespace TestConsole
 
             Console.ReadLine();
 
-            device.DeviceState.Currency = "AZN";
-            device.CurrentCurrency = "AZN";
-            device.Poll();
-            device.EnableAll();
-            device.StartPool = true;
+            //device.DeviceState.Currency = "AZN";
+            //device.CurrentCurrency = "AZN";
+            //device.Poll();
+            //device.EnableAll();
+            //device.StartPool = true;
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            device.Poll();
-            device.Disable();
-            device.StartPool = false;
+            //device.Poll();
+            //device.Disable();
+            //device.StartPool = false;
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            device.Close();
-            device.Dispose();
+            //device.Close();
+            //device.Dispose();
         }
 
         private static void DeviceOnBillStacked(CCNETDeviceState ccnetDeviceState)

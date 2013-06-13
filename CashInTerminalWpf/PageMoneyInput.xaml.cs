@@ -23,7 +23,7 @@ namespace CashInTerminalWpf
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
-        private readonly TimeSpan _MaxTransactionTime = new TimeSpan(0, 0, 0, 30);
+        private readonly TimeSpan _MaxTransactionTime = new TimeSpan(0, 0, 0, 40);
         private CCNETResponseStatus _LastResponse = CCNETResponseStatus.NotMount;
         private DateTime _LastInput = DateTime.Now;
         private int _Amount;
@@ -191,7 +191,12 @@ namespace CashInTerminalWpf
                 _LastResponse = ccnetDeviceState.StateCodeOut;
                 _LastInput = DateTime.Now;
             }
-            else if (DateTime.Now - _LastInput > _MaxTransactionTime)
+            else if (DateTime.Now - _LastInput > _MaxTransactionTime &&
+                     (ccnetDeviceState.StateCodeOut != CCNETResponseStatus.Accepting ||
+                      ccnetDeviceState.StateCodeOut != CCNETResponseStatus.BillAccepting ||
+                      ccnetDeviceState.StateCodeOut != CCNETResponseStatus.BillReceiving ||
+                      ccnetDeviceState.StateCodeOut != CCNETResponseStatus.BillStacked ||
+                      ccnetDeviceState.StateCodeOut != CCNETResponseStatus.Stacking))
             {
                 Log.Warn("Autocommit transaction");
                 if (_FormMain.ClientInfo.CashCodeAmount > 0)

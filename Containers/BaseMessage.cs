@@ -39,6 +39,7 @@ namespace Containers
         protected BaseMessage()
         {
             _SystemTime = DateTime.Now;
+            _Ticks = _SystemTime.Ticks;
         }
 
         public override string ToString()

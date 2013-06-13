@@ -85,9 +85,9 @@ namespace CashInTerminalWpf
             return String.Empty;
         }
 
-        public static bool CheckSignature(String terminalId, DateTime terminalDate, String signature, AsymmetricCipherKeyPair keys)
+        public static bool CheckSignature(String terminalId, long terminalDate, String signature, AsymmetricCipherKeyPair keys)
         {
-            var correctString = terminalId + terminalDate.Ticks.ToString(CultureInfo.InvariantCulture);
+            var correctString = terminalId + terminalDate.ToString(CultureInfo.InvariantCulture);
             var raw = Wrapper.Decrypt(UrlBase64.Decode(signature), keys.Private);
 
             if (raw == null || raw.Length == 0)
@@ -99,6 +99,7 @@ namespace CashInTerminalWpf
             {
                 return true;
             }
+            Log.Debug(String.Format("CorrectString: {0}, Raw: {1}", correctString, Encoding.UTF8.GetString(raw)));
 
             return false;
         }

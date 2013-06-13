@@ -259,7 +259,7 @@ namespace CashInTerminalWpf
 
         private void DoStartUp()
         {
-            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);           
+            Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
 
             _Init = true;
             // Init keys
@@ -1175,8 +1175,8 @@ namespace CashInTerminalWpf
                                             OpenForm(typeof(FormLanguage));
                                         } else  */
                                         if ((_CurrentForm == FormEnum.OutOfOrder ||
-                                             _CurrentForm == FormEnum.TestMode) 
-                                             && _TerminalStatus != TerminalCodes.SystemError 
+                                             _CurrentForm == FormEnum.TestMode)
+                                             && _TerminalStatus != TerminalCodes.SystemError
                                              && _TerminalStatus != TerminalCodes.Updating)
                                         {
                                             _TerminalStatus = TerminalCodes.Ok;
@@ -1196,7 +1196,7 @@ namespace CashInTerminalWpf
                         }
                         else
                         {
-                            Log.Error("Result is null");
+                            Log.Error("Result is null. " + (result != null ? result.ResultCodes.ToString() : String.Empty));
 
                             if (CanChangeViewOnCommand)
                             {
@@ -1590,7 +1590,7 @@ namespace CashInTerminalWpf
 
                                 var response = _Server.Pay(request);
 
-                                if (response != null && response.ResultCodes == ResultCodes.Ok)
+                                if (response != null && response.ResultCodes == ResultCodes.Ok && CheckSignature(response))
                                 {
                                     Log.Info("Send to server is okay");
                                     listToDelete.Enqueue(row.Id);
@@ -1676,7 +1676,7 @@ namespace CashInTerminalWpf
                     Log.Debug("LocalKeys is null");
                 }
 
-                if (Utilities.CheckSignature(Settings.Default.TerminalCode, request.SystemTime, request.Sign, _LocalKeys))
+                if (Utilities.CheckSignature(Settings.Default.TerminalCode, request.Ticks, request.Sign, _LocalKeys))
                 {
                     return true;
                 }
