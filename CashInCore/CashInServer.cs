@@ -116,7 +116,7 @@ namespace CashInCore
 
                 var terminalKey = Encoding.ASCII.GetBytes(publicKey);
                 OracleDb.Instance.SaveTerminalKey(terminalId, Encoding.ASCII.GetBytes(publicKey));
-                //OracleDb.Instance.RegisterIncassoOrder(terminalId);
+                OracleDb.Instance.RegisterIncassoOrder(terminalId);
 
                 result.Code = ResultCodes.Ok;
                 result.PublicKey = Settings.Default.PublicKey;
