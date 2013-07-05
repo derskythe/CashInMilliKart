@@ -132,6 +132,9 @@
     <Compile Include="dsTableAdapters\V_LIST_USERSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_ACTIVE_REQUESTTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_PRODUCTSTableAdapters.cs">
       <SubType>Component</SubType>
     </Compile>

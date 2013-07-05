@@ -132,6 +132,31 @@ namespace CashInTerminalWpf
 
                         Grid.Children.Add(button);
                     }
+
+                    //
+                    // TODO : DELETE IN PRODUCTION
+                    //
+                    var virtualProduct = new Product
+                        {
+                            Assembly = "PageCreditRequest.xaml",
+                            Id = 9999,
+                            Name = "CreditRequest"
+                        };
+                    virtualProduct.NameAz = virtualProduct.NameEn = virtualProduct.NameRu = "Credit Request";
+
+                    var virtualButton = new Button
+                    {
+                        Style = FindResource("MenuButtonStyle") as Style,
+                        Name = virtualProduct.Name + virtualProduct.Id.ToString(CultureInfo.InvariantCulture),
+                        Tag = virtualProduct,
+                        Content = virtualProduct.NameAz
+                    };
+                    virtualButton.Click += ButtonOnClick;
+
+                    Grid.Children.Add(virtualButton);
+                    //
+                    //
+                    //
                 }
                 catch (Exception exp)
                 {

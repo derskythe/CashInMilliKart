@@ -286,4 +286,10 @@
   <data name="TransactionID" xml:space="preserve">
     <value>Əməliyyat ID</value>
   </data>
+  <data name="LabelAcceptPhoneNumber" xml:space="preserve">
+    <value>Entered phone number is:</value>
+  </data>
+  <data name="LabelSuccessCreditRequest" xml:space="preserve">
+    <value>Success sent data to Bank of Baku</value>
+  </data>
 </root>

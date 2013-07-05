@@ -254,8 +254,8 @@ namespace CashInTerminalWpf
         public void Init()
         {
             var initThread = new Thread(InitPool) { IsBackground = true };
-            initThread.Start();
             _DeviceState.Init = true;
+            initThread.Start();            
         }
 
         public void ResetNominal()
@@ -300,13 +300,11 @@ namespace CashInTerminalWpf
                     }
                 }
 
-                Thread.Sleep(POLLING_INTERVAL);
-                Thread.Sleep(POLLING_INTERVAL);
+                Thread.Sleep(POLLING_INTERVAL * 4);
                 Send(CCNETControllerCommand.GetBillTable, null);
-                Thread.Sleep(POLLING_INTERVAL);
+                Thread.Sleep(POLLING_INTERVAL * 2);
                 Send(CCNETControllerCommand.Poll, null);
-                Thread.Sleep(POLLING_INTERVAL);
-                Thread.Sleep(POLLING_INTERVAL);
+                Thread.Sleep(POLLING_INTERVAL * 2);
             }
             catch (ThreadAbortException exp)
             {
@@ -840,7 +838,7 @@ namespace CashInTerminalWpf
                                                _DeviceState.SubStateCode));
                     }
                     else
-                    {                        
+                    {
                         Interlocked.Exchange(ref _LastReceived, DateTime.Now.Ticks);
                         _DeviceState.Nominal = 0;
                         _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
@@ -897,6 +895,7 @@ namespace CashInTerminalWpf
                             Log.Debug(Encoding.ASCII.GetString(packet.Data));
                             _BillTable.Clear();
                             _DeviceState.AvailableCurrencies.Clear();
+
                             var j = 0;
                             for (int i = 0; (i + 4) < packet.Data.Length; i += 5)
                             {
@@ -923,9 +922,9 @@ namespace CashInTerminalWpf
 
                                 var currency =
                                     Encoding.ASCII.GetString(new[]
-                                        {
-                                            packet.Data[i + 1], packet.Data[i + 2], packet.Data[i + 3]
-                                        });
+                                            {
+                                                packet.Data[i + 1], packet.Data[i + 2], packet.Data[i + 3]
+                                            });
                                 // TODO : Убрать
                                 //Log.Debug(currency);
                                 currency = GetCurrencyCode(currency);
@@ -948,6 +947,8 @@ namespace CashInTerminalWpf
                     }
                     catch (Exception exp)
                     {
+                        _BillTable.Clear();
+                        _DeviceState.AvailableCurrencies.Clear();
                         Log.ErrorException(exp.Message, exp);
                     }
                     break;

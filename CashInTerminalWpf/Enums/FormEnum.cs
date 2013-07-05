@@ -30,5 +30,8 @@
         public const string PaymentServiceInputData = "PagePaymentServiceInputData.xaml";
         public const string ServiceNotAvailable = "PageServiceNotAvailable.xaml";
         public const string OtherPaymentUserInfo = "PageOtherPaymentUserInfo.xaml";
+        public const string CreditRequest = "PageCreditRequest.xaml";
+        public const string CreditRequestAccept = "PageCreditRequestAccept.xaml";
+        public const string CreditRequestSuccess = "PageCreditRequestSuccess.xaml";
     }
 }

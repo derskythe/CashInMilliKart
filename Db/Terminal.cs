@@ -1234,5 +1234,103 @@ namespace Db
 
             return false;
         }
+
+        public void SaveRequest(String phoneNumber)
+        {
+            OracleConnection connection = null;
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+
+                const string cmdText =
+                    "begin   " +
+                    "OCP_REQUEST.save_request(" +
+                    "v_phone => :v_phone); " +
+                    "end;";
+
+                using (var cmd = new OracleCommand(cmdText, connection))
+                {
+                    cmd.Parameters.Add("v_phone", OracleDbType.Varchar2, ParameterDirection.Input).Value =
+                        phoneNumber;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void UpdateRequest(long id, int status)
+        {
+            OracleConnection connection = null;
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+
+                const string cmdText =
+                    "begin " +
+                    "OCP_REQUEST.update_request_status(" +
+                    "v_id => :v_id, " +
+                    "v_status => :v_status); " +
+                    "end;";
+
+                using (var cmd = new OracleCommand(cmdText, connection))
+                {
+                    cmd.Parameters.Add("v_id", OracleDbType.Int64, ParameterDirection.Input).Value =
+                        id;
+                    cmd.Parameters.Add("v_status", OracleDbType.Int16, ParameterDirection.Input).Value =
+                        status;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        public IEnumerable<ds.V_ACTIVE_REQUESTRow> ListActiveRequest()
+        {
+            OracleConnection connection = null;
+
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+                using (var adapter = new V_ACTIVE_REQUESTTableAdapter { BindByName = true, Connection = connection })
+                {
+                    using (var table = new ds.V_ACTIVE_REQUESTDataTable())
+                    {
+                        adapter.Fill(table);
+
+                        foreach (ds.V_ACTIVE_REQUESTRow row in table.Rows)
+                        {
+                            yield return row;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
     }
 }

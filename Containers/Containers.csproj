@@ -84,6 +84,7 @@
     <Compile Include="CashCode\CCNETResponseStatus.cs" />
     <Compile Include="CashCode\CCNETControllerCommand.cs" />
     <Compile Include="CashCode\CCNETRejectReason.cs" />
+    <Compile Include="CreditRequest.cs" />
     <Compile Include="DateTimeWithTimezone.cs" />
     <Compile Include="MultiPayment\CategoriesResult.cs" />
     <Compile Include="CheckField.cs" />

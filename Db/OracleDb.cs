@@ -41,8 +41,8 @@ namespace Db
             if (_ConnectionString == null)
             {
                 _DbName = dbase;
-                _ConnectionString = "User ID=" + user + ";Data Source=" + dbase + ";Password=" + pass + 
-                    ";Min Pool Size=1;Max Pool Size=10;Pooling=True;Validate Connection=true;Connection Lifetime=600;Connection Timeout=600";
+                _ConnectionString = "User ID=" + user + ";Data Source=" + dbase + ";Password=" + pass +
+                    ";Min Pool Size=1;Max Pool Size=50;Pooling=True;Validate Connection=true;Connection Lifetime=300;Connection Timeout=300";
             }
         }
 

@@ -460,6 +460,29 @@ namespace CashInCore
         }
 
         [OperationBehavior(AutoDisposeParameters = true)]
+        public StandardResult CreditRequest(CreditRequest request)
+        {
+            Log.Info("CreditRequest. " + request);
+            var result = new StandardResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = AuthTerminal(result, request, out terminalInfo);
+
+                OracleDb.Instance.SaveRequest(request.Phone);
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
         public StandardResult UpdateTerminalVersionExt(TerminalVersionExtRequest request)
         {
             Log.Info("UpdateTerminalVersionExt. " + request);
@@ -479,6 +502,7 @@ namespace CashInCore
 
                 OracleDb.Instance.SaveTerminalVersionExt(request.TerminalId, request.Version, NormalizeString(request.CashcodeVersion), NormalizeString(str));
                 result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
             }
             catch (Exception exp)
             {

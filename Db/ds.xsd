@@ -1261,6 +1261,25 @@ AND terminal_id = :terminalId</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_ACTIVE_REQUESTTableAdapter" GeneratorDataComponentClassName="V_ACTIVE_REQUESTTableAdapter" Name="V_ACTIVE_REQUEST" UserDataComponentName="V_ACTIVE_REQUESTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_ACTIVE_REQUEST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT PHONE, INSERT_DATE, STATUS, ID FROM CASHIN_NEW.V_ACTIVE_REQUEST</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PHONE" DataSetColumn="PHONE" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -2682,6 +2701,22 @@ AND terminal_id = :terminalId</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_ACTIVE_REQUEST" msprop:Generator_TableClassName="V_ACTIVE_REQUESTDataTable" msprop:Generator_TableVarName="tableV_ACTIVE_REQUEST" msprop:Generator_TablePropName="V_ACTIVE_REQUEST" msprop:Generator_RowDeletingName="V_ACTIVE_REQUESTRowDeleting" msprop:Generator_UserTableName="V_ACTIVE_REQUEST" msprop:Generator_RowChangingName="V_ACTIVE_REQUESTRowChanging" msprop:Generator_RowEvHandlerName="V_ACTIVE_REQUESTRowChangeEventHandler" msprop:Generator_RowDeletedName="V_ACTIVE_REQUESTRowDeleted" msprop:Generator_RowEvArgName="V_ACTIVE_REQUESTRowChangeEvent" msprop:Generator_RowChangedName="V_ACTIVE_REQUESTRowChanged" msprop:Generator_RowClassName="V_ACTIVE_REQUESTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PHONE" msprop:Generator_ColumnVarNameInTable="columnPHONE" msprop:Generator_ColumnPropNameInRow="PHONE" msprop:Generator_ColumnPropNameInTable="PHONEColumn" msprop:Generator_UserColumnName="PHONE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:int" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:long" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

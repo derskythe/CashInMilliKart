@@ -36,8 +36,16 @@ namespace CashInTerminalWpf
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             Log.Info(Title);
+           
             _Amount = 0;
             _FormMain = (MainWindow)Window.GetWindow(this);
+
+
+            if (_FormMain.CcnetDevice.DeviceState.AvailableCurrencies == null || _FormMain.CcnetDevice.DeviceState.AvailableCurrencies.Count == 0)
+            {
+                Log.Warn("No available currency!");
+                _FormMain.OpenForm(FormEnum.CurrencySelect);
+            }
 
             if (_FormMain.ClientInfo.CurrentCurrency != _FormMain.ClientInfo.Client.Currency)
             {

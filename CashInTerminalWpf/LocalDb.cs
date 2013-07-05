@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using CashInTerminalWpf.Properties;
 using CashInTerminalWpf.dsTableAdapters;
+using NLog;
 
 namespace CashInTerminalWpf
 {
     public class LocalDb
     {
+        // ReSharper disable FieldCanBeMadeReadOnly.Local
+        // ReSharper disable InconsistentNaming
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        // ReSharper restore InconsistentNaming
+        // ReSharper restore FieldCanBeMadeReadOnly.Local
+
         private SQLiteConnection GetConnection()
         {
             return new SQLiteConnection("Data Source=" + Settings.Default.DbPath);
@@ -48,8 +55,8 @@ namespace CashInTerminalWpf
         {
             var connection = GetConnection();
             try
-            {                
-                using (var adapter = new PaymentsTableAdapter {Connection = connection})
+            {
+                using (var adapter = new PaymentsTableAdapter { Connection = connection })
                 {
                     using (var table = new ds.PaymentsDataTable())
                     {
@@ -704,6 +711,129 @@ namespace CashInTerminalWpf
             }
 
             return 0;
+        }
+
+        public List<ds.OtherDataRow> ListCreditRequest()
+        {
+            var connection = GetConnection();
+            var rowList = new List<ds.OtherDataRow>();
+            try
+            {
+                using (var adapter = new OtherDataTableAdapter { Connection = connection })
+                {
+                    using (var table = new ds.OtherDataDataTable())
+                    {
+                        adapter.FillByCreditRequest(table);
+                        foreach (ds.OtherDataRow row in table.Rows)
+                        {
+                            rowList.Add(row);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+            return rowList;
+        }
+
+        public void DeleteCreditRequest(long id)
+        {
+            var connection = GetConnection();
+            try
+            {
+                using (var adapter = new OtherDataTableAdapter { Connection = connection })
+                {
+                    adapter.DeleteCreditRequest(id);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+        }
+
+        public void InsertCreditRequest(String value)
+        {
+            var connection = GetConnection();
+            try
+            {
+                using (var adapter = new OtherDataTableAdapter { Connection = connection })
+                {
+                    adapter.InsertCreditRequest(value);
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+        }
+
+        public bool HasTable()
+        {
+            SQLiteConnection connection = null;
+            try
+            {
+                connection = GetConnection();
+
+                using (var adapter = new OtherDataTableAdapter { Connection = connection })
+                {
+                    using (var table = new ds.OtherDataDataTable())
+                    {
+                        adapter.FillByCreditRequest(table);
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+            return false;
+        }
+
+        public void CreateOtherTable()
+        {
+            var connection = GetConnection();
+            try
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand("CREATE TABLE [OtherData] ([Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,[Value] TEXT NULL, [Status] INTEGER NOT NULL DEFAULT 0)", connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
         }
     }
 }

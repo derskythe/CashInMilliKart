@@ -313,6 +313,12 @@ namespace CashInTerminalWpf
             try
             {
                 _Db = new LocalDb();
+
+                if (!_Db.HasTable())
+                {
+                    _Db.CreateOtherTable();
+                }
+
                 _Db.CountCasseteBanknotes();
                 LoadCheckTemplates();
                 UpdateOrphanedTransactions();
@@ -806,7 +812,8 @@ namespace CashInTerminalWpf
             {
                 if (!Utilities.AlphaNumber(_CcnetDevice.DeviceState.Identification) ||
                     _CcnetDevice.DeviceState.AvailableCurrencies == null ||
-                    _CcnetDevice.DeviceState.AvailableCurrencies.Count == 0)
+                    _CcnetDevice.DeviceState.AvailableCurrencies.Count == 0 ||
+                    !HasDefaultCurrency())
                 {
                     Log.Debug(String.Format("ID: {0}, AvailableCurrencies: {1}, IsAlphaNumber: {2}",
                                             _CcnetDevice.DeviceState.Identification,
@@ -830,6 +837,29 @@ namespace CashInTerminalWpf
             {
                 Log.ErrorException(exp.Message, exp);
             }
+        }
+
+        private bool HasDefaultCurrency()
+        {
+            try
+            {
+                foreach (var currency in _CcnetDevice.DeviceState.AvailableCurrencies)
+                {
+                    foreach (var backEndCurrency in _Currencies)
+                    {
+                        if (backEndCurrency.DefaultCurrency && backEndCurrency.Id == currency)
+                        {
+                            return true;
+                        }
+                    }
+                }                
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return false;
         }
 
         private void CheckInactivityTimer(object sender)
@@ -1522,7 +1552,8 @@ namespace CashInTerminalWpf
         private void SendPaymentThread()
         {
             Log.Debug("Started thread: " + Thread.CurrentThread.ManagedThreadId);
-            var listToDelete = new Queue<long>();
+            var listToDeletePayments = new Queue<long>();
+            var listToDeleteCreditRequests = new Queue<long>();
 
             try
             {
@@ -1593,7 +1624,7 @@ namespace CashInTerminalWpf
                                 if (response != null && response.ResultCodes == ResultCodes.Ok && CheckSignature(response))
                                 {
                                     Log.Info("Send to server is okay");
-                                    listToDelete.Enqueue(row.Id);
+                                    listToDeletePayments.Enqueue(row.Id);
                                 }
                                 else if (response != null)
                                 {
@@ -1608,7 +1639,64 @@ namespace CashInTerminalWpf
                             else
                             {
                                 Log.Info("Test version. No sending to server");
-                                listToDelete.Enqueue(row.Id);
+                                listToDeletePayments.Enqueue(row.Id);
+                            }
+                        }
+
+
+                        var listRequests = _Db.ListCreditRequest();
+                        if (listRequests != null)
+                        {
+                            foreach (var row in listRequests)
+                            {
+                                var dateTime = DateTime.Now;
+                                Log.Info("Trying to send phone number: " + row.Value);
+
+                                var request = new CreditRequest
+                                    {
+                                        SystemTime = dateTime,
+                                        TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                                        Phone = row.Value,
+                                        Sign = Utilities.Sign(Settings.Default.TerminalCode, dateTime, _ServerPublicKey),
+                                        Ticks = dateTime.Ticks
+                                    };
+
+                                var response = _Server.CreditRequest(request);
+
+                                if (response != null && response.ResultCodes == ResultCodes.Ok &&
+                                    CheckSignature(response))
+                                {
+                                    Log.Info("Send to server is okay");
+                                    listToDeleteCreditRequests.Enqueue(row.Id);
+                                }
+                                else if (response != null)
+                                {
+                                    Log.Warn(String.Format("Server answer: {0}, {1}", response.ResultCodes,
+                                                           response.Description));
+                                }
+                                else
+                                {
+                                    Log.Warn("Response is null");
+                                }
+                            }
+                        }                        
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                    }
+                    catch
+                    {
+                        Log.Error("Non cachable exception");
+                    }
+
+                    try
+                    {
+                        if (listToDeletePayments.Count > 0)
+                        {
+                            foreach (var item in listToDeletePayments)
+                            {
+                                _Db.DeleteTransaction(item);
                             }
                         }
                     }
@@ -1623,11 +1711,11 @@ namespace CashInTerminalWpf
 
                     try
                     {
-                        if (listToDelete.Count > 0)
+                        if (listToDeleteCreditRequests.Count > 0)
                         {
-                            foreach (var item in listToDelete)
+                            foreach (var item in listToDeleteCreditRequests)
                             {
-                                _Db.DeleteTransaction(item);
+                                _Db.DeleteCreditRequest(item);
                             }
                         }
                     }
@@ -1639,10 +1727,13 @@ namespace CashInTerminalWpf
                     {
                         Log.Error("Non cachable exception");
                     }
+
                     if (_Running)
                     {
                         Thread.Sleep(SEND_PAYMENT_TIMEOUT);
                     }
+
+                    
                 }
             }
             catch (ThreadAbortException exp)

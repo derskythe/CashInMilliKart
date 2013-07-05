@@ -1,7 +1,8 @@
 ﻿namespace CashInTerminal
 {
     /*
-     * <-  Bill Type:  0:       1  USA
+     * 
+<-  Bill Type:  0:       1  USA
 <-  Bill Type:  1:       2  USA
 <-  Bill Type:  2:       5  USA
 <-  Bill Type:  3:       10  USA
