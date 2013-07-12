@@ -120,7 +120,7 @@ namespace LogAnalizer
                             }
                             nextDate = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
 
-                            if (nextDate - prevDate < new TimeSpan(0, 0, 0, 4))
+                            if (nextDate - prevDate < new TimeSpan(0, 0, 0, 5))
                             {
                                 txtWarning2.Text += line.TrimEnd() + "\r\n";
                             }

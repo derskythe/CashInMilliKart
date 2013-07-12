@@ -21,7 +21,7 @@ namespace CashInTerminalWpf
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
         //private static TimeZoneInfo _Tz = TimeZoneInfo.FindSystemTimeZoneById("Azerbaijan Standard Time");
-        private static readonly Regex _AlphaNumber = new Regex(@"^[a-zA-Z0-9\s\;\.\-]+$");
+        private static readonly Regex _AlphaNumber = new Regex(@"[^A-Z0-9.$ \;\.\-]");
 
         [DllImport("user32.dll")]
         static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
@@ -41,12 +41,12 @@ namespace CashInTerminalWpf
 
         public static bool AlphaNumber(String value)
         {
-            if (!String.IsNullOrEmpty(value) && _AlphaNumber.IsMatch(value))
+            if (String.IsNullOrEmpty(value) || _AlphaNumber.IsMatch(value))
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)

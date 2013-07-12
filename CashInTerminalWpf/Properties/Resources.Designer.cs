@@ -433,6 +433,15 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string LabelPhone {
+            get {
+                return ResourceManager.GetString("LabelPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success sent data to Bank of Baku.
         /// </summary>
         public static string LabelSuccessCreditRequest {

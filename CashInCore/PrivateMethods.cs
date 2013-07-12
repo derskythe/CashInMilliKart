@@ -31,7 +31,7 @@ namespace CashInCore
             {
                 return String.Empty;
             }
-            var pRegex = new Regex(@"[^0-9a-z\;\,\.\-\+\s]", RegexOptions.IgnoreCase);
+            var pRegex = new Regex(@"[^0-9a-z\;\,\.\-\+ ]", RegexOptions.IgnoreCase);
             return pRegex.Replace(value, String.Empty).Trim();
         }
 

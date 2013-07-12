@@ -292,4 +292,7 @@
   <data name="LabelSuccessCreditRequest" xml:space="preserve">
     <value>Success sent data to Bank of Baku</value>
   </data>
+  <data name="LabelPhone" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
 </root>
