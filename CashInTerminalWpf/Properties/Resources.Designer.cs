@@ -443,7 +443,9 @@ namespace CashInTerminalWpf.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Kredit Sifarişiniz qəbul olunub. 
-        ///Yaxın zamanda Sizinlə əlaqə saxlanılacaq. 
+        ///Yaxın zamanda sizinlə 
+        ///əlaqə saxlanılacaq. 
+        ///
         ///Təşəkkür edirik.
         /// </summary>
         public static string LabelSuccessCreditRequest {

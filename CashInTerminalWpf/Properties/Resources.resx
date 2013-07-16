@@ -291,7 +291,9 @@
   </data>
   <data name="LabelSuccessCreditRequest" xml:space="preserve">
     <value>Kredit Sifarişiniz qəbul olunub. 
-Yaxın zamanda Sizinlə əlaqə saxlanılacaq. 
+Yaxın zamanda sizinlə 
+əlaqə saxlanılacaq. 
+
 Təşəkkür edirik</value>
   </data>
   <data name="LabelPhone" xml:space="preserve">
