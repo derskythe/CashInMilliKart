@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Margin="10" />
-        <Label Style="{StaticResource BigLabelStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static res:Resources.LabelSuccessCreditRequest}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+        <TextBlock Style="{StaticResource BigTextBlockStyle}" Grid.Row="1" Grid.Column="0" Text="{x:Static res:Resources.LabelSuccessCreditRequest}" HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" IsEnabled="False" />
         <Label Style="{StaticResource BigLabelStyle}" Grid.Row="2" Grid.Column="0" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
         <Button Name="ButtonSuccess" HorizontalAlignment="Center" Grid.Row="3" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.ButtonSuccessNext}" Click="ButtonSuccessClick" />

@@ -111,6 +111,13 @@
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         </Style>
 
+        <Style x:Key="BigTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="50" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+
         <Style x:Key="BlindLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="100" />

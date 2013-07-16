@@ -325,7 +325,7 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entered phone number is:.
+        ///   Looks up a localized string similar to Daxil edilmiş telefon nömrəniz:.
         /// </summary>
         public static string LabelAcceptPhoneNumber {
             get {
@@ -433,7 +433,7 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone number.
+        ///   Looks up a localized string similar to Mobil Telefon nömrəsi.
         /// </summary>
         public static string LabelPhone {
             get {
@@ -442,7 +442,9 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Success sent data to Bank of Baku.
+        ///   Looks up a localized string similar to Kredit Sifarişiniz qəbul olunub. 
+        ///Yaxın zamanda Sizinlə əlaqə saxlanılacaq. 
+        ///Təşəkkür edirik.
         /// </summary>
         public static string LabelSuccessCreditRequest {
             get {

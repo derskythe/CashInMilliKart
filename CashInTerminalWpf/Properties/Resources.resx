@@ -287,12 +287,14 @@
     <value>Əməliyyat ID</value>
   </data>
   <data name="LabelAcceptPhoneNumber" xml:space="preserve">
-    <value>Entered phone number is:</value>
+    <value>Daxil edilmiş telefon nömrəniz:</value>
   </data>
   <data name="LabelSuccessCreditRequest" xml:space="preserve">
-    <value>Success sent data to Bank of Baku</value>
+    <value>Kredit Sifarişiniz qəbul olunub. 
+Yaxın zamanda Sizinlə əlaqə saxlanılacaq. 
+Təşəkkür edirik</value>
   </data>
   <data name="LabelPhone" xml:space="preserve">
-    <value>Phone number</value>
+    <value>Mobil Telefon nömrəsi</value>
   </data>
 </root>
