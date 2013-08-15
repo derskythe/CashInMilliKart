@@ -11,6 +11,7 @@ namespace LogAnalizer
 {
     public partial class FormMain : Form
     {
+        private const String EOL = "\r\n";
         public FormMain()
         {
             InitializeComponent();
@@ -18,7 +19,7 @@ namespace LogAnalizer
 
         private void FormMainLoad(object sender, EventArgs e)
         {
-
+            cmbTransactions.SelectedIndex = Settings.Default.CountType;
         }
 
         private void BtnOpenClick(object sender, EventArgs e)
@@ -33,6 +34,8 @@ namespace LogAnalizer
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Default.InitDir = Path.GetDirectoryName(openFileDialog.FileName);
+                Settings.Default.CountType = cmbTransactions.SelectedIndex;
+                Settings.Default.Save();
 
                 string fileContent;
                 using (var file = new StreamReader(openFileDialog.FileName, Encoding.UTF8))
@@ -47,14 +50,13 @@ namespace LogAnalizer
                 var regAzn = new Regex(@"(\d+)\s+(AZN)", RegexOptions.IgnoreCase);
                 var regUsd = new Regex(@"(\d+)\s+(USD)", RegexOptions.IgnoreCase);
                 var regDate = new Regex(@"^(\d+\-\d+)(\s+\d+\:\d+\:\d+\.\d+)", RegexOptions.IgnoreCase);
-                string format = "dd-MM-yyyy HH:mm:ss.fff";
+                const string format = "dd-MM-yyyy HH:mm:ss.fff";
                 //DateTime date = DateTime.ParseExact(str, format, CultureInfo.InvariantCulture);
                 int amountAzn = 0;
                 int amountUsd = 0;
                 int totalAmountAzn = 0;
                 int totalAmountUsd = 0;
                 DateTime prevDate = DateTime.MinValue;
-                DateTime nextDate = DateTime.MinValue;
                 txtTrasnsactions.Text = String.Empty;
                 txtTotal.Text = String.Empty;
                 txtWarning.Text = String.Empty;
@@ -71,21 +73,36 @@ namespace LogAnalizer
                     {
                         if (amountAzn > 0)
                         {
-                            txtTrasnsactions.Text += @"Total amount: " + amountAzn + " AZN\r\n";
-                            var matches = transId.Matches(prevTransaction);
+                            txtTrasnsactions.Text += @"Total amount: " + amountAzn + @" AZN" + EOL;
+                            
 
-                            if (matches.Count == 1)
+                            if (cmbTransactions.SelectedIndex == 0)
                             {
-                                String transIdRaw = matches[0].Groups[1].ToString();
-                                totalTrans.Add(transIdRaw, amountAzn);
-                                transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
+                                var matches = transId.Matches(prevTransaction);
+                                if (matches.Count == 1)
+                                {
+                                    String transIdRaw = matches[0].Groups[1].ToString();
+                                    totalTrans.Add(transIdRaw, amountAzn);
+                                    transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
+                                }
                             }
                         }
                         else if (amountUsd > 0)
                         {
-                            txtTrasnsactions.Text += @"Total amount: " + amountUsd + " USD\r\n";
+                            txtTrasnsactions.Text += @"Total amount: " + amountUsd + @" USD" + EOL;
+
+                            if (cmbTransactions.SelectedIndex == 1)
+                            {
+                                var matches = transId.Matches(prevTransaction);
+                                if (matches.Count == 1)
+                                {
+                                    String transIdRaw = matches[0].Groups[1].ToString();
+                                    totalTrans.Add(transIdRaw, amountUsd);
+                                    transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
+                                }
+                            }
                         }
-                        txtTrasnsactions.Text += line.TrimEnd() + "\r\n";
+                        txtTrasnsactions.Text += line.TrimEnd() + EOL;
                         totalAmountAzn += amountAzn;
                         totalAmountUsd += amountUsd;
                         amountAzn = 0;
@@ -98,79 +115,95 @@ namespace LogAnalizer
                         if (matches.Count == 1)
                         {
                             amountAzn += Convert.ToInt32(matches[0].Groups[1].ToString());
-                            txtTrasnsactions.Text += matches[0].Groups[1] + " AZN\r\n";
+                            txtTrasnsactions.Text += matches[0].Groups[1] + @" AZN" + EOL;
                         }
 
                         matches = regUsd.Matches(line);
                         if (matches.Count == 1)
                         {
                             amountUsd += Convert.ToInt32(matches[0].Groups[1].ToString());
-                            txtTrasnsactions.Text += matches[0].Groups[1] + " USD\r\n";
+                            txtTrasnsactions.Text += matches[0].Groups[1] + @" USD" + EOL;
                         }
 
                         matches = regDate.Matches(line);
 
                         if (matches.Count == 1)
                         {
-                            String date = matches[0].Groups[1] + "-" + DateTime.Now.Year.ToString() +
+                            String date = matches[0].Groups[1] + "-" + DateTime.Now.Year.ToString(CultureInfo.InvariantCulture) +
                                           matches[0].Groups[2];
-                            if (date == "29-05-2013 15:16:09.683")
-                            {
-                                var i = 0;
-                            }
-                            nextDate = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
+                            //if (date == "29-05-2013 15:16:09.683")
+                            //{
+                            //    var i = 0;
+                            //}
+                            DateTime nextDate = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
 
                             if (nextDate - prevDate < new TimeSpan(0, 0, 0, 5))
                             {
-                                txtWarning2.Text += line.TrimEnd() + "\r\n";
+                                txtWarning2.Text += line.TrimEnd() + EOL;
                             }
                             prevDate = nextDate;
                         }
                     }
                     else if (line.IndexOf("CassetteRemoved", StringComparison.InvariantCultureIgnoreCase) >= 0)
                     {
-                        txtTrasnsactions.Text += line.TrimEnd() + "\r\n";
-                        txtWarning.Text += line.TrimEnd() + "\r\n";
+                        txtTrasnsactions.Text += line.TrimEnd() + EOL;
+                        txtWarning.Text += line.TrimEnd() + EOL;
                     }
                     else if (
                         line.IndexOf("CashInTerminalWpf.MainWindow.DoEncashment",
                                      StringComparison.InvariantCultureIgnoreCase) >= 0)
                     {
-                        txtTrasnsactions.Text += line.TrimEnd() + "\r\n";
-                        txtWarning.Text += line.TrimEnd() + "\r\n";
+                        txtTrasnsactions.Text += line.TrimEnd() + EOL;
+                        txtWarning.Text += line.TrimEnd() + EOL;
                     }
                 }
 
                 if (amountAzn > 0)
                 {
-                    txtTrasnsactions.Text += @"Total amount: " + amountAzn + " AZN\r\n";
+                    txtTrasnsactions.Text += @"Total amount: " + amountAzn + @" AZN" + EOL;
                     totalAmountAzn += amountAzn;
 
-                    var matches = transId.Matches(prevTransaction);
-
-                    if (matches.Count == 1)
+                    if (cmbTransactions.SelectedIndex == 0)
                     {
-                        String transIdRaw = matches[0].Groups[1].ToString();
-                        totalTrans.Add(transIdRaw, amountAzn);
-                        transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
+                        var matches = transId.Matches(prevTransaction);
+
+                        if (matches.Count == 1)
+                        {
+                            String transIdRaw = matches[0].Groups[1].ToString();
+                            totalTrans.Add(transIdRaw, amountAzn);
+                            transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
+                        }
                     }
                 }
                 else if (amountUsd > 0)
                 {
-                    txtTrasnsactions.Text += @"Total amount: " + amountUsd + " USD\r\n";
+                    txtTrasnsactions.Text += @"Total amount: " + amountUsd + @" USD" + EOL;
                     totalAmountUsd += amountUsd;
+
+                    if (cmbTransactions.SelectedIndex == 1)
+                    {
+                        var matches = transId.Matches(prevTransaction);
+
+                        if (matches.Count == 1)
+                        {
+                            String transIdRaw = matches[0].Groups[1].ToString();
+                            totalTrans.Add(transIdRaw, amountUsd);
+                            transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
+                        }
+                    }
                 }
 
-                sql.Append(String.Join(" OR ", transactionList)).Append("\r\n");
+                sql.Append(String.Join(" OR ", transactionList)).Append(EOL);
 
                 foreach (var tran in totalTrans)
                 {
-                    sql.Append("TransactionID: ").Append(tran.Key).Append(" ").Append("Amount: ").Append(tran.Value).Append("\r\n");
+                    sql.Append("TransactionID: ").Append(tran.Key).Append(" ").Append("Amount: ").Append(tran.Value).Append(EOL);
                 }
 
 
                 txtWarning2.Text += sql.ToString();
-                txtTotal.Text = totalAmountAzn.ToString() + " AZN, " + totalAmountUsd.ToString() + " USD";
+                txtTotal.Text = totalAmountAzn.ToString(CultureInfo.InvariantCulture) + @" AZN, " +
+                                totalAmountUsd.ToString(CultureInfo.InvariantCulture) + @" USD";
             }
         }
     }
