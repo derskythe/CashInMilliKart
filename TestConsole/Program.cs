@@ -234,18 +234,39 @@ namespace TestConsole
             {
                 {
                     var info = new TerminalPaymentInfo();
-                    info.TerminalId = 574;
-                    info.TransactionId = "5741593270";
+                    info.TerminalId = 576;
+                    info.TransactionId = "57620515255";
                     info.ProductId = 1;
                     info.Currency = "AZN";
                     info.CurrencyRate = 1;
-                    info.Amount = 35;
+                    info.Amount = 957;
                     info.OperationType = 11;
-                    info.Values = new[] { "3801000BL0129323", "AZE08797662" };
-                    info.CreditNumber = "BAL0129323/12";
+                    info.Values = new[] { "3801000NH018408U", "AZE05581930" };
+                    info.CreditNumber = "NH018408U/12A";
                     info.PaymentServiceId = 0;
-                    info.Banknotes = new[] { 5, 20, 10 };
-                    info.TerminalDate = DateTime.Parse("08.06.2013 12:59:28");
+                    info.Banknotes = new[] { 50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+50,
+5,
+1,
+1 };
+                    info.TerminalDate = DateTime.Parse("24.07.2013 21:16:21");
                     info.SystemTime = info.TerminalDate;
 
                     list.Add(info);

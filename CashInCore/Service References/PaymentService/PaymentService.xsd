@@ -53,19 +53,16 @@
     <xs:attribute name="description" type="xs:string" />
   </xs:complexType>
   <xs:simpleType name="ErrorCodes">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="Ok" />
-          <xs:enumeration value="InvalidNumber" />
-          <xs:enumeration value="InvalidParameters" />
-          <xs:enumeration value="DublicatePaymentId" />
-          <xs:enumeration value="InvalidCurrency" />
-          <xs:enumeration value="UnknownError" />
-          <xs:enumeration value="SystemError" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="InvalidNumber" />
+      <xs:enumeration value="InvalidParameters" />
+      <xs:enumeration value="DublicatePaymentId" />
+      <xs:enumeration value="InvalidCurrency" />
+      <xs:enumeration value="InvalidUser" />
+      <xs:enumeration value="UnknownError" />
+      <xs:enumeration value="SystemError" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ServicesInfo">
     <xs:sequence>
