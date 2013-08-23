@@ -12,6 +12,8 @@ namespace LogAnalizer
     public partial class FormMain : Form
     {
         private const String EOL = "\r\n";
+        private readonly Dictionary<String, int> _TotalTrans = new Dictionary<String, int>(); 
+
         public FormMain()
         {
             InitializeComponent();
@@ -37,6 +39,8 @@ namespace LogAnalizer
                 Settings.Default.CountType = cmbTransactions.SelectedIndex;
                 Settings.Default.Save();
 
+                _TotalTrans.Clear();
+
                 string fileContent;
                 using (var file = new StreamReader(openFileDialog.FileName, Encoding.UTF8))
                 {
@@ -61,7 +65,7 @@ namespace LogAnalizer
                 txtTotal.Text = String.Empty;
                 txtWarning.Text = String.Empty;
                 txtWarning2.Text = String.Empty;
-                var totalTrans = new Dictionary<String, int>();
+                
                 var sql = new StringBuilder();
                 sql.Append("SELECT * FROM products_history t WHERE ");
                 var transactionList = new List<string>();
@@ -75,16 +79,15 @@ namespace LogAnalizer
                         {
                             txtTrasnsactions.Text += @"Total amount: " + amountAzn + @" AZN" + EOL;
                             
-
                             if (cmbTransactions.SelectedIndex == 0)
                             {
                                 var matches = transId.Matches(prevTransaction);
                                 if (matches.Count == 1)
                                 {
                                     String transIdRaw = matches[0].Groups[1].ToString();
-                                    totalTrans.Add(transIdRaw, amountAzn);
+                                    _TotalTrans.Add(transIdRaw, amountAzn);
                                     transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
-                                }
+                                }                                
                             }
                         }
                         else if (amountUsd > 0)
@@ -97,7 +100,7 @@ namespace LogAnalizer
                                 if (matches.Count == 1)
                                 {
                                     String transIdRaw = matches[0].Groups[1].ToString();
-                                    totalTrans.Add(transIdRaw, amountUsd);
+                                    _TotalTrans.Add(transIdRaw, amountUsd);
                                     transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
                                 }
                             }
@@ -170,7 +173,7 @@ namespace LogAnalizer
                         if (matches.Count == 1)
                         {
                             String transIdRaw = matches[0].Groups[1].ToString();
-                            totalTrans.Add(transIdRaw, amountAzn);
+                            _TotalTrans.Add(transIdRaw, amountAzn);
                             transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
                         }
                     }
@@ -187,7 +190,7 @@ namespace LogAnalizer
                         if (matches.Count == 1)
                         {
                             String transIdRaw = matches[0].Groups[1].ToString();
-                            totalTrans.Add(transIdRaw, amountUsd);
+                            _TotalTrans.Add(transIdRaw, amountUsd);
                             transactionList.Add("t.transaction_id = '" + transIdRaw + "'");
                         }
                     }
@@ -195,7 +198,7 @@ namespace LogAnalizer
 
                 sql.Append(String.Join(" OR ", transactionList)).Append(EOL);
 
-                foreach (var tran in totalTrans)
+                foreach (var tran in _TotalTrans)
                 {
                     sql.Append("TransactionID: ").Append(tran.Key).Append(" ").Append("Amount: ").Append(tran.Value).Append(EOL);
                 }
@@ -204,6 +207,43 @@ namespace LogAnalizer
                 txtWarning2.Text += sql.ToString();
                 txtTotal.Text = totalAmountAzn.ToString(CultureInfo.InvariantCulture) + @" AZN, " +
                                 totalAmountUsd.ToString(CultureInfo.InvariantCulture) + @" USD";
+            }
+        }
+
+        private void BtnExportClick(object sender, EventArgs e)
+        {
+            if (_TotalTrans.Count > 0)
+            {
+                if (String.IsNullOrEmpty(Settings.Default.SaveInitDir))
+                {
+                    Settings.Default.SaveInitDir = Environment.SpecialFolder.MyComputer.ToString();
+                }
+
+                saveFileDialog.InitialDirectory = Settings.Default.SaveInitDir;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Settings.Default.SaveInitDir = Path.GetDirectoryName(saveFileDialog.FileName);
+                    Settings.Default.Save();
+
+
+                    try
+                    {
+                        using (var file = new StreamWriter(saveFileDialog.FileName, true, Encoding.UTF8))
+                        {
+                            foreach (var tran in _TotalTrans)
+                            {
+                                file.WriteLine(String.Format("\"{0}\",\"{1}\"", tran.Key, tran.Value));
+                            }
+
+                            file.Close();
+                        }
+                    }
+                    catch (Exception exp)
+                    {
+                        MessageBox.Show(exp.Message);
+                    }
+                }
             }
         }
     }

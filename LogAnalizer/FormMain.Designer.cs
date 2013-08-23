@@ -32,10 +32,12 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtTrasnsactions = new System.Windows.Forms.RichTextBox();
-            this.txtWarning = new System.Windows.Forms.RichTextBox();
             this.txtWarning2 = new System.Windows.Forms.RichTextBox();
+            this.txtWarning = new System.Windows.Forms.RichTextBox();
+            this.txtTrasnsactions = new System.Windows.Forms.RichTextBox();
             this.cmbTransactions = new System.Windows.Forms.ComboBox();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,32 +83,32 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1122, 445);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
+            // txtWarning2
+            // 
+            this.txtWarning2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtWarning2.Location = new System.Drawing.Point(751, 3);
+            this.txtWarning2.Name = "txtWarning2";
+            this.txtWarning2.Size = new System.Drawing.Size(368, 439);
+            this.txtWarning2.TabIndex = 4;
+            this.txtWarning2.Text = "";
+            // 
+            // txtWarning
+            // 
+            this.txtWarning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtWarning.Location = new System.Drawing.Point(377, 3);
+            this.txtWarning.Name = "txtWarning";
+            this.txtWarning.Size = new System.Drawing.Size(368, 439);
+            this.txtWarning.TabIndex = 3;
+            this.txtWarning.Text = "";
+            // 
             // txtTrasnsactions
             // 
             this.txtTrasnsactions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTrasnsactions.Location = new System.Drawing.Point(3, 3);
             this.txtTrasnsactions.Name = "txtTrasnsactions";
-            this.txtTrasnsactions.Size = new System.Drawing.Size(367, 439);
+            this.txtTrasnsactions.Size = new System.Drawing.Size(368, 439);
             this.txtTrasnsactions.TabIndex = 2;
             this.txtTrasnsactions.Text = "";
-            // 
-            // txtWarning
-            // 
-            this.txtWarning.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtWarning.Location = new System.Drawing.Point(376, 3);
-            this.txtWarning.Name = "txtWarning";
-            this.txtWarning.Size = new System.Drawing.Size(367, 439);
-            this.txtWarning.TabIndex = 3;
-            this.txtWarning.Text = "";
-            // 
-            // txtWarning2
-            // 
-            this.txtWarning2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtWarning2.Location = new System.Drawing.Point(749, 3);
-            this.txtWarning2.Name = "txtWarning2";
-            this.txtWarning2.Size = new System.Drawing.Size(370, 439);
-            this.txtWarning2.TabIndex = 4;
-            this.txtWarning2.Text = "";
             // 
             // cmbTransactions
             // 
@@ -120,11 +122,27 @@
             this.cmbTransactions.Size = new System.Drawing.Size(255, 21);
             this.cmbTransactions.TabIndex = 5;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(1022, 16);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(112, 23);
+            this.btnExport.TabIndex = 6;
+            this.btnExport.Text = "Export to CSV";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExportClick);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "csv";
+            this.saveFileDialog.Filter = "CSV|*.csv";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 499);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.cmbTransactions);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.txtTotal);
@@ -148,6 +166,8 @@
         private System.Windows.Forms.RichTextBox txtWarning;
         private System.Windows.Forms.RichTextBox txtTrasnsactions;
         private System.Windows.Forms.ComboBox cmbTransactions;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

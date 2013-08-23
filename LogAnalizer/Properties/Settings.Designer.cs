@@ -46,5 +46,17 @@ namespace LogAnalizer.Properties {
                 this["CountType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SaveInitDir {
+            get {
+                return ((string)(this["SaveInitDir"]));
+            }
+            set {
+                this["SaveInitDir"] = value;
+            }
+        }
     }
 }
