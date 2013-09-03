@@ -27179,7 +27179,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount  OR CREDIT_ACCOUNT = :clientAccount) AND (PASSPORTNUMBER = :passportNumber) AND (AMOUNT_LEFT > 0) AND credit_type = 1";
+            this._commandCollection[1].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount  OR CREDIT_ACCOUNT = :clientAccount) AND (PASSPORTNUMBER = :passportNumber) AND (AMOUNT_LEFT > 0) AND credit_type != 0";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":clientAccount";
@@ -27197,7 +27197,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount OR CREDIT_ACCOUNT = :clientAccount) AND (AMOUNT_LEFT > 0) AND credit_type = 1";
+            this._commandCollection[2].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLIENT_ACCOUNT = :clientAccount OR CREDIT_ACCOUNT = :clientAccount) AND (AMOUNT_LEFT > 0) AND credit_type != 0";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":clientAccount";
@@ -27208,7 +27208,7 @@ namespace Db.dsTableAdapters {
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLNCODE = :clientCode) AND (AMOUNT_LEFT > 0) AND credit_type = 1";
+            this._commandCollection[3].CommandText = @"SELECT CRD_NUMBER, FULL_NAME, PASSPORTNUMBER, CREDIT_ACCOUNT, CLIENT_ACCOUNT, AMOUNT_LEFT, AMOUNT_LATE, CURRENCY, BEGIN_DATE, CURRENCY_RATE, CLNCODE, CREDIT_AMOUNT, CREDIT_NAME, CREDIT_TYPE FROM CASHIN_NEW.V_CASHIN_GET_ACCOUNT_INFO WHERE (CLNCODE = :clientCode) AND (AMOUNT_LEFT > 0) AND credit_type != 0";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":clientCode";
