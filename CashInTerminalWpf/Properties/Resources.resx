@@ -143,10 +143,10 @@
     <value>Hesab nömrəsini təkrarlayın</value>
   </data>
   <data name="BolLastFour" xml:space="preserve">
-    <value>Kartın son 8 rəqəmi</value>
+    <value>Kartın tam nomresi</value>
   </data>
   <data name="BolLastFourRetype" xml:space="preserve">
-    <value>Son 8 rəqəmi təkrarlayın</value>
+    <value>Kartın tam nomresi təkrarlayın</value>
   </data>
   <data name="ButtonActivation" xml:space="preserve">
     <value>Sonlandır</value>

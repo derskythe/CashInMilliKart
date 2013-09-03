@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using CashInTerminalWpf.CashIn;
 using CashInTerminalWpf.Enums;
 using CashInTerminalWpf.Properties;
@@ -22,7 +23,7 @@ namespace CashInTerminalWpf
 
         public PageBolcardRetype()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
@@ -32,10 +33,11 @@ namespace CashInTerminalWpf
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
-            if (ClientNumber.Text.Length > 4)
+            if (ClientNumber1.Text.Length + ClientNumber2.Text.Length + ClientNumber3.Text.Length + ClientNumber4.Text.Length == 16)
             {
-                Log.Info("Input value: " + ClientNumber.Text);
-                if (ClientNumber.Text != _FormMain.ClientInfo.AccountNumber)
+                var result = ClientNumber1.Text + "%" + ClientNumber3.Text + ClientNumber4.Text;
+                Log.Info("Input value: " + result);
+                if (result != _FormMain.ClientInfo.AccountNumber)
                 {
                     _FormMain.OpenForm(FormEnum.InvalidNumber);
                     return;
@@ -86,20 +88,53 @@ namespace CashInTerminalWpf
 
         private void ControlNumPadOnNewChar(object sender, NumPadRoutedEventArgs args)
         {
-            ClientNumber.Text += args.NewChar;
+            if (ClientNumber1.Text.Length < 4)
+            {
+                ClientNumber1.Text += args.NewChar;
+            }
+            else if (ClientNumber2.Text.Length < 4)
+            {
+                ClientNumber2.Text += args.NewChar;
+            }
+            else if (ClientNumber3.Text.Length < 4)
+            {
+                ClientNumber3.Text += args.NewChar;
+            }
+            else if (ClientNumber4.Text.Length < 4)
+            {
+                ClientNumber4.Text += args.NewChar;
+            }
         }
 
         private void ControlNumPadOnClearAll(object sender, NumPadRoutedEventArgs numPadRoutedEventArgs)
         {
-            ClientNumber.Text = String.Empty;
+            ClientNumber1.Text = String.Empty;
+            ClientNumber2.Text = String.Empty;
+            ClientNumber3.Text = String.Empty;
+            ClientNumber4.Text = String.Empty;
         }
 
         private void ControlNumPadOnBackSpace(object sender, NumPadRoutedEventArgs args)
         {
-            if (ClientNumber.Text.Length > 0)
+            TextBox current;
+            if (ClientNumber4.Text.Length > 0)
             {
-                ClientNumber.Text = ClientNumber.Text.Substring(0, ClientNumber.Text.Length - 1);
+                current = ClientNumber4;
             }
+            else if (ClientNumber3.Text.Length > 0)
+            {
+                current = ClientNumber3;
+            }
+            else if (ClientNumber2.Text.Length > 0)
+            {
+                current = ClientNumber2;
+            }
+            else
+            {
+                current = ClientNumber1;
+            }
+
+            current.Text = current.Text.Substring(0, current.Text.Length - 1);
         }
     }
 }

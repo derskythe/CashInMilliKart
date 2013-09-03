@@ -64,7 +64,7 @@ namespace CashInTerminalWpf
                         {
                             var request = (GetClientInfoRequest)value;
 
-                            var response = _FormMain.Server.GetClientInfo(request);
+                            var response = _FormMain.Server.GetClientInfoExt(request);
                             if (response.ResultCodes != CashIn.ResultCodes.Ok)
                             {
                                 throw new Exception(response.Description);

@@ -68,5 +68,8 @@ namespace CashInCore
 
         [OperationContract]
         StandardResult CreditRequest(CreditRequest request);
+
+        [OperationContract]
+        GetClientInfoResult GetClientInfoExt(GetClientInfoRequest request);
     }
 }

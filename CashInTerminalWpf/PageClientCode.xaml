@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:res="clr-namespace:CashInTerminalWpf.Properties"
       mc:Ignorable="d" 
-      d:DesignHeight="614" d:DesignWidth="819"
+      d:DesignHeight="746" d:DesignWidth="1020"
 	  Title="PageBase"
       Background="{StaticResource FormBlueBarGradientBrush}" Height="Auto" Width="Auto" xmlns:my="clr-namespace:CashInTerminalWpf" Loaded="PageLoaded" Unloaded="PageUnloaded">
 

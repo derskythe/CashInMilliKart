@@ -127,7 +127,7 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kartın son 8 rəqəmi.
+        ///   Looks up a localized string similar to Kartın tam nomresi.
         /// </summary>
         public static string BolLastFour {
             get {
@@ -136,7 +136,7 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Son 8 rəqəmi təkrarlayın.
+        ///   Looks up a localized string similar to Kartın tam nomresi təkrarlayın.
         /// </summary>
         public static string BolLastFourRetype {
             get {

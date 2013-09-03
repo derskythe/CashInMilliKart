@@ -950,6 +950,40 @@ namespace Db
             return new List<ClientInfo>();
         }
 
+        public List<ClientInfo> ListClientsBolcardExt(String digits)
+        {
+            OracleConnection connection = null;
+
+            try
+            {
+                connection = new OracleConnection(_ConnectionString); connection.Open();
+
+                using (var adapter = new V_CASHIN_BOLCARDS_EXTTableAdapter { Connection = connection, BindByName = true })
+                {
+                    using (var table = new ds.V_CASHIN_BOLCARDS_EXTDataTable())
+                    {
+                        adapter.FillByPan(table, digits);
+                        foreach (ds.V_CASHIN_BOLCARDS_EXTRow row in table.Rows)
+                        {
+                            if (!row.IsCLIENT_ACCOUNTNull())
+                            {
+                                return ListClientsByClientAccount(row.CLIENT_ACCOUNT);
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+            return new List<ClientInfo>();
+        }
 
         public List<ClientInfo> ListDebitClients(String clientCode)
         {

@@ -569,6 +569,7 @@ namespace CashInCore
             return result;
         }
 
+        [Obsolete]
         [OperationBehavior(AutoDisposeParameters = true)]
         public GetClientInfoResult GetClientInfo(GetClientInfoRequest request)
         {
@@ -592,6 +593,51 @@ namespace CashInCore
 
                     case PaymentOperationType.CreditPaymentBolcard:
                         result.Infos = OracleDb.Instance.ListClientsBolcard(request.Bolcard8Digits);
+                        break;
+
+                    case PaymentOperationType.DebitPaymentByClientCode:
+                        result.Infos = OracleDb.Instance.ListDebitClients(request.ClientCode);
+                        break;
+
+                    case PaymentOperationType.DebitPaymentByPassportAndAccount:
+                        result.Infos = OracleDb.Instance.ListDebitClients(request.CreditAccount, request.PasportNumber);
+                        break;
+                }
+
+                result.Code = ResultCodes.Ok;
+                result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(AutoDisposeParameters = true)]
+        public GetClientInfoResult GetClientInfoExt(GetClientInfoRequest request)
+        {
+            Log.Info("GetClientInfo. " + request);
+            var result = new GetClientInfoResult();
+
+            try
+            {
+                Terminal terminalInfo;
+                result = (GetClientInfoResult)AuthTerminal(result, request, out terminalInfo);
+
+                switch ((PaymentOperationType)request.PaymentOperationType)
+                {
+                    case PaymentOperationType.CreditPaymentByClientCode:
+                        result.Infos = OracleDb.Instance.ListCreditClients(request.ClientCode);
+                        break;
+
+                    case PaymentOperationType.CreditPaymentByPassportAndAccount:
+                        result.Infos = OracleDb.Instance.ListCreditClients(request.CreditAccount, request.PasportNumber);
+                        break;
+
+                    case PaymentOperationType.CreditPaymentBolcard:
+                        result.Infos = OracleDb.Instance.ListClientsBolcardExt(request.Bolcard8Digits);
                         break;
 
                     case PaymentOperationType.DebitPaymentByClientCode:

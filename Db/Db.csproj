@@ -87,6 +87,9 @@
     <Compile Include="dsTableAdapters\V_CASHIN_BOLCARDSTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsTableAdapters\V_CASHIN_BOLCARDS_EXTTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_CASHIN_GET_ACCOUNT_INFOTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>

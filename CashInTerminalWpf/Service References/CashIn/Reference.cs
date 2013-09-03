@@ -113,6 +113,11 @@ namespace CashInTerminalWpf.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminalWpf.CashIn.StandardResult CreditRequest(CashInTerminalWpf.CashIn.CreditRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/GetClientInfoExt", ReplyAction="http://cashin/CashInService/CashInServer/GetClientInfoExtResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.GetClientInfoResult GetClientInfoExt(CashInTerminalWpf.CashIn.GetClientInfoRequest request);
     }
     
     /// <remarks/>
@@ -3814,6 +3819,10 @@ namespace CashInTerminalWpf.CashIn {
         
         public CashInTerminalWpf.CashIn.StandardResult CreditRequest(CashInTerminalWpf.CashIn.CreditRequest request) {
             return base.Channel.CreditRequest(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.GetClientInfoResult GetClientInfoExt(CashInTerminalWpf.CashIn.GetClientInfoRequest request) {
+            return base.Channel.GetClientInfoExt(request);
         }
     }
 }
