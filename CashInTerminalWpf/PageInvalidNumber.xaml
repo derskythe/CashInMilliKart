@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" />
+        <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
 
         <Label Name="LabelInvalidNumber" Style="{StaticResource BigLabelStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static res:Resources.LabelInvalidNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
 

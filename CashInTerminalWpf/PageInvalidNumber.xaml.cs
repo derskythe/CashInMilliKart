@@ -65,5 +65,10 @@ namespace CashInTerminalWpf
             Log.Info(Title);
             _FormMain = (MainWindow)Window.GetWindow(this);
         }
+
+        private void ButtonHomeClick(object sender, RoutedEventArgs e)
+        {
+            _FormMain.OpenForm(FormEnum.Products);
+        }
     }
 }

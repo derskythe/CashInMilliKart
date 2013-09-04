@@ -228,59 +228,62 @@ namespace TestConsole
 
             OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
             OracleDb.Instance.CheckConnection();
+
+
+            var value = OracleDb.Instance.ListClientsBolcardExt("9031****32246714");
             //int billGroup = 36471;
 
-            var list = new List<TerminalPaymentInfo>();
-            {
-                {
-                    var info = new TerminalPaymentInfo();
-                    info.TerminalId = 576;
-                    info.TransactionId = "57620515255";
-                    info.ProductId = 1;
-                    info.Currency = "AZN";
-                    info.CurrencyRate = 1;
-                    info.Amount = 957;
-                    info.OperationType = 11;
-                    info.Values = new[] { "3801000NH018408U", "AZE05581930" };
-                    info.CreditNumber = "NH018408U/12A";
-                    info.PaymentServiceId = 0;
-                    info.Banknotes = new[] { 50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-50,
-5,
-1,
-1 };
-                    info.TerminalDate = DateTime.Parse("24.07.2013 21:16:21");
-                    info.SystemTime = info.TerminalDate;
+//            var list = new List<TerminalPaymentInfo>();
+//            {
+//                {
+//                    var info = new TerminalPaymentInfo();
+//                    info.TerminalId = 576;
+//                    info.TransactionId = "57620515255";
+//                    info.ProductId = 1;
+//                    info.Currency = "AZN";
+//                    info.CurrencyRate = 1;
+//                    info.Amount = 957;
+//                    info.OperationType = 11;
+//                    info.Values = new[] { "3801000NH018408U", "AZE05581930" };
+//                    info.CreditNumber = "NH018408U/12A";
+//                    info.PaymentServiceId = 0;
+//                    info.Banknotes = new[] { 50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//50,
+//5,
+//1,
+//1 };
+//                    info.TerminalDate = DateTime.Parse("24.07.2013 21:16:21");
+//                    info.SystemTime = info.TerminalDate;
 
-                    list.Add(info);
-                }               
-            }
+//                    list.Add(info);
+//                }               
+//            }
 
 
-            foreach (var request in list)
-            {
-                OracleDb.Instance.SavePaymentWithBackend(request);
-                //string bills = String.Join(";", request.Banknotes);
-                //OracleDb.Instance.CommitPaymentManual(request.CreditNumber, request.Amount, bills, request.TerminalId,
-                //                                request.OperationType, request.TerminalDate, request.Currency, billGroup);
-            }
+            //foreach (var request in list)
+            //{
+            //    OracleDb.Instance.SavePaymentWithBackend(request);
+            //    //string bills = String.Join(";", request.Banknotes);
+            //    //OracleDb.Instance.CommitPaymentManual(request.CreditNumber, request.Amount, bills, request.TerminalId,
+            //    //                                request.OperationType, request.TerminalDate, request.Currency, billGroup);
+            //}
 
             //OracleDb.Instance.GetBonusAmount("LS000293/13", 50, "AZN");
 

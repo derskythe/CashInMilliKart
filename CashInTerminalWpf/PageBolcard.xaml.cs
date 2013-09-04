@@ -33,7 +33,7 @@ namespace CashInTerminalWpf
         {
             if (ClientNumber1.Text.Length + ClientNumber2.Text.Length + ClientNumber3.Text.Length + ClientNumber4.Text.Length == 16)
             {
-                var result = ClientNumber1.Text + "%" + ClientNumber3.Text + ClientNumber4.Text;
+                var result = ClientNumber1.Text + "****" + ClientNumber3.Text + ClientNumber4.Text;
                 Log.Info("Input value: " + result);
                 _FormMain.ClientInfo.AccountNumber = result;
                 _FormMain.OpenForm(FormEnum.BolCardRetype);
