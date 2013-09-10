@@ -1590,44 +1590,45 @@ namespace CashInCore
                 if (item.Id > 0)
                 {
                     oldList = OracleDb.Instance.ListCheckFields(item.Id);
-
                     Log.Debug(EnumEx.GetStringFromArray(oldList));
                 }
 
-                var saveList = new List<CheckField>();
-
-                foreach (var field in item.Fields)
+                //Changes
+                if (oldList != null)
                 {
-                    if (field.Id > 0 && oldList != null)
+                    //Checking for possible NullPointerException
+                    foreach (var dbRow in oldList)
                     {
-                        foreach (var checkField in oldList)
+                        bool found = false;
+                        foreach (var row in item.Fields)
                         {
-                            if (checkField.Id == field.Id)
+                            row.CheckId = id; //setting exact check Id
+                            if (row.Id == dbRow.Id)
                             {
-                                if ((checkField.Image != null && checkField.Image.Length > 0) && (field.Image == null || field.Image.Length == 0))
+                                found = true;
+                                if ((dbRow.Image != null && dbRow.Image.Length > 0) &&
+                                    (row.Image == null || row.Image.Length == 0))
                                 {
-                                    // Save image from old value, if item just taking new order or something like that
-                                    field.Image = checkField.Image;
-                                    Log.Debug("Saving image");
+                                    row.Image = dbRow.Image;
+                                    Log.Debug("Saving image.. ");
                                 }
-                                field.CheckId = id;
-                                saveList.Add(field);
-                                break;
                             }
                         }
-                    }
-                    else
-                    {
-                        field.CheckId = id;
-                        saveList.Add(field);
+                        if (!found)
+                        {
+                            OracleDb.Instance.DeleteCheckField(dbRow.Id);
+                            Log.Debug("Deleting check field. Id is: " + dbRow.Id);
+                        }
                     }
                 }
 
-                Log.Debug(EnumEx.GetStringFromArray(saveList));
+                OracleDb.Instance.SaveCheckField(item.Fields);//was for saveList List now works just for item.Fields List.
 
-                OracleDb.Instance.SaveCheckField(saveList);
+                //end of changes
+
                 result.Code = ResultCodes.Ok;
             }
+
             catch (Exception exp)
             {
                 Log.ErrorException(exp.Message, exp);

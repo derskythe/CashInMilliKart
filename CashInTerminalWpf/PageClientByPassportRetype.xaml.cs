@@ -24,7 +24,7 @@ namespace CashInTerminalWpf
 
         public PageClientByPassportRetype()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace CashInTerminalWpf
 
                     _FormMain.LongRequestType = LongRequestType.CreditDebitInfo;
                     _FormMain.InfoRequest = request;
-                    _FormMain.OpenForm(FormEnum.Progress);                    
+                    _FormMain.OpenForm(FormEnum.Progress);
                 }
                 catch (Exception exp)
                 {
@@ -100,9 +100,16 @@ namespace CashInTerminalWpf
 
         private void ControlNumPadOnBackSpace(object sender, NumPadRoutedEventArgs args)
         {
-            if (ClientNumber.Text.Length > 0)
+            try
             {
-                ClientNumber.Text = ClientNumber.Text.Substring(0, ClientNumber.Text.Length - 1);
+                if (ClientNumber.Text.Length > 0)
+                {
+                    ClientNumber.Text = ClientNumber.Text.Substring(0, ClientNumber.Text.Length - 1);
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
     }

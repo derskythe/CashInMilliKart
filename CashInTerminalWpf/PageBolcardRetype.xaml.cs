@@ -33,37 +33,44 @@ namespace CashInTerminalWpf
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
-            if (ClientNumber1.Text.Length + ClientNumber2.Text.Length + ClientNumber3.Text.Length + ClientNumber4.Text.Length == 16)
+            try
             {
-                var result = ClientNumber1.Text + "****" + ClientNumber3.Text + ClientNumber4.Text;
-                Log.Info("Input value: " + result);
-                if (result != _FormMain.ClientInfo.AccountNumber)
+                if (ClientNumber1.Text.Length + ClientNumber2.Text.Length + ClientNumber3.Text.Length + ClientNumber4.Text.Length == 16)
                 {
-                    _FormMain.OpenForm(FormEnum.InvalidNumber);
-                    return;
-                }
-                try
-                {
-                    var now = DateTime.Now;
-                    var request = new GetClientInfoRequest
+                    var result = ClientNumber1.Text + "****" + ClientNumber3.Text + ClientNumber4.Text;
+                    Log.Info("Input value: " + result);
+                    if (result != _FormMain.ClientInfo.AccountNumber)
                     {
-                        PaymentOperationType = (int)_FormMain.ClientInfo.PaymentOperationType,
-                        Bolcard8Digits = _FormMain.ClientInfo.AccountNumber,
-                        SystemTime = now,
-                        TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
-                        Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey),
-                        Ticks = now.Ticks
-                    };
+                        _FormMain.OpenForm(FormEnum.InvalidNumber);
+                        return;
+                    }
+                    try
+                    {
+                        var now = DateTime.Now;
+                        var request = new GetClientInfoRequest
+                        {
+                            PaymentOperationType = (int)_FormMain.ClientInfo.PaymentOperationType,
+                            Bolcard8Digits = _FormMain.ClientInfo.AccountNumber,
+                            SystemTime = now,
+                            TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
+                            Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _FormMain.ServerPublicKey),
+                            Ticks = now.Ticks
+                        };
 
-                    _FormMain.LongRequestType = LongRequestType.CreditDebitInfo;
-                    _FormMain.InfoRequest = request;
-                    _FormMain.OpenForm(FormEnum.Progress);
+                        _FormMain.LongRequestType = LongRequestType.CreditDebitInfo;
+                        _FormMain.InfoRequest = request;
+                        _FormMain.OpenForm(FormEnum.Progress);
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.ErrorException(exp.Message, exp);
+                        _FormMain.OpenForm(FormEnum.OutOfOrder);
+                    }
                 }
-                catch (Exception exp)
-                {
-                    Log.ErrorException(exp.Message, exp);
-                    _FormMain.OpenForm(FormEnum.OutOfOrder);
-                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -88,21 +95,28 @@ namespace CashInTerminalWpf
 
         private void ControlNumPadOnNewChar(object sender, NumPadRoutedEventArgs args)
         {
-            if (ClientNumber1.Text.Length < 4)
+            try
             {
-                ClientNumber1.Text += args.NewChar;
+                if (ClientNumber1.Text.Length < 4)
+                {
+                    ClientNumber1.Text += args.NewChar;
+                }
+                else if (ClientNumber2.Text.Length < 4)
+                {
+                    ClientNumber2.Text += args.NewChar;
+                }
+                else if (ClientNumber3.Text.Length < 4)
+                {
+                    ClientNumber3.Text += args.NewChar;
+                }
+                else if (ClientNumber4.Text.Length < 4)
+                {
+                    ClientNumber4.Text += args.NewChar;
+                }
             }
-            else if (ClientNumber2.Text.Length < 4)
+            catch (Exception exp)
             {
-                ClientNumber2.Text += args.NewChar;
-            }
-            else if (ClientNumber3.Text.Length < 4)
-            {
-                ClientNumber3.Text += args.NewChar;
-            }
-            else if (ClientNumber4.Text.Length < 4)
-            {
-                ClientNumber4.Text += args.NewChar;
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -116,25 +130,32 @@ namespace CashInTerminalWpf
 
         private void ControlNumPadOnBackSpace(object sender, NumPadRoutedEventArgs args)
         {
-            TextBox current;
-            if (ClientNumber4.Text.Length > 0)
+            try
             {
-                current = ClientNumber4;
-            }
-            else if (ClientNumber3.Text.Length > 0)
-            {
-                current = ClientNumber3;
-            }
-            else if (ClientNumber2.Text.Length > 0)
-            {
-                current = ClientNumber2;
-            }
-            else
-            {
-                current = ClientNumber1;
-            }
+                TextBox current;
+                if (ClientNumber4.Text.Length > 0)
+                {
+                    current = ClientNumber4;
+                }
+                else if (ClientNumber3.Text.Length > 0)
+                {
+                    current = ClientNumber3;
+                }
+                else if (ClientNumber2.Text.Length > 0)
+                {
+                    current = ClientNumber2;
+                }
+                else
+                {
+                    current = ClientNumber1;
+                }
 
-            current.Text = current.Text.Substring(0, current.Text.Length - 1);
+                current.Text = current.Text.Substring(0, current.Text.Length - 1);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
     }
 }

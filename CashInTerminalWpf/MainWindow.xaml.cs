@@ -852,7 +852,7 @@ namespace CashInTerminalWpf
                             return true;
                         }
                     }
-                }                
+                }
             }
             catch (Exception exp)
             {
@@ -1679,7 +1679,7 @@ namespace CashInTerminalWpf
                                     Log.Warn("Response is null");
                                 }
                             }
-                        }                        
+                        }
                     }
                     catch (Exception exp)
                     {
@@ -1733,7 +1733,7 @@ namespace CashInTerminalWpf
                         Thread.Sleep(SEND_PAYMENT_TIMEOUT);
                     }
 
-                    
+
                 }
             }
             catch (ThreadAbortException exp)

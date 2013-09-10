@@ -31,12 +31,19 @@ namespace CashInTerminalWpf
 
         private void ButtonNextClick(object sender, RoutedEventArgs e)
         {
-            if (ClientNumber1.Text.Length + ClientNumber2.Text.Length + ClientNumber3.Text.Length + ClientNumber4.Text.Length == 16)
+            try
             {
-                var result = ClientNumber1.Text + "****" + ClientNumber3.Text + ClientNumber4.Text;
-                Log.Info("Input value: " + result);
-                _FormMain.ClientInfo.AccountNumber = result;
-                _FormMain.OpenForm(FormEnum.BolCardRetype);
+                if (ClientNumber1.Text.Length + ClientNumber2.Text.Length + ClientNumber3.Text.Length + ClientNumber4.Text.Length == 16)
+                {
+                    var result = ClientNumber1.Text + "****" + ClientNumber3.Text + ClientNumber4.Text;
+                    Log.Info("Input value: " + result);
+                    _FormMain.ClientInfo.AccountNumber = result;
+                    _FormMain.OpenForm(FormEnum.BolCardRetype);
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
@@ -51,54 +58,75 @@ namespace CashInTerminalWpf
         }
 
         private void ControlNumPadOnNewChar(object sender, NumPadRoutedEventArgs args)
-        {           
-            if (ClientNumber1.Text.Length < 4 )
+        {
+            try
             {
-                ClientNumber1.Text += args.NewChar;
+                if (ClientNumber1.Text.Length < 4)
+                {
+                    ClientNumber1.Text += args.NewChar;
+                }
+                else if (ClientNumber2.Text.Length < 4)
+                {
+                    ClientNumber2.Text += args.NewChar;
+                }
+                else if (ClientNumber3.Text.Length < 4)
+                {
+                    ClientNumber3.Text += args.NewChar;
+                }
+                else if (ClientNumber4.Text.Length < 4)
+                {
+                    ClientNumber4.Text += args.NewChar;
+                }
             }
-            else if (ClientNumber2.Text.Length < 4)
+            catch (Exception exp)
             {
-                ClientNumber2.Text += args.NewChar;
-            }
-            else if (ClientNumber3.Text.Length < 4)
-            {
-                ClientNumber3.Text += args.NewChar;
-            }
-            else if (ClientNumber4.Text.Length < 4)
-            {
-                ClientNumber4.Text += args.NewChar;
+                Log.ErrorException(exp.Message, exp);
             }
         }
 
         private void ControlNumPadOnClearAll(object sender, NumPadRoutedEventArgs numPadRoutedEventArgs)
         {
-            ClientNumber1.Text = String.Empty;
-            ClientNumber2.Text = String.Empty;
-            ClientNumber3.Text = String.Empty;
-            ClientNumber4.Text = String.Empty;
+            try
+            {
+                ClientNumber1.Text = String.Empty;
+                ClientNumber2.Text = String.Empty;
+                ClientNumber3.Text = String.Empty;
+                ClientNumber4.Text = String.Empty;
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private void ControlNumPadOnBackSpace(object sender, NumPadRoutedEventArgs args)
         {
-            TextBox current;
-            if (ClientNumber4.Text.Length > 0)
+            try
             {
-                current = ClientNumber4;
-            }
-            else if (ClientNumber3.Text.Length > 0)
-            {
-                current = ClientNumber3;
-            }
-            else if (ClientNumber2.Text.Length > 0)
-            {
-                current = ClientNumber2;
-            }
-            else
-            {
-                current = ClientNumber1;
-            }
+                TextBox current;
+                if (ClientNumber4.Text.Length > 0)
+                {
+                    current = ClientNumber4;
+                }
+                else if (ClientNumber3.Text.Length > 0)
+                {
+                    current = ClientNumber3;
+                }
+                else if (ClientNumber2.Text.Length > 0)
+                {
+                    current = ClientNumber2;
+                }
+                else
+                {
+                    current = ClientNumber1;
+                }
 
-            current.Text = current.Text.Substring(0, current.Text.Length - 1);
+                current.Text = current.Text.Substring(0, current.Text.Length - 1);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
