@@ -67,6 +67,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ListCategoriesByProvider">
+      <soap:operation soapAction="http://www.bankofbaku.com/PaymentService/PaymentService/ListCategoriesByProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PaymentService">
     <wsdl:port name="SOAP" binding="tns:SOAP">

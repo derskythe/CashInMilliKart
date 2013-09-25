@@ -33,5 +33,6 @@
         public const string CreditRequest = "PageCreditRequest.xaml";
         public const string CreditRequestAccept = "PageCreditRequestAccept.xaml";
         public const string CreditRequestSuccess = "PageCreditRequestSuccess.xaml";
+        public const string MoneyMoversPaymentsCategories = "PageMoneyMoversPaymentsCategories.xaml";
     }
 }

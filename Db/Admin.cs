@@ -3048,7 +3048,7 @@ namespace Db
                 {
                     using (var table = new ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable())
                     {
-                        adapter.FillByTerminalId(table, terminalId);
+                        adapter.FillByTerminalId(table, terminalId);                        
 
                         foreach (ds.V_BANKNOTES_SUMMARY_BY_TERMRow row in table.Rows)
                         {

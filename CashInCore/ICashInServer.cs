@@ -71,5 +71,8 @@ namespace CashInCore
 
         [OperationContract]
         GetClientInfoResult GetClientInfoExt(GetClientInfoRequest request);
+
+        [OperationContract]
+        CategoriesResult ListPaymentCategoriesExt(PaymentCategoriesRequest request);
     }
 }

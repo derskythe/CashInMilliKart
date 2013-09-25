@@ -54,7 +54,14 @@ namespace CashInTerminalWpf
 
         private void ButtonBackClick(object sender, RoutedEventArgs e)
         {
-            _FormMain.OpenForm(FormEnum.OtherPaymentsCategories);
+            if (_FormMain.PrevForm == FormEnum.OtherPaymentsCategories)
+            {
+                _FormMain.OpenForm(FormEnum.OtherPaymentsCategories);
+            }
+            else
+            {
+                _FormMain.OpenForm(FormEnum.MoneyMoversPaymentsCategories);
+            }
         }
 
         private void ButtonHomeClick(object sender, RoutedEventArgs e)
@@ -113,9 +120,7 @@ namespace CashInTerminalWpf
                         };
 
                     button.Content = textField;
-
                     Grid.Children.Add(button);
-
                     i++;
                 }
             }

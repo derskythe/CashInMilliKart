@@ -52,5 +52,6 @@
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnY" Grid.Column="3" Grid.Row="3" Click="BtnClick">Y</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnZ" Grid.Column="4" Grid.Row="3" Click="BtnClick">Z</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnPlus" Grid.Column="5" Grid.Row="3" Click="BtnClick">+</Button>
+        <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnDog" Grid.Column="6" Grid.Row="3" Click="BtnClick">@</Button>
     </Grid>
 </UserControl>

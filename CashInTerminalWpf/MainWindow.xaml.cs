@@ -53,6 +53,7 @@ namespace CashInTerminalWpf
         //private const int TOTAL_CHECK_COUNT = 2727;
         //private const int LOW_LEVEL_CHECK_COUNT = 2454;
         private String _CurrentForm = FormEnum.OutOfOrder;
+        private String _PrevForm = FormEnum.OutOfOrder;
 
         private ClientInfo _ClientInfo = new ClientInfo();
 
@@ -176,9 +177,20 @@ namespace CashInTerminalWpf
             set { _InfoResponse = value; }
         }
 
-        public List<PaymentCategory> PaymentCategories
+        public List<PaymentCategory> KomtekPaymentCategories
         {
-            get { return _PaymentCategories; }
+            get { return _KomtekPaymentCategories; }
+        }
+
+        public List<PaymentCategory> MoneyMoversPaymentCategories
+        {
+            get { return _MoneyMoversPaymentCategories; }
+        }
+
+        public string PrevForm
+        {
+            get { return _PrevForm; }
+            set { _PrevForm = value; }
         }
 
         private CashInServer _Server;
@@ -208,7 +220,8 @@ namespace CashInTerminalWpf
         private const int MAX_INACTIVITY_PERIOD = 2 * 60; // Value in seconds!
         private readonly List<Currency> _Currencies = new List<Currency>();
         private readonly List<Product> _Products = new List<Product>();
-        private readonly List<PaymentCategory> _PaymentCategories = new List<PaymentCategory>(5);
+        private readonly List<PaymentCategory> _KomtekPaymentCategories = new List<PaymentCategory>(5);
+        private readonly List<PaymentCategory> _MoneyMoversPaymentCategories = new List<PaymentCategory>(5);
 
         private uint _LastActivity;
 
@@ -628,6 +641,7 @@ namespace CashInTerminalWpf
                 Log.Debug(String.Format("Current From: {0}, New form: {1}", _CurrentForm, f));
                 _CurrentForm = f;
             }
+
             Dispatcher.Invoke(DispatcherPriority.Normal,
                     new Action<string>(Navigate),
                     f);
@@ -635,7 +649,16 @@ namespace CashInTerminalWpf
 
         private void Navigate(string f)
         {
-            Navigate(new Uri(f, UriKind.RelativeOrAbsolute));
+            try
+            {
+                _PrevForm = CurrentSource.OriginalString;
+                Log.Debug(String.Format("PrevUri: {0}", _PrevForm));
+                Navigate(new Uri(f, UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }
         }
 
         #region Check Template Stuff
@@ -994,27 +1017,45 @@ namespace CashInTerminalWpf
                 try
                 {
                     var now = DateTime.Now;
-                    var request = new StandardRequest
+                    var request = new PaymentCategoriesRequest
                     {
                         SystemTime = now,
                         TerminalId = Convert.ToInt32(Settings.Default.TerminalCode),
                         Sign = Utilities.Sign(Settings.Default.TerminalCode, now, _ServerPublicKey),
+                        ProviderName = PaymentProviders.Komtek,
                         Ticks = now.Ticks
                     };
 
-                    var response = _Server.ListPaymentCategories(request);
+                    var response = _Server.ListPaymentCategoriesExt(request);
 
                     CheckSignature(response);
 
                     if (response.ResultCodes == ResultCodes.Ok)
                     {
-                        lock (_PaymentCategories)
+                        lock (_KomtekPaymentCategories)
                         {
-                            _PaymentCategories.Clear();
+                            _KomtekPaymentCategories.Clear();
 
                             foreach (var item in response.Categories)
                             {
-                                _PaymentCategories.Add(item);
+                                _KomtekPaymentCategories.Add(item);
+                            }
+                        }
+                    }
+
+                    request.ProviderName = PaymentProviders.MoneyMovers;
+
+                    response = _Server.ListPaymentCategoriesExt(request);
+                    CheckSignature(response);
+                    if (response.ResultCodes == ResultCodes.Ok)
+                    {
+                        lock (_MoneyMoversPaymentCategories)
+                        {
+                            _MoneyMoversPaymentCategories.Clear();
+
+                            foreach (var item in response.Categories)
+                            {
+                                _MoneyMoversPaymentCategories.Add(item);
                             }
                         }
                     }

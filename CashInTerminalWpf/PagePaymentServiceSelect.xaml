@@ -20,7 +20,7 @@
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
 
         <UniformGrid Grid.Row="1" x:Name="Grid" Columns="4" VerticalAlignment="Top" Rows="3">
-            <Button Style="{StaticResource PaymentServiceButtonStyle}">
+            <Button Style="{StaticResource PaymentServiceButtonStyle}">                
                 <TextBlock TextWrapping="Wrap" Text="Sample button" Style="{StaticResource MainTextBlockStyle}"/>                
             </Button>
             <Button Style="{StaticResource PaymentServiceButtonStyle}">

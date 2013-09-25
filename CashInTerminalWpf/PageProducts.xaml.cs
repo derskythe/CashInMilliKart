@@ -7,7 +7,6 @@ using CashInTerminalWpf.Enums;
 using CashInTerminalWpf.Properties;
 using NLog;
 using Button = System.Windows.Controls.Button;
-using Timer = System.Threading.Timer;
 
 namespace CashInTerminalWpf
 {
@@ -136,24 +135,25 @@ namespace CashInTerminalWpf
                     //
                     // TODO : DELETE IN PRODUCTION
                     //
-                    //var virtualProduct = new Product
-                    //    {
-                    //        Assembly = "PageCreditRequest.xaml",
-                    //        Id = 9999,
-                    //        Name = "CreditRequest"
-                    //    };
-                    //virtualProduct.NameAz = virtualProduct.NameEn = virtualProduct.NameRu = "Credit Request";
+                    var virtualProduct = new Product
+                        {
+                            Assembly = "PageMoneyMoversPaymentsCategories.xaml",
+                            Id = 61,
+                            Name = "MoneyMovers",
+                            CheckType = 6
+                        };
+                    virtualProduct.NameAz = virtualProduct.NameEn = virtualProduct.NameRu = "Money Movers";
 
-                    //var virtualButton = new Button
-                    //{
-                    //    Style = FindResource("MenuButtonStyle") as Style,
-                    //    Name = virtualProduct.Name + virtualProduct.Id.ToString(CultureInfo.InvariantCulture),
-                    //    Tag = virtualProduct,
-                    //    Content = virtualProduct.NameAz
-                    //};
-                    //virtualButton.Click += ButtonOnClick;
+                    var virtualButton = new Button
+                    {
+                        Style = FindResource("MenuButtonStyle") as Style,
+                        Name = virtualProduct.Name + virtualProduct.Id.ToString(CultureInfo.InvariantCulture),
+                        Tag = virtualProduct,
+                        Content = virtualProduct.NameAz
+                    };
+                    virtualButton.Click += ButtonOnClick;
 
-                    //Grid.Children.Add(virtualButton);
+                    Grid.Children.Add(virtualButton);
                     //
                     //
                     //

@@ -118,9 +118,15 @@ namespace CashInTerminalWpf.CashIn {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
         CashInTerminalWpf.CashIn.GetClientInfoResult GetClientInfoExt(CashInTerminalWpf.CashIn.GetClientInfoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://cashin/CashInService/CashInServer/ListPaymentCategoriesExt", ReplyAction="http://cashin/CashInService/CashInServer/ListPaymentCategoriesExtResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseMessage))]
+        CashInTerminalWpf.CashIn.CategoriesResult ListPaymentCategoriesExt(CashInTerminalWpf.CashIn.PaymentCategoriesRequest request);
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentCategoriesRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CreditRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionExtRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalPaymentInfo))]
@@ -180,6 +186,7 @@ namespace CashInTerminalWpf.CashIn {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalInfoResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandardRequest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PaymentCategoriesRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CreditRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalVersionExtRequest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TerminalPaymentInfo))]
@@ -2958,6 +2965,29 @@ namespace CashInTerminalWpf.CashIn {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
+    public partial class PaymentCategoriesRequest : StandardRequest {
+        
+        private string providerNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ProviderName {
+            get {
+                return this.providerNameField;
+            }
+            set {
+                this.providerNameField = value;
+                this.RaisePropertyChanged("ProviderName");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cashin/CashInService")]
     public partial class CreditRequest : StandardRequest {
         
         private string phoneField;
@@ -3823,6 +3853,10 @@ namespace CashInTerminalWpf.CashIn {
         
         public CashInTerminalWpf.CashIn.GetClientInfoResult GetClientInfoExt(CashInTerminalWpf.CashIn.GetClientInfoRequest request) {
             return base.Channel.GetClientInfoExt(request);
+        }
+        
+        public CashInTerminalWpf.CashIn.CategoriesResult ListPaymentCategoriesExt(CashInTerminalWpf.CashIn.PaymentCategoriesRequest request) {
+            return base.Channel.ListPaymentCategoriesExt(request);
         }
     }
 }

@@ -47,6 +47,12 @@
   <wsdl:message name="PaymentService_GetService_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetServiceResponse" />
   </wsdl:message>
+  <wsdl:message name="PaymentService_ListCategoriesByProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCategoriesByProvider" />
+  </wsdl:message>
+  <wsdl:message name="PaymentService_ListCategoriesByProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCategoriesByProviderResponse" />
+  </wsdl:message>
   <wsdl:portType name="PaymentService">
     <wsdl:operation name="GetInfo">
       <wsdl:input wsaw:Action="http://www.bankofbaku.com/PaymentService/PaymentService/GetInfo" message="tns:PaymentService_GetInfo_InputMessage" />
@@ -75,6 +81,10 @@
     <wsdl:operation name="GetService">
       <wsdl:input wsaw:Action="http://www.bankofbaku.com/PaymentService/PaymentService/GetService" message="tns:PaymentService_GetService_InputMessage" />
       <wsdl:output wsaw:Action="http://www.bankofbaku.com/PaymentService/PaymentService/GetServiceResponse" message="tns:PaymentService_GetService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCategoriesByProvider">
+      <wsdl:input wsaw:Action="http://www.bankofbaku.com/PaymentService/PaymentService/ListCategoriesByProvider" message="tns:PaymentService_ListCategoriesByProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.bankofbaku.com/PaymentService/PaymentService/ListCategoriesByProviderResponse" message="tns:PaymentService_ListCategoriesByProvider_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

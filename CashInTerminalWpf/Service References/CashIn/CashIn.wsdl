@@ -131,6 +131,12 @@
   <wsdl:message name="CashInServer_GetClientInfoExt_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetClientInfoExtResponse" />
   </wsdl:message>
+  <wsdl:message name="CashInServer_ListPaymentCategoriesExt_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListPaymentCategoriesExt" />
+  </wsdl:message>
+  <wsdl:message name="CashInServer_ListPaymentCategoriesExt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListPaymentCategoriesExtResponse" />
+  </wsdl:message>
   <wsdl:portType name="CashInServer">
     <wsdl:operation name="GetPublicKey">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetPublicKey" message="tns:CashInServer_GetPublicKey_InputMessage" />
@@ -215,6 +221,10 @@
     <wsdl:operation name="GetClientInfoExt">
       <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/GetClientInfoExt" message="tns:CashInServer_GetClientInfoExt_InputMessage" />
       <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/GetClientInfoExtResponse" message="tns:CashInServer_GetClientInfoExt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPaymentCategoriesExt">
+      <wsdl:input wsaw:Action="http://cashin/CashInService/CashInServer/ListPaymentCategoriesExt" message="tns:CashInServer_ListPaymentCategoriesExt_InputMessage" />
+      <wsdl:output wsaw:Action="http://cashin/CashInService/CashInServer/ListPaymentCategoriesExtResponse" message="tns:CashInServer_ListPaymentCategoriesExt_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

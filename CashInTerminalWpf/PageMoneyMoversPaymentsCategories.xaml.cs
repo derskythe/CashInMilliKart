@@ -11,7 +11,7 @@ namespace CashInTerminalWpf
     /// <summary>
     /// Interaction logic for PageOtherPaymentsCategories.xaml
     /// </summary>
-    public partial class PageOtherPaymentsCategories
+    public partial class PageMoneyMoversPaymentsCategories
     {
         private MainWindow _FormMain;
 
@@ -21,7 +21,7 @@ namespace CashInTerminalWpf
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
-        public PageOtherPaymentsCategories()
+        public PageMoneyMoversPaymentsCategories()
         {
             InitializeComponent();
         }
@@ -44,13 +44,13 @@ namespace CashInTerminalWpf
 
         private void AddButtons()
         {
-            lock (_FormMain.KomtekPaymentCategories)
+            lock (_FormMain.MoneyMoversPaymentCategories)
             {
                 try
                 {
                     Grid.Children.Clear();
 
-                    foreach (var category in _FormMain.KomtekPaymentCategories)
+                    foreach (var category in _FormMain.MoneyMoversPaymentCategories)
                     {
                         string text;
                         if (!String.IsNullOrEmpty(category.LocalizedName.ValueAz))
@@ -95,7 +95,7 @@ namespace CashInTerminalWpf
                 var tag = (PaymentCategory)button.Tag;
                 
                 _FormMain.ClientInfo.PaymentCategory = tag;
-                _FormMain.OpenForm(FormEnum.PaymentServiceSelect);
+                _FormMain.OpenForm(FormEnum.PaymentServiceSelect);                
             }
             catch (Exception exp)
             {

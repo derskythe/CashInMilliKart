@@ -219,6 +219,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="max_amount" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="amounts_list" type="tns:ArrayOfFixedAmount" />
       <xs:element minOccurs="0" maxOccurs="1" name="service_fields" type="tns:ArrayOfServiceField" />
+      <xs:element minOccurs="1" maxOccurs="1" name="percent" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfFixedAmount">
@@ -330,6 +331,22 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="1" name="GetServiceResult" type="tns:GetServicesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListCategoriesByProvider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="provider" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListCategoriesByProviderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListCategoriesByProviderResult" type="tns:CategoriesResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

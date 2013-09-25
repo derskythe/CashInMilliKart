@@ -50,6 +50,12 @@ namespace CashInCore.PaymentService {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseResult))]
         CashInCore.PaymentService.GetServicesResult GetService(string username, string password, int serviceId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.bankofbaku.com/PaymentService/PaymentService/ListCategoriesByProvider", ReplyAction="http://www.bankofbaku.com/PaymentService/PaymentService/ListCategoriesByProviderR" +
+            "esponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseResult))]
+        CashInCore.PaymentService.CategoriesResult ListCategoriesByProvider(string username, string password, string provider);
     }
     
     /// <remarks/>
@@ -480,6 +486,8 @@ namespace CashInCore.PaymentService {
         
         private ServiceField[] service_fieldsField;
         
+        private float percentField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int id {
@@ -658,6 +666,18 @@ namespace CashInCore.PaymentService {
             set {
                 this.service_fieldsField = value;
                 this.RaisePropertyChanged("service_fields");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public float percent {
+            get {
+                return this.percentField;
+            }
+            set {
+                this.percentField = value;
+                this.RaisePropertyChanged("percent");
             }
         }
         
@@ -1605,6 +1625,10 @@ namespace CashInCore.PaymentService {
         
         public CashInCore.PaymentService.GetServicesResult GetService(string username, string password, int serviceId) {
             return base.Channel.GetService(username, password, serviceId);
+        }
+        
+        public CashInCore.PaymentService.CategoriesResult ListCategoriesByProvider(string username, string password, string provider) {
+            return base.Channel.ListCategoriesByProvider(username, password, provider);
         }
     }
 }

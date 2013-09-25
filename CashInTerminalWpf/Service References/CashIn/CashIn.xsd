@@ -849,4 +849,27 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ListPaymentCategoriesExt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:PaymentCategoriesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="PaymentCategoriesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:StandardRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ProviderName" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListPaymentCategoriesExtResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListPaymentCategoriesExtResult" type="tns:CategoriesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
