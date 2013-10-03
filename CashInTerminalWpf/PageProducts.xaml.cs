@@ -140,9 +140,9 @@ namespace CashInTerminalWpf
                             Assembly = "PageMoneyMoversPaymentsCategories.xaml",
                             Id = 61,
                             Name = "MoneyMovers",
-                            CheckType = 6
+                            CheckType = 7
                         };
-                    virtualProduct.NameAz = virtualProduct.NameEn = virtualProduct.NameRu = "Money Movers";
+                    virtualProduct.NameAz = virtualProduct.NameEn = virtualProduct.NameRu = "eMoney";
 
                     var virtualButton = new Button
                     {

@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsTableAdapters\V_ACTIVE_OTHER_PAYMENTSTableAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dsTableAdapters\V_BANKNOTESTableAdapter.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -299,4 +299,7 @@ Təşəkkür edirik</value>
   <data name="LabelPhone" xml:space="preserve">
     <value>Mobil Telefon nömrəsi</value>
   </data>
+  <data name="LabelServiceComission" xml:space="preserve">
+    <value>Komissiya {0}%, komissiyanın minimal məbləği {1} AZN</value>
+  </data>
 </root>

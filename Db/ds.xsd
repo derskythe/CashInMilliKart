@@ -1308,6 +1308,26 @@ AND terminal_id = :terminalId</CommandText>
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_ACTIVE_OTHER_PAYMENTSTableAdapter" GeneratorDataComponentClassName="V_ACTIVE_OTHER_PAYMENTSTableAdapter" Name="V_ACTIVE_OTHER_PAYMENTS" UserDataComponentName="V_ACTIVE_OTHER_PAYMENTSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cs (Settings)" DbObjectName="CASHIN_NEW.V_ACTIVE_OTHER_PAYMENTS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, "VALUE", INSERT_DATE, UPDATE_DATE, STATUS FROM CASHIN_NEW.V_ACTIVE_OTHER_PAYMENTS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="VALUE" DataSetColumn="VALUE" />
+              <Mapping SourceColumn="INSERT_DATE" DataSetColumn="INSERT_DATE" />
+              <Mapping SourceColumn="UPDATE_DATE" DataSetColumn="UPDATE_DATE" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -2765,6 +2785,23 @@ AND terminal_id = :terminalId</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V_ACTIVE_OTHER_PAYMENTS" msprop:Generator_TableClassName="V_ACTIVE_OTHER_PAYMENTSDataTable" msprop:Generator_TableVarName="tableV_ACTIVE_OTHER_PAYMENTS" msprop:Generator_TablePropName="V_ACTIVE_OTHER_PAYMENTS" msprop:Generator_RowDeletingName="V_ACTIVE_OTHER_PAYMENTSRowDeleting" msprop:Generator_UserTableName="V_ACTIVE_OTHER_PAYMENTS" msprop:Generator_RowChangingName="V_ACTIVE_OTHER_PAYMENTSRowChanging" msprop:Generator_RowEvHandlerName="V_ACTIVE_OTHER_PAYMENTSRowChangeEventHandler" msprop:Generator_RowDeletedName="V_ACTIVE_OTHER_PAYMENTSRowDeleted" msprop:Generator_RowEvArgName="V_ACTIVE_OTHER_PAYMENTSRowChangeEvent" msprop:Generator_RowChangedName="V_ACTIVE_OTHER_PAYMENTSRowChanged" msprop:Generator_RowClassName="V_ACTIVE_OTHER_PAYMENTSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:long" />
+              <xs:element name="VALUE" msprop:Generator_ColumnVarNameInTable="columnVALUE" msprop:Generator_ColumnPropNameInRow="VALUE" msprop:Generator_ColumnPropNameInTable="VALUEColumn" msprop:Generator_UserColumnName="VALUE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSERT_DATE" msprop:Generator_ColumnVarNameInTable="columnINSERT_DATE" msprop:Generator_ColumnPropNameInRow="INSERT_DATE" msprop:Generator_ColumnPropNameInTable="INSERT_DATEColumn" msprop:Generator_UserColumnName="INSERT_DATE" type="xs:dateTime" />
+              <xs:element name="UPDATE_DATE" msprop:Generator_ColumnVarNameInTable="columnUPDATE_DATE" msprop:Generator_ColumnPropNameInRow="UPDATE_DATE" msprop:Generator_ColumnPropNameInTable="UPDATE_DATEColumn" msprop:Generator_UserColumnName="UPDATE_DATE" type="xs:dateTime" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

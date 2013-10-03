@@ -19,6 +19,7 @@ namespace CashInService
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
+        private PaymentServiceSender _PaymentServiceSender;
 
         public CashInService()
         {
@@ -45,6 +46,10 @@ namespace CashInService
                 Log.Info("Open CashInAdminService");
                 _CashInAdminService = new ServiceHost(typeof(CashInAdminServer));
                 _CashInAdminService.Open();
+
+                _PaymentServiceSender = new PaymentServiceSender(Settings.Default.MultiPaymentUsername,
+                                                                 Settings.Default.MultiPaymentPassword);
+                _PaymentServiceSender.Start();
             }
             catch (Exception exp)
             {
@@ -74,6 +79,18 @@ namespace CashInService
                 if (_CashInAdminService != null)
                 {
                     _CashInAdminService.Close();
+                }
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
+            }           
+
+            try
+            {
+                if (_PaymentServiceSender != null)
+                {
+                    _PaymentServiceSender.Stop();
                 }
             }
             catch (Exception exp)

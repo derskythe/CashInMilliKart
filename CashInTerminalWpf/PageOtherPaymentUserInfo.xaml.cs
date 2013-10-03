@@ -70,6 +70,12 @@ namespace CashInTerminalWpf
                         Label3.Content = String.Empty;
                         Label4.Content = String.Empty;
                     }
+
+                    if (_FormMain.ClientInfo.PaymentService.Comission > 0)
+                    {
+                        LabelCommission.Content = String.Format(Properties.Resources.LabelServiceComission, _FormMain.ClientInfo.PaymentService.Comission, _FormMain.ClientInfo.PaymentService.MinComission);
+                        LabelCommission.Visibility = Visibility.Visible;
+                    }
                 }
             }
             catch (Exception exp)

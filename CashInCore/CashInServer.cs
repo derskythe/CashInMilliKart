@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.ServiceModel;
 using System.Text;
 using CashInCore.PaymentService;
@@ -365,70 +366,95 @@ namespace CashInCore
                     throw new InvalidDataException("Invalid amount");
                 }
 
+                var paymentOperationType = (PaymentOperationType)request.OperationType;
                 OracleDb.Instance.SavePaymentWithBackend(request);
                 //string bills = String.Join(";", request.Banknotes);
                 //OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
                 //                                request.OperationType, request.TerminalDate, request.Currency);
+               
+                if (paymentOperationType == PaymentOperationType.GoldenPay ||
+                    paymentOperationType == PaymentOperationType.Komtek ||
+                    paymentOperationType == PaymentOperationType.MoneyMovers)
+                {
+                    try
+                    {
+                        var ser = new DataContractJsonSerializer(typeof(TerminalPaymentInfo));
+                        string requestJson;
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            ser.WriteObject(memoryStream, request);
+
+                            memoryStream.Flush();
+                            memoryStream.Position = 0;
+                            requestJson = Encoding.UTF8.GetString(memoryStream.ToArray());
+
+                            Log.Info(requestJson);
+                            memoryStream.Close();
+                        }
+
+                        OracleDb.Instance.SaveOtherPaymentsRequest(requestJson);
+                    }
+                    catch (Exception exp)
+                    {
+                        Log.WarnException(exp.Message, exp);
+                    }
+
+
+                    //if (String.IsNullOrEmpty(_MultiPaymentUsername) || String.IsNullOrEmpty(_MultiPaymentPassword))
+                    //{
+                    //    throw new Exception("MultiPaymentService not initiated!");
+                    //}
+
+                    //var client = new PaymentServiceClient();
+                    //var servicesResult = client.GetService(_MultiPaymentUsername, _MultiPaymentPassword,
+                    //                                request.PaymentServiceId);
+
+                    //if (servicesResult.code != ErrorCodes.Ok)
+                    //{
+                    //    throw new Exception(servicesResult.description);
+                    //}
+
+                    //if (servicesResult.services == null || servicesResult.services.Length == 0)
+                    //{
+                    //    throw new Exception("Service is null");
+                    //}
+                    //var service = servicesResult.services[0];
+                    //var fields = new List<HistoryField>();
+                    //int i = 0;
+                    //foreach (var field in service.service_fields)
+                    //{
+                    //    var history = new HistoryField
+                    //        {
+                    //            name = field.name,
+                    //            value = !String.IsNullOrEmpty(field.default_value) ? field.default_value : request.Values[i]
+                    //        };
+
+                    //    fields.Add(history);
+                    //    i++;
+                    //}
+
+
+                    //var info = new PurePaymentInfo
+                    //    {
+                    //        amount = request.Amount * 100,
+                    //        currency = "AZN",
+                    //        payment_id = request.TransactionId,
+                    //        service_id = service.id,
+                    //        service_name = service.name,
+                    //        fields = fields.ToArray()
+                    //    };
+
+                    //Log.Debug(info);
+
+                    //var serviceResult = client.InsertPaymentPure(_MultiPaymentUsername, _MultiPaymentPassword, "CashIn", info);
+                    //if (serviceResult.code != ErrorCodes.Ok)
+                    //{
+                    //    throw new Exception(serviceResult.description);
+                    //}
+                }
 
                 result.Code = ResultCodes.Ok;
                 result.Sign = DoSign(request.TerminalId, result.SystemTime.Ticks, terminalInfo.SignKey);
-
-                var paymentOperationType = (PaymentOperationType)request.OperationType;
-                if (paymentOperationType == PaymentOperationType.GoldenPay ||
-                    paymentOperationType == PaymentOperationType.Komtek)
-                {
-                    if (String.IsNullOrEmpty(_MultiPaymentUsername) || String.IsNullOrEmpty(_MultiPaymentPassword))
-                    {
-                        throw new Exception("MultiPaymentService not initiated!");
-                    }
-
-                    var client = new PaymentServiceClient();
-                    var servicesResult = client.GetService(_MultiPaymentUsername, _MultiPaymentPassword,
-                                                    request.PaymentServiceId);
-
-                    if (servicesResult.code != ErrorCodes.Ok)
-                    {
-                        throw new Exception(servicesResult.description);
-                    }
-
-                    if (servicesResult.services == null || servicesResult.services.Length == 0)
-                    {
-                        throw new Exception("Service is null");
-                    }
-                    var service = servicesResult.services[0];
-                    var fields = new List<HistoryField>();
-                    int i = 0;
-                    foreach (var field in service.service_fields)
-                    {
-                        var history = new HistoryField
-                            {
-                                name = field.name,
-                                value = !String.IsNullOrEmpty(field.default_value) ? field.default_value : request.Values[i]
-                            };
-
-                        fields.Add(history);
-                        i++;
-                    }
-
-
-                    var info = new PurePaymentInfo
-                        {
-                            amount = request.Amount * 100,
-                            currency = "AZN",
-                            payment_id = request.TransactionId,
-                            service_id = service.id,
-                            service_name = service.name,
-                            fields = fields.ToArray()
-                        };
-
-                    Log.Debug(info);
-
-                    var serviceResult = client.InsertPaymentPure(_MultiPaymentUsername, _MultiPaymentPassword, "CashIn", info);
-                    if (serviceResult.code != ErrorCodes.Ok)
-                    {
-                        throw new Exception(serviceResult.description);
-                    }
-                }
             }
             catch (Exception e)
             {
@@ -887,7 +913,9 @@ namespace CashInCore
                                                                                        service.max_amount,
                                                                                        service.assembly_id,
                                                                                        fixedAmountFieldList,
-                                                                                       serviceFieldList));
+                                                                                       serviceFieldList,
+                                                                                       service.percent,
+                                                                                       service.minimal_comission));
                         }
                     }
 
@@ -1010,7 +1038,9 @@ namespace CashInCore
                                                                                        service.max_amount,
                                                                                        service.assembly_id,
                                                                                        fixedAmountFieldList,
-                                                                                       serviceFieldList));
+                                                                                       serviceFieldList,
+                                                                                       service.percent,
+                                                                                       service.minimal_comission));
                         }
                     }
 

@@ -488,6 +488,8 @@ namespace CashInCore.PaymentService {
         
         private float percentField;
         
+        private float minimal_comissionField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int id {
@@ -678,6 +680,18 @@ namespace CashInCore.PaymentService {
             set {
                 this.percentField = value;
                 this.RaisePropertyChanged("percent");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public float minimal_comission {
+            get {
+                return this.minimal_comissionField;
+            }
+            set {
+                this.minimal_comissionField = value;
+                this.RaisePropertyChanged("minimal_comission");
             }
         }
         
@@ -1536,6 +1550,8 @@ namespace CashInCore.PaymentService {
         
         private string extended_descriptionField;
         
+        private string service_payment_idField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public string extended_description {
@@ -1545,6 +1561,18 @@ namespace CashInCore.PaymentService {
             set {
                 this.extended_descriptionField = value;
                 this.RaisePropertyChanged("extended_description");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string service_payment_id {
+            get {
+                return this.service_payment_idField;
+            }
+            set {
+                this.service_payment_idField = value;
+                this.RaisePropertyChanged("service_payment_id");
             }
         }
     }

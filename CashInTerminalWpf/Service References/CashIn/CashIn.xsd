@@ -655,6 +655,8 @@
       <xs:element minOccurs="0" maxOccurs="1" name="AssemblyId" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="AmountsList" type="tns:ArrayOfPaymentFixedAmount" />
       <xs:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfPaymentServiceField" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Comission" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MinComission" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfPaymentFixedAmount">

@@ -11,6 +11,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -53,5 +54,7 @@
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnZ" Grid.Column="4" Grid.Row="3" Click="BtnClick">Z</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnPlus" Grid.Column="5" Grid.Row="3" Click="BtnClick">+</Button>
         <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnDog" Grid.Column="6" Grid.Row="3" Click="BtnClick">@</Button>
+        <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnDot" Grid.Column="0" Grid.Row="4" Click="BtnClick">.</Button>
+        <Button Style="{StaticResource NumpadButtonStyle2}" Name="BtnUnderline" Grid.Column="1" Grid.Row="4" Click="BtnClick">_</Button>
     </Grid>
 </UserControl>

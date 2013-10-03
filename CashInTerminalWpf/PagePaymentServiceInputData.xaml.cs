@@ -93,7 +93,16 @@ namespace CashInTerminalWpf
             }
 
             LabelCaption.Content = text;
-            _Regexp = new Regex(_Field.Regexp, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+            try
+            {
+                _Regexp = new Regex(_Field.Regexp, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+            }
+            catch (Exception exp)
+            {
+                _Regexp = new Regex("^[a-z0-9]+$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+                Log.ErrorException(exp.Message, exp);
+            }
+            
 
             ControlNumPad.AddHandler(NumPadControl.NewCharEvent, new NumPadControl.NewCharEventHandler(ControlNumPadOnNewChar));
             ControlNumPad.AddHandler(NumPadControl.BackspaceEvent, new NumPadControl.BackspaceEventHandler(ControlNumPadOnBackSpace));

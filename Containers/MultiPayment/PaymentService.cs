@@ -23,6 +23,8 @@ namespace Containers.MultiPayment
         private string _AssemblyId;
         private List<PaymentFixedAmount> _AmountsList;
         private List<PaymentServiceField> _Fields;
+        private float _Comission;
+        private float _MinComission;
 
         [XmlElement(ElementName = "Id")]
         [DataMember(Name = "Id")]
@@ -128,11 +130,27 @@ namespace Containers.MultiPayment
             set { _Fields = value; }
         }
 
+        [XmlElement(ElementName = "Comission")]
+        [DataMember(Name = "Comission")]
+        public float Comission
+        {
+            get { return _Comission; }
+            set { _Comission = value; }
+        }
+
+        [XmlElement(ElementName = "MinComission")]
+        [DataMember(Name = "MinComission")]
+        public float MinComission
+        {
+            get { return _MinComission; }
+            set { _MinComission = value; }
+        }
+
         public PaymentService()
         {
         }
 
-        public PaymentService(int id, string name, MultiLanguageString localizedName, string subName, string paypointPaymentType, int type, bool fixedAmount, int categoryId, int minAmount, int maxAmount, string assemblyId, List<PaymentFixedAmount> amountsList, List<PaymentServiceField> fields)
+        public PaymentService(int id, string name, MultiLanguageString localizedName, string subName, string paypointPaymentType, int type, bool fixedAmount, int categoryId, int minAmount, int maxAmount, string assemblyId, List<PaymentFixedAmount> amountsList, List<PaymentServiceField> fields, float comission, float minComission)
         {
             _Id = id;
             _Name = name;
@@ -147,6 +165,8 @@ namespace Containers.MultiPayment
             _AssemblyId = assemblyId;
             _AmountsList = amountsList;
             _Fields = fields;
+            _Comission = comission;
+            _MinComission = minComission;
         }
 
         public override string ToString()

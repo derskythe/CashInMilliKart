@@ -670,6 +670,10 @@ namespace CashInTerminalWpf.CashIn {
         
         private PaymentServiceField[] fieldsField;
         
+        private float comissionField;
+        
+        private float minComissionField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int Id {
@@ -823,6 +827,30 @@ namespace CashInTerminalWpf.CashIn {
             set {
                 this.fieldsField = value;
                 this.RaisePropertyChanged("Fields");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public float Comission {
+            get {
+                return this.comissionField;
+            }
+            set {
+                this.comissionField = value;
+                this.RaisePropertyChanged("Comission");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public float MinComission {
+            get {
+                return this.minComissionField;
+            }
+            set {
+                this.minComissionField = value;
+                this.RaisePropertyChanged("MinComission");
             }
         }
         

@@ -17,5 +17,7 @@
         public const string BillsCount = "[BillsCount]";
         public const string Bonus = "[Bonus]";
         public const string ProductSubname = "[ProductSubname]";
+        public const string ServiceComission = "[ServiceComission]";
+        public const string ServiceMinComission = "[ServiceMinComission]";
     }
 }

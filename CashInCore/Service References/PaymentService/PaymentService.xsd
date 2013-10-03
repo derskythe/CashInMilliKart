@@ -141,6 +141,7 @@
       <xs:extension base="tns:BaseResult">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="extended_description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="service_payment_id" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -220,6 +221,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="amounts_list" type="tns:ArrayOfFixedAmount" />
       <xs:element minOccurs="0" maxOccurs="1" name="service_fields" type="tns:ArrayOfServiceField" />
       <xs:element minOccurs="1" maxOccurs="1" name="percent" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="minimal_comission" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfFixedAmount">

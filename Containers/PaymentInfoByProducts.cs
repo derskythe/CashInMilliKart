@@ -122,6 +122,8 @@ namespace Containers
             set { _Banknotes = value; }
         }
 
+        [XmlElement(ElementName = "OperationType")]
+        [DataMember(Name = "OperationType")]
         public int OperationType
         {
             get { return _OperationType; }

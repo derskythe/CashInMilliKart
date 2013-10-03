@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Button Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Grid.Row="0" Grid.Column="0" Click="ButtonHomeClick" />
@@ -27,7 +28,9 @@
             </StackPanel>
         </Border>
 
-        <DockPanel Margin="8" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
+        <Label Name="LabelCommission" Style="{StaticResource ComissionLabelStyle}" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static res:Resources.LabelServiceComission}" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden" />
+        
+        <DockPanel Margin="8" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom">
             <Button Name="ButtonBack" MinWidth="93" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelBack}" Click="ButtonBackClick" />
             <Button Name="ButtonNext" MinWidth="93" Margin="10,0,0,0" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource NavButtonStyle}" Content="{x:Static res:Resources.LabelNext}" Click="ButtonNextClick" />
         </DockPanel>

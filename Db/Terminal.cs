@@ -1366,5 +1366,94 @@ namespace Db
                 }
             }
         }
+
+        public IEnumerable<ds.V_ACTIVE_OTHER_PAYMENTSRow> ListOtherPaymentsRequest()
+        {
+            OracleConnection connection = null;
+
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+                using (var adapter = new V_ACTIVE_OTHER_PAYMENTSTableAdapter { BindByName = true, Connection = connection })
+                {
+                    using (var table = new ds.V_ACTIVE_OTHER_PAYMENTSDataTable())
+                    {
+                        adapter.Fill(table);
+
+                        foreach (ds.V_ACTIVE_OTHER_PAYMENTSRow row in table.Rows)
+                        {
+                            yield return row;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void SaveOtherPaymentsRequest(String request)
+        {
+            OracleConnection connection = null;
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+
+                const string cmdText =
+                    "begin main.save_other_payment_request(v_value => :v_value); end; ";
+
+                using (var cmd = new OracleCommand(cmdText, connection))
+                {
+                    cmd.Parameters.Add("v_value", OracleDbType.NVarchar2, ParameterDirection.Input).Value =
+                        request;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void DoneOtherPaymentsRequest(long id)
+        {
+            OracleConnection connection = null;
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+
+                const string cmdText =
+                    "begin main.done_other_payment_request(v_id => :v_id); end;";
+
+                using (var cmd = new OracleCommand(cmdText, connection))
+                {
+                    cmd.Parameters.Add("v_id", OracleDbType.Long, ParameterDirection.Input).Value =
+                        id;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
     }
 }

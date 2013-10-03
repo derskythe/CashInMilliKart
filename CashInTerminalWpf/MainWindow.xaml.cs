@@ -790,6 +790,10 @@ namespace CashInTerminalWpf
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.Az);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.En);
                 UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPayments, InterfaceLanguages.Ru);
+
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPaymentsWithComission, InterfaceLanguages.Az);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPaymentsWithComission, InterfaceLanguages.En);
+                UpdateCheckTemplateKey((int)CheckTemplateTypes.OtherPaymentsWithComission, InterfaceLanguages.Ru);
             }
 
             Log.Info("Finish update CheckTemplates");

@@ -104,6 +104,15 @@
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         </Style>
 
+        <Style x:Key="ComissionLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
+        
+
         <Style x:Key="BigLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="50" />

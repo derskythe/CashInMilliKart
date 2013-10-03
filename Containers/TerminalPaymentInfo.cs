@@ -24,66 +24,88 @@ namespace Containers
         {
         }
 
+        [XmlElement(ElementName = "TransactionId")]
+        [DataMember(Name = "TransactionId")]
         public string TransactionId
         {
             get { return _TransactionId; }
             set { _TransactionId = value; }
         }
 
+        [XmlElement(ElementName = "ProductId")]
+        [DataMember(Name = "ProductId")]
         public int ProductId
         {
             get { return _ProductId; }
             set { _ProductId = value; }
         }
 
+        [XmlElement(ElementName = "Currency")]
+        [DataMember(Name = "Currency")]
         public string Currency
         {
             get { return _Currency; }
             set { _Currency = value; }
         }
 
+        [XmlElement(ElementName = "CurrencyRate")]
+        [DataMember(Name = "CurrencyRate")]
         public float CurrencyRate
         {
             get { return _CurrencyRate; }
             set { _CurrencyRate = value; }
         }
 
+        [XmlElement(ElementName = "Amount")]
+        [DataMember(Name = "Amount")]
         public int Amount
         {
             get { return _Amount; }
             set { _Amount = value; }
         }
 
+        [XmlElement(ElementName = "OperationType")]
+        [DataMember(Name = "OperationType")]
         public int OperationType
         {
             get { return _OperationType; }
             set { _OperationType = value; }
         }
 
+        [XmlElement(ElementName = "TerminalDate")]
+        [DataMember(Name = "TerminalDate")]
         public DateTime TerminalDate
         {
             get { return _TerminalDate; }
             set { _TerminalDate = value; }
         }
 
+        [XmlArray(ElementName = "Values")]
+        [DataMember(Name = "Values")]
         public string[] Values
         {
             get { return _Values; }
             set { _Values = value; }
         }
 
+        [XmlArray(ElementName = "Banknotes")]
+        [DataMember(Name = "Banknotes")]
         public int[] Banknotes
         {
             get { return _Banknotes; }
             set { _Banknotes = value; }
         }
 
+        [XmlElement(ElementName = "CreditNumber")]
+        [DataMember(Name = "CreditNumber")]
         public string CreditNumber
         {
             get { return _CreditNumber; }
             set { _CreditNumber = value; }
         }
 
+        [XmlElement(ElementName = "PaymentServiceId")]
+        [DataMember(Name = "PaymentServiceId")]
         public int PaymentServiceId
         {
             get { return _PaymentServiceId; }

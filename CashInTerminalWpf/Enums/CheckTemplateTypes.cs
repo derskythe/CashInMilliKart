@@ -7,6 +7,7 @@
         DebitPayment = 3,
         CreditWithBonus = 4,
         EncashmentFull = 5,
-        OtherPayments = 6
+        OtherPayments = 6,
+        OtherPaymentsWithComission = 7
     }
 }

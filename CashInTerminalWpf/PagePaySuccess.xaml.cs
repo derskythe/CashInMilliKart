@@ -356,6 +356,9 @@ namespace CashInTerminalWpf
                     text = _FormMain.ClientInfo.PaymentService.LocalizedName.ValueRu;
                 }
                 value = value.Replace(TemplateFields.ProductSubname, text);
+
+                value = value.Replace(TemplateFields.ServiceComission, _FormMain.ClientInfo.PaymentService.Comission.ToString("0"));
+                value = value.Replace(TemplateFields.ServiceMinComission, _FormMain.ClientInfo.PaymentService.MinComission.ToString("0.00") + " AZN");
             }
 
             return value;

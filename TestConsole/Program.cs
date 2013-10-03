@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 using CashInTerminalWpf;
@@ -108,6 +111,41 @@ namespace TestConsole
         static void Main(string[] args)
         {
             var billmask = new BitArray(48);
+
+            var info = new TerminalPaymentInfo(501)
+                {
+                    Amount = 100,
+                    Banknotes = new int[] {50, 50},
+                    CreditNumber = "TEST",
+                    Currency = "AZN",
+                    CurrencyRate = 1f,
+                    OperationType = 35,
+                    PaymentServiceId = 41,
+                    ProductId = 4,
+                    TerminalDate = DateTime.Now,
+                    TransactionId = "501501501",
+                    Values = new[] {"VALUE1", "VALUE2"}
+                };
+
+            string settingsString;
+            var ser = new DataContractJsonSerializer(typeof(TerminalPaymentInfo));
+            using (var stream1 = new MemoryStream())
+            {                
+                ser.WriteObject(stream1, info);
+
+                stream1.Flush();
+                stream1.Position = 0;
+                settingsString = Encoding.UTF8.GetString(stream1.ToArray());
+
+                Console.WriteLine(settingsString);
+            }
+
+            using (var stream2 = new MemoryStream(Encoding.UTF8.GetBytes(settingsString)))
+            {
+                var otherObject = ser.ReadObject(stream2);
+                Console.WriteLine(otherObject);
+            }
+
 
             //CashIn.CashInServer server = new CashInServerClient();
             //var info = new CashIn.TerminalPaymentInfo

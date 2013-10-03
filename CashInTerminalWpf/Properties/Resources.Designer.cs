@@ -442,6 +442,15 @@ namespace CashInTerminalWpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Komissiya {0}%, komissiyanın minimal məbləği {1} AZN.
+        /// </summary>
+        public static string LabelServiceComission {
+            get {
+                return ResourceManager.GetString("LabelServiceComission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kredit Sifarişiniz qəbul olunub. 
         ///Yaxın zamanda sizinlə 
         ///əlaqə saxlanılacaq. 
