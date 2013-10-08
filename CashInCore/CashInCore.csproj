@@ -88,6 +88,9 @@
     <None Include="Service References\PaymentService\CashInCore.PaymentService.ServiceInfoResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\PaymentService\CashInCore.PaymentService.StandartResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\PaymentService\PaymentService.wsdl" />
     <None Include="Service References\PaymentService\PaymentService.xsd">
       <SubType>Designer</SubType>

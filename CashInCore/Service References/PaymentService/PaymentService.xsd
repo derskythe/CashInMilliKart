@@ -60,6 +60,8 @@
       <xs:enumeration value="DublicatePaymentId" />
       <xs:enumeration value="InvalidCurrency" />
       <xs:enumeration value="InvalidUser" />
+      <xs:enumeration value="TransactionNotFound" />
+      <xs:enumeration value="StatusUnknown" />
       <xs:enumeration value="UnknownError" />
       <xs:enumeration value="SystemError" />
     </xs:restriction>
@@ -352,4 +354,25 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTransactionInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="username" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="transactionId" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransactionInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetTransactionInfoResult" type="tns:StandartResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="StandartResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult" />
+    </xs:complexContent>
+  </xs:complexType>
 </xs:schema>

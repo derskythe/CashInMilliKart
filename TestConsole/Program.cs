@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 using CashInTerminalWpf;
-using CashInTerminalWpf.Enums;
 using Db;
 using NLog;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Utilities.Encoders;
-using TestConsole.CashIn;
 using TestConsole.Properties;
 using crypto;
 using TerminalPaymentInfo = Containers.TerminalPaymentInfo;
@@ -124,26 +119,19 @@ namespace TestConsole
                     ProductId = 4,
                     TerminalDate = DateTime.Now,
                     TransactionId = "501501501",
-                    Values = new[] {"VALUE1", "VALUE2"}
+                    Values = new[] {"VALUE1", "VALUE2"},
+                    TerminalId = 501
                 };
 
-            string settingsString;
-            var ser = new DataContractJsonSerializer(typeof(TerminalPaymentInfo));
-            using (var stream1 = new MemoryStream())
-            {                
-                ser.WriteObject(stream1, info);
-
-                stream1.Flush();
-                stream1.Position = 0;
-                settingsString = Encoding.UTF8.GetString(stream1.ToArray());
-
-                Console.WriteLine(settingsString);
-            }
-
-            using (var stream2 = new MemoryStream(Encoding.UTF8.GetBytes(settingsString)))
+            long historyId;
+            try
             {
-                var otherObject = ser.ReadObject(stream2);
-                Console.WriteLine(otherObject);
+                OracleDb.Init(Settings.Default.OracleUser, Settings.Default.OraclePassword, Settings.Default.OracleDb);
+                OracleDb.Instance.SavePayment(info, out historyId);
+            }
+            catch (Exception exp)
+            {
+                Log.ErrorException(exp.Message, exp);
             }
 
 

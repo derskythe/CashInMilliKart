@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -572,7 +571,7 @@ namespace CashInTerminalWpf
         {
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
-            Interlocked.Exchange(ref _LastReceived, Stopwatch.GetTimestamp());
+            Interlocked.Exchange(ref _LastReceived, DateTime.MinValue.Ticks);
 
             var billmask = new BitArray(48);
 
@@ -630,7 +629,7 @@ namespace CashInTerminalWpf
         {
             _DeviceState.Amount = 0;
             _DeviceState.Nominal = 0;
-            Interlocked.Exchange(ref _LastReceived, Stopwatch.GetTimestamp());
+            Interlocked.Exchange(ref _LastReceived, DateTime.MinValue.Ticks);
 
             //byte[] billmask = new byte[] { 0xFD, 0x7F, 0x7F };
             //var billmask = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -831,7 +830,7 @@ namespace CashInTerminalWpf
                 case CCNETResponseStatus.BillStacked:
                 case CCNETResponseStatus.BillAccepting:
                     var prevState = Interlocked.Exchange(ref _BillAcceptSequence, (int)CCNETResponseStatus.BillStacked);
-                    var timeShift = Math.Abs(Stopwatch.GetTimestamp() - Interlocked.Read(ref _LastReceived));
+                    var timeShift = Math.Abs(DateTime.Now.Ticks - Interlocked.Read(ref _LastReceived));
 
                     if (timeShift < _MaxTime.Ticks && (prevState != (int)CCNETResponseStatus.Accepting &&
                                 prevState != (int)CCNETResponseStatus.Stacking))
@@ -841,7 +840,7 @@ namespace CashInTerminalWpf
                     }
                     else
                     {
-                        Interlocked.Exchange(ref _LastReceived, Stopwatch.GetTimestamp());
+                        Interlocked.Exchange(ref _LastReceived, DateTime.Now.Ticks);
                         _DeviceState.Nominal = 0;
                         _DeviceState.StateCodeOut = CCNETResponseStatus.BillAccepting;
                         _DeviceState.Currency = CurrentCurrency;

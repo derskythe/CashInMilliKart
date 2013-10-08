@@ -90,6 +90,8 @@ namespace Db {
         
         private V_ACTIVE_OTHER_PAYMENTSDataTable tableV_ACTIVE_OTHER_PAYMENTS;
         
+        private V_ACTIVE_OTHER_PAYMENTS_EXTDataTable tableV_ACTIVE_OTHER_PAYMENTS_EXT;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -216,6 +218,9 @@ namespace Db {
                 }
                 if ((ds.Tables["V_ACTIVE_OTHER_PAYMENTS"] != null)) {
                     base.Tables.Add(new V_ACTIVE_OTHER_PAYMENTSDataTable(ds.Tables["V_ACTIVE_OTHER_PAYMENTS"]));
+                }
+                if ((ds.Tables["V_ACTIVE_OTHER_PAYMENTS_EXT"] != null)) {
+                    base.Tables.Add(new V_ACTIVE_OTHER_PAYMENTS_EXTDataTable(ds.Tables["V_ACTIVE_OTHER_PAYMENTS_EXT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -567,6 +572,16 @@ namespace Db {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public V_ACTIVE_OTHER_PAYMENTS_EXTDataTable V_ACTIVE_OTHER_PAYMENTS_EXT {
+            get {
+                return this.tableV_ACTIVE_OTHER_PAYMENTS_EXT;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -730,6 +745,9 @@ namespace Db {
                 }
                 if ((ds.Tables["V_ACTIVE_OTHER_PAYMENTS"] != null)) {
                     base.Tables.Add(new V_ACTIVE_OTHER_PAYMENTSDataTable(ds.Tables["V_ACTIVE_OTHER_PAYMENTS"]));
+                }
+                if ((ds.Tables["V_ACTIVE_OTHER_PAYMENTS_EXT"] != null)) {
+                    base.Tables.Add(new V_ACTIVE_OTHER_PAYMENTS_EXTDataTable(ds.Tables["V_ACTIVE_OTHER_PAYMENTS_EXT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -962,6 +980,12 @@ namespace Db {
                     this.tableV_ACTIVE_OTHER_PAYMENTS.InitVars();
                 }
             }
+            this.tableV_ACTIVE_OTHER_PAYMENTS_EXT = ((V_ACTIVE_OTHER_PAYMENTS_EXTDataTable)(base.Tables["V_ACTIVE_OTHER_PAYMENTS_EXT"]));
+            if ((initTable == true)) {
+                if ((this.tableV_ACTIVE_OTHER_PAYMENTS_EXT != null)) {
+                    this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1038,6 +1062,8 @@ namespace Db {
             base.Tables.Add(this.tableV_CASHIN_BOLCARDS_EXT);
             this.tableV_ACTIVE_OTHER_PAYMENTS = new V_ACTIVE_OTHER_PAYMENTSDataTable();
             base.Tables.Add(this.tableV_ACTIVE_OTHER_PAYMENTS);
+            this.tableV_ACTIVE_OTHER_PAYMENTS_EXT = new V_ACTIVE_OTHER_PAYMENTS_EXTDataTable();
+            base.Tables.Add(this.tableV_ACTIVE_OTHER_PAYMENTS_EXT);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1240,6 +1266,12 @@ namespace Db {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeV_ACTIVE_OTHER_PAYMENTS_EXT() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1391,6 +1423,9 @@ namespace Db {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void V_ACTIVE_OTHER_PAYMENTSRowChangeEventHandler(object sender, V_ACTIVE_OTHER_PAYMENTSRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEventHandler(object sender, V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -14029,6 +14064,344 @@ namespace Db {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class V_ACTIVE_OTHER_PAYMENTS_EXTDataTable : global::System.Data.TypedTableBase<V_ACTIVE_OTHER_PAYMENTS_EXTRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnVALUE;
+            
+            private global::System.Data.DataColumn columnINSERT_DATE;
+            
+            private global::System.Data.DataColumn columnUPDATE_DATE;
+            
+            private global::System.Data.DataColumn columnSTATUS;
+            
+            private global::System.Data.DataColumn columnPRODUCTS_HISTORY_ID;
+            
+            private global::System.Data.DataColumn columnTRANSACTION_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_ACTIVE_OTHER_PAYMENTS_EXTDataTable() {
+                this.TableName = "V_ACTIVE_OTHER_PAYMENTS_EXT";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_ACTIVE_OTHER_PAYMENTS_EXTDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected V_ACTIVE_OTHER_PAYMENTS_EXTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VALUEColumn {
+                get {
+                    return this.columnVALUE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn INSERT_DATEColumn {
+                get {
+                    return this.columnINSERT_DATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UPDATE_DATEColumn {
+                get {
+                    return this.columnUPDATE_DATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn STATUSColumn {
+                get {
+                    return this.columnSTATUS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PRODUCTS_HISTORY_IDColumn {
+                get {
+                    return this.columnPRODUCTS_HISTORY_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TRANSACTION_IDColumn {
+                get {
+                    return this.columnTRANSACTION_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_ACTIVE_OTHER_PAYMENTS_EXTRow this[int index] {
+                get {
+                    return ((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEventHandler V_ACTIVE_OTHER_PAYMENTS_EXTRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEventHandler V_ACTIVE_OTHER_PAYMENTS_EXTRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEventHandler V_ACTIVE_OTHER_PAYMENTS_EXTRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEventHandler V_ACTIVE_OTHER_PAYMENTS_EXTRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddV_ACTIVE_OTHER_PAYMENTS_EXTRow(V_ACTIVE_OTHER_PAYMENTS_EXTRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_ACTIVE_OTHER_PAYMENTS_EXTRow AddV_ACTIVE_OTHER_PAYMENTS_EXTRow(long ID, string VALUE, System.DateTime INSERT_DATE, System.DateTime UPDATE_DATE, int STATUS, long PRODUCTS_HISTORY_ID, string TRANSACTION_ID) {
+                V_ACTIVE_OTHER_PAYMENTS_EXTRow rowV_ACTIVE_OTHER_PAYMENTS_EXTRow = ((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        VALUE,
+                        INSERT_DATE,
+                        UPDATE_DATE,
+                        STATUS,
+                        PRODUCTS_HISTORY_ID,
+                        TRANSACTION_ID};
+                rowV_ACTIVE_OTHER_PAYMENTS_EXTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_ACTIVE_OTHER_PAYMENTS_EXTRow);
+                return rowV_ACTIVE_OTHER_PAYMENTS_EXTRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                V_ACTIVE_OTHER_PAYMENTS_EXTDataTable cln = ((V_ACTIVE_OTHER_PAYMENTS_EXTDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new V_ACTIVE_OTHER_PAYMENTS_EXTDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnVALUE = base.Columns["VALUE"];
+                this.columnINSERT_DATE = base.Columns["INSERT_DATE"];
+                this.columnUPDATE_DATE = base.Columns["UPDATE_DATE"];
+                this.columnSTATUS = base.Columns["STATUS"];
+                this.columnPRODUCTS_HISTORY_ID = base.Columns["PRODUCTS_HISTORY_ID"];
+                this.columnTRANSACTION_ID = base.Columns["TRANSACTION_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnVALUE = new global::System.Data.DataColumn("VALUE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVALUE);
+                this.columnINSERT_DATE = new global::System.Data.DataColumn("INSERT_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnINSERT_DATE);
+                this.columnUPDATE_DATE = new global::System.Data.DataColumn("UPDATE_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUPDATE_DATE);
+                this.columnSTATUS = new global::System.Data.DataColumn("STATUS", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSTATUS);
+                this.columnPRODUCTS_HISTORY_ID = new global::System.Data.DataColumn("PRODUCTS_HISTORY_ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRODUCTS_HISTORY_ID);
+                this.columnTRANSACTION_ID = new global::System.Data.DataColumn("TRANSACTION_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTRANSACTION_ID);
+                this.columnID.AllowDBNull = false;
+                this.columnVALUE.AllowDBNull = false;
+                this.columnVALUE.MaxLength = 1024;
+                this.columnINSERT_DATE.AllowDBNull = false;
+                this.columnUPDATE_DATE.AllowDBNull = false;
+                this.columnSTATUS.AllowDBNull = false;
+                this.columnTRANSACTION_ID.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_ACTIVE_OTHER_PAYMENTS_EXTRow NewV_ACTIVE_OTHER_PAYMENTS_EXTRow() {
+                return ((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new V_ACTIVE_OTHER_PAYMENTS_EXTRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(V_ACTIVE_OTHER_PAYMENTS_EXTRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.V_ACTIVE_OTHER_PAYMENTS_EXTRowChanged != null)) {
+                    this.V_ACTIVE_OTHER_PAYMENTS_EXTRowChanged(this, new V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent(((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.V_ACTIVE_OTHER_PAYMENTS_EXTRowChanging != null)) {
+                    this.V_ACTIVE_OTHER_PAYMENTS_EXTRowChanging(this, new V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent(((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.V_ACTIVE_OTHER_PAYMENTS_EXTRowDeleted != null)) {
+                    this.V_ACTIVE_OTHER_PAYMENTS_EXTRowDeleted(this, new V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent(((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.V_ACTIVE_OTHER_PAYMENTS_EXTRowDeleting != null)) {
+                    this.V_ACTIVE_OTHER_PAYMENTS_EXTRowDeleting(this, new V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent(((V_ACTIVE_OTHER_PAYMENTS_EXTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveV_ACTIVE_OTHER_PAYMENTS_EXTRow(V_ACTIVE_OTHER_PAYMENTS_EXTRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ds ds = new ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "V_ACTIVE_OTHER_PAYMENTS_EXTDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class V_LIST_CURRENCIESRow : global::System.Data.DataRow {
@@ -21467,6 +21840,134 @@ namespace Db {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class V_ACTIVE_OTHER_PAYMENTS_EXTRow : global::System.Data.DataRow {
+            
+            private V_ACTIVE_OTHER_PAYMENTS_EXTDataTable tableV_ACTIVE_OTHER_PAYMENTS_EXT;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal V_ACTIVE_OTHER_PAYMENTS_EXTRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableV_ACTIVE_OTHER_PAYMENTS_EXT = ((V_ACTIVE_OTHER_PAYMENTS_EXTDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long ID {
+                get {
+                    return ((long)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.IDColumn]));
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string VALUE {
+                get {
+                    return ((string)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.VALUEColumn]));
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.VALUEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime INSERT_DATE {
+                get {
+                    return ((global::System.DateTime)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.INSERT_DATEColumn]));
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.INSERT_DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime UPDATE_DATE {
+                get {
+                    return ((global::System.DateTime)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.UPDATE_DATEColumn]));
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.UPDATE_DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int STATUS {
+                get {
+                    return ((int)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.STATUSColumn]));
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.STATUSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long PRODUCTS_HISTORY_ID {
+                get {
+                    try {
+                        return ((long)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.PRODUCTS_HISTORY_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRODUCTS_HISTORY_ID\' in table \'V_ACTIVE_OTHER_PAYMENTS_EXT\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.PRODUCTS_HISTORY_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TRANSACTION_ID {
+                get {
+                    try {
+                        return ((string)(this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.TRANSACTION_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TRANSACTION_ID\' in table \'V_ACTIVE_OTHER_PAYMENTS_EXT\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.TRANSACTION_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPRODUCTS_HISTORY_IDNull() {
+                return this.IsNull(this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.PRODUCTS_HISTORY_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPRODUCTS_HISTORY_IDNull() {
+                this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.PRODUCTS_HISTORY_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTRANSACTION_IDNull() {
+                return this.IsNull(this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.TRANSACTION_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTRANSACTION_IDNull() {
+                this[this.tableV_ACTIVE_OTHER_PAYMENTS_EXT.TRANSACTION_IDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -22574,6 +23075,40 @@ namespace Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public V_ACTIVE_OTHER_PAYMENTSRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent : global::System.EventArgs {
+            
+            private V_ACTIVE_OTHER_PAYMENTS_EXTRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_ACTIVE_OTHER_PAYMENTS_EXTRowChangeEvent(V_ACTIVE_OTHER_PAYMENTS_EXTRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public V_ACTIVE_OTHER_PAYMENTS_EXTRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -26081,7 +26616,7 @@ namespace Db.dsTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[8];
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[9];
             this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY";
@@ -26207,15 +26742,26 @@ namespace Db.dsTableAdapters {
             this._commandCollection[6].Parameters.Add(param);
             this._commandCollection[7] = new global::Oracle.DataAccess.Client.OracleCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)";
+            this._commandCollection[7].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE id = :id";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":id";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "ID";
+            this._commandCollection[7].Parameters.Add(param);
+            this._commandCollection[8] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[8].Connection = this.Connection;
+            this._commandCollection[8].CommandText = @"SELECT ID, TRANSACTION_ID, TERMINAL_ID, ""NAME"", ADDRESS, IDENTITY_NAME, PRODUCT_ID, CURRENCY_ID, RATE, INSERT_DATE, AMOUNT, TERMINAL_DATE, PRODUCT_NAME, NAME_AZ, NAME_RU, NAME_EN, CREDIT_NUMBER, PAYMENT_TYPE, PAYMENT_TYPE_AZ, PAYMENT_TYPE_EN, PAYMENT_TYPE_RU, ENCASHMENT_ID FROM CASHIN_NEW.V_PRODUCTS_HISTORY WHERE (TRANSACTION_ID = :transactionId)";
+            this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
             param = new global::Oracle.DataAccess.Client.OracleParameter();
             param.ParameterName = ":transactionId";
             param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Varchar2;
             param.Size = 50;
             param.IsNullable = true;
             param.SourceColumn = "TRANSACTION_ID";
-            this._commandCollection[7].Parameters.Add(param);
+            this._commandCollection[8].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -26294,8 +26840,34 @@ namespace Db.dsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByTransactionId(ds.V_PRODUCTS_HISTORYDataTable dataTable, string transactionId) {
+        public virtual int FillById(ds.V_PRODUCTS_HISTORYDataTable dataTable, decimal id) {
             this.Adapter.SelectCommand = this.CommandCollection[7];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(id));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_PRODUCTS_HISTORYDataTable GetDataById(decimal id) {
+            this.Adapter.SelectCommand = this.CommandCollection[7];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(id));
+            ds.V_PRODUCTS_HISTORYDataTable dataTable = new ds.V_PRODUCTS_HISTORYDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByTransactionId(ds.V_PRODUCTS_HISTORYDataTable dataTable, string transactionId) {
+            this.Adapter.SelectCommand = this.CommandCollection[8];
             if ((transactionId == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -26314,7 +26886,7 @@ namespace Db.dsTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ds.V_PRODUCTS_HISTORYDataTable GetDataByTransactionId(string transactionId) {
-            this.Adapter.SelectCommand = this.CommandCollection[7];
+            this.Adapter.SelectCommand = this.CommandCollection[8];
             if ((transactionId == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -30563,6 +31135,218 @@ namespace Db.dsTableAdapters {
         public virtual ds.V_ACTIVE_OTHER_PAYMENTSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             ds.V_ACTIVE_OTHER_PAYMENTSDataTable dataTable = new ds.V_ACTIVE_OTHER_PAYMENTSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class V_ACTIVE_OTHER_PAYMENTS_EXTTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Oracle.DataAccess.Client.OracleDataAdapter _adapter;
+        
+        private global::Oracle.DataAccess.Client.OracleConnection _connection;
+        
+        private global::Oracle.DataAccess.Client.OracleTransaction _transaction;
+        
+        private global::Oracle.DataAccess.Client.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public V_ACTIVE_OTHER_PAYMENTS_EXTTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::Oracle.DataAccess.Client.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::Oracle.DataAccess.Client.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::Oracle.DataAccess.Client.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Oracle.DataAccess.Client.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "V_ACTIVE_OTHER_PAYMENTS_EXT";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("VALUE", "VALUE");
+            tableMapping.ColumnMappings.Add("INSERT_DATE", "INSERT_DATE");
+            tableMapping.ColumnMappings.Add("UPDATE_DATE", "UPDATE_DATE");
+            tableMapping.ColumnMappings.Add("STATUS", "STATUS");
+            tableMapping.ColumnMappings.Add("PRODUCTS_HISTORY_ID", "PRODUCTS_HISTORY_ID");
+            tableMapping.ColumnMappings.Add("TRANSACTION_ID", "TRANSACTION_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Oracle.DataAccess.Client.OracleConnection();
+            this._connection.ConnectionString = global::Db.Properties.Settings.Default.cs;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Oracle.DataAccess.Client.OracleCommand[2];
+            this._commandCollection[0] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, \"VALUE\", INSERT_DATE, UPDATE_DATE, STATUS, PRODUCTS_HISTORY_ID, TRANSA" +
+                "CTION_ID FROM CASHIN_NEW.V_ACTIVE_OTHER_PAYMENTS_EXT";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Oracle.DataAccess.Client.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT ID, \"VALUE\", INSERT_DATE, UPDATE_DATE, STATUS, PRODUCTS_HISTORY_ID, TRANSA" +
+                "CTION_ID FROM CASHIN_NEW.V_ACTIVE_OTHER_PAYMENTS_EXT WHERE status = :status";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Oracle.DataAccess.Client.OracleParameter param = new global::Oracle.DataAccess.Client.OracleParameter();
+            param.ParameterName = ":status";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.OracleDbTypeEx = global::Oracle.DataAccess.Client.OracleDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "STATUS";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable dataTable = new ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByStatus(ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable dataTable, decimal status) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(status));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable GetDataByStatus(decimal status) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(status));
+            ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable dataTable = new ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

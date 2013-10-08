@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using Containers;
 using Containers.Admin;
 using Containers.Enums;
@@ -1705,6 +1706,43 @@ namespace Db
             return result;
         }
 
+        public ProductHistory GetProductHistory(long historyId)
+        {
+            OracleConnection connection = null;            
+
+            try
+            {
+                connection = new OracleConnection(_ConnectionString); connection.Open();
+
+                using (
+                    var adapter = new V_PRODUCTS_HISTORYTableAdapter { Connection = connection, BindByName = true }
+                    )
+                {
+                    using (var table = new ds.V_PRODUCTS_HISTORYDataTable())
+                    {
+                        adapter.FillById(table, historyId);
+
+                        foreach (ds.V_PRODUCTS_HISTORYRow row in table.Rows)
+                        {
+                            //var values = ListProductHistoryValues(row.ID);
+                            //var banknotes = ListBanknotesByHistoryId(row.ID);
+                            return Convertor.ToProductHistory(row, new List<ProductHistoryValue>(), new List<BanknoteSummary>());
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+            return null;
+        }
+
         public List<ProductHistory> ListProductHistory(ProductHistoryColumns sortColumn, SortType sortType, int rowNum, int perPage, out int count)
         {
             OracleConnection connection = null;
@@ -2339,6 +2377,40 @@ namespace Db
                         foreach (ds.V_BANKNOTESRow row in table.Rows)
                         {
                             result.Add(Convertor.ToBanknote(row));
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+
+            return result;
+        }
+
+        public List<String> ListBanknotesByHistoryId(decimal id, bool val)
+        {
+            OracleConnection connection = null;
+            var result = new List<String>();
+
+            try
+            {
+                connection = new OracleConnection(_ConnectionString); connection.Open();
+
+                using (var adapter = new V_BANKNOTESTableAdapter { Connection = connection, BindByName = true })
+                {
+                    using (var table = new ds.V_BANKNOTESDataTable())
+                    {
+                        adapter.FillByHistoryId(table, id);
+
+                        foreach (ds.V_BANKNOTESRow row in table.Rows)
+                        {
+                            result.Add(row.AMOUNT.ToString("0"));
                         }
                     }
                 }
@@ -3048,7 +3120,7 @@ namespace Db
                 {
                     using (var table = new ds.V_BANKNOTES_SUMMARY_BY_TERMDataTable())
                     {
-                        adapter.FillByTerminalId(table, terminalId);                        
+                        adapter.FillByTerminalId(table, terminalId);
 
                         foreach (ds.V_BANKNOTES_SUMMARY_BY_TERMRow row in table.Rows)
                         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Containers;
+using Containers.Enums;
 using Db.dsTableAdapters;
 using Oracle.DataAccess.Client;
 
@@ -304,6 +305,7 @@ namespace Db
             }
         }
 
+        [Obsolete]
         public void SavePayment(TerminalPaymentInfo info)
         {
             OracleConnection connection = null;
@@ -385,6 +387,119 @@ namespace Db
                 type.Dispose();
                 banknotes.Dispose();
                 values.Dispose();
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+        }
+
+        public void SavePayment(TerminalPaymentInfo info, out long historyId)
+        {
+            OracleConnection connection = null;
+
+            try
+            {
+                historyId = 0;
+                connection = new OracleConnection(_ConnectionString); connection.Open();
+
+                var transId = new OracleParameter();
+                var terminalId = new OracleParameter();
+                var productId = new OracleParameter();
+                var currencyId = new OracleParameter();
+                var currencyRateId = new OracleParameter();
+                var amount = new OracleParameter();
+                var terminalDate = new OracleParameter();
+                var creditNumber = new OracleParameter();
+                var type = new OracleParameter();
+                var banknotes = new OracleParameter();
+                var values = new OracleParameter();
+                var history = new OracleParameter();
+
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "main.save_payment";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    transId.OracleDbType = OracleDbType.Varchar2;
+                    terminalId.OracleDbType = OracleDbType.Int32;
+                    productId.OracleDbType = OracleDbType.Int32;
+                    currencyId.OracleDbType = OracleDbType.Varchar2;
+                    currencyRateId.OracleDbType = OracleDbType.Decimal;
+                    amount.OracleDbType = OracleDbType.Int32;
+                    creditNumber.OracleDbType = OracleDbType.Varchar2;
+                    type.OracleDbType = OracleDbType.Int32;
+                    terminalDate.OracleDbType = OracleDbType.TimeStamp;
+                    banknotes.OracleDbType = OracleDbType.Int32;
+                    values.OracleDbType = OracleDbType.Varchar2;
+                    history.OracleDbType = OracleDbType.Int64;
+
+                    transId.Direction = ParameterDirection.Input;
+                    terminalId.Direction = ParameterDirection.Input;
+                    productId.Direction = ParameterDirection.Input;
+                    currencyId.Direction = ParameterDirection.Input;
+                    currencyRateId.Direction = ParameterDirection.Input;
+                    amount.Direction = ParameterDirection.Input;
+                    creditNumber.Direction = ParameterDirection.Input;
+                    type.Direction = ParameterDirection.Input;
+                    terminalDate.Direction = ParameterDirection.Input;
+                    banknotes.Direction = ParameterDirection.Input;
+                    values.Direction = ParameterDirection.Input;
+                    history.Direction = ParameterDirection.Input;
+                    history.Direction = ParameterDirection.Output;
+
+                    banknotes.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+                    values.CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+
+                    transId.Value = info.TransactionId;
+                    terminalId.Value = info.TerminalId;
+                    productId.Value = info.ProductId;
+                    currencyId.Value = info.Currency;
+                    currencyRateId.Value = info.CurrencyRate;
+                    amount.Value = info.Amount;
+                    terminalDate.Value = info.TerminalDate;
+                    banknotes.Value = info.Banknotes;
+                    values.Value = info.Values;
+                    creditNumber.Value = info.CreditNumber;
+                    type.Value = info.OperationType;
+
+                    banknotes.Size = info.Banknotes.Length;
+                    values.Size = info.Values.Length;
+
+                    cmd.Parameters.Add(transId);
+                    cmd.Parameters.Add(terminalId);
+                    cmd.Parameters.Add(productId);
+                    cmd.Parameters.Add(currencyId);
+                    cmd.Parameters.Add(currencyRateId);
+                    cmd.Parameters.Add(amount);
+                    cmd.Parameters.Add(terminalDate);
+                    cmd.Parameters.Add(creditNumber);
+                    cmd.Parameters.Add(type);
+                    cmd.Parameters.Add(banknotes);
+                    cmd.Parameters.Add(values);
+                    cmd.Parameters.Add(history);
+
+                    cmd.ExecuteNonQuery();
+
+                    historyId = ((Oracle.DataAccess.Types.OracleDecimal) cmd.Parameters[11].Value).ToInt64();
+                }
+
+                transId.Dispose();
+                terminalId.Dispose();
+                productId.Dispose();
+                currencyId.Dispose();
+                currencyRateId.Dispose();
+                amount.Dispose();
+                terminalDate.Dispose();
+                creditNumber.Dispose();
+                type.Dispose();
+                banknotes.Dispose();
+                values.Dispose();
+                history.Dispose();
             }
             finally
             {
@@ -1056,7 +1171,7 @@ namespace Db
             return result;
         }
 
-        public void CommitPayment(string cardNumber, float amount, string billSet, int terminalId, int operationType, DateTime timeStamp, String currency)
+        public void CommitPayment(string cardNumber, float amount, string billSet, long terminalId, int operationType, DateTime timeStamp, String currency, String transactionId)
         {
             OracleConnection connection = null;
 
@@ -1064,7 +1179,16 @@ namespace Db
             {
                 connection = new OracleConnection(_ConnectionString); connection.Open();
 
-                const string cmdText = "begin backend.new_credit_payment(v_crd_number => :v_crd_number, v_total_amount => :v_total_amount, v_bill_set => :v_bill_set, v_terminal_id => :v_terminal_id, v_operation_type => :v_operation_type, v_client_timestamp => :v_client_timestamp, v_currency => :v_currency); end;";
+                const string cmdText = "begin backend.new_credit_payment(" +
+                                       "v_crd_number => :v_crd_number, " +
+                                       "v_total_amount => :v_total_amount, " +
+                                       "v_bill_set => :v_bill_set, " +
+                                       "v_terminal_id => :v_terminal_id, " +
+                                       "v_operation_type => :v_operation_type, " +
+                                       "v_client_timestamp => :v_client_timestamp, " +
+                                       "v_currency => :v_currency, " +
+                                       "v_ext_tr_id => :v_ext_tr_id" +
+                                       "); end;";
 
                 using (var cmd = new OracleCommand(cmdText, connection))
                 {
@@ -1072,13 +1196,14 @@ namespace Db
                         cardNumber;
                     cmd.Parameters.Add("v_total_amount", OracleDbType.Double, ParameterDirection.Input).Value = amount;
                     cmd.Parameters.Add("v_bill_set", OracleDbType.Varchar2, ParameterDirection.Input).Value = billSet;
-                    cmd.Parameters.Add("v_terminal_id", OracleDbType.Int32, ParameterDirection.Input).Value = terminalId;
+                    cmd.Parameters.Add("v_terminal_id", OracleDbType.Int64, ParameterDirection.Input).Value = terminalId;
                     cmd.Parameters.Add("v_operation_type", OracleDbType.Int32, ParameterDirection.Input).Value =
                         operationType;
                     cmd.Parameters.Add("v_client_timestamp", OracleDbType.TimeStamp, ParameterDirection.Input).Value =
                         timeStamp;
                     cmd.Parameters.Add("v_currency", OracleDbType.Varchar2, ParameterDirection.Input).Value = currency;
-
+                    cmd.Parameters.Add("v_ext_tr_id", OracleDbType.Varchar2, ParameterDirection.Input).Value = transactionId;
+                    
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -1398,6 +1523,37 @@ namespace Db
             }
         }
 
+        public IEnumerable<ds.V_ACTIVE_OTHER_PAYMENTS_EXTRow> ListOtherPaymentsRequest(int status)
+        {
+            OracleConnection connection = null;
+
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+                using (var adapter = new V_ACTIVE_OTHER_PAYMENTS_EXTTableAdapter { BindByName = true, Connection = connection })
+                {
+                    using (var table = new ds.V_ACTIVE_OTHER_PAYMENTS_EXTDataTable())
+                    {
+                        adapter.FillByStatus(table, status);
+
+                        foreach (ds.V_ACTIVE_OTHER_PAYMENTS_EXTRow row in table.Rows)
+                        {
+                            yield return row;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
         public void SaveOtherPaymentsRequest(String request)
         {
             OracleConnection connection = null;
@@ -1427,6 +1583,40 @@ namespace Db
             }
         }
 
+        public void SaveOtherPaymentsRequest(String request, long historyId)
+        {
+            OracleConnection connection = null;
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+
+                const string cmdText =
+                    "begin main.save_other_payment_request(" +
+                    "v_value => :v_value, " +
+                    "v_products_history_id => :v_products_history_id" +
+                    "); end;";
+
+                using (var cmd = new OracleCommand(cmdText, connection))
+                {
+                    cmd.Parameters.Add("v_value", OracleDbType.NVarchar2, ParameterDirection.Input).Value =
+                        request;
+                    cmd.Parameters.Add("v_products_history_id", OracleDbType.Int64, ParameterDirection.Input).Value =
+                        historyId;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
         public void DoneOtherPaymentsRequest(long id)
         {
             OracleConnection connection = null;
@@ -1442,6 +1632,39 @@ namespace Db
                 {
                     cmd.Parameters.Add("v_id", OracleDbType.Long, ParameterDirection.Input).Value =
                         id;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void SaveStatusOtherPaymentsRequest(long id, OtherPaymentsRequestStatus status)
+        {
+            OracleConnection connection = null;
+            try
+            {
+                connection = new OracleConnection(_ConnectionString);
+                connection.Open();
+
+                const string cmdText =
+                    "begin main.update_other_payment_request(" +
+                    "v_id => :v_id, " +
+                    "v_status => :v_status); end;";
+
+                using (var cmd = new OracleCommand(cmdText, connection))
+                {
+                    cmd.Parameters.Add("v_id", OracleDbType.Long, ParameterDirection.Input).Value =
+                        id;
+                    cmd.Parameters.Add("v_status", OracleDbType.Int32, ParameterDirection.Input).Value =
+                        (int)status;
 
                     cmd.ExecuteNonQuery();
                 }

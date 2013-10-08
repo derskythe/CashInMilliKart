@@ -304,7 +304,8 @@ namespace CashInCore
                 OracleDb.Instance.SavePayment(request);
                 string bills = String.Join(";", request.Banknotes);
                 OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
-                                                request.OperationType, request.TerminalDate, request.Currency);
+                                                request.OperationType, request.TerminalDate, request.Currency,
+                                                request.TransactionId);
 
                 var paymentOperationType = (PaymentOperationType)request.OperationType;
                 if (paymentOperationType == PaymentOperationType.GoldenPay ||
@@ -367,18 +368,21 @@ namespace CashInCore
                 }
 
                 var paymentOperationType = (PaymentOperationType)request.OperationType;
-                OracleDb.Instance.SavePaymentWithBackend(request);
+                
                 //string bills = String.Join(";", request.Banknotes);
                 //OracleDb.Instance.CommitPayment(request.CreditNumber, request.Amount, bills, request.TerminalId,
                 //                                request.OperationType, request.TerminalDate, request.Currency);
-               
+
                 if (paymentOperationType == PaymentOperationType.GoldenPay ||
                     paymentOperationType == PaymentOperationType.Komtek ||
                     paymentOperationType == PaymentOperationType.MoneyMovers)
                 {
+                    long historyId;
+                    OracleDb.Instance.SavePayment(request, out historyId);
+
                     try
                     {
-                        var ser = new DataContractJsonSerializer(typeof(TerminalPaymentInfo));
+                        var ser = new DataContractJsonSerializer(typeof (TerminalPaymentInfo));
                         string requestJson;
                         using (var memoryStream = new MemoryStream())
                         {
@@ -392,13 +396,14 @@ namespace CashInCore
                             memoryStream.Close();
                         }
 
-                        OracleDb.Instance.SaveOtherPaymentsRequest(requestJson);
+                        OracleDb.Instance.SaveOtherPaymentsRequest(requestJson, historyId);
                     }
                     catch (Exception exp)
                     {
                         Log.WarnException(exp.Message, exp);
                     }
 
+                    #region Comment
 
                     //if (String.IsNullOrEmpty(_MultiPaymentUsername) || String.IsNullOrEmpty(_MultiPaymentPassword))
                     //{
@@ -451,6 +456,12 @@ namespace CashInCore
                     //{
                     //    throw new Exception(serviceResult.description);
                     //}
+
+                    #endregion
+                }
+                else
+                {
+                    OracleDb.Instance.SavePaymentWithBackend(request);
                 }
 
                 result.Code = ResultCodes.Ok;

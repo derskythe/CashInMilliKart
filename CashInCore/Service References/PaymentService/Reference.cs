@@ -56,6 +56,12 @@ namespace CashInCore.PaymentService {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseResult))]
         CashInCore.PaymentService.CategoriesResult ListCategoriesByProvider(string username, string password, string provider);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.bankofbaku.com/PaymentService/PaymentService/GetTransactionInfo", ReplyAction="http://www.bankofbaku.com/PaymentService/PaymentService/GetTransactionInfoRespons" +
+            "e")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BaseResult))]
+        CashInCore.PaymentService.StandartResult GetTransactionInfo(string username, string password, string transactionId);
     }
     
     /// <remarks/>
@@ -1413,6 +1419,7 @@ namespace CashInCore.PaymentService {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(StandartResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CategoriesResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(GetServicesResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InfoResult))]
@@ -1487,10 +1494,25 @@ namespace CashInCore.PaymentService {
         InvalidUser,
         
         /// <remarks/>
+        TransactionNotFound,
+        
+        /// <remarks/>
+        StatusUnknown,
+        
+        /// <remarks/>
         UnknownError,
         
         /// <remarks/>
         SystemError,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.225")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.bankofbaku.com/PaymentService")]
+    public partial class StandartResult : BaseResult {
     }
     
     /// <remarks/>
@@ -1657,6 +1679,10 @@ namespace CashInCore.PaymentService {
         
         public CashInCore.PaymentService.CategoriesResult ListCategoriesByProvider(string username, string password, string provider) {
             return base.Channel.ListCategoriesByProvider(username, password, provider);
+        }
+        
+        public CashInCore.PaymentService.StandartResult GetTransactionInfo(string username, string password, string transactionId) {
+            return base.Channel.GetTransactionInfo(username, password, transactionId);
         }
     }
 }
